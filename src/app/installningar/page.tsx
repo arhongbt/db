@@ -44,7 +44,7 @@ function InstallningarContent() {
   };
 
   return (
-    <div className="flex flex-col px-5 py-6 pb-24">
+    <div className="flex flex-col px-5 py-6 pb-32">
       <div className="flex items-center gap-3 mb-6">
         <Link
           href="/dashboard"
@@ -144,20 +144,23 @@ function InstallningarContent() {
         </div>
       </div>
 
-      {/* Sign out */}
-      <button
-        onClick={handleSignOut}
-        disabled={signingOut}
-        className="w-full py-3 mb-4 text-accent text-sm font-medium hover:bg-gray-100 rounded-card transition-colors"
-      >
-        <span className="flex items-center justify-center gap-2">
+      {/* Account actions */}
+      <div className="flex flex-col gap-3 mb-6">
+        <h2 className="text-sm font-semibold text-muted uppercase tracking-wide mb-1">
+          Konto
+        </h2>
+        <button
+          onClick={handleSignOut}
+          disabled={signingOut}
+          className="card flex items-center justify-center gap-2 py-3 text-accent text-sm font-medium hover:bg-gray-50 transition-colors"
+        >
           <LogOut className="w-4 h-4" />
           {signingOut ? 'Loggar ut...' : 'Logga ut'}
-        </span>
-      </button>
+        </button>
+      </div>
 
       {/* Reset */}
-      <div className="mt-auto">
+      <div>
         {!showConfirmReset ? (
           <button
             onClick={() => setShowConfirmReset(true)}
