@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
+import { AuthProvider } from '@/lib/auth/context';
 
 export const metadata: Metadata = {
   title: 'Dödsbo — Hantera dödsboet steg för steg',
@@ -39,9 +40,11 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/icons/icon-192.png" />
       </head>
       <body className="min-h-dvh">
-        <main className="mx-auto max-w-lg">
-          {children}
-        </main>
+        <AuthProvider>
+          <main className="mx-auto max-w-lg">
+            {children}
+          </main>
+        </AuthProvider>
       </body>
     </html>
   );
