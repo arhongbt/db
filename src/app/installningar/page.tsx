@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { DodsboProvider, useDodsbo } from '@/lib/context';
+import { useAuth } from '@/lib/auth/context';
 import { BottomNav } from '@/components/ui/BottomNav';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -17,12 +18,25 @@ import {
   ChevronRight,
   Heart,
   Info,
+  LogOut,
 } from 'lucide-react';
 
 function InstallningarContent() {
   const { state, dispatch } = useDodsbo();
+  const { signOut } = useAuth();
   const router = useRouter();
   const [showConfirmReset, setShowConfirmReset] = useState(false);
+  const [signingOut, setSigningOut] = useState(false);
+
+  const handleSignOut = async () => {
+    setSigningOut(true);
+    try {
+      await signOut();
+      router.push('/auth');
+    } catch {
+      setSigningOut(false);
+    }
+  };
 
   const handleReset = () => {
     dispatch({ type: 'RESET' });
@@ -129,6 +143,18 @@ function InstallningarContent() {
           </div>
         </div>
       </div>
+
+      {/* Sign out */}
+      <button
+        onClick={handleSignOut}
+        disabled={signingOut}
+        className="w-full py-3 mb-4 text-accent text-sm font-medium hover:bg-gray-100 rounded-card transition-colors"
+      >
+        <span className="flex items-center justify-center gap-2">
+          <LogOut className="w-4 h-4" />
+          {signingOut ? 'Loggar ut...' : 'Logga ut'}
+        </span>
+      </button>
 
       {/* Reset */}
       <div className="mt-auto">

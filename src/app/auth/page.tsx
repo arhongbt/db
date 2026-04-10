@@ -37,6 +37,7 @@ export default function AuthPage() {
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : 'Något gick fel. Försök igen.';
       setError(errorMessage);
+    } finally {
       setLoading(false);
     }
   };

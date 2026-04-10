@@ -56,7 +56,10 @@ CREATE POLICY "Users can insert their own profile" ON profiles
 -- =====================================================================
 
 CREATE OR REPLACE FUNCTION handle_new_user()
-RETURNS TRIGGER AS $$
+RETURNS TRIGGER
+SECURITY DEFINER
+SET search_path = public
+AS $$
 BEGIN
   INSERT INTO profiles (id, email, full_name)
   VALUES (
