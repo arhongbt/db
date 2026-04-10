@@ -55,6 +55,9 @@ export function useSupabaseSync(
   const dodsboIdRef = useRef<string | null>(null);
   dodsboIdRef.current = syncState.dodsboId;
 
+  // Mutex: only one ensureDodsboRow call may run at a time
+  const createPromiseRef = useRef<Promise<string | null> | null>(null);
+
   // ── Initial load from Supabase ───────────────────────────
   useEffect(() => {
     if (!user) {
@@ -126,7 +129,7 @@ export function useSupabaseSync(
   localStateRef.current = localState;
 
   // ── Ensure dödsbo row exists in Supabase ─────────────────
-  const ensureDodsboRow = useCallback(async (
+  const ensureDodsboRow = useCallback((
     /** Override data from the action that triggered the create —
      *  avoids stale-closure issues since React state hasn't re-rendered yet. */
     overrides?: {
@@ -136,33 +139,43 @@ export function useSupabaseSync(
       currentStep?: Dodsbo['currentStep'];
     },
   ): Promise<string | null> => {
-    if (dodsboIdRef.current) return dodsboIdRef.current;
-    if (!user) return null;
+    // Fast path: row already exists
+    if (dodsboIdRef.current) return Promise.resolve(dodsboIdRef.current);
+    if (!user) return Promise.resolve(null);
 
-    // Merge latest ref state with overrides from the triggering action
-    const current = localStateRef.current;
+    // Mutex: if another call is already creating, wait for it
+    if (createPromiseRef.current) return createPromiseRef.current;
 
-    // Create the dödsbo row
-    const { data, error } = await createDodsbo({
-      deceasedName: (overrides?.deceasedName ?? current.deceasedName) || 'Okänd',
-      deathDate: (overrides?.deathDate ?? current.deathDate) || new Date().toISOString().slice(0, 10),
-      deceasedPersonnummer: current.deceasedPersonnummer,
-      onboarding: overrides?.onboarding ?? current.onboarding,
-      currentStep: overrides?.currentStep ?? current.currentStep,
-    });
+    // This is the first call — create the row
+    const promise = (async (): Promise<string | null> => {
+      const current = localStateRef.current;
 
-    if (error) {
-      console.error('[Supabase sync] Failed to create dödsbo row:', error);
+      const { data, error } = await createDodsbo({
+        deceasedName: (overrides?.deceasedName ?? current.deceasedName) || 'Okänd',
+        deathDate: (overrides?.deathDate ?? current.deathDate) || new Date().toISOString().slice(0, 10),
+        deceasedPersonnummer: current.deceasedPersonnummer,
+        onboarding: overrides?.onboarding ?? current.onboarding,
+        currentStep: overrides?.currentStep ?? current.currentStep,
+      });
+
+      if (error) {
+        console.error('[Supabase sync] Failed to create dödsbo row:', error);
+        createPromiseRef.current = null; // Allow retry
+        return null;
+      }
+
+      if (data) {
+        const newId = data.id;
+        dodsboIdRef.current = newId;
+        setSyncState(prev => ({ ...prev, dodsboId: newId, synced: true }));
+        return newId;
+      }
+      createPromiseRef.current = null; // Allow retry
       return null;
-    }
+    })();
 
-    if (data) {
-      const newId = data.id;
-      dodsboIdRef.current = newId;
-      setSyncState(prev => ({ ...prev, dodsboId: newId, synced: true }));
-      return newId;
-    }
-    return null;
+    createPromiseRef.current = promise;
+    return promise;
   }, [user]);
 
   // ── Wrapped dispatch that syncs to Supabase ──────────────
