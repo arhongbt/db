@@ -27,8 +27,20 @@ const FORSAKRING_TYPES: { value: ForsakringType; label: string; tip: string }[] 
 ];
 
 function ForsakringarContent() {
-  const { state, dispatch } = useDodsbo();
+  const { state, dispatch, loading } = useDodsbo();
   const [showForm, setShowForm] = useState(false);
+
+  if (loading) {
+    return (
+      <div className="min-h-dvh bg-background p-6 animate-pulse">
+        <div className="h-8 bg-gray-200 rounded w-2/3 mb-2" />
+        <div className="h-4 bg-gray-200 rounded w-1/2 mb-6" />
+        <div className="space-y-3">
+          {[1,2,3].map(i => <div key={i} className="h-20 bg-gray-200 rounded-2xl" />)}
+        </div>
+      </div>
+    );
+  }
 
   const [fType, setFType] = useState<ForsakringType>('livforsakring');
   const [company, setCompany] = useState('');

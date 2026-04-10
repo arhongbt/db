@@ -39,10 +39,14 @@ export function DodsboProvider({ children }: { children: ReactNode }) {
   // Supabase sync — wraps dispatch to persist every action
   const { dispatch, loading, synced } = useSupabaseSync(state, rawDispatch);
 
-  // Still persist to localStorage as fallback / offline cache
+  // Persist to localStorage as fallback / offline cache,
+  // but SKIP while Supabase is still loading to prevent
+  // stale initial state from overwriting good cached data.
   useEffect(() => {
-    saveState(state);
-  }, [state]);
+    if (!loading) {
+      saveState(state);
+    }
+  }, [state, loading]);
 
   return (
     <DodsboContext.Provider value={{ state, dispatch, loading, synced }}>

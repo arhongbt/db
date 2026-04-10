@@ -39,7 +39,7 @@ const PRIORITY_ICON: Record<string, { icon: typeof AlertTriangle; color: string 
 };
 
 function UppgifterContent() {
-  const { state, dispatch } = useDodsbo();
+  const { state, dispatch, loading } = useDodsbo();
   const [mounted, setMounted] = useState(false);
   const [filterStep, setFilterStep] = useState<ProcessStep | 'all'>('all');
   const [showDone, setShowDone] = useState(false);
@@ -51,7 +51,16 @@ function UppgifterContent() {
     ? state.tasks
     : generateTasks(state.onboarding);
 
-  if (!mounted) return null;
+  if (!mounted || loading) return (
+    <div className="min-h-dvh bg-background p-6 animate-pulse">
+      <div className="h-8 bg-gray-200 rounded w-1/2 mb-2" />
+      <div className="h-4 bg-gray-200 rounded w-1/3 mb-6" />
+      <div className="h-10 bg-gray-200 rounded-full mb-6" />
+      <div className="space-y-3">
+        {[1,2,3,4].map(i => <div key={i} className="h-24 bg-gray-200 rounded-2xl" />)}
+      </div>
+    </div>
+  );
 
   const filtered = tasks.filter((t) => {
     if (filterStep !== 'all' && t.step !== filterStep) return false;
