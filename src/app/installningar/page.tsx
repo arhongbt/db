@@ -44,7 +44,7 @@ function InstallningarContent() {
   };
 
   return (
-    <div className="flex flex-col px-5 py-6 pb-32">
+    <div className="flex flex-col px-5 py-6 pb-48">
       <div className="flex items-center gap-3 mb-6">
         <Link
           href="/dashboard"
