@@ -10,6 +10,8 @@ import {
   ChevronRight,
   User,
   Calendar,
+  Heart,
+  Settings,
 } from 'lucide-react';
 import { BottomNav } from '@/components/ui/BottomNav';
 import type { DodsboTask, ProcessStep, TaskStatus } from '@/types';
@@ -66,20 +68,49 @@ function DashboardContent() {
     }
   };
 
+  // If no onboarding done, redirect
+  if (!state.deceasedName && mounted) {
+    return (
+      <div className="flex flex-col min-h-dvh px-5 py-6 pb-24">
+        <div className="flex-1 flex flex-col items-center justify-center text-center">
+          <Heart className="w-16 h-16 text-primary-lighter mb-4" />
+          <h1 className="text-2xl font-semibold text-primary mb-2">Välkommen</h1>
+          <p className="text-muted mb-6 max-w-xs">
+            Börja med att berätta om din situation så skapar vi en personlig plan.
+          </p>
+          <Link href="/onboarding" className="btn-primary max-w-xs flex items-center justify-center gap-2">
+            Kom igång
+            <ChevronRight className="w-5 h-5" />
+          </Link>
+        </div>
+        <BottomNav />
+      </div>
+    );
+  }
+
   return (
     <div className="flex flex-col min-h-dvh px-5 py-6 pb-24">
       {/* Greeting */}
-      <div className="mb-6">
-        <h1 className="text-2xl font-semibold text-primary">
-          {state.deceasedName
-            ? `${state.deceasedName}s dödsbo`
-            : 'Ditt dödsbo'}
+      <div className="flex items-start justify-between mb-6">
+        <div>
+          <h1 className="text-2xl font-semibold text-primary">
+            {state.deceasedName
+              ? `${state.deceasedName}s dödsbo`
+              : 'Ditt dödsbo'}
         </h1>
-        {daysSinceDeath > 0 && (
-          <p className="text-muted mt-1">
-            Dag {daysSinceDeath} sedan dödsfallet
-          </p>
-        )}
+          {daysSinceDeath > 0 && (
+            <p className="text-muted mt-1">
+              Dag {daysSinceDeath} sedan dödsfallet
+            </p>
+          )}
+        </div>
+        <Link
+          href="/installningar"
+          className="p-2 rounded-full hover:bg-gray-100 transition-colors"
+          aria-label="Inställningar"
+        >
+          <Settings className="w-5 h-5 text-muted" />
+        </Link>
       </div>
 
       {/* Current phase card — links to timeline */}

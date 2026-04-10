@@ -161,7 +161,7 @@ export function OnboardingFlow() {
             <p className="text-muted mb-6">
               Din relation till {deceasedName || 'den avlidne'} avgör dina rättigheter och uppgifter.
             </p>
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-3 stagger-children">
               {([
                 { value: 'make_maka', label: 'Make/maka', desc: 'Gift med den avlidne' },
                 { value: 'sambo', label: 'Sambo', desc: 'Sambor (ej gifta)' },
@@ -192,7 +192,7 @@ export function OnboardingFlow() {
             <p className="text-muted mb-6">
               Detta bestämmer arvsordningen enligt svensk lag.
             </p>
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-3 stagger-children">
               {([
                 { value: 'gift_med_gemensamma_barn', label: 'Gift med gemensamma barn' },
                 { value: 'gift_med_sarkullebarn', label: 'Gift med särkullbarn', desc: 'Barn från tidigare förhållande' },
@@ -223,7 +223,7 @@ export function OnboardingFlow() {
             <p className="text-muted mb-6">
               Ett testamente kan ändra arvsfördelningen. Det behöver inte vara klart nu.
             </p>
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-3 stagger-children">
               <OptionCard
                 label="Ja"
                 description="Vi har hittat ett testamente"
@@ -262,7 +262,7 @@ export function OnboardingFlow() {
             <p className="text-muted mb-6">
               Bostadstypen påverkar vad som behöver göras och tidsfristerna.
             </p>
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-3 stagger-children">
               {([
                 { value: 'hyresratt', label: 'Hyresrätt', desc: 'Uppsägningstid 1 månad för dödsbo' },
                 { value: 'bostadsratt', label: 'Bostadsrätt', desc: 'Behöver värderas och eventuellt säljas' },
@@ -291,7 +291,7 @@ export function OnboardingFlow() {
             <p className="text-muted mb-6">
               Välj alla banker där {deceasedName || 'den avlidne'} hade konton. Välj minst en.
             </p>
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-3 stagger-children">
               {SWEDISH_BANKS.map((bank) => (
                 <OptionCard
                   key={bank.id}
@@ -315,7 +315,7 @@ export function OnboardingFlow() {
             <p className="text-muted mb-6">
               Så att vi inte visar saker du redan fixat. Allt är valfritt.
             </p>
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-3 stagger-children">
               {([
                 { value: 'dodsbevis', label: 'Skaffat dödsbevis' },
                 { value: 'kontaktat_bank', label: 'Kontaktat banken' },
