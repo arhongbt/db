@@ -33,9 +33,8 @@ export default function LandingPage() {
             <Heart className="w-7 h-7 text-primary" />
           </div>
           <h1 className="text-3xl font-bold text-primary leading-tight mb-3">
-            Hantera dödsboet
-            <br />
-            <span className="text-accent">steg för steg</span>
+            Hantera dödsboet{' '}
+            <span className="text-accent block">steg för steg</span>
           </h1>
           <p className="text-lg text-muted leading-relaxed">
             Sveriges första digitala dödsbohjälp. Vi guidar dig genom hela

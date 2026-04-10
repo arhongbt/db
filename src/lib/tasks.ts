@@ -4,6 +4,7 @@
 // ============================================================
 
 import type { DodsboTask, OnboardingData, AlreadyDoneStep } from '@/types';
+import { SWEDISH_BANKS } from '@/types';
 
 let taskIdCounter = 0;
 function nextId(): string {
@@ -41,7 +42,7 @@ export function generateTasks(onboarding: OnboardingData): DodsboTask[] {
     step: 'akut',
     category: 'bank_ekonomi',
     title: 'Kontakta banken',
-    description: `Meddela ${onboarding.banks.length > 0 ? onboarding.banks.join(', ') : 'banken'} om dödsfallet. Ta med dödsbevis.`,
+    description: `Meddela ${onboarding.banks.length > 0 ? onboarding.banks.map(id => SWEDISH_BANKS.find(b => b.id === id)?.name ?? id).join(', ') : 'banken'} om dödsfallet. Ta med dödsbevis.`,
     status: statusFor('kontaktat_bank'),
     priority: 'akut',
     deadlineDays: 7,
