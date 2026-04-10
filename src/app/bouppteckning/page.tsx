@@ -17,7 +17,10 @@ import {
   ChevronRight,
   Info,
   Download,
+  Eye,
+  X,
 } from 'lucide-react';
+import { generateBouppteckningDocument } from '@/lib/generate-bouppteckning';
 
 interface BouppteckningStep {
   id: string;
@@ -32,6 +35,8 @@ interface BouppteckningStep {
 function BouppteckningContent() {
   const { state } = useDodsbo();
   const [mounted, setMounted] = useState(false);
+  const [showPreview, setShowPreview] = useState(false);
+  const [previewDoc, setPreviewDoc] = useState<ReturnType<typeof generateBouppteckningDocument> | null>(null);
   useEffect(() => setMounted(true), []);
   if (!mounted) return null;
 
@@ -254,23 +259,92 @@ function BouppteckningContent() {
         </div>
       )}
 
-      {/* Generate button */}
-      <button
-        disabled={!allDone}
-        className={`btn-primary flex items-center justify-center gap-2 ${
-          !allDone ? 'opacity-50 cursor-not-allowed' : ''
-        }`}
-      >
-        <Download className="w-5 h-5" />
-        {allDone
-          ? 'Generera bouppteckning'
-          : `Fyll i alla steg först (${completedSteps}/${steps.length})`}
-      </button>
+      {/* Generate / Preview buttons */}
+      <div className="flex flex-col gap-3">
+        <button
+          onClick={() => {
+            const doc = generateBouppteckningDocument(state);
+            setPreviewDoc(doc);
+            setShowPreview(true);
+          }}
+          className="btn-primary flex items-center justify-center gap-2"
+        >
+          <Eye className="w-5 h-5" />
+          Förhandsgranska bouppteckning
+        </button>
+
+        {!allDone && (
+          <p className="text-center text-xs text-muted">
+            OBS: Alla steg är inte ifyllda ({completedSteps}/{steps.length}). Du kan fortfarande förhandsgranska.
+          </p>
+        )}
+      </div>
 
       {!allDone && (
         <p className="text-center text-xs text-muted mt-2">
           Du kan alltid komma tillbaka och uppdatera informationen.
         </p>
+      )}
+
+      {/* Preview modal */}
+      {showPreview && previewDoc && (
+        <div className="fixed inset-0 bg-black/50 z-50 flex items-end sm:items-center justify-center">
+          <div className="bg-white w-full max-w-lg max-h-[90vh] rounded-t-2xl sm:rounded-2xl overflow-hidden flex flex-col">
+            {/* Modal header */}
+            <div className="flex items-center justify-between px-5 py-4 border-b border-gray-200">
+              <h2 className="text-lg font-semibold text-primary">
+                Förhandsgranskning
+              </h2>
+              <button
+                onClick={() => setShowPreview(false)}
+                className="p-2 hover:bg-gray-100 rounded-full"
+              >
+                <X className="w-5 h-5 text-muted" />
+              </button>
+            </div>
+
+            {/* Warnings */}
+            {previewDoc.warnings.length > 0 && (
+              <div className="px-5 pt-3">
+                <div className="warning-box">
+                  {previewDoc.warnings.map((w, i) => (
+                    <p key={i} className="text-sm">{w}</p>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Document content */}
+            <div className="flex-1 overflow-y-auto px-5 py-4">
+              <div className="space-y-6">
+                {previewDoc.sections.map((section, i) => (
+                  <div key={i}>
+                    <h3 className="text-sm font-bold text-primary uppercase tracking-wide border-b border-gray-200 pb-1 mb-2">
+                      {section.heading}
+                    </h3>
+                    <pre className="text-sm text-primary/80 whitespace-pre-wrap font-sans leading-relaxed">
+                      {section.content}
+                    </pre>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Modal footer */}
+            <div className="px-5 py-4 border-t border-gray-200">
+              <p className="text-xs text-muted text-center mb-3">
+                OBS: Detta är ett utkast. En bouppteckning måste granskas av förrättningsmän
+                och skickas till Skatteverket för registrering.
+              </p>
+              <button
+                onClick={() => setShowPreview(false)}
+                className="btn-primary"
+              >
+                Stäng
+              </button>
+            </div>
+          </div>
+        </div>
       )}
 
       <BottomNav />

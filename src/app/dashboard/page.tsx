@@ -198,6 +198,8 @@ function DashboardContent() {
             { label: 'Inventera tillgångar & skulder', href: '/tillgangar' },
             { label: 'Kontrollera försäkringar', href: '/forsakringar' },
             { label: 'Bouppteckning', href: '/bouppteckning' },
+            { label: 'Arvskifte', href: '/arvskifte' },
+            { label: 'Vanliga frågor', href: '/faq' },
             { label: 'Visa alla uppgifter', href: '/uppgifter' },
           ].map((action) => (
             <Link

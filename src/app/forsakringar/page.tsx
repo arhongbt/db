@@ -10,6 +10,7 @@ import {
   CheckCircle2,
   Circle,
   Info,
+  Trash2,
 } from 'lucide-react';
 import type { Forsakring, ForsakringType } from '@/types';
 
@@ -150,11 +151,27 @@ function ForsakringarContent() {
                     </p>
                   )}
                 </div>
-                <div className="flex items-center gap-2 mt-3 pt-3 border-t border-gray-100">
-                  <Phone className="w-4 h-4 text-muted" />
-                  <span className={`text-sm ${f.contacted ? 'text-success' : 'text-muted'}`}>
-                    {f.contacted ? 'Kontaktad' : 'Ej kontaktad'}
-                  </span>
+                <div className="flex items-center justify-between mt-3 pt-3 border-t border-gray-100">
+                  <button
+                    onClick={() => dispatch({ type: 'TOGGLE_FORSAKRING_CONTACTED', payload: f.id })}
+                    className="flex items-center gap-2"
+                  >
+                    {f.contacted ? (
+                      <CheckCircle2 className="w-4 h-4 text-success" />
+                    ) : (
+                      <Circle className="w-4 h-4 text-gray-300" />
+                    )}
+                    <span className={`text-sm ${f.contacted ? 'text-success' : 'text-muted'}`}>
+                      {f.contacted ? 'Kontaktad' : 'Markera som kontaktad'}
+                    </span>
+                  </button>
+                  <button
+                    onClick={() => dispatch({ type: 'REMOVE_FORSAKRING', payload: f.id })}
+                    className="p-1.5 text-muted hover:text-warn transition-colors"
+                    aria-label={`Ta bort ${f.company}`}
+                  >
+                    <Trash2 className="w-4 h-4" />
+                  </button>
                 </div>
               </div>
             ))}

@@ -14,6 +14,7 @@ import {
   CreditCard,
   Landmark,
   Package,
+  Trash2,
 } from 'lucide-react';
 import type { Tillgang, TillgangType, Skuld, SkuldType } from '@/types';
 
@@ -174,8 +175,14 @@ function TillgangarContent() {
                       <p className="text-sm text-muted">{typeInfo?.label}</p>
                     </div>
                     {t.estimatedValue != null && (
-                      <p className="font-semibold text-success">{formatSEK(t.estimatedValue)}</p>
+                      <p className="font-semibold text-success text-sm">{formatSEK(t.estimatedValue)}</p>
                     )}
+                    <button
+                      onClick={() => dispatch({ type: 'REMOVE_TILLGANG', payload: t.id })}
+                      className="p-1.5 text-muted hover:text-warn transition-colors"
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </button>
                   </div>
                 );
               })}
@@ -202,15 +209,21 @@ function TillgangarContent() {
               {state.skulder.map((s) => (
                 <div key={s.id} className="card flex items-center gap-3">
                   <CreditCard className="w-5 h-5 text-warn flex-shrink-0" />
-                  <div className="flex-1">
+                  <div className="flex-1 min-w-0">
                     <p className="font-medium text-primary">{s.creditor}</p>
-                    <p className="text-sm text-muted">
+                    <p className="text-sm text-muted truncate">
                       {SKULD_TYPES.find((st) => st.value === s.type)?.label}
                     </p>
                   </div>
                   {s.amount != null && (
-                    <p className="font-semibold text-warn">{formatSEK(s.amount)}</p>
+                    <p className="font-semibold text-warn text-sm">{formatSEK(s.amount)}</p>
                   )}
+                  <button
+                    onClick={() => dispatch({ type: 'REMOVE_SKULD', payload: s.id })}
+                    className="p-1.5 text-muted hover:text-warn transition-colors"
+                  >
+                    <Trash2 className="w-4 h-4" />
+                  </button>
                 </div>
               ))}
             </div>
