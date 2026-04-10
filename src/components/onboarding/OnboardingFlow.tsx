@@ -68,9 +68,9 @@ export function OnboardingFlow() {
       dispatch({ type: 'SET_DECEASED_INFO', payload: { name: deceasedName, deathDate } });
       dispatch({ type: 'SET_ONBOARDING', payload: onboarding });
 
-      // Generate personalized task list
+      // Generate personalized task list and save to state
       const tasks = generateTasks(onboarding);
-      // We'll dispatch tasks via a batch action — for now just set step
+      dispatch({ type: 'SET_TASKS', payload: tasks });
       dispatch({ type: 'SET_STEP', payload: 'akut' });
 
       router.push('/dashboard');

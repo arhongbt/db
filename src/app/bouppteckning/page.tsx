@@ -1,0 +1,287 @@
+'use client';
+
+import { useEffect, useState } from 'react';
+import { DodsboProvider, useDodsbo } from '@/lib/context';
+import { BottomNav } from '@/components/ui/BottomNav';
+import Link from 'next/link';
+import {
+  ArrowLeft,
+  CheckCircle2,
+  Circle,
+  Users,
+  Wallet,
+  CreditCard,
+  FileText,
+  Home,
+  AlertTriangle,
+  ChevronRight,
+  Info,
+  Download,
+} from 'lucide-react';
+
+interface BouppteckningStep {
+  id: string;
+  title: string;
+  description: string;
+  icon: typeof FileText;
+  checkFn: () => boolean;
+  href: string;
+  details: string;
+}
+
+function BouppteckningContent() {
+  const { state } = useDodsbo();
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+  if (!mounted) return null;
+
+  const steps: BouppteckningStep[] = [
+    {
+      id: 'delagare',
+      title: 'Dödsbodelägare',
+      description: 'Alla som har rätt till arvet ska finnas med',
+      icon: Users,
+      checkFn: () => state.delagare.length > 0,
+      href: '/delagare',
+      details: `${state.delagare.length} person(er) tillagda`,
+    },
+    {
+      id: 'tillgangar',
+      title: 'Tillgångar',
+      description: 'Bankkonton, fastighet, fordon, aktier, lösöre',
+      icon: Wallet,
+      checkFn: () => state.tillgangar.length > 0,
+      href: '/tillgangar',
+      details: `${state.tillgangar.length} tillgång(ar) registrerade`,
+    },
+    {
+      id: 'skulder',
+      title: 'Skulder',
+      description: 'Bolån, konsumentlån, kreditkort, skatteskulder',
+      icon: CreditCard,
+      checkFn: () => state.skulder.length > 0 || state.tillgangar.length > 0,
+      href: '/tillgangar',
+      details: `${state.skulder.length} skuld(er) registrerade`,
+    },
+    {
+      id: 'forsakringar',
+      title: 'Försäkringar',
+      description: 'Liv-, grupp-, tjänste- och privata försäkringar',
+      icon: Home,
+      checkFn: () => state.forsakringar.length > 0,
+      href: '/forsakringar',
+      details: `${state.forsakringar.length} försäkring(ar)`,
+    },
+  ];
+
+  const completedSteps = steps.filter((s) => s.checkFn()).length;
+  const allDone = completedSteps === steps.length;
+
+  const totalTillgangar = state.tillgangar.reduce(
+    (sum, t) => sum + (t.estimatedValue ?? 0), 0
+  );
+  const totalSkulder = state.skulder.reduce(
+    (sum, s) => sum + (s.amount ?? 0), 0
+  );
+  const netto = totalTillgangar - totalSkulder;
+
+  const formatSEK = (amount: number) =>
+    new Intl.NumberFormat('sv-SE', {
+      style: 'currency', currency: 'SEK', maximumFractionDigits: 0,
+    }).format(amount);
+
+  return (
+    <div className="flex flex-col min-h-dvh px-5 py-6 pb-24">
+      {/* Header */}
+      <div className="flex items-center gap-3 mb-6">
+        <Link
+          href="/dashboard"
+          className="p-2 -ml-2 rounded-full hover:bg-gray-100 transition-colors"
+        >
+          <ArrowLeft className="w-5 h-5 text-primary" />
+        </Link>
+        <div>
+          <h1 className="text-2xl font-semibold text-primary">Bouppteckning</h1>
+          <p className="text-muted text-sm">
+            Samla underlag steg för steg
+          </p>
+        </div>
+      </div>
+
+      {/* Info box */}
+      <div className="info-box mb-6">
+        <div className="flex gap-2">
+          <Info className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
+          <div>
+            <p className="text-sm font-medium text-primary">
+              Vad är en bouppteckning?
+            </p>
+            <p className="text-sm text-primary/70 mt-1">
+              En förteckning av den avlidnes alla tillgångar och skulder per dödsdagen.
+              Den ska upprättas inom 3 månader och skickas till Skatteverket inom 4 månader.
+              Två utomstående förrättningsmän krävs.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Progress */}
+      <div className="card mb-6">
+        <div className="flex justify-between items-center mb-2">
+          <span className="text-sm font-medium text-primary">
+            Insamlingsprogress
+          </span>
+          <span className="text-sm text-muted">
+            {completedSteps}/{steps.length} klara
+          </span>
+        </div>
+        <div className="w-full h-2 bg-gray-200 rounded-full mb-4">
+          <div
+            className="h-2 bg-success rounded-full transition-all"
+            style={{ width: `${(completedSteps / steps.length) * 100}%` }}
+          />
+        </div>
+
+        {/* Deadline warning */}
+        {state.deathDate && (
+          <div className="flex items-center gap-2 text-sm">
+            <AlertTriangle className="w-4 h-4 text-warn" />
+            <span className="text-primary/70">
+              Frist:{' '}
+              {new Date(
+                new Date(state.deathDate).getTime() + 90 * 24 * 60 * 60 * 1000
+              ).toLocaleDateString('sv-SE', {
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric',
+              })}{' '}
+              (3 månader efter dödsfallet)
+            </span>
+          </div>
+        )}
+      </div>
+
+      {/* Steps checklist */}
+      <div className="flex flex-col gap-3 mb-6">
+        {steps.map((step) => {
+          const isComplete = step.checkFn();
+          const Icon = step.icon;
+          return (
+            <Link
+              key={step.id}
+              href={step.href}
+              className="card flex items-center gap-3 hover:bg-gray-50 transition-colors"
+            >
+              {isComplete ? (
+                <CheckCircle2 className="w-6 h-6 text-success flex-shrink-0" />
+              ) : (
+                <Circle className="w-6 h-6 text-gray-300 flex-shrink-0" />
+              )}
+              <div className="flex-1">
+                <p className={`font-medium ${isComplete ? 'text-primary' : 'text-primary'}`}>
+                  {step.title}
+                </p>
+                <p className="text-sm text-muted">{step.details}</p>
+              </div>
+              <ChevronRight className="w-5 h-5 text-muted flex-shrink-0" />
+            </Link>
+          );
+        })}
+      </div>
+
+      {/* Summary preview */}
+      {(state.tillgangar.length > 0 || state.skulder.length > 0) && (
+        <div className="card border-2 border-primary-lighter mb-6">
+          <h2 className="text-lg font-semibold text-primary mb-4">
+            Sammanfattning
+          </h2>
+
+          {/* Deceased info */}
+          <div className="pb-3 mb-3 border-b border-gray-100">
+            <p className="text-sm text-muted">Den avlidne</p>
+            <p className="font-medium text-primary">
+              {state.deceasedName || '–'}
+            </p>
+            {state.deathDate && (
+              <p className="text-sm text-muted">
+                Dödsdatum:{' '}
+                {new Date(state.deathDate).toLocaleDateString('sv-SE')}
+              </p>
+            )}
+          </div>
+
+          {/* Delägare */}
+          <div className="pb-3 mb-3 border-b border-gray-100">
+            <p className="text-sm text-muted mb-1">Dödsbodelägare</p>
+            {state.delagare.length > 0 ? (
+              state.delagare.map((d) => (
+                <p key={d.id} className="text-sm text-primary">
+                  {d.name}
+                </p>
+              ))
+            ) : (
+              <p className="text-sm text-muted italic">Inga tillagda</p>
+            )}
+          </div>
+
+          {/* Ekonomisk sammanfattning */}
+          <div className="space-y-2">
+            <div className="flex justify-between">
+              <span className="text-sm text-muted">Tillgångar</span>
+              <span className="text-sm font-medium text-success">
+                {formatSEK(totalTillgangar)}
+              </span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-sm text-muted">Skulder</span>
+              <span className="text-sm font-medium text-warn">
+                {formatSEK(totalSkulder)}
+              </span>
+            </div>
+            <div className="flex justify-between pt-2 border-t border-gray-200">
+              <span className="text-base font-semibold text-primary">
+                Behållning
+              </span>
+              <span
+                className={`text-base font-bold ${
+                  netto >= 0 ? 'text-success' : 'text-warn'
+                }`}
+              >
+                {formatSEK(netto)}
+              </span>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Generate button */}
+      <button
+        disabled={!allDone}
+        className={`btn-primary flex items-center justify-center gap-2 ${
+          !allDone ? 'opacity-50 cursor-not-allowed' : ''
+        }`}
+      >
+        <Download className="w-5 h-5" />
+        {allDone
+          ? 'Generera bouppteckning'
+          : `Fyll i alla steg först (${completedSteps}/${steps.length})`}
+      </button>
+
+      {!allDone && (
+        <p className="text-center text-xs text-muted mt-2">
+          Du kan alltid komma tillbaka och uppdatera informationen.
+        </p>
+      )}
+
+      <BottomNav />
+    </div>
+  );
+}
+
+export default function BouppteckningPage() {
+  return (
+    <DodsboProvider>
+      <BouppteckningContent />
+    </DodsboProvider>
+  );
+}

@@ -82,15 +82,33 @@ function DashboardContent() {
         )}
       </div>
 
-      {/* Current phase card */}
-      <div
-        className={`card border-l-4 mb-6 ${stepColors[state.currentStep]}`}
+      {/* Current phase card — links to timeline */}
+      <Link
+        href="/tidslinje"
+        className={`card border-l-4 mb-6 ${stepColors[state.currentStep]} flex items-center justify-between`}
       >
-        <p className="text-sm font-medium opacity-80 mb-1">Du är i fasen</p>
-        <p className="text-lg font-semibold">
-          {stepLabels[state.currentStep]}
-        </p>
-      </div>
+        <div>
+          <p className="text-sm font-medium opacity-80 mb-1">Du är i fasen</p>
+          <p className="text-lg font-semibold">
+            {stepLabels[state.currentStep]}
+          </p>
+        </div>
+        <ChevronRight className="w-5 h-5 opacity-60" />
+      </Link>
+
+      {/* Nödbroms banner — show first 7 days */}
+      {daysSinceDeath <= 7 && (
+        <Link
+          href="/nodbroms"
+          className="card border-l-4 border-warn bg-red-50 mb-6 flex items-center justify-between"
+        >
+          <div>
+            <p className="font-semibold text-warn">Nödbroms — dag 1-7</p>
+            <p className="text-sm text-primary/70">Steg-för-steg guide för de första dagarna</p>
+          </div>
+          <ChevronRight className="w-5 h-5 text-warn" />
+        </Link>
+      )}
 
       {/* Quick stats */}
       <div className="grid grid-cols-2 gap-3 mb-6">
@@ -179,6 +197,7 @@ function DashboardContent() {
             { label: 'Lägg till dödsbodelägare', href: '/delagare' },
             { label: 'Inventera tillgångar & skulder', href: '/tillgangar' },
             { label: 'Kontrollera försäkringar', href: '/forsakringar' },
+            { label: 'Bouppteckning', href: '/bouppteckning' },
             { label: 'Visa alla uppgifter', href: '/uppgifter' },
           ].map((action) => (
             <Link

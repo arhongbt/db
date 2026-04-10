@@ -22,11 +22,17 @@ import {
 export type Action =
   | { type: 'SET_ONBOARDING'; payload: OnboardingData }
   | { type: 'SET_DECEASED_INFO'; payload: { name: string; deathDate: string } }
+  | { type: 'SET_TASKS'; payload: DodsboTask[] }
   | { type: 'ADD_DELAGARE'; payload: Dodsbodelaware }
   | { type: 'REMOVE_DELAGARE'; payload: string }
+  | { type: 'UPDATE_DELAGARE'; payload: Dodsbodelaware }
   | { type: 'ADD_TILLGANG'; payload: Tillgang }
+  | { type: 'REMOVE_TILLGANG'; payload: string }
   | { type: 'ADD_SKULD'; payload: Skuld }
+  | { type: 'REMOVE_SKULD'; payload: string }
   | { type: 'ADD_FORSAKRING'; payload: Forsakring }
+  | { type: 'REMOVE_FORSAKRING'; payload: string }
+  | { type: 'TOGGLE_FORSAKRING_CONTACTED'; payload: string }
   | { type: 'UPDATE_TASK'; payload: { id: string; status: DodsboTask['status'] } }
   | { type: 'SET_STEP'; payload: ProcessStep }
   | { type: 'LOAD_STATE'; payload: Dodsbo }
@@ -83,6 +89,9 @@ export function dodsboReducer(state: Dodsbo, action: Action): Dodsbo {
         updatedAt: now,
       };
 
+    case 'SET_TASKS':
+      return { ...state, tasks: action.payload, updatedAt: now };
+
     case 'ADD_DELAGARE':
       return {
         ...state,
@@ -97,10 +106,26 @@ export function dodsboReducer(state: Dodsbo, action: Action): Dodsbo {
         updatedAt: now,
       };
 
+    case 'UPDATE_DELAGARE':
+      return {
+        ...state,
+        delagare: state.delagare.map((d) =>
+          d.id === action.payload.id ? action.payload : d
+        ),
+        updatedAt: now,
+      };
+
     case 'ADD_TILLGANG':
       return {
         ...state,
         tillgangar: [...state.tillgangar, action.payload],
+        updatedAt: now,
+      };
+
+    case 'REMOVE_TILLGANG':
+      return {
+        ...state,
+        tillgangar: state.tillgangar.filter((t) => t.id !== action.payload),
         updatedAt: now,
       };
 
@@ -111,10 +136,33 @@ export function dodsboReducer(state: Dodsbo, action: Action): Dodsbo {
         updatedAt: now,
       };
 
+    case 'REMOVE_SKULD':
+      return {
+        ...state,
+        skulder: state.skulder.filter((s) => s.id !== action.payload),
+        updatedAt: now,
+      };
+
     case 'ADD_FORSAKRING':
       return {
         ...state,
         forsakringar: [...state.forsakringar, action.payload],
+        updatedAt: now,
+      };
+
+    case 'REMOVE_FORSAKRING':
+      return {
+        ...state,
+        forsakringar: state.forsakringar.filter((f) => f.id !== action.payload),
+        updatedAt: now,
+      };
+
+    case 'TOGGLE_FORSAKRING_CONTACTED':
+      return {
+        ...state,
+        forsakringar: state.forsakringar.map((f) =>
+          f.id === action.payload ? { ...f, contacted: !f.contacted } : f
+        ),
         updatedAt: now,
       };
 
