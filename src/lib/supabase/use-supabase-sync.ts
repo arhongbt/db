@@ -16,7 +16,6 @@ import type { Dodsbo } from '@/types';
 
 import {
   getDodsbon,
-  getDodsboById,
   createDodsbo,
   updateDodsbo,
 } from './services/dodsbo-service';
@@ -122,19 +121,40 @@ export function useSupabaseSync(
     return () => { cancelled = true; };
   }, [user, rawDispatch]);
 
+  // Use a ref for local state so the sync dispatch always has latest
+  const localStateRef = useRef<Dodsbo>(localState);
+  localStateRef.current = localState;
+
   // ── Ensure dödsbo row exists in Supabase ─────────────────
-  const ensureDodsboRow = useCallback(async (state: Dodsbo): Promise<string | null> => {
+  const ensureDodsboRow = useCallback(async (
+    /** Override data from the action that triggered the create —
+     *  avoids stale-closure issues since React state hasn't re-rendered yet. */
+    overrides?: {
+      deceasedName?: string;
+      deathDate?: string;
+      onboarding?: Dodsbo['onboarding'];
+      currentStep?: Dodsbo['currentStep'];
+    },
+  ): Promise<string | null> => {
     if (dodsboIdRef.current) return dodsboIdRef.current;
     if (!user) return null;
 
+    // Merge latest ref state with overrides from the triggering action
+    const current = localStateRef.current;
+
     // Create the dödsbo row
-    const { data } = await createDodsbo({
-      deceasedName: state.deceasedName,
-      deathDate: state.deathDate,
-      deceasedPersonnummer: state.deceasedPersonnummer,
-      onboarding: state.onboarding,
-      currentStep: state.currentStep,
+    const { data, error } = await createDodsbo({
+      deceasedName: (overrides?.deceasedName ?? current.deceasedName) || 'Okänd',
+      deathDate: (overrides?.deathDate ?? current.deathDate) || new Date().toISOString().slice(0, 10),
+      deceasedPersonnummer: current.deceasedPersonnummer,
+      onboarding: overrides?.onboarding ?? current.onboarding,
+      currentStep: overrides?.currentStep ?? current.currentStep,
     });
+
+    if (error) {
+      console.error('[Supabase sync] Failed to create dödsbo row:', error);
+      return null;
+    }
 
     if (data) {
       const newId = data.id;
@@ -171,7 +191,19 @@ export function useSupabaseSync(
 
           let dbId = dodsboIdRef.current;
           if (needsRow.includes(action.type) && !dbId) {
-            dbId = await ensureDodsboRow(localState);
+            // Build overrides from the action payload so the DB row
+            // gets the data the user just entered (React state hasn't
+            // re-rendered yet, so refs are one step behind).
+            const overrides: Parameters<typeof ensureDodsboRow>[0] = {};
+            if (action.type === 'SET_DECEASED_INFO') {
+              overrides.deceasedName = action.payload.name;
+              overrides.deathDate = action.payload.deathDate;
+            } else if (action.type === 'SET_ONBOARDING') {
+              overrides.onboarding = action.payload;
+            } else if (action.type === 'SET_STEP') {
+              overrides.currentStep = action.payload;
+            }
+            dbId = await ensureDodsboRow(overrides);
             if (!dbId) return; // Can't sync without a row
           }
 
@@ -233,10 +265,10 @@ export function useSupabaseSync(
               break;
 
             case 'TOGGLE_FORSAKRING_CONTACTED': {
-              // We need the current state of the forsakring to toggle
-              // The local reducer already toggled it, so read from the updated state
-              // We pass the id and the service will handle it
-              const f = localState.forsakringar.find(f => f.id === action.payload);
+              // Read from ref — reducer already toggled locally so the ref
+              // value *after* next render will be correct; however we're in
+              // the same tick so read pre-toggle value and invert.
+              const f = localStateRef.current.forsakringar.find(f => f.id === action.payload);
               if (f) await updateForsakring(action.payload, { contacted: !f.contacted });
               break;
             }
@@ -259,7 +291,7 @@ export function useSupabaseSync(
         }
       })();
     },
-    [user, rawDispatch, localState, ensureDodsboRow],
+    [user, rawDispatch, ensureDodsboRow],
   );
 
   return {
