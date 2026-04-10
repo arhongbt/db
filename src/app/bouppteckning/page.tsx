@@ -21,6 +21,7 @@ import {
   X,
 } from 'lucide-react';
 import { generateBouppteckningDocument } from '@/lib/generate-bouppteckning';
+import { downloadBouppteckningPDF } from '@/lib/generate-bouppteckning-pdf';
 
 interface BouppteckningStep {
   id: string;
@@ -346,12 +347,25 @@ function BouppteckningContent() {
                 OBS: Detta är ett utkast. En bouppteckning måste granskas av förrättningsmän
                 och skickas till Skatteverket för registrering.
               </p>
-              <button
-                onClick={() => setShowPreview(false)}
-                className="btn-primary"
-              >
-                Stäng
-              </button>
+              <div className="flex gap-3">
+                <button
+                  onClick={() => setShowPreview(false)}
+                  className="flex-1 py-3 px-4 rounded-xl border border-gray-200 text-primary font-medium hover:bg-gray-50 transition-colors"
+                >
+                  Stäng
+                </button>
+                <button
+                  onClick={() => {
+                    if (previewDoc) {
+                      downloadBouppteckningPDF(previewDoc);
+                    }
+                  }}
+                  className="flex-1 btn-primary flex items-center justify-center gap-2"
+                >
+                  <Download className="w-4 h-4" />
+                  Ladda ner PDF
+                </button>
+              </div>
             </div>
           </div>
         </div>

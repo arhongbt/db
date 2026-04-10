@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import { AuthProvider } from '@/lib/auth/context';
+import { ServiceWorkerRegistration } from '@/components/ServiceWorkerRegistration';
 
 export const metadata: Metadata = {
   title: 'Dödsbo — Hantera dödsboet steg för steg',
@@ -41,6 +42,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-dvh">
         <AuthProvider>
+          <ServiceWorkerRegistration />
           <main className="mx-auto max-w-lg">
             {children}
           </main>

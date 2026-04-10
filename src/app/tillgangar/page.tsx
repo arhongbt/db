@@ -15,6 +15,7 @@ import {
   Landmark,
   Package,
   Trash2,
+  Info,
 } from 'lucide-react';
 import type { Tillgang, TillgangType, Skuld, SkuldType } from '@/types';
 
@@ -121,6 +122,17 @@ function TillgangarContent() {
         >
           <Plus className="w-6 h-6" />
         </button>
+      </div>
+
+      {/* Disclaimer */}
+      <div className="info-box mb-4">
+        <div className="flex gap-2">
+          <Info className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
+          <p className="text-sm text-primary/70">
+            Ange uppskattade värden per dödsdagen. Bankerna skickar saldobesked —
+            exakta belopp kan uppdateras senare.
+          </p>
+        </div>
       </div>
 
       {/* Summary cards */}

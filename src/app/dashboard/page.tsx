@@ -266,6 +266,12 @@ function DashboardContent() {
         </div>
       </section>
 
+      {/* Legal disclaimer */}
+      <p className="text-xs text-center text-muted mt-6 mb-4 px-2">
+        Denna app ger allmän vägledning och ersätter inte juridisk rådgivning.
+        Kontakta alltid en jurist vid osäkerhet.
+      </p>
+
       <BottomNav />
     </div>
   );

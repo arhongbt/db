@@ -71,19 +71,9 @@ export async function middleware(request: NextRequest) {
 
     // If no user or error, redirect to auth
     if (!user || error) {
-      return NextResponse.redirect(new URL("/auth", request.url));
-    }
-
-    // Check if user profile exists
-    const { data: profile, error: profileError } = await supabase
-      .from("profiles")
-      .select("id")
-      .eq("id", user.id)
-      .single();
-
-    // If profile doesn't exist, redirect to auth (user profile should have been created on signup)
-    if (!profile || profileError) {
-      return NextResponse.redirect(new URL("/auth", request.url));
+      const authUrl = new URL("/auth", request.url);
+      authUrl.searchParams.set("redirect", pathname);
+      return NextResponse.redirect(authUrl);
     }
   }
 
@@ -101,6 +91,6 @@ export const config = {
      * - robots.txt (robots file)
      * - sitemap.xml (sitemap file)
      */
-    "/((?!api|_next/static|_next/image|favicon.ico|robots.txt|sitemap.xml).*)",
+    "/((?!api|_next/static|_next/image|favicon.ico|robots.txt|sitemap.xml|icons|manifest.json|sw.js).*)",
   ],
 };
