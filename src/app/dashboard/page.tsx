@@ -11,8 +11,10 @@ import {
   User,
   Calendar,
 } from 'lucide-react';
+import { BottomNav } from '@/components/ui/BottomNav';
 import type { DodsboTask, ProcessStep, TaskStatus } from '@/types';
 import { DEFAULT_TIDSFRISTER } from '@/types';
+import Link from 'next/link';
 
 function DashboardContent() {
   const { state } = useDodsbo();
@@ -65,7 +67,7 @@ function DashboardContent() {
   };
 
   return (
-    <div className="flex flex-col min-h-dvh px-5 py-6">
+    <div className="flex flex-col min-h-dvh px-5 py-6 pb-24">
       {/* Greeting */}
       <div className="mb-6">
         <h1 className="text-2xl font-semibold text-primary">
@@ -177,19 +179,23 @@ function DashboardContent() {
             { label: 'Lägg till dödsbodelägare', href: '/delagare' },
             { label: 'Inventera tillgångar & skulder', href: '/tillgangar' },
             { label: 'Kontrollera försäkringar', href: '/forsakringar' },
+            { label: 'Visa alla uppgifter', href: '/uppgifter' },
           ].map((action) => (
-            <button
+            <Link
               key={action.href}
+              href={action.href}
               className="card flex items-center justify-between hover:bg-gray-50 transition-colors"
             >
               <span className="text-base font-medium text-primary">
                 {action.label}
               </span>
               <ChevronRight className="w-5 h-5 text-muted" />
-            </button>
+            </Link>
           ))}
         </div>
       </section>
+
+      <BottomNav />
     </div>
   );
 }

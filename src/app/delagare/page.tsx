@@ -1,0 +1,270 @@
+'use client';
+
+import { useState } from 'react';
+import { DodsboProvider, useDodsbo } from '@/lib/context';
+import { BottomNav } from '@/components/ui/BottomNav';
+import { OptionCard } from '@/components/ui/OptionCard';
+import { getArvsordning } from '@/lib/arvsordning';
+import {
+  Plus,
+  X,
+  Users,
+  Scale,
+  Info,
+  ChevronDown,
+  ChevronUp,
+} from 'lucide-react';
+import type { Relation, Dodsbodelaware } from '@/types';
+
+const RELATION_LABELS: Record<Relation, string> = {
+  make_maka: 'Make/maka',
+  sambo: 'Sambo',
+  barn: 'Barn',
+  barnbarn: 'Barnbarn',
+  foralder: 'Förälder',
+  syskon: 'Syskon',
+  annan_slakting: 'Annan släkting',
+  testamentstagare: 'Testamentstagare',
+  god_man: 'God man',
+  ombud: 'Ombud',
+};
+
+function DelagareContent() {
+  const { state, dispatch } = useDodsbo();
+  const [showForm, setShowForm] = useState(false);
+  const [showArvsinfo, setShowArvsinfo] = useState(false);
+  const [name, setName] = useState('');
+  const [relation, setRelation] = useState<Relation | ''>('');
+  const [phone, setPhone] = useState('');
+  const [email, setEmail] = useState('');
+
+  const arvsinfo = getArvsordning(
+    state.onboarding.familySituation,
+    state.onboarding.hasTestamente
+  );
+
+  const handleAdd = () => {
+    if (!name.trim() || !relation) return;
+
+    const delagare: Dodsbodelaware = {
+      id: crypto.randomUUID(),
+      name: name.trim(),
+      relation: relation as Relation,
+      phone: phone.trim() || undefined,
+      email: email.trim() || undefined,
+      isDelagare: true,
+    };
+
+    dispatch({ type: 'ADD_DELAGARE', payload: delagare });
+    setName('');
+    setRelation('');
+    setPhone('');
+    setEmail('');
+    setShowForm(false);
+  };
+
+  return (
+    <div className="flex flex-col min-h-dvh px-5 py-6 pb-24">
+      {/* Header */}
+      <div className="flex items-center justify-between mb-6">
+        <div>
+          <h1 className="text-2xl font-semibold text-primary">
+            Dödsbodelägare
+          </h1>
+          <p className="text-muted text-sm mt-1">
+            Alla som har rätt till arvet
+          </p>
+        </div>
+        <button
+          onClick={() => setShowForm(true)}
+          className="w-12 h-12 bg-accent text-white rounded-full flex items-center justify-center shadow-md hover:bg-primary-light transition-colors"
+          aria-label="Lägg till dödsbodelägare"
+        >
+          <Plus className="w-6 h-6" />
+        </button>
+      </div>
+
+      {/* Arvsordning info */}
+      <button
+        onClick={() => setShowArvsinfo(!showArvsinfo)}
+        className="card flex items-center justify-between mb-4 w-full text-left"
+      >
+        <div className="flex items-center gap-3">
+          <Scale className="w-5 h-5 text-accent" />
+          <span className="font-medium text-primary">Arvsordning</span>
+        </div>
+        {showArvsinfo ? (
+          <ChevronUp className="w-5 h-5 text-muted" />
+        ) : (
+          <ChevronDown className="w-5 h-5 text-muted" />
+        )}
+      </button>
+
+      {showArvsinfo && (
+        <div className="card mb-4 border-l-4 border-accent">
+          <p className="font-medium text-primary mb-3">{arvsinfo.summary}</p>
+
+          <div className="space-y-2 mb-4">
+            {arvsinfo.details.map((d, i) => (
+              <p key={i} className="text-sm text-primary/80">{d}</p>
+            ))}
+          </div>
+
+          {/* Heirs table */}
+          <div className="bg-primary-lighter/30 rounded-card p-3 mb-3">
+            <p className="text-xs font-semibold text-muted uppercase tracking-wide mb-2">
+              Vem ärver?
+            </p>
+            {arvsinfo.heirs.map((h, i) => (
+              <div key={i} className="flex justify-between py-1.5 border-b border-gray-200 last:border-0">
+                <span className="text-sm font-medium">{h.relation}</span>
+                <span className="text-sm text-muted">{h.share}</span>
+              </div>
+            ))}
+          </div>
+
+          {arvsinfo.warnings.length > 0 && (
+            <div className="warning-box">
+              {arvsinfo.warnings.map((w, i) => (
+                <p key={i} className="text-sm mb-1 last:mb-0">{w}</p>
+              ))}
+            </div>
+          )}
+
+          <p className="text-xs text-muted mt-3">
+            Lagrum: {arvsinfo.lawRefs.join(', ')}
+          </p>
+        </div>
+      )}
+
+      {/* Delägare list */}
+      {state.delagare.length === 0 && !showForm ? (
+        <div className="flex-1 flex flex-col items-center justify-center text-center py-12">
+          <Users className="w-16 h-16 text-gray-300 mb-4" />
+          <h2 className="text-lg font-medium text-primary mb-2">
+            Inga delägare tillagda ännu
+          </h2>
+          <p className="text-muted text-sm max-w-xs">
+            Lägg till alla som har rätt till arvet — make/maka, barn, syskon eller andra.
+          </p>
+        </div>
+      ) : (
+        <div className="flex flex-col gap-3 mb-4">
+          {state.delagare.map((d) => (
+            <div key={d.id} className="card flex items-start justify-between">
+              <div>
+                <p className="font-medium text-primary">{d.name}</p>
+                <p className="text-sm text-muted">
+                  {RELATION_LABELS[d.relation]}
+                </p>
+                {d.phone && (
+                  <p className="text-sm text-muted mt-1">{d.phone}</p>
+                )}
+                {d.email && (
+                  <p className="text-sm text-accent mt-0.5">{d.email}</p>
+                )}
+              </div>
+              <button
+                onClick={() =>
+                  dispatch({ type: 'REMOVE_DELAGARE', payload: d.id })
+                }
+                className="p-2 text-muted hover:text-warn transition-colors"
+                aria-label={`Ta bort ${d.name}`}
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* Add form */}
+      {showForm && (
+        <div className="card border-2 border-accent mb-4">
+          <h3 className="text-lg font-semibold text-primary mb-4">
+            Lägg till dödsbodelägare
+          </h3>
+
+          <label className="block mb-4">
+            <span className="text-sm font-medium text-primary mb-1 block">Namn *</span>
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Förnamn Efternamn"
+              className="w-full min-h-touch px-4 py-3 text-base border-2 border-gray-200 rounded-card focus:border-accent focus:outline-none"
+              autoFocus
+            />
+          </label>
+
+          <div className="mb-4">
+            <span className="text-sm font-medium text-primary mb-2 block">Relation *</span>
+            <div className="grid grid-cols-2 gap-2">
+              {(
+                ['make_maka', 'sambo', 'barn', 'barnbarn', 'foralder', 'syskon', 'annan_slakting', 'testamentstagare'] as Relation[]
+              ).map((r) => (
+                <button
+                  key={r}
+                  type="button"
+                  onClick={() => setRelation(r)}
+                  className={`py-2.5 px-3 rounded-card text-sm font-medium border-2 transition-colors ${
+                    relation === r
+                      ? 'border-accent bg-primary-lighter/30 text-primary'
+                      : 'border-gray-200 text-muted hover:border-gray-300'
+                  }`}
+                >
+                  {RELATION_LABELS[r]}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <label className="block mb-4">
+            <span className="text-sm font-medium text-primary mb-1 block">Telefon</span>
+            <input
+              type="tel"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              placeholder="070-123 45 67"
+              className="w-full min-h-touch px-4 py-3 text-base border-2 border-gray-200 rounded-card focus:border-accent focus:outline-none"
+            />
+          </label>
+
+          <label className="block mb-6">
+            <span className="text-sm font-medium text-primary mb-1 block">E-post</span>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="namn@exempel.se"
+              className="w-full min-h-touch px-4 py-3 text-base border-2 border-gray-200 rounded-card focus:border-accent focus:outline-none"
+            />
+          </label>
+
+          <div className="flex gap-3">
+            <button onClick={() => setShowForm(false)} className="btn-secondary flex-1">
+              Avbryt
+            </button>
+            <button
+              onClick={handleAdd}
+              disabled={!name.trim() || !relation}
+              className="btn-primary flex-1"
+            >
+              Lägg till
+            </button>
+          </div>
+        </div>
+      )}
+
+      <BottomNav />
+    </div>
+  );
+}
+
+export default function DelagarePage() {
+  return (
+    <DodsboProvider>
+      <DelagareContent />
+    </DodsboProvider>
+  );
+}
