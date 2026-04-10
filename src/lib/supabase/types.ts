@@ -31,6 +31,7 @@ export type Database = {
           created_at?: string;
           updated_at?: string;
         };
+        Relationships: [];
       };
       dodsbon: {
         Row: {
@@ -66,8 +67,9 @@ export type Database = {
           created_at?: string;
           updated_at?: string;
         };
+        Relationships: [];
       };
-      dodsbodelägare: {
+      delagare: {
         Row: {
           id: string;
           dodsbo_id: string;
@@ -107,6 +109,7 @@ export type Database = {
           created_at?: string;
           updated_at?: string;
         };
+        Relationships: [];
       };
       tillgangar: {
         Row: {
@@ -145,6 +148,7 @@ export type Database = {
           created_at?: string;
           updated_at?: string;
         };
+        Relationships: [];
       };
       skulder: {
         Row: {
@@ -177,6 +181,7 @@ export type Database = {
           created_at?: string;
           updated_at?: string;
         };
+        Relationships: [];
       };
       forsakringar: {
         Row: {
@@ -218,6 +223,7 @@ export type Database = {
           created_at?: string;
           updated_at?: string;
         };
+        Relationships: [];
       };
       tasks: {
         Row: {
@@ -277,6 +283,7 @@ export type Database = {
           created_at?: string;
           updated_at?: string;
         };
+        Relationships: [];
       };
     };
     Views: Record<string, never>;
