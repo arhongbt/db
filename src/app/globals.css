@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Import Inter from Google Fonts */
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+  html {
+    font-size: 16px;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-background text-primary font-sans antialiased;
+    min-height: 100dvh;
+  }
+
+  /* Grief-aware: reduce visual noise, soft focus states */
+  *:focus-visible {
+    @apply outline-2 outline-offset-2 outline-accent rounded;
+  }
+
+  /* Smooth scrolling for accessibility */
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+}
+
+@layer components {
+  /* Primary CTA button — 48px min touch target */
+  .btn-primary {
+    @apply w-full min-h-touch px-6 py-3 bg-primary text-white font-semibold
+           rounded-card text-lg transition-colors duration-200
+           hover:bg-primary-light active:bg-primary
+           focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-secondary {
+    @apply w-full min-h-touch px-6 py-3 bg-white text-primary font-semibold
+           border-2 border-primary rounded-card text-lg transition-colors duration-200
+           hover:bg-primary-lighter active:bg-white
+           focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent;
+  }
+
+  /* Card component — the main container for one-task-per-screen */
+  .card {
+    @apply bg-surface rounded-card p-6 shadow-sm;
+  }
+
+  /* Step indicator for onboarding */
+  .step-dot {
+    @apply w-2.5 h-2.5 rounded-full bg-gray-300 transition-colors duration-300;
+  }
+  .step-dot-active {
+    @apply bg-accent w-8;
+  }
+  .step-dot-done {
+    @apply bg-success;
+  }
+
+  /* Info box — for gentle guidance */
+  .info-box {
+    @apply bg-primary-lighter/50 border-l-4 border-accent rounded-r-card p-4 text-base;
+  }
+
+  /* Warning box — for deadlines */
+  .warning-box {
+    @apply bg-red-50 border-l-4 border-warn rounded-r-card p-4 text-base;
+  }
+}
