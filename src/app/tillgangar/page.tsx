@@ -98,7 +98,7 @@ function TillgangarContent() {
     new Intl.NumberFormat('sv-SE', { style: 'currency', currency: 'SEK', maximumFractionDigits: 0 }).format(amount);
 
   return (
-    <div className="flex flex-col min-h-dvh px-5 py-6 pb-24">
+    <div className="flex flex-col px-5 py-6 pb-24">
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
         <h1 className="text-2xl font-semibold text-primary">Ekonomi</h1>

@@ -27,8 +27,8 @@ export default function LandingPage() {
   return (
     <div className="flex flex-col min-h-dvh">
       {/* Hero */}
-      <div className="flex-1 flex flex-col justify-center px-5 py-10">
-        <div className="mb-10">
+      <div className="flex flex-col justify-center px-5 py-8">
+        <div className="mb-6">
           <div className="w-14 h-14 bg-primary-lighter rounded-2xl flex items-center justify-center mb-5">
             <Heart className="w-7 h-7 text-primary" />
           </div>

@@ -64,7 +64,7 @@ function DelagareContent() {
   };
 
   return (
-    <div className="flex flex-col min-h-dvh px-5 py-6 pb-24">
+    <div className="flex flex-col px-5 py-6 pb-24">
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <div>

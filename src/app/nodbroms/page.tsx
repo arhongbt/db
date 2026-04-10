@@ -157,7 +157,7 @@ function NodbromsContent() {
   };
 
   return (
-    <div className="flex flex-col min-h-dvh px-5 py-6 pb-24">
+    <div className="flex flex-col px-5 py-6 pb-24">
       {/* Header */}
       <div className="flex items-center gap-3 mb-2">
         <Link

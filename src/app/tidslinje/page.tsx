@@ -87,7 +87,7 @@ function TidslinjeContent() {
     state.tasks.filter((t) => t.step === phase && t.status === 'klar');
 
   return (
-    <div className="flex flex-col min-h-dvh px-5 py-6 pb-24">
+    <div className="flex flex-col px-5 py-6 pb-24">
       <h1 className="text-2xl font-semibold text-primary mb-2">Tidslinje</h1>
       {deathDate && (
         <p className="text-muted mb-6">

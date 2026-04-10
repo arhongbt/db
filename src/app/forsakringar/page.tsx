@@ -58,7 +58,7 @@ function ForsakringarContent() {
   };
 
   return (
-    <div className="flex flex-col min-h-dvh px-5 py-6 pb-24">
+    <div className="flex flex-col px-5 py-6 pb-24">
       <div className="flex items-center justify-between mb-4">
         <div>
           <h1 className="text-2xl font-semibold text-primary">Försäkringar</h1>

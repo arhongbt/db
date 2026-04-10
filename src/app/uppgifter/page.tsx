@@ -91,7 +91,7 @@ function UppgifterContent() {
   const totalDone = tasks.filter((t) => t.status === 'klar').length;
 
   return (
-    <div className="flex flex-col min-h-dvh px-5 py-6 pb-24">
+    <div className="flex flex-col px-5 py-6 pb-24">
       <div className="mb-4">
         <h1 className="text-2xl font-semibold text-primary">Att göra</h1>
         <p className="text-muted text-sm mt-1">

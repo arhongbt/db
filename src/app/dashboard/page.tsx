@@ -71,8 +71,8 @@ function DashboardContent() {
   // If no onboarding done, redirect
   if (!state.deceasedName && mounted) {
     return (
-      <div className="flex flex-col min-h-dvh px-5 py-6 pb-24">
-        <div className="flex-1 flex flex-col items-center justify-center text-center">
+      <div className="flex flex-col px-5 py-6 pb-24">
+        <div className="flex-1 flex flex-col items-center justify-center min-h-[60dvh] text-center">
           <Heart className="w-16 h-16 text-primary-lighter mb-4" />
           <h1 className="text-2xl font-semibold text-primary mb-2">Välkommen</h1>
           <p className="text-muted mb-6 max-w-xs">
@@ -89,7 +89,7 @@ function DashboardContent() {
   }
 
   return (
-    <div className="flex flex-col min-h-dvh px-5 py-6 pb-24">
+    <div className="flex flex-col px-5 py-6 pb-24">
       {/* Greeting */}
       <div className="flex items-start justify-between mb-6">
         <div>
