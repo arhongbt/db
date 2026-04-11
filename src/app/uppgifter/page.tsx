@@ -44,6 +44,7 @@ function UppgifterContent() {
   const [filterStep, setFilterStep] = useState<ProcessStep | 'all'>('all');
   const [showDone, setShowDone] = useState(false);
   const [advancedTo, setAdvancedTo] = useState<ProcessStep | null>(null);
+  const [recentlyDone, setRecentlyDone] = useState<Set<string>>(new Set());
 
   useEffect(() => setMounted(true), []);
 
@@ -65,7 +66,7 @@ function UppgifterContent() {
 
   const filtered = tasks.filter((t) => {
     if (filterStep !== 'all' && t.step !== filterStep) return false;
-    if (!showDone && t.status === 'klar') return false;
+    if (!showDone && t.status === 'klar' && !recentlyDone.has(t.id)) return false;
     return true;
   });
 
@@ -98,6 +99,18 @@ function UppgifterContent() {
   const toggleStatus = (task: DodsboTask) => {
     const next: TaskStatus = task.status === 'klar' ? 'ej_paborjad' : 'klar';
     dispatch({ type: 'UPDATE_TASK', payload: { id: task.id, status: next } });
+
+    // Keep recently completed tasks visible briefly before hiding
+    if (next === 'klar' && !showDone) {
+      setRecentlyDone((prev) => new Set(prev).add(task.id));
+      setTimeout(() => {
+        setRecentlyDone((prev) => {
+          const next = new Set(prev);
+          next.delete(task.id);
+          return next;
+        });
+      }, 1200);
+    }
 
     // Auto-advance: if completing a task, check if all tasks in current step are now done
     if (next === 'klar') {
@@ -201,8 +214,12 @@ function UppgifterContent() {
                 <button
                   key={task.id}
                   onClick={() => toggleStatus(task)}
-                  className={`card flex items-start gap-3 w-full text-left transition-all ${
-                    task.status === 'klar' ? 'opacity-60' : ''
+                  className={`card flex items-start gap-3 w-full text-left transition-all duration-300 ${
+                    task.status === 'klar' && recentlyDone.has(task.id)
+                      ? 'opacity-60 scale-[0.98]'
+                      : task.status === 'klar'
+                      ? 'opacity-60'
+                      : ''
                   } ${isOverdue ? 'border-l-4 border-warn' : ''}`}
                 >
                   {statusIcon(task.status)}
