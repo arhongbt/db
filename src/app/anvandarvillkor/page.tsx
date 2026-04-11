@@ -30,7 +30,7 @@ export default function AnvandarvillkorPage() {
           <section>
             <h2>1. Om tjänsten</h2>
             <p>
-              Dödsboappen är en digital tjänst som hjälper privatpersoner att organisera och
+              Sista Resan är en digital tjänst som hjälper privatpersoner att organisera och
               administrera dödsbon i Sverige. Tjänsten ger vägledning kring uppgifter,
               tidsfrister och dokumentation — men utgör <strong>inte</strong> juridisk, ekonomisk
               eller skatterättslig rådgivning.
@@ -51,7 +51,7 @@ export default function AnvandarvillkorPage() {
             <p>
               Du ansvarar för att hålla dina inloggningsuppgifter säkra. All aktivitet
               som sker via ditt konto är ditt ansvar. Om du misstänker obehörig åtkomst,
-              kontakta oss omedelbart på info@dodsboappen.se.
+              kontakta oss omedelbart på info@sistaresan.se.
             </p>
           </section>
 
@@ -59,7 +59,7 @@ export default function AnvandarvillkorPage() {
             <h2>4. Korrekt information</h2>
             <p>
               Du ansvarar för att den information du registrerar i tjänsten är korrekt
-              och fullständig. Dödsboappen verifierar inte uppgifter som du anger och ansvarar
+              och fullständig. Sista Resan verifierar inte uppgifter som du anger och ansvarar
               inte för konsekvenser av felaktiga uppgifter.
             </p>
           </section>
@@ -67,7 +67,7 @@ export default function AnvandarvillkorPage() {
           <section>
             <h2>5. Tjänstens begränsningar</h2>
             <p>
-              Dödsboappen är ett <strong>hjälpverktyg</strong> och ersätter inte professionell
+              Sista Resan är ett <strong>hjälpverktyg</strong> och ersätter inte professionell
               juridisk rådgivning. Informationen i appen baseras på allmänna regler i svensk
               arvsrätt och kan inte ta hänsyn till alla individuella omständigheter. Vi
               rekommenderar att du kontaktar en jurist vid komplexa ärenden.
@@ -82,7 +82,7 @@ export default function AnvandarvillkorPage() {
           <section>
             <h2>6. Immateriella rättigheter</h2>
             <p>
-              All kod, design, texter och grafik i Dödsboappen tillhör oss. Du får
+              All kod, design, texter och grafik i Sista Resan tillhör oss. Du får
               inte kopiera, modifiera eller distribuera material från tjänsten utan vårt
               skriftliga medgivande. Innehåll som du själv skapar i tjänsten (t.ex. uppgifter
               om dödsboet) tillhör dig.
@@ -101,7 +101,7 @@ export default function AnvandarvillkorPage() {
           <section>
             <h2>8. Ansvarsbegränsning</h2>
             <p>
-              Dödsboappen ansvarar inte för direkta eller indirekta skador som uppstår
+              Sista Resan ansvarar inte för direkta eller indirekta skador som uppstår
               genom användning av tjänsten, inklusive men inte begränsat till ekonomiska
               förluster, missade tidsfrister eller felaktiga beräkningar. Vårt ansvar är
               under alla omständigheter begränsat till det belopp du har betalat för tjänsten
@@ -121,9 +121,9 @@ export default function AnvandarvillkorPage() {
           <section>
             <h2>10. Kontakt</h2>
             <p>
-              Dödsboappen
+              Sista Resan
               <br />
-              E-post: info@dodsboappen.se
+              E-post: info@sistaresan.se
             </p>
           </section>
         </div>

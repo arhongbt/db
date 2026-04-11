@@ -222,7 +222,7 @@ function DelagareContent() {
             Inga delägare tillagda ännu
           </h2>
           <p className="text-muted text-sm max-w-xs">
-            Lägg till alla som har rätt till arvet — make/maka, barn, syskon eller andra.
+            Lägg till de som ska vara med i processen. Ni kan stötta varandra genom detta.
           </p>
         </div>
       ) : (

@@ -31,7 +31,7 @@ export function downloadDocumentPDF(
   pdf.setTextColor(255, 255, 255);
   pdf.setFontSize(14);
   pdf.setFont('helvetica', 'bold');
-  pdf.text('Dödsboappen', ML, 12);
+  pdf.text('Sista Resan', ML, 12);
   pdf.setFontSize(9);
   pdf.setFont('helvetica', 'normal');
   pdf.text(new Date().toLocaleDateString('sv-SE'), PAGE_WIDTH - MR, 12, { align: 'right' });
@@ -127,7 +127,7 @@ export function downloadDocumentPDF(
     pdf.setFontSize(8);
     pdf.setTextColor(150, 150, 150);
     pdf.text(
-      `Skapad med Dödsboappen — ${new Date().toLocaleDateString('sv-SE')}`,
+      `Skapad med Sista Resan — ${new Date().toLocaleDateString('sv-SE')}`,
       ML,
       297 - 10
     );

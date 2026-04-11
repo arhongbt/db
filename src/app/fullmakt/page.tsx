@@ -481,6 +481,16 @@ function FullmaktContent() {
                             <Download className="w-4 h-4" />
                             PDF
                           </button>
+                          <button
+                            onClick={async () => {
+                              const { downloadDocumentDocx } = await import('@/lib/generate-document-docx');
+                              downloadDocumentDocx(template.title, generatedText, template.title);
+                            }}
+                            className="flex-1 py-2 px-3 rounded-xl bg-accent/10 text-accent font-medium hover:bg-accent/20 transition-colors flex items-center justify-center gap-2 text-sm"
+                          >
+                            <FileSignature className="w-4 h-4" />
+                            Word
+                          </button>
                         </div>
                       </div>
                     )}

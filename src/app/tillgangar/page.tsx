@@ -196,7 +196,7 @@ function TillgangarContent() {
                 Inga tillgångar ännu
               </h2>
               <p className="text-muted text-sm max-w-xs">
-                Lägg till bankkonton, bostad, fordon, aktier och annat som ingår i dödsboet.
+                Du kan lägga till bankkonton, bostad och annat när du har fått översikt. Det behöver inte ske på en gång.
               </p>
             </div>
           ) : (

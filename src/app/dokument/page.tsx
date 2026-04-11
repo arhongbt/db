@@ -383,8 +383,8 @@ function DokumentContent() {
             Inga dokument ännu
           </h2>
           <p className="text-muted text-sm max-w-xs">
-            Ladda upp dödsbevis, saldobesked, testamente och andra handlingar
-            som behövs för bouppteckningen.
+            Samla viktiga handlingar här efterhand — dödsbevis, saldobesked, testamente.
+            Allt behöver inte vara klart på en gång.
           </p>
         </div>
       ) : (

@@ -30,7 +30,7 @@ export default function IntegritetspolicyPage() {
           <section>
             <h2>1. Vilka vi är</h2>
             <p>
-              Dödsboappen (&ldquo;vi&rdquo;, &ldquo;oss&rdquo;, &ldquo;vår&rdquo;) är en digital tjänst som hjälper privatpersoner
+              Sista Resan (&ldquo;vi&rdquo;, &ldquo;oss&rdquo;, &ldquo;vår&rdquo;) är en digital tjänst som hjälper privatpersoner
               att administrera dödsbon i Sverige. Vi är personuppgiftsansvariga för de
               personuppgifter som behandlas i tjänsten.
             </p>
@@ -120,7 +120,7 @@ export default function IntegritetspolicyPage() {
               <strong>Invända</strong> mot behandling som grundar sig på berättigat intresse.
             </p>
             <p>
-              Kontakta oss på <strong>info@dodsboappen.se</strong> för att utöva dina rättigheter.
+              Kontakta oss på <strong>info@sistaresan.se</strong> för att utöva dina rättigheter.
               Vi besvarar din begäran inom 30 dagar.
             </p>
           </section>
@@ -145,9 +145,9 @@ export default function IntegritetspolicyPage() {
           <section>
             <h2>10. Kontakt</h2>
             <p>
-              Dödsboappen
+              Sista Resan
               <br />
-              E-post: info@dodsboappen.se
+              E-post: info@sistaresan.se
             </p>
           </section>
         </div>

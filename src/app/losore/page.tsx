@@ -348,7 +348,7 @@ function LosoreContent() {
             Inga föremål ännu
           </h2>
           <p className="text-muted text-sm max-w-xs">
-            Börja inventera möbler, smycken, konst och andra personliga tillhörigheter.
+            Det är okej att ta det i din takt. Lägg till föremål när du känner dig redo.
           </p>
         </div>
       ) : (

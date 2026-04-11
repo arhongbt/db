@@ -1,9 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { createClient } from '@/lib/supabase/server';
 
 const OPENROUTER_API_URL = 'https://openrouter.ai/api/v1/chat/completions';
 const AI_MODEL = 'anthropic/claude-3-haiku';
 
-const SYSTEM_PROMPT = `Du är Dödsboappens juridiska AI-assistent, specialiserad på svensk arvsrätt och dödsbohantering. Du ger JURIDISK INFORMATION (inte juridisk rådgivning) baserat på svensk lagstiftning.
+const SYSTEM_PROMPT = `Du är Sista Resans juridiska AI-assistent, specialiserad på svensk arvsrätt och dödsbohantering. Du ger JURIDISK INFORMATION (inte juridisk rådgivning) baserat på svensk lagstiftning.
 
 VIKTIGT — BEGRÄNSNINGAR:
 - Du ger allmän juridisk information, INTE bindande juridisk rådgivning
@@ -130,7 +131,7 @@ SVAR-RIKTLINJER:
 
 // Simple in-memory rate limiter (per IP, 10 requests/minute)
 const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
-const RATE_LIMIT = 10;
+const RATE_LIMIT = 5;
 const RATE_WINDOW = 60_000; // 1 minute
 
 function checkRateLimit(ip: string): boolean {
@@ -153,6 +154,16 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         { error: 'För många förfrågningar. Vänta en minut.' },
         { status: 429 }
+      );
+    }
+
+    // Auth check — only logged-in users can use the chatbot
+    const supabase = await createClient();
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) {
+      return NextResponse.json(
+        { error: 'Du måste vara inloggad för att använda AI-assistenten.' },
+        { status: 401 }
       );
     }
 
@@ -195,8 +206,8 @@ export async function POST(request: NextRequest) {
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${apiKey}`,
-        'HTTP-Referer': 'https://dodsboappen.se',
-        'X-Title': 'Dodsboappen',
+        'HTTP-Referer': 'https://sistaresan.se',
+        'X-Title': 'Sista Resan',
       },
       body: JSON.stringify({
         model: AI_MODEL,

@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { DodsboProvider, useDodsbo } from '@/lib/context';
 import { BottomNav } from '@/components/ui/BottomNav';
+import { JuridiskTooltip } from '@/components/ui/JuridiskTooltip';
 import Link from 'next/link';
 import {
   ArrowLeft,
@@ -21,7 +22,7 @@ import {
   X,
 } from 'lucide-react';
 import { generateBouppteckningDocument } from '@/lib/generate-bouppteckning';
-import { downloadBouppteckningPDF } from '@/lib/generate-bouppteckning-pdf';
+import { validatePersonnummer, formatPersonnummer } from '@/lib/personnummer';
 import type { Dodsbo } from '@/types';
 
 interface BouppteckningStep {
@@ -50,6 +51,23 @@ function BouppteckningContent() {
   const [fm1Name, setFm1Name] = useState(state.forrattningsman?.[0]?.name || '');
   const [fm2Name, setFm2Name] = useState(state.forrattningsman?.[1]?.name || '');
   const [bouppgivareName, setBouppgivareName] = useState(state.bouppgivare?.name || '');
+  const [pnrError, setPnrError] = useState('');
+
+  const handlePersonnummerBlur = () => {
+    if (!personnummer.trim()) {
+      setPnrError('');
+      saveBouppteckningInfo();
+      return;
+    }
+    const result = validatePersonnummer(personnummer);
+    if (result.valid && result.formatted) {
+      setPersonnummer(result.formatted);
+      setPnrError('');
+    } else {
+      setPnrError(result.error || 'Ogiltigt personnummer');
+    }
+    saveBouppteckningInfo();
+  };
 
   const saveBouppteckningInfo = () => {
     dispatch({
@@ -166,7 +184,7 @@ function BouppteckningContent() {
             <p className="text-sm text-primary/70 mt-1">
               En förteckning av den avlidnes alla tillgångar och skulder per dödsdagen.
               Den ska upprättas inom 3 månader och skickas till Skatteverket inom 4 månader.
-              Två utomstående förrättningsmän krävs.
+              Två utomstående <JuridiskTooltip term="förrättningsman">förrättningsmän</JuridiskTooltip> krävs.
             </p>
           </div>
         </div>
@@ -260,11 +278,20 @@ function BouppteckningContent() {
             <input
               type="text"
               value={personnummer}
-              onChange={(e) => setPersonnummer(e.target.value)}
-              onBlur={saveBouppteckningInfo}
+              onChange={(e) => { setPersonnummer(e.target.value); setPnrError(''); }}
+              onBlur={handlePersonnummerBlur}
               placeholder="ÅÅÅÅMMDD-XXXX"
-              className="w-full px-4 py-3 text-base border-2 border-gray-200 rounded-card focus:border-accent focus:outline-none"
+              className={`w-full px-4 py-3 text-base border-2 rounded-card focus:outline-none ${
+                pnrError
+                  ? 'border-warn focus:border-warn'
+                  : personnummer.trim() && !pnrError
+                  ? 'border-success/50 focus:border-success'
+                  : 'border-gray-200 focus:border-accent'
+              }`}
             />
+            {pnrError && (
+              <span className="text-xs text-warn mt-1 block">{pnrError}</span>
+            )}
           </label>
 
           <label className="block">
@@ -564,15 +591,28 @@ function BouppteckningContent() {
                   Stäng
                 </button>
                 <button
-                  onClick={() => {
+                  onClick={async () => {
                     if (previewDoc) {
+                      const { downloadBouppteckningPDF } = await import('@/lib/generate-bouppteckning-pdf');
                       downloadBouppteckningPDF(previewDoc);
                     }
                   }}
                   className="flex-1 btn-primary flex items-center justify-center gap-2"
                 >
                   <Download className="w-4 h-4" />
-                  Ladda ner PDF
+                  PDF
+                </button>
+                <button
+                  onClick={async () => {
+                    if (previewDoc) {
+                      const { downloadBouppteckningDocx } = await import('@/lib/generate-bouppteckning-docx');
+                      downloadBouppteckningDocx(previewDoc);
+                    }
+                  }}
+                  className="flex-1 py-3 px-4 rounded-xl bg-accent/10 text-accent font-medium hover:bg-accent/20 transition-colors flex items-center justify-center gap-2"
+                >
+                  <FileText className="w-4 h-4" />
+                  Word
                 </button>
               </div>
             </div>

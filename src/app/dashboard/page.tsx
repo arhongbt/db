@@ -156,7 +156,7 @@ function DashboardContent() {
         </h1>
           {daysSinceDeath > 0 && (
             <p className="text-muted mt-1">
-              Dag {daysSinceDeath} sedan dödsfallet
+              Dag {daysSinceDeath} — ta det i din takt
             </p>
           )}
         </div>
@@ -420,7 +420,7 @@ function DashboardContent() {
             { label: 'Kontrollera försäkringar', href: '/forsakringar' },
             { label: 'Bouppteckning', href: '/bouppteckning' },
             { label: 'Dödsboanmälan (enklare alternativ)', href: '/dodsboanmalan' },
-            { label: 'Bodelning (gifta par)', href: '/bodelning' },
+            { label: 'Bodelning (gifta par & sambor)', href: '/bodelning' },
             { label: 'Kallelse till förrättning', href: '/kallelse' },
             { label: 'Arvskifte', href: '/arvskifte' },
             { label: 'Fullmakter & mallar', href: '/fullmakt' },

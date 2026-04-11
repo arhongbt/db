@@ -251,7 +251,28 @@ som inte förväntas ärva.`;
           className="flex-1 btn-secondary flex items-center justify-center gap-2"
         >
           <Download className="w-5 h-5" />
-          Ladda ner PDF
+          PDF
+        </button>
+        <button
+          onClick={async () => {
+            const { downloadKallelseDocx } = await import('@/lib/generate-kallelse-docx');
+            downloadKallelseDocx({
+              deceasedName,
+              personnummer: pnr,
+              deathDate,
+              forrattningsDatum: formatDatum(forrattningsDatum),
+              forrattningsTid: forrattningsTid || '[tid]',
+              forrattningsPlats: forrattningsPlats || '[adress]',
+              delagare: state.delagare,
+              forrattningsman: state.forrattningsman,
+              bouppgivare: state.bouppgivare?.name || '[namn]',
+              kallelseDatum: formatDatum(kalleseDatum),
+            });
+          }}
+          className="flex-1 py-3 px-4 rounded-xl bg-accent/10 text-accent font-medium hover:bg-accent/20 transition-colors flex items-center justify-center gap-2"
+        >
+          <Mail className="w-5 h-5" />
+          Word
         </button>
       </div>
 

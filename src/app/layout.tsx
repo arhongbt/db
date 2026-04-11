@@ -2,19 +2,22 @@ import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import { AuthProvider } from '@/lib/auth/context';
 import { ServiceWorkerRegistration } from '@/components/ServiceWorkerRegistration';
+import { CookieBanner } from '@/components/CookieBanner';
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 export const metadata: Metadata = {
-  title: 'Dödsbo — Hantera dödsboet steg för steg',
+  title: 'Sista Resan — Hantera dödsboet steg för steg',
   description:
     'Sveriges första digitala dödsbohjälp. Vi guidar dig genom hela processen — från första dagen till arvskifte.',
   manifest: '/manifest.json',
   appleWebApp: {
     capable: true,
     statusBarStyle: 'default',
-    title: 'Dödsbo',
+    title: 'Sista Resan',
   },
   openGraph: {
-    title: 'Dödsbo — Hantera dödsboet steg för steg',
+    title: 'Sista Resan — Hantera dödsboet steg för steg',
     description:
       'Sveriges första digitala dödsbohjälp. Vi guidar dig genom hela processen.',
     type: 'website',
@@ -47,6 +50,9 @@ export default function RootLayout({
             {children}
           </main>
         </AuthProvider>
+        <CookieBanner />
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

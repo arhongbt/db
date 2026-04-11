@@ -1,5 +1,5 @@
-// Service Worker for Dödsbo PWA
-const CACHE_NAME = 'dodsbo-v1';
+// Service Worker for Sista Resan PWA
+const CACHE_NAME = 'sistaresan-v1';
 const STATIC_ASSETS = [
   '/',
   '/dashboard',
@@ -22,6 +22,10 @@ const STATIC_ASSETS = [
   '/internationellt',
   '/foretag-i-dodsbo',
   '/juridisk-hjalp',
+  '/bouppteckning',
+  '/tillgangar',
+  '/forsakringar',
+  '/installningar',
   '/manifest.json',
   '/icons/icon-192.png',
   '/icons/icon-512.png',

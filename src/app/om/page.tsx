@@ -24,7 +24,7 @@ export default function OmPage() {
         </Link>
 
         <h1 className="text-2xl font-semibold text-primary mb-2">
-          Om Dödsboappen
+          Om Sista Resan
         </h1>
         <p className="text-muted mb-8">
           Sveriges digitala hjälp för dödsbohantering — trygg, strukturerad och enkel.
@@ -39,7 +39,7 @@ export default function OmPage() {
               <p className="text-sm text-primary/80">
                 Att förlora en närstående är svårt nog. Att dessutom behöva navigera juridik,
                 bankkontakter, försäkringsärenden och Skatteverket gör sorgen ännu tyngre.
-                Dödsboappen skapades för att ge dig en tydlig väg genom processen — steg för steg,
+                Sista Resan skapades för att ge dig en tydlig väg genom processen — steg för steg,
                 i din egen takt.
               </p>
             </div>
@@ -125,7 +125,7 @@ export default function OmPage() {
         {/* Disclaimer */}
         <div className="bg-primary-lighter/30 rounded-card p-4 mb-6">
           <p className="text-xs text-muted leading-relaxed">
-            Dödsboappen ger allmän vägledning baserad på svensk lag och ersätter inte
+            Sista Resan ger allmän vägledning baserad på svensk lag och ersätter inte
             juridisk rådgivning. Vid komplexa ärenden — t.ex. testamentstvister,
             internationella arv eller företagsinnehav — rekommenderar vi att du kontaktar
             en jurist eller boutredningsman.
@@ -140,8 +140,8 @@ export default function OmPage() {
           <Link href="/anvandarvillkor" className="hover:text-accent transition-colors">
             Användarvillkor
           </Link>
-          <a href="mailto:info@dodsboappen.se" className="hover:text-accent transition-colors">
-            info@dodsboappen.se
+          <a href="mailto:info@sistaresan.se" className="hover:text-accent transition-colors">
+            info@sistaresan.se
           </a>
         </div>
       </div>

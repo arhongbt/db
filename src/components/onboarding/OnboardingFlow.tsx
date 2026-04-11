@@ -119,12 +119,12 @@ export function OnboardingFlow() {
               Vi finns här för dig
             </h1>
             <p className="text-muted mb-8">
-              Berätta lite om situationen så kan vi guida dig rätt.
+              Vi förstår att detta är en svår tid. Vi guidar dig steg för steg.
             </p>
 
             <label className="block mb-6">
               <span className="text-base font-medium text-primary mb-2 block">
-                Vad hette den som har gått bort?
+                Vad hette personen som avled?
               </span>
               <input
                 type="text"
@@ -157,10 +157,10 @@ export function OnboardingFlow() {
         {step === 1 && (
           <div className="flex-1 flex flex-col">
             <h1 className="text-2xl font-semibold text-primary mb-2">
-              Vem är du?
+              Vilken är din relation?
             </h1>
             <p className="text-muted mb-6">
-              Din relation till {deceasedName || 'den avlidne'} avgör dina rättigheter och uppgifter.
+              Din relation till {deceasedName || 'den avlidne'} bestämmer vad du behöver göra och vilka rättigheter du har.
             </p>
             <div className="flex flex-col gap-3 stagger-children">
               {([
