@@ -41,6 +41,9 @@ const RELATION_LABELS: Record<Relation, string> = {
   testamentstagare: 'Testamentstagare',
   god_man: 'God man',
   ombud: 'Ombud',
+  vardnadshavare: 'Vårdnadshavare',
+  foralder_avliden: 'Förälder till den avlidne',
+  van_annan: 'Vän/annan',
 };
 
 function DelagareContent() {

@@ -232,9 +232,11 @@ function JuridiskHjalpContent() {
     }
     if (state.onboarding?.relation) {
       const relLabels: Record<string, string> = {
-        make_maka: 'Make/maka', sambo: 'Sambo', barn: 'Barn',
+        make_maka: 'Make/maka', sambo: 'Sambo', barn: 'Barn', barnbarn: 'Barnbarn',
         foralder: 'Förälder', syskon: 'Syskon',
         annan_slakting: 'Annan släkting', testamentstagare: 'Testamentstagare',
+        god_man: 'God man', ombud: 'Ombud',
+        vardnadshavare: 'Vårdnadshavare', foralder_avliden: 'Förälder till den avlidne', van_annan: 'Vän/annan',
       };
       parts.push(`Användarens relation: ${relLabels[state.onboarding.relation] || state.onboarding.relation}`);
     }
