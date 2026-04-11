@@ -13,6 +13,10 @@ import {
   Heart,
   Settings,
   Zap,
+  ClipboardList,
+  Coins,
+  ListChecks,
+  Package,
 } from 'lucide-react';
 import { BottomNav } from '@/components/ui/BottomNav';
 import type { DodsboTask, ProcessStep, TaskStatus } from '@/types';
@@ -145,7 +149,7 @@ function DashboardContent() {
   }
 
   return (
-    <div className="flex flex-col px-5 py-6 pb-24">
+    <div className="flex flex-col px-5 py-6 pb-24 stagger-children">
       {/* Greeting */}
       <div className="flex items-start justify-between mb-6">
         <div>
@@ -173,6 +177,7 @@ function DashboardContent() {
       <Link
         href="/tidslinje"
         className={`card border-l-4 mb-6 ${stepColors[effectiveStep]} flex items-center justify-between`}
+        aria-label={`Aktuell fas: ${stepLabels[effectiveStep]}`}
       >
         <div>
           <p className="text-sm font-medium opacity-80 mb-1">Du är i fasen</p>
@@ -198,16 +203,16 @@ function DashboardContent() {
       )}
 
       {/* Quick stats */}
-      <div className="grid grid-cols-2 gap-3 mb-6">
-        <div className="card text-center">
-          <User className="w-6 h-6 text-accent mx-auto mb-1" />
+      <div className="grid grid-cols-2 gap-3 mb-6" role="group" aria-label="Snabbstatistik">
+        <div className="card text-center" aria-label={`${state.delagare.length} dödsbodelägare`}>
+          <User className="w-6 h-6 text-accent mx-auto mb-1" aria-hidden="true" />
           <p className="text-2xl font-bold text-primary">
             {state.delagare.length}
           </p>
           <p className="text-sm text-muted">Dödsbodelägare</p>
         </div>
-        <div className="card text-center">
-          <Calendar className="w-6 h-6 text-accent mx-auto mb-1" />
+        <div className="card text-center" aria-label={`${upcomingDeadlines.length} kommande frister`}>
+          <Calendar className="w-6 h-6 text-accent mx-auto mb-1" aria-hidden="true" />
           <p className="text-2xl font-bold text-primary">
             {upcomingDeadlines.length}
           </p>
@@ -353,6 +358,7 @@ function DashboardContent() {
       <Link
         href="/juridisk-hjalp"
         className="card border-l-4 border-accent bg-blue-50 mb-4 flex items-center justify-between"
+        aria-label="Öppna juridisk AI-assistent"
       >
         <div>
           <p className="font-semibold text-accent">Juridisk AI-assistent</p>
@@ -411,23 +417,26 @@ function DashboardContent() {
         <h2 className="text-lg font-semibold text-primary mb-3">Verktyg</h2>
         <div className="grid grid-cols-2 gap-2">
           {[
-            { label: 'Bouppteckning', href: '/bouppteckning', icon: '📋' },
-            { label: 'Tillgångar & skulder', href: '/tillgangar', icon: '💰' },
-            { label: 'Alla uppgifter', href: '/uppgifter', icon: '✅' },
-            { label: 'Exportera (ZIP)', href: '/exportera', icon: '📦' },
+            { label: 'Bouppteckning', href: '/bouppteckning', Icon: ClipboardList },
+            { label: 'Tillgångar & skulder', href: '/tillgangar', Icon: Coins },
+            { label: 'Alla uppgifter', href: '/uppgifter', Icon: ListChecks },
+            { label: 'Exportera (ZIP)', href: '/exportera', Icon: Package },
           ].map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="card flex items-center gap-2 hover:bg-gray-50 transition-colors py-3"
+              className="card flex items-center gap-3 hover:bg-gray-50 transition-colors py-3"
+              aria-label={item.label}
             >
-              <span className="text-lg">{item.icon}</span>
+              <div className="w-8 h-8 bg-primary-lighter/50 rounded-lg flex items-center justify-center flex-shrink-0">
+                <item.Icon className="w-4 h-4 text-accent" />
+              </div>
               <span className="text-sm font-medium text-primary">{item.label}</span>
             </Link>
           ))}
         </div>
         <p className="text-xs text-muted text-center mt-3">
-          Alla verktyg finns i <strong>Mer</strong>-menyn nedan ↓
+          Alla verktyg finns i <strong>Mer</strong>-menyn nedan
         </p>
       </section>
 

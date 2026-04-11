@@ -277,10 +277,12 @@ function BouppteckningContent() {
             <span className="text-sm font-medium text-primary mb-1 block">Personnummer</span>
             <input
               type="text"
+              inputMode="numeric"
               value={personnummer}
               onChange={(e) => { setPersonnummer(e.target.value); setPnrError(''); }}
               onBlur={handlePersonnummerBlur}
               placeholder="ÅÅÅÅMMDD-XXXX"
+              autoComplete="off"
               className={`w-full px-4 py-3 text-base border-2 rounded-card focus:outline-none ${
                 pnrError
                   ? 'border-warn focus:border-warn'
@@ -568,9 +570,9 @@ function BouppteckningContent() {
 
                     {/* Free text content */}
                     {section.content && (
-                      <pre className="text-sm text-primary/80 whitespace-pre-wrap font-sans leading-relaxed mt-1">
+                      <p className="text-sm text-primary/80 whitespace-pre-line leading-relaxed mt-1">
                         {section.content}
-                      </pre>
+                      </p>
                     )}
                   </div>
                 ))}

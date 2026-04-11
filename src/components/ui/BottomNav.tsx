@@ -16,21 +16,38 @@ const NAV_ITEMS = [
   { href: '/dokument', label: 'Dokument', icon: FolderOpen },
 ];
 
-const MORE_ITEMS = [
-  { href: '/delagare', label: 'Delägare', icon: Users },
-  { href: '/arvskalkylator', label: 'Arvskalkylator', icon: Calculator },
-  { href: '/bank-guide', label: 'Bank-guide', icon: Building2 },
-  { href: '/juridisk-hjalp', label: 'Juridisk AI', icon: MessageSquare },
-  { href: '/delagare-portal', label: 'Delägare-portal', icon: Scale },
-  { href: '/skanner', label: 'Skanner', icon: Camera },
-  { href: '/exportera', label: 'Exportera', icon: Download },
-  { href: '/paminelser', label: 'Påminnelser', icon: Bell },
-  { href: '/ordlista', label: 'Ordlista', icon: BookOpen },
-  { href: '/faq', label: 'Vanliga frågor', icon: HelpCircle },
-  { href: '/konflikt', label: 'Konflikter', icon: AlertTriangle },
-  { href: '/internationellt', label: 'Internationellt', icon: Globe },
-  { href: '/foretag-i-dodsbo', label: 'Företag i dödsbo', icon: Briefcase },
+const MORE_CATEGORIES = [
+  {
+    title: 'Hantera dödsboet',
+    items: [
+      { href: '/delagare', label: 'Delägare', icon: Users },
+      { href: '/delagare-portal', label: 'Delägare-portal', icon: Scale },
+      { href: '/arvskalkylator', label: 'Arvskalkylator', icon: Calculator },
+      { href: '/bank-guide', label: 'Bank-guide', icon: Building2 },
+    ],
+  },
+  {
+    title: 'Verktyg',
+    items: [
+      { href: '/juridisk-hjalp', label: 'Juridisk AI', icon: MessageSquare },
+      { href: '/skanner', label: 'Skanner', icon: Camera },
+      { href: '/exportera', label: 'Exportera', icon: Download },
+      { href: '/paminelser', label: 'Påminnelser', icon: Bell },
+    ],
+  },
+  {
+    title: 'Hjälp & info',
+    items: [
+      { href: '/ordlista', label: 'Ordlista', icon: BookOpen },
+      { href: '/faq', label: 'Vanliga frågor', icon: HelpCircle },
+      { href: '/konflikt', label: 'Konflikter', icon: AlertTriangle },
+      { href: '/internationellt', label: 'Internationellt', icon: Globe },
+      { href: '/foretag-i-dodsbo', label: 'Företag i dödsbo', icon: Briefcase },
+    ],
+  },
 ];
+
+const ALL_MORE_ITEMS = MORE_CATEGORIES.flatMap((c) => c.items);
 
 export function BottomNav() {
   const pathname = usePathname();
@@ -54,7 +71,7 @@ export function BottomNav() {
     return () => document.removeEventListener('mousedown', handler);
   }, [moreOpen]);
 
-  const isMoreActive = MORE_ITEMS.some((item) => pathname === item.href);
+  const isMoreActive = ALL_MORE_ITEMS.some((item) => pathname === item.href);
 
   return (
     <>
@@ -79,24 +96,32 @@ export function BottomNav() {
               <X className="w-5 h-5 text-muted" />
             </button>
           </div>
-          <div className="grid grid-cols-3 gap-1 px-3 pb-4">
-            {MORE_ITEMS.map(({ href, label, icon: Icon }) => {
-              const isActive = pathname === href;
-              return (
-                <Link
-                  key={href}
-                  href={href}
-                  className={`flex flex-col items-center gap-1.5 py-3 px-2 rounded-xl transition-colors ${
-                    isActive
-                      ? 'bg-accent/10 text-accent'
-                      : 'text-primary hover:bg-gray-50'
-                  }`}
-                >
-                  <Icon className="w-5 h-5" strokeWidth={1.5} />
-                  <span className="text-[11px] font-medium text-center leading-tight">{label}</span>
-                </Link>
-              );
-            })}
+          <div className="px-3 pb-4">
+            {MORE_CATEGORIES.map((category) => (
+              <div key={category.title} className="mb-3 last:mb-0">
+                <p className="text-[10px] font-semibold text-muted uppercase tracking-wider px-2 mb-1.5">{category.title}</p>
+                <div className="grid grid-cols-4 gap-1">
+                  {category.items.map(({ href, label, icon: Icon }) => {
+                    const isActive = pathname === href;
+                    return (
+                      <Link
+                        key={href}
+                        href={href}
+                        className={`flex flex-col items-center gap-1 py-2.5 px-1 rounded-xl transition-colors ${
+                          isActive
+                            ? 'bg-accent/10 text-accent'
+                            : 'text-primary hover:bg-gray-50'
+                        }`}
+                        aria-label={label}
+                      >
+                        <Icon className="w-5 h-5" strokeWidth={1.5} />
+                        <span className="text-[10px] font-medium text-center leading-tight">{label}</span>
+                      </Link>
+                    );
+                  })}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       )}

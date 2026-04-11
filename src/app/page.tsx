@@ -92,25 +92,36 @@ export default function LandingPage() {
 
       {/* CTA */}
       <div className="px-5 pb-8">
-        {hasExisting && (
-          <button
-            onClick={() => router.push('/dashboard')}
-            className="btn-secondary mb-3 flex items-center justify-center gap-2"
-          >
-            Fortsätt där du var
-            <ChevronRight className="w-5 h-5" />
-          </button>
+        {hasExisting ? (
+          <>
+            <button
+              onClick={() => router.push('/dashboard')}
+              className="btn-primary mb-3 flex items-center justify-center gap-2"
+            >
+              Fortsätt där du var
+              <ChevronRight className="w-5 h-5" />
+            </button>
+            <button
+              onClick={() => router.push('/onboarding')}
+              className="w-full min-h-touch px-6 py-3 text-muted font-medium text-sm transition-colors hover:text-primary flex items-center justify-center gap-1"
+            >
+              Eller starta nytt dödsbo
+            </button>
+          </>
+        ) : (
+          <>
+            <button
+              onClick={() => router.push('/onboarding')}
+              className="btn-primary flex items-center justify-center gap-2"
+            >
+              Kom igång — gratis
+              <ChevronRight className="w-5 h-5" />
+            </button>
+            <p className="text-center text-sm text-muted mt-3">
+              2 minuter. Ingen registrering krävs.
+            </p>
+          </>
         )}
-        <button
-          onClick={() => router.push('/onboarding')}
-          className="btn-primary flex items-center justify-center gap-2"
-        >
-          {hasExisting ? 'Starta nytt dödsbo' : 'Kom igång — gratis'}
-          <ChevronRight className="w-5 h-5" />
-        </button>
-        <p className="text-center text-sm text-muted mt-3">
-          2 minuter. Ingen registrering krävs.
-        </p>
 
         {/* Footer links */}
         <div className="flex justify-center gap-4 mt-6 text-xs text-muted">
