@@ -10,7 +10,7 @@ interface DoveLogoProps {
 export function DoveLogo({ size = 40, className = '' }: DoveLogoProps) {
   return (
     <Image
-      src="/logo.svg"
+      src="/logo.png"
       alt="Sista Resan"
       width={size}
       height={size}
