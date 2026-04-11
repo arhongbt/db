@@ -14,7 +14,10 @@ export type Relation =
   | 'annan_slakting'   // Annan släkting
   | 'testamentstagare' // Testamentstagare utan släktskap
   | 'god_man'          // God man / förvaltare
-  | 'ombud';           // Juridiskt ombud
+  | 'ombud'            // Juridiskt ombud
+  | 'vardnadshavare'   // Vårdnadshavare för minderårigt barn
+  | 'foralder_avliden' // Förälder till den avlidne
+  | 'van_annan';       // Vän eller annan
 
 /** Boendetyp */
 export type HousingType =
