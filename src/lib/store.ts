@@ -35,6 +35,11 @@ export type Action =
   | { type: 'TOGGLE_FORSAKRING_CONTACTED'; payload: string }
   | { type: 'UPDATE_TASK'; payload: { id: string; status: DodsboTask['status'] } }
   | { type: 'SET_STEP'; payload: ProcessStep }
+  | { type: 'SET_BOUPPTECKNING_INFO'; payload: Partial<Pick<Dodsbo,
+      'deceasedPersonnummer' | 'deceasedAddress' | 'deceasedFolkbokforingsort' |
+      'deceasedMedborgarskap' | 'deceasedCivilstand' | 'forrattningsdatum' |
+      'forrattningsman' | 'bouppgivare'
+    >> }
   | { type: 'LOAD_STATE'; payload: Dodsbo }
   | { type: 'RESET' };
 
@@ -60,6 +65,7 @@ export function createInitialDodsbo(): Dodsbo {
     updatedAt: now,
     deceasedName: '',
     deathDate: '',
+    forrattningsman: [],
     onboarding: initialOnboarding,
     delagare: [],
     tillgangar: [],
@@ -184,6 +190,9 @@ export function dodsboReducer(state: Dodsbo, action: Action): Dodsbo {
 
     case 'SET_STEP':
       return { ...state, currentStep: action.payload, updatedAt: now };
+
+    case 'SET_BOUPPTECKNING_INFO':
+      return { ...state, ...action.payload, updatedAt: now };
 
     case 'LOAD_STATE':
       return action.payload;

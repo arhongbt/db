@@ -1,14 +1,25 @@
 // ============================================================
 // Bouppteckning Document Generator
-// Generates a formatted bouppteckning text from collected data
-// For MVP: generates structured text. Later: docx via API route.
+// Follows the official Skatteverket SKV 4600 blankett structure
 // ============================================================
 
 import type { Dodsbo } from '@/types';
 
+export interface BouppteckningSection {
+  heading: string;
+  /** Labeled field rows: [label, value] */
+  fields?: [string, string][];
+  /** Free text content */
+  content?: string;
+  /** Table rows: [description, value] */
+  tableRows?: [string, string][];
+  /** Summary total row */
+  totalRow?: [string, string];
+}
+
 export interface BouppteckningDocument {
   title: string;
-  sections: { heading: string; content: string }[];
+  sections: BouppteckningSection[];
   generatedAt: string;
   warnings: string[];
 }
@@ -17,7 +28,27 @@ export function generateBouppteckningDocument(
   state: Dodsbo
 ): BouppteckningDocument {
   const warnings: string[] = [];
-  const sections: { heading: string; content: string }[] = [];
+  const sections: BouppteckningSection[] = [];
+
+  // ── Validate & collect warnings ──
+  if (!state.deceasedPersonnummer) {
+    warnings.push('Personnummer saknas — krävs av Skatteverket.');
+  }
+  if (!state.deceasedAddress) {
+    warnings.push('Den avlidnes adress saknas.');
+  }
+  if (state.delagare.length === 0) {
+    warnings.push('Inga dödsbodelägare registrerade.');
+  }
+  if (state.tillgangar.length === 0) {
+    warnings.push('Inga tillgångar registrerade.');
+  }
+  if (!state.forrattningsman || state.forrattningsman.length < 2) {
+    warnings.push('Två förrättningsmän krävs — ange under "Komplettera för Skatteverket".');
+  }
+  if (!state.bouppgivare?.name) {
+    warnings.push('Bouppgivare saknas.');
+  }
 
   const deathDate = state.deathDate
     ? new Date(state.deathDate).toLocaleDateString('sv-SE', {
@@ -27,54 +58,63 @@ export function generateBouppteckningDocument(
       })
     : '–';
 
-  const today = new Date().toLocaleDateString('sv-SE', {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric',
-  });
+  const forrattningsDate = state.forrattningsdatum
+    ? new Date(state.forrattningsdatum).toLocaleDateString('sv-SE', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric',
+      })
+    : '[Ej angivet]';
 
-  // Validate data
-  if (state.delagare.length === 0) {
-    warnings.push('Inga dödsbodelägare registrerade.');
-  }
-  if (state.tillgangar.length === 0) {
-    warnings.push('Inga tillgångar registrerade.');
-  }
+  const civilstandLabel: Record<string, string> = {
+    gift: 'Gift',
+    ogift: 'Ogift',
+    anka_ankling: 'Änka/änkling',
+    skild: 'Skild',
+  };
 
-  // ── Section 1: Header ──
+  // ── Section 1: Den avlidne ──
   sections.push({
-    heading: 'BOUPPTECKNING',
-    content: [
-      `Bouppteckning efter ${state.deceasedName || '[Namn]'}`,
-      `Dödsdatum: ${deathDate}`,
-      `Bouppteckningsförrättning hållen: ${today}`,
-      '',
-      'Bouppgivare: [Namn på bouppgivare]',
-      'Förrättningsmän: [Namn 1], [Namn 2]',
-    ].join('\n'),
+    heading: 'DEN AVLIDNE',
+    fields: [
+      ['Namn', state.deceasedName || '[Ej angivet]'],
+      ['Personnummer', state.deceasedPersonnummer || '[Ej angivet]'],
+      ['Adress', state.deceasedAddress || '[Ej angivet]'],
+      ['Folkbokföringsort', state.deceasedFolkbokforingsort || '[Ej angivet]'],
+      ['Civilstånd', state.deceasedCivilstand ? civilstandLabel[state.deceasedCivilstand] : '[Ej angivet]'],
+      ['Medborgarskap', state.deceasedMedborgarskap || 'Svenskt'],
+      ['Dödsdatum', deathDate],
+    ],
   });
 
-  // ── Section 2: Dödsbodelägare ──
-  const delagareText =
+  // ── Section 2: Förrättning ──
+  sections.push({
+    heading: 'FÖRRÄTTNING',
+    fields: [
+      ['Förrättningsdatum', forrattningsDate],
+      ['Bouppgivare', state.bouppgivare?.name || '[Ej angivet]'],
+      ['Förrättningsman 1', state.forrattningsman?.[0]?.name || '[Ej angivet]'],
+      ['Förrättningsman 2', state.forrattningsman?.[1]?.name || '[Ej angivet]'],
+    ],
+  });
+
+  // ── Section 3: Dödsbodelägare ──
+  const delagareContent =
     state.delagare.length > 0
       ? state.delagare
           .map(
             (d, i) =>
-              `${i + 1}. ${d.name}\n   Relation: ${formatRelation(d.relation)}${
-                d.personnummer ? `\n   Personnummer: ${d.personnummer}` : ''
-              }${d.email ? `\n   E-post: ${d.email}` : ''}${
-                d.phone ? `\n   Telefon: ${d.phone}` : ''
-              }`
+              `${i + 1}. ${d.name}${d.personnummer ? ` (${d.personnummer})` : ''}\n   Relation: ${formatRelation(d.relation)}${d.email ? `  |  ${d.email}` : ''}${d.phone ? `  |  ${d.phone}` : ''}`
           )
           .join('\n\n')
       : '[Inga dödsbodelägare registrerade]';
 
   sections.push({
     heading: 'DÖDSBODELÄGARE',
-    content: delagareText,
+    content: delagareContent,
   });
 
-  // ── Section 3: Testamente ──
+  // ── Section 4: Testamente ──
   const testamenteText =
     state.onboarding.hasTestamente === true
       ? 'Testamente finns. Testamentet ska bifogas bouppteckningen.'
@@ -87,107 +127,139 @@ export function generateBouppteckningDocument(
     content: testamenteText,
   });
 
-  // ── Section 4: Tillgångar ──
+  // ── Section 5: Tillgångar (broken into subcategories like SKV) ──
+  const fastigheter = state.tillgangar.filter((t) =>
+    ['villa', 'bostadsratt', 'fritidshus'].includes(t.type)
+  );
+  const bankmedel = state.tillgangar.filter((t) => t.type === 'bankkonto');
+  const vardepapper = state.tillgangar.filter((t) => t.type === 'aktier_fonder');
+  const losore = state.tillgangar.filter((t) =>
+    ['losore', 'bil', 'forsakring', 'pension', 'ovrigt'].includes(t.type)
+  );
+
   const totalTillgangar = state.tillgangar.reduce(
     (sum, t) => sum + (t.estimatedValue ?? 0),
     0
   );
 
-  const tillgangarText =
-    state.tillgangar.length > 0
-      ? [
-          ...state.tillgangar.map(
-            (t) =>
-              `${formatTillgangType(t.type)}: ${t.description}${
-                t.bank ? ` (${t.bank})` : ''
-              }\n   Värde: ${
-                t.estimatedValue != null
-                  ? formatSEK(t.estimatedValue)
-                  : 'Ej värderat'
-              }`
-          ),
-          '',
-          `SUMMA TILLGÅNGAR: ${formatSEK(totalTillgangar)}`,
-        ].join('\n\n')
-      : '[Inga tillgångar registrerade]';
+  const tillgangarRows: [string, string][] = [];
+
+  if (fastigheter.length > 0) {
+    tillgangarRows.push(['── Fastigheter ──', '']);
+    fastigheter.forEach((t) => {
+      tillgangarRows.push([
+        `${formatTillgangType(t.type)}: ${t.description}`,
+        t.estimatedValue != null ? formatSEK(t.estimatedValue) : 'Ej värderat',
+      ]);
+    });
+  }
+
+  if (bankmedel.length > 0) {
+    tillgangarRows.push(['── Bankmedel ──', '']);
+    bankmedel.forEach((t) => {
+      tillgangarRows.push([
+        `${t.description}${t.bank ? ` (${t.bank})` : ''}`,
+        t.estimatedValue != null ? formatSEK(t.estimatedValue) : 'Ej värderat',
+      ]);
+    });
+  }
+
+  if (vardepapper.length > 0) {
+    tillgangarRows.push(['── Värdepapper ──', '']);
+    vardepapper.forEach((t) => {
+      tillgangarRows.push([
+        t.description,
+        t.estimatedValue != null ? formatSEK(t.estimatedValue) : 'Ej värderat',
+      ]);
+    });
+  }
+
+  if (losore.length > 0) {
+    tillgangarRows.push(['── Lösöre och övrigt ──', '']);
+    losore.forEach((t) => {
+      tillgangarRows.push([
+        `${formatTillgangType(t.type)}: ${t.description}`,
+        t.estimatedValue != null ? formatSEK(t.estimatedValue) : 'Ej värderat',
+      ]);
+    });
+  }
+
+  if (state.tillgangar.length === 0) {
+    tillgangarRows.push(['[Inga tillgångar registrerade]', '']);
+  }
 
   sections.push({
     heading: 'TILLGÅNGAR',
-    content: tillgangarText,
+    tableRows: tillgangarRows,
+    totalRow: ['SUMMA TILLGÅNGAR', formatSEK(totalTillgangar)],
   });
 
-  // ── Section 5: Skulder ──
+  // ── Section 6: Skulder ──
   const totalSkulder = state.skulder.reduce(
     (sum, s) => sum + (s.amount ?? 0),
     0
   );
 
-  const skulderText =
-    state.skulder.length > 0
-      ? [
-          ...state.skulder.map(
-            (s) =>
-              `${formatSkuldType(s.type)}: ${s.creditor}\n   Belopp: ${
-                s.amount != null ? formatSEK(s.amount) : 'Ej fastställt'
-              }`
-          ),
-          '',
-          `SUMMA SKULDER: ${formatSEK(totalSkulder)}`,
-        ].join('\n\n')
-      : 'Inga skulder har anmälts.';
+  const skulderRows: [string, string][] = state.skulder.map((s) => [
+    `${formatSkuldType(s.type)}: ${s.creditor}`,
+    s.amount != null ? formatSEK(s.amount) : 'Ej fastställt',
+  ]);
+
+  if (state.skulder.length === 0) {
+    skulderRows.push(['Inga skulder har anmälts.', '']);
+  }
 
   sections.push({
     heading: 'SKULDER',
-    content: skulderText,
+    tableRows: skulderRows,
+    totalRow: ['SUMMA SKULDER', formatSEK(totalSkulder)],
   });
 
-  // ── Section 6: Behållning ──
+  // ── Section 7: Behållning ──
   const netto = totalTillgangar - totalSkulder;
   sections.push({
     heading: 'BEHÅLLNING',
-    content: `Summa tillgångar: ${formatSEK(totalTillgangar)}\nSumma skulder: ${formatSEK(totalSkulder)}\n\nBEHÅLLNING: ${formatSEK(netto)}`,
+    fields: [
+      ['Summa tillgångar', formatSEK(totalTillgangar)],
+      ['Summa skulder', formatSEK(totalSkulder)],
+    ],
+    totalRow: ['BEHÅLLNING', formatSEK(netto)],
   });
 
-  // ── Section 7: Försäkringar ──
+  // ── Section 8: Försäkringar (för kännedom) ──
   if (state.forsakringar.length > 0) {
-    const forsakringarText = state.forsakringar
-      .map(
-        (f) =>
-          `${formatForsakringType(f.type)}: ${f.company}${
-            f.policyNumber ? ` (nr ${f.policyNumber})` : ''
-          }${f.beneficiary ? `\n   Förmånstagare: ${f.beneficiary}` : ''}${
-            f.estimatedValue != null
-              ? `\n   Uppskattat värde: ${formatSEK(f.estimatedValue)}`
-              : ''
-          }`
-      )
-      .join('\n\n');
+    const forsakringarRows: [string, string][] = state.forsakringar.map(
+      (f) => [
+        `${formatForsakringType(f.type)}: ${f.company}${f.beneficiary ? ` (förmånstagare: ${f.beneficiary})` : ''}`,
+        f.estimatedValue != null ? formatSEK(f.estimatedValue) : '',
+      ]
+    );
 
     sections.push({
       heading: 'FÖRSÄKRINGAR (för kännedom)',
-      content: forsakringarText + '\n\nOBS: Försäkringar med namngiven förmånstagare ingår inte i dödsboet.',
+      tableRows: forsakringarRows,
+      content:
+        'OBS: Försäkringar med namngiven förmånstagare ingår inte i dödsboet.',
     });
   }
 
-  // ── Section 8: Underskrifter ──
+  // ── Section 9: Underskrifter ──
   sections.push({
     heading: 'UNDERSKRIFTER',
     content: [
-      'Ovanstående uppgifter intygas härmed:',
+      'Ovanstående uppgifter intygas härmed vara riktiga.',
       '',
       '',
       '________________________________',
-      'Bouppgivare',
-      `${state.delagare[0]?.name || '[Namn]'}`,
+      `Bouppgivare: ${state.bouppgivare?.name || '[Namn]'}`,
       '',
       '',
       'Vi intygar att vi som förrättningsmän har gått igenom',
       'dödsboets tillgångar och skulder:',
       '',
       '',
-      '________________________________     ________________________________',
-      'Förrättningsman 1                    Förrättningsman 2',
-      '[Namn]                               [Namn]',
+      '________________________________          ________________________________',
+      `${state.forrattningsman?.[0]?.name || '[Förrättningsman 1]'}                    ${state.forrattningsman?.[1]?.name || '[Förrättningsman 2]'}`,
     ].join('\n'),
   });
 

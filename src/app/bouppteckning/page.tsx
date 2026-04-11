@@ -22,6 +22,7 @@ import {
 } from 'lucide-react';
 import { generateBouppteckningDocument } from '@/lib/generate-bouppteckning';
 import { downloadBouppteckningPDF } from '@/lib/generate-bouppteckning-pdf';
+import type { Dodsbo } from '@/types';
 
 interface BouppteckningStep {
   id: string;
@@ -34,10 +35,39 @@ interface BouppteckningStep {
 }
 
 function BouppteckningContent() {
-  const { state, loading } = useDodsbo();
+  const { state, dispatch, loading } = useDodsbo();
   const [mounted, setMounted] = useState(false);
   const [showPreview, setShowPreview] = useState(false);
+  const [showExtraFields, setShowExtraFields] = useState(false);
   const [previewDoc, setPreviewDoc] = useState<ReturnType<typeof generateBouppteckningDocument> | null>(null);
+
+  // Local form state for bouppteckning-specific fields
+  const [personnummer, setPersonnummer] = useState(state.deceasedPersonnummer || '');
+  const [address, setAddress] = useState(state.deceasedAddress || '');
+  const [folkbokforingsort, setFolkbokforingsort] = useState(state.deceasedFolkbokforingsort || '');
+  const [civilstand, setCivilstand] = useState(state.deceasedCivilstand || '');
+  const [forrattningsdatum, setForrattningsdatum] = useState(state.forrattningsdatum || '');
+  const [fm1Name, setFm1Name] = useState(state.forrattningsman?.[0]?.name || '');
+  const [fm2Name, setFm2Name] = useState(state.forrattningsman?.[1]?.name || '');
+  const [bouppgivareName, setBouppgivareName] = useState(state.bouppgivare?.name || '');
+
+  const saveBouppteckningInfo = () => {
+    dispatch({
+      type: 'SET_BOUPPTECKNING_INFO',
+      payload: {
+        deceasedPersonnummer: personnummer || undefined,
+        deceasedAddress: address || undefined,
+        deceasedFolkbokforingsort: folkbokforingsort || undefined,
+        deceasedCivilstand: (civilstand as Dodsbo['deceasedCivilstand']) || undefined,
+        forrattningsdatum: forrattningsdatum || undefined,
+        forrattningsman: [fm1Name, fm2Name]
+          .filter(Boolean)
+          .map((name) => ({ name })),
+        bouppgivare: bouppgivareName ? { name: bouppgivareName } : undefined,
+      },
+    });
+  };
+
   useEffect(() => setMounted(true), []);
   if (!mounted || loading) {
     return (
@@ -205,6 +235,140 @@ function BouppteckningContent() {
         })}
       </div>
 
+      {/* Bouppteckning-specific fields */}
+      <button
+        onClick={() => setShowExtraFields(!showExtraFields)}
+        className="card flex items-center justify-between mb-4 w-full text-left"
+      >
+        <div className="flex items-center gap-3">
+          <FileText className="w-5 h-5 text-accent" />
+          <div>
+            <span className="font-medium text-primary">Komplettera för Skatteverket</span>
+            <p className="text-xs text-muted">Personnummer, adress, förrättningsmän</p>
+          </div>
+        </div>
+        <ChevronRight className={`w-5 h-5 text-muted transition-transform ${showExtraFields ? 'rotate-90' : ''}`} />
+      </button>
+
+      {showExtraFields && (
+        <div className="card border-2 border-accent/30 mb-6 space-y-4">
+          <h3 className="text-base font-semibold text-primary">Den avlidnes uppgifter</h3>
+
+          <label className="block">
+            <span className="text-sm font-medium text-primary mb-1 block">Personnummer</span>
+            <input
+              type="text"
+              value={personnummer}
+              onChange={(e) => setPersonnummer(e.target.value)}
+              onBlur={saveBouppteckningInfo}
+              placeholder="ÅÅÅÅMMDD-XXXX"
+              className="w-full px-4 py-3 text-base border-2 border-gray-200 rounded-card focus:border-accent focus:outline-none"
+            />
+          </label>
+
+          <label className="block">
+            <span className="text-sm font-medium text-primary mb-1 block">Adress</span>
+            <input
+              type="text"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+              onBlur={saveBouppteckningInfo}
+              placeholder="Gatuadress, postnummer ort"
+              className="w-full px-4 py-3 text-base border-2 border-gray-200 rounded-card focus:border-accent focus:outline-none"
+            />
+          </label>
+
+          <label className="block">
+            <span className="text-sm font-medium text-primary mb-1 block">Folkbokföringsort</span>
+            <input
+              type="text"
+              value={folkbokforingsort}
+              onChange={(e) => setFolkbokforingsort(e.target.value)}
+              onBlur={saveBouppteckningInfo}
+              placeholder="T.ex. Stockholms kommun"
+              className="w-full px-4 py-3 text-base border-2 border-gray-200 rounded-card focus:border-accent focus:outline-none"
+            />
+          </label>
+
+          <div>
+            <span className="text-sm font-medium text-primary mb-2 block">Civilstånd</span>
+            <div className="grid grid-cols-2 gap-2">
+              {([
+                { value: 'gift', label: 'Gift' },
+                { value: 'ogift', label: 'Ogift' },
+                { value: 'anka_ankling', label: 'Änka/änkling' },
+                { value: 'skild', label: 'Skild' },
+              ] as const).map((opt) => (
+                <button
+                  key={opt.value}
+                  type="button"
+                  onClick={() => { setCivilstand(opt.value); setTimeout(saveBouppteckningInfo, 0); }}
+                  className={`py-2.5 px-3 rounded-card text-sm font-medium border-2 transition-colors ${
+                    civilstand === opt.value
+                      ? 'border-accent bg-primary-lighter/30 text-primary'
+                      : 'border-gray-200 text-muted hover:border-gray-300'
+                  }`}
+                >
+                  {opt.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <hr className="border-gray-200" />
+          <h3 className="text-base font-semibold text-primary">Förrättning</h3>
+
+          <label className="block">
+            <span className="text-sm font-medium text-primary mb-1 block">Förrättningsdatum</span>
+            <input
+              type="date"
+              value={forrattningsdatum}
+              onChange={(e) => setForrattningsdatum(e.target.value)}
+              onBlur={saveBouppteckningInfo}
+              className="w-full px-4 py-3 text-base border-2 border-gray-200 rounded-card focus:border-accent focus:outline-none"
+            />
+          </label>
+
+          <label className="block">
+            <span className="text-sm font-medium text-primary mb-1 block">Bouppgivare</span>
+            <input
+              type="text"
+              value={bouppgivareName}
+              onChange={(e) => setBouppgivareName(e.target.value)}
+              onBlur={saveBouppteckningInfo}
+              placeholder="Den som lämnar uppgifterna"
+              className="w-full px-4 py-3 text-base border-2 border-gray-200 rounded-card focus:border-accent focus:outline-none"
+            />
+            <span className="text-xs text-muted mt-1 block">Oftast en nära anhörig som känner till dödsboet</span>
+          </label>
+
+          <label className="block">
+            <span className="text-sm font-medium text-primary mb-1 block">Förrättningsman 1</span>
+            <input
+              type="text"
+              value={fm1Name}
+              onChange={(e) => setFm1Name(e.target.value)}
+              onBlur={saveBouppteckningInfo}
+              placeholder="Namn"
+              className="w-full px-4 py-3 text-base border-2 border-gray-200 rounded-card focus:border-accent focus:outline-none"
+            />
+          </label>
+
+          <label className="block">
+            <span className="text-sm font-medium text-primary mb-1 block">Förrättningsman 2</span>
+            <input
+              type="text"
+              value={fm2Name}
+              onChange={(e) => setFm2Name(e.target.value)}
+              onBlur={saveBouppteckningInfo}
+              placeholder="Namn"
+              className="w-full px-4 py-3 text-base border-2 border-gray-200 rounded-card focus:border-accent focus:outline-none"
+            />
+            <span className="text-xs text-muted mt-1 block">Två oberoende personer som intygar att uppgifterna stämmer</span>
+          </label>
+        </div>
+      )}
+
       {/* Summary preview */}
       {(state.tillgangar.length > 0 || state.skulder.length > 0) && (
         <div className="card border-2 border-primary-lighter mb-6">
@@ -330,12 +494,56 @@ function BouppteckningContent() {
               <div className="space-y-6">
                 {previewDoc.sections.map((section, i) => (
                   <div key={i}>
-                    <h3 className="text-sm font-bold text-primary uppercase tracking-wide border-b border-gray-200 pb-1 mb-2">
+                    <h3 className="text-xs font-bold text-accent uppercase tracking-wider bg-primary-lighter/20 px-3 py-1.5 rounded-card mb-3">
                       {section.heading}
                     </h3>
-                    <pre className="text-sm text-primary/80 whitespace-pre-wrap font-sans leading-relaxed">
-                      {section.content}
-                    </pre>
+
+                    {/* Labeled fields */}
+                    {section.fields && (
+                      <div className="space-y-1.5 mb-2">
+                        {section.fields.map(([label, value], fi) => (
+                          <div key={fi} className="flex justify-between text-sm border-b border-gray-100 pb-1">
+                            <span className="text-muted">{label}</span>
+                            <span className={`font-medium ${value.startsWith('[') ? 'text-gray-400 italic' : 'text-primary'}`}>
+                              {value}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+
+                    {/* Table rows */}
+                    {section.tableRows && (
+                      <div className="space-y-1 mb-2">
+                        {section.tableRows.map(([desc, val], ti) => (
+                          desc.includes('──') ? (
+                            <p key={ti} className="text-xs font-semibold text-accent mt-2">
+                              {desc.replace(/──/g, '').trim()}
+                            </p>
+                          ) : (
+                            <div key={ti} className="flex justify-between text-sm border-b border-gray-50 pb-0.5">
+                              <span className="text-primary/80">{desc}</span>
+                              {val && <span className="font-medium text-primary">{val}</span>}
+                            </div>
+                          )
+                        ))}
+                      </div>
+                    )}
+
+                    {/* Total row */}
+                    {section.totalRow && (
+                      <div className="flex justify-between text-sm font-bold text-primary border-t-2 border-accent/30 pt-1.5 mt-2">
+                        <span>{section.totalRow[0]}</span>
+                        <span>{section.totalRow[1]}</span>
+                      </div>
+                    )}
+
+                    {/* Free text content */}
+                    {section.content && (
+                      <pre className="text-sm text-primary/80 whitespace-pre-wrap font-sans leading-relaxed mt-1">
+                        {section.content}
+                      </pre>
+                    )}
                   </div>
                 ))}
               </div>

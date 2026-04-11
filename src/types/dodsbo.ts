@@ -98,6 +98,25 @@ export interface Dodsbo {
   deathDate: string;
   /** Personnummer (krypterat) */
   deceasedPersonnummer?: string;
+  /** Den avlidnes adress */
+  deceasedAddress?: string;
+  /** Folkbokföringsort */
+  deceasedFolkbokforingsort?: string;
+  /** Medborgarskap (svenskt om ej angivet) */
+  deceasedMedborgarskap?: string;
+  /** Civilstånd — gift, ogift, änka/änkling, skild */
+  deceasedCivilstand?: 'gift' | 'ogift' | 'anka_ankling' | 'skild';
+
+  /** Förrättningsdatum — när bouppteckningsförrättningen hålls */
+  forrattningsdatum?: string;
+  /** Förrättningsmän — två oberoende personer som intygar */
+  forrattningsman: Forrattningsman[];
+  /** Bouppgivare — den som lämnar uppgifterna */
+  bouppgivare?: {
+    name: string;
+    personnummer?: string;
+    relation?: string;
+  };
 
   /** Onboarding-svar */
   onboarding: OnboardingData;
@@ -119,6 +138,12 @@ export interface Dodsbo {
 
   /** Aktuellt processteg */
   currentStep: ProcessStep;
+}
+
+export interface Forrattningsman {
+  name: string;
+  personnummer?: string;
+  address?: string;
 }
 
 export interface Dodsbodelaware {

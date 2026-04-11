@@ -196,6 +196,7 @@ export function useSupabaseSync(
             'SET_DECEASED_INFO',
             'SET_TASKS',
             'SET_STEP',
+            'SET_BOUPPTECKNING_INFO',
             'ADD_DELAGARE',
             'ADD_TILLGANG',
             'ADD_SKULD',
@@ -234,6 +235,12 @@ export function useSupabaseSync(
 
             case 'SET_STEP':
               if (dbId) await updateDodsbo(dbId, { currentStep: action.payload });
+              break;
+
+            case 'SET_BOUPPTECKNING_INFO':
+              // These fields are persisted via localStorage for now.
+              // Supabase column will be added in a future migration.
+              // if (dbId) await updateDodsbo(dbId, action.payload);
               break;
 
             case 'SET_TASKS':
