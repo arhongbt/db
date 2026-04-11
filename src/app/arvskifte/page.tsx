@@ -172,12 +172,12 @@ function ArvskifteContent() {
           ) : sarkullebarn && spouse ? (
             <div className="space-y-3">
               {children.map((child) => (
-                <div key={child.id} className="flex items-center justify-between p-3 bg-green-50 rounded-card">
+                <div key={child.id} className="flex items-center justify-between p-3 bg-accent/5 rounded-card">
                   <div>
                     <p className="font-medium text-primary">{child.name}</p>
                     <p className="text-xs text-muted">Särkullbarn — rätt att få ut direkt</p>
                   </div>
-                  <p className="font-bold text-success">
+                  <p className="font-bold text-accent">
                     {formatSEK(children.length > 0 ? netto / (children.length + 1) : 0)}
                   </p>
                 </div>

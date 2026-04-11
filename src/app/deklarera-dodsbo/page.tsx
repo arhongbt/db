@@ -29,12 +29,12 @@ export default function DeklararaDodsboPage() {
         </div>
 
         {/* Warning box */}
-        <div className="mb-8 p-4 bg-red-50 border-l-4 border-red-500 rounded">
+        <div className="mb-8 p-4 bg-[#FEF3EE] border-l-4 border-warn rounded">
           <div className="flex gap-3">
-            <AlertTriangle className="w-6 h-6 text-red-500 flex-shrink-0 mt-0.5" />
+            <AlertTriangle className="w-6 h-6 text-warn flex-shrink-0 mt-0.5" />
             <div>
-              <h3 className="font-semibold text-red-900 mb-1">Viktigt: Deklarationsfristen</h3>
-              <p className="text-sm text-red-800">
+              <h3 className="font-semibold text-primary mb-1">Viktigt: Deklarationsfristen</h3>
+              <p className="text-sm text-primary">
                 Dödsboet ska deklarera senast <span className="font-semibold">2 maj</span> året efter dödsåret.
                 Ansökan om förlängd tid kan göras innan fristen går ut.
               </p>
@@ -237,12 +237,12 @@ export default function DeklararaDodsboPage() {
 
         {/* Key info boxes */}
         <section className="mb-8 grid gap-4 md:grid-cols-2">
-          <div className="p-5 bg-blue-50 rounded-lg border border-blue-200">
+          <div className="p-5 bg-info-light rounded-lg border border-info-light">
             <div className="flex gap-3">
-              <Calendar className="w-6 h-6 text-blue-600 flex-shrink-0" />
+              <Calendar className="w-6 h-6 text-accent flex-shrink-0" />
               <div>
-                <h3 className="font-semibold text-blue-900 mb-1">Viktiga datum</h3>
-                <ul className="text-sm text-blue-800 space-y-1">
+                <h3 className="font-semibold text-primary mb-1">Viktiga datum</h3>
+                <ul className="text-sm text-primary space-y-1">
                   <li><span className="font-semibold">2 maj:</span> Deklarationsfrist</li>
                   <li><span className="font-semibold">Före 2 maj:</span> Ansök om förlängd tid om nödvändigt</li>
                 </ul>
@@ -250,12 +250,12 @@ export default function DeklararaDodsboPage() {
             </div>
           </div>
 
-          <div className="p-5 bg-green-50 rounded-lg border border-green-200">
+          <div className="p-5 bg-accent/5 rounded-lg border border-accent/20">
             <div className="flex gap-3">
-              <FileText className="w-6 h-6 text-green-600 flex-shrink-0" />
+              <FileText className="w-6 h-6 text-accent flex-shrink-0" />
               <div>
-                <h3 className="font-semibold text-green-900 mb-1">Dokument du behöver</h3>
-                <ul className="text-sm text-green-800 space-y-1">
+                <h3 className="font-semibold text-primary mb-1">Dokument du behöver</h3>
+                <ul className="text-sm text-primary space-y-1">
                   <li>Dödsattest</li>
                   <li>Bodelning/arvsdelning</li>
                   <li>Bankutdrag och tillgångsöversikt</li>

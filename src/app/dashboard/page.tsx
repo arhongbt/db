@@ -108,10 +108,10 @@ function DashboardContent() {
   };
 
   const stepColors: Record<ProcessStep, string> = {
-    akut: 'bg-red-50 border-warn text-warn',
-    kartlaggning: 'bg-blue-50 border-accent text-accent',
+    akut: 'bg-[#FEF3EE] border-warn text-warn',
+    kartlaggning: 'bg-info-light border-accent text-accent',
     bouppteckning: 'bg-primary-lighter border-primary text-primary',
-    arvskifte: 'bg-green-50 border-success text-success',
+    arvskifte: 'bg-accent/5 border-success text-success',
     avslutat: 'bg-gray-50 border-gray-400 text-gray-600',
   };
 
@@ -192,7 +192,7 @@ function DashboardContent() {
       {daysSinceDeath <= 7 && (
         <Link
           href="/nodbroms"
-          className="card border-l-4 border-warn bg-red-50 mb-6 flex items-center justify-between"
+          className="card border-l-4 border-warn bg-[#FEF3EE] mb-6 flex items-center justify-between"
         >
           <div>
             <p className="font-semibold text-warn">Nödbroms — dag 1-7</p>
@@ -232,19 +232,19 @@ function DashboardContent() {
 
         // Priority 1: Nödbroms first week
         if (daysSinceDeath <= 7 && !alreadyDone.includes('dodsbevis')) {
-          top3.push({ label: 'Gå igenom nödbromsen', href: '/nodbroms', reason: 'Dag 1–7 — viktigaste stegen', color: 'border-warn bg-red-50' });
+          top3.push({ label: 'Gå igenom nödbromsen', href: '/nodbroms', reason: 'Dag 1–7 — viktigaste stegen', color: 'border-warn bg-[#FEF3EE]' });
         }
         // Priority 2: Contact bank
         if (hasBanks && !alreadyDone.includes('kontaktat_bank')) {
-          top3.push({ label: 'Kontakta banker', href: '/avsluta-konton', reason: `${state.onboarding.banks.length} banker att meddela`, color: 'border-accent bg-blue-50' });
+          top3.push({ label: 'Kontakta banker', href: '/avsluta-konton', reason: `${state.onboarding.banks.length} banker att meddela`, color: 'border-accent bg-info-light' });
         }
         // Priority 3: Add delägare
         if (!hasDelagare) {
-          top3.push({ label: 'Lägg till dödsbodelägare', href: '/delagare', reason: 'Krävs för bouppteckning', color: 'border-accent bg-blue-50' });
+          top3.push({ label: 'Lägg till dödsbodelägare', href: '/delagare', reason: 'Krävs för bouppteckning', color: 'border-accent bg-info-light' });
         }
         // Priority 4: Inventera tillgångar
         if (!hasTillgangar) {
-          top3.push({ label: 'Inventera tillgångar & skulder', href: '/tillgangar', reason: 'Grund för bouppteckning', color: 'border-accent bg-blue-50' });
+          top3.push({ label: 'Inventera tillgångar & skulder', href: '/tillgangar', reason: 'Grund för bouppteckning', color: 'border-accent bg-info-light' });
         }
         // Priority 5: Bodelning for married
         if (isMarried) {
@@ -256,11 +256,11 @@ function DashboardContent() {
         }
         // Priority 7: Försäkringar
         if (!alreadyDone.includes('kontaktat_forsakring')) {
-          top3.push({ label: 'Kontrollera försäkringar', href: '/forsakringar', reason: 'Kan ge dödsfallsersättning', color: 'border-success bg-green-50' });
+          top3.push({ label: 'Kontrollera försäkringar', href: '/forsakringar', reason: 'Kan ge dödsfallsersättning', color: 'border-success bg-accent/5' });
         }
         // Priority 8: Arvskifte
         if (effectiveStep === 'arvskifte') {
-          top3.push({ label: 'Genomför arvskifte', href: '/arvskifte', reason: 'Fördela tillgångarna', color: 'border-success bg-green-50' });
+          top3.push({ label: 'Genomför arvskifte', href: '/arvskifte', reason: 'Fördela tillgångarna', color: 'border-success bg-accent/5' });
         }
 
         const actions = top3.slice(0, 3);
@@ -357,7 +357,7 @@ function DashboardContent() {
       {/* AI Legal Assistant — always visible */}
       <Link
         href="/juridisk-hjalp"
-        className="card border-l-4 border-accent bg-blue-50 mb-4 flex items-center justify-between"
+        className="card border-l-4 border-accent bg-info-light mb-4 flex items-center justify-between"
         aria-label="Öppna juridisk AI-assistent"
       >
         <div>

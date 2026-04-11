@@ -138,14 +138,14 @@ export default function AuthPage() {
 
         {/* Error message */}
         {error && (
-          <div role="alert" className="mb-4 p-4 bg-red-50 border-l-4 border-warn rounded-r-card text-warn text-sm animate-slideUp">
+          <div role="alert" className="mb-4 p-4 bg-[#FEF3EE] border-l-4 border-warn rounded-r-card text-warn text-sm animate-slideUp">
             {error}
           </div>
         )}
 
         {/* Success message */}
         {success && (
-          <div role="status" className="mb-4 p-4 bg-green-50 border-l-4 border-success rounded-r-card text-success text-sm animate-slideUp">
+          <div role="status" className="mb-4 p-4 bg-accent/5 border-l-4 border-success rounded-r-card text-success text-sm animate-slideUp">
             {success}
           </div>
         )}

@@ -112,6 +112,21 @@ const SUGGESTED_QUESTIONS = [
   'Kan särkullbarn kräva sin del direkt?',
 ];
 
+const FREE_MESSAGE_LIMIT = 13;
+
+function getUsedMessages(): number {
+  if (typeof window === 'undefined') return 0;
+  const stored = localStorage.getItem('sr_ai_msg_count');
+  return stored ? parseInt(stored, 10) : 0;
+}
+
+function incrementUsedMessages(): number {
+  const current = getUsedMessages();
+  const next = current + 1;
+  localStorage.setItem('sr_ai_msg_count', String(next));
+  return next;
+}
+
 function JuridiskHjalpContent() {
   const { state, loading } = useDodsbo();
   const [messages, setMessages] = useState<Message[]>([]);
@@ -120,13 +135,20 @@ function JuridiskHjalpContent() {
   const [error, setError] = useState<string | null>(null);
   const [mounted, setMounted] = useState(false);
   const [animatingIdx, setAnimatingIdx] = useState<number | null>(null);
+  const [usedMessages, setUsedMessages] = useState(0);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const userScrolledUp = useRef(false);
   const programmaticScroll = useRef(false);
 
-  useEffect(() => setMounted(true), []);
+  const remainingMessages = FREE_MESSAGE_LIMIT - usedMessages;
+  const isLimitReached = remainingMessages <= 0;
+
+  useEffect(() => {
+    setMounted(true);
+    setUsedMessages(getUsedMessages());
+  }, []);
 
   // Detect when user scrolls up manually (ignore programmatic scrolls)
   useEffect(() => {
@@ -268,6 +290,12 @@ function JuridiskHjalpContent() {
     const messageText = text || input.trim();
     if (!messageText || isLoading) return;
 
+    // Check free message limit
+    if (isLimitReached) {
+      setError('Du har använt alla dina 13 gratis frågor. Uppgradera till Premium för obegränsad tillgång.');
+      return;
+    }
+
     const userMessage: Message = { role: 'user', content: messageText };
     const newMessages = [...messages, userMessage];
     setMessages(newMessages);
@@ -293,10 +321,13 @@ function JuridiskHjalpContent() {
         return;
       }
 
+      // Track usage
+      const newCount = incrementUsedMessages();
+      setUsedMessages(newCount);
+
       const assistantMsg: Message = { role: 'assistant', content: data.reply };
       setMessages(prev => [...prev, assistantMsg]);
-      // Trigger typewriter on this new message
-      setAnimatingIdx(newMessages.length); // index of the new assistant message
+      setAnimatingIdx(newMessages.length);
     } catch {
       setError('Kunde inte ansluta. Kontrollera din internetanslutning.');
     } finally {
@@ -364,10 +395,10 @@ function JuridiskHjalpContent() {
               ))}
             </div>
 
-            <div className="mt-6 p-3 bg-yellow-50 border border-yellow-200 rounded-xl max-w-sm">
+            <div className="mt-6 p-3 bg-[#FDF6EA] border border-warn/20 rounded-xl max-w-sm">
               <div className="flex gap-2">
-                <AlertTriangle className="w-4 h-4 text-yellow-600 flex-shrink-0 mt-0.5" />
-                <p className="text-xs text-yellow-800">
+                <AlertTriangle className="w-4 h-4 text-warn flex-shrink-0 mt-0.5" />
+                <p className="text-xs text-primary">
                   AI-assistenten ger allmän juridisk information baserad på svensk lag.
                   Den ersätter inte juridisk rådgivning. Kontakta en jurist vid
                   komplexa eller känsliga frågor.
@@ -434,10 +465,10 @@ function JuridiskHjalpContent() {
         {/* Error */}
         {error && (
           <div className="flex justify-center mb-4">
-            <div className="bg-red-50 border border-red-200 px-4 py-3 rounded-xl max-w-sm">
+            <div className="bg-[#FEF3EE] border border-warn/20 px-4 py-3 rounded-xl max-w-sm">
               <div className="flex gap-2">
-                <AlertTriangle className="w-4 h-4 text-red-500 flex-shrink-0 mt-0.5" />
-                <p className="text-sm text-red-700">{error}</p>
+                <AlertTriangle className="w-4 h-4 text-warn flex-shrink-0 mt-0.5" />
+                <p className="text-sm text-warn">{error}</p>
               </div>
             </div>
           </div>
@@ -448,44 +479,71 @@ function JuridiskHjalpContent() {
 
       {/* Input area */}
       <div className="border-t border-gray-200 bg-white px-4 py-3 pb-24">
-        {messages.length > 0 && (
-          <div className="flex gap-1 mb-2 overflow-x-auto pb-1 -mx-1 px-1 scrollbar-hide">
-            {['Berätta mer', 'Ge ett exempel', 'Vilken lag gäller?', 'Vad bör jag göra?'].map((chip) => (
-              <button
-                key={chip}
-                onClick={() => sendMessage(chip)}
-                disabled={isLoading}
-                className="flex-shrink-0 px-3 py-1.5 bg-gray-100 text-xs font-medium text-primary rounded-full hover:bg-gray-200 transition-colors disabled:opacity-50"
-              >
-                {chip}
-              </button>
-            ))}
+        {/* Limit reached — upgrade prompt */}
+        {isLimitReached ? (
+          <div className="text-center py-4">
+            <p className="text-sm font-semibold text-primary mb-2">
+              Du har använt dina {FREE_MESSAGE_LIMIT} gratis frågor
+            </p>
+            <p className="text-xs text-muted mb-4">
+              Uppgradera till Premium för obegränsad tillgång till AI-assistenten.
+            </p>
+            <button className="btn-primary !max-w-xs mx-auto">
+              Uppgradera till Premium
+            </button>
           </div>
+        ) : (
+          <>
+            {/* Remaining counter */}
+            {mounted && (
+              <div className="flex items-center justify-between mb-2">
+                {messages.length > 0 && (
+                  <div className="flex gap-1 overflow-x-auto pb-1 scrollbar-hide">
+                    {['Berätta mer', 'Ge ett exempel', 'Vilken lag gäller?', 'Vad bör jag göra?'].map((chip) => (
+                      <button
+                        key={chip}
+                        onClick={() => sendMessage(chip)}
+                        disabled={isLoading}
+                        className="flex-shrink-0 px-3 py-1.5 bg-gray-100 text-xs font-medium text-primary rounded-full hover:bg-gray-200 transition-colors disabled:opacity-50"
+                      >
+                        {chip}
+                      </button>
+                    ))}
+                  </div>
+                )}
+                <span className={`text-xs font-medium flex-shrink-0 ml-2 ${
+                  remainingMessages <= 3 ? 'text-warn' : 'text-muted-light'
+                }`}>
+                  {remainingMessages}/{FREE_MESSAGE_LIMIT} kvar
+                </span>
+              </div>
+            )}
+            <div className="flex items-end gap-2">
+              <textarea
+                ref={inputRef}
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyDown={handleKeyDown}
+                placeholder="Ställ en fråga om arvsrätt..."
+                rows={1}
+                className="flex-1 px-4 py-3 border-2 border-gray-200 rounded-xl resize-none
+                           focus:border-accent focus:outline-none transition-colors
+                           text-sm text-primary placeholder:text-gray-400"
+                disabled={isLoading}
+              />
+              <button
+                onClick={() => sendMessage()}
+                disabled={!input.trim() || isLoading}
+                className="p-3 bg-accent text-white rounded-xl hover:bg-accent/90
+                           transition-colors disabled:opacity-40 disabled:cursor-not-allowed
+                           flex-shrink-0"
+                aria-label="Skicka"
+              >
+                <Send className="w-5 h-5" />
+              </button>
+            </div>
+          </>
         )}
-        <div className="flex items-end gap-2">
-          <textarea
-            ref={inputRef}
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            onKeyDown={handleKeyDown}
-            placeholder="Ställ en fråga om arvsrätt..."
-            rows={1}
-            className="flex-1 px-4 py-3 border-2 border-gray-200 rounded-xl resize-none
-                       focus:border-accent focus:outline-none transition-colors
-                       text-sm text-primary placeholder:text-gray-400"
-            disabled={isLoading}
-          />
-          <button
-            onClick={() => sendMessage()}
-            disabled={!input.trim() || isLoading}
-            className="p-3 bg-accent text-white rounded-xl hover:bg-accent/90
-                       transition-colors disabled:opacity-40 disabled:cursor-not-allowed
-                       flex-shrink-0"
-            aria-label="Skicka"
-          >
-            <Send className="w-5 h-5" />
-          </button>
-        </div>
         <p className="text-xs text-center text-gray-400 mt-2">
           AI kan göra misstag. Verifiera viktig information med en jurist.
         </p>

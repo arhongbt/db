@@ -3,6 +3,7 @@ import './globals.css';
 import { AuthProvider } from '@/lib/auth/context';
 import { ServiceWorkerRegistration } from '@/components/ServiceWorkerRegistration';
 import { CookieBanner } from '@/components/CookieBanner';
+import { FloatingChatButton } from '@/components/ui/FloatingChatButton';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 
@@ -89,7 +90,7 @@ export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   maximumScale: 5,
-  themeColor: '#2C4A6E',
+  themeColor: '#6B7F5E',
 };
 
 // JSON-LD structured data for SEO
@@ -188,6 +189,7 @@ export default function RootLayout({
             {children}
           </main>
         </AuthProvider>
+        <FloatingChatButton />
         <CookieBanner />
         <Analytics />
         <SpeedInsights />

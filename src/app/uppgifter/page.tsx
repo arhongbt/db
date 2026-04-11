@@ -24,8 +24,8 @@ const STEP_LABELS: Record<ProcessStep, string> = {
 };
 
 const STEP_COLORS: Record<ProcessStep, string> = {
-  akut: 'border-warn bg-red-50',
-  kartlaggning: 'border-accent bg-blue-50',
+  akut: 'border-warn bg-[#FEF3EE]',
+  kartlaggning: 'border-accent bg-info-light',
   bouppteckning: 'border-primary bg-primary-lighter/30',
   arvskifte: 'border-success bg-green-50',
   avslutat: 'border-gray-400 bg-gray-50',

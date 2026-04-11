@@ -9,21 +9,28 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Sista Resan — Lugn & Hopp palette
+        // Sista Resan — "Soft Structure" palette
         primary: {
-          DEFAULT: '#2C4A6E',
-          light: '#3D6B99',
-          lighter: '#D8E6ED',
+          DEFAULT: '#2A2622',   // warm charcoal
+          light: '#4A4540',     // warm slate
+          lighter: '#F0EDE6',   // warm sand
         },
         accent: {
-          DEFAULT: '#7A9E8E',
-          dark: '#5F8474',
+          DEFAULT: '#6B7F5E',   // sage green
+          dark: '#4F6145',      // sage dark
+          light: '#8FA882',     // sage light
         },
-        warn: '#C0392B',
-        success: '#5F8474',
-        background: '#F7F9F8',
+        info: {
+          DEFAULT: '#6E8BA4',   // dusty blue
+          dark: '#567A93',
+          light: '#EDF2F6',     // dusty blue tint
+        },
+        warn: '#C4704B',        // terracotta (bara varningar)
+        success: '#6B7F5E',     // sage = success
+        background: '#F7F5F0',  // warm linen
         surface: '#FFFFFF',
-        muted: '#6B7B75',
+        muted: '#6B6560',       // warm gray
+        'muted-light': '#9C9590',
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
@@ -41,7 +48,8 @@ const config: Config = {
         'touch': '3rem',
       },
       borderRadius: {
-        'card': '0.75rem',
+        'card': '1.5rem',    // 24px — mjukare, mer organiskt
+        'card-sm': '0.875rem', // 14px
       },
     },
   },

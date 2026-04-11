@@ -30,7 +30,7 @@ const PHASES: TimelinePhase[] = [
     label: 'Nödbroms',
     period: 'Dag 1–7',
     color: 'text-warn',
-    bgColor: 'bg-red-50',
+    bgColor: 'bg-[#FEF3EE]',
     borderColor: 'border-warn',
   },
   {
@@ -38,7 +38,7 @@ const PHASES: TimelinePhase[] = [
     label: 'Kartläggning',
     period: 'Vecka 1–4',
     color: 'text-accent',
-    bgColor: 'bg-blue-50',
+    bgColor: 'bg-info-light',
     borderColor: 'border-accent',
   },
   {
@@ -54,7 +54,7 @@ const PHASES: TimelinePhase[] = [
     label: 'Arvskifte',
     period: 'Månad 3–6',
     color: 'text-success',
-    bgColor: 'bg-green-50',
+    bgColor: 'bg-accent/5',
     borderColor: 'border-success',
   },
 ];

@@ -86,14 +86,14 @@ function DodsboSkulderContent() {
       </p>
 
       {/* Key reassurance message */}
-      <div className="card mb-6 border-2 border-green-200 bg-green-50">
+      <div className="card mb-6 border-2 border-accent/20 bg-accent/5">
         <div className="flex gap-3">
-          <CheckCircle2 className="w-6 h-6 text-green-600 flex-shrink-0 mt-0.5" />
+          <CheckCircle2 className="w-6 h-6 text-accent flex-shrink-0 mt-0.5" />
           <div>
-            <p className="font-semibold text-green-900 mb-1">
+            <p className="font-semibold text-primary mb-1">
               Man ärver ALDRIG skulder i Sverige
             </p>
-            <p className="text-sm text-green-800">
+            <p className="text-sm text-primary">
               Du är aldrig personligt ansvarig för den avlidnes skulder. Dödsboet är ansvarigt,
               men om det inte finns pengar kan skulder lämnas obetald. Du förlorar bara det arv
               du hade räknats få.
@@ -159,16 +159,16 @@ function DodsboSkulderContent() {
       </div>
 
       {/* Insolvent estate explanation */}
-      <div className="card mb-6 bg-yellow-50 border border-yellow-200">
-        <h3 className="text-sm font-semibold text-yellow-900 mb-2 flex items-center gap-2">
-          <AlertTriangle className="w-5 h-5 text-yellow-600" />
+      <div className="card mb-6 bg-[#FDF6EA] border border-warn/20">
+        <h3 className="text-sm font-semibold text-primary mb-2 flex items-center gap-2">
+          <AlertTriangle className="w-5 h-5 text-warn" />
           Vad är ett insolvent dödsbo?
         </h3>
-        <p className="text-sm text-yellow-800 mb-3">
+        <p className="text-sm text-primary mb-3">
           Om skulderna är större än tillgångarna kallas det &quot;dödsbo minus&quot; eller ett insolvent dödsbo.
           Då räcker pengarna inte för att betala alla skulder.
         </p>
-        <div className="space-y-2 text-sm text-yellow-800">
+        <div className="space-y-2 text-sm text-primary">
           <p>
             <strong>Vad händer då?</strong>
           </p>

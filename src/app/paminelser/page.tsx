@@ -145,7 +145,7 @@ function PaminelserContent() {
           )}
 
           {permission === 'denied' && (
-            <div className="mt-3 bg-red-50 rounded-lg p-3">
+            <div className="mt-3 bg-[#FEF3EE] rounded-lg p-3">
               <p className="text-xs text-warn">
                 Notiser är blockerade i din webbläsare. Gå till webbläsarens inställningar för att tillåta notiser från denna sida.
               </p>

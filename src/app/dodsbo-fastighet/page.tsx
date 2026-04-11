@@ -114,7 +114,7 @@ export default function DodsboFastighetPage() {
         </div>
       </div>
 
-      <Link href="/juridisk-hjalp" className="card border-l-4 border-accent bg-blue-50 flex items-center justify-between">
+      <Link href="/juridisk-hjalp" className="card border-l-4 border-accent bg-info-light flex items-center justify-between">
         <div>
           <p className="font-semibold text-accent text-sm">Har du fler frågor?</p>
           <p className="text-xs text-muted">Fråga vår juridiska AI-assistent</p>

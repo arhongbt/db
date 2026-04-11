@@ -20,11 +20,11 @@ export default function SamboArvPage() {
       {/* Content */}
       <div className="max-w-2xl mx-auto px-4 py-6 space-y-6">
         {/* Warning Box */}
-        <div className="bg-red-50 border border-red-200 rounded-lg p-4 flex gap-3">
-          <AlertTriangle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
+        <div className="bg-[#FEF3EE] border border-warn/20 rounded-lg p-4 flex gap-3">
+          <AlertTriangle className="w-5 h-5 text-warn flex-shrink-0 mt-0.5" />
           <div>
-            <p className="font-semibold text-red-900 mb-1">Viktigt att veta</p>
-            <p className="text-sm text-red-800">
+            <p className="font-semibold text-primary mb-1">Viktigt att veta</p>
+            <p className="text-sm text-primary">
               Sambor ärver inte varandra automatiskt. Utan testamente får den överlevande sambons partner ingenting från dödsboet.
             </p>
           </div>
@@ -157,7 +157,7 @@ export default function SamboArvPage() {
               <p className="text-xs text-muted">Hushållets möbler och inventarier</p>
             </div>
           </div>
-          <p className="text-xs text-muted bg-amber-50 border border-amber-200 rounded p-3">
+          <p className="text-xs text-muted bg-[#FDF6EA] border border-warn/20 rounded p-3">
             Bodelning måste påkrävas senast tre år efter dödfallet. Därefter förlorar den överlevande rättigheten.
           </p>
         </div>
