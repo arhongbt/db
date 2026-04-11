@@ -165,6 +165,9 @@ function DokumentContent() {
       <LeafDecoration className="top-5 right-4" size={22} opacity={0.08} color="#6E8BA4" />
       <BlobDecoration className="bottom-28 -left-16" color="#EEF2EA" size={120} />
 
+      {/* Content wrapper — above decorations */}
+      <div className="relative z-[1] flex flex-col flex-1">
+
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
         <div>
@@ -440,6 +443,8 @@ function DokumentContent() {
           ))}
         </div>
       )}
+
+      </div>{/* end content wrapper */}
 
       <BottomNav />
     </div>

@@ -18,6 +18,7 @@ export function BlobDecoration({
         height: size,
         borderRadius: '42% 58% 62% 38% / 45% 55% 45% 55%',
         background: color,
+        zIndex: 0,
       }}
     />
   );
@@ -42,7 +43,7 @@ export function LeafDecoration({
       height={size}
       viewBox="0 0 24 24"
       fill="none"
-      style={{ opacity }}
+      style={{ opacity, zIndex: 0 }}
     >
       <path
         d="M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l1-2.3A4.49 4.49 0 0 0 8 20c4 0 8.68-3.31 12-12h-3Z"
@@ -79,7 +80,7 @@ export function SparkleDecoration({
       height={size}
       viewBox="0 0 24 24"
       fill={color}
-      style={{ opacity }}
+      style={{ opacity, zIndex: 0 }}
     >
       <path d="M12 0L14.59 8.41L23 12L14.59 15.59L12 24L9.41 15.59L1 12L9.41 8.41Z" />
     </svg>

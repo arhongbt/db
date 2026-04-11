@@ -141,6 +141,9 @@ function UppgifterContent() {
       <LeafDecoration className="top-6 right-4" size={24} opacity={0.08} />
       <BlobDecoration className="bottom-24 -left-16" color="#EDF2F6" size={120} />
 
+      {/* Content wrapper — above decorations */}
+      <div className="relative z-[1] flex flex-col flex-1">
+
       <div className="mb-4">
         <h1 className="text-2xl font-semibold text-primary">Att göra</h1>
         <p className="text-muted text-sm mt-1">
@@ -284,6 +287,8 @@ function UppgifterContent() {
           </h2>
         </div>
       )}
+
+      </div>{/* end content wrapper */}
 
       <BottomNav />
     </div>

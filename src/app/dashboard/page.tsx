@@ -193,6 +193,9 @@ function DashboardContent() {
       <SparkleDecoration className="top-[30%] right-10" size={14} opacity={0.1} />
       <LeafDecoration className="bottom-[25%] left-4" size={24} opacity={0.08} color="#6E8BA4" />
 
+      {/* Content wrapper — above decorations */}
+      <div className="relative z-[1] flex flex-col flex-1">
+
       {/* Greeting + settings */}
       <div className="flex items-start justify-between mb-5">
         <div>
@@ -572,6 +575,8 @@ function DashboardContent() {
         Denna app ger allmän vägledning och ersätter inte juridisk rådgivning.
         Kontakta alltid en jurist vid osäkerhet.
       </p>
+
+      </div>{/* end content wrapper */}
 
       <BottomNav />
     </div>

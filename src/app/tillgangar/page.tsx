@@ -137,6 +137,9 @@ function TillgangarContent() {
       <LeafDecoration className="top-5 right-5" size={24} opacity={0.08} />
       <BlobDecoration className="bottom-24 -left-16" color="#EDF2F6" size={110} />
 
+      {/* Content wrapper — above decorations */}
+      <div className="relative z-[1] flex flex-col flex-1">
+
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
         <h1 className="text-2xl font-semibold text-primary">Ekonomi</h1>
@@ -439,6 +442,8 @@ function TillgangarContent() {
           </div>
         </div>
       )}
+
+      </div>{/* end content wrapper */}
 
       <BottomNav />
     </div>
