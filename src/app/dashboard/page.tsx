@@ -10,7 +10,6 @@ import {
   ChevronRight,
   User,
   Calendar,
-  Heart,
   Settings,
   Zap,
   ClipboardList,
@@ -22,6 +21,7 @@ import { BottomNav } from '@/components/ui/BottomNav';
 import type { DodsboTask, ProcessStep, TaskStatus } from '@/types';
 import { DEFAULT_TIDSFRISTER } from '@/types';
 import Link from 'next/link';
+import { DoveLogo } from '@/components/ui/DoveLogo';
 import {
   checkAndNotifyDeadlines,
   requestNotificationPermission,
@@ -133,7 +133,7 @@ function DashboardContent() {
     return (
       <div className="flex flex-col px-5 py-6 pb-24">
         <div className="flex-1 flex flex-col items-center justify-center min-h-[60dvh] text-center">
-          <Heart className="w-16 h-16 text-primary-lighter mb-4" />
+          <DoveLogo size={64} className="mb-4 opacity-60" />
           <h1 className="text-2xl font-semibold text-primary mb-2">Välkommen</h1>
           <p className="text-muted mb-6 max-w-xs">
             Börja med att berätta om din situation så skapar vi en personlig plan.

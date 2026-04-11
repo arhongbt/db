@@ -3,8 +3,8 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/lib/auth/context';
-import { Heart } from 'lucide-react';
 import Link from 'next/link';
+import { DoveLogo } from '@/components/ui/DoveLogo';
 
 type AuthTab = 'login' | 'register' | 'reset';
 
@@ -95,12 +95,12 @@ export default function AuthPage() {
   return (
     <div className="min-h-dvh bg-background flex flex-col items-center justify-center px-4 py-6">
       <div className="w-full max-w-sm">
-        {/* Header with heart icon */}
+        {/* Header with logo */}
         <div className="text-center mb-8 animate-fadeIn">
           <div className="flex justify-center mb-4">
-            <Heart className="w-8 h-8 text-accent fill-accent" />
+            <DoveLogo size={48} />
           </div>
-          <h1 className="text-2xl font-bold text-primary mb-2">Dödsbo</h1>
+          <h1 className="text-2xl font-bold text-primary mb-2">Sista Resan</h1>
           <p className="text-muted text-sm">Vi finns här för dig</p>
         </div>
 

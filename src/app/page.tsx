@@ -3,7 +3,6 @@
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import {
-  Heart,
   Shield,
   Clock,
   ChevronRight,
@@ -14,6 +13,7 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import { loadState } from '@/lib/store';
+import { DoveLogo } from '@/components/ui/DoveLogo';
 
 export default function LandingPage() {
   const router = useRouter();
@@ -29,8 +29,8 @@ export default function LandingPage() {
       {/* Hero */}
       <div className="flex flex-col justify-center px-5 py-8">
         <div className="mb-6">
-          <div className="w-14 h-14 bg-primary-lighter rounded-2xl flex items-center justify-center mb-5">
-            <Heart className="w-7 h-7 text-primary" />
+          <div className="mb-5">
+            <DoveLogo size={56} />
           </div>
           <h1 className="text-3xl font-bold text-primary leading-tight mb-3">
             Hantera dödsboet{' '}
