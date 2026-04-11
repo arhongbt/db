@@ -115,8 +115,10 @@ export function useSupabaseSync(
         skulder: skulder ?? [],
         forsakringar: forsakringar ?? [],
         tasks: tasks ?? [],
-        losore: (row as Record<string, unknown>).losore as Dodsbo['losore'] ?? [],
-        kostnader: (row as Record<string, unknown>).kostnader as Dodsbo['kostnader'] ?? [],
+        // lösöre & kostnader are stored in localStorage for now
+        // (no dedicated Supabase table yet — to be added in a future migration)
+        losore: [],
+        kostnader: [],
       };
 
       rawDispatch({ type: 'LOAD_STATE', payload: fullState });

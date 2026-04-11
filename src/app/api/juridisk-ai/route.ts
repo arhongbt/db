@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-const KIMI_API_URL = 'https://openrouter.ai/api/v1/chat/completions';
+const OPENROUTER_API_URL = 'https://openrouter.ai/api/v1/chat/completions';
+const AI_MODEL = 'anthropic/claude-3-haiku-20240307';
 
 const SYSTEM_PROMPT = `Du är Dödsboappens juridiska AI-assistent, specialiserad på svensk arvsrätt och dödsbohantering. Du ger JURIDISK INFORMATION (inte juridisk rådgivning) baserat på svensk lagstiftning.
 
@@ -127,9 +128,53 @@ SVAR-RIKTLINJER:
 6. Om frågan handlar om ANVÄNDAREN SPECIFIKT, använd den dödsbo-kontext som skickas med.
 7. Svara BARA på frågor om svensk arvsrätt, dödsbo, bouppteckning, arvskifte, bodelning och relaterade ämnen. Om frågan är utanför ditt område, säg det vänligt.`;
 
+// Simple in-memory rate limiter (per IP, 10 requests/minute)
+const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
+const RATE_LIMIT = 10;
+const RATE_WINDOW = 60_000; // 1 minute
+
+function checkRateLimit(ip: string): boolean {
+  const now = Date.now();
+  const entry = rateLimitMap.get(ip);
+  if (!entry || now > entry.resetAt) {
+    rateLimitMap.set(ip, { count: 1, resetAt: now + RATE_WINDOW });
+    return true;
+  }
+  if (entry.count >= RATE_LIMIT) return false;
+  entry.count++;
+  return true;
+}
+
 export async function POST(request: NextRequest) {
   try {
-    const { messages, dodsboContext } = await request.json();
+    // Rate limiting
+    const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown';
+    if (!checkRateLimit(ip)) {
+      return NextResponse.json(
+        { error: 'För många förfrågningar. Vänta en minut.' },
+        { status: 429 }
+      );
+    }
+
+    const body = await request.json();
+    const { messages, dodsboContext } = body;
+
+    // Input validation
+    if (!Array.isArray(messages) || messages.length === 0 || messages.length > 50) {
+      return NextResponse.json(
+        { error: 'Ogiltigt meddelandeformat.' },
+        { status: 400 }
+      );
+    }
+    // Validate each message
+    for (const msg of messages) {
+      if (!msg.role || !msg.content || typeof msg.content !== 'string') {
+        return NextResponse.json({ error: 'Ogiltigt meddelande.' }, { status: 400 });
+      }
+      if (msg.content.length > 5000) {
+        return NextResponse.json({ error: 'Meddelandet är för långt (max 5000 tecken).' }, { status: 400 });
+      }
+    }
 
     const apiKey = process.env.OPENROUTER_API_KEY;
     if (!apiKey) {
@@ -145,7 +190,7 @@ export async function POST(request: NextRequest) {
       contextualPrompt += `\n\n═══ ANVÄNDARENS DÖDSBO-KONTEXT ═══\n${dodsboContext}\n\nAnvänd denna information för att ge mer relevanta och personliga svar. Hänvisa till den avlidnes namn om det finns.`;
     }
 
-    const response = await fetch(KIMI_API_URL, {
+    const response = await fetch(OPENROUTER_API_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -154,7 +199,7 @@ export async function POST(request: NextRequest) {
         'X-Title': 'Dodsboappen',
       },
       body: JSON.stringify({
-        model: 'moonshotai/kimi-k2.5',
+        model: AI_MODEL,
         messages: [
           { role: 'system', content: contextualPrompt },
           ...messages,
@@ -166,7 +211,7 @@ export async function POST(request: NextRequest) {
 
     if (!response.ok) {
       const errorData = await response.text();
-      console.error('Kimi API error:', response.status, errorData);
+      console.error('AI API error:', response.status, errorData);
       return NextResponse.json(
         { error: 'Kunde inte nå AI-tjänsten. Försök igen.' },
         { status: response.status }

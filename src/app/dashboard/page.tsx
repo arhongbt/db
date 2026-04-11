@@ -75,6 +75,17 @@ function DashboardContent() {
     ? Math.floor((Date.now() - deathDate.getTime()) / (1000 * 60 * 60 * 24))
     : 0;
 
+  // Auto-compute effective step from daysSinceDeath
+  // (the stored currentStep may be stale if user doesn't manually advance)
+  const computeStep = (days: number): ProcessStep => {
+    if (days <= 7) return 'akut';
+    if (days <= 30) return 'kartlaggning';
+    if (days <= 90) return 'bouppteckning';
+    if (days <= 180) return 'arvskifte';
+    return 'avslutat';
+  };
+  const effectiveStep = deathDate ? computeStep(daysSinceDeath) : state.currentStep;
+
   // Upcoming deadlines
   const upcomingDeadlines = DEFAULT_TIDSFRISTER
     .filter((t) => t.offsetDays > daysSinceDeath)
@@ -161,12 +172,12 @@ function DashboardContent() {
       {/* Current phase card — links to timeline */}
       <Link
         href="/tidslinje"
-        className={`card border-l-4 mb-6 ${stepColors[state.currentStep]} flex items-center justify-between`}
+        className={`card border-l-4 mb-6 ${stepColors[effectiveStep]} flex items-center justify-between`}
       >
         <div>
           <p className="text-sm font-medium opacity-80 mb-1">Du är i fasen</p>
           <p className="text-lg font-semibold">
-            {stepLabels[state.currentStep]}
+            {stepLabels[effectiveStep]}
           </p>
         </div>
         <ChevronRight className="w-5 h-5 opacity-60" />
@@ -243,7 +254,7 @@ function DashboardContent() {
           top3.push({ label: 'Kontrollera försäkringar', href: '/forsakringar', reason: 'Kan ge dödsfallsersättning', color: 'border-success bg-green-50' });
         }
         // Priority 8: Arvskifte
-        if (state.currentStep === 'arvskifte') {
+        if (effectiveStep === 'arvskifte') {
           top3.push({ label: 'Genomför arvskifte', href: '/arvskifte', reason: 'Fördela tillgångarna', color: 'border-success bg-green-50' });
         }
 

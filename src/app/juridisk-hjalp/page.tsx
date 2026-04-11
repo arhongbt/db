@@ -20,6 +20,43 @@ interface Message {
   content: string;
 }
 
+/** Simple markdown renderer — handles **bold**, *italic*, `code`, and bullet lists */
+function renderMarkdown(text: string) {
+  return text.split('\n').map((line, i) => {
+    // Bullet points
+    const bulletMatch = line.match(/^[\s]*[-•]\s+(.*)/);
+    if (bulletMatch) {
+      return <div key={i} className="flex gap-2 ml-1"><span className="text-accent">•</span><span>{renderInline(bulletMatch[1])}</span></div>;
+    }
+    // Numbered list
+    const numMatch = line.match(/^[\s]*(\d+)\.\s+(.*)/);
+    if (numMatch) {
+      return <div key={i} className="flex gap-2 ml-1"><span className="font-medium text-accent">{numMatch[1]}.</span><span>{renderInline(numMatch[2])}</span></div>;
+    }
+    // Empty line
+    if (line.trim() === '') return <div key={i} className="h-2" />;
+    // Regular line
+    return <p key={i}>{renderInline(line)}</p>;
+  });
+}
+
+function renderInline(text: string) {
+  // Replace **bold**, *italic*, `code`
+  const parts = text.split(/(\*\*[^*]+\*\*|\*[^*]+\*|`[^`]+`)/g);
+  return parts.map((part, i) => {
+    if (part.startsWith('**') && part.endsWith('**')) {
+      return <strong key={i} className="font-semibold">{part.slice(2, -2)}</strong>;
+    }
+    if (part.startsWith('*') && part.endsWith('*')) {
+      return <em key={i}>{part.slice(1, -1)}</em>;
+    }
+    if (part.startsWith('`') && part.endsWith('`')) {
+      return <code key={i} className="bg-gray-100 px-1 rounded text-xs font-mono">{part.slice(1, -1)}</code>;
+    }
+    return part;
+  });
+}
+
 const SUGGESTED_QUESTIONS = [
   'Vad är skillnaden mellan laglott och arvslott?',
   'Ärver man skulder i Sverige?',
@@ -264,8 +301,8 @@ function JuridiskHjalpContent() {
                   : 'bg-white border border-gray-200 text-primary rounded-bl-md'
               }`}
             >
-              <div className="text-sm whitespace-pre-wrap leading-relaxed">
-                {msg.content}
+              <div className="text-sm leading-relaxed space-y-1">
+                {msg.role === 'assistant' ? renderMarkdown(msg.content) : msg.content}
               </div>
             </div>
             {msg.role === 'user' && (

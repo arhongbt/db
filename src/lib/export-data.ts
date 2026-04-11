@@ -93,13 +93,13 @@ export function exportAsCSV(state: Dodsbo): void {
   }
 
   // Section 8: Sammanfattning
+  const summaryKostnader = (state.kostnader || []).reduce((s, k) => s + k.amount, 0);
   lines.push('--- SAMMANFATTNING ---');
   lines.push('Post,Belopp (kr)');
   lines.push(`Tillgångar,${totalTillgangar}`);
   lines.push(`Skulder,-${totalSkulder}`);
-  const totalKostnader = (state.kostnader || []).reduce((s, k) => s + k.amount, 0);
-  lines.push(`Dödsbokostnader,-${totalKostnader}`);
-  lines.push(`Behållning (netto),${totalTillgangar - totalSkulder - totalKostnader}`);
+  lines.push(`Dödsbokostnader,-${summaryKostnader}`);
+  lines.push(`Behållning (netto),${totalTillgangar - totalSkulder - summaryKostnader}`);
 
   const csv = '\uFEFF' + lines.join('\n'); // BOM for Excel UTF-8
   downloadFile(csv, `dodsbo-${sanitize(state.deceasedName)}-export.csv`, 'text/csv;charset=utf-8');
