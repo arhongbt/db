@@ -27,6 +27,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/bouppteckning',
     '/tillgangar',
     '/forsakringar',
+    '/arvskalkylator',
+    '/skanner',
+    '/exportera',
+    '/bank-guide',
+    '/delagare-portal',
+    '/paminelser',
   ];
 
   return publicPages.map((route) => ({

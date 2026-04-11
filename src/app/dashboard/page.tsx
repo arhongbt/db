@@ -413,11 +413,14 @@ function DashboardContent() {
         </h2>
         <div className="flex flex-col gap-2">
           {[
+            { label: 'Arvskalkylator', href: '/arvskalkylator' },
             { label: 'Juridisk AI-assistent', href: '/juridisk-hjalp' },
             { label: 'Lägg till dödsbodelägare', href: '/delagare' },
+            { label: 'Delägare-portal & status', href: '/delagare-portal' },
             { label: 'Inventera tillgångar & skulder', href: '/tillgangar' },
             { label: 'Lösöre — möbler, smycken, konst', href: '/losore' },
             { label: 'Kontrollera försäkringar', href: '/forsakringar' },
+            { label: 'Bank-guide (per storbank)', href: '/bank-guide' },
             { label: 'Bouppteckning', href: '/bouppteckning' },
             { label: 'Dödsboanmälan (enklare alternativ)', href: '/dodsboanmalan' },
             { label: 'Bodelning (gifta par & sambor)', href: '/bodelning' },
@@ -426,6 +429,9 @@ function DashboardContent() {
             { label: 'Fullmakter & mallar', href: '/fullmakt' },
             { label: 'Avsluta konton', href: '/avsluta-konton' },
             { label: 'Dödsbokostnader', href: '/kostnader' },
+            { label: 'Dokumentskanner', href: '/skanner' },
+            { label: 'Exportera allt (ZIP)', href: '/exportera' },
+            { label: 'Påminnelser & tidsfrister', href: '/paminelser' },
             { label: 'Konflikter & skiftesman', href: '/konflikt' },
             { label: 'Internationella arv', href: '/internationellt' },
             { label: 'Företag i dödsbo', href: '/foretag-i-dodsbo' },

@@ -1,5 +1,5 @@
 // Service Worker for Sista Resan PWA
-const CACHE_NAME = 'sistaresan-v1';
+const CACHE_NAME = 'sistaresan-v2';
 const STATIC_ASSETS = [
   '/',
   '/dashboard',
@@ -25,6 +25,12 @@ const STATIC_ASSETS = [
   '/bouppteckning',
   '/tillgangar',
   '/forsakringar',
+  '/arvskalkylator',
+  '/skanner',
+  '/exportera',
+  '/bank-guide',
+  '/delagare-portal',
+  '/paminelser',
   '/installningar',
   '/manifest.json',
   '/icons/icon-192.png',
