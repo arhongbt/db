@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { DodsboProvider, useDodsbo } from '@/lib/context';
 import { BottomNav } from '@/components/ui/BottomNav';
-import { BlobDecoration, LeafDecoration } from '@/components/ui/Decorations';
+// Decorations removed — caused z-index/visibility bugs on mobile
 import {
   Plus,
   X,
@@ -131,14 +131,7 @@ function TillgangarContent() {
     new Intl.NumberFormat('sv-SE', { style: 'currency', currency: 'SEK', maximumFractionDigits: 0 }).format(amount);
 
   return (
-    <div className="flex flex-col px-5 py-6 pb-24 relative overflow-hidden">
-      {/* Decorative elements */}
-      <BlobDecoration className="-top-10 -right-14" color="#EEF2EA" size={150} />
-      <LeafDecoration className="top-5 right-5" size={24} opacity={0.08} />
-      <BlobDecoration className="bottom-24 -left-16" color="#EDF2F6" size={110} />
-
-      {/* Content wrapper — above decorations */}
-      <div className="relative z-[1] flex flex-col flex-1">
+    <div className="flex flex-col px-5 py-6 pb-24">
 
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
@@ -442,8 +435,6 @@ function TillgangarContent() {
           </div>
         </div>
       )}
-
-      </div>{/* end content wrapper */}
 
       <BottomNav />
     </div>

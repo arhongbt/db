@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { DodsboProvider, useDodsbo } from '@/lib/context';
 import { BottomNav } from '@/components/ui/BottomNav';
-import { BlobDecoration, LeafDecoration } from '@/components/ui/Decorations';
+// Decorations removed — caused z-index/visibility bugs on mobile
 import { generateTasks } from '@/lib/tasks';
 import {
   CheckCircle2,
@@ -135,14 +135,7 @@ function UppgifterContent() {
   const totalDone = tasks.filter((t) => t.status === 'klar').length;
 
   return (
-    <div className="flex flex-col px-5 py-6 pb-24 relative overflow-hidden">
-      {/* Decorative elements */}
-      <BlobDecoration className="-top-10 -right-14" color="#EEF2EA" size={140} />
-      <LeafDecoration className="top-6 right-4" size={24} opacity={0.08} />
-      <BlobDecoration className="bottom-24 -left-16" color="#EDF2F6" size={120} />
-
-      {/* Content wrapper — above decorations */}
-      <div className="relative z-[1] flex flex-col flex-1">
+    <div className="flex flex-col px-5 py-6 pb-24">
 
       <div className="mb-4">
         <h1 className="text-2xl font-semibold text-primary">Att göra</h1>
@@ -287,8 +280,6 @@ function UppgifterContent() {
           </h2>
         </div>
       )}
-
-      </div>{/* end content wrapper */}
 
       <BottomNav />
     </div>

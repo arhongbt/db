@@ -18,7 +18,7 @@ import {
 // ── Types ──
 interface BegravningsplanerData {
   // Step 0: Type of funeral
-  begravningstyp: 'jordbegravning' | 'kremering' | 'islamisk' | 'annan' | '';
+  begravningstyp: 'jordbegravning' | 'islamisk' | 'annan' | '';
   ceremoniTyp: 'svenska_kyrkan' | 'annan_trossamfund' | 'borgerlig' | 'islamisk_utan_kyrka' | '';
 
   // Step 1: Funeral home
@@ -145,7 +145,7 @@ function BegravningsplaneringContent() {
       {/* ── Step 0: Type of funeral ── */}
       {step === 0 && (
         <div className="animate-fadeIn">
-          <MikeRossTip text="De flesta väljer kremering i Sverige (~80%). Det finns inga juridiska krav på vilken typ — det viktigaste är att respektera den avlidnes önskemål om sådana finns." />
+          <MikeRossTip text="Det finns inga juridiska krav på vilken typ av begravning — det viktigaste är att respektera den avlidnes önskemål om sådana finns." />
 
           {data.begravningstyp === 'islamisk' && (
             <MikeRossTip text="Vid islamisk begravning ska begravningen ske så snart som möjligt, helst inom 24 timmar. Kontakta en muslimsk begravningsbyrå direkt. I Sverige finns Islamic Burial Society och lokala moskéer som kan hjälpa. Kroppen ska tvättas (ghusl) och svepas i vitt tyg (kafan) enligt tradition." />
@@ -157,7 +157,6 @@ function BegravningsplaneringContent() {
               <div className="space-y-3">
                 {[
                   { id: 'jordbegravning', label: 'Jordbegravning' },
-                  { id: 'kremering', label: 'Kremering' },
                   { id: 'islamisk', label: 'Islamisk begravning' },
                   { id: 'annan', label: 'Annan (naturlig begravning, etc.)' },
                 ].map((option) => (
@@ -399,7 +398,6 @@ function BegravningsplaneringContent() {
                 <p className="text-xs font-semibold text-muted uppercase mb-1">Typ av begravning</p>
                 <p className="text-sm text-primary">
                   {data.begravningstyp === 'jordbegravning' && 'Jordbegravning'}
-                  {data.begravningstyp === 'kremering' && 'Kremering'}
                   {data.begravningstyp === 'islamisk' && 'Islamisk begravning'}
                   {data.begravningstyp === 'annan' && 'Annan'}
                   {data.ceremoniTyp && ` — ${

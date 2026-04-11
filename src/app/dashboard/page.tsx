@@ -33,7 +33,7 @@ import type { DodsboTask, ProcessStep, TaskStatus } from '@/types';
 import { DEFAULT_TIDSFRISTER } from '@/types';
 import Link from 'next/link';
 import { DoveLogo } from '@/components/ui/DoveLogo';
-import { BlobDecoration, LeafDecoration, SparkleDecoration } from '@/components/ui/Decorations';
+// Decorations removed — caused z-index/visibility bugs on mobile
 import {
   checkAndNotifyDeadlines,
   requestNotificationPermission,
@@ -186,15 +186,7 @@ function DashboardContent() {
   const strokeDashoffset = circumference - (progressPct / 100) * circumference;
 
   return (
-    <div className="flex flex-col px-5 py-6 pb-24 stagger-children relative overflow-hidden">
-      {/* Decorative elements — moved leaf away from gear */}
-      <BlobDecoration className="-top-12 -right-16" color="#EEF2EA" size={180} />
-      <BlobDecoration className="top-[45%] -left-20" color="#EDF2F6" size={140} />
-      <SparkleDecoration className="top-[30%] right-10" size={14} opacity={0.1} />
-      <LeafDecoration className="bottom-[25%] left-4" size={24} opacity={0.08} color="#6E8BA4" />
-
-      {/* Content wrapper — above decorations */}
-      <div className="relative z-[1] flex flex-col flex-1">
+    <div className="flex flex-col px-5 py-6 pb-24 stagger-children">
 
       {/* Greeting + settings */}
       <div className="flex items-start justify-between mb-5">
@@ -575,8 +567,6 @@ function DashboardContent() {
         Denna app ger allmän vägledning och ersätter inte juridisk rådgivning.
         Kontakta alltid en jurist vid osäkerhet.
       </p>
-
-      </div>{/* end content wrapper */}
 
       <BottomNav />
     </div>

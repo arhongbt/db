@@ -63,7 +63,6 @@ const NODBROMS_STEPS: NodbromsStep[] = [
     details: [
       'Du behöver inte välja byrå direkt — de flesta ger gratis offert.',
       'Begravning ska ske inom 30 dagar (kan förlängas).',
-      'Kremering ska ske inom 30 dagar efter dödsfallet.',
       'Alla i Sverige har rätt till begravning — begravningsavgiften ingår i skatten.',
       'Kostnaden varierar 15 000 – 50 000 kr beroende på önskemål.',
     ],
