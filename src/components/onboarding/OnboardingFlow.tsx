@@ -190,85 +190,79 @@ export function OnboardingFlow() {
             <h1 className="text-2xl font-semibold text-primary mb-2">
               Om situationen
             </h1>
-            <p className="text-muted mb-6">
+            <p className="text-muted mb-8">
               Dessa uppgifter bestämmer arvsordningen och vad som behöver göras.
             </p>
 
-            {/* Family situation */}
-            <p className="text-sm font-semibold text-primary mb-3 uppercase tracking-wide">
-              Familjesituation
-            </p>
-            <div className="flex flex-col gap-2 mb-6 stagger-children">
-              {([
-                { value: 'gift_med_gemensamma_barn', label: 'Gift med gemensamma barn' },
-                { value: 'gift_med_sarkullebarn', label: 'Gift med särkullbarn', desc: 'Barn från tidigare förhållande' },
-                { value: 'gift_utan_barn', label: 'Gift utan barn' },
-                { value: 'ogift_med_barn', label: 'Ogift med barn' },
-                { value: 'sambo_med_barn', label: 'Sambo med barn' },
-                { value: 'sambo_utan_barn', label: 'Sambo utan barn' },
-                { value: 'ensamstaende_utan_barn', label: 'Ensamstående utan barn' },
-              ] as const).map((opt) => (
-                <OptionCard
-                  key={opt.value}
-                  label={opt.label}
-                  description={'desc' in opt ? opt.desc : undefined}
-                  selected={familySituation === opt.value}
-                  onClick={() => setFamilySituation(opt.value)}
-                />
-              ))}
-            </div>
+            {/* Family situation — dropdown */}
+            <label className="block mb-6">
+              <span className="text-base font-medium text-primary mb-2 block">
+                Familjesituation
+              </span>
+              <select
+                value={familySituation}
+                onChange={(e) => setFamilySituation(e.target.value as FamilySituation)}
+                className={`w-full min-h-touch px-4 py-3 text-base border-2 rounded-card
+                           focus:border-accent focus:outline-none transition-colors appearance-none
+                           bg-white bg-[url('data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%236B7B75%22%20stroke-width%3D%222%22%3E%3Cpath%20d%3D%22m6%209%206%206%206-6%22%2F%3E%3C%2Fsvg%3E')] bg-no-repeat bg-[right_0.75rem_center] bg-[length:1.25rem]
+                           ${familySituation ? 'border-accent text-primary' : 'border-gray-200 text-muted'}`}
+              >
+                <option value="" disabled>Välj familjesituation...</option>
+                <option value="gift_med_gemensamma_barn">Gift med gemensamma barn</option>
+                <option value="gift_med_sarkullebarn">Gift med särkullbarn</option>
+                <option value="gift_utan_barn">Gift utan barn</option>
+                <option value="ogift_med_barn">Ogift med barn</option>
+                <option value="sambo_med_barn">Sambo med barn</option>
+                <option value="sambo_utan_barn">Sambo utan barn</option>
+                <option value="ensamstaende_utan_barn">Ensamstående utan barn</option>
+              </select>
+            </label>
 
             {/* Testamente */}
-            <p className="text-sm font-semibold text-primary mb-3 uppercase tracking-wide">
-              Testamente
-            </p>
-            <div className="flex gap-2 mb-6">
-              <button
-                onClick={() => setHasTestamente(true)}
-                className={`flex-1 py-3 rounded-xl font-medium text-sm transition-colors ${
-                  hasTestamente === true ? 'bg-accent text-white' : 'bg-gray-100 text-primary hover:bg-gray-200'
-                }`}
-              >
-                Ja
-              </button>
-              <button
-                onClick={() => setHasTestamente(false)}
-                className={`flex-1 py-3 rounded-xl font-medium text-sm transition-colors ${
-                  hasTestamente === false ? 'bg-accent text-white' : 'bg-gray-100 text-primary hover:bg-gray-200'
-                }`}
-              >
-                Nej
-              </button>
-              <button
-                onClick={() => setHasTestamente(null)}
-                className={`flex-1 py-3 rounded-xl font-medium text-sm transition-colors ${
-                  hasTestamente === null ? 'bg-accent text-white' : 'bg-gray-100 text-primary hover:bg-gray-200'
-                }`}
-              >
-                Vet ej
-              </button>
-            </div>
+            <label className="block mb-6">
+              <span className="text-base font-medium text-primary mb-2 block">
+                Finns det ett testamente?
+              </span>
+              <div className="flex gap-2">
+                {([
+                  { val: true, label: 'Ja' },
+                  { val: false, label: 'Nej' },
+                  { val: null, label: 'Vet ej' },
+                ] as const).map((opt) => (
+                  <button
+                    key={String(opt.val)}
+                    onClick={() => setHasTestamente(opt.val)}
+                    className={`flex-1 py-3 rounded-xl font-medium text-sm transition-colors ${
+                      hasTestamente === opt.val ? 'bg-accent text-white' : 'bg-gray-100 text-primary hover:bg-gray-200'
+                    }`}
+                  >
+                    {opt.label}
+                  </button>
+                ))}
+              </div>
+            </label>
 
-            {/* Housing type */}
-            <p className="text-sm font-semibold text-primary mb-3 uppercase tracking-wide">
-              Boendetyp
-            </p>
-            <div className="flex flex-col gap-2 stagger-children">
-              {([
-                { value: 'hyresratt', label: 'Hyresrätt' },
-                { value: 'bostadsratt', label: 'Bostadsrätt' },
-                { value: 'villa', label: 'Villa/hus' },
-                { value: 'fritidshus', label: 'Fritidshus' },
-                { value: 'ingen_bostad', label: 'Ingen egen bostad' },
-              ] as const).map((opt) => (
-                <OptionCard
-                  key={opt.value}
-                  label={opt.label}
-                  selected={housingType === opt.value}
-                  onClick={() => setHousingType(opt.value)}
-                />
-              ))}
-            </div>
+            {/* Housing type — dropdown */}
+            <label className="block">
+              <span className="text-base font-medium text-primary mb-2 block">
+                Boendetyp
+              </span>
+              <select
+                value={housingType}
+                onChange={(e) => setHousingType(e.target.value as HousingType)}
+                className={`w-full min-h-touch px-4 py-3 text-base border-2 rounded-card
+                           focus:border-accent focus:outline-none transition-colors appearance-none
+                           bg-white bg-[url('data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%236B7B75%22%20stroke-width%3D%222%22%3E%3Cpath%20d%3D%22m6%209%206%206%206-6%22%2F%3E%3C%2Fsvg%3E')] bg-no-repeat bg-[right_0.75rem_center] bg-[length:1.25rem]
+                           ${housingType ? 'border-accent text-primary' : 'border-gray-200 text-muted'}`}
+              >
+                <option value="" disabled>Välj boendetyp...</option>
+                <option value="hyresratt">Hyresrätt</option>
+                <option value="bostadsratt">Bostadsrätt</option>
+                <option value="villa">Villa/hus</option>
+                <option value="fritidshus">Fritidshus</option>
+                <option value="ingen_bostad">Ingen egen bostad</option>
+              </select>
+            </label>
           </div>
         )}
 
