@@ -250,8 +250,7 @@ function DelagarePortalContent() {
                   setInviteLink(null);
                   try {
                     // Use a placeholder dodsbo_id — in production this comes from Supabase
-                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                    const dodsboId = (state as any).supabaseId || 'local';
+                    const dodsboId = 'supabaseId' in state ? String((state as Record<string, unknown>).supabaseId) : 'local';
                     const { data, error } = await createInvite(dodsboId, inviteEmail);
                     if (error) throw error;
                     if (data) {
