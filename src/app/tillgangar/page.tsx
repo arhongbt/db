@@ -55,6 +55,7 @@ function TillgangarContent() {
     );
   }
   const [showForm, setShowForm] = useState(false);
+  const [formErrors, setFormErrors] = useState<Record<string, string>>({});
 
   // Tillgång form
   const [tType, setTType] = useState<TillgangType>('bankkonto');
@@ -78,7 +79,12 @@ function TillgangarContent() {
   const netto = totalTillgangar - totalSkulder;
 
   const handleAddTillgang = () => {
-    if (!tDesc.trim()) return;
+    const errs: Record<string, string> = {};
+    if (!tDesc.trim()) errs.tDesc = 'Beskrivning krävs';
+    if (tValue && (isNaN(Number(tValue)) || Number(tValue) < 0)) errs.tValue = 'Ange ett giltigt belopp';
+    setFormErrors(errs);
+    if (Object.keys(errs).length > 0) return;
+
     const tillgang: Tillgang = {
       id: crypto.randomUUID(),
       type: tType,
@@ -90,11 +96,17 @@ function TillgangarContent() {
     setTDesc('');
     setTValue('');
     setTBank('');
+    setFormErrors({});
     setShowForm(false);
   };
 
   const handleAddSkuld = () => {
-    if (!sCreditor.trim()) return;
+    const errs: Record<string, string> = {};
+    if (!sCreditor.trim()) errs.sCreditor = 'Fordringsägare krävs';
+    if (sAmount && (isNaN(Number(sAmount)) || Number(sAmount) < 0)) errs.sAmount = 'Ange ett giltigt belopp';
+    setFormErrors(errs);
+    if (Object.keys(errs).length > 0) return;
+
     const skuld: Skuld = {
       id: crypto.randomUUID(),
       type: sType,
@@ -104,6 +116,7 @@ function TillgangarContent() {
     dispatch({ type: 'ADD_SKULD', payload: skuld });
     setSCreditor('');
     setSAmount('');
+    setFormErrors({});
     setShowForm(false);
   };
 
@@ -284,10 +297,11 @@ function TillgangarContent() {
             <input
               type="text"
               value={tDesc}
-              onChange={(e) => setTDesc(e.target.value)}
+              onChange={(e) => { setTDesc(e.target.value); setFormErrors((p) => ({ ...p, tDesc: '' })); }}
               placeholder="T.ex. Sparkonto Swedbank"
-              className="w-full min-h-touch px-4 py-3 text-base border-2 border-gray-200 rounded-card focus:border-accent focus:outline-none"
+              className={`w-full min-h-touch px-4 py-3 text-base border-2 rounded-card focus:outline-none ${formErrors.tDesc ? 'border-warn' : 'border-gray-200 focus:border-accent'}`}
             />
+            {formErrors.tDesc && <span className="text-xs text-warn mt-1 block">{formErrors.tDesc}</span>}
           </label>
 
           <label className="block mb-4">
@@ -295,10 +309,11 @@ function TillgangarContent() {
             <input
               type="number"
               value={tValue}
-              onChange={(e) => setTValue(e.target.value)}
+              onChange={(e) => { setTValue(e.target.value); setFormErrors((p) => ({ ...p, tValue: '' })); }}
               placeholder="0"
-              className="w-full min-h-touch px-4 py-3 text-base border-2 border-gray-200 rounded-card focus:border-accent focus:outline-none"
+              className={`w-full min-h-touch px-4 py-3 text-base border-2 rounded-card focus:outline-none ${formErrors.tValue ? 'border-warn' : 'border-gray-200 focus:border-accent'}`}
             />
+            {formErrors.tValue && <span className="text-xs text-warn mt-1 block">{formErrors.tValue}</span>}
           </label>
 
           <div className="flex gap-3">
@@ -336,10 +351,11 @@ function TillgangarContent() {
             <input
               type="text"
               value={sCreditor}
-              onChange={(e) => setSCreditor(e.target.value)}
+              onChange={(e) => { setSCreditor(e.target.value); setFormErrors((p) => ({ ...p, sCreditor: '' })); }}
               placeholder="T.ex. Nordea (bolån)"
-              className="w-full min-h-touch px-4 py-3 text-base border-2 border-gray-200 rounded-card focus:border-accent focus:outline-none"
+              className={`w-full min-h-touch px-4 py-3 text-base border-2 rounded-card focus:outline-none ${formErrors.sCreditor ? 'border-warn' : 'border-gray-200 focus:border-accent'}`}
             />
+            {formErrors.sCreditor && <span className="text-xs text-warn mt-1 block">{formErrors.sCreditor}</span>}
           </label>
 
           <label className="block mb-4">
@@ -347,10 +363,11 @@ function TillgangarContent() {
             <input
               type="number"
               value={sAmount}
-              onChange={(e) => setSAmount(e.target.value)}
+              onChange={(e) => { setSAmount(e.target.value); setFormErrors((p) => ({ ...p, sAmount: '' })); }}
               placeholder="0"
-              className="w-full min-h-touch px-4 py-3 text-base border-2 border-gray-200 rounded-card focus:border-accent focus:outline-none"
+              className={`w-full min-h-touch px-4 py-3 text-base border-2 rounded-card focus:outline-none ${formErrors.sAmount ? 'border-warn' : 'border-gray-200 focus:border-accent'}`}
             />
+            {formErrors.sAmount && <span className="text-xs text-warn mt-1 block">{formErrors.sAmount}</span>}
           </label>
 
           <div className="flex gap-3">

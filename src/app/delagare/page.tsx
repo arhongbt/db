@@ -46,14 +46,29 @@ function DelagareContent() {
   const [relation, setRelation] = useState<Relation | ''>('');
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   const arvsinfo = getArvsordning(
     state.onboarding.familySituation,
     state.onboarding.hasTestamente
   );
 
+  const validate = (): boolean => {
+    const errs: Record<string, string> = {};
+    if (!name.trim()) errs.name = 'Namn krävs';
+    if (!relation) errs.relation = 'Välj relation';
+    if (email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
+      errs.email = 'Ogiltig e-postadress';
+    }
+    if (phone.trim() && !/^[\d\s\-+()]{6,20}$/.test(phone.trim())) {
+      errs.phone = 'Ogiltigt telefonnummer';
+    }
+    setErrors(errs);
+    return Object.keys(errs).length === 0;
+  };
+
   const handleAdd = () => {
-    if (!name.trim() || !relation) return;
+    if (!validate()) return;
 
     const delagare: Dodsbodelaware = {
       id: crypto.randomUUID(),
@@ -69,6 +84,7 @@ function DelagareContent() {
     setRelation('');
     setPhone('');
     setEmail('');
+    setErrors({});
     setShowForm(false);
   };
 
@@ -199,11 +215,12 @@ function DelagareContent() {
             <input
               type="text"
               value={name}
-              onChange={(e) => setName(e.target.value)}
+              onChange={(e) => { setName(e.target.value); setErrors((p) => ({ ...p, name: '' })); }}
               placeholder="Förnamn Efternamn"
-              className="w-full min-h-touch px-4 py-3 text-base border-2 border-gray-200 rounded-card focus:border-accent focus:outline-none"
+              className={`w-full min-h-touch px-4 py-3 text-base border-2 rounded-card focus:outline-none ${errors.name ? 'border-warn' : 'border-gray-200 focus:border-accent'}`}
               autoFocus
             />
+            {errors.name && <span className="text-xs text-warn mt-1 block">{errors.name}</span>}
           </label>
 
           <div className="mb-4">
@@ -215,10 +232,12 @@ function DelagareContent() {
                 <button
                   key={r}
                   type="button"
-                  onClick={() => setRelation(r)}
+                  onClick={() => { setRelation(r); setErrors((p) => ({ ...p, relation: '' })); }}
                   className={`py-2.5 px-3 rounded-card text-sm font-medium border-2 transition-colors ${
                     relation === r
                       ? 'border-accent bg-primary-lighter/30 text-primary'
+                      : errors.relation
+                      ? 'border-warn/50 text-muted hover:border-warn'
                       : 'border-gray-200 text-muted hover:border-gray-300'
                   }`}
                 >
@@ -226,6 +245,7 @@ function DelagareContent() {
                 </button>
               ))}
             </div>
+            {errors.relation && <span className="text-xs text-warn mt-1 block">{errors.relation}</span>}
           </div>
 
           <label className="block mb-4">
@@ -233,10 +253,11 @@ function DelagareContent() {
             <input
               type="tel"
               value={phone}
-              onChange={(e) => setPhone(e.target.value)}
+              onChange={(e) => { setPhone(e.target.value); setErrors((p) => ({ ...p, phone: '' })); }}
               placeholder="070-123 45 67"
-              className="w-full min-h-touch px-4 py-3 text-base border-2 border-gray-200 rounded-card focus:border-accent focus:outline-none"
+              className={`w-full min-h-touch px-4 py-3 text-base border-2 rounded-card focus:outline-none ${errors.phone ? 'border-warn' : 'border-gray-200 focus:border-accent'}`}
             />
+            {errors.phone && <span className="text-xs text-warn mt-1 block">{errors.phone}</span>}
           </label>
 
           <label className="block mb-6">
@@ -244,10 +265,11 @@ function DelagareContent() {
             <input
               type="email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => { setEmail(e.target.value); setErrors((p) => ({ ...p, email: '' })); }}
               placeholder="namn@exempel.se"
-              className="w-full min-h-touch px-4 py-3 text-base border-2 border-gray-200 rounded-card focus:border-accent focus:outline-none"
+              className={`w-full min-h-touch px-4 py-3 text-base border-2 rounded-card focus:outline-none ${errors.email ? 'border-warn' : 'border-gray-200 focus:border-accent'}`}
             />
+            {errors.email && <span className="text-xs text-warn mt-1 block">{errors.email}</span>}
           </label>
 
           <div className="flex gap-3">

@@ -47,11 +47,17 @@ function ForsakringarContent() {
   const [policyNr, setPolicyNr] = useState('');
   const [beneficiary, setBeneficiary] = useState('');
   const [value, setValue] = useState('');
+  const [formErrors, setFormErrors] = useState<Record<string, string>>({});
 
   const contacted = state.forsakringar.filter((f) => f.contacted).length;
 
   const handleAdd = () => {
-    if (!company.trim()) return;
+    const errs: Record<string, string> = {};
+    if (!company.trim()) errs.company = 'Bolagsnamn krävs';
+    if (value && (isNaN(Number(value)) || Number(value) < 0)) errs.value = 'Ange ett giltigt belopp';
+    setFormErrors(errs);
+    if (Object.keys(errs).length > 0) return;
+
     const forsakring: Forsakring = {
       id: crypto.randomUUID(),
       type: fType,
@@ -66,6 +72,7 @@ function ForsakringarContent() {
     setPolicyNr('');
     setBeneficiary('');
     setValue('');
+    setFormErrors({});
     setShowForm(false);
   };
 
@@ -220,11 +227,12 @@ function ForsakringarContent() {
             <input
               type="text"
               value={company}
-              onChange={(e) => setCompany(e.target.value)}
+              onChange={(e) => { setCompany(e.target.value); setFormErrors((p) => ({ ...p, company: '' })); }}
               placeholder="T.ex. Folksam, If, Trygg-Hansa"
-              className="w-full min-h-touch px-4 py-3 text-base border-2 border-gray-200 rounded-card focus:border-accent focus:outline-none"
+              className={`w-full min-h-touch px-4 py-3 text-base border-2 rounded-card focus:outline-none ${formErrors.company ? 'border-warn' : 'border-gray-200 focus:border-accent'}`}
               autoFocus
             />
+            {formErrors.company && <span className="text-xs text-warn mt-1 block">{formErrors.company}</span>}
           </label>
 
           <label className="block mb-4">
@@ -254,10 +262,11 @@ function ForsakringarContent() {
             <input
               type="number"
               value={value}
-              onChange={(e) => setValue(e.target.value)}
+              onChange={(e) => { setValue(e.target.value); setFormErrors((p) => ({ ...p, value: '' })); }}
               placeholder="0"
-              className="w-full min-h-touch px-4 py-3 text-base border-2 border-gray-200 rounded-card focus:border-accent focus:outline-none"
+              className={`w-full min-h-touch px-4 py-3 text-base border-2 rounded-card focus:outline-none ${formErrors.value ? 'border-warn' : 'border-gray-200 focus:border-accent'}`}
             />
+            {formErrors.value && <span className="text-xs text-warn mt-1 block">{formErrors.value}</span>}
           </label>
 
           <div className="flex gap-3">
