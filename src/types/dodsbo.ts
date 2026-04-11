@@ -219,6 +219,8 @@ export interface Tillgang {
   estimatedValue?: number;
   /** Bekräftat värde */
   confirmedValue?: number;
+  /** Taxeringsvärde för fastighet (SEK) */
+  taxeringsvarde?: number;
   bank?: string;
   notes?: string;
 }
@@ -227,6 +229,7 @@ export type TillgangType =
   | 'bankkonto'
   | 'bostadsratt'
   | 'villa'
+  | 'jordbruksfastighet'
   | 'fritidshus'
   | 'bil'
   | 'aktier_fonder'

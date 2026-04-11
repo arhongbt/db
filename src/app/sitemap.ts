@@ -45,6 +45,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/minnesida',
     '/samarbete',
     '/dodsannons',
+    '/digitala-tillgangar',
   ].map((route) => ({
     route,
     priority: 0.8,

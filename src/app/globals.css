@@ -151,3 +151,155 @@
   .stagger-children > *:nth-child(7) { animation-delay: 300ms; }
   .stagger-children > *:nth-child(8) { animation-delay: 350ms; }
 }
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+  }
+
+  body {
+    @apply bg-[#1A1814] text-[#E8E4DE];
+  }
+
+  .card {
+    @apply bg-[#252220];
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3), 0 8px 24px rgba(0,0,0,0.2);
+    border-color: #3A3530;
+  }
+
+  .btn-secondary {
+    @apply bg-[#252220] text-[#E8E4DE];
+    border-color: #3A3530;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  }
+
+  .btn-secondary:hover {
+    @apply bg-[#3A3530];
+  }
+
+  /* Gradient cards — dark variants */
+  .card-sage {
+    background: linear-gradient(135deg, #2A3428, #252220);
+  }
+  .card-blue {
+    background: linear-gradient(135deg, #2A3238, #252220);
+  }
+  .card-warn {
+    background: linear-gradient(135deg, #3A2820, #252220);
+  }
+
+  /* Info and warning boxes */
+  .info-box {
+    background: linear-gradient(135deg, #2A3428, #1A1814);
+    border-color: rgba(107,127,94,0.25);
+  }
+
+  .warning-box {
+    background: linear-gradient(135deg, #3A2820, #252220);
+    border-color: rgba(196,112,75,0.25);
+  }
+
+  /* Icon bubbles — dark variants */
+  .icon-bubble-sage {
+    background: #2A3428;
+    color: #8FA878;
+  }
+  .icon-bubble-blue {
+    background: #2A3238;
+    color: #7FA5BC;
+  }
+  .icon-bubble-warn {
+    background: #3A2820;
+    color: #D4956B;
+  }
+}
+
+/* Print stylesheet */
+@media print {
+  /* Hide navigation and interactive elements */
+  nav,
+  .bottom-nav,
+  [class*="BottomNav"],
+  [class*="FloatingChat"],
+  [class*="floating-chat"],
+  button[class*="chat"],
+  button[class*="float"],
+  .floating-action-button,
+  .chat-button,
+  footer {
+    display: none !important;
+  }
+
+  /* Set background and text for print */
+  html, body {
+    background: white !important;
+    color: black !important;
+  }
+
+  /* Remove shadows and rounded corners */
+  * {
+    box-shadow: none !important;
+    border-radius: 0 !important;
+  }
+
+  /* Keep subtle borders for structure */
+  .card,
+  [class*="card"] {
+    border: 1px solid #ddd !important;
+  }
+
+  /* Reset colors for cards */
+  .card,
+  .card-sage,
+  .card-blue,
+  .card-warn,
+  [class*="card"] {
+    background: white !important;
+    color: black !important;
+  }
+
+  /* Info and warning boxes */
+  .info-box,
+  .warning-box {
+    background: white !important;
+    color: black !important;
+    border: 1px solid #ddd !important;
+  }
+
+  /* Buttons for print */
+  .btn-primary,
+  .btn-secondary,
+  button {
+    background: white !important;
+    color: black !important;
+    border: 1px solid #999 !important;
+    box-shadow: none !important;
+  }
+
+  /* Show all content — remove overflow hidden */
+  body,
+  main,
+  article,
+  section,
+  div {
+    overflow: visible !important;
+    max-height: none !important;
+  }
+
+  /* Improve spacing for readability */
+  .card,
+  [class*="card"],
+  .info-box,
+  .warning-box {
+    page-break-inside: avoid;
+  }
+
+  /* Hide decorative elements */
+  [class*="decoration"],
+  [class*="decorative"],
+  [class*="ornament"],
+  svg[class*="icon"]:not([role="img"]) {
+    display: none !important;
+  }
+}

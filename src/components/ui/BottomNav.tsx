@@ -7,7 +7,7 @@ import {
   Home, Users, Wallet, FileText, FolderOpen, MoreHorizontal, X,
   Calculator, Building2, Camera, Download, Bell, Scale, BookOpen,
   HelpCircle, Globe, Briefcase, AlertTriangle, Bot, PenTool, ScrollText, FileX,
-  HomeIcon, Heart, CreditCard, FileCheck, Landmark, Newspaper, Church, Flame,
+  HomeIcon, Heart, CreditCard, FileCheck, Landmark, Newspaper, Church, Flame, Smartphone,
 } from 'lucide-react';
 
 const NAV_ITEMS = [
@@ -41,6 +41,7 @@ const MORE_CATEGORIES = [
       { href: '/skanner', label: 'Skanner', icon: Camera },
       { href: '/exportera', label: 'Exportera', icon: Download },
       { href: '/paminelser', label: 'Påminnelser', icon: Bell },
+      { href: '/digitala-tillgangar', label: 'Digitalt', icon: Smartphone },
     ],
   },
   {

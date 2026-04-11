@@ -127,6 +127,20 @@ function DashboardContent() {
     avslutat: 'bg-gray-50 border-gray-400 text-gray-600',
   };
 
+  // Calculate totals for skulder/tillgangar
+  const tillgangarTotal = state.tillgangar.reduce((sum, item) => {
+    const value = item.confirmedValue !== undefined ? item.confirmedValue : (item.estimatedValue || 0);
+    return sum + value;
+  }, 0);
+
+  const skulderTotal = state.skulder.reduce((sum, item) => {
+    const value = item.confirmedValue !== undefined ? item.confirmedValue : (item.estimatedValue || 0);
+    return sum + value;
+  }, 0);
+
+  // Check if simple dödsbo: 0 tillgångar AND 0 delagare AND < 30 days
+  const isSimpleDodsbo = state.tillgangar.length === 0 && state.delagare.length === 0 && daysSinceDeath < 30;
+
   const statusIcon = (status: TaskStatus) => {
     switch (status) {
       case 'klar':
@@ -246,6 +260,19 @@ function DashboardContent() {
           </div>
           <ChevronRight className="w-5 h-5 text-warn" />
         </Link>
+      )}
+
+      {/* Skulder ärver du inte banner — show if skulder > tillgangar */}
+      {skulderTotal > tillgangarTotal && skulderTotal > 0 && (
+        <div className="card border-l-4 border-accent bg-accent/5 mb-5 flex items-start gap-3">
+          <AlertTriangle className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
+          <div>
+            <p className="font-semibold text-accent">Viktigt: Du ärver INTE skulder</p>
+            <p className="text-sm text-primary/70 mt-1">
+              Dödsboets skulder betalas med dödsboets tillgångar. Om skulderna är större försvinner de — du behöver inte betala.
+            </p>
+          </div>
+        </div>
       )}
 
       {/* Quick stats row */}
@@ -452,30 +479,64 @@ function DashboardContent() {
       {/* Dokument-generatorer */}
       <section className="mb-5">
         <h2 className="text-base font-bold text-primary mb-3">Skapa dokument</h2>
-        <div className="grid grid-cols-3 gap-3">
-          {[
-            { label: 'Bouppteckning', href: '/bouppteckning', Icon: ClipboardList },
-            { label: 'Testamente', href: '/testamente', Icon: PenTool },
-            { label: 'Arvskifte', href: '/arvskifteshandling', Icon: ScrollText },
-            { label: 'Dödsboanmälan', href: '/dodsboanmalan', Icon: FileX },
-            { label: 'Bankbrev', href: '/bankbrev', Icon: Landmark },
-            { label: 'Dödsannons', href: '/dodsannons', Icon: Newspaper },
-          ].map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="flex flex-col items-center gap-2 py-4 rounded-2xl transition-all hover:scale-[1.02] active:scale-[0.98]"
-              style={{ background: '#EEF2EA60' }}
-              aria-label={item.label}
-            >
-              <div className="w-12 h-12 rounded-2xl flex items-center justify-center"
-                style={{ background: '#EEF2EA' }}>
-                <item.Icon className="w-5 h-5" style={{ color: '#6B7F5E' }} strokeWidth={1.5} />
-              </div>
-              <span className="text-xs font-semibold text-primary">{item.label}</span>
-            </Link>
-          ))}
-        </div>
+        {isSimpleDodsbo ? (
+          <>
+            {/* Simple dödsbo — simplified options */}
+            <div className="grid grid-cols-3 gap-3 mb-4">
+              {[
+                { label: 'Begravningsplanering', href: '/begravningsplanering', Icon: Church },
+                { label: 'Dödsboanmälan', href: '/dodsboanmalan', Icon: FileX },
+              ].map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="flex flex-col items-center gap-2 py-4 rounded-2xl transition-all hover:scale-[1.02] active:scale-[0.98]"
+                  style={{ background: '#EEF2EA60' }}
+                  aria-label={item.label}
+                >
+                  <div className="w-12 h-12 rounded-2xl flex items-center justify-center"
+                    style={{ background: '#EEF2EA' }}>
+                    <item.Icon className="w-5 h-5" style={{ color: '#6B7F5E' }} strokeWidth={1.5} />
+                  </div>
+                  <span className="text-xs font-semibold text-primary">{item.label}</span>
+                </Link>
+              ))}
+            </div>
+            {/* Info banner about simple dödsbo */}
+            <div className="card border-l-4 border-accent bg-accent/5">
+              <p className="text-sm text-primary font-medium">Ditt dödsbo verkar enkelt</p>
+              <p className="text-xs text-primary/70 mt-1">
+                Du kan troligen göra en dödsboanmälan istället för full bouppteckning.
+              </p>
+            </div>
+          </>
+        ) : (
+          /* Full dödsbo — all options */
+          <div className="grid grid-cols-3 gap-3">
+            {[
+              { label: 'Bouppteckning', href: '/bouppteckning', Icon: ClipboardList },
+              { label: 'Testamente', href: '/testamente', Icon: PenTool },
+              { label: 'Arvskifte', href: '/arvskifteshandling', Icon: ScrollText },
+              { label: 'Dödsboanmälan', href: '/dodsboanmalan', Icon: FileX },
+              { label: 'Bankbrev', href: '/bankbrev', Icon: Landmark },
+              { label: 'Dödsannons', href: '/dodsannons', Icon: Newspaper },
+            ].map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="flex flex-col items-center gap-2 py-4 rounded-2xl transition-all hover:scale-[1.02] active:scale-[0.98]"
+                style={{ background: '#EEF2EA60' }}
+                aria-label={item.label}
+              >
+                <div className="w-12 h-12 rounded-2xl flex items-center justify-center"
+                  style={{ background: '#EEF2EA' }}>
+                  <item.Icon className="w-5 h-5" style={{ color: '#6B7F5E' }} strokeWidth={1.5} />
+                </div>
+                <span className="text-xs font-semibold text-primary">{item.label}</span>
+              </Link>
+            ))}
+          </div>
+        )}
       </section>
 
       {/* Verktyg & guider */}
@@ -486,7 +547,7 @@ function DashboardContent() {
             { label: 'Begravning', href: '/begravningsplanering', Icon: Church },
             { label: 'Skatteverket', href: '/skatteverket-guide', Icon: FileCheck },
             { label: 'Minnesida', href: '/minnesida', Icon: Heart },
-            { label: 'Samarbete', href: '/samarbete', Icon: Users },
+            ...(state.delagare.length > 1 ? [{ label: 'Samarbete', href: '/samarbete', Icon: Users }] : []),
             { label: 'Mike Ross', href: '/juridisk-hjalp', Icon: Bot },
             { label: 'Exportera', href: '/exportera', Icon: Package },
           ].map((item) => (

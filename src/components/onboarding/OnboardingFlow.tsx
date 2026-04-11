@@ -34,6 +34,7 @@ export function OnboardingFlow() {
   // Onboarding state
   const [deceasedName, setDeceasedName] = useState('');
   const [deathDate, setDeathDate] = useState('');
+  const [personnummer, setPersonnummer] = useState('');
   const [relation, setRelation] = useState<Relation | ''>('');
   const [familySituation, setFamilySituation] = useState<FamilySituation | ''>('');
   const [hasTestamente, setHasTestamente] = useState<boolean | null>(null);
@@ -46,7 +47,7 @@ export function OnboardingFlow() {
       case 0: return deceasedName.trim().length > 0 && deathDate.length > 0;
       case 1: return relation !== '';
       case 2: return familySituation !== '' && housingType !== '';
-      case 3: return selectedBanks.length > 0;
+      case 3: return true; // Banks are optional, can be skipped
       default: return false;
     }
   }, [step, deceasedName, deathDate, relation, familySituation, housingType, selectedBanks]);
@@ -137,7 +138,7 @@ export function OnboardingFlow() {
               />
             </label>
 
-            <label className="block">
+            <label className="block mb-6">
               <span className="text-base font-medium text-primary mb-2 block">
                 När inträffade dödsfallet?
               </span>
@@ -149,6 +150,23 @@ export function OnboardingFlow() {
                 className="w-full min-h-touch px-4 py-3 text-lg border-2 border-gray-200 rounded-card
                            focus:border-accent focus:outline-none transition-colors"
               />
+            </label>
+
+            <label className="block">
+              <span className="text-base font-medium text-primary mb-2 block">
+                Personnummer (valfritt)
+              </span>
+              <input
+                type="text"
+                value={personnummer}
+                onChange={(e) => setPersonnummer(e.target.value)}
+                placeholder="YYYYMMDD-XXXX eller XXXXXX-XXXX"
+                className="w-full min-h-touch px-4 py-3 text-lg border-2 border-gray-200 rounded-card
+                           focus:border-accent focus:outline-none transition-colors"
+              />
+              <p className="text-xs text-muted mt-1">
+                Exempel: 197512241234 eller 751224-1234
+              </p>
             </label>
           </div>
         )}
@@ -171,6 +189,9 @@ export function OnboardingFlow() {
                 { value: 'syskon', label: 'Syskon', desc: 'Bror eller syster' },
                 { value: 'annan_slakting', label: 'Annan släkting', desc: 'Barnbarn, moster, kusin etc.' },
                 { value: 'testamentstagare', label: 'Testamentstagare', desc: 'Omnämnd i testamente' },
+                { value: 'vardnadshavare', label: 'Vårdnadshavare för minderårigt barn', desc: 'Vårdnadshavare för barn' },
+                { value: 'foralder_avliden', label: 'Förälder till den avlidne', desc: 'Mamma eller pappa till den avlidne' },
+                { value: 'van_annan', label: 'Vän eller annan', desc: 'Vän eller annan relation' },
               ] as const).map((opt) => (
                 <OptionCard
                   key={opt.value}
@@ -278,7 +299,7 @@ export function OnboardingFlow() {
 
             {/* Banks */}
             <p className="text-sm font-semibold text-primary mb-3 uppercase tracking-wide">
-              Banker (välj minst en)
+              Banker (valfritt)
             </p>
             <div className="flex flex-col gap-2 mb-6 stagger-children">
               {SWEDISH_BANKS.map((bank) => (
@@ -320,11 +341,19 @@ export function OnboardingFlow() {
       </div>
 
       {/* CTA Button — always at bottom */}
-      <div className="pt-6 pb-2">
+      <div className="pt-6 pb-2 flex gap-3">
+        {step === 3 && (
+          <button
+            onClick={handleNext}
+            className="flex-1 py-3 px-4 rounded-xl font-medium text-base bg-gray-100 text-primary hover:bg-gray-200 transition-colors"
+          >
+            Hoppa över
+          </button>
+        )}
         <button
           onClick={handleNext}
           disabled={!canProceed()}
-          className="btn-primary"
+          className={`${step === 3 ? 'flex-1' : 'w-full'} btn-primary`}
         >
           {step === TOTAL_STEPS - 1 ? 'Visa min plan' : 'Fortsätt'}
         </button>

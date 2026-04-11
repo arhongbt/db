@@ -69,6 +69,97 @@ export default function DodsboFastighetPage() {
         ))}
       </div>
 
+      {/* Bostadsrätt */}
+      <h2 className="text-lg font-semibold text-primary mb-4">Sälja bostadsrätt i dödsboet</h2>
+      <p className="text-sm text-muted mb-4 leading-relaxed">
+        Bostadsrätt följer delvis samma regler som fastigheter, men kräver godkännande från föreningen.
+      </p>
+      <div className="flex flex-col gap-3 mb-8">
+        {[
+          {
+            step: '1',
+            title: 'Få registrerad bouppteckning från Skatteverket',
+            desc: 'Bouppteckningen måste registreras innan försäljning kan påbörjas.',
+          },
+          {
+            step: '2',
+            title: 'Kontakta mäklare för värdering',
+            desc: 'En mäklare gör en marknadsvärdering av bostadsrätten för både arvskiftet och försäljningen.',
+          },
+          {
+            step: '3',
+            title: 'Kontakta bostadsrättsföreningen – köparen måste godkännas',
+            desc: 'Föreningen måste godkänna den nya ägaren innan överlåtelsen kan genomföras. Kontakta styrelsen tidigt.',
+          },
+          {
+            step: '4',
+            title: 'Alla dödsbodelägare måste skriva under köpeavtal',
+            desc: 'Alla arvingar som äger andel i bostadsrätten måste underteckna köpeavtalet.',
+          },
+          {
+            step: '5',
+            title: 'Räkna med reavinstskatt om bostaden säljs med vinst',
+            desc: 'Dödsboet betalar reavinstskatt (22%) på vinsten. Anskaffningsvärdet ärvs från den avlidne.',
+          },
+        ].map((item) => (
+          <div key={item.step} className="card flex items-start gap-3">
+            <div className="w-7 h-7 rounded-full bg-accent text-white flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5">
+              {item.step}
+            </div>
+            <div>
+              <p className="font-semibold text-primary text-sm">{item.title}</p>
+              <p className="text-sm text-muted mt-0.5">{item.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="info-box mb-8">
+        <div className="flex items-start gap-2">
+          <FileText className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
+          <div>
+            <p className="font-medium text-accent text-sm">Föreningsgodkännande</p>
+            <p className="text-sm text-primary/70 mt-1">
+              Bostadsrättsföreningen måste godkänna köparen innan överlåtelsen kan genomföras. Kontakta styrelsen tidigt i processen för att undvika förseningar.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Husdjur */}
+      <h2 className="text-lg font-semibold text-primary mb-4">Husdjur i dödsboet</h2>
+      <p className="text-sm text-muted mb-4 leading-relaxed">
+        Husdjur räknas juridiskt som lösöre (egendom). Så här hanterar du det:
+      </p>
+      <div className="flex flex-col gap-3 mb-8">
+        {[
+          {
+            title: 'Kontrollera testamente',
+            desc: 'Undersök om den avlidne hade ett testamente med önskemål om djurens framtid. Familjemedlemmar kan vara förnamnade som målsmän.',
+          },
+          {
+            title: 'Kontrollera djurförsäkring',
+            desc: 'Se om den avlidne hade försäkring för djuren. Den kan behöva uppdateras till den nya ägarens namn eller sägas upp.',
+          },
+          {
+            title: 'Ansvar för djurens väl',
+            desc: 'Dödsboet är ansvarigt för att djuren tas väl om medan överlåtelsen planeras. Matning, vård och veterinärkostnader kan betalas från dödsboet.',
+          },
+          {
+            title: 'Om ingen kan ta hand om djuren',
+            desc: 'Kontakta lokal djurskyddsförening. De kan hjälpa till att hitta ett nytt hem eller tillfällig vård.',
+          },
+        ].map((item, i) => (
+          <div key={i} className="card flex items-start gap-3">
+            <CheckCircle2 className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
+            <div>
+              <p className="font-semibold text-primary text-sm">{item.title}</p>
+              <p className="text-sm text-muted mt-0.5">{item.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
       {/* Vanliga frågor */}
       <h2 className="text-lg font-semibold text-primary mb-4">Vanliga frågor</h2>
       <div className="flex flex-col gap-3 mb-8">

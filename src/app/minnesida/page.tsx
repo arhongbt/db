@@ -29,7 +29,15 @@ const colorThemes = [
 ];
 
 function MemorialContent() {
-  const { state } = useDodsbo();
+  let state = { deceasedName: '', deathDate: '' };
+  try {
+    const dodsboContext = useDodsbo();
+    state = dodsboContext.state;
+  } catch (e) {
+    // No provider context available - guest mode
+  }
+
+  const isGuestMode = !state.deceasedName;
   const [isPreview, setIsPreview] = useState(false);
   const [copied, setCopied] = useState(false);
   const [saved, setSaved] = useState(false);
@@ -169,6 +177,14 @@ ${form.citat}
       </div>
 
       <div className="max-w-2xl mx-auto px-4 py-8">
+        {isGuestMode && (
+          <div className="mb-6 p-4 bg-accent/10 border border-accent/30 rounded-2xl">
+            <p className="text-sm text-primary font-medium">
+              Du kan skapa en minnesida utan att starta ett dödsbo. Fyll i uppgifterna nedan.
+            </p>
+          </div>
+        )}
+
         <MikeRossTip text="En minnesida är ett fint sätt att hedra den du förlorat. Du kan dela den med familj och vänner. Allt sparas lokalt på din enhet — inget publiceras utan ditt godkännande." />
 
         <div className="space-y-5">

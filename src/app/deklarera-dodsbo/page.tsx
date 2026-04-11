@@ -34,9 +34,13 @@ export default function DeklararaDodsboPage() {
             <AlertTriangle className="w-6 h-6 text-warn flex-shrink-0 mt-0.5" />
             <div>
               <h3 className="font-semibold text-primary mb-1">Viktigt: Deklarationsfristen</h3>
+              <p className="text-sm text-primary mb-2">
+                Dödsboet ska deklarera senast <span className="font-semibold">2 maj</span> året efter dödsåret
+                (eller <span className="font-semibold">15 maj</span> för digitala deklarationer).
+              </p>
               <p className="text-sm text-primary">
-                Dödsboet ska deklarera senast <span className="font-semibold">2 maj</span> året efter dödsåret.
-                Ansökan om förlängd tid kan göras innan fristen går ut.
+                <span className="font-semibold">Exempel:</span> Om dödsfallet inträffade 15 mars 2024,
+                ska dödsboets deklaration lämnas senast 2 maj 2025.
               </p>
             </div>
           </div>
@@ -56,6 +60,20 @@ export default function DeklararaDodsboPage() {
               vid årsskiftet (dvs. tillgångarna ännu inte fördelats mellan arvingarna).
             </p>
           </div>
+        </section>
+
+        {/* What needs to be declared section */}
+        <section className="mb-8 p-6 bg-white rounded-lg border border-border">
+          <h2 className="text-xl font-bold text-primary mb-4">Vad ska dödsboet deklarera?</h2>
+          <p className="text-muted mb-4">
+            Dödsboet ska deklarera alla inkomster från den 1 januari fram till dödsdagen. Här är vad som behöver redovisas:
+          </p>
+          <ul className="text-sm text-muted space-y-3 list-disc list-inside">
+            <li><span className="font-semibold text-primary">Inkomster från 1 januari till dödsdagen</span> — Löner, pensioner och andra inkomster som avlidna hade rätt till</li>
+            <li><span className="font-semibold text-primary">Ränteintäkter och kapitalvinster</span> — Räntor från bankkonton och vinster från försäljning av värdepapper</li>
+            <li><span className="font-semibold text-primary">Fastighetsförsäljning (om tillämpligt)</span> — Om dödsboet säljer någon fastighet måste försäljningsvinsten deklareras</li>
+            <li><span className="font-semibold text-primary">Pensionsutbetalningar fram till dödsdagen</span> — Alla pensionsutbetalningar måste redovisas för den tid personen var i livet</li>
+          </ul>
         </section>
 
         {/* Step-by-step section */}
@@ -260,6 +278,39 @@ export default function DeklararaDodsboPage() {
                   <li>Bodelning/arvsdelning</li>
                   <li>Bankutdrag och tillgångsöversikt</li>
                 </ul>
+              </div>
+            </div>
+          </div>
+
+          <div className="p-5 bg-blue-50 rounded-lg border border-blue-200">
+            <div className="flex gap-3">
+              <FileText className="w-6 h-6 text-blue-600 flex-shrink-0" />
+              <div>
+                <h3 className="font-semibold text-primary mb-2">Praktisk info från Skatteverket</h3>
+                <p className="text-sm text-primary mb-2">
+                  Dödsboet är skattskyldigt som en egen juridisk person. Skatteverket skickar ofta
+                  en förifylld deklaration direkt till dödsboet.
+                </p>
+                <p className="text-xs text-muted">
+                  <span className="font-semibold">Tips:</span> Kontrollera att adressen är rätt — deklarationen
+                  skickas till folkbokföringsadressen. Uppdatera adress om dödsboet har en annan adress.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="p-5 bg-green-50 rounded-lg border border-green-200">
+            <div className="flex gap-3">
+              <FileText className="w-6 h-6 text-green-600 flex-shrink-0" />
+              <div>
+                <h3 className="font-semibold text-primary mb-2">Efterlevandepension</h3>
+                <p className="text-sm text-primary mb-2">
+                  Den efterlevande kan ha rätt till omställningspension via Pensionsmyndigheten.
+                </p>
+                <p className="text-xs text-muted">
+                  <span className="font-semibold">Ring Pensionsmyndigheten:</span> 0771-776 776.
+                  Detta gäller i 12 månader efter dödsfallet. Ansök så snart som möjligt.
+                </p>
               </div>
             </div>
           </div>

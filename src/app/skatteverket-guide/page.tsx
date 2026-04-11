@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { DodsboProvider, useDodsbo } from '@/lib/context';
 import { BottomNav } from '@/components/ui/BottomNav';
-import { ArrowLeft, CheckCircle2, Circle, Bot, FileCheck, AlertCircle, Info } from 'lucide-react';
+import { ArrowLeft, CheckCircle2, Circle, Bot, FileCheck, AlertCircle, Info, Copy } from 'lucide-react';
 import Link from 'next/link';
 
 function MikeRossTip({ text }: { text: string }) {
@@ -303,6 +303,62 @@ function Step3Submit() {
   );
 }
 
+function ExtensionRequest() {
+  const [copied, setCopied] = useState(false);
+
+  const templateText = `Till Skatteverket
+Bouppteckningssektionen
+831 81 Östersund
+
+Ang. ansökan om förlängd tid för bouppteckning
+
+Dödsboet efter [NAMN], personnummer [PNR], avliden [DATUM].
+
+Undertecknad ansöker härmed om förlängd tid för att förrätta bouppteckning.
+
+Anledning till förseningen:
+[FYLL I — t.ex. "Svårigheter att samla in uppgifter om den avlidnes tillgångar" eller "Behov av fastighetsvärdering" eller "Dödsbodelägare bosatt utomlands"]
+
+Bouppteckningen beräknas kunna förrättas senast: [DATUM]
+
+Med vänliga hälsningar,
+
+_____________________________________
+[DITT NAMN]
+Telefon: [TELEFONNUMMER]`;
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(templateText);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  return (
+    <div className="mb-8">
+      <h3 className="font-semibold text-primary mb-4">Ansök om förlängning</h3>
+
+      <div className="mb-4">
+        <textarea
+          readOnly
+          value={templateText}
+          className="w-full p-4 border border-gray-300 rounded-xl font-mono text-xs bg-gray-50 text-primary/80 resize-none"
+          rows={18}
+        />
+      </div>
+
+      <button
+        onClick={handleCopy}
+        className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-accent text-white rounded-xl font-semibold hover:bg-accent/90 transition-colors mb-4"
+      >
+        <Copy className="w-4 h-4" />
+        {copied ? 'Kopierad!' : 'Kopiera mall'}
+      </button>
+
+      <MikeRossTip text="Skatteverket beviljar nästan alltid förlängning om du ansöker i tid. Skicka ansökan INNAN fristen går ut om möjligt. Ange en konkret anledning och ett realistiskt nytt datum." />
+    </div>
+  );
+}
+
 function Step4After() {
   const [checked, setChecked] = useState<boolean[]>([false, false, false, false]);
 
@@ -325,11 +381,9 @@ function Step4After() {
         När Skatteverket har registrerat bouppteckningen kan ni påbörja arvskiftet och andra administrativa åtgärder.
       </p>
 
-      <div className="mb-8 p-4 bg-blue-50 border border-blue-200 rounded-2xl">
-        <p className="text-sm text-blue-900 mb-2 font-semibold">Kan du inte hinna med deadline?</p>
-        <p className="text-sm text-blue-800">
-          Du kan ansöka om förlängning hos Skatteverket innan deadline passerar. Kontakta dem på telefon eller via webben.
-        </p>
+      <div className="mb-8">
+        <p className="text-sm text-primary/80 font-semibold mb-4">Kan du inte hinna med deadline?</p>
+        <ExtensionRequest />
       </div>
 
       <div className="space-y-3 mb-8">

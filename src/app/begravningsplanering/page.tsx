@@ -18,8 +18,8 @@ import {
 // ── Types ──
 interface BegravningsplanerData {
   // Step 0: Type of funeral
-  begravningstyp: 'jordbegravning' | 'kremering' | 'annan' | '';
-  ceremoniTyp: 'borgerlig' | 'religiös' | '';
+  begravningstyp: 'jordbegravning' | 'kremering' | 'islamisk' | 'annan' | '';
+  ceremoniTyp: 'svenska_kyrkan' | 'annan_trossamfund' | 'borgerlig' | 'islamisk_utan_kyrka' | '';
 
   // Step 1: Funeral home
   begravningsbyra: string;
@@ -147,6 +147,10 @@ function BegravningsplaneringContent() {
         <div className="animate-fadeIn">
           <MikeRossTip text="De flesta väljer kremering i Sverige (~80%). Det finns inga juridiska krav på vilken typ — det viktigaste är att respektera den avlidnes önskemål om sådana finns." />
 
+          {data.begravningstyp === 'islamisk' && (
+            <MikeRossTip text="Vid islamisk begravning ska begravningen ske så snart som möjligt, helst inom 24 timmar. Kontakta en muslimsk begravningsbyrå direkt. I Sverige finns Islamic Burial Society och lokala moskéer som kan hjälpa. Kroppen ska tvättas (ghusl) och svepas i vitt tyg (kafan) enligt tradition." />
+          )}
+
           <div className="card space-y-4">
             <div>
               <label className="block text-sm font-medium text-primary mb-3">Vilken typ av begravning?</label>
@@ -154,6 +158,7 @@ function BegravningsplaneringContent() {
                 {[
                   { id: 'jordbegravning', label: 'Jordbegravning' },
                   { id: 'kremering', label: 'Kremering' },
+                  { id: 'islamisk', label: 'Islamisk begravning' },
                   { id: 'annan', label: 'Annan (naturlig begravning, etc.)' },
                 ].map((option) => (
                   <label key={option.id} className="flex items-center gap-3 cursor-pointer p-3 rounded-xl hover:bg-gray-50 transition-colors border-2"
@@ -175,24 +180,27 @@ function BegravningsplaneringContent() {
             <div className="h-px bg-gray-100" />
 
             <div>
-              <label className="flex items-center gap-2 mb-3">
-                <input
-                  type="checkbox"
-                  checked={data.ceremoniTyp === 'religiös'}
-                  onChange={(e) => setData({ ...data, ceremoniTyp: e.target.checked ? 'religiös' : '' })}
-                  className="w-4 h-4"
-                />
-                <span className="text-sm font-medium text-primary">Religiös ceremoni</span>
-              </label>
-              <label className="flex items-center gap-2">
-                <input
-                  type="checkbox"
-                  checked={data.ceremoniTyp === 'borgerlig'}
-                  onChange={(e) => setData({ ...data, ceremoniTyp: e.target.checked ? 'borgerlig' : '' })}
-                  className="w-4 h-4"
-                />
-                <span className="text-sm font-medium text-primary">Borgerlig ceremoni</span>
-              </label>
+              <label className="block text-sm font-medium text-primary mb-3">Ceremonityp</label>
+              <div className="space-y-3">
+                {[
+                  { id: 'svenska_kyrkan', label: 'Religiös (Svenska kyrkan)' },
+                  { id: 'annan_trossamfund', label: 'Religiös (annan trossamfund)' },
+                  { id: 'borgerlig', label: 'Borgerlig' },
+                  { id: 'islamisk_utan_kyrka', label: 'Islamisk (utan ceremoni i kyrka)' },
+                ].map((option) => (
+                  <label key={option.id} className="flex items-center gap-3 cursor-pointer p-2 rounded-lg hover:bg-gray-50 transition-colors">
+                    <input
+                      type="radio"
+                      name="ceremoniTyp"
+                      value={option.id}
+                      checked={data.ceremoniTyp === option.id}
+                      onChange={(e) => setData({ ...data, ceremoniTyp: e.target.value as any })}
+                      className="w-4 h-4"
+                    />
+                    <span className="text-sm font-medium text-primary">{option.label}</span>
+                  </label>
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -392,8 +400,15 @@ function BegravningsplaneringContent() {
                 <p className="text-sm text-primary">
                   {data.begravningstyp === 'jordbegravning' && 'Jordbegravning'}
                   {data.begravningstyp === 'kremering' && 'Kremering'}
+                  {data.begravningstyp === 'islamisk' && 'Islamisk begravning'}
                   {data.begravningstyp === 'annan' && 'Annan'}
-                  {data.ceremoniTyp && ` — ${data.ceremoniTyp === 'religiös' ? 'Religiös ceremoni' : 'Borgerlig ceremoni'}`}
+                  {data.ceremoniTyp && ` — ${
+                    data.ceremoniTyp === 'svenska_kyrkan' ? 'Religiös (Svenska kyrkan)' :
+                    data.ceremoniTyp === 'annan_trossamfund' ? 'Religiös (annan trossamfund)' :
+                    data.ceremoniTyp === 'borgerlig' ? 'Borgerlig ceremoni' :
+                    data.ceremoniTyp === 'islamisk_utan_kyrka' ? 'Islamisk (utan ceremoni i kyrka)' :
+                    ''
+                  }`}
                 </p>
               </div>
 

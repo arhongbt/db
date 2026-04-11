@@ -12,6 +12,8 @@ import {
   Bell,
   MessageSquare,
   ArrowRight,
+  Smartphone,
+  X,
 } from 'lucide-react';
 import Link from 'next/link';
 import { loadState } from '@/lib/store';
@@ -21,14 +23,74 @@ import { BlobDecoration, LeafDecoration, SparkleDecoration } from '@/components/
 export default function LandingPage() {
   const router = useRouter();
   const [hasExisting, setHasExisting] = useState(false);
+  const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
+  const [showInstallBanner, setShowInstallBanner] = useState(false);
 
   useEffect(() => {
     const saved = loadState();
     if (saved && saved.deceasedName) setHasExisting(true);
   }, []);
 
+  useEffect(() => {
+    // Check if dismissed in localStorage
+    const dismissed = localStorage.getItem('pwa-install-dismissed');
+    if (dismissed) return;
+
+    const handleBeforeInstallPrompt = (e: any) => {
+      e.preventDefault();
+      setDeferredPrompt(e);
+      setShowInstallBanner(true);
+    };
+
+    window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+    return () => window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+  }, []);
+
+  const handleInstall = async () => {
+    if (!deferredPrompt) return;
+    deferredPrompt.prompt();
+    const { outcome } = await deferredPrompt.userChoice;
+    if (outcome === 'accepted') {
+      setDeferredPrompt(null);
+      setShowInstallBanner(false);
+    }
+  };
+
+  const handleDismiss = () => {
+    localStorage.setItem('pwa-install-dismissed', 'true');
+    setShowInstallBanner(false);
+  };
+
   return (
     <div className="flex flex-col min-h-dvh relative overflow-hidden">
+      {/* PWA Install Prompt Banner */}
+      {showInstallBanner && (
+        <div className="bg-accent/5 border-b border-accent/20 px-5 py-4 flex items-start justify-between gap-4 relative z-20">
+          <div className="flex items-start gap-3 flex-1">
+            <Smartphone className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
+            <div className="flex-1">
+              <p className="font-semibold text-primary text-sm">Installera Sista Resan på din telefon</p>
+              <p className="text-xs text-muted mt-1">Få snabb åtkomst utan att öppna webbläsaren</p>
+            </div>
+          </div>
+          <div className="flex items-center gap-2 flex-shrink-0">
+            <button
+              onClick={handleInstall}
+              className="btn-primary !py-2 !px-4 text-xs font-medium whitespace-nowrap"
+            >
+              Installera
+            </button>
+            <button
+              onClick={handleDismiss}
+              className="p-1 hover:bg-accent/10 rounded-lg transition-colors"
+              aria-label="Stäng"
+            >
+              <X className="w-4 h-4 text-muted hover:text-primary transition-colors" />
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* Decorative elements */}
       <BlobDecoration className="-top-16 -right-20" color="#EEF2EA" size={220} />
       <BlobDecoration className="top-[55%] -left-24" color="#EDF2F6" size={180} />

@@ -159,6 +159,28 @@ function ArvskifteContent() {
                 </div>
                 <p className="font-bold text-primary">{formatSEK(netto)}</p>
               </div>
+              <div className="info-box">
+                <div className="flex gap-2">
+                  <Info className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
+                  <div>
+                    <p className="text-sm font-medium text-primary">Fri förfoganderätt</p>
+                    <p className="text-sm text-primary/70 mt-1">
+                      När en make/maka ärver med fri förfoganderätt betyder det att du får använda tillgångarna fritt under din livstid, men du kan inte testamentera bort dem. När du själv går bort har den först avlidnes arvingar (efterarvingar) rätt till sin del.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="info-box">
+                <div className="flex gap-2">
+                  <Info className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
+                  <div>
+                    <p className="text-sm font-medium text-primary">Basbeloppsregeln</p>
+                    <p className="text-sm text-primary/70 mt-1">
+                      Efterlevande make/maka har alltid rätt att behålla egendom motsvarande minst 4 prisbasbelopp (ca 228 000 kr 2024) — även om det innebär att andra arvingar får mindre.
+                    </p>
+                  </div>
+                </div>
+              </div>
               {children.length > 0 && (
                 <div className="info-box">
                   <p className="text-sm">
@@ -196,6 +218,17 @@ function ArvskifteContent() {
                   Särkullbarn kan begära sin arvslott direkt. De kan också frivilligt avstå
                   till förmån för den efterlevande maken/makan.
                 </p>
+              </div>
+              <div className="info-box">
+                <div className="flex gap-2">
+                  <Info className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
+                  <div>
+                    <p className="text-sm font-medium text-primary">Särkullbarns laglott</p>
+                    <p className="text-sm text-primary/70 mt-1">
+                      Särkullbarn har rätt att kräva sin laglott direkt — det är hälften av arvslotten. Resten kan de välja att vänta med tills den efterlevande maken går bort.
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           ) : (
@@ -277,6 +310,21 @@ function ArvskifteContent() {
           </div>
           <ChevronRight className="w-5 h-5 text-warn flex-shrink-0" />
         </Link>
+      )}
+
+      {/* Sambolagen info */}
+      {state.onboarding.familySituation === 'sambo' && (
+        <div className="info-box mb-6">
+          <div className="flex gap-2">
+            <Info className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
+            <div>
+              <p className="text-sm font-medium text-primary">Rättigheter för sambo</p>
+              <p className="text-sm text-primary/70 mt-1">
+                Som sambo ärver du inte automatiskt. Men enligt sambolagen kan du begära bodelning av gemensam bostad och bohag. Kontakta en jurist för att skydda dina rättigheter.
+              </p>
+            </div>
+          </div>
+        </div>
       )}
 
       {/* Actions */}

@@ -268,6 +268,129 @@ function KonfliktContent() {
         </div>
       </div>
 
+      {/* Medical malpractice section */}
+      <div className="mb-6">
+        <h2 className="text-lg font-semibold text-primary mb-4">
+          Vid misstanke om vårdskada
+        </h2>
+        <div className="card">
+          <p className="text-sm text-primary/70 mb-4">
+            Om du misstänker att dödsfallet orsakades av felbehandling i vården kan du:
+          </p>
+          <ul className="space-y-3">
+            <li className="flex gap-2 text-sm text-primary/70">
+              <span className="text-accent mt-0.5">•</span>
+              <span>
+                <strong>Anmäla till IVO</strong> (Inspektionen för vård och omsorg):
+                <a
+                  href="https://www.ivo.se"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary font-medium hover:underline ml-1"
+                >
+                  ivo.se
+                </a>
+                — <a href="tel:0107885000" className="text-primary font-medium hover:underline">010-788 50 00</a>
+              </span>
+            </li>
+            <li className="flex gap-2 text-sm text-primary/70">
+              <span className="text-accent mt-0.5">•</span>
+              <span>
+                <strong>Kontakta Patientnämnden</strong> i din region — de hjälper dig kostnadsfritt
+              </span>
+            </li>
+            <li className="flex gap-2 text-sm text-primary/70">
+              <span className="text-accent mt-0.5">•</span>
+              <span>
+                <strong>Ansöka om ersättning via Löf</strong> (Landstingens Ömsesidiga Försäkringsbolag):
+                <a
+                  href="https://www.lof.se"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary font-medium hover:underline ml-1"
+                >
+                  lof.se
+                </a>
+              </span>
+            </li>
+          </ul>
+          <div className="bg-accent/10 rounded-card px-3 py-2 mt-4">
+            <p className="text-xs text-primary/80">
+              <strong>Tidsgränser:</strong> Det finns ingen tidsgräns för IVO-anmälan, men Löf-anmälan bör göras inom 3 år.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Grief support section */}
+      <div className="mb-6">
+        <h2 className="text-lg font-semibold text-primary mb-4">
+          Stöd i sorgen
+        </h2>
+        <div className="card">
+          <p className="text-sm text-primary/70 mb-4">
+            Sorg är naturlig och du behöver inte hantera den ensam. Här finns resurser:
+          </p>
+          <ul className="space-y-3">
+            <li className="flex gap-2 text-sm text-primary/70">
+              <span className="text-accent mt-0.5">•</span>
+              <span>
+                <strong>Jourhavande medmänniska:</strong>
+                <a href="tel:0870216 80" className="text-primary font-medium hover:underline ml-1">
+                  08-702 16 80
+                </a>
+                <span className="text-primary/60"> (dygnet runt)</span>
+              </span>
+            </li>
+            <li className="flex gap-2 text-sm text-primary/70">
+              <span className="text-accent mt-0.5">•</span>
+              <span>
+                <strong>Mind Självmordslinjen:</strong>
+                <a href="tel:90101" className="text-primary font-medium hover:underline ml-1">
+                  90101
+                </a>
+                <span className="text-primary/60"> (dygnet runt)</span>
+              </span>
+            </li>
+            <li className="flex gap-2 text-sm text-primary/70">
+              <span className="text-accent mt-0.5">•</span>
+              <span>
+                <strong>Sorgegrupper via Svenska kyrkan</strong> — kontakta din lokala församling
+              </span>
+            </li>
+            <li className="flex gap-2 text-sm text-primary/70">
+              <span className="text-accent mt-0.5">•</span>
+              <span>
+                <strong>Randiga Huset</strong> — stöd för barn och unga i sorg:
+                <a
+                  href="https://www.randigahuset.se"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary font-medium hover:underline ml-1"
+                >
+                  randigahuset.se
+                </a>
+              </span>
+            </li>
+            <li className="flex gap-2 text-sm text-primary/70">
+              <span className="text-accent mt-0.5">•</span>
+              <span>
+                <strong>SPES</strong> (Riksförbundet för SuicidPrevention):
+                <a
+                  href="https://www.spes.se"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary font-medium hover:underline ml-1"
+                >
+                  spes.se
+                </a>
+                <span className="text-primary/60"> — om dödsfallet var suicid</span>
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
       {/* Warning box */}
       <div className="warning-box mb-6 flex gap-3">
         <AlertTriangle className="w-5 h-5 flex-shrink-0 mt-0.5" />

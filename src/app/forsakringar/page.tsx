@@ -109,11 +109,50 @@ function ForsakringarContent() {
         </div>
       </div>
 
+      {/* Important tip about employer */}
+      <div className="info-box mb-6 border-l-4 border-accent">
+        <div className="flex gap-2">
+          <Shield className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
+          <div>
+            <p className="text-sm font-medium text-primary">Mike Ross tips: Kontakta arbetsgivaren!</p>
+            <p className="text-sm text-primary/70 mt-1">
+              Många glömmer att fråga arbetsgivaren om grupplivförsäkring och tjänstepensionsförsäkring.
+              Dessa kan tillsammans vara värda hundratusentals kronor och är mycket viktiga att inventera.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Insurance categories */}
+      <div className="mb-6">
+        <h2 className="text-sm font-semibold text-muted uppercase tracking-wide mb-3">
+          Vilka försäkringar ingår i dödsboet?
+        </h2>
+        <div className="space-y-3">
+          <div className="card bg-success/5 border-l-4 border-success">
+            <p className="text-sm font-semibold text-primary mb-2">✓ Försäkringar som ingår i dödsboet</p>
+            <ul className="text-sm text-primary/80 space-y-1">
+              <li>• <strong>Hemförsäkring</strong> — täcker sakskador på huset/lägenheten</li>
+              <li>• <strong>Bilförsäkring</strong> — för fordon i dödsboet</li>
+              <li>• <strong>Kapitalförsäkring utan förmånstagare</strong> — blir en del av dödsboet</li>
+            </ul>
+          </div>
+          <div className="card bg-warn/5 border-l-4 border-warn">
+            <p className="text-sm font-semibold text-primary mb-2">✗ Försäkringar som INTE ingår i dödsboet</p>
+            <ul className="text-sm text-primary/80 space-y-1">
+              <li>• <strong>Livförsäkring med förmånstagare</strong> — går direkt till förmånstagaren</li>
+              <li>• <strong>Grupplivförsäkring (GFL)</strong> — från arbetsgivare, till förmånstagare</li>
+              <li>• <strong>Tjänstepension med förmånstagare</strong> — går till namngiven förmånstagare</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
       {/* Types checklist */}
       {!showForm && (
         <div className="mb-6">
           <h2 className="text-sm font-semibold text-muted uppercase tracking-wide mb-3">
-            Vanliga försäkringstyper att kolla
+            Checklista: Försäkringar att kolla
           </h2>
           <div className="flex flex-col gap-2">
             {FORSAKRING_TYPES.filter(ft => ft.value !== 'ovrigt').map((ft) => {
@@ -136,6 +175,24 @@ function ForsakringarContent() {
                 </div>
               );
             })}
+          </div>
+        </div>
+      )}
+
+      {/* Begravningshjälp info */}
+      {!showForm && (
+        <div className="mb-6">
+          <div className="info-box">
+            <div className="flex gap-2">
+              <Phone className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
+              <div>
+                <p className="text-sm font-medium text-primary">Begravningshjälp via Försäkringskassan</p>
+                <p className="text-sm text-primary/70 mt-1">
+                  Alla har rätt till begravningshjälp från staten. År 2024 är det halva prisbasbeloppet,
+                  cirka <strong>28 650 kr</strong>. Ansök inom 6 månader efter begravningen.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       )}

@@ -17,13 +17,16 @@ import {
   Package,
   Trash2,
   Info,
+  CheckCircle2,
 } from 'lucide-react';
 import type { Tillgang, TillgangType, Skuld, SkuldType } from '@/types';
 
 const TILLGANG_TYPES: { value: TillgangType; label: string; icon: typeof Wallet }[] = [
   { value: 'bankkonto', label: 'Bankkonto', icon: Landmark },
   { value: 'bostadsratt', label: 'Bostadsrätt', icon: Building2 },
-  { value: 'villa', label: 'Villa/hus', icon: Home },
+  { value: 'villa', label: 'Villa/Småhus', icon: Home },
+  { value: 'jordbruksfastighet', label: 'Jordbruk/Skog', icon: Home },
+  { value: 'fritidshus', label: 'Fritidshus/Sommarstuga', icon: Home },
   { value: 'bil', label: 'Bil/fordon', icon: Car },
   { value: 'aktier_fonder', label: 'Aktier & fonder', icon: TrendingUp },
   { value: 'forsakring', label: 'Försäkring', icon: Package },
@@ -51,6 +54,7 @@ function TillgangarContent() {
   const [tDesc, setTDesc] = useState('');
   const [tValue, setTValue] = useState('');
   const [tBank, setTBank] = useState('');
+  const [tTaxeringsvarde, setTTaxeringsvarde] = useState('');
 
   // Skuld form
   const [sType, setSType] = useState<SkuldType>('bolan');
@@ -91,12 +95,14 @@ function TillgangarContent() {
       type: tType,
       description: tDesc.trim(),
       estimatedValue: tValue ? parseInt(tValue) : undefined,
+      taxeringsvarde: tTaxeringsvarde ? parseInt(tTaxeringsvarde) : undefined,
       bank: tBank.trim() || undefined,
     };
     dispatch({ type: 'ADD_TILLGANG', payload: tillgang });
     setTDesc('');
     setTValue('');
     setTBank('');
+    setTTaxeringsvarde('');
     setFormErrors({});
     setShowForm(false);
   };
@@ -171,6 +177,36 @@ function TillgangarContent() {
           </p>
         </div>
       </div>
+
+      {/* Reassurance banner when netto < 0 */}
+      {netto < 0 && (
+        <div className="card border-l-4 border-success mb-6 bg-success/5">
+          <div className="flex gap-3">
+            <CheckCircle2 className="w-6 h-6 text-success flex-shrink-0 mt-0.5" />
+            <div className="flex-1">
+              <h3 className="font-semibold text-primary mb-3">Du ärver INTE skulder</h3>
+              <p className="text-sm text-primary/80 mb-3">
+                I Sverige ärver man aldrig skulder. Dödsboets skulder betalas med dödsboets tillgångar. Om skulderna överstiger tillgångarna försvinner resten — du behöver inte betala ur egen ficka.
+              </p>
+              <p className="text-sm text-primary/80 mb-4">
+                Om dödsboet saknar tillgångar kan du göra en dödsboanmälan istället för bouppteckning.
+              </p>
+              <a
+                href="/dodsboanmalan"
+                className="text-accent font-medium text-sm hover:underline inline-block mb-4"
+              >
+                Gå till dödsboanmälan →
+              </a>
+              <div className="pt-3 border-t border-gray-200">
+                <p className="text-xs text-muted">
+                  <span className="font-medium">Vid frågor om skulder:</span> Kronofogden <br />
+                  <a href="tel:0771737300" className="text-accent hover:underline">0771-73 73 00</a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Tabs */}
       <div className="flex bg-gray-100 rounded-card p-1 mb-4">
@@ -298,6 +334,11 @@ function TillgangarContent() {
                 </button>
               ))}
             </div>
+            {tType === 'forsakring' && (
+              <p className="text-xs text-muted mt-2 bg-gray-50 p-2 rounded border border-gray-200">
+                Försäkringar med namngiven förmånstagare ingår oftast INTE i dödsboet. Kontrollera med försäkringsbolaget.
+              </p>
+            )}
           </div>
 
           <label className="block mb-4">
@@ -323,6 +364,20 @@ function TillgangarContent() {
             />
             {formErrors.tValue && <span className="text-xs text-warn mt-1 block">{formErrors.tValue}</span>}
           </label>
+
+          {['bostadsratt', 'villa', 'jordbruksfastighet', 'fritidshus'].includes(tType) && (
+            <label className="block mb-4">
+              <span className="text-sm font-medium text-primary mb-1 block">Taxeringsvärde (kr)</span>
+              <input
+                type="number"
+                value={tTaxeringsvarde}
+                onChange={(e) => { setTTaxeringsvarde(e.target.value); }}
+                placeholder="0"
+                className="w-full min-h-touch px-4 py-3 text-base border-2 border-gray-200 rounded-card focus:outline-none focus:border-accent"
+              />
+              <p className="text-xs text-muted mt-1">Taxeringsvärdet finns på Skatteverket.se eller senaste fastighetstaxeringen.</p>
+            </label>
+          )}
 
           <div className="flex gap-3">
             <button onClick={() => setShowForm(false)} className="btn-secondary flex-1">Avbryt</button>
