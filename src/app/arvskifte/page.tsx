@@ -13,11 +13,16 @@ import {
   Info,
   PieChart,
   ChevronRight,
+  ChevronDown,
+  ChevronUp,
+  CheckCircle2,
+  FileText,
 } from 'lucide-react';
 
 function ArvskifteContent() {
   const { state } = useDodsbo();
   const [mounted, setMounted] = useState(false);
+  const [showSteps, setShowSteps] = useState(false);
   useEffect(() => setMounted(true), []);
   if (!mounted) return null;
 
@@ -224,11 +229,50 @@ function ArvskifteContent() {
         </div>
       )}
 
+      {/* Steps in arvskifte */}
+      <button
+        onClick={() => setShowSteps(!showSteps)}
+        className="card flex items-center justify-between mb-4"
+      >
+        <div className="flex items-center gap-2">
+          <FileText className="w-5 h-5 text-accent" />
+          <span className="font-medium text-primary">Steg i arvskiftet</span>
+        </div>
+        {showSteps ? <ChevronUp className="w-5 h-5 text-muted" /> : <ChevronDown className="w-5 h-5 text-muted" />}
+      </button>
+
+      {showSteps && (
+        <div className="space-y-3 mb-6">
+          {[
+            { step: '1. Bouppteckning registrerad', desc: 'Bouppteckningen måste vara registrerad hos Skatteverket innan arvskifte kan ske.', done: state.currentStep === 'arvskifte' || state.currentStep === 'avslutat' },
+            { step: '2. Skulder betalda', desc: 'Alla kända skulder ska betalas från dödsboets medel innan arvet fördelas.', done: false },
+            { step: '3. Arvskifteshandling upprättas', desc: 'Skriftlig handling som visar hur arvet fördelas. Alla delägare ska godkänna.', done: false },
+            { step: '4. Alla delägare undertecknar', desc: 'Samtliga dödsbodelägare skriver under arvskifteshandlingen.', done: false },
+            { step: '5. Tillgångar fördelas', desc: 'Bankkonton överförs, fastigheter lagfares om, lösöre delas ut.', done: false },
+            { step: '6. Dödsboet avslutas', desc: 'Konton avslutas, slutlig skattedeklaration lämnas, dödsboet upphör.', done: false },
+          ].map((item, i) => (
+            <div key={i} className="flex items-start gap-3 ml-1">
+              {item.done
+                ? <CheckCircle2 className="w-5 h-5 text-success flex-shrink-0 mt-0.5" />
+                : <div className="w-5 h-5 rounded-full border-2 border-gray-300 flex-shrink-0 mt-0.5" />}
+              <div>
+                <p className="font-medium text-primary text-sm">{item.step}</p>
+                <p className="text-xs text-muted">{item.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+
       {/* Actions */}
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-3 mb-6">
         <Link href="/bouppteckning" className="btn-primary flex items-center justify-center gap-2">
           Bouppteckning
           <ChevronRight className="w-5 h-5" />
+        </Link>
+        <Link href="/fullmakt" className="btn-secondary flex items-center justify-center gap-2">
+          <FileText className="w-5 h-5" />
+          Fullmakter & mallar
         </Link>
         {state.delagare.length === 0 && (
           <Link href="/delagare" className="btn-secondary flex items-center justify-center gap-2">
@@ -236,6 +280,15 @@ function ArvskifteContent() {
             Lägg till dödsbodelägare först
           </Link>
         )}
+      </div>
+
+      {/* Disclaimer */}
+      <div className="bg-primary-lighter/30 rounded-card p-4 mb-4">
+        <p className="text-xs text-muted leading-relaxed">
+          Beräkningen baseras på ärvdabalken och ger en uppskattning. Vid testamente,
+          särkullbarn, samboförhållanden eller internationella förhållanden kan arvsordningen
+          vara annorlunda. Kontakta en jurist för bindande rådgivning.
+        </p>
       </div>
 
       <BottomNav />

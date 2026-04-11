@@ -4,7 +4,7 @@ import { createServerClient } from "@supabase/ssr";
 import { Database } from "@/lib/supabase/types";
 
 // Define public routes that don't require authentication
-const PUBLIC_ROUTES = ["/", "/auth", "/auth/callback", "/faq", "/onboarding", "/invite"];
+const PUBLIC_ROUTES = ["/", "/auth", "/auth/callback", "/faq", "/onboarding", "/invite", "/integritetspolicy", "/anvandarvillkor", "/om"];
 
 // Define protected routes that require authentication
 const PROTECTED_ROUTES = [
@@ -17,6 +17,9 @@ const PROTECTED_ROUTES = [
   "/forsakringar",
   "/bouppteckning",
   "/arvskifte",
+  "/fullmakt",
+  "/kallelse",
+  "/avsluta-konton",
   "/installningar",
   "/dokument",
 ];

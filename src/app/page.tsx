@@ -13,6 +13,7 @@ import {
   Smartphone,
   Star,
 } from 'lucide-react';
+import Link from 'next/link';
 import { loadState } from '@/lib/store';
 
 export default function LandingPage() {
@@ -114,6 +115,13 @@ export default function LandingPage() {
         <p className="text-center text-sm text-muted mt-3">
           2 minuter. Ingen registrering krävs.
         </p>
+
+        {/* Footer links */}
+        <div className="flex justify-center gap-4 mt-6 text-xs text-muted">
+          <Link href="/om" className="hover:text-accent transition-colors">Om oss</Link>
+          <Link href="/integritetspolicy" className="hover:text-accent transition-colors">Integritetspolicy</Link>
+          <Link href="/anvandarvillkor" className="hover:text-accent transition-colors">Villkor</Link>
+        </div>
       </div>
     </div>
   );

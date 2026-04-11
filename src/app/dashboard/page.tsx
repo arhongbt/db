@@ -248,7 +248,10 @@ function DashboardContent() {
             { label: 'Inventera tillgångar & skulder', href: '/tillgangar' },
             { label: 'Kontrollera försäkringar', href: '/forsakringar' },
             { label: 'Bouppteckning', href: '/bouppteckning' },
+            { label: 'Kallelse till förrättning', href: '/kallelse' },
             { label: 'Arvskifte', href: '/arvskifte' },
+            { label: 'Fullmakter & mallar', href: '/fullmakt' },
+            { label: 'Avsluta konton', href: '/avsluta-konton' },
             { label: 'Vanliga frågor', href: '/faq' },
             { label: 'Visa alla uppgifter', href: '/uppgifter' },
           ].map((action) => (
