@@ -26,7 +26,7 @@ export function CookieBanner() {
   if (!visible) return null;
 
   return (
-    <div className="fixed bottom-0 inset-x-0 z-50 p-4 bg-white border-t border-border shadow-lg">
+    <div className="fixed bottom-14 inset-x-0 z-40 p-4 bg-white border-t border-border shadow-lg mb-[env(safe-area-inset-bottom)]">
       <div className="max-w-lg mx-auto">
         <p className="text-sm text-primary mb-3">
           Vi använder nödvändiga cookies för inloggning samt Vercel Analytics för att förbättra

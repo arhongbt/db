@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Kom igång — Dödsbo',
+  title: 'Kom igång — Sista Resan',
   description: 'Berätta om din situation så skapar vi en personlig plan för dödsbohanteringen.',
 };
 

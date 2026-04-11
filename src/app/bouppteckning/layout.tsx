@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Bouppteckning — Dödsbo',
+  title: 'Bouppteckning — Sista Resan',
   description: 'Samla underlag och generera bouppteckning steg för steg.',
 };
 

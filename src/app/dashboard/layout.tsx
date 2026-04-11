@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Dashboard — Dödsbo',
+  title: 'Dashboard — Sista Resan',
   description: 'Överblick över dödsboet med tidsfrister, uppgifter och nästa steg.',
 };
 
