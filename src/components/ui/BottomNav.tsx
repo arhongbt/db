@@ -7,7 +7,7 @@ import {
   Home, Users, Wallet, FileText, FolderOpen, MoreHorizontal, X,
   Calculator, Building2, Camera, Download, Bell, Scale, BookOpen,
   HelpCircle, Globe, Briefcase, AlertTriangle, Bot, PenTool, ScrollText, FileX,
-  HomeIcon, Heart, CreditCard, FileCheck,
+  HomeIcon, Heart, CreditCard, FileCheck, Landmark, Newspaper, Church, Flame,
 } from 'lucide-react';
 
 const NAV_ITEMS = [
@@ -19,18 +19,25 @@ const NAV_ITEMS = [
 
 const MORE_CATEGORIES = [
   {
-    title: 'Hantera dödsboet',
+    title: 'Skapa dokument',
     items: [
-      { href: '/delagare', label: 'Delägare', icon: Users },
       { href: '/testamente', label: 'Testamente', icon: PenTool },
       { href: '/arvskifteshandling', label: 'Arvskifte', icon: ScrollText },
       { href: '/dodsboanmalan', label: 'Dödsboanmälan', icon: FileX },
+      { href: '/bankbrev', label: 'Bankbrev', icon: Landmark },
+      { href: '/dodsannons', label: 'Dödsannons', icon: Newspaper },
+      { href: '/fullmakt', label: 'Fullmakt', icon: FileText },
     ],
   },
   {
-    title: 'Verktyg',
+    title: 'Verktyg & planering',
     items: [
+      { href: '/begravningsplanering', label: 'Begravning', icon: Church },
+      { href: '/skatteverket-guide', label: 'Skatteverket', icon: FileCheck },
+      { href: '/minnesida', label: 'Minnesida', icon: Heart },
+      { href: '/samarbete', label: 'Samarbete', icon: Users },
       { href: '/juridisk-hjalp', label: 'Mike Ross', icon: Bot },
+      { href: '/delagare', label: 'Delägare', icon: Users },
       { href: '/skanner', label: 'Skanner', icon: Camera },
       { href: '/exportera', label: 'Exportera', icon: Download },
       { href: '/paminelser', label: 'Påminnelser', icon: Bell },

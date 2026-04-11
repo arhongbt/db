@@ -39,6 +39,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/sambo-arv',
     '/dodsbo-skulder',
     '/deklarera-dodsbo',
+    '/begravningsplanering',
+    '/bankbrev',
+    '/skatteverket-guide',
+    '/minnesida',
+    '/samarbete',
+    '/dodsannons',
   ].map((route) => ({
     route,
     priority: 0.8,

@@ -1,0 +1,552 @@
+'use client';
+
+import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { DodsboProvider, useDodsbo } from '@/lib/context';
+import { BottomNav } from '@/components/ui/BottomNav';
+import { ArrowLeft, Users, Bot, Check, Clock, AlertCircle, Plus, Trash2, Calendar } from 'lucide-react';
+
+function MikeRossTip({ text }: { text: string }) {
+  return (
+    <div className="flex gap-3 p-4 rounded-2xl mb-5" style={{ background: '#EEF2EA' }}>
+      <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
+        style={{ background: 'linear-gradient(135deg, #6B7F5E, #4F6145)' }}>
+        <Bot className="w-4 h-4 text-white" />
+      </div>
+      <div>
+        <p className="text-xs font-semibold text-accent mb-0.5">Mike Ross</p>
+        <p className="text-sm text-primary/80 leading-relaxed">{text}</p>
+      </div>
+    </div>
+  );
+}
+
+type DecisionStatus = 'Väntar' | 'Pågår' | 'Alla godkänt';
+
+interface Decision {
+  id: string;
+  title: string;
+  status: DecisionStatus;
+  approvals: Record<string, boolean>;
+  lastUpdated: string;
+  createdAt: string;
+}
+
+interface Note {
+  id: string;
+  author: string;
+  content: string;
+  timestamp: string;
+}
+
+interface TimelineEntry {
+  id: string;
+  date: string;
+  type: 'decision' | 'note';
+  description: string;
+  icon: 'check' | 'clock' | 'alert' | 'comment';
+}
+
+const PREDEFINED_DECISIONS = [
+  'Godkänna bouppteckning',
+  'Godkänna arvskifte',
+  'Sälja bostad',
+  'Sälja fordon',
+  'Fördela lösöre'
+];
+
+function getStatusColor(status: DecisionStatus): string {
+  switch (status) {
+    case 'Väntar':
+      return '#FCD34D';
+    case 'Pågår':
+      return '#60A5FA';
+    case 'Alla godkänt':
+      return '#34D399';
+    default:
+      return '#D1D5DB';
+  }
+}
+
+function getStatusIcon(status: DecisionStatus) {
+  switch (status) {
+    case 'Väntar':
+      return <Clock className="w-4 h-4" />;
+    case 'Pågår':
+      return <AlertCircle className="w-4 h-4" />;
+    case 'Alla godkänt':
+      return <Check className="w-4 h-4" />;
+  }
+}
+
+function TabBeslut() {
+  const { state } = useDodsbo();
+  const [decisions, setDecisions] = useState<Decision[]>([]);
+  const [showAddForm, setShowAddForm] = useState(false);
+  const [newDecisionTitle, setNewDecisionTitle] = useState('');
+  const [selectedPredefined, setSelectedPredefined] = useState('');
+
+  useEffect(() => {
+    const stored = localStorage.getItem('samarbete-beslut');
+    if (stored) {
+      setDecisions(JSON.parse(stored));
+    } else {
+      const initial: Decision[] = PREDEFINED_DECISIONS.map((title) => ({
+        id: Math.random().toString(36).substr(2, 9),
+        title,
+        status: 'Väntar',
+        approvals: state.delagare.reduce((acc, del) => {
+          acc[del.name] = false;
+          return acc;
+        }, {} as Record<string, boolean>),
+        lastUpdated: new Date().toISOString(),
+        createdAt: new Date().toISOString()
+      }));
+      setDecisions(initial);
+      localStorage.setItem('samarbete-beslut', JSON.stringify(initial));
+    }
+  }, [state.delagare]);
+
+  const updateDecision = (id: string, updatedDecision: Decision) => {
+    const updated = decisions.map(d => d.id === id ? updatedDecision : d);
+    setDecisions(updated);
+    localStorage.setItem('samarbete-beslut', JSON.stringify(updated));
+  };
+
+  const toggleApproval = (decisionId: string, delagareName: string) => {
+    const decision = decisions.find(d => d.id === decisionId);
+    if (!decision) return;
+
+    const newApprovals = { ...decision.approvals };
+    newApprovals[delagareName] = !newApprovals[delagareName];
+
+    const allApproved = Object.values(newApprovals).every(v => v === true);
+    const newStatus: DecisionStatus = allApproved ? 'Alla godkänt' : 'Väntar';
+
+    updateDecision(decisionId, {
+      ...decision,
+      approvals: newApprovals,
+      status: newStatus,
+      lastUpdated: new Date().toISOString()
+    });
+  };
+
+  const addDecision = () => {
+    const title = selectedPredefined || newDecisionTitle;
+    if (!title.trim()) return;
+
+    const newDecision: Decision = {
+      id: Math.random().toString(36).substr(2, 9),
+      title,
+      status: 'Väntar',
+      approvals: state.delagare.reduce((acc, del) => {
+        acc[del.name] = false;
+        return acc;
+      }, {} as Record<string, boolean>),
+      lastUpdated: new Date().toISOString(),
+      createdAt: new Date().toISOString()
+    };
+
+    const updated = [...decisions, newDecision];
+    setDecisions(updated);
+    localStorage.setItem('samarbete-beslut', JSON.stringify(updated));
+    setNewDecisionTitle('');
+    setSelectedPredefined('');
+    setShowAddForm(false);
+  };
+
+  const deleteDecision = (id: string) => {
+    const updated = decisions.filter(d => d.id !== id);
+    setDecisions(updated);
+    localStorage.setItem('samarbete-beslut', JSON.stringify(updated));
+  };
+
+  return (
+    <div>
+      <MikeRossTip text="Alla dödsbodelägare måste vara överens om beslut. Här kan ni hålla koll på vilka beslut som tagits och vem som godkänt." />
+
+      <div className="space-y-4 mb-6">
+        {decisions.map((decision) => (
+          <div key={decision.id} className="bg-white border border-gray-200 rounded-xl p-4">
+            <div className="flex items-start justify-between mb-3">
+              <div className="flex-1">
+                <h3 className="font-semibold text-primary mb-2">{decision.title}</h3>
+                <div className="flex items-center gap-2 mb-3">
+                  <div
+                    className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-white text-xs font-semibold"
+                    style={{ background: getStatusColor(decision.status) }}
+                  >
+                    {getStatusIcon(decision.status)}
+                    {decision.status}
+                  </div>
+                  <span className="text-xs text-muted-light">
+                    {new Date(decision.lastUpdated).toLocaleDateString('sv-SE')}
+                  </span>
+                </div>
+              </div>
+              <button
+                onClick={() => deleteDecision(decision.id)}
+                className="text-gray-400 hover:text-red-500 transition"
+              >
+                <Trash2 className="w-4 h-4" />
+              </button>
+            </div>
+
+            <div className="space-y-2">
+              {state.delagare.map((delagare) => (
+                <label key={delagare.name} className="flex items-center gap-3 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={decision.approvals[delagare.name] || false}
+                    onChange={() => toggleApproval(decision.id, delagare.name)}
+                    className="w-4 h-4 rounded cursor-pointer accent-accent"
+                  />
+                  <span className="text-sm text-primary">
+                    {delagare.name} <span className="text-xs text-muted-light">({delagare.relation})</span>
+                  </span>
+                  {decision.approvals[delagare.name] && (
+                    <Check className="w-4 h-4 text-accent ml-auto" />
+                  )}
+                </label>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {!showAddForm ? (
+        <button
+          onClick={() => setShowAddForm(true)}
+          className="w-full py-3 border-2 border-dashed border-accent text-accent font-semibold rounded-xl hover:bg-accent/5 transition flex items-center justify-center gap-2"
+        >
+          <Plus className="w-4 h-4" />
+          Lägg till beslut
+        </button>
+      ) : (
+        <div className="bg-white border border-gray-200 rounded-xl p-4 mb-6">
+          <h3 className="font-semibold text-primary mb-3">Lägg till nytt beslut</h3>
+
+          <div className="mb-3">
+            <label className="block text-xs font-semibold text-primary mb-2">Välj fördefinierat beslut</label>
+            <select
+              value={selectedPredefined}
+              onChange={(e) => setSelectedPredefined(e.target.value)}
+              className="w-full px-4 py-3 border border-gray-200 rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
+            >
+              <option value="">-- Välj --</option>
+              {PREDEFINED_DECISIONS.map((decision) => (
+                <option key={decision} value={decision}>
+                  {decision}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div className="mb-3">
+            <label className="block text-xs font-semibold text-primary mb-2">Eller skriv eget beslut</label>
+            <input
+              type="text"
+              value={newDecisionTitle}
+              onChange={(e) => setNewDecisionTitle(e.target.value)}
+              placeholder="Skriva här..."
+              className="w-full px-4 py-3 border border-gray-200 rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
+            />
+          </div>
+
+          <div className="flex gap-2">
+            <button
+              onClick={addDecision}
+              className="flex-1 py-2.5 bg-accent text-white font-semibold rounded-xl hover:opacity-90 transition"
+            >
+              Lägg till
+            </button>
+            <button
+              onClick={() => {
+                setShowAddForm(false);
+                setNewDecisionTitle('');
+                setSelectedPredefined('');
+              }}
+              className="flex-1 py-2.5 border border-gray-200 text-primary font-semibold rounded-xl hover:bg-gray-50 transition"
+            >
+              Avbryt
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function TabAnteckningar() {
+  const { state } = useDodsbo();
+  const [notes, setNotes] = useState<Note[]>([]);
+  const [author, setAuthor] = useState('');
+  const [content, setContent] = useState('');
+
+  useEffect(() => {
+    const stored = localStorage.getItem('samarbete-anteckningar');
+    if (stored) {
+      setNotes(JSON.parse(stored));
+    }
+  }, []);
+
+  const addNote = () => {
+    if (!author.trim() || !content.trim()) return;
+
+    const newNote: Note = {
+      id: Math.random().toString(36).substr(2, 9),
+      author: author,
+      content,
+      timestamp: new Date().toISOString()
+    };
+
+    const updated = [newNote, ...notes];
+    setNotes(updated);
+    localStorage.setItem('samarbete-anteckningar', JSON.stringify(updated));
+    setAuthor('');
+    setContent('');
+  };
+
+  const deleteNote = (id: string) => {
+    const updated = notes.filter(n => n.id !== id);
+    setNotes(updated);
+    localStorage.setItem('samarbete-anteckningar', JSON.stringify(updated));
+  };
+
+  return (
+    <div>
+      <MikeRossTip text="Skriv anteckningar som alla delägare kan se. Perfekt för att dokumentera telefonsamtal, överenskommelser eller viktiga detaljer." />
+
+      <div className="bg-white border border-gray-200 rounded-xl p-4 mb-6">
+        <h3 className="font-semibold text-primary mb-3">Ny anteckning</h3>
+
+        <div className="mb-3">
+          <label className="block text-xs font-semibold text-primary mb-2">Författare</label>
+          <select
+            value={author}
+            onChange={(e) => setAuthor(e.target.value)}
+            className="w-full px-4 py-3 border border-gray-200 rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
+          >
+            <option value="">-- Välj namn --</option>
+            {state.delagare.map((del) => (
+              <option key={del.name} value={del.name}>
+                {del.name}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div className="mb-3">
+          <label className="block text-xs font-semibold text-primary mb-2">Anteckning</label>
+          <textarea
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+            placeholder="Skriv här..."
+            className="w-full px-4 py-3 border border-gray-200 rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background resize-none"
+            rows={4}
+          />
+        </div>
+
+        <button
+          onClick={addNote}
+          className="w-full py-2.5 bg-accent text-white font-semibold rounded-xl hover:opacity-90 transition"
+        >
+          Lägg till anteckning
+        </button>
+      </div>
+
+      <div className="space-y-3">
+        {notes.map((note) => (
+          <div key={note.id} className="bg-white border border-gray-200 rounded-xl p-4">
+            <div className="flex items-start justify-between mb-2">
+              <div>
+                <p className="font-semibold text-primary text-sm">{note.author}</p>
+                <p className="text-xs text-muted-light">
+                  {new Date(note.timestamp).toLocaleString('sv-SE')}
+                </p>
+              </div>
+              <button
+                onClick={() => deleteNote(note.id)}
+                className="text-gray-400 hover:text-red-500 transition"
+              >
+                <Trash2 className="w-4 h-4" />
+              </button>
+            </div>
+            <p className="text-sm text-primary leading-relaxed">{note.content}</p>
+          </div>
+        ))}
+      </div>
+
+      {notes.length === 0 && (
+        <div className="text-center py-8">
+          <p className="text-muted-light text-sm">Inga anteckningar än</p>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function TabTidslinje() {
+  const [decisions, setDecisions] = useState<Decision[]>([]);
+  const [notes, setNotes] = useState<Note[]>([]);
+
+  useEffect(() => {
+    const storedDecisions = localStorage.getItem('samarbete-beslut');
+    if (storedDecisions) setDecisions(JSON.parse(storedDecisions));
+
+    const storedNotes = localStorage.getItem('samarbete-anteckningar');
+    if (storedNotes) setNotes(JSON.parse(storedNotes));
+  }, []);
+
+  const timelineEntries: TimelineEntry[] = [
+    ...decisions.map(d => ({
+      id: d.id,
+      date: new Date(d.createdAt).toISOString(),
+      type: 'decision' as const,
+      description: `${d.title} - ${d.status}`,
+      icon: d.status === 'Alla godkänt' ? 'check' as const : 'alert' as const
+    })),
+    ...notes.map(n => ({
+      id: n.id,
+      date: n.timestamp,
+      type: 'note' as const,
+      description: `${n.author}: ${n.content.substring(0, 50)}${n.content.length > 50 ? '...' : ''}`,
+      icon: 'comment' as const
+    }))
+  ].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
+  const getEntryColor = (icon: string): string => {
+    switch (icon) {
+      case 'check':
+        return '#34D399';
+      case 'alert':
+        return '#FCD34D';
+      case 'comment':
+        return '#60A5FA';
+      default:
+        return '#D1D5DB';
+    }
+  };
+
+  const getEntryIcon = (icon: string) => {
+    switch (icon) {
+      case 'check':
+        return <Check className="w-3 h-3" />;
+      case 'alert':
+        return <AlertCircle className="w-3 h-3" />;
+      case 'comment':
+        return <Users className="w-3 h-3" />;
+      default:
+        return <Clock className="w-3 h-3" />;
+    }
+  };
+
+  return (
+    <div>
+      <MikeRossTip text="Tidslinjen visar alla viktiga händelser i ordning. Det hjälper er att hålla koll på vad som hänt och vad som behöver göras." />
+
+      <div className="space-y-4">
+        {timelineEntries.map((entry, index) => (
+          <div key={entry.id} className="flex gap-4">
+            <div className="flex flex-col items-center">
+              <div
+                className="w-6 h-6 rounded-full flex items-center justify-center text-white flex-shrink-0"
+                style={{ background: getEntryColor(entry.icon) }}
+              >
+                {getEntryIcon(entry.icon)}
+              </div>
+              {index < timelineEntries.length - 1 && (
+                <div
+                  className="w-0.5 h-12 my-2"
+                  style={{ background: getEntryColor(entry.icon) }}
+                />
+              )}
+            </div>
+            <div className="pb-4 flex-1">
+              <p className="text-xs text-muted-light mb-1">
+                {new Date(entry.date).toLocaleString('sv-SE')}
+              </p>
+              <p className="text-sm text-primary">{entry.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {timelineEntries.length === 0 && (
+        <div className="text-center py-8">
+          <p className="text-muted-light text-sm">Ingen aktivitet än</p>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function Content() {
+  const [tab, setTab] = useState<'beslut' | 'anteckningar' | 'tidslinje'>('beslut');
+
+  return (
+    <div className="min-h-screen bg-background pb-24">
+      {/* Header */}
+      <div className="sticky top-0 z-10 bg-white border-b border-gray-200">
+        <div className="max-w-2xl mx-auto px-4 py-4">
+          <div className="flex items-center gap-3 mb-4">
+            <Link href="/dashboard" className="text-primary hover:text-accent transition">
+              <ArrowLeft className="w-5 h-5" />
+            </Link>
+            <Users className="w-6 h-6 text-accent" />
+            <h1 className="text-2xl font-bold text-primary">Samarbete</h1>
+          </div>
+
+          {/* Tabs */}
+          <div className="flex gap-2">
+            <button
+              onClick={() => setTab('beslut')}
+              className={`flex-1 py-2.5 text-sm font-semibold rounded-xl transition-all ${
+                tab === 'beslut' ? 'text-white' : 'text-primary/60'
+              }`}
+              style={tab === 'beslut' ? { background: 'linear-gradient(135deg, #6B7F5E, #4F6145)' } : undefined}
+            >
+              Beslut
+            </button>
+            <button
+              onClick={() => setTab('anteckningar')}
+              className={`flex-1 py-2.5 text-sm font-semibold rounded-xl transition-all ${
+                tab === 'anteckningar' ? 'text-white' : 'text-primary/60'
+              }`}
+              style={tab === 'anteckningar' ? { background: 'linear-gradient(135deg, #6B7F5E, #4F6145)' } : undefined}
+            >
+              Anteckningar
+            </button>
+            <button
+              onClick={() => setTab('tidslinje')}
+              className={`flex-1 py-2.5 text-sm font-semibold rounded-xl transition-all ${
+                tab === 'tidslinje' ? 'text-white' : 'text-primary/60'
+              }`}
+              style={tab === 'tidslinje' ? { background: 'linear-gradient(135deg, #6B7F5E, #4F6145)' } : undefined}
+            >
+              Tidslinje
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Content */}
+      <div className="max-w-2xl mx-auto px-4 py-6">
+        {tab === 'beslut' && <TabBeslut />}
+        {tab === 'anteckningar' && <TabAnteckningar />}
+        {tab === 'tidslinje' && <TabTidslinje />}
+      </div>
+
+      {/* Bottom Nav */}
+      <BottomNav />
+    </div>
+  );
+}
+
+export default function Page() {
+  return (
+    <DodsboProvider>
+      <Content />
+    </DodsboProvider>
+  );
+}

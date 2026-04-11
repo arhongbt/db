@@ -21,6 +21,12 @@ import {
   PenTool,
   ScrollText,
   FileX,
+  Heart,
+  Landmark,
+  FileCheck,
+  Users,
+  Newspaper,
+  Church,
 } from 'lucide-react';
 import { BottomNav } from '@/components/ui/BottomNav';
 import type { DodsboTask, ProcessStep, TaskStatus } from '@/types';
@@ -452,6 +458,35 @@ function DashboardContent() {
             { label: 'Testamente', href: '/testamente', Icon: PenTool },
             { label: 'Arvskifte', href: '/arvskifteshandling', Icon: ScrollText },
             { label: 'Dödsboanmälan', href: '/dodsboanmalan', Icon: FileX },
+            { label: 'Bankbrev', href: '/bankbrev', Icon: Landmark },
+            { label: 'Dödsannons', href: '/dodsannons', Icon: Newspaper },
+          ].map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="flex flex-col items-center gap-2 py-4 rounded-2xl transition-all hover:scale-[1.02] active:scale-[0.98]"
+              style={{ background: '#EEF2EA60' }}
+              aria-label={item.label}
+            >
+              <div className="w-12 h-12 rounded-2xl flex items-center justify-center"
+                style={{ background: '#EEF2EA' }}>
+                <item.Icon className="w-5 h-5" style={{ color: '#6B7F5E' }} strokeWidth={1.5} />
+              </div>
+              <span className="text-xs font-semibold text-primary">{item.label}</span>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* Verktyg & guider */}
+      <section className="mb-5">
+        <h2 className="text-base font-bold text-primary mb-3">Verktyg & guider</h2>
+        <div className="grid grid-cols-3 gap-3">
+          {[
+            { label: 'Begravning', href: '/begravningsplanering', Icon: Church },
+            { label: 'Skatteverket', href: '/skatteverket-guide', Icon: FileCheck },
+            { label: 'Minnesida', href: '/minnesida', Icon: Heart },
+            { label: 'Samarbete', href: '/samarbete', Icon: Users },
             { label: 'Mike Ross', href: '/juridisk-hjalp', Icon: Bot },
             { label: 'Exportera', href: '/exportera', Icon: Package },
           ].map((item) => (
