@@ -115,7 +115,7 @@ ${form.citat}
 
             {form.favoritminne && (
               <p className="text-primary/80 italic text-sm">
-                "{form.favoritminne}"
+                {form.favoritminne}
               </p>
             )}
 
