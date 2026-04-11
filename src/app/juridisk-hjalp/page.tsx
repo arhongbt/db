@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import { DodsboProvider, useDodsbo } from '@/lib/context';
 import { BottomNav } from '@/components/ui/BottomNav';
 import Link from 'next/link';
@@ -10,7 +10,6 @@ import {
   Bot,
   User,
   AlertTriangle,
-  Loader2,
   Scale,
   Sparkles,
 } from 'lucide-react';
@@ -20,28 +19,59 @@ interface Message {
   content: string;
 }
 
+// ── Typewriter hook ──
+function useTypewriter(text: string, enabled: boolean, speed = 12) {
+  const [displayed, setDisplayed] = useState('');
+  const [done, setDone] = useState(false);
+
+  useEffect(() => {
+    if (!enabled) {
+      setDisplayed(text);
+      setDone(true);
+      return;
+    }
+
+    setDisplayed('');
+    setDone(false);
+    let i = 0;
+
+    const tick = () => {
+      if (i < text.length) {
+        // Type multiple chars per tick for faster feel
+        const chunk = text.slice(i, i + 3);
+        i += 3;
+        setDisplayed(text.slice(0, i));
+        setTimeout(tick, speed);
+      } else {
+        setDisplayed(text);
+        setDone(true);
+      }
+    };
+
+    const timer = setTimeout(tick, 100);
+    return () => clearTimeout(timer);
+  }, [text, enabled, speed]);
+
+  return { displayed, done };
+}
+
 /** Simple markdown renderer — handles **bold**, *italic*, `code`, and bullet lists */
 function renderMarkdown(text: string) {
   return text.split('\n').map((line, i) => {
-    // Bullet points
     const bulletMatch = line.match(/^[\s]*[-•]\s+(.*)/);
     if (bulletMatch) {
       return <div key={i} className="flex gap-2 ml-1"><span className="text-accent">•</span><span>{renderInline(bulletMatch[1])}</span></div>;
     }
-    // Numbered list
     const numMatch = line.match(/^[\s]*(\d+)\.\s+(.*)/);
     if (numMatch) {
       return <div key={i} className="flex gap-2 ml-1"><span className="font-medium text-accent">{numMatch[1]}.</span><span>{renderInline(numMatch[2])}</span></div>;
     }
-    // Empty line
     if (line.trim() === '') return <div key={i} className="h-2" />;
-    // Regular line
     return <p key={i}>{renderInline(line)}</p>;
   });
 }
 
 function renderInline(text: string) {
-  // Replace **bold**, *italic*, `code`
   const parts = text.split(/(\*\*[^*]+\*\*|\*[^*]+\*|`[^`]+`)/g);
   return parts.map((part, i) => {
     if (part.startsWith('**') && part.endsWith('**')) {
@@ -55,6 +85,20 @@ function renderInline(text: string) {
     }
     return part;
   });
+}
+
+// ── Typewriter message bubble ──
+function TypewriterBubble({ content, animate }: { content: string; animate: boolean }) {
+  const { displayed, done } = useTypewriter(content, animate);
+
+  return (
+    <div className="text-sm leading-relaxed space-y-1">
+      {renderMarkdown(displayed)}
+      {!done && (
+        <span className="inline-block w-1.5 h-4 bg-accent/60 rounded-sm animate-pulse ml-0.5 align-text-bottom" />
+      )}
+    </div>
+  );
 }
 
 const SUGGESTED_QUESTIONS = [
@@ -73,6 +117,7 @@ function JuridiskHjalpContent() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [mounted, setMounted] = useState(false);
+  const [animatingIdx, setAnimatingIdx] = useState<number | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
@@ -80,7 +125,7 @@ function JuridiskHjalpContent() {
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [messages]);
+  }, [messages, animatingIdx]);
 
   // Auto-resize textarea
   useEffect(() => {
@@ -90,15 +135,20 @@ function JuridiskHjalpContent() {
     }
   }, [input]);
 
-  if (!mounted || loading) return null;
+  // Auto-scroll during typewriter
+  useEffect(() => {
+    if (animatingIdx !== null) {
+      const interval = setInterval(() => {
+        messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+      }, 200);
+      return () => clearInterval(interval);
+    }
+  }, [animatingIdx]);
 
-  // Build context string from user's dödsbo state
-  const buildDodsboContext = (): string => {
+  const buildDodsboContext = useCallback((): string => {
     const parts: string[] = [];
 
-    if (state.deceasedName) {
-      parts.push(`Den avlidne: ${state.deceasedName}`);
-    }
+    if (state.deceasedName) parts.push(`Den avlidne: ${state.deceasedName}`);
     if (state.deathDate) {
       parts.push(`Dödsdatum: ${state.deathDate}`);
       const days = Math.floor(
@@ -108,13 +158,9 @@ function JuridiskHjalpContent() {
     }
     if (state.onboarding?.relation) {
       const relLabels: Record<string, string> = {
-        make_maka: 'Make/maka',
-        sambo: 'Sambo',
-        barn: 'Barn',
-        foralder: 'Förälder',
-        syskon: 'Syskon',
-        annan_slakting: 'Annan släkting',
-        testamentstagare: 'Testamentstagare',
+        make_maka: 'Make/maka', sambo: 'Sambo', barn: 'Barn',
+        foralder: 'Förälder', syskon: 'Syskon',
+        annan_slakting: 'Annan släkting', testamentstagare: 'Testamentstagare',
       };
       parts.push(`Användarens relation: ${relLabels[state.onboarding.relation] || state.onboarding.relation}`);
     }
@@ -135,11 +181,8 @@ function JuridiskHjalpContent() {
     }
     if (state.onboarding?.housingType) {
       const housingLabels: Record<string, string> = {
-        hyresratt: 'Hyresrätt',
-        bostadsratt: 'Bostadsrätt',
-        villa: 'Villa/hus',
-        fritidshus: 'Fritidshus',
-        ingen_bostad: 'Ingen egen bostad',
+        hyresratt: 'Hyresrätt', bostadsratt: 'Bostadsrätt',
+        villa: 'Villa/hus', fritidshus: 'Fritidshus', ingen_bostad: 'Ingen egen bostad',
       };
       parts.push(`Boende: ${housingLabels[state.onboarding.housingType] || state.onboarding.housingType}`);
     }
@@ -157,17 +200,16 @@ function JuridiskHjalpContent() {
     }
     if (state.currentStep) {
       const stepLabels: Record<string, string> = {
-        akut: 'Nödbroms (dag 1-7)',
-        kartlaggning: 'Kartläggning',
-        bouppteckning: 'Bouppteckning',
-        arvskifte: 'Arvskifte',
-        avslutat: 'Avslutat',
+        akut: 'Nödbroms (dag 1-7)', kartlaggning: 'Kartläggning',
+        bouppteckning: 'Bouppteckning', arvskifte: 'Arvskifte', avslutat: 'Avslutat',
       };
       parts.push(`Aktuell fas: ${stepLabels[state.currentStep] || state.currentStep}`);
     }
 
     return parts.length > 0 ? parts.join('\n') : '';
-  };
+  }, [state]);
+
+  if (!mounted || loading) return null;
 
   const sendMessage = async (text?: string) => {
     const messageText = text || input.trim();
@@ -198,7 +240,10 @@ function JuridiskHjalpContent() {
         return;
       }
 
-      setMessages(prev => [...prev, { role: 'assistant', content: data.reply }]);
+      const assistantMsg: Message = { role: 'assistant', content: data.reply };
+      setMessages(prev => [...prev, assistantMsg]);
+      // Trigger typewriter on this new message
+      setAnimatingIdx(newMessages.length); // index of the new assistant message
     } catch {
       setError('Kunde inte ansluta. Kontrollera din internetanslutning.');
     } finally {
@@ -251,7 +296,6 @@ function JuridiskHjalpContent() {
               testamente och allt som rör dödsbohantering i Sverige.
             </p>
 
-            {/* Suggested questions */}
             <div className="flex flex-col gap-2 w-full max-w-sm">
               <p className="text-xs font-medium text-muted uppercase tracking-wide mb-1">
                 Förslag på frågor
@@ -267,7 +311,6 @@ function JuridiskHjalpContent() {
               ))}
             </div>
 
-            {/* Disclaimer */}
             <div className="mt-6 p-3 bg-yellow-50 border border-yellow-200 rounded-xl max-w-sm">
               <div className="flex gap-2">
                 <AlertTriangle className="w-4 h-4 text-yellow-600 flex-shrink-0 mt-0.5" />
@@ -301,9 +344,14 @@ function JuridiskHjalpContent() {
                   : 'bg-white border border-gray-200 text-primary rounded-bl-md'
               }`}
             >
-              <div className="text-sm leading-relaxed space-y-1">
-                {msg.role === 'assistant' ? renderMarkdown(msg.content) : msg.content}
-              </div>
+              {msg.role === 'assistant' ? (
+                <TypewriterBubble
+                  content={msg.content}
+                  animate={i === animatingIdx}
+                />
+              ) : (
+                <div className="text-sm leading-relaxed">{msg.content}</div>
+              )}
             </div>
             {msg.role === 'user' && (
               <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-1">
@@ -313,16 +361,17 @@ function JuridiskHjalpContent() {
           </div>
         ))}
 
-        {/* Loading indicator */}
+        {/* Loading indicator — thinking animation */}
         {isLoading && (
           <div className="flex gap-3 mb-4">
             <div className="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center flex-shrink-0">
               <Bot className="w-4 h-4 text-accent" />
             </div>
             <div className="bg-white border border-gray-200 px-4 py-3 rounded-2xl rounded-bl-md">
-              <div className="flex items-center gap-2 text-sm text-muted">
-                <Loader2 className="w-4 h-4 animate-spin" />
-                Tänker...
+              <div className="flex items-center gap-1.5">
+                <span className="w-2 h-2 bg-accent/50 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
+                <span className="w-2 h-2 bg-accent/50 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
+                <span className="w-2 h-2 bg-accent/50 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
               </div>
             </div>
           </div>
