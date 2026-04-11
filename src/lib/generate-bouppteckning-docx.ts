@@ -27,7 +27,7 @@ import type {
 } from './generate-bouppteckning';
 
 // ── Constants ──
-const BRAND_COLOR = '1A3C5E';
+const BRAND_COLOR = '2C4A6E';
 const LIGHT_BG = 'E8EFF5';
 const BORDER_COLOR = 'CCCCCC';
 const PAGE_WIDTH = 11906; // A4 DXA

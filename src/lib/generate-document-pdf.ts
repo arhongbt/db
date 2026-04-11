@@ -12,7 +12,7 @@ const MT = 28;
 const MB = 25;
 const CW = PAGE_WIDTH - ML - MR;
 
-const BRAND = { r: 30, g: 60, b: 94 }; // #1A3C5E
+const BRAND = { r: 44, g: 74, b: 110 }; // #2C4A6E
 
 /**
  * Generate and download a PDF from plain text content.

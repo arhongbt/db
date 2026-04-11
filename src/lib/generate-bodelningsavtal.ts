@@ -50,7 +50,7 @@ export interface BodelningsData {
 }
 
 // ── Constants ──
-const BRAND = '1A3C5E';
+const BRAND = '2C4A6E';
 const PAGE_WIDTH = 11906;
 const MARGIN = 1440;
 const CW = PAGE_WIDTH - MARGIN * 2;

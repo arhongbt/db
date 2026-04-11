@@ -10,7 +10,7 @@ import {
   Header, Footer, PageNumber,
 } from 'docx';
 
-const BRAND = '1A3C5E';
+const BRAND = '2C4A6E';
 
 export async function downloadDocumentDocx(
   title: string,

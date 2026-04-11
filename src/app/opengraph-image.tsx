@@ -16,7 +16,7 @@ export default async function Image() {
           justifyContent: 'center',
           width: '100%',
           height: '100%',
-          backgroundColor: '#1A3C5E',
+          backgroundColor: '#2C4A6E',
           color: '#FFFFFF',
           fontFamily: 'sans-serif',
         }}
@@ -55,11 +55,11 @@ export default async function Image() {
               display: 'flex',
               marginTop: '16px',
               padding: '12px 32px',
-              backgroundColor: '#C4A265',
+              backgroundColor: '#7A9E8E',
               borderRadius: '8px',
               fontSize: '20px',
               fontWeight: 600,
-              color: '#1A3C5E',
+              color: '#FFFFFF',
             }}
           >
             Sveriges första digitala dödsbohjälp

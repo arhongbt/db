@@ -15,7 +15,7 @@ const MB = 25; // margin bottom
 const CW = PAGE_WIDTH - ML - MR; // content width
 
 // Brand color
-const BRAND = { r: 30, g: 60, b: 94 }; // #1A3C5E
+const BRAND = { r: 44, g: 74, b: 110 }; // #2C4A6E
 
 /**
  * Generate and download a PDF from a BouppteckningDocument.

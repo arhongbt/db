@@ -9,18 +9,21 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Dödsbo brand palette — grief-aware, soft, trustworthy
+        // Sista Resan — Lugn & Hopp palette
         primary: {
-          DEFAULT: '#1A3C5E',
-          light: '#2E75B6',
-          lighter: '#D5E8F0',
+          DEFAULT: '#2C4A6E',
+          light: '#3D6B99',
+          lighter: '#D8E6ED',
         },
-        accent: '#2E75B6',
+        accent: {
+          DEFAULT: '#7A9E8E',
+          dark: '#5F8474',
+        },
         warn: '#C0392B',
-        success: '#27AE60',
-        background: '#F5F5F5',
+        success: '#5F8474',
+        background: '#F7F9F8',
         surface: '#FFFFFF',
-        muted: '#6B7280',
+        muted: '#6B7B75',
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],

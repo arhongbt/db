@@ -8,7 +8,7 @@ import {
   Header, Footer, PageNumber, LevelFormat,
 } from 'docx';
 
-const BRAND = '1A3C5E';
+const BRAND = '2C4A6E';
 const PW = 11906;
 const M = 1440;
 const CW = PW - M * 2;
