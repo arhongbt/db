@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { DodsboProvider, useDodsbo } from '@/lib/context';
 import { BottomNav } from '@/components/ui/BottomNav';
 import Link from 'next/link';
+import { downloadDocumentPDF } from '@/lib/generate-document-pdf';
 import {
   ArrowLeft,
   FileSignature,
@@ -24,7 +25,7 @@ import {
 interface Template {
   id: string;
   title: string;
-  category: 'fullmakt' | 'brev' | 'mall';
+  category: 'fullmakt' | 'brev' | 'mall' | 'dina_banker';
   icon: typeof FileSignature;
   description: string;
   content: (ctx: TemplateContext) => string;
@@ -271,10 +272,73 @@ ${ctx.userName || '[Underskrift]'}`,
 ];
 
 const CATEGORY_LABELS: Record<string, string> = {
+  dina_banker: 'Dina bankbrev (auto-genererade)',
   fullmakt: 'Fullmakter',
   brev: 'Brevmallar',
   mall: 'Övriga mallar',
 };
+
+// Bank-specific info for smart letters
+const BANK_INFO: Record<string, { fullName: string; address: string; dept: string }> = {
+  swedbank: { fullName: 'Swedbank AB', address: 'Dödsboavdelningen, 105 34 Stockholm', dept: 'Dödsbo & Arv' },
+  handelsbanken: { fullName: 'Svenska Handelsbanken AB', address: '106 70 Stockholm', dept: 'Dödsboärenden' },
+  seb: { fullName: 'Skandinaviska Enskilda Banken AB', address: '106 40 Stockholm', dept: 'Dödsboärenden' },
+  nordea: { fullName: 'Nordea Bank Abp', address: '105 71 Stockholm', dept: 'Dödsbo' },
+  lansforsakringar: { fullName: 'Länsförsäkringar Bank AB', address: '106 50 Stockholm', dept: 'Dödsboservice' },
+  ica_banken: { fullName: 'ICA Banken AB', address: '504 82 Borås', dept: 'Kundtjänst — dödsbo' },
+  skandiabanken: { fullName: 'Skandiabanken AB', address: '106 55 Stockholm', dept: 'Dödsboärenden' },
+  sparbanken: { fullName: 'Sparbanken', address: '[Kontakta ditt lokala kontor]', dept: 'Dödsboärenden' },
+};
+
+function generateBankLetters(banks: string[], ctx: TemplateContext): Template[] {
+  return banks.map((bankId) => {
+    const info = BANK_INFO[bankId];
+    const bankName = info?.fullName || bankId;
+    return {
+      id: `bank-${bankId}`,
+      title: `Dödsanmälan — ${info?.fullName.split(' ')[0] || bankId}`,
+      category: 'dina_banker' as const,
+      icon: Building2,
+      description: `Färdigt brev till ${bankName} med begäran om saldobesked och kontospärr.`,
+      content: (_ctx: TemplateContext) => `${_ctx.userName || '[Ditt namn]'}
+[Din adress]
+[Postnummer Ort]
+
+Till: ${bankName}
+${info?.dept || 'Dödsboavdelningen'}
+${info?.address || '[Bankens adress]'}
+
+Datum: ${new Date().toLocaleDateString('sv-SE')}
+
+Ärende: Dödsanmälan och begäran om saldobesked
+
+Härmed meddelas att ${_ctx.deceasedName || '[den avlidnes namn]'}, personnummer ${_ctx.deceasedPersonnummer || '[personnummer]'}, avled den ${_ctx.deathDate || '[dödsdatum]'}.
+
+Jag är ${_ctx.userRelation || 'dödsbodelägare'} i dödsboet och ber er att:
+
+1. Registrera dödsfallet i era system
+2. Spärra konton för uttag (förutom nödvändiga autogiro för bostad/el)
+3. Skicka saldobesked för SAMTLIGA konton, depåer och engagemang per dödsdagen (${_ctx.deathDate || '[dödsdatum]'})
+4. Meddela om det finns bankfack, borgensåtaganden eller andra engagemang
+5. Stoppa stående överföringar och autogiro tills vidare
+6. Informera om eventuella försäkringar kopplade till banken
+7. Meddela om det finns kreditkort eller krediter
+
+Bifogat:
+☐ Kopia av dödsbevis / dödsfallsintyg med släktutredning
+☐ Fullmakt från samtliga dödsbodelägare (om tillämpligt)
+
+Vänligen skicka saldobesked och övrig information till ovanstående adress.
+
+Med vänliga hälsningar,
+
+_______________________________________
+${_ctx.userName || '[Underskrift]'}
+Telefon: [Telefonnummer]
+E-post: [E-postadress]`,
+    };
+  });
+}
 
 function FullmaktSkeleton() {
   return (
@@ -317,7 +381,10 @@ function FullmaktContent() {
     }
   };
 
-  const categories = ['fullmakt', 'brev', 'mall'] as const;
+  // Generate smart bank letters from onboarding
+  const bankLetters = generateBankLetters(state.onboarding.banks, ctx);
+  const allTemplates = [...bankLetters, ...TEMPLATES];
+  const categories = ['dina_banker', 'fullmakt', 'brev', 'mall'] as const;
 
   return (
     <div className="flex flex-col min-h-dvh px-5 py-6 pb-24">
@@ -333,6 +400,18 @@ function FullmaktContent() {
         Färdiga dokument att kopiera, anpassa och skriva ut. Fyll i uppgifter om den avlidne på andra sidor så fylls mallarna i automatiskt.
       </p>
 
+      {bankLetters.length > 0 && (
+        <div className="card border-l-4 border-success mb-6">
+          <div className="flex items-start gap-2">
+            <CheckCircle2 className="w-5 h-5 text-success flex-shrink-0 mt-0.5" />
+            <p className="text-sm text-primary/80">
+              <strong>{bankLetters.length} bankbrev</strong> har genererats automatiskt
+              baserat på bankerna du angav vid registreringen.
+            </p>
+          </div>
+        </div>
+      )}
+
       <div className="info-box mb-6">
         <div className="flex items-start gap-2">
           <Info className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
@@ -344,7 +423,7 @@ function FullmaktContent() {
       </div>
 
       {categories.map((cat) => {
-        const items = TEMPLATES.filter((t) => t.category === cat);
+        const items = allTemplates.filter((t) => t.category === cat);
         if (items.length === 0) return null;
         return (
           <section key={cat} className="mb-6">
@@ -391,9 +470,16 @@ function FullmaktContent() {
                             ) : (
                               <>
                                 <Copy className="w-4 h-4" />
-                                Kopiera text
+                                Kopiera
                               </>
                             )}
+                          </button>
+                          <button
+                            onClick={() => downloadDocumentPDF(template.title, generatedText, template.title)}
+                            className="flex-1 btn-secondary flex items-center justify-center gap-2 text-sm"
+                          >
+                            <Download className="w-4 h-4" />
+                            PDF
                           </button>
                         </div>
                       </div>

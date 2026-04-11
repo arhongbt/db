@@ -4,10 +4,12 @@ import { useState, useEffect } from 'react';
 import { DodsboProvider, useDodsbo } from '@/lib/context';
 import { BottomNav } from '@/components/ui/BottomNav';
 import Link from 'next/link';
+import { downloadDocumentPDF } from '@/lib/generate-document-pdf';
 import {
   ArrowLeft,
   Mail,
   Copy,
+  Download,
   CheckCircle2,
   Info,
   AlertTriangle,
@@ -227,22 +229,31 @@ som inte förväntas ärva.`;
         {kallelseText}
       </pre>
 
-      <button
-        onClick={handleCopy}
-        className="btn-primary flex items-center justify-center gap-2 mb-6"
-      >
-        {copied ? (
-          <>
-            <CheckCircle2 className="w-5 h-5" />
-            Kopierad!
-          </>
-        ) : (
-          <>
-            <Copy className="w-5 h-5" />
-            Kopiera kallelse
-          </>
-        )}
-      </button>
+      <div className="flex gap-3 mb-6">
+        <button
+          onClick={handleCopy}
+          className="flex-1 btn-primary flex items-center justify-center gap-2"
+        >
+          {copied ? (
+            <>
+              <CheckCircle2 className="w-5 h-5" />
+              Kopierad!
+            </>
+          ) : (
+            <>
+              <Copy className="w-5 h-5" />
+              Kopiera
+            </>
+          )}
+        </button>
+        <button
+          onClick={() => downloadDocumentPDF('Kallelse till bouppteckningsförrättning', kallelseText, 'kallelse-bouppteckning')}
+          className="flex-1 btn-secondary flex items-center justify-center gap-2"
+        >
+          <Download className="w-5 h-5" />
+          Ladda ner PDF
+        </button>
+      </div>
 
       <div className="bg-primary-lighter/30 rounded-card p-4">
         <p className="text-xs text-muted leading-relaxed">

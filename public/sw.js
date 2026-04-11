@@ -10,6 +10,7 @@ const STATIC_ASSETS = [
   '/kallelse',
   '/avsluta-konton',
   '/arvskifte',
+  '/kostnader',
   '/tidslinje',
   '/nodbroms',
   '/faq',

@@ -237,7 +237,23 @@ function DashboardContent() {
         </div>
       )}
 
-      {/* Quick actions */}
+      {/* Smart action reminders based on current step */}
+      {daysSinceDeath > 0 && daysSinceDeath <= 90 && state.onboarding.banks.length > 0 && (
+        <Link
+          href="/fullmakt"
+          className="card border-l-4 border-accent mb-4 flex items-center justify-between"
+        >
+          <div>
+            <p className="font-medium text-primary text-sm">Bankbrev redo</p>
+            <p className="text-xs text-muted">
+              {state.onboarding.banks.length} bankbrev har genererats automatiskt
+            </p>
+          </div>
+          <ChevronRight className="w-5 h-5 text-accent" />
+        </Link>
+      )}
+
+      {/* Quick actions — contextual based on step */}
       <section>
         <h2 className="text-lg font-semibold text-primary mb-3">
           Nästa steg
@@ -252,6 +268,7 @@ function DashboardContent() {
             { label: 'Arvskifte', href: '/arvskifte' },
             { label: 'Fullmakter & mallar', href: '/fullmakt' },
             { label: 'Avsluta konton', href: '/avsluta-konton' },
+            { label: 'Dödsbokostnader', href: '/kostnader' },
             { label: 'Vanliga frågor', href: '/faq' },
             { label: 'Visa alla uppgifter', href: '/uppgifter' },
           ].map((action) => (

@@ -43,6 +43,7 @@ function UppgifterContent() {
   const [mounted, setMounted] = useState(false);
   const [filterStep, setFilterStep] = useState<ProcessStep | 'all'>('all');
   const [showDone, setShowDone] = useState(false);
+  const [advancedTo, setAdvancedTo] = useState<ProcessStep | null>(null);
 
   useEffect(() => setMounted(true), []);
 
@@ -92,9 +93,29 @@ function UppgifterContent() {
     }
   };
 
+  const STEP_ORDER: ProcessStep[] = ['akut', 'kartlaggning', 'bouppteckning', 'arvskifte', 'avslutat'];
+
   const toggleStatus = (task: DodsboTask) => {
     const next: TaskStatus = task.status === 'klar' ? 'ej_paborjad' : 'klar';
     dispatch({ type: 'UPDATE_TASK', payload: { id: task.id, status: next } });
+
+    // Auto-advance: if completing a task, check if all tasks in current step are now done
+    if (next === 'klar') {
+      const currentStepTasks = tasks.filter((t) => t.step === state.currentStep);
+      const allDoneAfter = currentStepTasks.every(
+        (t) => t.id === task.id ? true : t.status === 'klar'
+      );
+
+      if (allDoneAfter) {
+        const currentIndex = STEP_ORDER.indexOf(state.currentStep);
+        if (currentIndex < STEP_ORDER.length - 1) {
+          const nextStep = STEP_ORDER[currentIndex + 1];
+          dispatch({ type: 'SET_STEP', payload: nextStep });
+          setAdvancedTo(nextStep);
+          setTimeout(() => setAdvancedTo(null), 4000);
+        }
+      }
+    }
   };
 
   const totalDone = tasks.filter((t) => t.status === 'klar').length;
@@ -115,6 +136,18 @@ function UppgifterContent() {
           style={{ width: `${tasks.length > 0 ? (totalDone / tasks.length) * 100 : 0}%` }}
         />
       </div>
+
+      {/* Auto-advance celebration */}
+      {advancedTo && (
+        <div className="card border-l-4 border-success bg-green-50 mb-4 animate-slideUp">
+          <div className="flex items-center gap-2">
+            <CheckCircle2 className="w-5 h-5 text-success" />
+            <p className="font-medium text-primary text-sm">
+              Alla uppgifter klara! Du har gått vidare till: {STEP_LABELS[advancedTo]}
+            </p>
+          </div>
+        </div>
+      )}
 
       {/* Filters */}
       <div className="flex gap-2 mb-4 overflow-x-auto pb-1">

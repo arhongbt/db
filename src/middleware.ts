@@ -20,6 +20,7 @@ const PROTECTED_ROUTES = [
   "/fullmakt",
   "/kallelse",
   "/avsluta-konton",
+  "/kostnader",
   "/installningar",
   "/dokument",
 ];
