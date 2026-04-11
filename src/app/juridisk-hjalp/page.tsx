@@ -119,13 +119,38 @@ function JuridiskHjalpContent() {
   const [mounted, setMounted] = useState(false);
   const [animatingIdx, setAnimatingIdx] = useState<number | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
+  const userScrolledUp = useRef(false);
 
   useEffect(() => setMounted(true), []);
 
+  // Detect when user scrolls up manually
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [messages, animatingIdx]);
+    const container = scrollContainerRef.current;
+    if (!container) return;
+
+    const handleScroll = () => {
+      const { scrollTop, scrollHeight, clientHeight } = container;
+      // If user is within 80px of bottom, consider them "at bottom"
+      userScrolledUp.current = scrollHeight - scrollTop - clientHeight > 80;
+    };
+
+    container.addEventListener('scroll', handleScroll, { passive: true });
+    return () => container.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToBottom = useCallback(() => {
+    if (!userScrolledUp.current) {
+      messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, []);
+
+  // Scroll on new message
+  useEffect(() => {
+    userScrolledUp.current = false; // reset when new message arrives
+    scrollToBottom();
+  }, [messages.length, scrollToBottom]);
 
   // Auto-resize textarea
   useEffect(() => {
@@ -135,15 +160,15 @@ function JuridiskHjalpContent() {
     }
   }, [input]);
 
-  // Auto-scroll during typewriter
+  // Auto-scroll during typewriter (respects user scroll)
   useEffect(() => {
     if (animatingIdx !== null) {
       const interval = setInterval(() => {
-        messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+        scrollToBottom();
       }, 200);
       return () => clearInterval(interval);
     }
-  }, [animatingIdx]);
+  }, [animatingIdx, scrollToBottom]);
 
   const buildDodsboContext = useCallback((): string => {
     const parts: string[] = [];
@@ -281,7 +306,7 @@ function JuridiskHjalpContent() {
       </div>
 
       {/* Messages area */}
-      <div className="flex-1 overflow-y-auto px-4 py-4 pb-4">
+      <div ref={scrollContainerRef} className="flex-1 overflow-y-auto px-4 py-4 pb-4">
         {/* Welcome state */}
         {messages.length === 0 && (
           <div className="flex flex-col items-center justify-center min-h-[50vh] text-center">
