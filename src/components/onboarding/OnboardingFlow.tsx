@@ -17,10 +17,14 @@ import type {
 import { SWEDISH_BANKS } from '@/types';
 
 // ============================================================
-// Step definitions — one question per screen
+// Shortened onboarding — 4 steps instead of 7
+// Step 0: Name + date
+// Step 1: Relation
+// Step 2: Family situation + testamente + housing (combined)
+// Step 3: Banks + already done (combined)
 // ============================================================
 
-const TOTAL_STEPS = 7;
+const TOTAL_STEPS = 4;
 
 export function OnboardingFlow() {
   const router = useRouter();
@@ -41,14 +45,11 @@ export function OnboardingFlow() {
     switch (step) {
       case 0: return deceasedName.trim().length > 0 && deathDate.length > 0;
       case 1: return relation !== '';
-      case 2: return familySituation !== '';
-      case 3: return hasTestamente !== null;
-      case 4: return housingType !== '';
-      case 5: return selectedBanks.length > 0;
-      case 6: return true; // Already done is optional
+      case 2: return familySituation !== '' && housingType !== '';
+      case 3: return selectedBanks.length > 0;
       default: return false;
     }
-  }, [step, deceasedName, deathDate, relation, familySituation, hasTestamente, housingType, selectedBanks]);
+  }, [step, deceasedName, deathDate, relation, familySituation, housingType, selectedBanks]);
 
   const handleNext = () => {
     if (step < TOTAL_STEPS - 1) {
@@ -183,16 +184,21 @@ export function OnboardingFlow() {
           </div>
         )}
 
-        {/* ── Step 2: Familjesituation ── */}
+        {/* ── Step 2: Familjesituation + Testamente + Bostad (combined) ── */}
         {step === 2 && (
           <div className="flex-1 flex flex-col">
             <h1 className="text-2xl font-semibold text-primary mb-2">
-              Familjesituation
+              Om situationen
             </h1>
             <p className="text-muted mb-6">
-              Detta bestämmer arvsordningen enligt svensk lag.
+              Dessa uppgifter bestämmer arvsordningen och vad som behöver göras.
             </p>
-            <div className="flex flex-col gap-3 stagger-children">
+
+            {/* Family situation */}
+            <p className="text-sm font-semibold text-primary mb-3 uppercase tracking-wide">
+              Familjesituation
+            </p>
+            <div className="flex flex-col gap-2 mb-6 stagger-children">
               {([
                 { value: 'gift_med_gemensamma_barn', label: 'Gift med gemensamma barn' },
                 { value: 'gift_med_sarkullebarn', label: 'Gift med särkullbarn', desc: 'Barn från tidigare förhållande' },
@@ -211,69 +217,53 @@ export function OnboardingFlow() {
                 />
               ))}
             </div>
-          </div>
-        )}
 
-        {/* ── Step 3: Testamente ── */}
-        {step === 3 && (
-          <div className="flex-1 flex flex-col">
-            <h1 className="text-2xl font-semibold text-primary mb-2">
-              Finns det ett testamente?
-            </h1>
-            <p className="text-muted mb-6">
-              Ett testamente kan ändra arvsfördelningen. Det behöver inte vara klart nu.
+            {/* Testamente */}
+            <p className="text-sm font-semibold text-primary mb-3 uppercase tracking-wide">
+              Testamente
             </p>
-            <div className="flex flex-col gap-3 stagger-children">
-              <OptionCard
-                label="Ja"
-                description="Vi har hittat ett testamente"
-                selected={hasTestamente === true}
+            <div className="flex gap-2 mb-6">
+              <button
                 onClick={() => setHasTestamente(true)}
-              />
-              <OptionCard
-                label="Nej"
-                description="Inget testamente finns"
-                selected={hasTestamente === false}
+                className={`flex-1 py-3 rounded-xl font-medium text-sm transition-colors ${
+                  hasTestamente === true ? 'bg-accent text-white' : 'bg-gray-100 text-primary hover:bg-gray-200'
+                }`}
+              >
+                Ja
+              </button>
+              <button
                 onClick={() => setHasTestamente(false)}
-              />
-              <OptionCard
-                label="Vet ej"
-                description="Vi har inte letat ännu — det är okej"
-                selected={hasTestamente === null && step === 3}
+                className={`flex-1 py-3 rounded-xl font-medium text-sm transition-colors ${
+                  hasTestamente === false ? 'bg-accent text-white' : 'bg-gray-100 text-primary hover:bg-gray-200'
+                }`}
+              >
+                Nej
+              </button>
+              <button
                 onClick={() => setHasTestamente(null)}
-              />
+                className={`flex-1 py-3 rounded-xl font-medium text-sm transition-colors ${
+                  hasTestamente === null ? 'bg-accent text-white' : 'bg-gray-100 text-primary hover:bg-gray-200'
+                }`}
+              >
+                Vet ej
+              </button>
             </div>
 
-            <div className="info-box mt-6">
-              <p className="text-sm">
-                <strong>Tips:</strong> Kolla bankfack, hemma i byrålådor, och fråga om
-                testamente förvaras hos bank eller begravningsbyrå.
-              </p>
-            </div>
-          </div>
-        )}
-
-        {/* ── Step 4: Bostad ── */}
-        {step === 4 && (
-          <div className="flex-1 flex flex-col">
-            <h1 className="text-2xl font-semibold text-primary mb-2">
-              Vilken typ av bostad?
-            </h1>
-            <p className="text-muted mb-6">
-              Bostadstypen påverkar vad som behöver göras och tidsfristerna.
+            {/* Housing type */}
+            <p className="text-sm font-semibold text-primary mb-3 uppercase tracking-wide">
+              Boendetyp
             </p>
-            <div className="flex flex-col gap-3 stagger-children">
+            <div className="flex flex-col gap-2 stagger-children">
               {([
-                { value: 'hyresratt', label: 'Hyresrätt', desc: 'Uppsägningstid 1 månad för dödsbo' },
-                { value: 'bostadsratt', label: 'Bostadsrätt', desc: 'Behöver värderas och eventuellt säljas' },
-                { value: 'villa', label: 'Villa/hus', desc: 'Behöver värderas, ev. fastighetsmäklare' },
-                { value: 'fritidshus', label: 'Fritidshus', desc: 'Utöver ordinarie bostad' },
-                { value: 'ingen_bostad', label: 'Ingen egen bostad', desc: 'Bodde hos anhörig eller institution' },
+                { value: 'hyresratt', label: 'Hyresrätt' },
+                { value: 'bostadsratt', label: 'Bostadsrätt' },
+                { value: 'villa', label: 'Villa/hus' },
+                { value: 'fritidshus', label: 'Fritidshus' },
+                { value: 'ingen_bostad', label: 'Ingen egen bostad' },
               ] as const).map((opt) => (
                 <OptionCard
                   key={opt.value}
                   label={opt.label}
-                  description={opt.desc}
                   selected={housingType === opt.value}
                   onClick={() => setHousingType(opt.value)}
                 />
@@ -282,16 +272,21 @@ export function OnboardingFlow() {
           </div>
         )}
 
-        {/* ── Step 5: Banker ── */}
-        {step === 5 && (
+        {/* ── Step 3: Banker + Redan gjort (combined) ── */}
+        {step === 3 && (
           <div className="flex-1 flex flex-col">
             <h1 className="text-2xl font-semibold text-primary mb-2">
-              Vilka banker?
+              Sista steget
             </h1>
             <p className="text-muted mb-6">
-              Välj alla banker där {deceasedName || 'den avlidne'} hade konton. Välj minst en.
+              Vilka banker och vad har ni redan gjort?
             </p>
-            <div className="flex flex-col gap-3 stagger-children">
+
+            {/* Banks */}
+            <p className="text-sm font-semibold text-primary mb-3 uppercase tracking-wide">
+              Banker (välj minst en)
+            </p>
+            <div className="flex flex-col gap-2 mb-6 stagger-children">
               {SWEDISH_BANKS.map((bank) => (
                 <OptionCard
                   key={bank.id}
@@ -303,19 +298,12 @@ export function OnboardingFlow() {
                 />
               ))}
             </div>
-          </div>
-        )}
 
-        {/* ── Step 6: Redan gjort ── */}
-        {step === 6 && (
-          <div className="flex-1 flex flex-col">
-            <h1 className="text-2xl font-semibold text-primary mb-2">
-              Vad har ni redan gjort?
-            </h1>
-            <p className="text-muted mb-6">
-              Så att vi inte visar saker du redan fixat. Allt är valfritt.
+            {/* Already done */}
+            <p className="text-sm font-semibold text-primary mb-3 uppercase tracking-wide">
+              Redan gjort (valfritt)
             </p>
-            <div className="flex flex-col gap-3 stagger-children">
+            <div className="flex flex-col gap-2 stagger-children">
               {([
                 { value: 'dodsbevis', label: 'Skaffat dödsbevis' },
                 { value: 'kontaktat_bank', label: 'Kontaktat banken' },

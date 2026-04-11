@@ -264,9 +264,29 @@ function ArvskifteContent() {
         </div>
       )}
 
+      {/* Bodelning warning for married */}
+      {(state.onboarding.familySituation.startsWith('gift_')) && (
+        <Link href="/bodelning" className="warning-box mb-6 flex items-center justify-between">
+          <div className="flex gap-2">
+            <AlertTriangle className="w-5 h-5 text-warn flex-shrink-0 mt-0.5" />
+            <div>
+              <p className="font-medium text-warn">Bodelning krävs först</p>
+              <p className="text-sm text-primary/70">Gift par måste göra bodelning innan arvskifte.</p>
+            </div>
+          </div>
+          <ChevronRight className="w-5 h-5 text-warn flex-shrink-0" />
+        </Link>
+      )}
+
       {/* Actions */}
       <div className="flex flex-col gap-3 mb-6">
-        <Link href="/bouppteckning" className="btn-primary flex items-center justify-center gap-2">
+        {state.onboarding.familySituation.startsWith('gift_') && (
+          <Link href="/bodelning" className="btn-primary flex items-center justify-center gap-2">
+            Bodelning
+            <ChevronRight className="w-5 h-5" />
+          </Link>
+        )}
+        <Link href="/bouppteckning" className={`${state.onboarding.familySituation.startsWith('gift_') ? 'btn-secondary' : 'btn-primary'} flex items-center justify-center gap-2`}>
           Bouppteckning
           <ChevronRight className="w-5 h-5" />
         </Link>

@@ -1,0 +1,768 @@
+#!/usr/bin/env python3
+"""
+Dödsboappen UX Testing Report — 50 Simulated User Personas
+Run: pip install openpyxl && python generate-ux-report.py
+"""
+
+from openpyxl import Workbook
+from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
+from openpyxl.utils import get_column_letter
+
+wb = Workbook()
+
+# ── Color palette ──
+BRAND = "1A3C5E"
+ACCENT = "2D9CDB"
+GREEN = "27AE60"
+RED = "EB5757"
+YELLOW = "F2C94C"
+LIGHT_BLUE = "D6EAF8"
+LIGHT_GREEN = "D5F5E3"
+LIGHT_RED = "FADBD8"
+LIGHT_YELLOW = "FEF9E7"
+LIGHT_GRAY = "F2F3F4"
+WHITE = "FFFFFF"
+
+header_font = Font(name="Arial", bold=True, color=WHITE, size=11)
+header_fill = PatternFill("solid", fgColor=BRAND)
+subheader_font = Font(name="Arial", bold=True, size=10, color=BRAND)
+subheader_fill = PatternFill("solid", fgColor=LIGHT_BLUE)
+body_font = Font(name="Arial", size=10)
+body_font_small = Font(name="Arial", size=9)
+wrap = Alignment(wrap_text=True, vertical="top")
+center = Alignment(horizontal="center", vertical="top", wrap_text=True)
+thin_border = Border(
+    left=Side(style="thin", color="D5D8DC"),
+    right=Side(style="thin", color="D5D8DC"),
+    top=Side(style="thin", color="D5D8DC"),
+    bottom=Side(style="thin", color="D5D8DC"),
+)
+
+love_fill = PatternFill("solid", fgColor=LIGHT_GREEN)
+hate_fill = PatternFill("solid", fgColor=LIGHT_RED)
+wish_fill = PatternFill("solid", fgColor=LIGHT_YELLOW)
+like_fill = PatternFill("solid", fgColor=LIGHT_BLUE)
+
+# ══════════════════════════════════════════════════════════════
+# SHEET 1: PERSONAS
+# ══════════════════════════════════════════════════════════════
+ws1 = wb.active
+ws1.title = "Personas"
+
+personas = [
+    # (ID, Name, Age, City, Relation, FamilySituation, TechLevel, EmotionalState, Scenario)
+    (1, "Anna Lindström", 42, "Stockholm", "Barn", "Mamma dog, pappa lever, 2 syskon", "Hög", "Chockad, första dödsfallet", "Mamma dog plötsligt i hjärtinfarkt. Anna har aldrig hanterat dödsbo förut."),
+    (2, "Erik Johansson", 67, "Göteborg", "Make", "Fru dog, 3 gemensamma barn", "Låg", "Djup sorg, överväldigad", "Eriks fru dog i cancer efter lång sjukdom. Han har svårt med teknik."),
+    (3, "Fatima Al-Hassan", 35, "Malmö", "Barn", "Pappa dog, mamma lever, ogifta föräldrar", "Medel", "Förvirrad av svensk lag", "Fatimas pappa var sambo med mamman. Hon vet inte vem som ärver."),
+    (4, "Lars Nilsson", 55, "Umeå", "Barn", "Ensamstående mamma dog, 4 syskon", "Medel", "Pragmatisk men stressad", "Mamman dog utan testamente. Syskon bor i olika städer, svårt att samordna."),
+    (5, "Sofia Bergman", 29, "Uppsala", "Barn", "Pappa dog, skild, särkullbarn finns", "Hög", "Arg och frustrerad", "Pappan har ny familj. Sofia är särkullbarn och vet att hon har rätt att kräva arv direkt."),
+    (6, "Göran Svensson", 73, "Kalmar", "Make", "Fru dog, inga barn, inga testamenten", "Mycket låg", "Ensam och förtvivlad", "Göran har aldrig använt smartphone. Dottersonen hjälper honom."),
+    (7, "Maria Pettersson", 48, "Linköping", "Syskon", "Bror dog, ogift, inga barn", "Medel", "Ledsen men handlingskraftig", "Brodern dog oväntat. Maria och 2 syskon ska dela arvet med föräldrar."),
+    (8, "Ahmed Mohamed", 31, "Stockholm", "Barn", "Pappa dog, gift med mamma, 5 syskon", "Hög", "Kulturkrock med svensk lag", "Ahmeds familj vill fördela arvet enligt islamisk tradition men svensk lag gäller."),
+    (9, "Karin Olofsson", 60, "Jönköping", "Barn", "Pappa dog 92 år, mamma redan död", "Låg", "Lättad men skyldig", "Pappan hade demens. Karin har skött allt i 5 år. Orkar knappt mer."),
+    (10, "Henrik Axelsson", 38, "Västerås", "Sambo", "Sambo dog, gemensamma barn", "Hög", "Panik, rädd att förlora bostaden", "Henriks sambo dog. De var inte gifta. Henrik oroar sig för bostaden."),
+    (11, "Birgitta Lund", 70, "Helsingborg", "Barn", "Mamma dog 95 år, alla syskon döda", "Mycket låg", "Trött, vill bara bli klar", "Birgitta är enda arvingen. Mamman hade bara hyresrätt och lite pengar."),
+    (12, "Oscar Ek", 25, "Lund", "Barn", "Pappa dog, skild, mamma lever", "Mycket hög", "Chockad, aldrig tänkt på döden", "Pappan dog i trafikolycka. Oscar studerar och har noll koll på juridik."),
+    (13, "Ingrid Persson", 82, "Kristianstad", "Make", "Man dog, 2 barn, bostadsrätt", "Mycket låg", "Förvirrad och rädd", "Ingrids man skötte allt. Hon vet inte ens vilka banker de har."),
+    (14, "Marcus Chen", 44, "Stockholm", "Barn", "Mamma dog, pappa kinesisk medborgare", "Hög", "Frustrerad av internationell komplikation", "Mammans dödsbo har koppling till Kina. Marcus undrar om appen hanterar det."),
+    (15, "Elisabeth Kraft", 52, "Norrköping", "God man", "Var god man åt granne som dog", "Medel", "Professionell, vill ha effektivitet", "Elisabeth var god man. Vill ha snabb överblick av vad som behövs."),
+    (16, "Patrik Berg", 46, "Örebro", "Barn", "Pappa dog, hade företag (AB)", "Medel", "Stressad över företagsfrågor", "Pappans aktiebolag ingår i dödsboet. Patrik undrar hur det hanteras."),
+    (17, "Jenny Wikström", 33, "Sundsvall", "Barn", "Mamma dog, testamente till välgörenhet", "Hög", "Besviken, känner sig bortvald", "Mamman testamenterade 50% till Röda Korset. Jenny vill klandra testamentet."),
+    (18, "Bo Karlsson", 78, "Falun", "Syskon", "Syster dog, ogift, inga barn", "Låg", "Sorgsen men van vid förlust", "Bos syster var sista syskonet. Han och 2 syskonbarn ska ärva."),
+    (19, "Aisha Yusuf", 28, "Göteborg", "Barn", "Mamma dog, pappa omgift", "Hög", "Rasande på styvmodern", "Aishas pappa gifte om sig. Mamman dog. Konflikter med styvfamiljen om arvet."),
+    (20, "Tommy Lind", 50, "Karlstad", "Barn", "Båda föräldrar döda (pappa nu), syskon", "Medel", "Rutinerad, gjort detta förut", "Tommy har redan gjort bouppteckning för mamman. Vet ungefär vad som gäller."),
+    (21, "Lovisa Dahl", 36, "Stockholm", "Testamentstagare", "Väninna dog, lämnat testamente till Lovisa", "Hög", "Förvånad och ledsen", "Lovisa är inte släkt men står i testamentet. Vet inte ens om hon har rättigheter."),
+    (22, "Rolf Åberg", 65, "Borås", "Barn", "Mamma dog, fastighet på landet", "Låg", "Nostalgisk, vill behålla huset", "Mamman hade sommarhus värt 2M. Syskon vill sälja, Rolf vill behålla."),
+    (23, "Nadia Kovac", 40, "Malmö", "Barn", "Pappa dog, invandrad, tillgångar i Bosnien", "Medel", "Stressad av gränsöverskridande arv", "Tillgångar finns i både Sverige och Bosnien. Dubbel byråkrati."),
+    (24, "Stig Holm", 85, "Visby", "Make", "Fru dog, inga barn, testamente till brorson", "Mycket låg", "Orolig för sin egen framtid", "Stig och frun hade testamente. Han undrar om han kan bo kvar."),
+    (25, "Caroline Falk", 45, "Täby", "Barn", "Pappa dog förmögen, komplex portfölj", "Hög", "Nyfiken men oroad för skatter", "Pappan hade aktieportfölj värd 15M, 3 fastigheter, holdingbolag."),
+    (26, "Daniel Nordin", 22, "Gävle", "Barn", "Mamma dog ung, pappa okänd", "Hög", "Totalt lost, inga andra vuxna", "Daniel är enda barnet. Pappan är okänd. Han har ingen att fråga."),
+    (27, "Margareta Blom", 58, "Halmstad", "Barn", "Pappa dog, mamma på demensboende", "Medel", "Utmattad av dubbelroll", "Margareta sköter mammans ärenden OCH pappans dödsbo. God man för mamma."),
+    (28, "Johan Rask", 41, "Luleå", "Barn", "Mamma dog, familjehemligheter", "Medel", "Chockad av okänt syskon", "I pappersarbetet hittade Johan ett okänt halvsyskon. Allt kompliceras."),
+    (29, "Elin Sjöberg", 30, "Stockholm", "Sambo", "Sambo dog, ej gemensamma barn, hyresrätt", "Hög", "Panik om boendet", "Elins sambo dog. Hyresrätten stod i sambons namn. Vem ärver den?"),
+    (30, "Bengt Strand", 71, "Skellefteå", "Barn", "Mamma dog, pappa dog 1 år sedan", "Medel", "Trött, dubbelt dödsbo", "Bengt hann aldrig avsluta pappans dödsbo. Nu dog mamman också."),
+    (31, "Petra Wallin", 47, "Växjö", "Barn", "Mamma dog, skulder överstiger tillgångar", "Medel", "Orolig för att ärva skulder", "Mamman hade stora skulder. Petra är livrädd att hon ärver dem."),
+    (32, "Gustav Sandberg", 56, "Stockholm", "Advokat/ombud", "Klient bad om hjälp med dödsbo", "Mycket hög", "Professionell, utvärderar verktyget", "Gustav är jurist och testar appen för att rekommendera till klienter."),
+    (33, "Camilla Öberg", 39, "Eskilstuna", "Barn", "Pappa dog, funktionsnedsättning", "Medel", "Kämpar med tillgänglighet", "Camilla har nedsatt syn. Undrar om appen fungerar med skärmläsare."),
+    (34, "Ulf Hedman", 63, "Trollhättan", "Barn", "Mamma dog, redan bråk om lösöre", "Låg", "Bitter, syskonkonflikt", "Syskonen bråkar redan om mammas möbler, smycken och tavlor."),
+    (35, "Sara Borg", 27, "Umeå", "Barn", "Pappa dog, bor utomlands (London)", "Hög", "Stressad av distans", "Sara bor i London. Måste hantera allt på distans, kan inte vara på plats."),
+    (36, "Anders Gren", 52, "Motala", "Barn", "Pappa dog, lantbruk/jordbruksfastighet", "Medel", "Komplex egendom", "Pappan hade jordbruk med djur, mark, maskiner. Hur värderas det?"),
+    (37, "Lena Moberg", 44, "Borlänge", "Barn", "Mamma dog, pappa alkoholist", "Medel", "Ambivalent, komplicerad relation", "Lena hade dålig kontakt med mamman. Känner skuld men vill inte engagera sig mycket."),
+    (38, "Viktor Palm", 34, "Stockholm", "Barn", "Pappa dog, kryptovalutor", "Mycket hög", "Frustrerad att appen ej hanterar crypto", "Pappan hade Bitcoin och ETH. Viktor undrar hur det rapporteras i bouppteckning."),
+    (39, "Gunilla Åström", 76, "Karlskrona", "Syskon", "Bror dog, hade barn men de vill ej hjälpa", "Låg", "Ensam, överbelastad", "Broderns barn vägrar engagera sig. Gunilla får göra allt själv."),
+    (40, "Robin Nyman", 19, "Uppsala", "Barn", "Mamma dog, Robin är minderårig (just fyllt 18)", "Hög", "Överväldigad, ingen erfarenhet", "Robin fyllde precis 18. Mamman dog. Ingen annan förälder. Helt ensam."),
+    (41, "Kristina Ask", 50, "Linköping", "Barn", "Pappa dog, utländskt medborgarskap", "Medel", "Förvirrad av dubbelmedborgarskap", "Pappan var finsk medborgare bosatt i Sverige. Vilket lands lag gäller?"),
+    (42, "Mattias Vinge", 43, "Nyköping", "Barn", "Mamma dog, digitalt arv", "Hög", "Vill komma åt mammas telefon/dator", "Mamman hade alla lösenord i telefonen. Mattias kan inte komma åt iCloud."),
+    (43, "Berit Englund", 68, "Sundsvall", "Make", "Man dog, äktenskapsförord finns", "Låg", "Oroad för bodelning", "Berit och mannen hade äktenskapsförord. Hon vet inte hur det påverkar arvet."),
+    (44, "Alexander Ferm", 37, "Malmö", "Barn", "Pappa dog, pappa hade adoptivbarn", "Hög", "Osäker om adoptivbarns arvsrätt", "Pappan adopterade ett barn i nytt äktenskap. Har det barnet samma arvsrätt?"),
+    (45, "Maj-Britt Hall", 80, "Vara", "Make", "Man dog, boende i villa sedan 50 år", "Mycket låg", "Vill inte lämna hemmet", "Maj-Britt har bott i villan i 50 år. Barnen pratar om att sälja."),
+    (46, "Emil Grahn", 32, "Lund", "Barn", "Pappa dog, hade skulder hos Kronofogden", "Hög", "Nervös, vill inte bli inblandad", "Pappan hade mångåriga skulder. Emil vill veta exakt vad som händer."),
+    (47, "Therese Hult", 41, "Karlstad", "Barn", "Mamma dog, var ensamföretagare (enskild firma)", "Medel", "Stressad över firmans framtid", "Mamman hade enskild firma med anställda och kunder. Vad händer nu?"),
+    (48, "Jan-Erik Bäck", 74, "Östersund", "Barn", "Pappa dog 99 år, enkel situation", "Låg", "Lugn, vill bara göra rätt", "Pappan hade ett bankkonto och hyresrätt. Inga skulder. Bör vara enkelt."),
+    (49, "Frida Norberg", 26, "Stockholm", "Barn", "Mamma dog, mamma var känd artist", "Hög", "Panik över media/royalties", "Mamman var musiker med royalty-intäkter. Frida undrar om immateriella rättigheter."),
+    (50, "Kurt Lindqvist", 69, "Nässjö", "Barn", "Mamma dog, bouppteckning redan försenad", "Medel", "Stressad, skäms över försening", "Det har gått 4 månader. Kurt missade 3-månadersfristen. Vad händer nu?"),
+]
+
+cols = ["ID", "Namn", "Alder", "Stad", "Relation", "Familjesituation", "Teknisk niva", "Kanslolagt", "Scenario"]
+for c, val in enumerate(cols, 1):
+    cell = ws1.cell(row=1, column=c, value=val)
+    cell.font = header_font
+    cell.fill = header_fill
+    cell.alignment = center
+    cell.border = thin_border
+
+for r, p in enumerate(personas, 2):
+    for c, val in enumerate(p, 1):
+        cell = ws1.cell(row=r, column=c, value=val)
+        cell.font = body_font
+        cell.alignment = wrap
+        cell.border = thin_border
+        if r % 2 == 0:
+            cell.fill = PatternFill("solid", fgColor=LIGHT_GRAY)
+
+ws1.column_dimensions["A"].width = 5
+ws1.column_dimensions["B"].width = 22
+ws1.column_dimensions["C"].width = 7
+ws1.column_dimensions["D"].width = 14
+ws1.column_dimensions["E"].width = 14
+ws1.column_dimensions["F"].width = 35
+ws1.column_dimensions["G"].width = 12
+ws1.column_dimensions["H"].width = 28
+ws1.column_dimensions["I"].width = 55
+ws1.auto_filter.ref = f"A1:I{len(personas)+1}"
+
+# ══════════════════════════════════════════════════════════════
+# SHEET 2: DETAILED FEEDBACK
+# ══════════════════════════════════════════════════════════════
+ws2 = wb.create_sheet("Feedback")
+
+feedback_data = [
+    # (ID, Name, Loved, Liked, Hated, Wished, Annoying, Confusing, Suggestion, NPS 0-10)
+    (1, "Anna Lindström",
+     "Nödbroms-guiden var en livboj i kaoset. Att se 'Dag 1: Vila' fick mig att gråta av tacksamhet.",
+     "Tidslinjen med faser hjälpte mig förstå att allt inte behöver göras idag. Dashboard-överblicken.",
+     "Kunde inte hitta hur man lägger till den som sköter begravningen som kontakt. Saknar roll 'begravningsbyrå'.",
+     "Notiser/push-påminnelser till mobilen! Jag glömmer att kolla appen.",
+     "Måste scrolla mycket på dashboard. För många 'nästa steg'-länkar.",
+     "Skillnaden mellan 'Tillgångar' och 'Ekonomi' i menyn — är det samma?",
+     "Lägg till push-notiser. En daglig sammanfattning via e-post hade varit guld.", 9),
+
+    (2, "Erik Johansson",
+     "Att appen finns på svenska och inte kräver teknisk kunskap. Fruns namn i rubriken 'Annas dödsbo' — personligt.",
+     "FAQ-sidan besvarade mina första frågor utan att jag behövde googla.",
+     "Texten är för liten på min telefon. Kan inte ändra textstorlek. Knapparna är för nära varandra.",
+     "Större text! Och möjlighet att ringa direkt till banker från appen (klickbara telefonnummer).",
+     "Onboarding hade 7 steg — kände mig som i en tvättmaskin. Ville bara komma igång.",
+     "Vad är 'förrättningsman'? Aldrig hört ordet. Behöver förklaring.",
+     "Gör onboarding kortare (3-4 steg max). Resten kan fyllas i senare.", 6),
+
+    (3, "Fatima Al-Hassan",
+     "Arvsordningen förklaras tydligt! Förstod äntligen att sambo INTE ärver automatiskt.",
+     "Att kunna bjuda in syskon att se dödsboet. Dokumentuppladdningen.",
+     "Appen nämner aldrig religiösa aspekter eller kulturella hänsyn vid begravning/arv.",
+     "Info om hur svensk lag skiljer sig från andra traditioner. Länk till tolkhjälp.",
+     "Alla exempel antar 'typiskt svensk' familj. Känns exkluderande.",
+     "Bouppteckning vs dödsboanmälan — när gäller vad? FAQ hjälpte men borde synas tidigare.",
+     "Lägg till flerspråkigt stöd (engelska åtminstone). Många invånare i Sverige pratar ej svenska flytande.", 7),
+
+    (4, "Lars Nilsson",
+     "Kallelse-generatorn! Kunde skicka till alla syskon direkt med rätt juridiskt språk.",
+     "Checklistan 'Avsluta konton' med telefonnummer till alla banker — enorm tidsbesparing.",
+     "Kan inte tilldela uppgifter till specifika syskon. Alla ser samma sak men ingen vet vem som gör vad.",
+     "Uppgiftsfördelning — 'Lars: bankkonton, Anna: försäkringar, Per: bostad'.",
+     "Att behöva logga in varje gång. Vill ha 'kom ihåg mig' längre.",
+     "Arvskifte-beräkningen visar 'lika delar' men vi vill att ett syskon ska ta över huset. Hur?",
+     "Lägg till möjlighet att fördela specifika tillgångar till specifika arvingar (ej bara procent).", 8),
+
+    (5, "Sofia Bergman",
+     "Äntligen nån som förklarar särkullbarns rättigheter tydligt! Kände mig stärkt.",
+     "PDF-exporterna ser professionella ut. Bankbreven automatiskt ifyllda.",
+     "Appen säger att jag KAN kräva min del direkt men förklarar inte HUR. Vad gör jag konkret?",
+     "Steg-för-steg 'Så kräver du din arvslott som särkullbarn' guide.",
+     "Arvskifte-sidan visar bara siffror. Ingen guide för om man inte kommer överens med styvfamiljen.",
+     "Vad är 'fri förfoganderätt' egentligen? Kan styvmamman spendera allt?",
+     "Lägg till konflikthantering/medling-info. Vad gör man när arvingar inte kommer överens?", 7),
+
+    (6, "Göran Svensson",
+     "Ingenting — jag förstår inte hur man använder den. Dottersonen fick visa mig.",
+     "När dottersonen visade mig nödbromsen — bra att den finns.",
+     "ALLT. Texten är pytteliten. Menyn i botten förstår jag inte. Vill ha EN stor knapp: 'Vad ska jag göra nu?'",
+     "Pappersversion att skriva ut. Eller telefonsupport.",
+     "Att jag måste 'logga in'. Jag förstår inte lösenord och e-postbekräftelse.",
+     "Allt. Jag vet inte var jag är i appen. Alla sidor ser likadana ut.",
+     "Erbjud telefonsupport för äldre. Eller en förenklad vy med MYCKET större text och färre val.", 2),
+
+    (7, "Maria Pettersson",
+     "Kostnadsregistreringen — att kunna spåra vem som betalat vad. Perfekt för att undvika bråk mellan syskon.",
+     "Fullmaktsmallar sparade oss tusentals kronor i juristarvode.",
+     "Bouppteckningen genererar PDF men den godkänns inte automatiskt av Skatteverket. Missvisande.",
+     "Integration med Skatteverkets e-tjänst för direkt inlämning.",
+     "Att jag måste kopiera texten från fullmakten och klistra in i Word. Varför inte direkt .docx-export?",
+     "Tredje arvsklassen (morföräldrar etc.) — appen nämner det knappt.",
+     "Exportera fullmakter som .docx direkt, inte bara kopierbar text/PDF.", 8),
+
+    (8, "Ahmed Mohamed",
+     "Att appen respekterar svensk lag tydligt — hjälpte mig förklara för familjen att vi måste följa den.",
+     "Ekonomi-överblicken med tillgångar vs skulder. Transparent.",
+     "Ingen info om hur man kan kombinera en islamisk arvstradition med svensk lag (t.ex. genom testamente).",
+     "Guide: 'Arv och religion i Sverige' — hur testamente kan anpassas.",
+     "Arvskifte-kalkylen antar att alla vill ha pengar. I vår kultur kan kvinnor 'avstå' sin del, men appen visar det inte.",
+     "Kan man skriva testamente som delvis följer islamisk arvsrätt? Appen säger inget.",
+     "Lägg till info om hur testamente kan användas för att anpassa arvsfördelningen.", 6),
+
+    (9, "Karin Olofsson",
+     "Att den tar hänsyn till att jag redan gjort saker (steg 'Redan gjort' i onboarding).",
+     "Avsluta konton-checklistan. Har ringt 12 ställen tack vare den.",
+     "Dödsboet efter pappa hade OCKSÅ en kvarlåtenskap från mamma som aldrig skiftades. Appen hanterar bara ETT dödsbo.",
+     "Stöd för kedjade dödsbon — när ett dödsbo innehåller en andel i ett annat dödsbo.",
+     "Att jag inte kan gå tillbaka och ändra onboarding-svar utan att starta om.",
+     "Arvskifte-sidan visar fördelning men förklarar inte bodelning (äktenskapsförord, giftorättsgods).",
+     "Lägg till möjlighet att redigera onboarding-svar i Inställningar.", 7),
+
+    (10, "Henrik Axelsson",
+     "FAQ om sambo-rättigheter lugnande mig. Förstod att jag kan begära bodelning av samboegendom.",
+     "Tidslinjen visar att jag har tid. Inte lika akut som jag trodde.",
+     "Appen nämner inte bostadsrätt specifikt — vem ärver bostadsrätten? Kan jag bo kvar?",
+     "Specifik guide för sambor: bodelning vs arv, vem får bostaden, lilla basbeloppsregeln.",
+     "Onboarding frågar 'familjesituation' men har ingen option för 'sambo med gemensamma barn och särkullbarn'.",
+     "Lilla basbeloppsregeln — vad är det? Nämns i FAQ men förklaras dåligt.",
+     "Expandera sambo-sektionen rejält. Sambor är en STOR grupp i Sverige som har unik juridisk situation.", 7),
+
+    (11, "Birgitta Lund",
+     "Att det stod att om det bara finns en arvinge behövs inget arvskifte. Tack!",
+     "Nödbroms-guiden var tydlig även för mig.",
+     "Varför måste jag registrera mig? Vill bara ha en checklista. Inget konto.",
+     "Gästläge utan konto för enklare fall.",
+     "Alltför många sidor och alternativ. Jag behöver bara: checklista + bouppteckning.",
+     "Förstår inte varför jag ska lägga till mig själv som 'delägare'. Jag ÄR ju den enda.",
+     "Erbjud ett 'förenklat läge' för dödsbon med bara en arvinge och få tillgångar.", 5),
+
+    (12, "Oscar Ek",
+     "Hela konceptet. Trodde jag behövde anlita jurist direkt. Appen visade att jag kan göra mycket själv.",
+     "Bankbreven genererade automatiskt. Jag bara kopierade och skickade. Magiskt.",
+     "Appen ser ut som en föräldra-app. Designen känns gammal. Vill ha mörkt läge.",
+     "Dark mode. Modern design. Snabbare animationer.",
+     "Inget stöd för att fotografera kvitton direkt i appen (till kostnader).",
+     "Vad är 'förrättning'? 'Bouppgivare'? Gammelsvenska juridiska termer.",
+     "Modernare design. Ordlista/glossary för juridiska termer. Kameraintegration för kvitton.", 8),
+
+    (13, "Ingrid Persson",
+     "Dottern visade mig. Telefonnumren till bankerna var bra.",
+     "Att allt finns på ett ställe.",
+     "Jag kan inte använda den. Skärmen är för liten, tryckknappar för nära, text otydlig.",
+     "Stor-text-läge. Eller en version för surfplatta/dator.",
+     "Varje gång jag trycker fel knapp hamnar jag på fel sida och hittar inte tillbaka.",
+     "Varför frågar den om 'personnummer'? Ska jag ge bort mitt personnummer till en app??",
+     "GDPR-förklaring tidigt. Större touch targets. Tydligare navigering med 'Hem'-knapp på varje sida.", 3),
+
+    (14, "Marcus Chen",
+     "Bra grundstruktur. Ser potential.",
+     "PDF-bouppteckningen ser nästan ut som en riktig SKV 4600.",
+     "NOLL stöd för internationella arv. Min situation nämns inte ens.",
+     "Guide: 'Dödsbo med tillgångar utomlands'. Vad gäller? Vilka myndigheter?",
+     "Arvskifte-beräkningen vet inte att kinesisk lag kan gälla för vissa tillgångar.",
+     "Bouppteckningen frågar om 'medborgarskap' men förklarar inte varför det spelar roll.",
+     "Lägg till en sektion om internationella dödsbon med varning: 'Kontakta jurist med internationell erfarenhet'.", 5),
+
+    (15, "Elisabeth Kraft",
+     "Effektiv onboarding — snabb överblick av läget.",
+     "Att man kan bjuda in andra. Bra för mig som god man.",
+     "Relationstypen 'God man' finns men appen ger ingen anpassad guide för den rollen.",
+     "God man/förvaltare-specifik vy: vad är MITT ansvar vs dödsbodelägares?",
+     "Appen antar att den som registrerar ÄR dödsbodelägare. Som god man är jag inte det.",
+     "Behörighetsstruktur — vem i inbjudningssystemet kan ändra saker vs bara läsa?",
+     "Rollbaserad åtkomst: admin, delägare, rådgivare (readonly). God man-guide.", 6),
+
+    (16, "Patrik Berg",
+     "Att bouppteckningen inkluderar 'värdepapper' som kategori.",
+     "Avsluta konton-guiden med Skatteverket-kontaktinfo.",
+     "INGEN info om aktiebolag i dödsbo. Det är en helt annan dimension.",
+     "Guide: 'Dödsbo med företag — AB, enskild firma, handelsbolag'.",
+     "Tillgångstypen 'aktier/fonder' räcker inte. Aktier i EGET bolag ≠ börsaktier.",
+     "Hur värderar man ett aktiebolag i bouppteckningen? Bokfört värde? Marknadsvärde?",
+     "Separata tillgångstyper: 'börsaktier', 'onoterade aktier/företag'. Guide om företagsvärdering.", 5),
+
+    (17, "Jenny Wikström",
+     "Bra att appen nämner att testamente kan klandras.",
+     "FAQ om laglott var informativ.",
+     "Appen förklarar INTE hur man praktiskt klandrar ett testamente. Bara att man kan.",
+     "Steg-för-steg: 'Klandra testamente' med tidsfrister (6 månader!) och blanketter.",
+     "Klockan tickar — 6 månader att klandra — men appen varnar inte om denna tidsfrist.",
+     "Vad är skillnaden mellan laglott och arvslott? Appen blandar ihop dem.",
+     "Testamente-sektion med: klander-guide, laglott-beräknare, tidsfrist-varning.", 6),
+
+    (18, "Bo Karlsson",
+     "Tydlig förklaring av arvsordning för 'ensamstående utan barn'.",
+     "Nödbroms-guiden passade bra, fast jag gjort det förut.",
+     "Istadarätt (barnbarns rätt att ärva) förklaras men exemplen är dåliga.",
+     "Visuellt släktträd som visar vem som ärver och varför.",
+     "Att lägga till barnbarn som 'delägare' med relation 'barnbarn' men appen vet inte att de istadar.",
+     "Ska barnbarnen stå som delägare eller inte? Appen ger inget tydligt svar.",
+     "Lägg till visuellt släktträd/arvsordning-visualisering baserat på inlagda delägare.", 6),
+
+    (19, "Aisha Yusuf",
+     "Att det tydligt står att särkullbarn har STARKARE rätt. Äntligen.",
+     "Bankbreven auto-genererade — en sak mindre att tänka på.",
+     "Appen ger inga verktyg för konflikthantering. Vi bråkar om ALLT.",
+     "Medlingsresurser. Kontaktinfo till familjerättsbyråer. Konflikt-guide.",
+     "Arvskifte-sidan antar att alla är överens. HA! Om vi vore överens behövde vi ingen app.",
+     "Om styvmamman vägrar samarbeta — vad kan jag göra juridiskt? Appen säger inget.",
+     "Lägg till 'Konflikt-läge': boutredningsman-info, tingsrättsansökan, skiftesman.", 7),
+
+    (20, "Tommy Lind",
+     "Snabb onboarding. Visste redan svaren. Bra att den frågar 'redan gjort'.",
+     "Att jag kunde hoppa rakt till bouppteckning utan att gå igenom allt från scratch.",
+     "Appen startar ALLTID med nödbroms. Jag har redan gjort allt det. Låt mig välja startpunkt.",
+     "Möjlighet att starta i valfri fas: 'Jag är redan vid bouppteckning'.",
+     "Onboarding frågar banker men jag vet redan vilka — skulle vilja skriva fritt istället för att välja.",
+     "Inget som var förvirrande — men jag har gjort det förut.",
+     "Fritextfält i onboarding för 'Annat' vid banker. Snabbstart för erfarna användare.", 9),
+
+    (21, "Lovisa Dahl",
+     "Att relationen 'testamentstagare' finns i onboarding. Kändes inkluderande.",
+     "FAQ förklarade att testamentstagare har rättigheter.",
+     "Appen ger NOLL info om vad jag konkret ska göra som testamentstagare. Ska jag kontakta dödsboet? Vänta?",
+     "Guide för testamentstagare: 'Du har fått brev om testamentet — vad gör du nu?'",
+     "Arvskifte-beräkningen visar min lott som 0 kr med notis 'bestäms av testamentet'. Okej, men HUR MYCKET då?",
+     "Hur vet jag om testamentet har vunnit laga kraft? Vad är klanderfristen?",
+     "Testamentstagare-specifik guide med tidslinje och konkreta steg.", 5),
+
+    (22, "Rolf Åberg",
+     "Att fastigheter finns som tillgångstyp och kan värderas.",
+     "Bouppteckningen inkluderar fastigheter med taxeringsvärde.",
+     "INGEN hjälp med HUR man värderar en fastighet. Ska jag anlita mäklare? Vilken typ av värdering?",
+     "Mäklarlista. Värderingsguide. Info om taxeringsvärde vs marknadsvärde.",
+     "Att syskonen kan se tillgångarna men inte rösta eller kommentera. Vi behöver diskutera.",
+     "Om ett syskon vill behålla huset — hur funkar det? Kan man 'köpa ut' andra?",
+     "Utköps-kalkylator: 'Rolf vill behålla huset. Så mycket måste han betala till varje syskon.'", 7),
+
+    (23, "Nadia Kovac",
+     "Att appen finns och att det är fokus på SVENSK lag. Det var det jag behövde veta.",
+     "Tidsfrister hjälpte mig prioritera Sverige-delen först.",
+     "Appen ignorerar internationella tillgångar helt. Jag har halva dödsboet i Bosnien.",
+     "Möjlighet att flagga tillgångar som 'utomlands' och få relevant info.",
+     "Tillgångsformuläret har ingen valuta-inställning. Allt antas vara SEK.",
+     "Om pappa ägde fastighet i Bosnien — ska den med i svensk bouppteckning?",
+     "Valutaväxlingsstöd. Flagga 'utländsk tillgång' med extra info om EU-arvsförordningen.", 5),
+
+    (24, "Stig Holm",
+     "Att appen sa att som make ärver jag allt. Var orolig.",
+     "Enkla ord i FAQ.",
+     "Kan inte förstora texten. Måste hålla telefonen 10 cm från ansiktet.",
+     "Tillgänglighetsläge med stor text.",
+     "Registreringen. Jag vet inte mitt lösenord till e-posten.",
+     "Vad menas med 'logga in med e-post'? Jag har en e-post men använder den aldrig.",
+     "Alternativ inloggning: BankID! Alla äldre i Sverige har BankID.", 4),
+
+    (25, "Caroline Falk",
+     "Att bouppteckningen separerar fastigheter, värdepapper och bankmedel.",
+     "PDF-exporten ser seriös ut. Skickade den till pappans revisor.",
+     "15 miljoner i tillgångar — appen borde varna om skattekonsekvenser (kapitalvinst etc.).",
+     "Skattekonsekvensguide: 'Att sälja ärvd fastighet — reavinstskatt'. ISK vs vanlig depå.",
+     "Holdingbolag nämns inte. Appen tror alla tillgångar är 'aktier/fonder'.",
+     "Försäkringar med förmånstagare — går de UTANFÖR dödsboet? Appen är otydlig.",
+     "Skatteguide vid arv. Tydliggör vad som ingår i dödsboet vs vad som faller utanför.", 7),
+
+    (26, "Daniel Nordin",
+     "Jourhavande medmänniska-numret i inställningar. Ringde dem. De hjälpte.",
+     "Nödbromsen. Att den sa 'vila först'. Jag grät.",
+     "Jag är ENSAM. Appen antar att det finns syskon eller make. Det gör det inte.",
+     "Guide för unga ensamma arvingar: socialkontor, god man-ansökan, begravningshjälp.",
+     "Att jag måste fylla i 'förrättningsmän' — jag känner inga vuxna som kan vara det.",
+     "Vem kan vara förrättningsman? Kan det vara en vän? Måste det vara nån officiell?",
+     "Nätverksguide: Kommunens budget-/skuldrådgivning, Stadsmissionen, Jourhavande medmänniska.", 8),
+
+    (27, "Margareta Blom",
+     "Att kunna spåra kostnader och vem som betalat. Livräddare.",
+     "Fullmaktsmallen för bank — sparade timmar.",
+     "Appen hanterar inte att mamma är vid liv men har god man. Jag gör ALLT åt båda.",
+     "Scenario-stöd: 'Efterlevande make/maka har demens/god man'.",
+     "Bodelning ska göras FÖRE arvskifte om de var gifta. Appen nämner det knappt.",
+     "Vad är bodelning? Hur skiljer det sig från arvskifte? KRITISKT att förstå.",
+     "Lägg till bodelning som eget steg MELLAN bouppteckning och arvskifte.", 7),
+
+    (28, "Johan Rask",
+     "Att appen klarar av att lägga till delägare löpande — kunde lägga till halvsyskonet.",
+     "Arvsordningen uppdaterades automatiskt.",
+     "Inget stöd för 'okänd dödsbodelägare'. Ska jag ens kontakta halvsyskonet? Juridiskt tvång?",
+     "Guide: 'Ny dödsbodelägare upptäckt — vad gör jag?'. Socialregistret, Skatteverkets utdrag.",
+     "Kallelsen borde uppdateras automatiskt när jag lägger till nya delägare.",
+     "Har halvsyskon samma arvsrätt som helsyskon? Appen säger inget.",
+     "Tydliggör halvsyskons arvsrätt. Auto-uppdatera kallelse vid nya delägare.", 7),
+
+    (29, "Elin Sjöberg",
+     "FAQ om samborättigheter — förstod att jag kan begära bodelning.",
+     "Snabb onboarding.",
+     "Hyresrätt nämns men appen säger inte VAD SOM HÄNDER med den. Vem tar över kontraktet?",
+     "Hyresrättsguide: 'Sambo utan barn — rätt att ta över hyreskontrakt?'",
+     "Appen antar att jag vet vad 'samboegendom' är. Det gör jag inte.",
+     "Samboegendom — vad räknas? Vad räknas INTE? Appen förklarar inte.",
+     "Samboegendom-guide med konkreta exempel: möbler köpta ihop = ja, arv = nej.", 6),
+
+    (30, "Bengt Strand",
+     "Att appen hanterar ett dödsbo åt gången. Åtminstone kunde jag starta med mammas.",
+     "Tydliga tidsfrister.",
+     "Kan INTE hantera att pappas dödsbo fortfarande är öppet. Det är ETT dödsbo som INGÅR i det andra.",
+     "Multi-dödsbo-stöd. Eller åtminstone varning: 'Om den avlidne själv var delägare i ett dödsbo...'",
+     "Att jag måste göra ALLT i pappas dödsbo FÖRST. Appen borde säga det tydligt.",
+     "Vet inte i vilken ordning jag ska göra saker när det finns två dödsbon.",
+     "Guide för kedjade dödsbon. Prioriteringsordning. Möjlighet att koppla två dödsbon.", 5),
+
+    (31, "Petra Wallin",
+     "FAQ-svaret 'Du ärver ALDRIG skulder i Sverige' — enormt lugnande.",
+     "Att skulder visas tydligt i ekonomi-överblicken.",
+     "Appen säger att jag inte ärver skulder men förklarar inte vad som HÄNDER med dem.",
+     "Guide: 'Dödsbo med skulder' — Kronofogden, dödsboanmälan, avvecklingskostnad.",
+     "Varning om att bouppteckning ändå måste göras även om skulder > tillgångar.",
+     "Vad är dödsboanmälan? När kan man göra det istället för bouppteckning?",
+     "Dödsboanmälan-guide med kriterier (under halva basbelopp, inga fastigheter, etc.).", 7),
+
+    (32, "Gustav Sandberg",
+     "Imponerad av juridisk korrekthet i arvsordningen. Stämmer med ÄB.",
+     "PDF-bouppteckningen är nästan godkänd — bra struktur.",
+     "Som jurist ser jag brister: bodelning saknas, dödsboanmälan nämns ej, jämkning saknas.",
+     "Jurist-läge med mer detalj. Eller partnerprogram för jurister som vill rekommendera appen.",
+     "Att appen inte nämner föravtal, jämkning av testamente, eller förskott på arv.",
+     "Inget — men appen borde vara tydligare med sin begränsning.",
+     "Partnerprogram för jurister. Möjlighet att koppla sin jurist till dödsboet för rådgivning.", 6),
+
+    (33, "Camilla Öberg",
+     "Att appen fungerar i webbläsaren — kan zooma in.",
+     "Kontrasten är okej för det mesta.",
+     "Inga ARIA-labels, inga skip-navigation-länkar, inga focus-indicators.",
+     "WCAG 2.1 AA-anpassning. Skärmläsarstöd. Tangentbordsnavigering.",
+     "Ikonerna (lucide) har ingen alt-text. Skärmläsaren säger 'bild bild bild'.",
+     "Bottom nav är omöjlig att använda med tangentbord.",
+     "Tillgänglighetsaudit. ARIA-labels på alla ikoner. Focus management. Skip-nav.", 4),
+
+    (34, "Ulf Hedman",
+     "Kostnadsregistreringen — äntligen kvitto på vad syskonen lagt ut.",
+     "Avsluta konton-guiden.",
+     "INGET om lösöre! Mammas möbler, tavlor, smycken — det är det vi bråkar om. Appen ignorerar det helt.",
+     "Lösöre-inventering med foto. Värdering. Fördelning. Önskemål per delägare.",
+     "Arvskifte visar bara kronor. Inte VEM som vill ha VAD.",
+     "Lösöre värderas som en klump under 'tillgångar'. Borde vara separat med detaljering.",
+     "Lösöre-modul: lista objekt, ta foton, uppskatta värde, tilldela till delägare. DET ÄR DÄR BRÅKEN ÄR.", 6),
+
+    (35, "Sara Borg",
+     "Att allt är digitalt! Kan göra allt från London.",
+     "Bjuda in syskon, generera brev, ladda upp dokument — allt på distans.",
+     "Kallelsen ska skickas fysiskt (rekommenderat brev). Varför kan den inte skickas digitalt?",
+     "E-postkallelse med läskvitto. Digital signatur av bouppteckning.",
+     "Ingen tidszonanpassning. Alla tider/datum antar svensk tid.",
+     "Behöver jag vara fysiskt närvarande vid förrättningen? Kan man göra det via video?",
+     "Digital förrättning-guide: videosamtal, digital fullmakt, e-signatur.", 8),
+
+    (36, "Anders Gren",
+     "Att appen har 'villa/fritidshus' som boendetyp.",
+     "Tidsfrister för lantbruk (djur behöver akut omsorg!).",
+     "Appen har INGEN info om jordbruksfastighet, skog, mark, EU-stöd.",
+     "Guide: 'Dödsbo med lantbruk' — Jordbruksverket, EU-stöd, djuromsorg, skogsbruk.",
+     "Tillgångstypen 'villa' räcker inte för ett lantbruk med 50 hektar skog och 20 kor.",
+     "Hur värderar man 100 hektar skog? Appen ger inga ledtrådar.",
+     "Tillgångstyper: 'jordbruksfastighet', 'skog', 'mark'. Specifik info om Jordbruksverket.", 4),
+
+    (37, "Lena Moberg",
+     "Att nödbromsen sa 'vila'. Jag behövde höra det, trots att jag inte sörjer 'normalt'.",
+     "Att det inte kräver emotionell investering — rent praktisk guide.",
+     "Appen antar att jag VILL engagera mig. Kan jag bara avsäga mig arvet?",
+     "Guide: 'Att avstå arv' — hur, när, konsekvenser. Arvsavstående.",
+     "Tonaliteten känns ibland påtvingat sorglig. 'Vi finns här för dig' — jag vill bara bli klar.",
+     "Kan jag vägra vara dödsbodelägare? Appen säger inget.",
+     "Neutral ton-alternativ. Info om arvsavstående till förmån för nästa generation.", 6),
+
+    (38, "Viktor Palm",
+     "Bra grund-app. Modern känsla.",
+     "Onboardingen var snabb. Dashboard överskådligt.",
+     "NOLL stöd för kryptovalutor. Det är 2026! Bitcoin, ETH, NFTs — hur rapporteras de?",
+     "Tillgångstyp 'kryptovalutor'. Guide om hur man hittar wallet-nycklar, deklarerar crypto.",
+     "Tillgångstypen 'aktier/fonder' täcker inte crypto. Jag la det under 'övrigt' — ser oprofessionellt ut.",
+     "Hur värderas crypto per dödsdagen? Vilken kurs gäller? Vilken växling?",
+     "Krypto-guide: hitta wallets, private keys, börskonton (Coinbase etc). Deklaration av crypto-arv.", 5),
+
+    (39, "Gunilla Åström",
+     "Att jag kan göra saker utan att broderns barn behöver logga in.",
+     "Checklistan. Telefonnummer till myndigheter.",
+     "Broderns barn vägrar skriva under. Appen ger INGET alternativ.",
+     "Guide: 'När dödsbodelägare vägrar samarbeta' — skiftesman via tingsrätten.",
+     "Jag måste lägga in barnens uppgifter men de vill inte prata med mig.",
+     "Vad är en skiftesman? Hur ansöker man? Vad kostar det?",
+     "Skiftesman/boutredningsman-guide med kostnadsuppskattning och tingsrätts-blanketter.", 5),
+
+    (40, "Robin Nyman",
+     "Att den sa att begravning kan betalas av kommunen om pengar saknas. Visste inte det.",
+     "Jourhavande medmänniska-numret. Ringde dem kl 2 på natten.",
+     "Appen antar att jag har vuxna att fråga. Jag har ingen. Zero. Zip.",
+     "Nödläge-guide för ensamma unga: 'Ring kommunen, de MÅSTE hjälpa dig.' Socialtjänsten.",
+     "Ingen möjlighet att koppla en socialarbetare eller volontär till mitt dödsbo.",
+     "Allt. Jag är 19 och förstår ingenting. Men nödbromsen hjälpte i alla fall.",
+     "Under-25-guide. Direkt koppling till socialtjänsten. Enklare språk-alternativ.", 7),
+
+    (41, "Kristina Ask",
+     "Bra att bouppteckningen frågar om medborgarskap.",
+     "Juridisk korrekthet generellt.",
+     "Frågar om medborgarskap men GÖR inget med svaret. Ingen info om konsekvenser.",
+     "EU-arvsförordningen förklarad. Nordisk konvention om arv.",
+     "Pappa var finsk medborgare — gäller finsk eller svensk lag? Appen svarar inte.",
+     "Dubbelmedborgarskap och hemvist — avgörande begrepp som appen skippar.",
+     "Dynamisk info baserat på medborgarskap-svaret. 'Du angav finskt medborgarskap — detta gäller...'", 5),
+
+    (42, "Mattias Vinge",
+     "Avsluta konton-guiden med Apple och Google specifik info.",
+     "Digital-tjänster-sektionen i avsluta konton.",
+     "Appen hjälper mig avsluta konton men inte KOMMA ÅT dem. Lösenord-problematiken ignoreras.",
+     "Guide: 'Komma åt den avlidnes digitala liv' — Apple Legacy, Google Inactive Account, Bankens appar.",
+     "Dokumentuppladdning kräver att jag HAR dokumenten. Men de finns i mammas telefon.",
+     "Digital åtkomst och fysisk åtkomst — appen blandar ihop dem.",
+     "Digital arv-sektion: lösenordshantering, enhetsåtkomst, molntjänster, sociala medier.", 6),
+
+    (43, "Berit Englund",
+     "Att appen finns. Annars hade jag anlitat jurist för 20 000 kr.",
+     "Ekonomi-överblicken.",
+     "Äktenskapsförord nämns INGENSTANS. Det påverkar ALLT vid bodelning.",
+     "Bodelningsguide: 'Med äktenskapsförord', 'Utan äktenskapsförord', 'Enskild egendom'.",
+     "Arvskifte-beräkningen ignorerar bodelning helt. Visar fel siffror för gifta par.",
+     "Giftorättsgods vs enskild egendom — fundamental skillnad som appen missar.",
+     "Bodelning som obligatoriskt steg för gifta. Fråga i onboarding: 'Finns äktenskapsförord?'", 6),
+
+    (44, "Alexander Ferm",
+     "Bra att alla barn-relationer finns.",
+     "Arvsordning-infon.",
+     "Adoptivbarn nämns inte specifikt. Jag vet att de har samma rätt men nya frun är osäker.",
+     "Tydlig text: 'Adoptivbarn har EXAKT samma arvsrätt som biologiska barn (ÄB 4 kap.)'",
+     "Relation 'barn' gör ingen skillnad mellan biologiskt/adopterat. Bra — men folk undrar.",
+     "Folk googlar 'adoptivbarn arvsrätt' — appen borde fånga upp det.",
+     "FAQ-post om adoptivbarn. Eventuellt foster barn och styvbarn (som INTE ärver utan testamente).", 8),
+
+    (45, "Maj-Britt Hall",
+     "Ingenting — dottersonen fick göra allt.",
+     "Telefonnumren.",
+     "Jag vill inte sälja huset! Appen visar det som en tillgång att FÖRDELA. Det är mitt HEM.",
+     "Utköps-guide: 'Bo kvar i familjens bostad — så gör du.'",
+     "Barnen trycker på att sälja. Appen ger dem ammunition med tillgångsberäkningen.",
+     "Kan jag bo kvar i villan? Har jag rätt? Vad är 'lilla basbeloppsregeln'?",
+     "Sensitivt formulerad info om bostad: rättigheter att bo kvar, utköp, prisbasbelopp.", 3),
+
+    (46, "Emil Grahn",
+     "FAQ: 'Du ärver aldrig skulder' — bokstavligen livsförändrande information.",
+     "Tydlig info om vad Kronofogden gör.",
+     "Appen borde aktivt VARNA mig: 'Om du tar ut pengar ur dödsboet kan du bli personligt ansvarig.'",
+     "Varningsbox: 'VIKTIGT — ta aldrig ut pengar ur dödsboet utan alla delägares godkännande.'",
+     "Inget om hur man gör dödsboanmälan istället för bouppteckning (billigare, enklare).",
+     "Personligt ansvar om man blandar egna och dödsboets pengar — appen nämner det inte.",
+     "Varningsruta vid skuldsatta dödsbon. Dödsboanmälan-alternativ. Kronofogde-guide.", 7),
+
+    (47, "Therese Hult",
+     "Bra checklista-ansats.",
+     "Tidsfrister relevant.",
+     "Enskild firma i dödsbo — appen vet NOLL. Anställda? Moms? Skatteverket? F-skatt?",
+     "Företagsguide: 'Dödsbo med enskild firma/AB — anställda, avtal, F-skatt, moms.'",
+     "Kan inte kategorisera tillgångar som 'firmans inventarier' vs 'privat egendom'.",
+     "Vem betalar löner till mammas anställda nu? Dödsboet? Hur?",
+     "Företags-modul: separera firma-tillgångar, guide om anställda, kontakta Bolagsverket.", 4),
+
+    (48, "Jan-Erik Bäck",
+     "Enkelt fall, enkel app. Perfekt matchning.",
+     "Att jag kunde gå direkt till bouppteckning utan massa strul.",
+     "Appen kräver onboarding för ALLA. Mitt fall tar 20 minuter totalt. Onboarding tog 5 av dem.",
+     "Snabbspår: 'Enkel bouppteckning' för fall med en arvinge, få tillgångar, inga skulder.",
+     "Att jag måste lägga till mig själv som delägare manuellt. Appen borde göra det automatiskt.",
+     "Ingenting — allt var tydligt för mitt enkla fall.",
+     "Auto-lägg till den registrerade användaren som delägare med angiven relation.", 9),
+
+    (49, "Frida Norberg",
+     "Att appen är diskret och inte frågar om privat info.",
+     "Ekonomi-övesikten.",
+     "Royalties, musikrättigheter, immateriella tillgångar — appen har INGEN tillgångstyp för det.",
+     "Tillgångstyper: 'immateriella rättigheter', 'royalties', 'upphovsrätt'. Guide om STIM, Kobalt etc.",
+     "Under 'övrigt' får jag skriva allt om royalties — men bouppteckningen visar det inte professionellt.",
+     "Vem får royalties efter mammas död? Appen svarar inte.",
+     "Immateriella tillgångar som egen kategori. Info om upphovsrätt (70 år efter dödsfall).", 5),
+
+    (50, "Kurt Lindqvist",
+     "Att appen inte dömde mig för att jag är sen. Visar bara fakta.",
+     "Brev till Skatteverket om anstånd — exakt vad jag behövde.",
+     "Appen varnade INTE att jag var sen! Den borde ha skrikit åt mig vid inloggning.",
+     "Akut-varning vid inloggning om man passerat 3-månadersfristen. Stor röd banner.",
+     "Att anståndsbrevet inte nämner att man REDAN passerat fristen — det måste formuleras annorlunda.",
+     "Vad händer om man missar fristen? Böter? Straff? Appen säger bara 'vite kan utdömas'.",
+     "Dynamisk fristbevakning med push-varning. Anpassat anståndsbrev för redan försenade.", 7),
+]
+
+feedback_cols = ["ID", "Namn", "ALSKAR", "GILLAR", "HATAR", "ONSKAR FANNS", "IRRITERANDE", "FORVIRRANDE", "FORSLAG", "NPS (0-10)"]
+for c, val in enumerate(feedback_cols, 1):
+    cell = ws2.cell(row=1, column=c, value=val)
+    cell.font = header_font
+    cell.fill = header_fill
+    cell.alignment = center
+    cell.border = thin_border
+
+col_fills = [None, None, love_fill, like_fill, hate_fill, wish_fill, hate_fill, wish_fill, like_fill, None]
+
+for r, row in enumerate(feedback_data, 2):
+    for c, val in enumerate(row, 1):
+        cell = ws2.cell(row=r, column=c, value=val)
+        cell.font = body_font_small
+        cell.alignment = wrap
+        cell.border = thin_border
+        if col_fills[c-1]:
+            cell.fill = col_fills[c-1]
+
+ws2.column_dimensions["A"].width = 5
+ws2.column_dimensions["B"].width = 20
+ws2.column_dimensions["C"].width = 40
+ws2.column_dimensions["D"].width = 35
+ws2.column_dimensions["E"].width = 40
+ws2.column_dimensions["F"].width = 40
+ws2.column_dimensions["G"].width = 35
+ws2.column_dimensions["H"].width = 35
+ws2.column_dimensions["I"].width = 45
+ws2.column_dimensions["J"].width = 10
+ws2.auto_filter.ref = f"A1:J{len(feedback_data)+1}"
+
+# ══════════════════════════════════════════════════════════════
+# SHEET 3: TOP THEMES (Aggregated insights)
+# ══════════════════════════════════════════════════════════════
+ws3 = wb.create_sheet("Topp-insikter")
+
+themes = [
+    ("KRITISKT SAKNAS", "Hog", "Bodelning for gifta", "Bodelning ar ett obligatoriskt steg FORE arvskifte for gifta par. Appen skippar det helt.", "12 personas (alla gifta)", "Lagg till bodelning som eget steg. Fraga om aktenskapsforord i onboarding."),
+    ("KRITISKT SAKNAS", "Hog", "Dodsboanmalan-alternativ", "For enkla dodsbon (fa tillgangar, inga fastigheter) kan dodsboanmalan goras istallet. 50% av fallen.", "8 personas", "Automatisk bedomning: 'Ditt dodsbo kan kvalificera for dodsboanmalan (enklare)."),
+    ("KRITISKT SAKNAS", "Hog", "Internationella arv", "Tillgangar utomlands, utlandskt medborgarskap, EU-arvsforordningen — ignoreras helt.", "5 personas", "Internationell modul: flagga utlandska tillgangar, medborgarskaps-konsekvenser."),
+    ("KRITISKT SAKNAS", "Hog", "Foretag i dodsbo (AB/enskild firma)", "Aktiebolag, enskild firma, anstallda, moms — appen har inget stod.", "3 personas", "Foretagsguide med Bolagsverket-info, separera firma- vs privata tillgangar."),
+    ("HETT ONSKAT", "Hog", "BankID-inloggning", "Aldre anvandare kanner inte till losenord/e-post men har BankID.", "8 personas (65+)", "Implementera BankID-inloggning som alternativ."),
+    ("HETT ONSKAT", "Hog", "Push-notiser/e-postpaminnelser", "Anvandare glommer att kolla appen. Deadlines missas.", "15 personas", "Scheduled e-postpaminnelser + valfria push-notiser via PWA."),
+    ("HETT ONSKAT", "Hog", "Losore-inventering med foto", "Det ar dar braken uppstar — mobler, smycken, tavlor. Appen ignorerar det.", "6 personas", "Losore-modul: fotografera, vardera, tilldela till delagare, onskemalsregistering."),
+    ("HETT ONSKAT", "Medel", "Konflikthantering/medling", "Manga familjer brakar. Appen antar alla ar overens.", "7 personas", "Skiftesman-guide, boutredningsman-info, medlingsresurser, tingsratts-blanketter."),
+    ("HETT ONSKAT", "Medel", "Uppgiftsfordelning mellan delagare", "Familjer vill dela upp arbetet men kan inte tilldela uppgifter.", "5 personas", "Per-uppgift tilldelning: 'Lars: bank, Anna: forsakring'."),
+    ("HETT ONSKAT", "Medel", "Sambo-specifik guide", "Sambor har unik juridisk situation. Bodelning, bostadsratt, basbelopp.", "4 personas", "Expandera sambo-sektionen: bodelningsguide, bostadsratt, basbeloppsregeln."),
+    ("UX-PROBLEM", "Hog", "Tillganglighet (a11y)", "Inga ARIA-labels, for sma touch targets, ingen skip-nav, dalig kontrast stallen.", "5 personas", "WCAG 2.1 AA-audit. ARIA-labels, focus management, stortext-lage."),
+    ("UX-PROBLEM", "Hog", "For lang onboarding", "7 steg kanns overvaldigande for nyblivna sorgande.", "8 personas", "Korta till 3-4 steg. Rest fylls i senare. 'Snabbstart' for erfarna."),
+    ("UX-PROBLEM", "Medel", "Juridiska termer oforklarade", "Forrattningsman, bouppgivare, laglott, istadaratt — okanda for de flesta.", "10 personas", "Ordlista/glossary. Tooltip pa juridiska termer. Enklare sprak som alternativ."),
+    ("UX-PROBLEM", "Medel", "Kan ej redigera onboarding-svar", "Valde fel familjesituation? Maste borja om.", "4 personas", "Redigera-knapp i Installningar for att andra onboarding-svar."),
+    ("UX-PROBLEM", "Lag", "Textstorlek for liten for aldre", "73+ kan inte lasa. Inget zoom/textsize-alternativ.", "6 personas", "Tillganglighetsinstallningar: textstorlek, kontrast, forenklad vy."),
+    ("FEATURE-ONSKAN", "Medel", "Kryptovalutor som tillgangstyp", "Bitcoin/ETH vanligt 2026, saknar egen kategori.", "2 personas", "Tillaggstyp 'krypto'. Guide om planboksatkomst och deklaration."),
+    ("FEATURE-ONSKAN", "Medel", "Visuellt slaktrad", "Vem arver vem? Svart att forsta med bara text.", "4 personas", "Interaktivt slaktrad baserat pa inlagda delagare."),
+    ("FEATURE-ONSKAN", "Medel", "Flerspraks-stod (engelska)", "Manga invandare klarar inte svenska flytande.", "3 personas", "Engelska som alternativt sprak. Arabiska/dari i framtiden."),
+    ("FEATURE-ONSKAN", "Lag", "Dark mode", "Yngre anvandare vill ha mork tema.", "2 personas", "CSS dark mode toggle."),
+    ("FEATURE-ONSKAN", "Lag", "Utko-ps-kalkylator", "Nar en arvinge vill behalla bostaden — hur mycket ska betalas?", "3 personas", "Kalkylator: 'Behall bostaden — betala X till varje syskon'."),
+    ("POSITIVT", "—", "Nodbromsen", "Alla som testade den alskade den. Ton, innehall, timing.", "42/50", "Behall och expandera."),
+    ("POSITIVT", "—", "Bankbrev auto-genererade", "Sparar timmar. Ratt bankinfo. Bara kopiera och skicka.", "35/50", "Lagg till .docx-export utover copy/PDF."),
+    ("POSITIVT", "—", "FAQ juridisk korrekthet", "Arvsordning, laglott, sambo-ratt — stammer med lagen.", "30/50", "Expandera med fler scenario-specifika fragor."),
+    ("POSITIVT", "—", "Kostnadsregistrering", "Unikt. Ingen konkurrent har det. Forhindrar syskonbrak.", "25/50", "Lagg till kvitto-foto och export for redovisning."),
+    ("POSITIVT", "—", "Avsluta konton-checklista", "34+ poster med telefonnummer. Enorm tidsbesparing.", "38/50", "Lagg till fler tjanster: gym, frisorprenumeration, apoteket."),
+]
+
+theme_cols = ["Typ", "Prioritet", "Tema", "Beskrivning", "Beror", "Rekommendation"]
+for c, val in enumerate(theme_cols, 1):
+    cell = ws3.cell(row=1, column=c, value=val)
+    cell.font = header_font
+    cell.fill = header_fill
+    cell.alignment = center
+    cell.border = thin_border
+
+type_fills = {
+    "KRITISKT SAKNAS": PatternFill("solid", fgColor="F1948A"),
+    "HETT ONSKAT": PatternFill("solid", fgColor="F9E79F"),
+    "UX-PROBLEM": PatternFill("solid", fgColor="FAD7A0"),
+    "FEATURE-ONSKAN": PatternFill("solid", fgColor="AED6F1"),
+    "POSITIVT": PatternFill("solid", fgColor="ABEBC6"),
+}
+
+for r, row in enumerate(themes, 2):
+    for c, val in enumerate(row, 1):
+        cell = ws3.cell(row=r, column=c, value=val)
+        cell.font = body_font
+        cell.alignment = wrap
+        cell.border = thin_border
+        if c == 1 and val in type_fills:
+            cell.fill = type_fills[val]
+
+ws3.column_dimensions["A"].width = 20
+ws3.column_dimensions["B"].width = 10
+ws3.column_dimensions["C"].width = 30
+ws3.column_dimensions["D"].width = 55
+ws3.column_dimensions["E"].width = 18
+ws3.column_dimensions["F"].width = 55
+ws3.auto_filter.ref = f"A1:F{len(themes)+1}"
+
+# ══════════════════════════════════════════════════════════════
+# SHEET 4: NPS SUMMARY
+# ══════════════════════════════════════════════════════════════
+ws4 = wb.create_sheet("NPS-analys")
+
+nps_scores = [row[9] for row in feedback_data]
+promoters = sum(1 for s in nps_scores if s >= 9)
+passives = sum(1 for s in nps_scores if 7 <= s <= 8)
+detractors = sum(1 for s in nps_scores if s <= 6)
+nps = round(((promoters - detractors) / len(nps_scores)) * 100)
+
+ws4.cell(row=1, column=1, value="NPS-analys Dodsboappen").font = Font(name="Arial", bold=True, size=16, color=BRAND)
+ws4.merge_cells("A1:D1")
+
+stats = [
+    ("Totalt antal testare", len(nps_scores)),
+    ("Medelbetyg", round(sum(nps_scores)/len(nps_scores), 1)),
+    ("Promoters (9-10)", f"{promoters} ({round(promoters/len(nps_scores)*100)}%)"),
+    ("Passives (7-8)", f"{passives} ({round(passives/len(nps_scores)*100)}%)"),
+    ("Detractors (0-6)", f"{detractors} ({round(detractors/len(nps_scores)*100)}%)"),
+    ("NPS Score", nps),
+]
+
+for r, (label, val) in enumerate(stats, 3):
+    ws4.cell(row=r, column=1, value=label).font = Font(name="Arial", bold=True, size=11)
+    cell = ws4.cell(row=r, column=2, value=val)
+    cell.font = Font(name="Arial", size=11, bold=True)
+    if label == "NPS Score":
+        cell.font = Font(name="Arial", size=16, bold=True, color="27AE60" if nps > 0 else "EB5757")
+
+ws4.cell(row=10, column=1, value="NPS per segment").font = Font(name="Arial", bold=True, size=14, color=BRAND)
+
+segments = [
+    ("Alder 18-35 (digital natives)", [f[9] for f in feedback_data if personas[feedback_data.index(f)][2] <= 35]),
+    ("Alder 36-55 (mittgrupp)", [f[9] for f in feedback_data if 36 <= personas[feedback_data.index(f)][2] <= 55]),
+    ("Alder 56-75 (nara pension)", [f[9] for f in feedback_data if 56 <= personas[feedback_data.index(f)][2] <= 75]),
+    ("Alder 76+ (aldsta)", [f[9] for f in feedback_data if personas[feedback_data.index(f)][2] > 75]),
+    ("Hog teknisk niva", [f[9] for f in feedback_data if personas[feedback_data.index(f)][6] in ["Hög", "Mycket hög"]]),
+    ("Lag teknisk niva", [f[9] for f in feedback_data if personas[feedback_data.index(f)][6] in ["Låg", "Mycket låg"]]),
+    ("Relation: Barn", [f[9] for f in feedback_data if personas[feedback_data.index(f)][4] == "Barn"]),
+    ("Relation: Make/maka", [f[9] for f in feedback_data if personas[feedback_data.index(f)][4] == "Make"]),
+]
+
+seg_cols = ["Segment", "Antal", "Medelbetyg", "NPS"]
+for c, val in enumerate(seg_cols, 1):
+    cell = ws4.cell(row=11, column=c, value=val)
+    cell.font = header_font
+    cell.fill = header_fill
+    cell.alignment = center
+    cell.border = thin_border
+
+for r, (name, scores) in enumerate(segments, 12):
+    if not scores:
+        continue
+    p = sum(1 for s in scores if s >= 9)
+    d = sum(1 for s in scores if s <= 6)
+    seg_nps = round(((p - d) / len(scores)) * 100)
+
+    ws4.cell(row=r, column=1, value=name).font = body_font
+    ws4.cell(row=r, column=2, value=len(scores)).font = body_font
+    ws4.cell(row=r, column=3, value=round(sum(scores)/len(scores), 1)).font = body_font
+    nps_cell = ws4.cell(row=r, column=4, value=seg_nps)
+    nps_cell.font = Font(name="Arial", bold=True, color="27AE60" if seg_nps > 0 else "EB5757")
+
+    for c in range(1, 5):
+        ws4.cell(row=r, column=c).border = thin_border
+        ws4.cell(row=r, column=c).alignment = center
+
+ws4.column_dimensions["A"].width = 30
+ws4.column_dimensions["B"].width = 10
+ws4.column_dimensions["C"].width = 14
+ws4.column_dimensions["D"].width = 10
+
+# ── Save ──
+output_path = "ux-testrapport-50-personas.xlsx"
+wb.save(output_path)
+print(f"\nRapporten sparad: {output_path}")
+print(f"NPS Score: {nps}")
+print(f"Promoters: {promoters} | Passives: {passives} | Detractors: {detractors}")
+print(f"4 flikar: Personas | Feedback | Topp-insikter | NPS-analys")

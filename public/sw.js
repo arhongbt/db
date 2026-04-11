@@ -14,6 +14,14 @@ const STATIC_ASSETS = [
   '/tidslinje',
   '/nodbroms',
   '/faq',
+  '/bodelning',
+  '/dodsboanmalan',
+  '/losore',
+  '/konflikt',
+  '/ordlista',
+  '/internationellt',
+  '/foretag-i-dodsbo',
+  '/juridisk-hjalp',
   '/manifest.json',
   '/icons/icon-192.png',
   '/icons/icon-512.png',
@@ -39,6 +47,22 @@ self.addEventListener('activate', (event) => {
     )
   );
   self.clients.claim();
+});
+
+// Notification click — open the app
+self.addEventListener('notificationclick', (event) => {
+  event.notification.close();
+  const url = event.notification.data?.url || '/dashboard';
+  event.waitUntil(
+    self.clients.matchAll({ type: 'window', includeUncontrolled: true }).then((clients) => {
+      for (const client of clients) {
+        if (client.url.includes(url) && 'focus' in client) {
+          return client.focus();
+        }
+      }
+      return self.clients.openWindow(url);
+    })
+  );
 });
 
 // Fetch — network-first with cache fallback

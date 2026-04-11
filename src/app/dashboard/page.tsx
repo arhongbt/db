@@ -12,11 +12,19 @@ import {
   Calendar,
   Heart,
   Settings,
+  Zap,
 } from 'lucide-react';
 import { BottomNav } from '@/components/ui/BottomNav';
 import type { DodsboTask, ProcessStep, TaskStatus } from '@/types';
 import { DEFAULT_TIDSFRISTER } from '@/types';
 import Link from 'next/link';
+import {
+  checkAndNotifyDeadlines,
+  requestNotificationPermission,
+  getNotificationPrefs,
+  saveNotificationPrefs,
+  getNotificationPermission,
+} from '@/lib/notifications';
 
 function DashboardSkeleton() {
   return (
@@ -40,8 +48,26 @@ function DashboardSkeleton() {
 function DashboardContent() {
   const { state, loading } = useDodsbo();
   const [mounted, setMounted] = useState(false);
+  const [notifStatus, setNotifStatus] = useState<'idle' | 'enabled' | 'denied' | 'unsupported'>('idle');
 
   useEffect(() => setMounted(true), []);
+
+  // Check notification status on mount
+  useEffect(() => {
+    if (!mounted) return;
+    const perm = getNotificationPermission();
+    const prefs = getNotificationPrefs();
+    if (perm === 'unsupported') setNotifStatus('unsupported');
+    else if (perm === 'denied') setNotifStatus('denied');
+    else if (perm === 'granted' && prefs.enabled) setNotifStatus('enabled');
+    else setNotifStatus('idle');
+  }, [mounted]);
+
+  // Check and fire deadline notifications
+  useEffect(() => {
+    if (!mounted || !state.deathDate || notifStatus !== 'enabled') return;
+    checkAndNotifyDeadlines(state.deathDate, DEFAULT_TIDSFRISTER);
+  }, [mounted, state.deathDate, notifStatus]);
   if (!mounted || loading) return <DashboardSkeleton />;
 
   const deathDate = state.deathDate ? new Date(state.deathDate) : null;
@@ -178,6 +204,81 @@ function DashboardContent() {
         </div>
       </div>
 
+      {/* Smart Top 3 — personalized priority actions */}
+      {(() => {
+        const top3: { label: string; href: string; reason: string; color: string }[] = [];
+
+        const alreadyDone = state.onboarding.alreadyDone || [];
+        const isMarried = state.onboarding.familySituation?.startsWith('gift_');
+        const hasBanks = state.onboarding.banks.length > 0;
+        const hasDelagare = state.delagare.length > 0;
+        const hasTillgangar = state.tillgangar.length > 0;
+
+        // Priority 1: Nödbroms first week
+        if (daysSinceDeath <= 7 && !alreadyDone.includes('dodsbevis')) {
+          top3.push({ label: 'Gå igenom nödbromsen', href: '/nodbroms', reason: 'Dag 1–7 — viktigaste stegen', color: 'border-warn bg-red-50' });
+        }
+        // Priority 2: Contact bank
+        if (hasBanks && !alreadyDone.includes('kontaktat_bank')) {
+          top3.push({ label: 'Kontakta banker', href: '/avsluta-konton', reason: `${state.onboarding.banks.length} banker att meddela`, color: 'border-accent bg-blue-50' });
+        }
+        // Priority 3: Add delägare
+        if (!hasDelagare) {
+          top3.push({ label: 'Lägg till dödsbodelägare', href: '/delagare', reason: 'Krävs för bouppteckning', color: 'border-accent bg-blue-50' });
+        }
+        // Priority 4: Inventera tillgångar
+        if (!hasTillgangar) {
+          top3.push({ label: 'Inventera tillgångar & skulder', href: '/tillgangar', reason: 'Grund för bouppteckning', color: 'border-accent bg-blue-50' });
+        }
+        // Priority 5: Bodelning for married
+        if (isMarried) {
+          top3.push({ label: 'Gör bodelning', href: '/bodelning', reason: 'Krävs innan arvskifte (gifta)', color: 'border-primary bg-primary-lighter/20' });
+        }
+        // Priority 6: Bouppteckning
+        if (daysSinceDeath >= 14 && hasDelagare && hasTillgangar) {
+          top3.push({ label: 'Förbered bouppteckning', href: '/bouppteckning', reason: `${Math.max(0, 90 - daysSinceDeath)} dagar kvar till frist`, color: 'border-primary bg-primary-lighter/20' });
+        }
+        // Priority 7: Försäkringar
+        if (!alreadyDone.includes('kontaktat_forsakring')) {
+          top3.push({ label: 'Kontrollera försäkringar', href: '/forsakringar', reason: 'Kan ge dödsfallsersättning', color: 'border-success bg-green-50' });
+        }
+        // Priority 8: Arvskifte
+        if (state.currentStep === 'arvskifte') {
+          top3.push({ label: 'Genomför arvskifte', href: '/arvskifte', reason: 'Fördela tillgångarna', color: 'border-success bg-green-50' });
+        }
+
+        const actions = top3.slice(0, 3);
+
+        return actions.length > 0 ? (
+          <section className="mb-6">
+            <div className="flex items-center gap-2 mb-3">
+              <Zap className="w-5 h-5 text-accent" />
+              <h2 className="text-lg font-semibold text-primary">Gör detta först</h2>
+            </div>
+            <div className="flex flex-col gap-2">
+              {actions.map((a, i) => (
+                <Link
+                  key={a.href}
+                  href={a.href}
+                  className={`card border-l-4 ${a.color} flex items-center justify-between`}
+                >
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <span className="bg-accent text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center flex-shrink-0">
+                        {i + 1}
+                      </span>
+                      <p className="font-medium text-primary text-sm">{a.label}</p>
+                    </div>
+                    <p className="text-xs text-muted mt-0.5 ml-7">{a.reason}</p>
+                  </div>
+                  <ChevronRight className="w-5 h-5 text-muted flex-shrink-0" />
+                </Link>
+              ))}
+            </div>
+          </section>
+        ) : null;
+      })()}
+
       {/* Upcoming deadlines */}
       {upcomingDeadlines.length > 0 && (
         <section className="mb-6">
@@ -237,6 +338,47 @@ function DashboardContent() {
         </div>
       )}
 
+      {/* AI Legal Assistant — always visible */}
+      <Link
+        href="/juridisk-hjalp"
+        className="card border-l-4 border-accent bg-blue-50 mb-4 flex items-center justify-between"
+      >
+        <div>
+          <p className="font-semibold text-accent">Juridisk AI-assistent</p>
+          <p className="text-sm text-primary/70">Fråga om arvsrätt, bouppteckning, arvskifte</p>
+        </div>
+        <ChevronRight className="w-5 h-5 text-accent" />
+      </Link>
+
+      {/* Notification prompt */}
+      {notifStatus === 'idle' && state.deathDate && (
+        <button
+          onClick={async () => {
+            const granted = await requestNotificationPermission();
+            if (granted) {
+              saveNotificationPrefs({ enabled: true, reminderDays: [7, 3, 1] });
+              setNotifStatus('enabled');
+              checkAndNotifyDeadlines(state.deathDate!, DEFAULT_TIDSFRISTER);
+            } else {
+              setNotifStatus('denied');
+            }
+          }}
+          className="card border-l-4 border-primary bg-primary-lighter/20 mb-4 flex items-center justify-between w-full text-left"
+        >
+          <div>
+            <p className="font-medium text-primary text-sm">Aktivera påminnelser</p>
+            <p className="text-xs text-muted">Få notiser innan viktiga tidsfrister</p>
+          </div>
+          <span className="text-xs font-medium text-accent bg-accent/10 px-2 py-1 rounded-full">Slå på</span>
+        </button>
+      )}
+      {notifStatus === 'enabled' && (
+        <div className="flex items-center gap-2 mb-4 px-1">
+          <CheckCircle2 className="w-4 h-4 text-success" />
+          <span className="text-xs text-muted">Påminnelser aktiva — du notifieras 7, 3 och 1 dag innan frister</span>
+        </div>
+      )}
+
       {/* Smart action reminders based on current step */}
       {daysSinceDeath > 0 && daysSinceDeath <= 90 && state.onboarding.banks.length > 0 && (
         <Link
@@ -260,15 +402,23 @@ function DashboardContent() {
         </h2>
         <div className="flex flex-col gap-2">
           {[
+            { label: 'Juridisk AI-assistent', href: '/juridisk-hjalp' },
             { label: 'Lägg till dödsbodelägare', href: '/delagare' },
             { label: 'Inventera tillgångar & skulder', href: '/tillgangar' },
+            { label: 'Lösöre — möbler, smycken, konst', href: '/losore' },
             { label: 'Kontrollera försäkringar', href: '/forsakringar' },
             { label: 'Bouppteckning', href: '/bouppteckning' },
+            { label: 'Dödsboanmälan (enklare alternativ)', href: '/dodsboanmalan' },
+            { label: 'Bodelning (gifta par)', href: '/bodelning' },
             { label: 'Kallelse till förrättning', href: '/kallelse' },
             { label: 'Arvskifte', href: '/arvskifte' },
             { label: 'Fullmakter & mallar', href: '/fullmakt' },
             { label: 'Avsluta konton', href: '/avsluta-konton' },
             { label: 'Dödsbokostnader', href: '/kostnader' },
+            { label: 'Konflikter & skiftesman', href: '/konflikt' },
+            { label: 'Internationella arv', href: '/internationellt' },
+            { label: 'Företag i dödsbo', href: '/foretag-i-dodsbo' },
+            { label: 'Ordlista — juridiska termer', href: '/ordlista' },
             { label: 'Vanliga frågor', href: '/faq' },
             { label: 'Visa alla uppgifter', href: '/uppgifter' },
           ].map((action) => (

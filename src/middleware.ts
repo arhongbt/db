@@ -23,6 +23,14 @@ const PROTECTED_ROUTES = [
   "/kostnader",
   "/installningar",
   "/dokument",
+  "/bodelning",
+  "/dodsboanmalan",
+  "/losore",
+  "/konflikt",
+  "/ordlista",
+  "/internationellt",
+  "/foretag-i-dodsbo",
+  "/juridisk-hjalp",
 ];
 
 export async function middleware(request: NextRequest) {

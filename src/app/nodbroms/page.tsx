@@ -258,7 +258,12 @@ function NodbromsContent() {
                   {step.tips && (
                     <div className="bg-primary-lighter/30 rounded-card p-3 text-sm">
                       <strong className="text-primary">Tips:</strong>{' '}
-                      <span className="text-primary/80">{step.tips}</span>
+                      <span className="text-primary/80">{step.tips.split(/(\d[\d\s-]{6,})/).map((part: string, j: number) => {
+                        const digits = part.replace(/[^0-9]/g, '');
+                        return digits.length >= 8 ? (
+                          <a key={j} href={`tel:${digits}`} className="text-accent hover:underline">{part}</a>
+                        ) : part;
+                      })}</span>
                     </div>
                   )}
 
