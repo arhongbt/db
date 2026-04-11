@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 const OPENROUTER_API_URL = 'https://openrouter.ai/api/v1/chat/completions';
-const AI_MODEL = 'anthropic/claude-3-haiku-20240307';
+const AI_MODEL = 'anthropic/claude-3-haiku';
 
 const SYSTEM_PROMPT = `Du är Dödsboappens juridiska AI-assistent, specialiserad på svensk arvsrätt och dödsbohantering. Du ger JURIDISK INFORMATION (inte juridisk rådgivning) baserat på svensk lagstiftning.
 
