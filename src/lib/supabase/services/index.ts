@@ -5,3 +5,4 @@ export * from './skulder-service';
 export * from './forsakringar-service';
 export * from './tasks-service';
 export * from './dokument-service';
+export * from './invite-service';

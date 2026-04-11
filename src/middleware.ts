@@ -4,7 +4,7 @@ import { createServerClient } from "@supabase/ssr";
 import { Database } from "@/lib/supabase/types";
 
 // Define public routes that don't require authentication
-const PUBLIC_ROUTES = ["/", "/auth", "/auth/callback", "/faq", "/onboarding"];
+const PUBLIC_ROUTES = ["/", "/auth", "/auth/callback", "/faq", "/onboarding", "/invite"];
 
 // Define protected routes that require authentication
 const PROTECTED_ROUTES = [
@@ -18,6 +18,7 @@ const PROTECTED_ROUTES = [
   "/bouppteckning",
   "/arvskifte",
   "/installningar",
+  "/dokument",
 ];
 
 export async function middleware(request: NextRequest) {
@@ -26,7 +27,9 @@ export async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
 
   // Check if route is public
-  const isPublicRoute = PUBLIC_ROUTES.includes(pathname);
+  const isPublicRoute = PUBLIC_ROUTES.some((route) =>
+    pathname === route || pathname.startsWith(route + "/")
+  );
   if (isPublicRoute) {
     return response;
   }

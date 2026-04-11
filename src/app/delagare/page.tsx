@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { DodsboProvider, useDodsbo } from '@/lib/context';
 import { BottomNav } from '@/components/ui/BottomNav';
 import { OptionCard } from '@/components/ui/OptionCard';
@@ -13,8 +13,22 @@ import {
   Info,
   ChevronDown,
   ChevronUp,
+  Send,
+  Copy,
+  CheckCircle2,
+  Clock,
+  Link2,
 } from 'lucide-react';
+import {
+  createInvite,
+  getInvites,
+  getInviteLink,
+  revokeInvite,
+} from '@/lib/supabase/services/invite-service';
 import type { Relation, Dodsbodelaware } from '@/types';
+import type { Database } from '@/lib/supabase/types';
+
+type InviteRow = Database['public']['Tables']['invites']['Row'];
 
 const RELATION_LABELS: Record<Relation, string> = {
   make_maka: 'Make/maka',
@@ -38,6 +52,44 @@ function DelagareContent() {
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
   const [errors, setErrors] = useState<Record<string, string>>({});
+
+  // Invite state
+  const [invites, setInvites] = useState<InviteRow[]>([]);
+  const [copiedToken, setCopiedToken] = useState<string | null>(null);
+  const [inviting, setInviting] = useState<string | null>(null);
+
+  // Load invites
+  const loadInvites = useCallback(async () => {
+    if (!state.id) return;
+    const { data } = await getInvites(state.id);
+    setInvites(data ?? []);
+  }, [state.id]);
+
+  useEffect(() => {
+    if (!loading && state.id) loadInvites();
+  }, [loading, state.id, loadInvites]);
+
+  // Send invite
+  const handleInvite = async (delagareEmail: string) => {
+    if (!state.id || !delagareEmail) return;
+    setInviting(delagareEmail);
+    const { data } = await createInvite(state.id, delagareEmail);
+    if (data) {
+      setInvites((prev) => [data, ...prev]);
+      const link = getInviteLink(data.token);
+      await navigator.clipboard.writeText(link);
+      setCopiedToken(data.token);
+      setTimeout(() => setCopiedToken(null), 3000);
+    }
+    setInviting(null);
+  };
+
+  // Get invite status for an email
+  const getInviteStatus = (emailAddr: string): InviteRow | undefined => {
+    return invites.find(
+      (inv) => inv.invited_email === emailAddr.toLowerCase() && inv.status !== 'revoked'
+    );
+  };
 
   if (loading) return (
     <div className="min-h-dvh bg-background p-6 animate-pulse">
@@ -175,31 +227,88 @@ function DelagareContent() {
         </div>
       ) : (
         <div className="flex flex-col gap-3 mb-4">
-          {state.delagare.map((d) => (
-            <div key={d.id} className="card flex items-start justify-between">
-              <div>
-                <p className="font-medium text-primary">{d.name}</p>
-                <p className="text-sm text-muted">
-                  {RELATION_LABELS[d.relation]}
-                </p>
-                {d.phone && (
-                  <p className="text-sm text-muted mt-1">{d.phone}</p>
-                )}
+          {state.delagare.map((d) => {
+            const invite = d.email ? getInviteStatus(d.email) : undefined;
+            const isInvited = invite?.status === 'pending';
+            const isAccepted = invite?.status === 'accepted';
+
+            return (
+              <div key={d.id} className="card">
+                <div className="flex items-start justify-between">
+                  <div>
+                    <p className="font-medium text-primary">{d.name}</p>
+                    <p className="text-sm text-muted">
+                      {RELATION_LABELS[d.relation]}
+                    </p>
+                    {d.phone && (
+                      <p className="text-sm text-muted mt-1">{d.phone}</p>
+                    )}
+                    {d.email && (
+                      <p className="text-sm text-accent mt-0.5">{d.email}</p>
+                    )}
+                  </div>
+                  <button
+                    onClick={() =>
+                      dispatch({ type: 'REMOVE_DELAGARE', payload: d.id })
+                    }
+                    className="p-2 text-muted hover:text-warn transition-colors"
+                    aria-label={`Ta bort ${d.name}`}
+                  >
+                    <X className="w-5 h-5" />
+                  </button>
+                </div>
+
+                {/* Invite actions */}
                 {d.email && (
-                  <p className="text-sm text-accent mt-0.5">{d.email}</p>
+                  <div className="mt-3 pt-3 border-t border-gray-100 flex items-center gap-2">
+                    {isAccepted ? (
+                      <span className="flex items-center gap-1.5 text-xs text-success">
+                        <CheckCircle2 className="w-3.5 h-3.5" />
+                        Har tillgång
+                      </span>
+                    ) : isInvited ? (
+                      <>
+                        <span className="flex items-center gap-1.5 text-xs text-muted">
+                          <Clock className="w-3.5 h-3.5" />
+                          Inbjudan skickad
+                        </span>
+                        <button
+                          onClick={async () => {
+                            const link = getInviteLink(invite!.token);
+                            await navigator.clipboard.writeText(link);
+                            setCopiedToken(invite!.token);
+                            setTimeout(() => setCopiedToken(null), 3000);
+                          }}
+                          className="ml-auto flex items-center gap-1 text-xs text-accent hover:text-primary transition-colors"
+                        >
+                          {copiedToken === invite?.token ? (
+                            <>
+                              <CheckCircle2 className="w-3.5 h-3.5" />
+                              Kopierad!
+                            </>
+                          ) : (
+                            <>
+                              <Copy className="w-3.5 h-3.5" />
+                              Kopiera länk
+                            </>
+                          )}
+                        </button>
+                      </>
+                    ) : (
+                      <button
+                        onClick={() => handleInvite(d.email!)}
+                        disabled={inviting === d.email}
+                        className="flex items-center gap-1.5 text-xs text-accent hover:text-primary transition-colors"
+                      >
+                        <Send className="w-3.5 h-3.5" />
+                        {inviting === d.email ? 'Skapar länk...' : 'Bjud in att följa dödsboet'}
+                      </button>
+                    )}
+                  </div>
                 )}
               </div>
-              <button
-                onClick={() =>
-                  dispatch({ type: 'REMOVE_DELAGARE', payload: d.id })
-                }
-                className="p-2 text-muted hover:text-warn transition-colors"
-                aria-label={`Ta bort ${d.name}`}
-              >
-                <X className="w-5 h-5" />
-              </button>
-            </div>
-          ))}
+            );
+          })}
         </div>
       )}
 

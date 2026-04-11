@@ -324,6 +324,69 @@ export type Database = {
         };
         Relationships: [];
       };
+      invites: {
+        Row: {
+          id: string;
+          dodsbo_id: string;
+          invited_by: string;
+          invited_email: string;
+          role: string;
+          token: string;
+          status: string;
+          accepted_by: string | null;
+          created_at: string;
+          accepted_at: string | null;
+        };
+        Insert: {
+          id?: string;
+          dodsbo_id: string;
+          invited_by: string;
+          invited_email: string;
+          role?: string;
+          token: string;
+          status?: string;
+          accepted_by?: string | null;
+          created_at?: string;
+          accepted_at?: string | null;
+        };
+        Update: {
+          id?: string;
+          dodsbo_id?: string;
+          invited_by?: string;
+          invited_email?: string;
+          role?: string;
+          token?: string;
+          status?: string;
+          accepted_by?: string | null;
+          created_at?: string;
+          accepted_at?: string | null;
+        };
+        Relationships: [];
+      };
+      dodsbo_members: {
+        Row: {
+          id: string;
+          dodsbo_id: string;
+          user_id: string;
+          role: string;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          dodsbo_id: string;
+          user_id: string;
+          role?: string;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          dodsbo_id?: string;
+          user_id?: string;
+          role?: string;
+          created_at?: string;
+        };
+        Relationships: [];
+      };
     };
     Views: Record<string, never>;
     Functions: Record<string, never>;
