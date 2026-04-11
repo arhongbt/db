@@ -18,6 +18,9 @@ import {
   Package,
   Bot,
   Bell,
+  PenTool,
+  ScrollText,
+  FileX,
 } from 'lucide-react';
 import { BottomNav } from '@/components/ui/BottomNav';
 import type { DodsboTask, ProcessStep, TaskStatus } from '@/types';
@@ -440,17 +443,17 @@ function DashboardContent() {
         </Link>
       )}
 
-      {/* Service grid — all sage-toned for consistency */}
-      <section className="mb-4">
-        <h2 className="text-base font-bold text-primary mb-3">Verktyg</h2>
+      {/* Dokument-generatorer */}
+      <section className="mb-5">
+        <h2 className="text-base font-bold text-primary mb-3">Skapa dokument</h2>
         <div className="grid grid-cols-3 gap-3">
           {[
             { label: 'Bouppteckning', href: '/bouppteckning', Icon: ClipboardList },
-            { label: 'Tillgångar', href: '/tillgangar', Icon: Coins },
-            { label: 'Uppgifter', href: '/uppgifter', Icon: ListChecks },
-            { label: 'Exportera', href: '/exportera', Icon: Package },
+            { label: 'Testamente', href: '/testamente', Icon: PenTool },
+            { label: 'Arvskifte', href: '/arvskifteshandling', Icon: ScrollText },
+            { label: 'Dödsboanmälan', href: '/dodsboanmalan', Icon: FileX },
             { label: 'Mike Ross', href: '/juridisk-hjalp', Icon: Bot },
-            { label: 'Påminnelser', href: '/paminelser', Icon: Bell },
+            { label: 'Exportera', href: '/exportera', Icon: Package },
           ].map((item) => (
             <Link
               key={item.href}

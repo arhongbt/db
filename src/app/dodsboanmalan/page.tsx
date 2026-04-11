@@ -1,394 +1,245 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { DodsboProvider, useDodsbo } from '@/lib/context';
 import { BottomNav } from '@/components/ui/BottomNav';
 import Link from 'next/link';
 import {
-  ArrowLeft,
-  CheckCircle2,
-  XCircle,
-  Info,
-  AlertTriangle,
-  ChevronRight,
-  Building2,
-  Home,
+  ArrowLeft, ChevronRight, ChevronLeft, Bot, FileText,
+  Download, Info, AlertTriangle,
 } from 'lucide-react';
 
-function DodsboanmalanContent() {
-  const { state } = useDodsbo();
-  const [mounted, setMounted] = useState(false);
+interface DodsboanmalanData {
+  deceasedNamn: string; deceasedPnr: string; dodsdag: string;
+  senasteFolkbokforing: string; anmalarNamn: string; anmalarRelation: string;
+  anmalarAdress: string; anmalarTelefon: string; tillgangar: string;
+  skulder: string; begravningskostnad: string;
+  boendeform: 'hyresratt' | 'bostadsratt' | 'villa' | 'annat' | '';
+  testamenteFinns: boolean; forsakringFinns: boolean;
+}
 
-  useEffect(() => setMounted(true), []);
-  if (!mounted) return null;
+const INITIAL: DodsboanmalanData = {
+  deceasedNamn: '', deceasedPnr: '', dodsdag: '', senasteFolkbokforing: '',
+  anmalarNamn: '', anmalarRelation: '', anmalarAdress: '', anmalarTelefon: '',
+  tillgangar: '', skulder: '', begravningskostnad: '', boendeform: '',
+  testamenteFinns: false, forsakringFinns: false,
+};
 
-  // Calculate totals
-  const totalTillgangar = state.tillgangar.reduce(
-    (sum, t) => sum + (t.estimatedValue ?? 0), 0
-  );
-  const totalSkulder = state.skulder.reduce(
-    (sum, s) => sum + (s.amount ?? 0), 0
-  );
+const STEPS = [
+  { title: 'Är detta rätt för dig?', desc: 'Kontrollera om dödsboanmälan passar' },
+  { title: 'Den avlidne', desc: 'Uppgifter om den som gått bort' },
+  { title: 'Anmälare', desc: 'Vem gör anmälan?' },
+  { title: 'Ekonomi & boende', desc: 'Tillgångar och skulder' },
+  { title: 'Granska & ladda ner', desc: 'Se över och hämta dokumentet' },
+];
 
-  // Begravningskostnad estimate (if not explicitly set, estimate 25000 kr)
-  const begravningskostnad = state.skulder
-    .filter((s) => s.type === 'begravningskostnad')
-    .reduce((sum, s) => sum + (s.amount ?? 0), 0) || 25000;
-
-  const nettotillgangar = totalTillgangar - begravningskostnad;
-
-  const PRISBASBELOPP = 57300; // 2025/2026
-  const hasRealEstate = state.tillgangar.some((t) =>
-    ['villa', 'bostadsratt', 'fritidshus'].includes(t.type)
-  );
-
-  // Qualification criteria
-  const qualifies = {
-    assetsUnderLimit: nettotillgangar <= PRISBASBELOPP,
-    noRealEstate: !hasRealEstate,
-    simple: true, // User will determine this
-  };
-
-  const allQualified = qualifies.assetsUnderLimit && qualifies.noRealEstate;
-
-  const formatSEK = (amount: number) =>
-    new Intl.NumberFormat('sv-SE', {
-      style: 'currency',
-      currency: 'SEK',
-      maximumFractionDigits: 0,
-    }).format(amount);
-
-  const CriterionRow = ({
-    label,
-    met,
-    value,
-  }: {
-    label: string;
-    met: boolean;
-    value?: string;
-  }) => (
-    <div className="flex items-center gap-3 py-3 px-4 rounded-card border-2 border-gray-200 mb-3">
-      {met ? (
-        <CheckCircle2 className="w-6 h-6 text-success flex-shrink-0" />
-      ) : (
-        <XCircle className="w-6 h-6 text-warn flex-shrink-0" />
-      )}
-      <div className="flex-1">
-        <p className={`text-sm font-medium ${met ? 'text-primary' : 'text-primary'}`}>
-          {label}
-        </p>
-        {value && <p className="text-xs text-muted mt-0.5">{value}</p>}
+function MikeRossTip({ text }: { text: string }) {
+  return (
+    <div className="flex gap-3 p-4 rounded-2xl mb-5" style={{ background: '#EEF2EA' }}>
+      <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
+        style={{ background: 'linear-gradient(135deg, #6B7F5E, #4F6145)' }}>
+        <Bot className="w-4 h-4 text-white" />
+      </div>
+      <div>
+        <p className="text-xs font-semibold text-accent mb-0.5">Mike Ross</p>
+        <p className="text-sm text-primary/80 leading-relaxed">{text}</p>
       </div>
     </div>
   );
+}
+
+const inputCls = "w-full px-4 py-3 border border-gray-200 rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background";
+
+function DodsboanmalanContent() {
+  const { state } = useDodsbo();
+  const [step, setStep] = useState(0);
+  const [data, setData] = useState<DodsboanmalanData>(() => ({
+    ...INITIAL, deceasedNamn: state.deceasedName || '', dodsdag: state.deathDate || '',
+  }));
+
+  const next = () => setStep((s) => Math.min(s + 1, STEPS.length - 1));
+  const prev = () => setStep((s) => Math.max(s - 1, 0));
+
+  const generateText = () => {
+    const today = new Date().toLocaleDateString('sv-SE');
+    return `DÖDSBOANMÄLAN\n\nTill socialnämnden i ${data.senasteFolkbokforing || '_______________'} kommun\n\n────────────────────────────\n\nUPPGIFTER OM DEN AVLIDNE\n\nNamn: ${data.deceasedNamn || '_______________'}\nPersonnummer: ${data.deceasedPnr || '_______________'}\nDödsdag: ${data.dodsdag || '_______________'}\nFolkbokförd: ${data.senasteFolkbokforing || '_______________'}\n\n────────────────────────────\n\nANMÄLARE\n\nNamn: ${data.anmalarNamn || '_______________'}\nRelation: ${data.anmalarRelation || '_______________'}\nAdress: ${data.anmalarAdress || '_______________'}\nTelefon: ${data.anmalarTelefon || '_______________'}\n\n────────────────────────────\n\nTILLGÅNGAR VID DÖDSFALLET\n\n${data.tillgangar || 'Tillgångarna räcker inte till begravningskostnaderna.'}\n\nUppskattad begravningskostnad: ${data.begravningskostnad ? data.begravningskostnad + ' kr' : '_______________'}\n\nSKULDER\n\n${data.skulder || 'Se ovan.'}\n\nBOENDE: ${data.boendeform === 'hyresratt' ? 'Hyresrätt' : data.boendeform === 'bostadsratt' ? 'Bostadsrätt' : data.boendeform === 'villa' ? 'Villa/hus' : data.boendeform || '_______________'}\n\nTestamente finns: ${data.testamenteFinns ? 'Ja' : 'Nej'}\nFörsäkring finns: ${data.forsakringFinns ? 'Ja' : 'Nej'}\n\n────────────────────────────\n\nANLEDNING TILL DÖDSBOANMÄLAN\n\nTillgångarna i dödsboet räcker inte till att täcka begravningskostnaderna.\nDödsboanmälan görs i enlighet med Ärvdabalken 20 kap. 8a §.\n\n────────────────────────────\n\nUNDERSKRIFT\n\nDatum: ${today}\nOrt: ${data.senasteFolkbokforing || '_______________'}\n\n_____________________________________\n${data.anmalarNamn || '(Anmälare)'}\n\n────────────────────────────\n\nVIKTIGT ATT TÄNKA PÅ\n• Lämnas till socialnämnden i kommunen där den avlidne var folkbokförd\n• Ersätter bouppteckning när tillgångarna inte räcker till begravningen\n• Bifoga: dödsbevis, kontoutdrag, begravningsfaktura\n\nSkapat med Sista Resan — ${today}`;
+  };
+
+  const handleDownloadPDF = async () => {
+    const { downloadDocumentPDF } = await import('@/lib/generate-document-pdf');
+    downloadDocumentPDF('Dödsboanmälan', generateText(), `dodsboanmalan-${data.deceasedNamn || 'dokument'}`);
+  };
+
+  const handleDownloadDocx = async () => {
+    const { downloadDocumentDocx } = await import('@/lib/generate-document-docx');
+    downloadDocumentDocx('Dödsboanmälan', generateText(), `dodsboanmalan-${data.deceasedNamn || 'dokument'}`);
+  };
 
   return (
-    <div className="flex flex-col px-5 py-6 pb-24">
-      {/* Header */}
-      <div className="flex items-center gap-3 mb-6">
-        <Link
-          href="/dashboard"
-          className="p-2 -ml-2 min-h-[44px] min-w-[44px] flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors"
-          aria-label="Tillbaka"
-        >
-          <ArrowLeft className="w-5 h-5 text-primary" />
-        </Link>
+    <div className="flex flex-col min-h-dvh px-5 py-6 pb-24">
+      <Link href="/dashboard" className="inline-flex items-center gap-2 text-sm text-muted hover:text-primary mb-4">
+        <ArrowLeft className="w-4 h-4" /> Dashboard
+      </Link>
+      <div className="flex items-center gap-3 mb-2">
+        <div className="w-10 h-10 rounded-2xl flex items-center justify-center" style={{ background: '#EEF2EA' }}>
+          <FileText className="w-5 h-5 text-accent" />
+        </div>
         <div>
-          <h1 className="text-2xl font-semibold text-primary">Dödsboanmälan</h1>
-          <p className="text-muted text-sm">
-            Enklare alternativ för mindre dödsbon
-          </p>
+          <h1 className="text-xl font-bold text-primary">Dödsboanmälan</h1>
+          <p className="text-xs text-muted">Steg {step + 1} av {STEPS.length} — {STEPS[step].desc}</p>
         </div>
       </div>
+      <div className="flex gap-1.5 my-4">
+        {STEPS.map((_, i) => (
+          <div key={i} className="h-1.5 flex-1 rounded-full transition-all duration-300"
+            style={{ background: i <= step ? '#6B7F5E' : '#E8E4DE' }} />
+        ))}
+      </div>
 
-      {/* Info box */}
-      <div className="info-box mb-6">
-        <div className="flex gap-2">
-          <Info className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
-          <div>
-            <p className="text-sm font-medium text-primary">Vad är dödsboanmälan?</p>
-            <p className="text-sm text-primary/70 mt-1">
-              För små dödsbon utan fastighet kan du göra en enklare dödsboanmälan direkt
-              till kommunens socialförvaltning istället för att upprätta en formell
-              bouppteckning till Skatteverket. Socialnämnden hanterar sedan anmälan åt
-              dödsboet.
-            </p>
+      {step === 0 && (
+        <div className="animate-fadeIn">
+          <MikeRossTip text="En dödsboanmälan används istället för bouppteckning när den avlidne hade så lite tillgångar att de inte ens räcker till begravningen. Låt oss kolla om det passar din situation." />
+          <div className="card mb-4">
+            <p className="font-semibold text-primary mb-3">Dödsboanmälan passar om:</p>
+            <div className="space-y-2">
+              {['Den avlidne hade inga eller mycket små tillgångar','Tillgångarna räcker inte till begravningskostnaderna','Det finns ingen fastighet eller bostadsrätt','Det finns inga värdefulla föremål att fördela'].map((item, i) => (
+                <div key={i} className="flex items-start gap-2">
+                  <div className="w-5 h-5 rounded-full bg-accent/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <span className="text-xs font-bold text-accent">{i + 1}</span>
+                  </div>
+                  <p className="text-sm text-primary/80">{item}</p>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      </div>
-
-      {/* Assessment based on state data */}
-      {(state.tillgangar.length > 0 || totalSkulder > 0) && (
-        <div className="card mb-6">
-          <h2 className="text-base font-semibold text-primary mb-4">
-            Är dödsboanmälan möjligt?
-          </h2>
-
-          <CriterionRow
-            label="Tillgångar (minus begravningskostnad) understiger prisbasbeloppet"
-            met={qualifies.assetsUnderLimit}
-            value={`${formatSEK(nettotillgangar)} / ${formatSEK(PRISBASBELOPP)}`}
-          />
-
-          <CriterionRow
-            label="Ingen fastighet eller bostadsrätt ägs"
-            met={qualifies.noRealEstate}
-            value={
-              hasRealEstate
-                ? `Fastighet/bostadsrätt funnen: ${state.tillgangar
-                    .filter((t) =>
-                      ['villa', 'bostadsratt', 'fritidshus'].includes(t.type)
-                    )
-                    .map((t) => t.description)
-                    .join(', ')}`
-                : 'Ingen fastighet registrerad'
-            }
-          />
-
-          {allQualified && (
-            <div className="mt-4 p-4 bg-success/10 border-l-4 border-success rounded-card">
-              <p className="text-sm font-medium text-success">
-                ✓ Dödsbon verkar kvalificera för dödsboanmälan
-              </p>
-              <p className="text-xs text-primary/70 mt-1">
-                Slutlig bedömning gör kommunen när du ansöker.
+          <div className="warning-box">
+            <div className="flex items-start gap-2">
+              <AlertTriangle className="w-4 h-4 text-warn flex-shrink-0 mt-0.5" />
+              <p className="text-xs text-primary/80 leading-relaxed">
+                <strong>Gör istället en bouppteckning om:</strong> den avlidne ägde fastighet, bostadsrätt, bil av värde, eller om tillgångarna överstiger begravningskostnaderna.
               </p>
             </div>
-          )}
-
-          {!allQualified && (
-            <div className="mt-4 p-4 bg-warn/10 border-l-4 border-warn rounded-card">
-              <p className="text-sm font-medium text-warn">
-                Dödsbon verkar inte kvalificera för dödsboanmälan
-              </p>
-              <p className="text-xs text-primary/70 mt-1">
-                En full bouppteckning behövs troligen. Du kan kontakta kommunen för
-                bedömning.
-              </p>
-            </div>
-          )}
+          </div>
         </div>
       )}
 
-      {/* Criteria checklist */}
-      <div className="card mb-6">
-        <h2 className="text-base font-semibold text-primary mb-4">
-          Krav för dödsboanmälan
-        </h2>
-
-        <div className="space-y-3 text-sm">
-          <div className="flex gap-3 pb-3 border-b border-gray-200">
-            <CheckCircle2 className="w-5 h-5 text-success flex-shrink-0 mt-0.5" />
-            <div>
-              <p className="font-medium text-primary">
-                Tillgångar (minus begravningskostnad) understiger prisbasbeloppet
-              </p>
-              <p className="text-xs text-muted mt-1">
-                För 2025/2026: högst {formatSEK(PRISBASBELOPP)}
-              </p>
-            </div>
+      {step === 1 && (
+        <div className="animate-fadeIn">
+          <MikeRossTip text="Fyll i den avlidnes uppgifter. Kommunen behöver veta var personen var folkbokförd." />
+          <div className="card space-y-4">
+            <div><label className="block text-sm font-medium text-primary mb-1.5">Den avlidnes namn</label>
+              <input value={data.deceasedNamn} onChange={(e) => setData({...data, deceasedNamn: e.target.value})} placeholder="Förnamn Efternamn" className={inputCls} /></div>
+            <div><label className="block text-sm font-medium text-primary mb-1.5">Personnummer</label>
+              <input value={data.deceasedPnr} onChange={(e) => setData({...data, deceasedPnr: e.target.value})} placeholder="XXXXXX-XXXX" className={inputCls} /></div>
+            <div><label className="block text-sm font-medium text-primary mb-1.5">Dödsdag</label>
+              <input type="date" value={data.dodsdag} onChange={(e) => setData({...data, dodsdag: e.target.value})} className={inputCls} /></div>
+            <div><label className="block text-sm font-medium text-primary mb-1.5">Folkbokförd i kommun</label>
+              <input value={data.senasteFolkbokforing} onChange={(e) => setData({...data, senasteFolkbokforing: e.target.value})} placeholder="T.ex. Stockholm" className={inputCls} /></div>
           </div>
+        </div>
+      )}
 
-          <div className="flex gap-3 pb-3 border-b border-gray-200">
-            <CheckCircle2 className="w-5 h-5 text-success flex-shrink-0 mt-0.5" />
-            <div>
-              <p className="font-medium text-primary">
-                Ingen fastighet eller tomträtt ägs
-              </p>
-              <p className="text-xs text-muted mt-1">
-                Villa, bostadsrätt eller fritidshus är inte tillåtet
-              </p>
-            </div>
+      {step === 2 && (
+        <div className="animate-fadeIn">
+          <MikeRossTip text="Vem som helst med koppling till dödsboet kan göra en dödsboanmälan — det brukar vara närmaste anhörig." />
+          <div className="card space-y-4">
+            <div><label className="block text-sm font-medium text-primary mb-1.5">Ditt namn</label>
+              <input value={data.anmalarNamn} onChange={(e) => setData({...data, anmalarNamn: e.target.value})} placeholder="Förnamn Efternamn" className={inputCls} /></div>
+            <div><label className="block text-sm font-medium text-primary mb-1.5">Relation till den avlidne</label>
+              <input value={data.anmalarRelation} onChange={(e) => setData({...data, anmalarRelation: e.target.value})} placeholder="T.ex. barn, syskon, sambo" className={inputCls} /></div>
+            <div><label className="block text-sm font-medium text-primary mb-1.5">Adress</label>
+              <input value={data.anmalarAdress} onChange={(e) => setData({...data, anmalarAdress: e.target.value})} placeholder="Storgatan 1, 111 22 Stockholm" className={inputCls} /></div>
+            <div><label className="block text-sm font-medium text-primary mb-1.5">Telefonnummer</label>
+              <input value={data.anmalarTelefon} onChange={(e) => setData({...data, anmalarTelefon: e.target.value})} placeholder="070-XXX XX XX" className={inputCls} /></div>
           </div>
+        </div>
+      )}
 
-          <div className="flex gap-3">
-            <CheckCircle2 className="w-5 h-5 text-success flex-shrink-0 mt-0.5" />
-            <div>
-              <p className="font-medium text-primary">
-                Dödsboet har inga komplicerade förhållanden
-              </p>
-              <p className="text-xs text-muted mt-1">
-                T.ex. inga tvister, komplexa skulder eller testamentskomplexitet
-              </p>
+      {step === 3 && (
+        <div className="animate-fadeIn">
+          <MikeRossTip text="Beskriv den avlidnes ekonomi. Poängen är att visa att tillgångarna inte räcker till begravningen. Socialnämnden kan hjälpa till med begravningskostnaderna." />
+          <div className="card space-y-4 mb-4">
+            <div><label className="block text-sm font-medium text-primary mb-1.5">Tillgångar vid dödsfallet</label>
+              <textarea value={data.tillgangar} onChange={(e) => setData({...data, tillgangar: e.target.value})} placeholder="T.ex. 'Bankmedel: 3 200 kr. Inga övriga tillgångar.'" rows={3} className={inputCls + ' resize-none text-sm'} /></div>
+            <div><label className="block text-sm font-medium text-primary mb-1.5">Uppskattad begravningskostnad</label>
+              <input value={data.begravningskostnad} onChange={(e) => setData({...data, begravningskostnad: e.target.value})} placeholder="T.ex. 25000" className={inputCls} /></div>
+            <div><label className="block text-sm font-medium text-primary mb-1.5">Skulder</label>
+              <textarea value={data.skulder} onChange={(e) => setData({...data, skulder: e.target.value})} placeholder="T.ex. 'Hyresskuld: 5 000 kr'" rows={2} className={inputCls + ' resize-none text-sm'} /></div>
+          </div>
+          <div className="card space-y-4">
+            <div><label className="block text-sm font-medium text-primary mb-1.5">Boendeform</label>
+              <div className="grid grid-cols-2 gap-2">
+                {([['hyresratt','Hyresrätt'],['bostadsratt','Bostadsrätt'],['villa','Villa/hus'],['annat','Annat']] as const).map(([val,label]) => (
+                  <button key={val} onClick={() => setData({...data, boendeform: val})}
+                    className={`py-3 rounded-xl text-sm font-medium transition-colors ${data.boendeform === val ? 'bg-accent text-white' : 'bg-background text-primary border border-gray-200'}`}>{label}</button>
+                ))}
+              </div>
+            </div>
+            <div className="flex items-center justify-between py-2">
+              <span className="text-sm text-primary">Testamente finns?</span>
+              <button onClick={() => setData({...data, testamenteFinns: !data.testamenteFinns})}
+                className={`w-12 h-7 rounded-full transition-colors relative ${data.testamenteFinns ? 'bg-accent' : 'bg-gray-200'}`}>
+                <div className={`absolute top-1 w-5 h-5 rounded-full bg-white shadow transition-transform ${data.testamenteFinns ? 'translate-x-6' : 'translate-x-1'}`} />
+              </button>
+            </div>
+            <div className="flex items-center justify-between py-2">
+              <span className="text-sm text-primary">Försäkring finns?</span>
+              <button onClick={() => setData({...data, forsakringFinns: !data.forsakringFinns})}
+                className={`w-12 h-7 rounded-full transition-colors relative ${data.forsakringFinns ? 'bg-accent' : 'bg-gray-200'}`}>
+                <div className={`absolute top-1 w-5 h-5 rounded-full bg-white shadow transition-transform ${data.forsakringFinns ? 'translate-x-6' : 'translate-x-1'}`} />
+              </button>
             </div>
           </div>
         </div>
-      </div>
+      )}
 
-      {/* Process steps */}
-      <div className="card mb-6">
-        <h2 className="text-base font-semibold text-primary mb-4">Processen</h2>
-
-        <div className="space-y-3">
-          <div className="flex gap-3">
-            <div className="flex items-center justify-center w-7 h-7 rounded-full bg-accent/20 text-accent font-semibold text-sm flex-shrink-0">
-              1
-            </div>
-            <div className="pt-0.5">
-              <p className="font-medium text-primary">Kontakta kommunens socialförvaltning</p>
-              <p className="text-xs text-muted mt-1">
-                Ring eller besök kommunens socialkontor och presentera dödsboet
-              </p>
+      {step === 4 && (
+        <div className="animate-fadeIn">
+          <MikeRossTip text="Granska och ladda ner. Lämna dokumentet till socialnämnden i kommunen. Bifoga dödsbevis och kontoutdrag." />
+          <div className="card mb-4">
+            <p className="text-xs font-semibold text-muted uppercase tracking-wide mb-3">Sammanfattning</p>
+            <div className="space-y-2 text-sm">
+              <p><strong className="text-primary">Den avlidne:</strong> <span className="text-muted">{data.deceasedNamn || '(ej ifyllt)'}</span></p>
+              <p><strong className="text-primary">Kommun:</strong> <span className="text-muted">{data.senasteFolkbokforing || '(ej ifyllt)'}</span></p>
+              <p><strong className="text-primary">Anmälare:</strong> <span className="text-muted">{data.anmalarNamn || '(ej ifyllt)'} ({data.anmalarRelation})</span></p>
+              <p><strong className="text-primary">Begravningskostnad:</strong> <span className="text-muted">{data.begravningskostnad ? `${data.begravningskostnad} kr` : '(ej ifyllt)'}</span></p>
             </div>
           </div>
-
-          <div className="flex gap-3">
-            <div className="flex items-center justify-center w-7 h-7 rounded-full bg-accent/20 text-accent font-semibold text-sm flex-shrink-0">
-              2
-            </div>
-            <div className="pt-0.5">
-              <p className="font-medium text-primary">Socialnämnden bedömer</p>
-              <p className="text-xs text-muted mt-1">
-                Kommunen kontrollerar att kraven är uppfyllda
-              </p>
+          <div className="info-box mb-4">
+            <div className="flex items-start gap-2">
+              <Info className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" />
+              <p className="text-xs text-primary/80 leading-relaxed"><strong>Bifoga:</strong> dödsbevis, kontoutdrag, begravningsfaktura.</p>
             </div>
           </div>
-
-          <div className="flex gap-3">
-            <div className="flex items-center justify-center w-7 h-7 rounded-full bg-accent/20 text-accent font-semibold text-sm flex-shrink-0">
-              3
-            </div>
-            <div className="pt-0.5">
-              <p className="font-medium text-primary">Socialnämnden gör dödsboanmälan</p>
-              <p className="text-xs text-muted mt-1">
-                Kommunen anmäler dödsboet till Skatteverket åt dig
-              </p>
-            </div>
+          <div className="flex flex-col gap-2">
+            <button onClick={handleDownloadPDF} className="btn-primary flex items-center justify-center gap-2">
+              <Download className="w-4 h-4" /> Ladda ner som PDF
+            </button>
+            <button onClick={handleDownloadDocx} className="w-full py-3 rounded-xl text-sm font-semibold border-2 border-accent text-accent hover:bg-accent/5 transition-colors flex items-center justify-center gap-2">
+              <Download className="w-4 h-4" /> Ladda ner som Word
+            </button>
           </div>
-
-          <div className="flex gap-3">
-            <div className="flex items-center justify-center w-7 h-7 rounded-full bg-success/20 text-success font-semibold text-sm flex-shrink-0">
-              ✓
-            </div>
-            <div className="pt-0.5">
-              <p className="font-medium text-primary">Mycket enklare än bouppteckning</p>
-              <p className="text-xs text-muted mt-1">
-                Ingen förrättning behövs, inga förrättningsmän krävs
-              </p>
-            </div>
-          </div>
+          <p className="text-xs text-center text-muted mt-4 px-2">Denna mall ger allmän vägledning. Kontakta socialtjänsten vid frågor.</p>
         </div>
+      )}
+
+      <div className="flex gap-3 mt-6">
+        {step > 0 && (
+          <button onClick={prev} className="flex-1 py-3 rounded-xl text-sm font-semibold border-2 border-gray-200 text-primary hover:bg-gray-50 transition-colors flex items-center justify-center gap-1">
+            <ChevronLeft className="w-4 h-4" /> Tillbaka
+          </button>
+        )}
+        {step < STEPS.length - 1 && (
+          <button onClick={next} className="flex-1 btn-primary flex items-center justify-center gap-1">
+            Nästa <ChevronRight className="w-4 h-4" />
+          </button>
+        )}
       </div>
-
-      {/* Comparison table */}
-      <div className="card mb-6">
-        <h2 className="text-base font-semibold text-primary mb-4">
-          Dödsboanmälan vs Bouppteckning
-        </h2>
-
-        <div className="overflow-x-auto">
-          <table className="w-full text-sm">
-            <thead>
-              <tr className="border-b-2 border-gray-200">
-                <th className="text-left py-2 px-2 font-semibold text-primary">
-                  Aspekt
-                </th>
-                <th className="text-left py-2 px-2 font-semibold text-accent">
-                  Dödsboanmälan
-                </th>
-                <th className="text-left py-2 px-2 font-semibold text-primary/70">
-                  Bouppteckning
-                </th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-200">
-              <tr>
-                <td className="py-2 px-2 font-medium text-primary">Vem gör det?</td>
-                <td className="py-2 px-2 text-primary">Kommunen</td>
-                <td className="py-2 px-2 text-primary/70">Dödsbodelägare</td>
-              </tr>
-              <tr>
-                <td className="py-2 px-2 font-medium text-primary">Förrättningsmän</td>
-                <td className="py-2 px-2 text-success">Ej behövligt</td>
-                <td className="py-2 px-2 text-warn">2 krävs</td>
-              </tr>
-              <tr>
-                <td className="py-2 px-2 font-medium text-primary">Omfattning</td>
-                <td className="py-2 px-2 text-primary">Snabb anmälan</td>
-                <td className="py-2 px-2 text-primary/70">Detaljerat dokument</td>
-              </tr>
-              <tr>
-                <td className="py-2 px-2 font-medium text-primary">Kostnad</td>
-                <td className="py-2 px-2 text-success">Gratis</td>
-                <td className="py-2 px-2 text-warn">Kan vara dyr</td>
-              </tr>
-              <tr>
-                <td className="py-2 px-2 font-medium text-primary">Tidsram</td>
-                <td className="py-2 px-2 text-success">Veckor</td>
-                <td className="py-2 px-2 text-primary/70">3-4 månader</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      {/* Warning box */}
-      <div className="warning-box mb-6">
-        <div className="flex gap-2">
-          <AlertTriangle className="w-5 h-5 text-warn flex-shrink-0 mt-0.5" />
-          <div>
-            <p className="font-medium text-primary text-sm">Viktigt</p>
-            <p className="text-sm text-primary/70 mt-1">
-              Om du är osäker på vilken väg som passar bäst för dödsboet — gör
-              bouppteckning. Det är alltid rätt och säkert, och det finns ingen risk
-              för misstag.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      {/* Links to related pages */}
-      <div className="flex flex-col gap-3 mb-6">
-        <Link
-          href="/bouppteckning"
-          className="card flex items-center justify-between hover:bg-gray-50 transition-colors"
-        >
-          <div className="flex items-center gap-3">
-            <Home className="w-5 h-5 text-muted" />
-            <div>
-              <p className="font-medium text-primary">Läs om bouppteckning</p>
-              <p className="text-xs text-muted">Formell väg för större dödsbon</p>
-            </div>
-          </div>
-          <ChevronRight className="w-5 h-5 text-muted flex-shrink-0" />
-        </Link>
-
-        <a
-          href="#kontakt-kommun"
-          className="card flex items-center justify-between hover:bg-gray-50 transition-colors"
-        >
-          <div className="flex items-center gap-3">
-            <Building2 className="w-5 h-5 text-muted" />
-            <div>
-              <p className="font-medium text-primary">Hitta din kommun</p>
-              <p className="text-xs text-muted">
-                Sök kontaktuppgifter till lokalsamhällets socialförvaltning
-              </p>
-            </div>
-          </div>
-          <ChevronRight className="w-5 h-5 text-muted flex-shrink-0" />
-        </a>
-      </div>
-
-      {/* Legal reference */}
-      <div className="card mb-6 bg-primary-lighter/10">
-        <p className="text-xs font-semibold text-muted uppercase tracking-wide mb-2">
-          Juridisk grund
-        </p>
-        <p className="text-sm text-primary/70">
-          Ärvdabalken 20 kap. 8a § — Dödsboanmälan för små dödsbon utan fastighet
-        </p>
-      </div>
-
       <BottomNav />
     </div>
   );
 }
 
 export default function DodsboanmalanPage() {
-  return (
-    <DodsboProvider>
-      <DodsboanmalanContent />
-    </DodsboProvider>
-  );
+  return (<DodsboProvider><DodsboanmalanContent /></DodsboProvider>);
 }

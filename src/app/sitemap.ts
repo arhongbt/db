@@ -16,6 +16,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Guide/tool pages — great for SEO long-tail keywords
   const guidePages = [
     '/bouppteckning',
+    '/testamente',
+    '/arvskifteshandling',
     '/nodbroms',
     '/tidslinje',
     '/avsluta-konton',

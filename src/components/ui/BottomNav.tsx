@@ -6,7 +6,7 @@ import { useState, useEffect, useRef } from 'react';
 import {
   Home, Users, Wallet, FileText, FolderOpen, MoreHorizontal, X,
   Calculator, Building2, Camera, Download, Bell, Scale, BookOpen,
-  HelpCircle, Globe, Briefcase, AlertTriangle, Bot,
+  HelpCircle, Globe, Briefcase, AlertTriangle, Bot, PenTool, ScrollText, FileX,
   HomeIcon, Heart, CreditCard, FileCheck,
 } from 'lucide-react';
 
@@ -22,9 +22,9 @@ const MORE_CATEGORIES = [
     title: 'Hantera dödsboet',
     items: [
       { href: '/delagare', label: 'Delägare', icon: Users },
-      { href: '/delagare-portal', label: 'Delägare-portal', icon: Scale },
-      { href: '/arvskalkylator', label: 'Arvskalkylator', icon: Calculator },
-      { href: '/bank-guide', label: 'Bank-guide', icon: Building2 },
+      { href: '/testamente', label: 'Testamente', icon: PenTool },
+      { href: '/arvskifteshandling', label: 'Arvskifte', icon: ScrollText },
+      { href: '/dodsboanmalan', label: 'Dödsboanmälan', icon: FileX },
     ],
   },
   {
