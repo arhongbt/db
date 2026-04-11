@@ -163,13 +163,15 @@ function UppgifterContent() {
       )}
 
       {/* Filters */}
-      <div className="flex gap-2 mb-4 overflow-x-auto pb-1">
+      <div className="flex gap-2 mb-4 overflow-x-auto pb-1" role="tablist" aria-label="Filtrera uppgifter">
         <button
           onClick={() => setFilterStep('all')}
-          className={`px-3 py-1.5 rounded-full text-sm font-medium whitespace-nowrap transition-colors ${
+          role="tab"
+          aria-selected={filterStep === 'all'}
+          className={`px-4 py-2 min-h-[44px] rounded-full text-sm font-medium whitespace-nowrap transition-colors ${
             filterStep === 'all'
               ? 'bg-primary text-white'
-              : 'bg-gray-100 text-muted'
+              : 'bg-gray-100 text-primary/70 hover:bg-gray-200'
           }`}
         >
           Alla
@@ -178,10 +180,12 @@ function UppgifterContent() {
           <button
             key={s}
             onClick={() => setFilterStep(s)}
-            className={`px-3 py-1.5 rounded-full text-sm font-medium whitespace-nowrap transition-colors ${
+            role="tab"
+            aria-selected={filterStep === s}
+            className={`px-4 py-2 min-h-[44px] rounded-full text-sm font-medium whitespace-nowrap transition-colors ${
               filterStep === s
                 ? 'bg-primary text-white'
-                : 'bg-gray-100 text-muted'
+                : 'bg-gray-100 text-primary/70 hover:bg-gray-200'
             }`}
           >
             {STEP_LABELS[s].split(' (')[0]}
@@ -191,7 +195,12 @@ function UppgifterContent() {
 
       <button
         onClick={() => setShowDone(!showDone)}
-        className="flex items-center gap-2 mb-4 text-sm text-muted"
+        aria-pressed={showDone}
+        className={`flex items-center gap-2 mb-4 px-3 py-2 min-h-[44px] rounded-lg text-sm font-medium transition-colors ${
+          showDone
+            ? 'bg-success/10 text-success'
+            : 'text-primary/60 hover:bg-gray-100'
+        }`}
       >
         <CheckCircle2 className="w-4 h-4" />
         {showDone ? 'Dölj klara' : 'Visa klara'}

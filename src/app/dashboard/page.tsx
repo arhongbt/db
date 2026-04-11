@@ -166,7 +166,7 @@ function DashboardContent() {
         </div>
         <Link
           href="/installningar"
-          className="p-2 rounded-full hover:bg-gray-100 transition-colors"
+          className="p-2.5 -mr-1 rounded-full hover:bg-gray-100 transition-colors"
           aria-label="Inställningar"
         >
           <Settings className="w-5 h-5 text-muted" />

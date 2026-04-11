@@ -486,7 +486,7 @@ function JuridiskHjalpContent() {
             <Send className="w-5 h-5" />
           </button>
         </div>
-        <p className="text-[10px] text-center text-gray-400 mt-2">
+        <p className="text-xs text-center text-gray-400 mt-2">
           AI kan göra misstag. Verifiera viktig information med en jurist.
         </p>
       </div>

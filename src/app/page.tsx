@@ -63,9 +63,10 @@ export default function LandingPage() {
             </button>
             <button
               onClick={() => router.push('/onboarding')}
-              className="w-full py-3 text-muted font-medium text-sm transition-colors hover:text-primary flex items-center justify-center"
+              className="btn-secondary !text-sm !py-2.5 flex items-center justify-center gap-1"
             >
-              Eller starta nytt dödsbo
+              Starta nytt dödsbo
+              <ArrowRight className="w-4 h-4" />
             </button>
           </>
         ) : (
@@ -86,7 +87,7 @@ export default function LandingPage() {
 
       {/* What the app helps with */}
       <section className="px-5 pb-8">
-        <h2 className="text-xl font-bold text-primary mb-5">Vad appen hjälper dig med</h2>
+        <h2 className="text-2xl font-bold text-primary mb-5">Vad appen hjälper dig med</h2>
         <div className="flex flex-col gap-4">
           {[
             {
@@ -125,7 +126,7 @@ export default function LandingPage() {
 
       {/* How it works */}
       <section className="px-5 pb-8">
-        <h2 className="text-xl font-bold text-primary mb-5">Så fungerar det</h2>
+        <h2 className="text-2xl font-bold text-primary mb-5">Så fungerar det</h2>
         <div className="flex flex-col gap-4">
           {[
             {
@@ -178,7 +179,7 @@ export default function LandingPage() {
 
       {/* FAQ — SEO rich */}
       <section className="px-5 pb-8">
-        <h2 className="text-xl font-bold text-primary mb-4">Vanliga frågor</h2>
+        <h2 className="text-2xl font-bold text-primary mb-4">Vanliga frågor</h2>
         <div className="flex flex-col gap-3">
           {[
             {
@@ -231,7 +232,7 @@ export default function LandingPage() {
           <Link href="/anvandarvillkor" className="hover:text-accent transition-colors">Villkor</Link>
           <Link href="/faq" className="hover:text-accent transition-colors">FAQ</Link>
         </div>
-        <p className="text-center text-[10px] text-muted/60">
+        <p className="text-center text-xs text-muted/60">
           Sista Resan ger allmän vägledning och ersätter inte juridisk rådgivning.
         </p>
       </footer>

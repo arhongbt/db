@@ -101,8 +101,8 @@ export function BottomNav() {
             <h3 className="font-semibold text-primary text-sm">Alla verktyg</h3>
             <button
               onClick={() => setMoreOpen(false)}
-              className="p-1 rounded-full hover:bg-gray-100 transition-colors"
-              aria-label="Stäng"
+              className="p-2.5 -mr-1 rounded-full hover:bg-gray-100 transition-colors"
+              aria-label="Stäng menyn"
             >
               <X className="w-5 h-5 text-muted" />
             </button>
@@ -110,7 +110,7 @@ export function BottomNav() {
           <div className="px-3 pb-4">
             {MORE_CATEGORIES.map((category) => (
               <div key={category.title} className="mb-3 last:mb-0">
-                <p className="text-[10px] font-semibold text-muted uppercase tracking-wider px-2 mb-1.5">{category.title}</p>
+                <p className="text-xs font-semibold text-muted uppercase tracking-wider px-2 mb-1.5">{category.title}</p>
                 <div className="grid grid-cols-4 gap-1">
                   {category.items.map(({ href, label, icon: Icon }) => {
                     const isActive = pathname === href;
@@ -126,7 +126,7 @@ export function BottomNav() {
                         aria-label={label}
                       >
                         <Icon className="w-5 h-5" strokeWidth={1.5} />
-                        <span className="text-[10px] font-medium text-center leading-tight">{label}</span>
+                        <span className="text-xs font-medium text-center leading-tight">{label}</span>
                       </Link>
                     );
                   })}
@@ -161,6 +161,8 @@ export function BottomNav() {
           {/* More button */}
           <button
             onClick={() => setMoreOpen(!moreOpen)}
+            aria-label="Mer verktyg"
+            aria-expanded={moreOpen}
             className={`flex flex-col items-center py-2 px-3 min-w-[4rem] transition-colors ${
               moreOpen || isMoreActive
                 ? 'text-accent'
