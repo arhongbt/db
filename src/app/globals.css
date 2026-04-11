@@ -152,67 +152,12 @@
   .stagger-children > *:nth-child(8) { animation-delay: 350ms; }
 }
 
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
-  :root {
-    color-scheme: dark;
-  }
-
-  body {
-    @apply bg-[#1A1814] text-[#E8E4DE];
-  }
-
-  .card {
-    @apply bg-[#252220];
-    box-shadow: 0 2px 8px rgba(0,0,0,0.3), 0 8px 24px rgba(0,0,0,0.2);
-    border-color: #3A3530;
-  }
-
-  .btn-secondary {
-    @apply bg-[#252220] text-[#E8E4DE];
-    border-color: #3A3530;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-  }
-
-  .btn-secondary:hover {
-    @apply bg-[#3A3530];
-  }
-
-  /* Gradient cards — dark variants */
-  .card-sage {
-    background: linear-gradient(135deg, #2A3428, #252220);
-  }
-  .card-blue {
-    background: linear-gradient(135deg, #2A3238, #252220);
-  }
-  .card-warn {
-    background: linear-gradient(135deg, #3A2820, #252220);
-  }
-
-  /* Info and warning boxes */
-  .info-box {
-    background: linear-gradient(135deg, #2A3428, #1A1814);
-    border-color: rgba(107,127,94,0.25);
-  }
-
-  .warning-box {
-    background: linear-gradient(135deg, #3A2820, #252220);
-    border-color: rgba(196,112,75,0.25);
-  }
-
-  /* Icon bubbles — dark variants */
-  .icon-bubble-sage {
-    background: #2A3428;
-    color: #8FA878;
-  }
-  .icon-bubble-blue {
-    background: #2A3238;
-    color: #7FA5BC;
-  }
-  .icon-bubble-warn {
-    background: #3A2820;
-    color: #D4956B;
-  }
+/* Dark mode — disabled for now. App is designed as light theme only.
+   To re-enable, CSS custom properties (--background, --primary, etc.)
+   must be overridden inside @media (prefers-color-scheme: dark),
+   not just body background. */
+:root {
+  color-scheme: light;
 }
 
 /* Print stylesheet */
