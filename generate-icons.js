@@ -21,7 +21,7 @@ async function generate() {
       </linearGradient>
     </defs>
     <rect width="512" height="512" rx="96" fill="url(#bg)"/>
-    <g transform="translate(0, -20) scale(${512/858})">
+    <g transform="translate(30, 20) scale(${450/600})">
       ${paths}
     </g>
   </svg>`;
