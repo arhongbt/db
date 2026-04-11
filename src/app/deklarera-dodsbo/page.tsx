@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { ArrowLeft, FileText, ChevronRight, AlertTriangle, Calendar } from 'lucide-react';
-import BottomNav from '@/components/ui/BottomNav';
+import { BottomNav } from '@/components/ui/BottomNav';
 
 export default function DeklararaDodsboPage() {
   return (
