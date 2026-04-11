@@ -61,17 +61,8 @@ export default function SkannerPage() {
       const ctx = canvas.getContext('2d')!;
       ctx.drawImage(img, 0, 0);
 
-      // Try Tesseract.js if available, otherwise store image without OCR
-      let text = '';
-      try {
-        const Tesseract = await import('tesseract.js');
-        const result = await Tesseract.recognize(canvas, 'swe', {
-          logger: () => {},
-        });
-        text = result.data.text;
-      } catch {
-        text = '(OCR ej tillgängligt — bilden sparas utan textextraktion)';
-      }
+      // Store image without OCR — text extraction can be added later
+      let text = '(Bilden sparas — textextraktion kan läggas till senare)';
 
       setExtractedText(text);
 

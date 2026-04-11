@@ -4,7 +4,12 @@ import { createServerClient } from "@supabase/ssr";
 import { Database } from "@/lib/supabase/types";
 
 // Define public routes that don't require authentication
-const PUBLIC_ROUTES = ["/", "/auth", "/auth/callback", "/faq", "/onboarding", "/invite", "/integritetspolicy", "/anvandarvillkor", "/om"];
+const PUBLIC_ROUTES = [
+  "/", "/auth", "/auth/callback", "/faq", "/onboarding", "/invite",
+  "/integritetspolicy", "/anvandarvillkor", "/om",
+  "/ordlista", "/bank-guide", "/konflikt", "/internationellt",
+  "/foretag-i-dodsbo", "/arvskalkylator", "/juridisk-hjalp",
+];
 
 // Define protected routes that require authentication
 const PROTECTED_ROUTES = [
@@ -26,11 +31,10 @@ const PROTECTED_ROUTES = [
   "/bodelning",
   "/dodsboanmalan",
   "/losore",
-  "/konflikt",
-  "/ordlista",
-  "/internationellt",
-  "/foretag-i-dodsbo",
-  "/juridisk-hjalp",
+  "/delagare-portal",
+  "/skanner",
+  "/exportera",
+  "/paminelser",
 ];
 
 export async function middleware(request: NextRequest) {
