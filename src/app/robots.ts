@@ -6,7 +6,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/api/', '/dashboard', '/installningar'],
+        disallow: ['/api/', '/dashboard', '/installningar', '/onboarding', '/auth'],
       },
     ],
     sitemap: 'https://db-three-alpha.vercel.app/sitemap.xml',

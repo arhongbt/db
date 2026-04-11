@@ -3,42 +3,62 @@ import type { MetadataRoute } from 'next';
 const BASE_URL = 'https://db-three-alpha.vercel.app';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const publicPages = [
-    '',
-    '/uppgifter',
-    '/delagare',
-    '/dokument',
-    '/fullmakt',
-    '/kallelse',
+  // High-priority public/SEO pages
+  const seoPages = [
+    { route: '', priority: 1, changeFrequency: 'weekly' as const },
+    { route: '/faq', priority: 0.9, changeFrequency: 'weekly' as const },
+    { route: '/ordlista', priority: 0.9, changeFrequency: 'monthly' as const },
+    { route: '/om', priority: 0.7, changeFrequency: 'monthly' as const },
+    { route: '/integritetspolicy', priority: 0.3, changeFrequency: 'monthly' as const },
+    { route: '/anvandarvillkor', priority: 0.3, changeFrequency: 'monthly' as const },
+  ];
+
+  // Guide/tool pages — great for SEO long-tail keywords
+  const guidePages = [
+    '/bouppteckning',
+    '/nodbroms',
+    '/tidslinje',
     '/avsluta-konton',
     '/arvskifte',
-    '/kostnader',
-    '/tidslinje',
-    '/nodbroms',
-    '/faq',
     '/bodelning',
     '/dodsboanmalan',
     '/losore',
     '/konflikt',
-    '/ordlista',
     '/internationellt',
     '/foretag-i-dodsbo',
-    '/juridisk-hjalp',
-    '/bouppteckning',
-    '/tillgangar',
     '/forsakringar',
+    '/bank-guide',
     '/arvskalkylator',
+    '/kostnader',
+    '/fullmakt',
+    '/kallelse',
+  ].map((route) => ({
+    route,
+    priority: 0.8,
+    changeFrequency: 'weekly' as const,
+  }));
+
+  // App pages — lower priority for SEO but still crawlable
+  const appPages = [
+    '/juridisk-hjalp',
+    '/delagare',
+    '/delagare-portal',
+    '/tillgangar',
+    '/uppgifter',
+    '/dokument',
     '/skanner',
     '/exportera',
-    '/bank-guide',
-    '/delagare-portal',
     '/paminelser',
-  ];
+  ].map((route) => ({
+    route,
+    priority: 0.5,
+    changeFrequency: 'monthly' as const,
+  }));
 
-  return publicPages.map((route) => ({
-    url: `${BASE_URL}${route}`,
+  return [...seoPages, ...guidePages, ...appPages].map((page) => ({
+    url: `${BASE_URL}${page.route}`,
     lastModified: new Date(),
-    changeFrequency: 'weekly' as const,
-    priority: route === '' ? 1 : 0.8,
+    changeFrequency: page.changeFrequency,
+    priority: page.priority,
   }));
 }

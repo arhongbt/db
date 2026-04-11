@@ -6,10 +6,33 @@ import { CookieBanner } from '@/components/CookieBanner';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 
+const SITE_URL = 'https://db-three-alpha.vercel.app';
+
 export const metadata: Metadata = {
-  title: 'Sista Resan — Hantera dödsboet steg för steg',
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: 'Sista Resan — Hantera dödsboet steg för steg',
+    template: '%s | Sista Resan',
+  },
   description:
-    'Sveriges första digitala dödsbohjälp. Vi guidar dig genom hela processen — från första dagen till arvskifte.',
+    'Sveriges första digitala dödsbohjälp. Bouppteckning, tidslinje, AI-jurist och alla verktyg du behöver — från första dagen till arvskifte. Gratis att börja.',
+  keywords: [
+    'dödsbo',
+    'bouppteckning',
+    'dödsbohjälp',
+    'hantera dödsbo',
+    'arvskifte',
+    'dödsbodelägare',
+    'bouppteckning själv',
+    'dödsbo steg för steg',
+    'arvsrätt',
+    'dödsbo guide',
+    'dödsbo checklista',
+    'skatteverket bouppteckning',
+    'dödsboanmälan',
+    'ärvdabalken',
+    'dödsbo bank',
+  ],
   manifest: '/manifest.json',
   appleWebApp: {
     capable: true,
@@ -19,9 +42,31 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Sista Resan — Hantera dödsboet steg för steg',
     description:
-      'Sveriges första digitala dödsbohjälp. Vi guidar dig genom hela processen.',
+      'Sveriges första digitala dödsbohjälp. Bouppteckning, AI-jurist, tidslinje och 30+ verktyg. Gratis att börja.',
     type: 'website',
     locale: 'sv_SE',
+    siteName: 'Sista Resan',
+    url: SITE_URL,
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Sista Resan — Hantera dödsboet steg för steg',
+    description:
+      'Sveriges första digitala dödsbohjälp. Gratis att börja.',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  alternates: {
+    canonical: SITE_URL,
   },
 };
 
@@ -31,6 +76,82 @@ export const viewport: Viewport = {
   maximumScale: 5,
   themeColor: '#2C4A6E',
 };
+
+// JSON-LD structured data for SEO
+function JsonLd() {
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'WebApplication',
+    name: 'Sista Resan',
+    description: 'Sveriges första digitala dödsbohjälp. Hantera dödsboet steg för steg.',
+    url: SITE_URL,
+    applicationCategory: 'UtilitiesApplication',
+    operatingSystem: 'Web',
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'SEK',
+      description: 'Gratis grundversion',
+    },
+    featureList: [
+      'Personlig tidslinje för dödsbohantering',
+      'Automatisk bouppteckning som PDF',
+      'AI-driven juridisk assistent',
+      'Bank-guide för alla 8 storbanker',
+      'Delägare-portal för samarbete',
+      'Push-notiser för tidsfrister',
+    ],
+    inLanguage: 'sv',
+    author: {
+      '@type': 'Organization',
+      name: 'Sista Resan',
+    },
+  };
+
+  const faqData = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'Vad kostar Sista Resan?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Grundversionen är helt gratis. Premium-funktioner som PDF-generering och AI-assistenten kostar en engångsavgift.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Hur lång tid tar en bouppteckning?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'En bouppteckning ska vara klar inom 3 månader efter dödsfallet och skickas till Skatteverket inom 1 månad efter förrättningen.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Ärver man skulder i Sverige?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Nej, man ärver aldrig skulder i Sverige. Om den avlidnes skulder överstiger tillgångarna blir dödsboet insolvent, men arvingarna blir aldrig personligt ansvariga.',
+        },
+      },
+    ],
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqData) }}
+      />
+    </>
+  );
+}
 
 export default function RootLayout({
   children,
@@ -43,6 +164,7 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" type="image/svg+xml" href="/logo.svg" />
         <link rel="apple-touch-icon" href="/icons/icon-192.png" />
+        <JsonLd />
       </head>
       <body className="min-h-dvh">
         <AuthProvider>
