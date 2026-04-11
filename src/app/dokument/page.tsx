@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { DodsboProvider, useDodsbo } from '@/lib/context';
 import { BottomNav } from '@/components/ui/BottomNav';
+import { BlobDecoration, LeafDecoration } from '@/components/ui/Decorations';
 import {
   Upload,
   FileText,
@@ -158,7 +159,12 @@ function DokumentContent() {
   }, {});
 
   return (
-    <div className="flex flex-col px-5 py-6 pb-24">
+    <div className="flex flex-col px-5 py-6 pb-24 relative overflow-hidden">
+      {/* Decorative elements */}
+      <BlobDecoration className="-top-10 -right-14" color="#EDF2F6" size={140} />
+      <LeafDecoration className="top-5 right-4" size={22} opacity={0.08} color="#6E8BA4" />
+      <BlobDecoration className="bottom-28 -left-16" color="#EEF2EA" size={120} />
+
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
         <div>

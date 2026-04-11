@@ -16,12 +16,15 @@ import {
   Coins,
   ListChecks,
   Package,
+  MessageSquare,
+  Bell,
 } from 'lucide-react';
 import { BottomNav } from '@/components/ui/BottomNav';
 import type { DodsboTask, ProcessStep, TaskStatus } from '@/types';
 import { DEFAULT_TIDSFRISTER } from '@/types';
 import Link from 'next/link';
 import { DoveLogo } from '@/components/ui/DoveLogo';
+import { BlobDecoration, LeafDecoration, SparkleDecoration } from '@/components/ui/Decorations';
 import {
   checkAndNotifyDeadlines,
   requestNotificationPermission,
@@ -149,7 +152,14 @@ function DashboardContent() {
   }
 
   return (
-    <div className="flex flex-col px-5 py-6 pb-24 stagger-children">
+    <div className="flex flex-col px-5 py-6 pb-24 stagger-children relative overflow-hidden">
+      {/* Decorative elements */}
+      <BlobDecoration className="-top-12 -right-16" color="#EEF2EA" size={180} />
+      <BlobDecoration className="top-[40%] -left-20" color="#EDF2F6" size={140} />
+      <LeafDecoration className="top-4 right-6" size={32} opacity={0.1} />
+      <SparkleDecoration className="top-[30%] right-10" size={14} opacity={0.1} />
+      <LeafDecoration className="bottom-[20%] left-4" size={24} opacity={0.08} color="#6E8BA4" />
+
       {/* Greeting */}
       <div className="flex items-start justify-between mb-6">
         <div>
@@ -354,17 +364,25 @@ function DashboardContent() {
         </div>
       )}
 
-      {/* AI Legal Assistant — always visible */}
+      {/* Mike Ross AI — always visible */}
+      <div className="relative">
+        <SparkleDecoration className="-top-2 right-4" size={18} color="#6E8BA4" opacity={0.15} />
+      </div>
       <Link
         href="/juridisk-hjalp"
-        className="card border-l-4 border-accent bg-info-light mb-4 flex items-center justify-between"
-        aria-label="Öppna juridisk AI-assistent"
+        className="card mb-4 flex items-center gap-3"
+        style={{ background: 'linear-gradient(135deg, #EDF2F6, #FFFFFF)' }}
+        aria-label="Öppna Mike Ross"
       >
-        <div>
-          <p className="font-semibold text-accent">Juridisk AI-assistent</p>
-          <p className="text-sm text-primary/70">Fråga om arvsrätt, bouppteckning, arvskifte</p>
+        <div className="w-11 h-11 rounded-full flex items-center justify-center flex-shrink-0"
+          style={{ background: 'linear-gradient(135deg, #6E8BA4, #567A93)' }}>
+          <MessageSquare className="w-5 h-5 text-white" strokeWidth={1.5} />
         </div>
-        <ChevronRight className="w-5 h-5 text-accent" />
+        <div className="flex-1">
+          <p className="font-semibold text-primary">Fråga Mike Ross</p>
+          <p className="text-sm text-muted">Din juridiska AI-assistent</p>
+        </div>
+        <ChevronRight className="w-5 h-5 text-muted-light flex-shrink-0" />
       </Link>
 
       {/* Notification prompt */}
@@ -412,32 +430,33 @@ function DashboardContent() {
         </Link>
       )}
 
-      {/* Quick access — compact grid of key tools */}
+      {/* Service grid — illustrated icons like Best Courier */}
       <section className="mb-4">
         <h2 className="text-lg font-semibold text-primary mb-3">Verktyg</h2>
-        <div className="grid grid-cols-2 gap-2">
+        <div className="grid grid-cols-3 gap-3">
           {[
-            { label: 'Bouppteckning', href: '/bouppteckning', Icon: ClipboardList },
-            { label: 'Tillgångar & skulder', href: '/tillgangar', Icon: Coins },
-            { label: 'Alla uppgifter', href: '/uppgifter', Icon: ListChecks },
-            { label: 'Exportera (ZIP)', href: '/exportera', Icon: Package },
+            { label: 'Bouppteckning', href: '/bouppteckning', Icon: ClipboardList, bg: '#EEF2EA', color: '#6B7F5E' },
+            { label: 'Tillgångar', href: '/tillgangar', Icon: Coins, bg: '#EDF2F6', color: '#6E8BA4' },
+            { label: 'Uppgifter', href: '/uppgifter', Icon: ListChecks, bg: '#EEF2EA', color: '#6B7F5E' },
+            { label: 'Exportera', href: '/exportera', Icon: Package, bg: '#EDF2F6', color: '#6E8BA4' },
+            { label: 'Mike Ross', href: '/juridisk-hjalp', Icon: MessageSquare, bg: '#EDF2F6', color: '#6E8BA4' },
+            { label: 'Påminnelser', href: '/paminelser', Icon: Bell, bg: '#EEF2EA', color: '#6B7F5E' },
           ].map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="card flex items-center gap-3 hover:bg-gray-50 transition-colors py-3"
+              className="flex flex-col items-center gap-2 py-4 rounded-2xl transition-all hover:scale-[1.02] active:scale-[0.98]"
+              style={{ background: item.bg + '60' }}
               aria-label={item.label}
             >
-              <div className="w-8 h-8 bg-primary-lighter/50 rounded-lg flex items-center justify-center flex-shrink-0">
-                <item.Icon className="w-4 h-4 text-accent" />
+              <div className="w-12 h-12 rounded-2xl flex items-center justify-center"
+                style={{ background: item.bg }}>
+                <item.Icon className="w-5 h-5" style={{ color: item.color }} strokeWidth={1.5} />
               </div>
-              <span className="text-sm font-medium text-primary">{item.label}</span>
+              <span className="text-xs font-semibold text-primary">{item.label}</span>
             </Link>
           ))}
         </div>
-        <p className="text-xs text-muted text-center mt-3">
-          Alla verktyg finns i <strong>Mer</strong>-menyn nedan
-        </p>
       </section>
 
       {/* Legal disclaimer */}

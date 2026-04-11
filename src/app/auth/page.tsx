@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useAuth } from '@/lib/auth/context';
 import Link from 'next/link';
 import { DoveLogo } from '@/components/ui/DoveLogo';
+import { BlobDecoration, LeafDecoration, SparkleDecoration } from '@/components/ui/Decorations';
 
 type AuthTab = 'login' | 'register' | 'reset';
 
@@ -93,8 +94,15 @@ export default function AuthPage() {
   };
 
   return (
-    <div className="min-h-dvh bg-background flex flex-col items-center justify-center px-4 py-6">
-      <div className="w-full max-w-sm">
+    <div className="min-h-dvh bg-background flex flex-col items-center justify-center px-4 py-6 relative overflow-hidden">
+      {/* Decorative elements */}
+      <BlobDecoration className="-top-16 -left-16" color="#EEF2EA" size={200} />
+      <BlobDecoration className="bottom-20 -right-20" color="#EDF2F6" size={160} />
+      <LeafDecoration className="top-12 right-8" size={28} opacity={0.1} />
+      <SparkleDecoration className="bottom-32 left-6" size={16} opacity={0.1} />
+      <LeafDecoration className="top-[45%] left-2" size={20} opacity={0.08} color="#6E8BA4" />
+
+      <div className="w-full max-w-sm relative z-10">
         {/* Header with logo */}
         <div className="text-center mb-8 animate-fadeIn">
           <div className="flex justify-center mb-4">

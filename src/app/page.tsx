@@ -16,6 +16,7 @@ import {
 import Link from 'next/link';
 import { loadState } from '@/lib/store';
 import { DoveLogo } from '@/components/ui/DoveLogo';
+import { BlobDecoration, LeafDecoration, SparkleDecoration } from '@/components/ui/Decorations';
 
 export default function LandingPage() {
   const router = useRouter();
@@ -27,9 +28,17 @@ export default function LandingPage() {
   }, []);
 
   return (
-    <div className="flex flex-col min-h-dvh">
+    <div className="flex flex-col min-h-dvh relative overflow-hidden">
+      {/* Decorative elements */}
+      <BlobDecoration className="-top-16 -right-20" color="#EEF2EA" size={220} />
+      <BlobDecoration className="top-[55%] -left-24" color="#EDF2F6" size={180} />
+      <LeafDecoration className="top-8 right-6" size={36} opacity={0.12} />
+      <SparkleDecoration className="top-[25%] right-8" size={16} opacity={0.1} />
+      <LeafDecoration className="bottom-[30%] left-3" size={22} opacity={0.08} color="#6E8BA4" />
+      <SparkleDecoration className="bottom-16 right-12" size={12} opacity={0.08} />
+
       {/* Hero — empathetic, calm */}
-      <section className="flex flex-col justify-center px-5 pt-10 pb-6">
+      <section className="flex flex-col justify-center px-5 pt-10 pb-6 relative z-10">
         <DoveLogo size={48} className="mb-6" />
         <h1 className="text-3xl font-bold text-primary leading-tight mb-4">
           Vi hjälper dig genom det svåra

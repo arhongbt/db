@@ -354,12 +354,12 @@ function JuridiskHjalpContent() {
           <ArrowLeft className="w-5 h-5 text-primary" />
         </Link>
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center">
-            <Scale className="w-4 h-4 text-accent" />
+          <div className="w-9 h-9 rounded-full flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #6E8BA4, #567A93)' }}>
+            <Scale className="w-4 h-4 text-white" />
           </div>
           <div>
-            <h1 className="text-lg font-semibold text-primary">Juridisk AI-assistent</h1>
-            <p className="text-xs text-muted">Svensk arvsrätt &amp; dödsbohantering</p>
+            <h1 className="text-lg font-semibold text-primary">Mike Ross</h1>
+            <p className="text-xs text-muted">Din juridiska AI-assistent</p>
           </div>
         </div>
       </div>
@@ -373,11 +373,11 @@ function JuridiskHjalpContent() {
               <Sparkles className="w-8 h-8 text-accent" />
             </div>
             <h2 className="text-xl font-semibold text-primary mb-2">
-              Fråga mig om arvsrätt
+              Hej, jag är Mike Ross
             </h2>
             <p className="text-muted text-sm max-w-xs mb-6">
-              Jag kan svara på frågor om bouppteckning, arvskifte, arvsordning,
-              testamente och allt som rör dödsbohantering i Sverige.
+              Din juridiska assistent. Fråga mig om bouppteckning, arvskifte,
+              arvsordning, testamente — allt som rör dödsbohantering i Sverige.
             </p>
 
             <div className="flex flex-col gap-2 w-full max-w-sm">

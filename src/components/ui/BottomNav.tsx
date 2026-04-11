@@ -30,7 +30,7 @@ const MORE_CATEGORIES = [
   {
     title: 'Verktyg',
     items: [
-      { href: '/juridisk-hjalp', label: 'Juridisk AI', icon: MessageSquare },
+      { href: '/juridisk-hjalp', label: 'Mike Ross', icon: MessageSquare },
       { href: '/skanner', label: 'Skanner', icon: Camera },
       { href: '/exportera', label: 'Exportera', icon: Download },
       { href: '/paminelser', label: 'Påminnelser', icon: Bell },
@@ -65,12 +65,8 @@ export function BottomNav() {
   const [moreOpen, setMoreOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
-  // Close menu on route change
-  useEffect(() => {
-    setMoreOpen(false);
-  }, [pathname]);
+  useEffect(() => { setMoreOpen(false); }, [pathname]);
 
-  // Close on outside click
   useEffect(() => {
     if (!moreOpen) return;
     const handler = (e: MouseEvent) => {
@@ -95,9 +91,10 @@ export function BottomNav() {
       {moreOpen && (
         <div
           ref={menuRef}
-          className="fixed bottom-[calc(3.5rem+env(safe-area-inset-bottom))] left-0 right-0 z-50 bg-white rounded-t-2xl shadow-2xl border-t border-gray-200 max-h-[70vh] overflow-y-auto animate-in slide-in-from-bottom"
+          className="fixed bottom-[calc(4rem+env(safe-area-inset-bottom))] left-0 right-0 z-50 bg-white rounded-t-3xl shadow-2xl border-t max-h-[70vh] overflow-y-auto"
+          style={{ borderColor: '#F0EDE6' }}
         >
-          <div className="px-5 pt-4 pb-2 flex items-center justify-between sticky top-0 bg-white">
+          <div className="px-5 pt-4 pb-2 flex items-center justify-between sticky top-0 bg-white rounded-t-3xl">
             <h3 className="font-semibold text-primary text-sm">Alla verktyg</h3>
             <button
               onClick={() => setMoreOpen(false)}
@@ -118,14 +115,18 @@ export function BottomNav() {
                       <Link
                         key={href}
                         href={href}
-                        className={`flex flex-col items-center gap-1 py-2.5 px-1 rounded-xl transition-colors ${
+                        className={`flex flex-col items-center gap-1.5 py-3 px-1 rounded-2xl transition-colors ${
                           isActive
                             ? 'bg-accent/10 text-accent'
-                            : 'text-primary hover:bg-gray-50'
+                            : 'text-primary hover:bg-primary-lighter/50'
                         }`}
                         aria-label={label}
                       >
-                        <Icon className="w-5 h-5" strokeWidth={1.5} />
+                        <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${
+                          isActive ? 'bg-accent/15' : 'bg-primary-lighter/50'
+                        }`}>
+                          <Icon className="w-5 h-5" strokeWidth={1.5} />
+                        </div>
                         <span className="text-xs font-medium text-center leading-tight">{label}</span>
                       </Link>
                     );
@@ -137,23 +138,30 @@ export function BottomNav() {
         </div>
       )}
 
-      {/* Bottom nav bar */}
-      <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-50">
-        <div className="mx-auto max-w-lg flex items-center justify-around">
+      {/* Dark bottom nav bar */}
+      <nav className="fixed bottom-0 left-0 right-0 z-50" style={{ background: '#2A2622' }}>
+        <div className="mx-auto max-w-lg flex items-center justify-around px-2 py-1.5">
           {NAV_ITEMS.map(({ href, label, icon: Icon }) => {
             const isActive = pathname === href;
             return (
               <Link
                 key={href}
                 href={href}
-                className={`flex flex-col items-center py-2 px-3 min-w-[4rem] transition-colors ${
-                  isActive
-                    ? 'text-accent'
-                    : 'text-muted hover:text-primary'
-                }`}
+                className="relative flex items-center justify-center transition-all duration-200"
+                style={{
+                  minWidth: isActive ? '100px' : '56px',
+                  height: '44px',
+                  borderRadius: '22px',
+                  background: isActive ? '#6B7F5E' : 'transparent',
+                  color: isActive ? '#FFFFFF' : '#9C9590',
+                  gap: '6px',
+                  padding: isActive ? '0 16px' : '0 8px',
+                }}
               >
-                <Icon className="w-5 h-5 mb-0.5" strokeWidth={isActive ? 2.5 : 1.5} />
-                <span className="text-xs font-medium">{label}</span>
+                <Icon className="w-5 h-5 flex-shrink-0" strokeWidth={isActive ? 2 : 1.5} />
+                {isActive && (
+                  <span className="text-xs font-semibold whitespace-nowrap">{label}</span>
+                )}
               </Link>
             );
           })}
@@ -163,18 +171,25 @@ export function BottomNav() {
             onClick={() => setMoreOpen(!moreOpen)}
             aria-label="Mer verktyg"
             aria-expanded={moreOpen}
-            className={`flex flex-col items-center py-2 px-3 min-w-[4rem] transition-colors ${
-              moreOpen || isMoreActive
-                ? 'text-accent'
-                : 'text-muted hover:text-primary'
-            }`}
+            className="relative flex items-center justify-center transition-all duration-200"
+            style={{
+              minWidth: (moreOpen || isMoreActive) ? '90px' : '56px',
+              height: '44px',
+              borderRadius: '22px',
+              background: (moreOpen || isMoreActive) ? '#6B7F5E' : 'transparent',
+              color: (moreOpen || isMoreActive) ? '#FFFFFF' : '#9C9590',
+              gap: '6px',
+              padding: (moreOpen || isMoreActive) ? '0 16px' : '0 8px',
+            }}
           >
-            <MoreHorizontal className="w-5 h-5 mb-0.5" strokeWidth={moreOpen || isMoreActive ? 2.5 : 1.5} />
-            <span className="text-xs font-medium">Mer</span>
+            <MoreHorizontal className="w-5 h-5 flex-shrink-0" strokeWidth={(moreOpen || isMoreActive) ? 2 : 1.5} />
+            {(moreOpen || isMoreActive) && (
+              <span className="text-xs font-semibold whitespace-nowrap">Mer</span>
+            )}
           </button>
         </div>
         {/* Safe area for iOS */}
-        <div className="h-[env(safe-area-inset-bottom)]" />
+        <div className="h-[env(safe-area-inset-bottom)]" style={{ background: '#2A2622' }} />
       </nav>
     </>
   );
