@@ -119,9 +119,9 @@ function Content() {
   };
 
   const canProceed = (): boolean => {
-    if (step === 0) return data.namn && data.fdd && data.avliden && data.ort;
+    if (step === 0) return !!(data.namn && data.fdd && data.avliden && data.ort);
     if (step === 1) return !!data.template;
-    if (step === 2) return !!data.sorjande && (!data.blommorValgörenhet || data.valgörenhet);
+    if (step === 2) return !!data.sorjande && (!data.blommorValgörenhet || !!data.valgörenhet);
     return true;
   };
 
