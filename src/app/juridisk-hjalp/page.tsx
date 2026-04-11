@@ -10,7 +10,6 @@ import {
   Bot,
   User,
   AlertTriangle,
-  Scale,
   Sparkles,
 } from 'lucide-react';
 
@@ -354,8 +353,8 @@ function JuridiskHjalpContent() {
           <ArrowLeft className="w-5 h-5 text-primary" />
         </Link>
         <div className="flex items-center gap-2">
-          <div className="w-9 h-9 rounded-full flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #6E8BA4, #567A93)' }}>
-            <Scale className="w-4 h-4 text-white" />
+          <div className="w-9 h-9 rounded-full flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #6B7F5E, #4F6145)' }}>
+            <Bot className="w-4 h-4 text-white" />
           </div>
           <div>
             <h1 className="text-lg font-semibold text-primary">Mike Ross</h1>

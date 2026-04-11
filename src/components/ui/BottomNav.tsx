@@ -6,7 +6,7 @@ import { useState, useEffect, useRef } from 'react';
 import {
   Home, Users, Wallet, FileText, FolderOpen, MoreHorizontal, X,
   Calculator, Building2, Camera, Download, Bell, Scale, BookOpen,
-  HelpCircle, Globe, Briefcase, AlertTriangle, MessageSquare,
+  HelpCircle, Globe, Briefcase, AlertTriangle, Bot,
   HomeIcon, Heart, CreditCard, FileCheck,
 } from 'lucide-react';
 
@@ -30,7 +30,7 @@ const MORE_CATEGORIES = [
   {
     title: 'Verktyg',
     items: [
-      { href: '/juridisk-hjalp', label: 'Mike Ross', icon: MessageSquare },
+      { href: '/juridisk-hjalp', label: 'Mike Ross', icon: Bot },
       { href: '/skanner', label: 'Skanner', icon: Camera },
       { href: '/exportera', label: 'Exportera', icon: Download },
       { href: '/paminelser', label: 'Påminnelser', icon: Bell },
@@ -138,8 +138,8 @@ export function BottomNav() {
         </div>
       )}
 
-      {/* Dark bottom nav bar */}
-      <nav className="fixed bottom-0 left-0 right-0 z-50" style={{ background: '#2A2622' }}>
+      {/* Bottom nav bar — warm linen background */}
+      <nav className="fixed bottom-0 left-0 right-0 z-50 border-t" style={{ background: '#F7F5F0', borderColor: '#E8E4DE' }}>
         <div className="mx-auto max-w-lg flex items-center justify-around px-2 py-1.5">
           {NAV_ITEMS.map(({ href, label, icon: Icon }) => {
             const isActive = pathname === href;
@@ -153,7 +153,7 @@ export function BottomNav() {
                   height: '44px',
                   borderRadius: '22px',
                   background: isActive ? '#6B7F5E' : 'transparent',
-                  color: isActive ? '#FFFFFF' : '#9C9590',
+                  color: isActive ? '#FFFFFF' : '#6B6560',
                   gap: '6px',
                   padding: isActive ? '0 16px' : '0 8px',
                 }}
@@ -177,7 +177,7 @@ export function BottomNav() {
               height: '44px',
               borderRadius: '22px',
               background: (moreOpen || isMoreActive) ? '#6B7F5E' : 'transparent',
-              color: (moreOpen || isMoreActive) ? '#FFFFFF' : '#9C9590',
+              color: (moreOpen || isMoreActive) ? '#FFFFFF' : '#6B6560',
               gap: '6px',
               padding: (moreOpen || isMoreActive) ? '0 16px' : '0 8px',
             }}
@@ -189,7 +189,7 @@ export function BottomNav() {
           </button>
         </div>
         {/* Safe area for iOS */}
-        <div className="h-[env(safe-area-inset-bottom)]" style={{ background: '#2A2622' }} />
+        <div className="h-[env(safe-area-inset-bottom)]" style={{ background: '#F7F5F0' }} />
       </nav>
     </>
   );
