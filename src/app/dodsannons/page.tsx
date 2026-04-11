@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { ArrowLeft, ChevronRight, ChevronLeft, Bot, Newspaper, Copy, CheckCircle2, Info } from 'lucide-react';
+import { ArrowLeft, Bot, Newspaper, Copy, CheckCircle2, Info } from 'lucide-react';
 import { DodsboProvider, useDodsbo } from '@/lib/context';
 import { BottomNav } from '@/components/ui/BottomNav';
 
@@ -126,7 +126,7 @@ function Content() {
   };
 
   return (
-    <div className="min-h-screen bg-background pb-32">
+    <div className="min-h-screen bg-background pb-24">
       {/* Header */}
       <div className="bg-white border-b border-gray-100">
         <div className="max-w-2xl mx-auto px-4 py-6">
@@ -359,25 +359,25 @@ function Content() {
       </div>
 
       {/* Navigation */}
-      <div className="fixed bottom-20 left-0 right-0 bg-white border-t border-gray-100">
-        <div className="max-w-2xl mx-auto px-4 py-4 flex gap-3">
+      <div className="flex gap-3 mt-6 mb-4">
+        {step > 0 && (
           <button
-            onClick={() => setStep(prev => Math.max(0, prev - 1))}
-            disabled={step === 0}
-            className="flex items-center gap-2 px-4 py-3 bg-gray-100 text-primary rounded-xl font-medium disabled:opacity-30 disabled:cursor-not-allowed hover:bg-gray-200 transition"
+            onClick={() => setStep(step - 1)}
+            className="flex-1 py-3 px-4 rounded-2xl border-2 font-medium text-primary text-sm transition-colors"
+            style={{ borderColor: '#E8E4DE' }}
           >
-            <ChevronLeft className="w-5 h-5" />
-            Tillbaka
+            ← Tillbaka
           </button>
-          <button
-            onClick={() => setStep(prev => Math.min(STEPS.length - 1, prev + 1))}
-            disabled={!canProceed() || step === STEPS.length - 1}
-            className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-accent text-white rounded-xl font-medium disabled:opacity-30 disabled:cursor-not-allowed hover:bg-accent/90 transition"
-          >
-            Nästa
-            <ChevronRight className="w-5 h-5" />
-          </button>
-        </div>
+        )}
+        <button
+          onClick={() => {
+            if (step < 3) setStep(step + 1);
+          }}
+          disabled={step === 3}
+          className="flex-1 btn-primary !rounded-2xl !py-3 !text-sm"
+        >
+          {step < 3 ? 'Nästa →' : '✓ Klar'}
+        </button>
       </div>
 
       <BottomNav />

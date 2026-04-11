@@ -346,7 +346,7 @@ function JuridiskHjalpContent() {
   return (
     <div className="flex flex-col h-dvh bg-background">
       {/* Header */}
-      <div className="flex items-center gap-3 px-5 py-4 border-b border-gray-200 bg-white">
+      <div className="flex items-center gap-3 px-5 py-3 border-b bg-white/80 backdrop-blur-sm" style={{ borderColor: '#E8E4DE' }}>
         <Link
           href="/dashboard"
           className="p-2 -ml-2 min-h-[44px] min-w-[44px] flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors"
@@ -354,13 +354,16 @@ function JuridiskHjalpContent() {
         >
           <ArrowLeft className="w-5 h-5 text-primary" />
         </Link>
-        <div className="flex items-center gap-2">
-          <div className="w-9 h-9 rounded-full flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #6B7F5E, #4F6145)' }}>
-            <Bot className="w-4 h-4 text-white" />
+        <div className="flex items-center gap-3 flex-1">
+          <div className="w-10 h-10 rounded-full flex items-center justify-center shadow-sm" style={{ background: 'linear-gradient(135deg, #6B7F5E, #4F6145)' }}>
+            <Bot className="w-5 h-5 text-white" />
           </div>
           <div>
-            <h1 className="text-lg font-semibold text-primary">Mike Ross</h1>
-            <p className="text-xs text-muted">Din juridiska AI-assistent</p>
+            <h1 className="text-base font-semibold text-primary">Mike Ross</h1>
+            <div className="flex items-center gap-1.5">
+              <span className="w-2 h-2 rounded-full bg-green-400" />
+              <p className="text-xs text-muted">Online — juridisk AI-assistent</p>
+            </div>
           </div>
         </div>
       </div>
@@ -423,11 +426,12 @@ function JuridiskHjalpContent() {
               </div>
             )}
             <div
-              className={`max-w-[85%] px-4 py-3 rounded-2xl ${
+              className={`max-w-[80%] px-4 py-3 rounded-2xl shadow-sm ${
                 msg.role === 'user'
-                  ? 'bg-accent text-white rounded-br-md'
-                  : 'bg-white border border-gray-200 text-primary rounded-bl-md'
+                  ? 'bg-accent text-white rounded-br-sm'
+                  : 'bg-white text-primary rounded-bl-sm'
               }`}
+              style={msg.role === 'assistant' ? { border: '1px solid #E8E4DE' } : {}}
             >
               {msg.role === 'assistant' ? (
                 <TypewriterBubble
@@ -453,7 +457,7 @@ function JuridiskHjalpContent() {
             <div className="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center flex-shrink-0">
               <Bot className="w-4 h-4 text-accent" />
             </div>
-            <div className="bg-white border border-gray-200 px-4 py-3 rounded-2xl rounded-bl-md">
+            <div className="bg-white px-4 py-3 rounded-2xl rounded-bl-sm shadow-sm" style={{ border: '1px solid #E8E4DE' }}>
               <div className="flex items-center gap-1.5">
                 <span className="w-2 h-2 bg-accent/50 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
                 <span className="w-2 h-2 bg-accent/50 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
@@ -479,7 +483,7 @@ function JuridiskHjalpContent() {
       </div>
 
       {/* Input area */}
-      <div className="border-t border-gray-200 bg-white px-4 py-3 pb-24">
+      <div className="border-t bg-white px-4 py-3 pb-24" style={{ borderColor: '#E8E4DE' }}>
         {/* Remaining messages warning — shows when 3 or fewer left */}
         {!isLimitReached && remainingMessages <= 3 && remainingMessages > 0 && (
           <div className="mb-3 text-center">
@@ -491,19 +495,16 @@ function JuridiskHjalpContent() {
 
         {/* Limit reached — soft upgrade prompt with suggestion */}
         {isLimitReached && (
-          <div className="mb-4 p-3 bg-amber-50 border border-amber-200 rounded-lg">
-            <p className="text-sm font-semibold text-primary mb-2">
+          <div className="mb-4 p-4 bg-accent/5 border border-accent/20 rounded-2xl">
+            <p className="text-sm font-semibold text-primary mb-1">
               Du har använt dina {FREE_MESSAGE_LIMIT} gratis frågor
             </p>
             <p className="text-xs text-muted mb-3">
-              Du kan fortfarande ställa frågor genom att formulera dem annorlunda för att få mer värde av dina svar.
+              Uppgradera för obegränsade frågor och prioriterat stöd.
             </p>
-            <button className="btn-primary !max-w-xs mx-auto block mb-2">
+            <button className="btn-primary !rounded-xl !py-2.5 !text-sm w-full">
               Uppgradera till Premium
             </button>
-            <p className="text-xs text-muted text-center">
-              Obegränsade frågor + prioriterat stöd
-            </p>
           </div>
         )}
 
@@ -517,7 +518,7 @@ function JuridiskHjalpContent() {
                   key={chip}
                   onClick={() => sendMessage(chip)}
                   disabled={isLoading}
-                  className="flex-shrink-0 px-3 py-1.5 bg-gray-100 text-xs font-medium text-primary rounded-full hover:bg-gray-200 transition-colors disabled:opacity-50"
+                  className="flex-shrink-0 px-3 py-1.5 bg-accent/8 border border-accent/20 text-xs font-medium text-accent rounded-full hover:bg-accent/15 transition-colors disabled:opacity-50"
                 >
                   {chip}
                 </button>
@@ -532,16 +533,17 @@ function JuridiskHjalpContent() {
               onKeyDown={handleKeyDown}
               placeholder="Ställ en fråga om arvsrätt..."
               rows={1}
-              className="flex-1 px-4 py-3 border-2 border-gray-200 rounded-xl resize-none
-                         focus:border-accent focus:outline-none transition-colors
+              className="flex-1 px-4 py-3 rounded-2xl resize-none
+                         focus:outline-none focus:ring-2 focus:ring-accent/30 transition-all
                          text-sm text-primary placeholder:text-gray-400"
+              style={{ border: '2px solid #E8E4DE' }}
               disabled={isLoading}
             />
             <button
               onClick={() => sendMessage()}
               disabled={!input.trim() || isLoading}
-              className="p-3 bg-accent text-white rounded-xl hover:bg-accent/90
-                         transition-colors disabled:opacity-40 disabled:cursor-not-allowed
+              className="p-3 bg-accent text-white rounded-2xl hover:bg-accent/90
+                         transition-all shadow-sm disabled:opacity-40 disabled:cursor-not-allowed
                          flex-shrink-0"
               aria-label="Skicka meddelande"
             >

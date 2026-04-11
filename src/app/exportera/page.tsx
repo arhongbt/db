@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, Download, Package, FileText, FileSpreadsheet, Loader2, Check } from 'lucide-react';
+import { BottomNav } from '@/components/ui/BottomNav';
 import { DodsboProvider, useDodsbo } from '@/lib/context';
 
 function ExporteraContent() {
@@ -73,7 +74,7 @@ function ExporteraContent() {
   };
 
   return (
-    <div className="min-h-dvh bg-background">
+    <div className="min-h-dvh bg-background pb-24">
       <div className="px-5 py-6">
         <Link href="/dashboard" className="inline-flex items-center gap-2 text-sm text-muted hover:text-primary mb-6">
           <ArrowLeft className="w-4 h-4" /> Dashboard
@@ -134,6 +135,7 @@ function ExporteraContent() {
           </p>
         </div>
       </div>
+      <BottomNav />
     </div>
   );
 }

@@ -254,25 +254,27 @@ export default function DeklararaDodsboPage() {
         </section>
 
         {/* Key info boxes */}
-        <section className="mb-8 grid gap-4 md:grid-cols-2">
-          <div className="p-5 bg-info-light rounded-lg border border-info-light">
-            <div className="flex gap-3">
-              <Calendar className="w-6 h-6 text-accent flex-shrink-0" />
-              <div>
-                <h3 className="font-semibold text-primary mb-1">Viktiga datum</h3>
+        <section className="mb-8">
+          <div className="grid grid-cols-2 gap-3">
+            <div className="p-5 bg-info-light rounded-lg border border-info-light h-full">
+              <div className="flex gap-3 h-full flex-col">
+                <div className="flex gap-3">
+                  <Calendar className="w-6 h-6 text-accent flex-shrink-0" />
+                  <h3 className="font-semibold text-primary">Viktiga datum</h3>
+                </div>
                 <ul className="text-sm text-primary space-y-1">
                   <li><span className="font-semibold">2 maj:</span> Deklarationsfrist</li>
                   <li><span className="font-semibold">Före 2 maj:</span> Ansök om förlängd tid om nödvändigt</li>
                 </ul>
               </div>
             </div>
-          </div>
 
-          <div className="p-5 bg-accent/5 rounded-lg border border-accent/20">
-            <div className="flex gap-3">
-              <FileText className="w-6 h-6 text-accent flex-shrink-0" />
-              <div>
-                <h3 className="font-semibold text-primary mb-1">Dokument du behöver</h3>
+            <div className="p-5 bg-accent/5 rounded-lg border border-accent/20 h-full">
+              <div className="flex gap-3 h-full flex-col">
+                <div className="flex gap-3">
+                  <FileText className="w-6 h-6 text-accent flex-shrink-0" />
+                  <h3 className="font-semibold text-primary">Dokument du behöver</h3>
+                </div>
                 <ul className="text-sm text-primary space-y-1">
                   <li>Dödsattest</li>
                   <li>Bodelning/arvsdelning</li>
@@ -280,37 +282,41 @@ export default function DeklararaDodsboPage() {
                 </ul>
               </div>
             </div>
-          </div>
 
-          <div className="p-5 bg-blue-50 rounded-lg border border-blue-200">
-            <div className="flex gap-3">
-              <FileText className="w-6 h-6 text-blue-600 flex-shrink-0" />
-              <div>
-                <h3 className="font-semibold text-primary mb-2">Praktisk info från Skatteverket</h3>
-                <p className="text-sm text-primary mb-2">
-                  Dödsboet är skattskyldigt som en egen juridisk person. Skatteverket skickar ofta
-                  en förifylld deklaration direkt till dödsboet.
-                </p>
-                <p className="text-xs text-muted">
-                  <span className="font-semibold">Tips:</span> Kontrollera att adressen är rätt — deklarationen
-                  skickas till folkbokföringsadressen. Uppdatera adress om dödsboet har en annan adress.
-                </p>
+            <div className="p-5 bg-blue-50 rounded-lg border border-blue-200 h-full">
+              <div className="flex gap-3 h-full flex-col">
+                <div className="flex gap-3">
+                  <FileText className="w-6 h-6 text-blue-600 flex-shrink-0" />
+                  <h3 className="font-semibold text-primary">Praktisk info från Skatteverket</h3>
+                </div>
+                <div className="space-y-2">
+                  <p className="text-sm text-primary">
+                    Dödsboet är skattskyldigt som en egen juridisk person. Skatteverket skickar ofta
+                    en förifylld deklaration direkt till dödsboet.
+                  </p>
+                  <p className="text-xs text-muted">
+                    <span className="font-semibold">Tips:</span> Kontrollera att adressen är rätt — deklarationen
+                    skickas till folkbokföringsadressen. Uppdatera adress om dödsboet har en annan adress.
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div className="p-5 bg-green-50 rounded-lg border border-green-200">
-            <div className="flex gap-3">
-              <FileText className="w-6 h-6 text-green-600 flex-shrink-0" />
-              <div>
-                <h3 className="font-semibold text-primary mb-2">Efterlevandepension</h3>
-                <p className="text-sm text-primary mb-2">
-                  Den efterlevande kan ha rätt till omställningspension via Pensionsmyndigheten.
-                </p>
-                <p className="text-xs text-muted">
-                  <span className="font-semibold">Ring Pensionsmyndigheten:</span> 0771-776 776.
-                  Detta gäller i 12 månader efter dödsfallet. Ansök så snart som möjligt.
-                </p>
+            <div className="p-5 bg-green-50 rounded-lg border border-green-200 h-full">
+              <div className="flex gap-3 h-full flex-col">
+                <div className="flex gap-3">
+                  <FileText className="w-6 h-6 text-green-600 flex-shrink-0" />
+                  <h3 className="font-semibold text-primary">Efterlevandepension</h3>
+                </div>
+                <div className="space-y-2">
+                  <p className="text-sm text-primary">
+                    Den efterlevande kan ha rätt till omställningspension via Pensionsmyndigheten.
+                  </p>
+                  <p className="text-xs text-muted">
+                    <span className="font-semibold">Ring Pensionsmyndigheten:</span> 0771-776 776.
+                    Detta gäller i 12 månader efter dödsfallet. Ansök så snart som möjligt.
+                  </p>
+                </div>
               </div>
             </div>
           </div>

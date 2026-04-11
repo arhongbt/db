@@ -3,6 +3,7 @@
 import { useState, useEffect, useMemo } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, Bell, BellOff, Clock, AlertTriangle, CheckCircle2, ChevronRight } from 'lucide-react';
+import { BottomNav } from '@/components/ui/BottomNav';
 import { DodsboProvider, useDodsbo } from '@/lib/context';
 import {
   getNotificationPrefs,
@@ -79,7 +80,7 @@ function PaminelserContent() {
   const passed = deadlineItems.filter(d => d.status === 'passed');
 
   return (
-    <div className="min-h-dvh bg-background">
+    <div className="min-h-dvh bg-background pb-24">
       <div className="px-5 py-6">
         <Link href="/dashboard" className="inline-flex items-center gap-2 text-sm text-muted hover:text-primary mb-6">
           <ArrowLeft className="w-4 h-4" /> Dashboard
@@ -113,7 +114,7 @@ function PaminelserContent() {
             <button
               onClick={toggleNotifications}
               className={`relative w-12 h-7 rounded-full transition-colors ${
-                prefs.enabled ? 'bg-accent' : 'bg-gray-300'
+                prefs.enabled ? 'bg-[#6B7F5E]' : 'bg-[#E8E4DE]'
               }`}
               disabled={permission === 'denied'}
             >
@@ -238,6 +239,7 @@ function PaminelserContent() {
           </>
         )}
       </div>
+      <BottomNav />
     </div>
   );
 }

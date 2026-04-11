@@ -191,7 +191,7 @@ Adress: ${data.adress}`;
       </div>
 
       {/* Content */}
-      <div className="max-w-2xl mx-auto px-4 py-6 pb-24">
+      <div className="max-w-2xl mx-auto px-4 py-6 pb-32">
         {/* Step 0: Uppgifter om den avlidne */}
         {currentStep === 0 && (
           <div>
@@ -432,40 +432,39 @@ Adress: ${data.adress}`;
             </div>
           </div>
         )}
-      </div>
 
-      {/* Bottom Navigation */}
-      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200">
-        <div className="max-w-2xl mx-auto px-4 py-4 flex justify-between gap-3">
-          <button
-            onClick={() => setCurrentStep(currentStep - 1)}
-            disabled={currentStep === 0}
-            className="flex-1 flex items-center justify-center gap-2 px-4 py-3 border border-gray-200 rounded-xl text-primary font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50"
-          >
-            <ChevronLeft className="w-5 h-5" />
-            Tillbaka
-          </button>
-
+        {/* Navigation */}
+        <div className="flex gap-3 mt-6 mb-4">
+          {currentStep > 0 && (
+            <button
+              onClick={() => setCurrentStep(currentStep - 1)}
+              className="flex-1 py-3 px-4 rounded-2xl border-2 font-medium text-primary text-sm transition-colors"
+              style={{ borderColor: '#E8E4DE' }}
+            >
+              ← Tillbaka
+            </button>
+          )}
           {currentStep < 3 ? (
             <button
               onClick={() => setCurrentStep(currentStep + 1)}
               disabled={!canProceed()}
-              className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-accent text-white rounded-xl font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed hover:bg-accent/90"
+              className="flex-1 btn-primary !rounded-2xl !py-3 !text-sm"
             >
-              Nästa
-              <ChevronRight className="w-5 h-5" />
+              Nästa →
             </button>
           ) : (
             <button
               onClick={() => alert('Breven är klara att skrivas ut!')}
-              className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-green-600 text-white rounded-xl font-semibold transition-colors hover:bg-green-700"
+              disabled={false}
+              className="flex-1 btn-primary !rounded-2xl !py-3 !text-sm"
             >
-              <CheckCircle2 className="w-5 h-5" />
-              Färdig
+              ✓ Skapa bankbrev
             </button>
           )}
         </div>
       </div>
+
+      <BottomNav />
     </div>
   );
 }

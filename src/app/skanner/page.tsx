@@ -3,6 +3,7 @@
 import { useState, useRef, useCallback } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, Camera, Upload, FileText, Check, X, Loader2 } from 'lucide-react';
+import { BottomNav } from '@/components/ui/BottomNav';
 
 type DocCategory = 'saldobesked' | 'dodsbevis' | 'testamente' | 'forsakringsbrev' | 'kvitto' | 'ovrigt';
 
@@ -125,7 +126,7 @@ export default function SkannerPage() {
   };
 
   return (
-    <div className="min-h-dvh bg-background">
+    <div className="min-h-dvh bg-background pb-24">
       <div className="px-5 py-6">
         <Link href="/dashboard" className="inline-flex items-center gap-2 text-sm text-muted hover:text-primary mb-6">
           <ArrowLeft className="w-4 h-4" /> Dashboard
@@ -136,7 +137,7 @@ export default function SkannerPage() {
           <h1 className="text-2xl font-semibold text-primary">Dokumentskanner</h1>
         </div>
         <p className="text-muted text-sm mb-6">
-          Fota kvitton, brev och dokument. Texten extraheras automatiskt.
+          Fota kvitton, brev och dokument direkt med kameran, eller ladda upp från telefonen.
         </p>
 
         {/* Processing overlay */}
@@ -200,18 +201,18 @@ export default function SkannerPage() {
 
         {/* Capture buttons */}
         {!showResult && !processing && (
-          <div className="flex gap-3 mb-6">
+          <div className="flex flex-col gap-3 mb-6">
             <button
               onClick={() => cameraInputRef.current?.click()}
-              className="btn-primary flex-1 flex items-center justify-center gap-2 text-sm"
+              className="btn-primary flex items-center justify-center gap-2 py-4"
             >
-              <Camera className="w-4 h-4" /> Fota dokument
+              <Camera className="w-5 h-5" /> Öppna kameran och fota
             </button>
             <button
               onClick={() => fileInputRef.current?.click()}
-              className="btn-secondary flex-1 flex items-center justify-center gap-2 text-sm"
+              className="btn-secondary flex items-center justify-center gap-2"
             >
-              <Upload className="w-4 h-4" /> Ladda upp
+              <Upload className="w-4 h-4" /> Välj bild från telefonen
             </button>
           </div>
         )}
@@ -280,6 +281,7 @@ export default function SkannerPage() {
           </div>
         )}
       </div>
+      <BottomNav />
     </div>
   );
 }
