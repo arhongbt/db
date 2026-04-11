@@ -2,14 +2,14 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Home, Users, Wallet, Clock, FileText } from 'lucide-react';
+import { Home, Users, Wallet, FileText, FolderOpen } from 'lucide-react';
 
 const NAV_ITEMS = [
   { href: '/dashboard', label: 'Hem', icon: Home },
   { href: '/uppgifter', label: 'Att göra', icon: FileText },
   { href: '/tillgangar', label: 'Ekonomi', icon: Wallet },
+  { href: '/dokument', label: 'Dokument', icon: FolderOpen },
   { href: '/delagare', label: 'Delägare', icon: Users },
-  { href: '/tidslinje', label: 'Tidslinje', icon: Clock },
 ];
 
 export function BottomNav() {

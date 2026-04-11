@@ -285,6 +285,45 @@ export type Database = {
         };
         Relationships: [];
       };
+      dokument: {
+        Row: {
+          id: string;
+          dodsbo_id: string;
+          category: string;
+          file_name: string;
+          file_size: number;
+          mime_type: string;
+          storage_path: string;
+          notes: string | null;
+          uploaded_by: string;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          dodsbo_id: string;
+          category: string;
+          file_name: string;
+          file_size: number;
+          mime_type: string;
+          storage_path: string;
+          notes?: string | null;
+          uploaded_by: string;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          dodsbo_id?: string;
+          category?: string;
+          file_name?: string;
+          file_size?: number;
+          mime_type?: string;
+          storage_path?: string;
+          notes?: string | null;
+          uploaded_by?: string;
+          created_at?: string;
+        };
+        Relationships: [];
+      };
     };
     Views: Record<string, never>;
     Functions: Record<string, never>;

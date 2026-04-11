@@ -5,6 +5,7 @@ const STATIC_ASSETS = [
   '/dashboard',
   '/uppgifter',
   '/delagare',
+  '/dokument',
   '/tidslinje',
   '/nodbroms',
   '/faq',
