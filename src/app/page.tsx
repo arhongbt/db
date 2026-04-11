@@ -11,7 +11,6 @@ import {
   Users,
   FileText,
   Smartphone,
-  Star,
 } from 'lucide-react';
 import Link from 'next/link';
 import { loadState } from '@/lib/store';
@@ -79,18 +78,15 @@ export default function LandingPage() {
           ))}
         </div>
 
-        {/* Social proof */}
+        {/* Trust indicators */}
         <div className="bg-primary-lighter/20 rounded-card p-4 mb-6">
-          <div className="flex items-center gap-1 mb-2">
-            {[1, 2, 3, 4, 5].map((i) => (
-              <Star key={i} className="w-4 h-4 text-yellow-500 fill-yellow-500" />
-            ))}
+          <div className="flex items-center gap-3 mb-2">
+            <Shield className="w-5 h-5 text-accent" />
+            <p className="font-medium text-primary text-sm">Byggt för trygghet</p>
           </div>
-          <p className="text-sm text-primary/80 italic">
-            &ldquo;Hade ingen aning om var jag skulle börja. Appen tog mig genom
-            allt steg för steg. Ovärderligt.&rdquo;
+          <p className="text-sm text-primary/70">
+            Baserat på Ärvdabalken och Skatteverkets regler. Gratis att börja — ingen registrering krävs.
           </p>
-          <p className="text-xs text-muted mt-1">— Framtida användare</p>
         </div>
       </div>
 
