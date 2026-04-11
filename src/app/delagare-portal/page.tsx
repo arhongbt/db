@@ -4,9 +4,10 @@ import { useState, useMemo } from 'react';
 import Link from 'next/link';
 import {
   ArrowLeft, Users, Share2, CheckCircle2, Clock, AlertTriangle,
-  Copy, Check, Mail, Phone, ChevronDown, ChevronUp,
+  Copy, Check, Mail, Phone, ChevronDown, ChevronUp, UserPlus, Link2, X, Loader2,
 } from 'lucide-react';
 import { DodsboProvider, useDodsbo } from '@/lib/context';
+import { createInvite, getInviteLink } from '@/lib/supabase/services/invite-service';
 
 function DelagarePortalContent() {
   const { state } = useDodsbo();
@@ -14,6 +15,10 @@ function DelagarePortalContent() {
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [showInvite, setShowInvite] = useState(false);
   const [inviteEmail, setInviteEmail] = useState('');
+  const [inviteLoading, setInviteLoading] = useState(false);
+  const [inviteLink, setInviteLink] = useState<string | null>(null);
+  const [inviteError, setInviteError] = useState<string | null>(null);
+  const [linkCopied, setLinkCopied] = useState(false);
 
   // Calculate overall progress
   const totalTasks = state.tasks.length;
@@ -200,6 +205,103 @@ function DelagarePortalContent() {
                   )}
                 </div>
               ))}
+            </div>
+          )}
+        </div>
+
+        {/* Invite section */}
+        <div className="card mb-4">
+          <div className="flex items-center justify-between mb-3">
+            <p className="font-semibold text-primary text-sm">Bjud in delägare</p>
+            <button
+              onClick={() => { setShowInvite(!showInvite); setInviteLink(null); setInviteError(null); }}
+              className="flex items-center gap-1 text-xs text-accent"
+            >
+              {showInvite ? <X className="w-4 h-4" /> : <UserPlus className="w-4 h-4" />}
+              {showInvite ? 'Stäng' : 'Ny inbjudan'}
+            </button>
+          </div>
+
+          {!showInvite && (
+            <p className="text-xs text-muted">
+              Skicka en inbjudningslänk till medarvingar så de kan följa dödsboprocessen.
+            </p>
+          )}
+
+          {showInvite && (
+            <div className="space-y-3">
+              <div>
+                <label className="text-xs text-muted block mb-1">E-postadress</label>
+                <input
+                  type="email"
+                  value={inviteEmail}
+                  onChange={e => setInviteEmail(e.target.value)}
+                  placeholder="namn@exempel.se"
+                  className="w-full px-3 py-2 border-2 border-gray-200 rounded-xl text-sm
+                             focus:border-accent focus:outline-none transition-colors"
+                />
+              </div>
+
+              <button
+                onClick={async () => {
+                  if (!inviteEmail.trim()) return;
+                  setInviteLoading(true);
+                  setInviteError(null);
+                  setInviteLink(null);
+                  try {
+                    // Use a placeholder dodsbo_id — in production this comes from Supabase
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                    const dodsboId = (state as any).supabaseId || 'local';
+                    const { data, error } = await createInvite(dodsboId, inviteEmail);
+                    if (error) throw error;
+                    if (data) {
+                      setInviteLink(getInviteLink(data.token));
+                    }
+                  } catch (err: unknown) {
+                    const msg = err instanceof Error ? err.message : 'Kunde inte skapa inbjudan';
+                    setInviteError(msg);
+                  } finally {
+                    setInviteLoading(false);
+                  }
+                }}
+                disabled={inviteLoading || !inviteEmail.trim()}
+                className="w-full py-2.5 bg-accent text-white text-sm font-medium rounded-xl
+                           hover:bg-accent/90 transition-colors disabled:opacity-40 flex items-center justify-center gap-2"
+              >
+                {inviteLoading ? (
+                  <><Loader2 className="w-4 h-4 animate-spin" /> Skapar...</>
+                ) : (
+                  <><UserPlus className="w-4 h-4" /> Skapa inbjudningslänk</>
+                )}
+              </button>
+
+              {inviteError && (
+                <p className="text-xs text-warn">{inviteError}</p>
+              )}
+
+              {inviteLink && (
+                <div className="bg-accent/5 border border-accent/20 rounded-xl p-3">
+                  <p className="text-xs text-muted mb-2">Länk skapad! Dela med delägaren:</p>
+                  <div className="flex items-center gap-2">
+                    <input
+                      readOnly
+                      value={inviteLink}
+                      className="flex-1 text-xs bg-white border border-gray-200 rounded-lg px-2 py-1.5 text-primary"
+                    />
+                    <button
+                      onClick={() => {
+                        navigator.clipboard.writeText(inviteLink);
+                        setLinkCopied(true);
+                        setTimeout(() => setLinkCopied(false), 2000);
+                      }}
+                      className="p-2 bg-accent text-white rounded-lg shrink-0"
+                    >
+                      {linkCopied ? <Check className="w-4 h-4" /> : <Link2 className="w-4 h-4" />}
+                    </button>
+                  </div>
+                  {linkCopied && <p className="text-xs text-accent mt-1">Kopierat!</p>}
+                </div>
+              )}
             </div>
           )}
         </div>
