@@ -7,6 +7,7 @@ import {
   Home, Users, Wallet, FileText, FolderOpen, MoreHorizontal, X,
   Calculator, Building2, Camera, Download, Bell, Scale, BookOpen,
   HelpCircle, Globe, Briefcase, AlertTriangle, MessageSquare,
+  HomeIcon, Heart, CreditCard, FileCheck,
 } from 'lucide-react';
 
 const NAV_ITEMS = [
@@ -33,6 +34,16 @@ const MORE_CATEGORIES = [
       { href: '/skanner', label: 'Skanner', icon: Camera },
       { href: '/exportera', label: 'Exportera', icon: Download },
       { href: '/paminelser', label: 'Påminnelser', icon: Bell },
+    ],
+  },
+  {
+    title: 'Guider',
+    items: [
+      { href: '/dodsbo-fastighet', label: 'Fastighet', icon: HomeIcon },
+      { href: '/sarkullbarn', label: 'Särkullbarn', icon: Users },
+      { href: '/sambo-arv', label: 'Sambo & arv', icon: Heart },
+      { href: '/dodsbo-skulder', label: 'Skulder', icon: CreditCard },
+      { href: '/deklarera-dodsbo', label: 'Deklaration', icon: FileCheck },
     ],
   },
   {

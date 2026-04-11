@@ -32,6 +32,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/kostnader',
     '/fullmakt',
     '/kallelse',
+    '/dodsbo-fastighet',
+    '/sarkullbarn',
+    '/sambo-arv',
+    '/dodsbo-skulder',
+    '/deklarera-dodsbo',
   ].map((route) => ({
     route,
     priority: 0.8,
