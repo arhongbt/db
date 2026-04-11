@@ -346,7 +346,7 @@ function JuridiskHjalpContent() {
   return (
     <div className="flex flex-col h-dvh bg-background">
       {/* Header */}
-      <div className="flex items-center gap-3 px-5 py-3 border-b bg-white/80 backdrop-blur-sm" style={{ borderColor: '#E8E4DE' }}>
+      <div className="flex items-center gap-3 px-5 py-3 border-b bg-background" style={{ borderColor: '#E8E4DE' }}>
         <Link
           href="/dashboard"
           className="p-2 -ml-2 min-h-[44px] min-w-[44px] flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors"
@@ -392,7 +392,8 @@ function JuridiskHjalpContent() {
                 <button
                   key={q}
                   onClick={() => sendMessage(q)}
-                  className="text-left px-4 py-3 bg-white border border-gray-200 rounded-xl text-sm text-primary hover:border-accent hover:bg-accent/5 transition-colors"
+                  className="text-left px-4 py-3 rounded-2xl text-sm text-primary hover:bg-accent/10 transition-colors"
+                  style={{ background: '#EFEDE8' }}
                 >
                   {q}
                 </button>
@@ -426,12 +427,12 @@ function JuridiskHjalpContent() {
               </div>
             )}
             <div
-              className={`max-w-[80%] px-4 py-3 rounded-2xl shadow-sm ${
+              className={`max-w-[80%] px-4 py-3 rounded-2xl ${
                 msg.role === 'user'
-                  ? 'bg-accent text-white rounded-br-sm'
-                  : 'bg-white text-primary rounded-bl-sm'
+                  ? 'bg-accent text-white rounded-br-sm shadow-sm'
+                  : 'text-primary rounded-bl-sm'
               }`}
-              style={msg.role === 'assistant' ? { border: '1px solid #E8E4DE' } : {}}
+              style={msg.role === 'assistant' ? { background: '#EFEDE8' } : {}}
             >
               {msg.role === 'assistant' ? (
                 <TypewriterBubble
@@ -457,7 +458,7 @@ function JuridiskHjalpContent() {
             <div className="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center flex-shrink-0">
               <Bot className="w-4 h-4 text-accent" />
             </div>
-            <div className="bg-white px-4 py-3 rounded-2xl rounded-bl-sm shadow-sm" style={{ border: '1px solid #E8E4DE' }}>
+            <div className="px-4 py-3 rounded-2xl rounded-bl-sm" style={{ background: '#EFEDE8' }}>
               <div className="flex items-center gap-1.5">
                 <span className="w-2 h-2 bg-accent/50 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
                 <span className="w-2 h-2 bg-accent/50 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
@@ -483,7 +484,7 @@ function JuridiskHjalpContent() {
       </div>
 
       {/* Input area */}
-      <div className="border-t bg-white px-4 py-3 pb-24" style={{ borderColor: '#E8E4DE' }}>
+      <div className="border-t bg-background px-4 py-3 pb-24" style={{ borderColor: '#E8E4DE' }}>
         {/* Remaining messages warning — shows when 3 or fewer left */}
         {!isLimitReached && remainingMessages <= 3 && remainingMessages > 0 && (
           <div className="mb-3 text-center">

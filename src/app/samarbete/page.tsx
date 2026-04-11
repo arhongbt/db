@@ -167,7 +167,7 @@ function TabBeslut() {
 
       <div className="space-y-4 mb-6">
         {decisions.map((decision) => (
-          <div key={decision.id} className="bg-white border border-gray-200 rounded-xl p-4">
+          <div key={decision.id} className="bg-white border rounded-2xl p-4">
             <div className="flex items-start justify-between mb-3">
               <div className="flex-1">
                 <h3 className="font-semibold text-primary mb-2">{decision.title}</h3>
@@ -223,7 +223,7 @@ function TabBeslut() {
           Lägg till beslut
         </button>
       ) : (
-        <div className="bg-white border border-gray-200 rounded-xl p-4 mb-6">
+        <div className="bg-white border rounded-2xl p-4 mb-6">
           <h3 className="font-semibold text-primary mb-3">Lägg till nytt beslut</h3>
 
           <div className="mb-3">
@@ -317,7 +317,7 @@ function TabAnteckningar() {
     <div>
       <MikeRossTip text="Skriv anteckningar som alla delägare kan se. Perfekt för att dokumentera telefonsamtal, överenskommelser eller viktiga detaljer." />
 
-      <div className="bg-white border border-gray-200 rounded-xl p-4 mb-6">
+      <div className="bg-white border rounded-2xl p-4 mb-6">
         <h3 className="font-semibold text-primary mb-3">Ny anteckning</h3>
 
         <div className="mb-3">
@@ -357,7 +357,7 @@ function TabAnteckningar() {
 
       <div className="space-y-3">
         {notes.map((note) => (
-          <div key={note.id} className="bg-white border border-gray-200 rounded-xl p-4">
+          <div key={note.id} className="bg-white border rounded-2xl p-4">
             <div className="flex items-start justify-between mb-2">
               <div>
                 <p className="font-semibold text-primary text-sm">{note.author}</p>
@@ -487,7 +487,7 @@ function Content() {
   return (
     <div className="min-h-screen bg-background pb-24">
       {/* Header */}
-      <div className="sticky top-0 z-10 bg-white border-b border-gray-200">
+      <div className="sticky top-0 z-10 bg-background border-b" style={{ borderColor: '#E8E4DE' }}>
         <div className="max-w-2xl mx-auto px-4 py-4">
           <div className="flex items-center gap-3 mb-4">
             <Link href="/dashboard" className="text-primary hover:text-accent transition">

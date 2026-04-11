@@ -31,7 +31,7 @@ export default function SamboArvPage() {
         </div>
 
         {/* Introduction Card */}
-        <div className="bg-card border border-border rounded-lg p-5 space-y-3">
+        <div className="bg-card border border-border rounded-2xl p-5 space-y-3">
           <div className="flex items-start gap-3">
             <Heart className="w-6 h-6 text-accent flex-shrink-0 mt-1" />
             <div>
@@ -44,7 +44,7 @@ export default function SamboArvPage() {
         </div>
 
         {/* Key Points Card */}
-        <div className="bg-card border border-border rounded-lg overflow-hidden">
+        <div className="bg-card border border-border rounded-2xl overflow-hidden">
           <div className="bg-secondary px-5 py-3 border-b border-border">
             <h3 className="font-semibold text-primary">De viktigaste reglerna</h3>
           </div>
@@ -88,7 +88,7 @@ export default function SamboArvPage() {
         </div>
 
         {/* What Happens Without Will */}
-        <div className="bg-card border border-border rounded-lg p-5 space-y-4">
+        <div className="bg-card border border-border rounded-2xl p-5 space-y-4">
           <h3 className="font-semibold text-primary flex items-center gap-2">
             <span>Utan testamente</span>
             <ChevronRight className="w-4 h-4 text-muted" />
@@ -115,7 +115,7 @@ export default function SamboArvPage() {
         </div>
 
         {/* What Happens With Will */}
-        <div className="bg-card border border-border rounded-lg p-5 space-y-4">
+        <div className="bg-card border border-border rounded-2xl p-5 space-y-4">
           <h3 className="font-semibold text-primary flex items-center gap-2">
             <span>Med testamente</span>
             <ChevronRight className="w-4 h-4 text-muted" />
@@ -142,7 +142,7 @@ export default function SamboArvPage() {
         </div>
 
         {/* Bodelning Card */}
-        <div className="bg-card border border-border rounded-lg p-5 space-y-4">
+        <div className="bg-card border border-border rounded-2xl p-5 space-y-4">
           <h3 className="font-semibold text-primary">Sambors rätt till bodelning</h3>
           <p className="text-sm text-muted">
             Även utan testamente har en sambo rätt att kräva bodelning av:
@@ -163,7 +163,7 @@ export default function SamboArvPage() {
         </div>
 
         {/* Difference from Married */}
-        <div className="bg-card border border-border rounded-lg p-5 space-y-4">
+        <div className="bg-card border border-border rounded-2xl p-5 space-y-4">
           <h3 className="font-semibold text-primary">Sambo vs. Gift — skillnaden</h3>
           <div className="space-y-3 text-sm">
             <div className="grid grid-cols-2 gap-3">
@@ -190,7 +190,7 @@ export default function SamboArvPage() {
         </div>
 
         {/* FAQ */}
-        <div className="bg-card border border-border rounded-lg overflow-hidden">
+        <div className="bg-card border border-border rounded-2xl overflow-hidden">
           <div className="bg-secondary px-5 py-3 border-b border-border">
             <h3 className="font-semibold text-primary">Vanliga frågor</h3>
           </div>

@@ -166,7 +166,7 @@ function Content() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-background">
       <div className="max-w-2xl mx-auto px-4 py-6 pb-32">
         {/* Header */}
         <div className="flex items-center gap-3 mb-6">
@@ -234,7 +234,7 @@ function Content() {
             <div>
               <p className="text-sm font-semibold text-primary mb-3">Checklista:</p>
 
-              <div className="mb-4 p-3 bg-white border border-gray-200 rounded-lg">
+              <div className="mb-4 p-3 bg-white border rounded-2xl" style={{ borderColor: '#E8E4DE' }}>
                 <p className="text-sm font-medium text-primary mb-2">Facebook</p>
                 <p className="text-xs text-gray-600 mb-2">Minnessida eller radera</p>
                 <a
@@ -254,7 +254,7 @@ function Content() {
                 </div>
               </div>
 
-              <div className="mb-4 p-3 bg-white border border-gray-200 rounded-lg">
+              <div className="mb-4 p-3 bg-white border rounded-2xl" style={{ borderColor: '#E8E4DE' }}>
                 <p className="text-sm font-medium text-primary mb-2">Instagram</p>
                 <p className="text-xs text-gray-600 mb-2">Minneskonto eller radera</p>
                 <a
@@ -274,7 +274,7 @@ function Content() {
                 </div>
               </div>
 
-              <div className="mb-4 p-3 bg-white border border-gray-200 rounded-lg">
+              <div className="mb-4 p-3 bg-white border rounded-2xl" style={{ borderColor: '#E8E4DE' }}>
                 <p className="text-sm font-medium text-primary mb-2">LinkedIn</p>
                 <p className="text-xs text-gray-600 mb-2">Stäng via support</p>
                 <div className="mt-2">
@@ -286,7 +286,7 @@ function Content() {
                 </div>
               </div>
 
-              <div className="mb-4 p-3 bg-white border border-gray-200 rounded-lg">
+              <div className="mb-4 p-3 bg-white border rounded-2xl" style={{ borderColor: '#E8E4DE' }}>
                 <p className="text-sm font-medium text-primary mb-2">Google/Gmail</p>
                 <p className="text-xs text-gray-600 mb-2">Inactive Account Manager kan ha ställts in</p>
                 <div className="mt-2">
@@ -377,7 +377,7 @@ function Content() {
             <div>
               <p className="text-sm font-semibold text-primary mb-3">Checklista:</p>
 
-              <div className="mb-4 p-3 bg-white border border-gray-200 rounded-lg">
+              <div className="mb-4 p-3 bg-white border rounded-2xl" style={{ borderColor: '#E8E4DE' }}>
                 <p className="text-sm font-medium text-primary mb-2">Gmail/Outlook</p>
                 <p className="text-xs text-gray-600 mb-2">Kan ge tillgång via dödsbevis + bouppteckning</p>
                 <div className="mt-2">
@@ -389,7 +389,7 @@ function Content() {
                 </div>
               </div>
 
-              <div className="mb-4 p-3 bg-white border border-gray-200 rounded-lg">
+              <div className="mb-4 p-3 bg-white border rounded-2xl" style={{ borderColor: '#E8E4DE' }}>
                 <p className="text-sm font-medium text-primary mb-2">iCloud</p>
                 <p className="text-xs text-gray-600 mb-2">Apple har Legacy Contact-program</p>
                 <div className="mt-2">
@@ -401,7 +401,7 @@ function Content() {
                 </div>
               </div>
 
-              <div className="mb-4 p-3 bg-white border border-gray-200 rounded-lg">
+              <div className="mb-4 p-3 bg-white border rounded-2xl" style={{ borderColor: '#E8E4DE' }}>
                 <p className="text-sm font-medium text-primary mb-2">Dropbox/Google Drive</p>
                 <p className="text-xs text-gray-600 mb-2">Kan innehålla viktiga dokument</p>
                 <div className="mt-2">
