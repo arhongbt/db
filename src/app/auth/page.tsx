@@ -113,18 +113,19 @@ export default function AuthPage() {
         </div>
 
         {/* Tab navigation */}
-        <div className="flex gap-2 mb-6 bg-white rounded-card p-1 shadow-sm">
+        <div className="flex gap-1 mb-6 bg-white rounded-2xl p-1 shadow-sm">
           <button
             onClick={() => {
               setTab('login');
               setError('');
               setSuccess('');
             }}
-            className={`flex-1 py-2 px-3 rounded transition-all font-semibold text-sm ${
+            className={`flex-1 py-2.5 px-3 rounded-xl transition-all font-semibold text-sm ${
               tab === 'login'
-                ? 'bg-primary text-white'
+                ? 'text-white'
                 : 'text-primary hover:bg-primary-lighter'
             }`}
+            style={tab === 'login' ? { background: 'linear-gradient(135deg, #6B7F5E, #4F6145)' } : undefined}
           >
             Logga in
           </button>
@@ -134,11 +135,12 @@ export default function AuthPage() {
               setError('');
               setSuccess('');
             }}
-            className={`flex-1 py-2 px-3 rounded transition-all font-semibold text-sm ${
+            className={`flex-1 py-2.5 px-3 rounded-xl transition-all font-semibold text-sm ${
               tab === 'register'
-                ? 'bg-primary text-white'
+                ? 'text-white'
                 : 'text-primary hover:bg-primary-lighter'
             }`}
+            style={tab === 'register' ? { background: 'linear-gradient(135deg, #6B7F5E, #4F6145)' } : undefined}
           >
             Skapa konto
           </button>
@@ -160,151 +162,157 @@ export default function AuthPage() {
 
         {/* Login form */}
         {tab === 'login' && (
-          <form onSubmit={handleLogin} className="space-y-4 animate-fadeIn">
-            <div className="card">
-              <label htmlFor="login-email" className="block text-sm font-medium text-primary mb-2">
-                E-postadress
-              </label>
-              <input
-                id="login-email"
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="din@email.se"
-                required
-                className="w-full px-4 py-3 border border-gray-300 rounded-card text-primary placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all"
-              />
+          <form onSubmit={handleLogin} className="animate-fadeIn">
+            <div className="card space-y-4">
+              <div>
+                <label htmlFor="login-email" className="block text-sm font-medium text-primary mb-1.5">
+                  E-postadress
+                </label>
+                <input
+                  id="login-email"
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="din@email.se"
+                  required
+                  className="w-full px-4 py-3 border border-gray-200 rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all bg-background"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="login-password" className="block text-sm font-medium text-primary mb-1.5">
+                  Lösenord
+                </label>
+                <input
+                  id="login-password"
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="••••••••"
+                  required
+                  className="w-full px-4 py-3 border border-gray-200 rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all bg-background"
+                />
+              </div>
+
+              <button
+                type="submit"
+                disabled={loading}
+                className="btn-primary"
+              >
+                {loading ? 'Loggar in...' : 'Logga in'}
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setTab('reset')}
+                className="w-full py-2 text-accent hover:text-primary text-sm font-medium transition-colors"
+              >
+                Glömt lösenord?
+              </button>
             </div>
-
-            <div className="card">
-              <label htmlFor="login-password" className="block text-sm font-medium text-primary mb-2">
-                Lösenord
-              </label>
-              <input
-                id="login-password"
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="••••••••"
-                required
-                className="w-full px-4 py-3 border border-gray-300 rounded-card text-primary placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all"
-              />
-            </div>
-
-            <button
-              type="submit"
-              disabled={loading}
-              className="btn-primary"
-            >
-              {loading ? 'Loggar in...' : 'Logga in'}
-            </button>
-
-            <button
-              type="button"
-              onClick={() => setTab('reset')}
-              className="w-full py-2 text-accent hover:text-primary text-sm font-medium transition-colors"
-            >
-              Glömt lösenord?
-            </button>
           </form>
         )}
 
         {/* Register form */}
         {tab === 'register' && (
-          <form onSubmit={handleRegister} className="space-y-4 animate-fadeIn">
-            <div className="card">
-              <label htmlFor="register-email" className="block text-sm font-medium text-primary mb-2">
-                E-postadress
-              </label>
-              <input
-                id="register-email"
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="din@email.se"
-                required
-                className="w-full px-4 py-3 border border-gray-300 rounded-card text-primary placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all"
-              />
-            </div>
+          <form onSubmit={handleRegister} className="animate-fadeIn">
+            <div className="card space-y-4">
+              <div>
+                <label htmlFor="register-email" className="block text-sm font-medium text-primary mb-1.5">
+                  E-postadress
+                </label>
+                <input
+                  id="register-email"
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="din@email.se"
+                  required
+                  className="w-full px-4 py-3 border border-gray-200 rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all bg-background"
+                />
+              </div>
 
-            <div className="card">
-              <label htmlFor="register-password" className="block text-sm font-medium text-primary mb-2">
-                Lösenord
-              </label>
-              <input
-                id="register-password"
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="••••••••"
-                required
-                className="w-full px-4 py-3 border border-gray-300 rounded-card text-primary placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all"
-              />
-              <p className="text-xs text-muted mt-2">Minst 6 tecken</p>
-            </div>
+              <div>
+                <label htmlFor="register-password" className="block text-sm font-medium text-primary mb-1.5">
+                  Lösenord
+                </label>
+                <input
+                  id="register-password"
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="••••••••"
+                  required
+                  className="w-full px-4 py-3 border border-gray-200 rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all bg-background"
+                />
+                <p className="text-xs text-muted mt-1.5">Minst 6 tecken</p>
+              </div>
 
-            <div className="card">
-              <label htmlFor="register-confirm" className="block text-sm font-medium text-primary mb-2">
-                Bekräfta lösenord
-              </label>
-              <input
-                id="register-confirm"
-                type="password"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                placeholder="••••••••"
-                required
-                className="w-full px-4 py-3 border border-gray-300 rounded-card text-primary placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all"
-              />
-            </div>
+              <div>
+                <label htmlFor="register-confirm" className="block text-sm font-medium text-primary mb-1.5">
+                  Bekräfta lösenord
+                </label>
+                <input
+                  id="register-confirm"
+                  type="password"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  placeholder="••••••••"
+                  required
+                  className="w-full px-4 py-3 border border-gray-200 rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all bg-background"
+                />
+              </div>
 
-            <button
-              type="submit"
-              disabled={loading}
-              className="btn-primary"
-            >
-              {loading ? 'Skapar konto...' : 'Skapa konto'}
-            </button>
+              <button
+                type="submit"
+                disabled={loading}
+                className="btn-primary"
+              >
+                {loading ? 'Skapar konto...' : 'Skapa konto'}
+              </button>
+            </div>
           </form>
         )}
 
         {/* Password reset form */}
         {tab === 'reset' && (
-          <form onSubmit={handleResetPassword} className="space-y-4 animate-fadeIn">
+          <form onSubmit={handleResetPassword} className="animate-fadeIn">
             <div className="info-box mb-4">
               Vi skickar en säker länk till din e-postadress där du kan återställa ditt lösenord.
             </div>
 
-            <div className="card">
-              <label htmlFor="reset-email" className="block text-sm font-medium text-primary mb-2">
-                E-postadress
-              </label>
-              <input
-                id="reset-email"
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="din@email.se"
-                required
-                className="w-full px-4 py-3 border border-gray-300 rounded-card text-primary placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all"
-              />
+            <div className="card space-y-4">
+              <div>
+                <label htmlFor="reset-email" className="block text-sm font-medium text-primary mb-1.5">
+                  E-postadress
+                </label>
+                <input
+                  id="reset-email"
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="din@email.se"
+                  required
+                  className="w-full px-4 py-3 border border-gray-200 rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all bg-background"
+                />
+              </div>
+
+              <button
+                type="submit"
+                disabled={loading}
+                className="btn-primary"
+              >
+                {loading ? 'Skickar...' : 'Skicka återställningslänk'}
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setTab('login')}
+                className="w-full py-2 text-accent hover:text-primary text-sm font-medium transition-colors"
+              >
+                Tillbaka till logga in
+              </button>
             </div>
-
-            <button
-              type="submit"
-              disabled={loading}
-              className="btn-primary"
-            >
-              {loading ? 'Skickar...' : 'Skicka återställningslänk'}
-            </button>
-
-            <button
-              type="button"
-              onClick={() => setTab('login')}
-              className="w-full py-2 text-accent hover:text-primary text-sm font-medium transition-colors"
-            >
-              Tillbaka till logga in
-            </button>
           </form>
         )}
         {/* Footer links */}

@@ -493,28 +493,19 @@ function JuridiskHjalpContent() {
           </div>
         ) : (
           <>
-            {/* Remaining counter */}
-            {mounted && (
-              <div className="flex items-center justify-between mb-2">
-                {messages.length > 0 && (
-                  <div className="flex gap-1 overflow-x-auto pb-1 scrollbar-hide">
-                    {['Berätta mer', 'Ge ett exempel', 'Vilken lag gäller?', 'Vad bör jag göra?'].map((chip) => (
-                      <button
-                        key={chip}
-                        onClick={() => sendMessage(chip)}
-                        disabled={isLoading}
-                        className="flex-shrink-0 px-3 py-1.5 bg-gray-100 text-xs font-medium text-primary rounded-full hover:bg-gray-200 transition-colors disabled:opacity-50"
-                      >
-                        {chip}
-                      </button>
-                    ))}
-                  </div>
-                )}
-                <span className={`text-xs font-medium flex-shrink-0 ml-2 ${
-                  remainingMessages <= 3 ? 'text-warn' : 'text-muted-light'
-                }`}>
-                  {remainingMessages}/{FREE_MESSAGE_LIMIT} kvar
-                </span>
+            {/* Quick reply chips */}
+            {mounted && messages.length > 0 && (
+              <div className="flex gap-1 overflow-x-auto pb-1 mb-2 scrollbar-hide">
+                {['Berätta mer', 'Ge ett exempel', 'Vilken lag gäller?', 'Vad bör jag göra?'].map((chip) => (
+                  <button
+                    key={chip}
+                    onClick={() => sendMessage(chip)}
+                    disabled={isLoading}
+                    className="flex-shrink-0 px-3 py-1.5 bg-gray-100 text-xs font-medium text-primary rounded-full hover:bg-gray-200 transition-colors disabled:opacity-50"
+                  >
+                    {chip}
+                  </button>
+                ))}
               </div>
             )}
             <div className="flex items-end gap-2">

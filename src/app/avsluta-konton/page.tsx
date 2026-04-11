@@ -94,8 +94,7 @@ const ACCOUNT_CATEGORIES: AccountCategory[] = [
     icon: Wifi,
     items: [
       { id: 'skatteverket_digital', name: 'Skatteverket — digital brevlåda', phone: '0771-567 567', url: 'https://www.skatteverket.se', info: 'Avregistrera från digital brevlåda. Posten börjar komma i fysisk form igen.' },
-      { id: 'spotify', name: 'Spotify', url: 'https://support.spotify.com', info: 'Kontakta support med dödsbevis. Kontot kan stängas eller minnessparas.' },
-      { id: 'netflix', name: 'Netflix', url: 'https://help.netflix.com', info: 'Logga in och avsluta, eller kontakta support med dödsbevis.' },
+      { id: 'streaming', name: 'Streamingtjänster', info: 'Avsluta alla streamingtjänster: Spotify, Netflix, HBO Max, Disney+, Viaplay, YouTube Premium, Apple TV+ m.fl. Kontakta varje tjänsts support med dödsbevis, eller logga in och avsluta prenumerationen direkt.' },
       { id: 'apple', name: 'Apple ID', url: 'https://support.apple.com/deceased', info: 'Apple har en process för att hantera kontot för en avliden person. Kräver dödsbevis och ibland domstolsbeslut.' },
       { id: 'google', name: 'Google-konto', url: 'https://support.google.com/accounts/troubleshooter/6357590', info: 'Google Inactive Account Manager eller begäran om radering med dödsbevis.' },
       { id: 'facebook', name: 'Facebook / Meta', url: 'https://www.facebook.com/help/1506822589577997', info: 'Kontot kan omvandlas till minnesplats eller raderas. Kräver dödsbevis.' },
