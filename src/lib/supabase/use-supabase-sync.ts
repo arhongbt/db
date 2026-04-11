@@ -109,6 +109,7 @@ export function useSupabaseSync(
         deceasedPersonnummer: row.deceased_personnummer,
         onboarding: (row.onboarding ?? {}) as unknown as Dodsbo['onboarding'],
         currentStep: row.current_step as Dodsbo['currentStep'],
+        forrattningsman: [],
         delagare: delagare ?? [],
         tillgangar: tillgangar ?? [],
         skulder: skulder ?? [],

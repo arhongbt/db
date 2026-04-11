@@ -42,18 +42,6 @@ const SKULD_TYPES: { value: SkuldType; label: string }[] = [
 function TillgangarContent() {
   const { state, dispatch, loading } = useDodsbo();
   const [tab, setTab] = useState<'tillgangar' | 'skulder'>('tillgangar');
-
-  if (loading) {
-    return (
-      <div className="min-h-dvh bg-background p-6 animate-pulse">
-        <div className="h-8 bg-gray-200 rounded w-2/3 mb-2" />
-        <div className="h-4 bg-gray-200 rounded w-1/2 mb-6" />
-        <div className="space-y-3">
-          {[1,2,3].map(i => <div key={i} className="h-20 bg-gray-200 rounded-2xl" />)}
-        </div>
-      </div>
-    );
-  }
   const [showForm, setShowForm] = useState(false);
   const [formErrors, setFormErrors] = useState<Record<string, string>>({});
 
@@ -67,6 +55,18 @@ function TillgangarContent() {
   const [sType, setSType] = useState<SkuldType>('bolan');
   const [sCreditor, setSCreditor] = useState('');
   const [sAmount, setSAmount] = useState('');
+
+  if (loading) {
+    return (
+      <div className="min-h-dvh bg-background p-6 animate-pulse">
+        <div className="h-8 bg-gray-200 rounded w-2/3 mb-2" />
+        <div className="h-4 bg-gray-200 rounded w-1/2 mb-6" />
+        <div className="space-y-3">
+          {[1,2,3].map(i => <div key={i} className="h-20 bg-gray-200 rounded-2xl" />)}
+        </div>
+      </div>
+    );
+  }
 
   const totalTillgangar = state.tillgangar.reduce(
     (sum, t) => sum + (t.estimatedValue ?? 0),

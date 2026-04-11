@@ -31,6 +31,13 @@ const RELATION_LABELS: Record<Relation, string> = {
 
 function DelagareContent() {
   const { state, dispatch, loading } = useDodsbo();
+  const [showForm, setShowForm] = useState(false);
+  const [showArvsinfo, setShowArvsinfo] = useState(false);
+  const [name, setName] = useState('');
+  const [relation, setRelation] = useState<Relation | ''>('');
+  const [phone, setPhone] = useState('');
+  const [email, setEmail] = useState('');
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   if (loading) return (
     <div className="min-h-dvh bg-background p-6 animate-pulse">
@@ -40,13 +47,6 @@ function DelagareContent() {
       <div className="h-16 bg-gray-200 rounded-2xl" />
     </div>
   );
-  const [showForm, setShowForm] = useState(false);
-  const [showArvsinfo, setShowArvsinfo] = useState(false);
-  const [name, setName] = useState('');
-  const [relation, setRelation] = useState<Relation | ''>('');
-  const [phone, setPhone] = useState('');
-  const [email, setEmail] = useState('');
-  const [errors, setErrors] = useState<Record<string, string>>({});
 
   const arvsinfo = getArvsordning(
     state.onboarding.familySituation,

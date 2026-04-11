@@ -29,6 +29,12 @@ const FORSAKRING_TYPES: { value: ForsakringType; label: string; tip: string }[] 
 function ForsakringarContent() {
   const { state, dispatch, loading } = useDodsbo();
   const [showForm, setShowForm] = useState(false);
+  const [fType, setFType] = useState<ForsakringType>('livforsakring');
+  const [company, setCompany] = useState('');
+  const [policyNr, setPolicyNr] = useState('');
+  const [beneficiary, setBeneficiary] = useState('');
+  const [value, setValue] = useState('');
+  const [formErrors, setFormErrors] = useState<Record<string, string>>({});
 
   if (loading) {
     return (
@@ -41,13 +47,6 @@ function ForsakringarContent() {
       </div>
     );
   }
-
-  const [fType, setFType] = useState<ForsakringType>('livforsakring');
-  const [company, setCompany] = useState('');
-  const [policyNr, setPolicyNr] = useState('');
-  const [beneficiary, setBeneficiary] = useState('');
-  const [value, setValue] = useState('');
-  const [formErrors, setFormErrors] = useState<Record<string, string>>({});
 
   const contacted = state.forsakringar.filter((f) => f.contacted).length;
 

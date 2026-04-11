@@ -24,6 +24,9 @@ import {
 function InstallningarContent() {
   const { state, dispatch, loading } = useDodsbo();
   const { signOut } = useAuth();
+  const router = useRouter();
+  const [showConfirmReset, setShowConfirmReset] = useState(false);
+  const [signingOut, setSigningOut] = useState(false);
 
   if (loading) {
     return (
@@ -36,9 +39,6 @@ function InstallningarContent() {
       </div>
     );
   }
-  const router = useRouter();
-  const [showConfirmReset, setShowConfirmReset] = useState(false);
-  const [signingOut, setSigningOut] = useState(false);
 
   const handleSignOut = async () => {
     setSigningOut(true);
