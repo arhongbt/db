@@ -165,7 +165,7 @@ function DodsboSkulderContent() {
           Vad är ett insolvent dödsbo?
         </h3>
         <p className="text-sm text-yellow-800 mb-3">
-          Om skulderna är större än tillgångarna kallas det "dödsbo minus" eller ett insolvent dödsbo.
+          Om skulderna är större än tillgångarna kallas det &quot;dödsbo minus&quot; eller ett insolvent dödsbo.
           Då räcker pengarna inte för att betala alla skulder.
         </p>
         <div className="space-y-2 text-sm text-yellow-800">
