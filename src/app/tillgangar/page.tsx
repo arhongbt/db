@@ -216,7 +216,8 @@ function TillgangarContent() {
                     )}
                     <button
                       onClick={() => dispatch({ type: 'REMOVE_TILLGANG', payload: t.id })}
-                      className="p-1.5 text-muted hover:text-warn transition-colors"
+                      className="p-2 min-h-[44px] min-w-[44px] flex items-center justify-center text-muted hover:text-warn transition-colors"
+                      aria-label={`Ta bort ${t.description}`}
                     >
                       <Trash2 className="w-4 h-4" />
                     </button>
@@ -257,7 +258,8 @@ function TillgangarContent() {
                   )}
                   <button
                     onClick={() => dispatch({ type: 'REMOVE_SKULD', payload: s.id })}
-                    className="p-1.5 text-muted hover:text-warn transition-colors"
+                    className="p-2 min-h-[44px] min-w-[44px] flex items-center justify-center text-muted hover:text-warn transition-colors"
+                    aria-label={`Ta bort ${s.creditor}`}
                   >
                     <Trash2 className="w-4 h-4" />
                   </button>

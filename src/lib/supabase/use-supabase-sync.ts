@@ -115,6 +115,8 @@ export function useSupabaseSync(
         skulder: skulder ?? [],
         forsakringar: forsakringar ?? [],
         tasks: tasks ?? [],
+        losore: (row as Record<string, unknown>).losore as Dodsbo['losore'] ?? [],
+        kostnader: (row as Record<string, unknown>).kostnader as Dodsbo['kostnader'] ?? [],
       };
 
       rawDispatch({ type: 'LOAD_STATE', payload: fullState });

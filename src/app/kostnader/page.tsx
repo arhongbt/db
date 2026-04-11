@@ -14,26 +14,7 @@ import {
   ChevronUp,
 } from 'lucide-react';
 
-// ── Expense types ──
-
-interface Kostnad {
-  id: string;
-  category: KostnadCategory;
-  description: string;
-  amount: number;
-  date: string;
-  paidBy?: string;
-}
-
-type KostnadCategory =
-  | 'begravning'
-  | 'juridik'
-  | 'vardering'
-  | 'stadning'
-  | 'transport'
-  | 'forvaring'
-  | 'fastighet'
-  | 'ovrigt';
+import type { Kostnad, KostnadCategory } from '@/types';
 
 const CATEGORY_LABELS: Record<KostnadCategory, string> = {
   begravning: 'Begravning & ceremoni',
@@ -52,20 +33,6 @@ const CATEGORY_ORDER: KostnadCategory[] = [
 ];
 
 const STORAGE_KEY = 'dodsbo_kostnader';
-
-function loadKostnader(): Kostnad[] {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (raw) return JSON.parse(raw);
-  } catch { /* ignore */ }
-  return [];
-}
-
-function saveKostnader(items: Kostnad[]) {
-  try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
-  } catch { /* ignore */ }
-}
 
 function formatSEK(amount: number): string {
   return new Intl.NumberFormat('sv-SE', {
@@ -87,9 +54,9 @@ function KostnaderSkeleton() {
 }
 
 function KostnaderContent() {
-  const { loading } = useDodsbo();
+  const { state, dispatch, loading } = useDodsbo();
+  const kostnader = state.kostnader || [];
   const [mounted, setMounted] = useState(false);
-  const [kostnader, setKostnader] = useState<Kostnad[]>([]);
   const [showForm, setShowForm] = useState(false);
   const [showInfo, setShowInfo] = useState(true);
   const [expandedCat, setExpandedCat] = useState<KostnadCategory | null>(null);
@@ -101,10 +68,22 @@ function KostnaderContent() {
   const [formDate, setFormDate] = useState(new Date().toISOString().split('T')[0]);
   const [formPaidBy, setFormPaidBy] = useState('');
 
+  // Migrate from localStorage on first load
   useEffect(() => {
+    if (!loading && kostnader.length === 0) {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (raw) {
+          const parsed = JSON.parse(raw) as Kostnad[];
+          if (parsed.length > 0) {
+            dispatch({ type: 'SET_KOSTNADER', payload: parsed });
+            localStorage.removeItem(STORAGE_KEY);
+          }
+        }
+      } catch { /* ignore */ }
+    }
     setMounted(true);
-    setKostnader(loadKostnader());
-  }, []);
+  }, [loading]); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (!mounted || loading) return <KostnaderSkeleton />;
 
@@ -120,9 +99,7 @@ function KostnaderContent() {
       paidBy: formPaidBy.trim() || undefined,
     };
 
-    const updated = [...kostnader, newItem];
-    setKostnader(updated);
-    saveKostnader(updated);
+    dispatch({ type: 'ADD_KOSTNAD', payload: newItem });
 
     // Reset form
     setFormDescription('');
@@ -132,9 +109,7 @@ function KostnaderContent() {
   };
 
   const removeKostnad = (id: string) => {
-    const updated = kostnader.filter((k) => k.id !== id);
-    setKostnader(updated);
-    saveKostnader(updated);
+    dispatch({ type: 'REMOVE_KOSTNAD', payload: id });
   };
 
   const totalKostnad = kostnader.reduce((sum, k) => sum + k.amount, 0);
@@ -241,7 +216,7 @@ function KostnaderContent() {
                   </div>
                   <div className="flex items-center gap-2 ml-2">
                     <span className="text-sm font-medium text-primary whitespace-nowrap">{formatSEK(item.amount)}</span>
-                    <button onClick={() => removeKostnad(item.id)} className="p-1 text-muted hover:text-warn">
+                    <button onClick={() => removeKostnad(item.id)} className="p-2 min-h-[44px] min-w-[44px] flex items-center justify-center text-muted hover:text-warn" aria-label={`Ta bort ${item.description}`}>
                       <Trash2 className="w-4 h-4" />
                     </button>
                   </div>

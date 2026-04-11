@@ -12,16 +12,9 @@ import {
   AlertCircle,
 } from 'lucide-react';
 
-interface LosoreItem {
-  id: string;
-  name: string;
-  category: 'mobler' | 'smycken' | 'konst' | 'elektronik' | 'fordon' | 'samlarobj' | 'klader' | 'ovrigt';
-  estimatedValue: number;
-  assignedTo?: string; // delägare name
-  notes?: string;
-}
+import type { LosoreItem, LosoreCategory } from '@/types';
 
-const CATEGORY_LABELS: Record<LosoreItem['category'], string> = {
+const CATEGORY_LABELS: Record<LosoreCategory, string> = {
   mobler: 'Möbler',
   smycken: 'Smycken & klockor',
   konst: 'Konst & tavlor',
@@ -32,7 +25,7 @@ const CATEGORY_LABELS: Record<LosoreItem['category'], string> = {
   ovrigt: 'Övrigt',
 };
 
-const CATEGORY_ORDER: LosoreItem['category'][] = [
+const CATEGORY_ORDER: LosoreCategory[] = [
   'mobler',
   'smycken',
   'konst',
@@ -44,40 +37,37 @@ const CATEGORY_ORDER: LosoreItem['category'][] = [
 ];
 
 function LosoreContent() {
-  const { state } = useDodsbo();
-  const [items, setItems] = useState<LosoreItem[]>([]);
+  const { state, dispatch, loading } = useDodsbo();
+  const items = state.losore || [];
   const [showForm, setShowForm] = useState(false);
   const [mounted, setMounted] = useState(false);
 
   // Form state
   const [formName, setFormName] = useState('');
-  const [formCategory, setFormCategory] = useState<LosoreItem['category']>('mobler');
+  const [formCategory, setFormCategory] = useState<LosoreCategory>('mobler');
   const [formValue, setFormValue] = useState('');
   const [formAssignedTo, setFormAssignedTo] = useState('');
   const [formNotes, setFormNotes] = useState('');
   const [formErrors, setFormErrors] = useState<Record<string, string>>({});
 
-  // Load from localStorage
+  // Migrate from localStorage on first load
   useEffect(() => {
-    const stored = localStorage.getItem('dodsbo_losore');
-    if (stored) {
+    if (!loading && items.length === 0) {
       try {
-        setItems(JSON.parse(stored));
-      } catch (e) {
-        console.error('Failed to load lösöre items:', e);
-      }
+        const stored = localStorage.getItem('dodsbo_losore');
+        if (stored) {
+          const parsed = JSON.parse(stored) as LosoreItem[];
+          if (parsed.length > 0) {
+            dispatch({ type: 'SET_LOSORE', payload: parsed });
+            localStorage.removeItem('dodsbo_losore');
+          }
+        }
+      } catch { /* ignore */ }
     }
     setMounted(true);
-  }, []);
+  }, [loading]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  // Save to localStorage whenever items change
-  useEffect(() => {
-    if (mounted) {
-      localStorage.setItem('dodsbo_losore', JSON.stringify(items));
-    }
-  }, [items, mounted]);
-
-  if (!mounted) {
+  if (!mounted || loading) {
     return (
       <div className="min-h-dvh bg-background p-6 animate-pulse">
         <div className="h-8 bg-gray-200 rounded w-2/3 mb-2" />
@@ -127,7 +117,7 @@ function LosoreContent() {
       notes: formNotes.trim() || undefined,
     };
 
-    setItems([...items, newItem]);
+    dispatch({ type: 'ADD_LOSORE', payload: newItem });
     setFormName('');
     setFormValue('');
     setFormAssignedTo('');
@@ -137,20 +127,21 @@ function LosoreContent() {
   };
 
   const handleDeleteItem = (id: string) => {
-    setItems(items.filter(item => item.id !== id));
+    dispatch({ type: 'REMOVE_LOSORE', payload: id });
   };
 
   const handleUpdateAssignment = (id: string, assignedTo: string | '') => {
-    setItems(items.map(item =>
-      item.id === id ? { ...item, assignedTo: assignedTo || undefined } : item
-    ));
+    const item = items.find(i => i.id === id);
+    if (item) {
+      dispatch({ type: 'UPDATE_LOSORE', payload: { ...item, assignedTo: assignedTo || undefined } });
+    }
   };
 
   // Get delagare names
   const delagareNames = state.delagare.map(d => d.name);
 
   // Group items by category
-  const itemsByCategory = new Map<LosoreItem['category'], LosoreItem[]>();
+  const itemsByCategory = new Map<LosoreCategory, LosoreItem[]>();
   CATEGORY_ORDER.forEach(cat => {
     itemsByCategory.set(cat, items.filter(item => item.category === cat));
   });
@@ -388,7 +379,8 @@ function LosoreContent() {
                         </div>
                         <button
                           onClick={() => handleDeleteItem(item.id)}
-                          className="p-1.5 text-muted hover:text-warn transition-colors flex-shrink-0"
+                          className="p-2 min-h-[44px] min-w-[44px] flex items-center justify-center text-muted hover:text-warn transition-colors flex-shrink-0"
+                          aria-label={`Ta bort ${item.name}`}
                         >
                           <Trash2 className="w-4 h-4" />
                         </button>

@@ -22,7 +22,10 @@ import {
   Type,
   Contrast,
   Bell,
+  Download,
+  FileText,
 } from 'lucide-react';
+import { exportAsCSV, exportAsJSON } from '@/lib/export-data';
 import {
   requestNotificationPermission,
   getNotificationPrefs,
@@ -133,7 +136,8 @@ function InstallningarContent() {
       <div className="flex items-center gap-3 mb-6">
         <Link
           href="/dashboard"
-          className="p-2 -ml-2 rounded-full hover:bg-gray-100 transition-colors"
+          className="p-2 -ml-2 min-h-[44px] min-w-[44px] flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors"
+          aria-label="Tillbaka"
         >
           <ArrowLeft className="w-5 h-5 text-primary" />
         </Link>
@@ -387,6 +391,32 @@ function InstallningarContent() {
             Notiser är blockerade i din webbläsare. Gå till webbläsarens inställningar för att aktivera.
           </p>
         )}
+      </div>
+
+      {/* Data export */}
+      <div className="card mb-6">
+        <h2 className="text-sm font-semibold text-muted uppercase tracking-wide mb-4">
+          Exportera data
+        </h2>
+        <p className="text-xs text-muted mb-3">
+          Ladda ner en kopia av all data i dödsboet. Dela med jurist eller spara som backup.
+        </p>
+        <div className="flex gap-3">
+          <button
+            onClick={() => exportAsCSV(state)}
+            className="flex-1 flex items-center justify-center gap-2 py-3 px-4 border-2 border-gray-200 rounded-xl text-sm font-medium text-primary hover:bg-gray-50 transition-colors"
+          >
+            <Download className="w-4 h-4" />
+            CSV (Excel)
+          </button>
+          <button
+            onClick={() => exportAsJSON(state)}
+            className="flex-1 flex items-center justify-center gap-2 py-3 px-4 border-2 border-gray-200 rounded-xl text-sm font-medium text-primary hover:bg-gray-50 transition-colors"
+          >
+            <FileText className="w-4 h-4" />
+            JSON (backup)
+          </button>
+        </div>
       </div>
 
       {/* Navigation links */}

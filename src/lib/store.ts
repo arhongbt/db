@@ -13,6 +13,8 @@ import {
   Tillgang,
   Skuld,
   Forsakring,
+  LosoreItem,
+  Kostnad,
 } from '@/types';
 
 // ============================================================
@@ -40,6 +42,13 @@ export type Action =
       'deceasedMedborgarskap' | 'deceasedCivilstand' | 'forrattningsdatum' |
       'forrattningsman' | 'bouppgivare'
     >> }
+  | { type: 'SET_LOSORE'; payload: LosoreItem[] }
+  | { type: 'ADD_LOSORE'; payload: LosoreItem }
+  | { type: 'REMOVE_LOSORE'; payload: string }
+  | { type: 'UPDATE_LOSORE'; payload: LosoreItem }
+  | { type: 'SET_KOSTNADER'; payload: Kostnad[] }
+  | { type: 'ADD_KOSTNAD'; payload: Kostnad }
+  | { type: 'REMOVE_KOSTNAD'; payload: string }
   | { type: 'LOAD_STATE'; payload: Dodsbo }
   | { type: 'RESET' };
 
@@ -73,6 +82,8 @@ export function createInitialDodsbo(): Dodsbo {
     forsakringar: [],
     tasks: [],
     currentStep: 'akut',
+    losore: [],
+    kostnader: [],
   };
 }
 
@@ -194,8 +205,37 @@ export function dodsboReducer(state: Dodsbo, action: Action): Dodsbo {
     case 'SET_BOUPPTECKNING_INFO':
       return { ...state, ...action.payload, updatedAt: now };
 
+    case 'SET_LOSORE':
+      return { ...state, losore: action.payload, updatedAt: now };
+
+    case 'ADD_LOSORE':
+      return { ...state, losore: [...state.losore, action.payload], updatedAt: now };
+
+    case 'REMOVE_LOSORE':
+      return { ...state, losore: state.losore.filter((l) => l.id !== action.payload), updatedAt: now };
+
+    case 'UPDATE_LOSORE':
+      return {
+        ...state,
+        losore: state.losore.map((l) => l.id === action.payload.id ? action.payload : l),
+        updatedAt: now,
+      };
+
+    case 'SET_KOSTNADER':
+      return { ...state, kostnader: action.payload, updatedAt: now };
+
+    case 'ADD_KOSTNAD':
+      return { ...state, kostnader: [...state.kostnader, action.payload], updatedAt: now };
+
+    case 'REMOVE_KOSTNAD':
+      return { ...state, kostnader: state.kostnader.filter((k) => k.id !== action.payload), updatedAt: now };
+
     case 'LOAD_STATE':
-      return action.payload;
+      return {
+        ...action.payload,
+        losore: action.payload.losore || [],
+        kostnader: action.payload.kostnader || [],
+      };
 
     case 'RESET':
       return createInitialDodsbo();
@@ -222,7 +262,10 @@ export function saveState(state: Dodsbo): void {
 export function loadState(): Dodsbo | null {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
-    if (raw) return JSON.parse(raw) as Dodsbo;
+    if (raw) {
+      const parsed = JSON.parse(raw) as Dodsbo;
+      return { ...parsed, losore: parsed.losore || [], kostnader: parsed.kostnader || [] };
+    }
   } catch {
     // Corrupted state — start fresh
   }

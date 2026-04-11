@@ -162,7 +162,8 @@ function NodbromsContent() {
       <div className="flex items-center gap-3 mb-2">
         <Link
           href="/dashboard"
-          className="p-2 -ml-2 rounded-full hover:bg-gray-100 transition-colors"
+          className="p-2 -ml-2 min-h-[44px] min-w-[44px] flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors"
+          aria-label="Tillbaka"
         >
           <ArrowLeft className="w-5 h-5 text-primary" />
         </Link>

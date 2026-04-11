@@ -138,7 +138,59 @@ export interface Dodsbo {
 
   /** Aktuellt processteg */
   currentStep: ProcessStep;
+
+  /** Lösöre — personliga tillhörigheter */
+  losore: LosoreItem[];
+
+  /** Dödsbokostnader */
+  kostnader: Kostnad[];
 }
+
+// ============================================================
+// Lösöre — personliga tillhörigheter
+// ============================================================
+
+export interface LosoreItem {
+  id: string;
+  name: string;
+  category: LosoreCategory;
+  estimatedValue: number;
+  assignedTo?: string;
+  notes?: string;
+}
+
+export type LosoreCategory =
+  | 'mobler'
+  | 'smycken'
+  | 'konst'
+  | 'elektronik'
+  | 'fordon'
+  | 'samlarobj'
+  | 'klader'
+  | 'ovrigt';
+
+// ============================================================
+// Dödsbokostnader
+// ============================================================
+
+export interface Kostnad {
+  id: string;
+  category: KostnadCategory;
+  description: string;
+  amount: number;
+  date: string;
+  paidBy?: string;
+}
+
+export type KostnadCategory =
+  | 'begravning'
+  | 'juridik'
+  | 'vardering'
+  | 'stadning'
+  | 'transport'
+  | 'forvaring'
+  | 'fastighet'
+  | 'ovrigt';
 
 export interface Forrattningsman {
   name: string;
