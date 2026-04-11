@@ -276,7 +276,7 @@ export default function BankGuidePage() {
         <div className="card mt-6 border-l-4 border-accent">
           <p className="font-semibold text-primary text-sm mb-2">Generella tips</p>
           <div className="space-y-2 text-xs text-muted">
-            <p>• Säg alltid: "Jag ringer angående ett dödsfall" — du kopplas direkt till rätt avdelning.</p>
+            <p>• Säg alltid: &ldquo;Jag ringer angående ett dödsfall&rdquo; — du kopplas direkt till rätt avdelning.</p>
             <p>• Ha dödsbevis och ditt eget leg redo vid varje samtal.</p>
             <p>• Be alltid om skriftlig bekräftelse via e-post.</p>
             <p>• Notera namn på handläggaren och ärendenummer.</p>
