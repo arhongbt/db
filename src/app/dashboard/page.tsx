@@ -406,51 +406,29 @@ function DashboardContent() {
         </Link>
       )}
 
-      {/* Quick actions — contextual based on step */}
-      <section>
-        <h2 className="text-lg font-semibold text-primary mb-3">
-          Nästa steg
-        </h2>
-        <div className="flex flex-col gap-2">
+      {/* Quick access — compact grid of key tools */}
+      <section className="mb-4">
+        <h2 className="text-lg font-semibold text-primary mb-3">Verktyg</h2>
+        <div className="grid grid-cols-2 gap-2">
           {[
-            { label: 'Arvskalkylator', href: '/arvskalkylator' },
-            { label: 'Juridisk AI-assistent', href: '/juridisk-hjalp' },
-            { label: 'Lägg till dödsbodelägare', href: '/delagare' },
-            { label: 'Delägare-portal & status', href: '/delagare-portal' },
-            { label: 'Inventera tillgångar & skulder', href: '/tillgangar' },
-            { label: 'Lösöre — möbler, smycken, konst', href: '/losore' },
-            { label: 'Kontrollera försäkringar', href: '/forsakringar' },
-            { label: 'Bank-guide (per storbank)', href: '/bank-guide' },
-            { label: 'Bouppteckning', href: '/bouppteckning' },
-            { label: 'Dödsboanmälan (enklare alternativ)', href: '/dodsboanmalan' },
-            { label: 'Bodelning (gifta par & sambor)', href: '/bodelning' },
-            { label: 'Kallelse till förrättning', href: '/kallelse' },
-            { label: 'Arvskifte', href: '/arvskifte' },
-            { label: 'Fullmakter & mallar', href: '/fullmakt' },
-            { label: 'Avsluta konton', href: '/avsluta-konton' },
-            { label: 'Dödsbokostnader', href: '/kostnader' },
-            { label: 'Dokumentskanner', href: '/skanner' },
-            { label: 'Exportera allt (ZIP)', href: '/exportera' },
-            { label: 'Påminnelser & tidsfrister', href: '/paminelser' },
-            { label: 'Konflikter & skiftesman', href: '/konflikt' },
-            { label: 'Internationella arv', href: '/internationellt' },
-            { label: 'Företag i dödsbo', href: '/foretag-i-dodsbo' },
-            { label: 'Ordlista — juridiska termer', href: '/ordlista' },
-            { label: 'Vanliga frågor', href: '/faq' },
-            { label: 'Visa alla uppgifter', href: '/uppgifter' },
-          ].map((action) => (
+            { label: 'Bouppteckning', href: '/bouppteckning', icon: '📋' },
+            { label: 'Tillgångar & skulder', href: '/tillgangar', icon: '💰' },
+            { label: 'Alla uppgifter', href: '/uppgifter', icon: '✅' },
+            { label: 'Exportera (ZIP)', href: '/exportera', icon: '📦' },
+          ].map((item) => (
             <Link
-              key={action.href}
-              href={action.href}
-              className="card flex items-center justify-between hover:bg-gray-50 transition-colors"
+              key={item.href}
+              href={item.href}
+              className="card flex items-center gap-2 hover:bg-gray-50 transition-colors py-3"
             >
-              <span className="text-base font-medium text-primary">
-                {action.label}
-              </span>
-              <ChevronRight className="w-5 h-5 text-muted" />
+              <span className="text-lg">{item.icon}</span>
+              <span className="text-sm font-medium text-primary">{item.label}</span>
             </Link>
           ))}
         </div>
+        <p className="text-xs text-muted text-center mt-3">
+          Alla verktyg finns i <strong>Mer</strong>-menyn nedan ↓
+        </p>
       </section>
 
       {/* Legal disclaimer */}
