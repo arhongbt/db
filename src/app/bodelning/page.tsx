@@ -19,6 +19,7 @@ import {
   Sofa,
   Download,
 } from 'lucide-react';
+import { MikeRossTip } from '@/components/ui/MikeRossTip';
 import type {
   SamboEgendom,
   BodelningsData,
@@ -143,6 +144,18 @@ function BodelningContent() {
           </p>
         </div>
       </div>
+
+      {/* Mike Ross förklarar */}
+      <MikeRossTip
+        text={
+          isSambo
+            ? 'Sambor delar bara på samboegendom — det vill säga bostad och bohag som skaffades för gemensamt bruk. Övriga tillgångar som aktier, bilar eller sparande ingår inte i bodelningen enligt Sambolagen.'
+            : isMarried
+            ? 'Vid bodelning delas giftorättsgodset lika mellan makarna. Enskild egendom (genom äktenskapsförord, gåva eller arv med villkor) hålls utanför. Det som blir kvar i dödsboet efter bodelningen fördelas sedan genom arvskifte.'
+            : 'Bodelning görs när den avlidne var gift eller sambo. Eftersom det inte verkar vara aktuellt i det här fallet kan du gå direkt till arvskiftet.'
+        }
+        className="mb-5"
+      />
 
       {/* ═══════════ NEITHER MARRIED NOR SAMBO ═══════════ */}
       {!isMarried && !isSambo && (

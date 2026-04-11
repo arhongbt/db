@@ -18,6 +18,7 @@ import {
   CheckCircle2,
   FileText,
 } from 'lucide-react';
+import { MikeRossTip } from '@/components/ui/MikeRossTip';
 
 function ArvskifteContent() {
   const { state } = useDodsbo();
@@ -87,6 +88,12 @@ function ArvskifteContent() {
           </div>
         </div>
       </div>
+
+      {/* Mike Ross förklarar */}
+      <MikeRossTip
+        text="Arvsordningen i Sverige följer tre klasser: först barn (arvslott), sedan föräldrar och syskon, sist far- och morföräldrar. Laglotten är halva arvslotten — den kan ett barn alltid kräva, även om ett testamente säger annorlunda. Särkullbarn (barn från tidigare förhållande) har rätt att få ut sin del direkt, till skillnad från gemensamma barn som väntar tills den efterlevande maken också gått bort."
+        className="mb-5"
+      />
 
       {/* Net estate */}
       <div className="card mb-6">

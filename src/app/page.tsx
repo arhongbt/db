@@ -18,6 +18,7 @@ import {
 import Link from 'next/link';
 import { loadState } from '@/lib/store';
 import { DoveLogo } from '@/components/ui/DoveLogo';
+import { MikeRossTip } from '@/components/ui/MikeRossTip';
 import { BlobDecoration, LeafDecoration, SparkleDecoration } from '@/components/ui/Decorations';
 
 export default function LandingPage() {
@@ -63,6 +64,17 @@ export default function LandingPage() {
 
   return (
     <div className="flex flex-col min-h-dvh relative overflow-hidden">
+      {/* Decorative elements — behind all content */}
+      <BlobDecoration className="-top-16 -right-20" color="#EEF2EA" size={220} />
+      <BlobDecoration className="top-[55%] -left-24" color="#EDF2F6" size={180} />
+      <LeafDecoration className="top-8 right-6" size={36} opacity={0.12} />
+      <SparkleDecoration className="top-[25%] right-8" size={16} opacity={0.1} />
+      <LeafDecoration className="bottom-[30%] left-3" size={22} opacity={0.08} color="#6E8BA4" />
+      <SparkleDecoration className="bottom-16 right-12" size={12} opacity={0.08} />
+
+      {/* All content sits above decorations */}
+      <div className="relative z-10 flex flex-col min-h-dvh">
+
       {/* PWA Install Prompt Banner */}
       {showInstallBanner && (
         <div className="bg-accent/5 border-b border-accent/20 px-5 py-4 flex items-start justify-between gap-4 relative z-20">
@@ -91,16 +103,8 @@ export default function LandingPage() {
         </div>
       )}
 
-      {/* Decorative elements */}
-      <BlobDecoration className="-top-16 -right-20" color="#EEF2EA" size={220} />
-      <BlobDecoration className="top-[55%] -left-24" color="#EDF2F6" size={180} />
-      <LeafDecoration className="top-8 right-6" size={36} opacity={0.12} />
-      <SparkleDecoration className="top-[25%] right-8" size={16} opacity={0.1} />
-      <LeafDecoration className="bottom-[30%] left-3" size={22} opacity={0.08} color="#6E8BA4" />
-      <SparkleDecoration className="bottom-16 right-12" size={12} opacity={0.08} />
-
       {/* Hero — empathetic, calm */}
-      <section className="flex flex-col justify-center px-5 pt-10 pb-6 relative z-10">
+      <section className="flex flex-col justify-center px-5 pt-10 pb-6">
         <DoveLogo size={48} className="mb-6" />
         <h1 className="text-3xl font-bold text-primary leading-tight mb-4">
           Vi hjälper dig genom det svåra
@@ -248,6 +252,13 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* Mike Ross intro */}
+      <section className="px-5 pb-6">
+        <MikeRossTip
+          text="Dödsbo, bouppteckning, arvskifte — låter det förvirrande? Inga problem. Jag heter Mike Ross och dyker upp genom hela appen för att förklara juridiska termer på ren svenska. Du behöver inte kunna lagen — det fixar vi."
+        />
+      </section>
+
       {/* FAQ — SEO rich */}
       <section className="px-5 pb-8">
         <h2 className="text-2xl font-bold text-primary mb-4">Vanliga frågor</h2>
@@ -307,6 +318,7 @@ export default function LandingPage() {
           Sista Resan ger allmän vägledning och ersätter inte juridisk rådgivning.
         </p>
       </footer>
+      </div>{/* end content wrapper z-10 */}
     </div>
   );
 }

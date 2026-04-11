@@ -23,6 +23,7 @@ import {
 } from 'lucide-react';
 import { generateBouppteckningDocument } from '@/lib/generate-bouppteckning';
 import { validatePersonnummer, formatPersonnummer } from '@/lib/personnummer';
+import { MikeRossTip } from '@/components/ui/MikeRossTip';
 import type { Dodsbo } from '@/types';
 
 interface BouppteckningStep {
@@ -189,6 +190,12 @@ function BouppteckningContent() {
           </div>
         </div>
       </div>
+
+      {/* Mike Ross förklarar */}
+      <MikeRossTip
+        text="Bouppteckning låter krångligt, men det är i grunden bara en lista över allt den avlidne ägde och var skyldig. Förrättningsmännen är två oberoende personer som intygar att listan stämmer — de behöver inte vara jurister. Bouppgivaren är den som bäst kände till den avlidnes ekonomi."
+        className="mb-5"
+      />
 
       {/* Progress */}
       <div className="card mb-6">
