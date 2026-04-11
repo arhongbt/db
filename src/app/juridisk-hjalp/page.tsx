@@ -20,7 +20,7 @@ interface Message {
 }
 
 // ── Typewriter hook ──
-function useTypewriter(text: string, enabled: boolean, speed = 12) {
+function useTypewriter(text: string, enabled: boolean, onDone?: () => void, speed = 12) {
   const [displayed, setDisplayed] = useState('');
   const [done, setDone] = useState(false);
 
@@ -34,22 +34,24 @@ function useTypewriter(text: string, enabled: boolean, speed = 12) {
     setDisplayed('');
     setDone(false);
     let i = 0;
+    let cancelled = false;
 
     const tick = () => {
+      if (cancelled) return;
       if (i < text.length) {
-        // Type multiple chars per tick for faster feel
-        const chunk = text.slice(i, i + 3);
         i += 3;
         setDisplayed(text.slice(0, i));
         setTimeout(tick, speed);
       } else {
         setDisplayed(text);
         setDone(true);
+        onDone?.();
       }
     };
 
     const timer = setTimeout(tick, 100);
-    return () => clearTimeout(timer);
+    return () => { cancelled = true; clearTimeout(timer); };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [text, enabled, speed]);
 
   return { displayed, done };
@@ -88,8 +90,8 @@ function renderInline(text: string) {
 }
 
 // ── Typewriter message bubble ──
-function TypewriterBubble({ content, animate }: { content: string; animate: boolean }) {
-  const { displayed, done } = useTypewriter(content, animate);
+function TypewriterBubble({ content, animate, onDone }: { content: string; animate: boolean; onDone?: () => void }) {
+  const { displayed, done } = useTypewriter(content, animate, onDone);
 
   return (
     <div className="text-sm leading-relaxed space-y-1">
@@ -122,33 +124,59 @@ function JuridiskHjalpContent() {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const userScrolledUp = useRef(false);
+  const programmaticScroll = useRef(false);
 
   useEffect(() => setMounted(true), []);
 
-  // Detect when user scrolls up manually
+  // Detect when user scrolls up manually (ignore programmatic scrolls)
   useEffect(() => {
     const container = scrollContainerRef.current;
     if (!container) return;
 
+    let touchActive = false;
+
+    const handleTouchStart = () => { touchActive = true; };
+    const handleTouchEnd = () => { setTimeout(() => { touchActive = false; }, 100); };
+
     const handleScroll = () => {
+      // Ignore scroll events caused by our own scrollIntoView
+      if (programmaticScroll.current) return;
+
       const { scrollTop, scrollHeight, clientHeight } = container;
-      // If user is within 80px of bottom, consider them "at bottom"
-      userScrolledUp.current = scrollHeight - scrollTop - clientHeight > 80;
+      const distanceFromBottom = scrollHeight - scrollTop - clientHeight;
+
+      // Only mark as scrolled up if user is actively touching/dragging
+      if (touchActive && distanceFromBottom > 100) {
+        userScrolledUp.current = true;
+      }
+      // If they scroll back near bottom, re-enable auto-scroll
+      if (distanceFromBottom < 50) {
+        userScrolledUp.current = false;
+      }
     };
 
     container.addEventListener('scroll', handleScroll, { passive: true });
-    return () => container.removeEventListener('scroll', handleScroll);
+    container.addEventListener('touchstart', handleTouchStart, { passive: true });
+    container.addEventListener('touchend', handleTouchEnd, { passive: true });
+    return () => {
+      container.removeEventListener('scroll', handleScroll);
+      container.removeEventListener('touchstart', handleTouchStart);
+      container.removeEventListener('touchend', handleTouchEnd);
+    };
   }, []);
 
   const scrollToBottom = useCallback(() => {
-    if (!userScrolledUp.current) {
-      messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    if (!userScrolledUp.current && messagesEndRef.current) {
+      programmaticScroll.current = true;
+      messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
+      // Reset programmatic flag after smooth scroll finishes
+      setTimeout(() => { programmaticScroll.current = false; }, 500);
     }
   }, []);
 
   // Scroll on new message
   useEffect(() => {
-    userScrolledUp.current = false; // reset when new message arrives
+    userScrolledUp.current = false;
     scrollToBottom();
   }, [messages.length, scrollToBottom]);
 
@@ -160,12 +188,12 @@ function JuridiskHjalpContent() {
     }
   }, [input]);
 
-  // Auto-scroll during typewriter (respects user scroll)
+  // Auto-scroll during typewriter (respects user scroll, stops when done)
   useEffect(() => {
     if (animatingIdx !== null) {
       const interval = setInterval(() => {
         scrollToBottom();
-      }, 200);
+      }, 300);
       return () => clearInterval(interval);
     }
   }, [animatingIdx, scrollToBottom]);
@@ -373,6 +401,7 @@ function JuridiskHjalpContent() {
                 <TypewriterBubble
                   content={msg.content}
                   animate={i === animatingIdx}
+                  onDone={() => { if (i === animatingIdx) setAnimatingIdx(null); }}
                 />
               ) : (
                 <div className="text-sm leading-relaxed">{msg.content}</div>
