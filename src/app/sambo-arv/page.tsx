@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { ArrowLeft, Heart, ChevronRight, AlertTriangle } from 'lucide-react';
-import BottomNav from '@/components/ui/BottomNav';
+import { BottomNav } from '@/components/ui/BottomNav';
 
 export default function SamboArvPage() {
   return (
