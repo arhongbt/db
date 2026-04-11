@@ -134,8 +134,7 @@ function DashboardContent() {
   }, 0);
 
   const skulderTotal = state.skulder.reduce((sum, item) => {
-    const value = item.confirmedValue !== undefined ? item.confirmedValue : (item.estimatedValue || 0);
-    return sum + value;
+    return sum + (item.amount || 0);
   }, 0);
 
   // Check if simple dödsbo: 0 tillgångar AND 0 delagare AND < 30 days
