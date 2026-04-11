@@ -94,7 +94,7 @@ function ArvskifteContent() {
     tillgangar: state.tillgangar?.map((t) => ({
       id: crypto.randomUUID(),
       beskrivning: t.description || t.type,
-      varde: t.value?.toString() || '',
+      varde: (t.estimatedValue ?? t.confirmedValue)?.toString() || '',
     })) || [],
   }));
   const [newDelagare, setNewDelagare] = useState({ namn: '', personnummer: '', andel: '' });
