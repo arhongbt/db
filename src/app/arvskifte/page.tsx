@@ -313,7 +313,7 @@ function ArvskifteContent() {
       )}
 
       {/* Sambolagen info */}
-      {state.onboarding.familySituation === 'sambo' && (
+      {(state.onboarding.familySituation === 'sambo_med_barn' || state.onboarding.familySituation === 'sambo_utan_barn') && (
         <div className="info-box mb-6">
           <div className="flex gap-2">
             <Info className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
