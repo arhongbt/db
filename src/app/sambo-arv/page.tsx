@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { ArrowLeft, Heart, ChevronRight, AlertTriangle } from 'lucide-react';
+import { ArrowLeft, Flower2, ChevronRight, AlertTriangle } from 'lucide-react';
 import { BottomNav } from '@/components/ui/BottomNav';
 
 export default function SamboArvPage() {
@@ -33,7 +33,7 @@ export default function SamboArvPage() {
         {/* Introduction Card */}
         <div className="bg-white border border-border rounded-2xl p-5 space-y-3">
           <div className="flex items-start gap-3">
-            <Heart className="w-6 h-6 text-accent flex-shrink-0 mt-1" />
+            <Flower2 className="w-6 h-6 text-accent flex-shrink-0 mt-1" />
             <div>
               <h2 className="font-semibold text-primary mb-2">Sambo är inte gift</h2>
               <p className="text-sm text-muted mb-3">

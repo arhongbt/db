@@ -21,12 +21,11 @@ import {
   PenTool,
   ScrollText,
   FileX,
-  Heart,
   Landmark,
   FileCheck,
   Users,
   Newspaper,
-  Church,
+  Flower2,
 } from 'lucide-react';
 import { BottomNav } from '@/components/ui/BottomNav';
 import type { DodsboTask, ProcessStep, TaskStatus } from '@/types';
@@ -478,7 +477,7 @@ function DashboardContent() {
             {/* Simple dödsbo — simplified options */}
             <div className="grid grid-cols-3 gap-3 mb-4">
               {[
-                { label: 'Begravningsplanering', href: '/begravningsplanering', Icon: Church },
+                { label: 'Begravningsplanering', href: '/begravningsplanering', Icon: Flower2 },
                 { label: 'Dödsboanmälan', href: '/dodsboanmalan', Icon: FileX },
               ].map((item) => (
                 <Link
@@ -538,9 +537,9 @@ function DashboardContent() {
         <h2 className="text-base font-bold text-primary mb-3">Verktyg & guider</h2>
         <div className="grid grid-cols-3 gap-3">
           {[
-            { label: 'Begravning', href: '/begravningsplanering', Icon: Church },
+            { label: 'Begravning', href: '/begravningsplanering', Icon: Flower2 },
             { label: 'Skatteverket', href: '/skatteverket-guide', Icon: FileCheck },
-            { label: 'Minnesida', href: '/minnesida', Icon: Heart },
+            { label: 'Minnesida', href: '/minnesida', Icon: Flower2 },
             ...(state.delagare.length > 1 ? [{ label: 'Samarbete', href: '/samarbete', Icon: Users }] : []),
             { label: 'Mike Ross', href: '/juridisk-hjalp', Icon: Bot },
             { label: 'Exportera', href: '/exportera', Icon: Package },

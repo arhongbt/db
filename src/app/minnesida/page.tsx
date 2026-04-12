@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Heart, ArrowLeft, Bot, Flame, Copy, Check } from 'lucide-react';
+import { Flower2, ArrowLeft, Bot, Flame, Copy, Check } from 'lucide-react';
 import Link from 'next/link';
 import { DodsboProvider, useDodsbo } from '@/lib/context';
 import { BottomNav } from '@/components/ui/BottomNav';
@@ -169,7 +169,7 @@ ${form.citat}
             <ArrowLeft className="w-5 h-5" />
           </Link>
           <h1 className="flex items-center gap-2 text-xl font-bold text-primary">
-            <Heart className="w-5 h-5 fill-primary" />
+            <Flower2 className="w-5 h-5 text-primary" />
             Minnesida
           </h1>
           <div className="w-5" />
@@ -198,7 +198,7 @@ ${form.citat}
               value={form.namn}
               onChange={(e) => handleInputChange('namn', e.target.value)}
               placeholder="Namn på den du saknar"
-              className="w-full px-4 py-3 border border-gray-200 rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
+              className="w-full px-4 py-3 border border-[#E8E4DE] rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white"
             />
           </div>
 
@@ -212,7 +212,7 @@ ${form.citat}
               value={form.född}
               onChange={(e) => handleInputChange('född', e.target.value)}
               placeholder="t.ex. 12 mars 1945"
-              className="w-full px-4 py-3 border border-gray-200 rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
+              className="w-full px-4 py-3 border border-[#E8E4DE] rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white"
             />
           </div>
 
@@ -226,7 +226,7 @@ ${form.citat}
               value={form.avliden}
               onChange={(e) => handleInputChange('avliden', e.target.value)}
               placeholder="Datum för bortgången"
-              className="w-full px-4 py-3 border border-gray-200 rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
+              className="w-full px-4 py-3 border border-[#E8E4DE] rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white"
             />
           </div>
 
@@ -240,7 +240,7 @@ ${form.citat}
               onChange={(e) => handleInputChange('minnesord', e.target.value)}
               placeholder="Skriv några ord om den du saknar..."
               rows={4}
-              className="w-full px-4 py-3 border border-gray-200 rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background resize-none"
+              className="w-full px-4 py-3 border border-[#E8E4DE] rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white resize-none"
             />
           </div>
 
@@ -254,7 +254,7 @@ ${form.citat}
               onChange={(e) => handleInputChange('favoritminne', e.target.value)}
               placeholder="Dela ett kärt minne..."
               rows={3}
-              className="w-full px-4 py-3 border border-gray-200 rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background resize-none"
+              className="w-full px-4 py-3 border border-[#E8E4DE] rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white resize-none"
             />
           </div>
 
@@ -268,7 +268,7 @@ ${form.citat}
               value={form.citat}
               onChange={(e) => handleInputChange('citat', e.target.value)}
               placeholder="Ett citat som speglar personen..."
-              className="w-full px-4 py-3 border border-gray-200 rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
+              className="w-full px-4 py-3 border border-[#E8E4DE] rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white"
             />
           </div>
 
