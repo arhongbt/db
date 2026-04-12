@@ -10,6 +10,8 @@ import {
   ArrowLeft,
   Info,
   AlertCircle,
+  Camera,
+  X,
 } from 'lucide-react';
 
 import type { LosoreItem, LosoreCategory } from '@/types';
@@ -47,7 +49,9 @@ function LosoreContent() {
   const [formCategory, setFormCategory] = useState<LosoreCategory>('mobler');
   const [formValue, setFormValue] = useState('');
   const [formAssignedTo, setFormAssignedTo] = useState('');
+  const [formTilldeladTill, setFormTilldeladTill] = useState('');
   const [formNotes, setFormNotes] = useState('');
+  const [formImageUrl, setFormImageUrl] = useState<string | null>(null);
   const [formErrors, setFormErrors] = useState<Record<string, string>>({});
 
   // Migrate from localStorage on first load
@@ -78,6 +82,64 @@ function LosoreContent() {
       </div>
     );
   }
+
+  // Image compression utility
+  const compressImage = async (file: File): Promise<string> => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = (e) => {
+        const img = new Image();
+        img.src = e.target?.result as string;
+        img.onload = () => {
+          const canvas = document.createElement('canvas');
+          let { width, height } = img;
+
+          // Resize to max 800px width
+          if (width > 800) {
+            height = (height * 800) / width;
+            width = 800;
+          }
+
+          canvas.width = width;
+          canvas.height = height;
+          const ctx = canvas.getContext('2d');
+          if (ctx) {
+            ctx.drawImage(img, 0, 0, width, height);
+          }
+
+          // Compress to max 200KB
+          let quality = 0.8;
+          let result = canvas.toDataURL('image/jpeg', quality);
+
+          while (result.length > 200 * 1024 && quality > 0.1) {
+            quality -= 0.1;
+            result = canvas.toDataURL('image/jpeg', quality);
+          }
+
+          resolve(result);
+        };
+        img.onerror = () => reject(new Error('Failed to load image'));
+      };
+      reader.onerror = () => reject(new Error('Failed to read file'));
+    });
+  };
+
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    try {
+      const compressed = await compressImage(file);
+      setFormImageUrl(compressed);
+    } catch (err) {
+      console.error('Failed to compress image:', err);
+      setFormErrors(p => ({ ...p, image: 'Failed to process image' }));
+    }
+
+    // Reset input
+    e.target.value = '';
+  };
 
   const formatSEK = (amount: number) =>
     new Intl.NumberFormat('sv-SE', { style: 'currency', currency: 'SEK', maximumFractionDigits: 0 }).format(amount);
@@ -114,14 +176,18 @@ function LosoreContent() {
       category: formCategory,
       estimatedValue: parseInt(formValue),
       assignedTo: formAssignedTo || undefined,
+      tilldeladTill: formTilldeladTill || undefined,
       notes: formNotes.trim() || undefined,
+      imageUrl: formImageUrl || undefined,
     };
 
     dispatch({ type: 'ADD_LOSORE', payload: newItem });
     setFormName('');
     setFormValue('');
     setFormAssignedTo('');
+    setFormTilldeladTill('');
     setFormNotes('');
+    setFormImageUrl(null);
     setFormErrors({});
     setShowForm(false);
   };
@@ -244,6 +310,46 @@ function LosoreContent() {
         <div className="card border-2 border-accent mb-6">
           <h3 className="text-lg font-semibold text-primary mb-4">Lägg till föremål</h3>
 
+          {/* Photo upload section */}
+          <div className="mb-4">
+            <span className="text-sm font-medium text-primary mb-2 block">Foto (valfritt)</span>
+            {formImageUrl ? (
+              <div className="relative w-full mb-3">
+                <img
+                  src={formImageUrl}
+                  alt="Preview"
+                  className="w-full h-40 object-cover rounded-2xl border-2 border-[#E8E4DE]"
+                />
+                <button
+                  onClick={() => setFormImageUrl(null)}
+                  className="absolute top-2 right-2 p-1 bg-white rounded-full shadow-md hover:bg-gray-100 transition-colors"
+                  aria-label="Ta bort foto"
+                >
+                  <X className="w-4 h-4 text-primary" />
+                </button>
+              </div>
+            ) : (
+              <>
+                <input
+                  type="file"
+                  accept="image/*"
+                  capture="environment"
+                  onChange={handleImageUpload}
+                  id="photo-input"
+                  className="hidden"
+                />
+                <label
+                  htmlFor="photo-input"
+                  className="flex items-center justify-center gap-2 w-full px-4 py-3 border-2 border-[#E8E4DE] rounded-2xl cursor-pointer hover:border-accent hover:bg-gray-50 transition-colors bg-white"
+                >
+                  <Camera className="w-5 h-5 text-accent" />
+                  <span className="text-sm font-medium text-primary">Ta foto eller ladda upp</span>
+                </label>
+              </>
+            )}
+            {formErrors.image && <span className="text-xs text-warn mt-1 block">{formErrors.image}</span>}
+          </div>
+
           <label className="block mb-4">
             <span className="text-sm font-medium text-primary mb-1 block">Namn på föremål *</span>
             <input
@@ -294,19 +400,35 @@ function LosoreContent() {
           </label>
 
           {delagareNames.length > 0 && (
-            <label className="block mb-4">
-              <span className="text-sm font-medium text-primary mb-1 block">Tilldelad till (valfritt)</span>
-              <select
-                value={formAssignedTo}
-                onChange={(e) => setFormAssignedTo(e.target.value)}
-                className="w-full px-4 py-3 border-2 border-[#E8E4DE] rounded-xl focus:border-accent focus:outline-none transition-colors"
-              >
-                <option value="">— Ej tilldelad —</option>
-                {delagareNames.map(name => (
-                  <option key={name} value={name}>{name}</option>
-                ))}
-              </select>
-            </label>
+            <>
+              <label className="block mb-4">
+                <span className="text-sm font-medium text-primary mb-1 block">Tilldelad till (valfritt)</span>
+                <select
+                  value={formAssignedTo}
+                  onChange={(e) => setFormAssignedTo(e.target.value)}
+                  className="w-full px-4 py-3 border-2 border-[#E8E4DE] rounded-xl focus:border-accent focus:outline-none transition-colors"
+                >
+                  <option value="">— Ej tilldelad —</option>
+                  {delagareNames.map(name => (
+                    <option key={name} value={name}>{name}</option>
+                  ))}
+                </select>
+              </label>
+
+              <label className="block mb-4">
+                <span className="text-sm font-medium text-primary mb-1 block">Tilldelad till arving (valfritt)</span>
+                <select
+                  value={formTilldeladTill}
+                  onChange={(e) => setFormTilldeladTill(e.target.value)}
+                  className="w-full px-4 py-3 border-2 border-[#E8E4DE] rounded-xl focus:border-accent focus:outline-none transition-colors"
+                >
+                  <option value="">— Välj arving —</option>
+                  {delagareNames.map(name => (
+                    <option key={name} value={name}>{name}</option>
+                  ))}
+                </select>
+              </label>
+            </>
           )}
 
           <label className="block mb-4">
@@ -324,6 +446,7 @@ function LosoreContent() {
               onClick={() => {
                 setShowForm(false);
                 setFormErrors({});
+                setFormImageUrl(null);
               }}
               className="btn-secondary flex-1"
             >
@@ -372,10 +495,21 @@ function LosoreContent() {
                 <div className="space-y-2">
                   {categoryItems.map(item => (
                     <div key={item.id} className="card p-4">
-                      <div className="flex items-start justify-between gap-3 mb-2">
+                      <div className="flex items-start justify-between gap-3 mb-3">
                         <div className="flex-1 min-w-0">
-                          <p className="font-medium text-primary">{item.name}</p>
-                          {item.notes && <p className="text-xs text-muted mt-1">{item.notes}</p>}
+                          <div className="flex items-start gap-3">
+                            {item.imageUrl && (
+                              <img
+                                src={item.imageUrl}
+                                alt={item.name}
+                                className="w-12 h-12 object-cover rounded-lg flex-shrink-0 border border-[#E8E4DE]"
+                              />
+                            )}
+                            <div className="flex-1 min-w-0">
+                              <p className="font-medium text-primary">{item.name}</p>
+                              {item.notes && <p className="text-xs text-muted mt-1">{item.notes}</p>}
+                            </div>
+                          </div>
                         </div>
                         <button
                           onClick={() => handleDeleteItem(item.id)}
@@ -386,15 +520,20 @@ function LosoreContent() {
                         </button>
                       </div>
 
-                      <div className="flex items-center justify-between gap-2 mb-2">
+                      <div className="flex items-center justify-between gap-2 mb-3">
                         <p className="text-sm font-semibold text-success">{formatSEK(item.estimatedValue)}</p>
+                        {item.tilldeladTill && (
+                          <span className="inline-block px-2 py-1 bg-accent/10 text-accent text-xs font-medium rounded-lg">
+                            {item.tilldeladTill}
+                          </span>
+                        )}
                       </div>
 
                       {delagareNames.length > 0 && (
                         <select
                           value={item.assignedTo || ''}
                           onChange={(e) => handleUpdateAssignment(item.id, e.target.value)}
-                          className="w-full px-3 py-2 border border-[#E8E4DE] rounded-lg text-sm focus:border-accent focus:outline-none transition-colors"
+                          className="w-full px-3 py-2 border border-[#E8E4DE] rounded-lg text-sm focus:border-accent focus:outline-none transition-colors mb-2"
                         >
                           <option value="">— Ej tilldelad —</option>
                           {delagareNames.map(name => (
@@ -404,7 +543,7 @@ function LosoreContent() {
                       )}
 
                       {item.assignedTo && (
-                        <p className="text-xs text-primary/70 mt-2">
+                        <p className="text-xs text-primary/70">
                           Tilldelad: <span className="font-medium">{item.assignedTo}</span>
                         </p>
                       )}

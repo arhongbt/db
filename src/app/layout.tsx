@@ -4,6 +4,7 @@ import { AuthProvider } from '@/lib/auth/context';
 import { ServiceWorkerRegistration } from '@/components/ServiceWorkerRegistration';
 import { CookieBanner } from '@/components/CookieBanner';
 import { FloatingChatButton } from '@/components/ui/FloatingChatButton';
+import { TextScaleLoader } from '@/components/TextScaleLoader';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 
@@ -183,9 +184,17 @@ export default function RootLayout({
         <JsonLd />
       </head>
       <body className="min-h-dvh">
+        <TextScaleLoader />
+        {/* Skip navigation link */}
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-accent focus:text-white focus:px-4 focus:py-2 focus:rounded-md"
+        >
+          Hoppa till innehål
+        </a>
         <AuthProvider>
           <ServiceWorkerRegistration />
-          <main className="mx-auto max-w-lg">
+          <main className="mx-auto max-w-lg" id="main-content">
             {children}
           </main>
         </AuthProvider>

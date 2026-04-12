@@ -6,7 +6,7 @@
 
 @layer base {
   html {
-    font-size: 16px;
+    font-size: calc(16px * var(--text-scale));
     -webkit-text-size-adjust: 100%;
   }
 
@@ -17,7 +17,8 @@
 
   /* Grief-aware: reduce visual noise, soft focus states */
   *:focus-visible {
-    @apply outline-2 outline-offset-2 outline-accent rounded;
+    outline: 2px solid #6B7F5E;
+    outline-offset: 2px;
   }
 
   /* Smooth scrolling for accessibility */
@@ -158,6 +159,7 @@
    not just body background. */
 :root {
   color-scheme: light;
+  --text-scale: 1;
 }
 
 /* Print stylesheet */

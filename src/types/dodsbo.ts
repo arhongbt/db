@@ -160,6 +160,8 @@ export interface LosoreItem {
   estimatedValue: number;
   assignedTo?: string;
   notes?: string;
+  imageUrl?: string;
+  tilldeladTill?: string;
 }
 
 export type LosoreCategory =
@@ -306,6 +308,8 @@ export interface DodsboTask {
   /** Extern länk (t.ex. till Skatteverket) */
   externalUrl?: string;
   completedAt?: string;
+  /** Tilldelad till (namn på delägare) */
+  assignedTo?: string;
 }
 
 export type TaskCategory =

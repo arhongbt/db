@@ -272,14 +272,14 @@ function DashboardContent() {
 
       {/* Quick stats row */}
       <div className="grid grid-cols-2 gap-3 mb-5" role="group" aria-label="Snabbstatistik">
-        <div className="card text-center" aria-label={`${state.delagare.length} dödsbodelägare`}>
+        <div className="card text-center" aria-label={`Totalt ${state.delagare.length} dödsbodelägare`}>
           <div className="w-10 h-10 rounded-2xl mx-auto mb-2 flex items-center justify-center" style={{ background: '#EEF2EA' }}>
             <User className="w-5 h-5 text-accent" aria-hidden="true" />
           </div>
           <p className="text-2xl font-bold text-primary">{state.delagare.length}</p>
           <p className="text-xs text-muted">Dödsbodelägare</p>
         </div>
-        <div className="card text-center" aria-label={`${upcomingDeadlines.length} kommande frister`}>
+        <div className="card text-center" aria-label={`Totalt ${upcomingDeadlines.length} kommande frister`}>
           <div className="w-10 h-10 rounded-2xl mx-auto mb-2 flex items-center justify-center" style={{ background: '#EEF2EA' }}>
             <Calendar className="w-5 h-5 text-accent" aria-hidden="true" />
           </div>
@@ -337,6 +337,7 @@ function DashboardContent() {
                   key={a.href}
                   href={a.href}
                   className={`card border-l-4 ${a.color} flex items-center justify-between`}
+                  aria-label={`${a.label} — ${a.reason}`}
                 >
                   <div>
                     <div className="flex items-center gap-2">
@@ -479,15 +480,15 @@ function DashboardContent() {
             {/* Simple dödsbo — simplified options */}
             <div className="grid grid-cols-3 gap-3 mb-4">
               {[
-                { label: 'Begravningsplanering', href: '/begravningsplanering', Icon: Flower2 },
-                { label: 'Dödsboanmälan', href: '/dodsboanmalan', Icon: FileX },
+                { label: 'Begravningsplanering', href: '/begravningsplanering', Icon: Flower2, description: 'Planera begravning och ceremoni' },
+                { label: 'Dödsboanmälan', href: '/dodsboanmalan', Icon: FileX, description: 'Gör dödsboanmälan till Skatteverket' },
               ].map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
                   className="flex flex-col items-center gap-2 py-4 rounded-2xl transition-all hover:scale-[1.02] active:scale-[0.98]"
                   style={{ background: 'linear-gradient(135deg, #EEF2EA, #F7F5F0)' }}
-                  aria-label={item.label}
+                  aria-label={`${item.label} — ${item.description}`}
                 >
                   <div className="w-12 h-12 rounded-2xl flex items-center justify-center"
                     style={{ background: 'linear-gradient(135deg, #6B7F5E, #4F6145)' }}>
@@ -509,19 +510,19 @@ function DashboardContent() {
           /* Full dödsbo — all options */
           <div className="grid grid-cols-3 gap-3">
             {[
-              { label: 'Bouppteckning', href: '/bouppteckning', Icon: ClipboardList },
-              { label: 'Testamente', href: '/testamente', Icon: PenTool },
-              { label: 'Arvskifte', href: '/arvskifteshandling', Icon: ScrollText },
-              { label: 'Dödsboanmälan', href: '/dodsboanmalan', Icon: FileX },
-              { label: 'Bankbrev', href: '/bankbrev', Icon: Landmark },
-              { label: 'Dödsannons', href: '/dodsannons', Icon: Newspaper },
+              { label: 'Bouppteckning', href: '/bouppteckning', Icon: ClipboardList, description: 'Skapa inventarium av dödsboets tillgångar' },
+              { label: 'Testamente', href: '/testamente', Icon: PenTool, description: 'Visa eller dokumentera testamente' },
+              { label: 'Arvskifte', href: '/arvskifteshandling', Icon: ScrollText, description: 'Skapa arvskifteshandling' },
+              { label: 'Dödsboanmälan', href: '/dodsboanmalan', Icon: FileX, description: 'Gör dödsboanmälan till Skatteverket' },
+              { label: 'Bankbrev', href: '/bankbrev', Icon: Landmark, description: 'Skapa bankbrev för bankmeddelanden' },
+              { label: 'Dödsannons', href: '/dodsannons', Icon: Newspaper, description: 'Publicera dödsannons' },
             ].map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
                 className="flex flex-col items-center gap-2 py-4 rounded-2xl transition-all hover:scale-[1.02] active:scale-[0.98]"
                 style={{ background: 'linear-gradient(135deg, #EEF2EA, #F7F5F0)' }}
-                aria-label={item.label}
+                aria-label={`${item.label} — ${item.description}`}
               >
                 <div className="w-12 h-12 rounded-2xl flex items-center justify-center"
                   style={{ background: 'linear-gradient(135deg, #6B7F5E, #4F6145)' }}>
@@ -539,19 +540,19 @@ function DashboardContent() {
         <h2 className="text-base font-bold text-primary mb-3">Verktyg & guider</h2>
         <div className="grid grid-cols-3 gap-3">
           {[
-            { label: 'Begravning', href: '/begravningsplanering', Icon: Flower2 },
-            { label: 'Skatteverket', href: '/skatteverket-guide', Icon: FileCheck },
-            { label: 'Minnesida', href: '/minnesida', Icon: Heart },
-            ...(state.delagare.length > 1 ? [{ label: 'Samarbete', href: '/samarbete', Icon: Handshake }] : []),
-            { label: 'Mike Ross', href: '/juridisk-hjalp', Icon: Bot },
-            { label: 'Exportera', href: '/exportera', Icon: Package },
+            { label: 'Begravning', href: '/begravningsplanering', Icon: Flower2, description: 'Planera begravning och ceremoni' },
+            { label: 'Skatteverket', href: '/skatteverket-guide', Icon: FileCheck, description: 'Guide för Skatteverket-ärenden' },
+            { label: 'Minnesida', href: '/minnesida', Icon: Heart, description: 'Skapa minnesida för den avlidne' },
+            ...(state.delagare.length > 1 ? [{ label: 'Samarbete', href: '/samarbete', Icon: Handshake, description: 'Samarbeta med dödsbodelägare' }] : []),
+            { label: 'Mike Ross', href: '/juridisk-hjalp', Icon: Bot, description: 'Juridisk AI-assistent' },
+            { label: 'Exportera', href: '/exportera', Icon: Package, description: 'Exportera dödsbodata' },
           ].map((item) => (
             <Link
               key={item.href}
               href={item.href}
               className="flex flex-col items-center gap-2 py-4 rounded-2xl transition-all hover:scale-[1.02] active:scale-[0.98]"
               style={{ background: 'linear-gradient(135deg, #EEF2EA, #F7F5F0)' }}
-              aria-label={item.label}
+              aria-label={`${item.label} — ${item.description}`}
             >
               <div className="w-12 h-12 rounded-2xl flex items-center justify-center"
                 style={{ background: 'linear-gradient(135deg, #6B7F5E, #4F6145)' }}>

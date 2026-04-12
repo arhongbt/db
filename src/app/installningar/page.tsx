@@ -49,7 +49,10 @@ function InstallningarContent() {
   });
   const [textSize, setTextSize] = useState<'normal' | 'large' | 'xlarge'>(() => {
     if (typeof window !== 'undefined') {
-      return (localStorage.getItem('dodsbo_textsize') as 'normal' | 'large' | 'xlarge') || 'normal';
+      const scale = localStorage.getItem('sr_text_scale');
+      if (scale === '1.15') return 'large';
+      if (scale === '1.3') return 'xlarge';
+      return 'normal';
     }
     return 'normal';
   });
@@ -119,7 +122,14 @@ function InstallningarContent() {
   const handleTextSizeChange = (size: 'normal' | 'large' | 'xlarge') => {
     setTextSize(size);
     if (typeof window !== 'undefined') {
-      localStorage.setItem('dodsbo_textsize', size);
+      const scaleMap = {
+        normal: '1',
+        large: '1.15',
+        xlarge: '1.3',
+      };
+      const scaleValue = scaleMap[size];
+      localStorage.setItem('sr_text_scale', scaleValue);
+      document.documentElement.style.setProperty('--text-scale', scaleValue);
     }
   };
 

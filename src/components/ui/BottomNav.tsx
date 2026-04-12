@@ -162,7 +162,7 @@ export function BottomNav() {
                   height: '44px',
                   borderRadius: '22px',
                   background: isActive ? '#6B7F5E' : 'transparent',
-                  color: isActive ? '#FFFFFF' : '#6B6560',
+                  color: isActive ? '#FFFFFF' : '#524B45',
                   gap: '6px',
                   padding: isActive ? '0 16px' : '0 8px',
                 }}
@@ -186,7 +186,7 @@ export function BottomNav() {
               height: '44px',
               borderRadius: '22px',
               background: (moreOpen || isMoreActive) ? '#6B7F5E' : 'transparent',
-              color: (moreOpen || isMoreActive) ? '#FFFFFF' : '#6B6560',
+              color: (moreOpen || isMoreActive) ? '#FFFFFF' : '#524B45',
               gap: '6px',
               padding: (moreOpen || isMoreActive) ? '0 16px' : '0 8px',
             }}

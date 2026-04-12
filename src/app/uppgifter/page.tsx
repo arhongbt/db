@@ -43,9 +43,11 @@ function UppgifterContent() {
   const { state, dispatch, loading } = useDodsbo();
   const [mounted, setMounted] = useState(false);
   const [filterStep, setFilterStep] = useState<ProcessStep | 'all'>('all');
+  const [filterAssignee, setFilterAssignee] = useState<string | 'all'>('all');
   const [showDone, setShowDone] = useState(false);
   const [advancedTo, setAdvancedTo] = useState<ProcessStep | null>(null);
   const [recentlyDone, setRecentlyDone] = useState<Set<string>>(new Set());
+  const [openAssigneeId, setOpenAssigneeId] = useState<string | null>(null);
 
   useEffect(() => setMounted(true), []);
 
@@ -68,6 +70,7 @@ function UppgifterContent() {
   const filtered = tasks.filter((t) => {
     if (filterStep !== 'all' && t.step !== filterStep) return false;
     if (!showDone && t.status === 'klar' && !recentlyDone.has(t.id)) return false;
+    if (filterAssignee !== 'all' && t.assignedTo !== filterAssignee) return false;
     return true;
   });
 
@@ -164,8 +167,8 @@ function UppgifterContent() {
         </div>
       )}
 
-      {/* Filters */}
-      <div className="flex gap-2 mb-4 overflow-x-auto pb-1" role="tablist" aria-label="Filtrera uppgifter">
+      {/* Step filters */}
+      <div className="flex gap-2 mb-4 overflow-x-auto pb-1" role="tablist" aria-label="Filtrera efter steg">
         <button
           onClick={() => setFilterStep('all')}
           role="tab"
@@ -184,6 +187,7 @@ function UppgifterContent() {
             onClick={() => setFilterStep(s)}
             role="tab"
             aria-selected={filterStep === s}
+            aria-label={`Filtrera efter ${STEP_LABELS[s]}`}
             className={`px-4 py-2 min-h-[44px] rounded-full text-sm font-medium whitespace-nowrap transition-colors ${
               filterStep === s
                 ? 'bg-primary text-white'
@@ -195,9 +199,42 @@ function UppgifterContent() {
         ))}
       </div>
 
+      {/* Assignee filters */}
+      <div className="flex gap-2 mb-4 overflow-x-auto pb-1" role="tablist" aria-label="Filtrera efter tilldelning">
+        <button
+          onClick={() => setFilterAssignee('all')}
+          role="tab"
+          aria-selected={filterAssignee === 'all'}
+          className={`px-4 py-2 min-h-[44px] rounded-full text-sm font-medium whitespace-nowrap transition-colors ${
+            filterAssignee === 'all'
+              ? 'bg-[#6B7F5E] text-white'
+              : 'bg-gray-100 text-primary/70 hover:bg-[#E8E4DE]'
+          }`}
+        >
+          Alla
+        </button>
+        {state.delagare.filter((d) => d.isDelagare).map((d) => (
+          <button
+            key={d.id}
+            onClick={() => setFilterAssignee(d.name)}
+            role="tab"
+            aria-selected={filterAssignee === d.name}
+            aria-label={`Filtrera uppgifter tilldelade till ${d.name}`}
+            className={`px-4 py-2 min-h-[44px] rounded-full text-sm font-medium whitespace-nowrap transition-colors ${
+              filterAssignee === d.name
+                ? 'bg-[#6B7F5E] text-white'
+                : 'bg-gray-100 text-primary/70 hover:bg-[#E8E4DE]'
+            }`}
+          >
+            {d.name}
+          </button>
+        ))}
+      </div>
+
       <button
         onClick={() => setShowDone(!showDone)}
         aria-pressed={showDone}
+        aria-label={showDone ? 'Dölj klara uppgifter' : 'Visa klara uppgifter'}
         className={`flex items-center gap-2 mb-4 px-3 py-2 min-h-[44px] rounded-lg text-sm font-medium transition-colors ${
           showDone
             ? 'bg-success/10 text-success'
@@ -221,51 +258,116 @@ function UppgifterContent() {
             {stepTasks.map((task) => {
               const isOverdue =
                 task.deadlineDays != null && daysSinceDeath > task.deadlineDays && task.status !== 'klar';
+              const assignedDelaware = state.delagare.find((d) => d.name === task.assignedTo);
+              const initials = assignedDelaware
+                ? assignedDelaware.name.split(' ').map((n) => n[0]).join('').toUpperCase().slice(0, 2)
+                : '';
+
               return (
-                <button
+                <div
                   key={task.id}
-                  onClick={() => toggleStatus(task)}
-                  className={`card flex items-start gap-3 w-full text-left transition-all duration-300 ${
+                  className={`card flex items-start gap-3 w-full transition-all duration-300 relative ${
                     task.status === 'klar' && recentlyDone.has(task.id)
                       ? 'opacity-60 scale-[0.98]'
                       : task.status === 'klar'
                       ? 'opacity-60'
                       : ''
                   } ${isOverdue ? 'border-l-4 border-warn' : ''}`}
+                  role="listitem"
+                  aria-label={`${task.title}, ${task.status === 'klar' ? 'slutförd' : 'väntande'}`}
                 >
-                  {statusIcon(task.status)}
-                  <div className="flex-1 min-w-0">
-                    <p
-                      className={`font-medium ${
-                        task.status === 'klar'
-                          ? 'line-through text-muted'
-                          : 'text-primary'
-                      }`}
-                    >
-                      {task.title}
-                    </p>
-                    <p className="text-sm text-muted mt-0.5 line-clamp-2">
-                      {task.description}
-                    </p>
-                    {task.deadlineDays != null && task.status !== 'klar' && (
+                  <button
+                    onClick={() => toggleStatus(task)}
+                    className="flex items-start gap-3 w-full text-left"
+                    aria-label={`Markera ${task.title} som ${task.status === 'klar' ? 'oavslutad' : 'slutförd'}`}
+                  >
+                    {statusIcon(task.status)}
+                    <div className="flex-1 min-w-0">
                       <p
-                        className={`text-xs font-medium mt-1 ${
-                          isOverdue ? 'text-warn' : 'text-accent'
+                        className={`font-medium ${
+                          task.status === 'klar'
+                            ? 'line-through text-muted'
+                            : 'text-primary'
                         }`}
                       >
-                        {isOverdue
-                          ? `${daysSinceDeath - task.deadlineDays} dagar försenad`
-                          : `${task.deadlineDays - daysSinceDeath} dagar kvar`}
+                        {task.title}
                       </p>
-                    )}
-                    {task.externalUrl && task.status !== 'klar' && (
-                      <span className="inline-flex items-center gap-1 text-xs text-accent mt-1">
-                        <ExternalLink className="w-3 h-3" />
-                        Länk
-                      </span>
+                      <p className="text-sm text-muted mt-0.5 line-clamp-2">
+                        {task.description}
+                      </p>
+                      {task.deadlineDays != null && task.status !== 'klar' && (
+                        <p
+                          className={`text-xs font-medium mt-1 ${
+                            isOverdue ? 'text-warn' : 'text-accent'
+                          }`}
+                        >
+                          {isOverdue
+                            ? `${daysSinceDeath - task.deadlineDays} dagar försenad`
+                            : `${task.deadlineDays - daysSinceDeath} dagar kvar`}
+                        </p>
+                      )}
+                      {task.externalUrl && task.status !== 'klar' && (
+                        <span className="inline-flex items-center gap-1 text-xs text-accent mt-1">
+                          <ExternalLink className="w-3 h-3" />
+                          Länk
+                        </span>
+                      )}
+                    </div>
+                  </button>
+
+                  {/* Assignee indicator */}
+                  <div className="relative">
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setOpenAssigneeId(openAssigneeId === task.id ? null : task.id);
+                      }}
+                      className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-medium transition-colors flex-shrink-0 ${
+                        task.assignedTo
+                          ? 'bg-[#6B7F5E] text-white'
+                          : 'border border-[#E8E4DE] text-[#E8E4DE] hover:border-primary hover:text-primary'
+                      }`}
+                      aria-label={task.assignedTo ? `Ändra tilldelning från ${task.assignedTo}` : 'Tilldela uppgift till dödsbodelägare'}
+                      title={task.assignedTo ? `Tilldelad till ${task.assignedTo}` : 'Tilldela uppgift'}
+                    >
+                      {task.assignedTo ? initials : '+'}
+                    </button>
+
+                    {/* Dropdown menu */}
+                    {openAssigneeId === task.id && (
+                      <div
+                        className="absolute right-0 mt-1 bg-white border border-[#E8E4DE] rounded-lg shadow-lg z-10 min-w-[160px]"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <button
+                          onClick={() => {
+                            dispatch({ type: 'UPDATE_TASK', payload: { id: task.id, assignedTo: '' } });
+                            setOpenAssigneeId(null);
+                          }}
+                          className="block w-full text-left px-3 py-2 text-sm text-muted hover:bg-gray-50 border-b border-[#E8E4DE] last:border-b-0"
+                        >
+                          Ingen
+                        </button>
+                        {state.delagare.filter((d) => d.isDelagare).map((d) => (
+                          <button
+                            key={d.id}
+                            onClick={() => {
+                              dispatch({ type: 'UPDATE_TASK', payload: { id: task.id, assignedTo: d.name } });
+                              setOpenAssigneeId(null);
+                            }}
+                            className={`block w-full text-left px-3 py-2 text-sm transition-colors border-b border-[#E8E4DE] last:border-b-0 ${
+                              task.assignedTo === d.name
+                                ? 'bg-[#6B7F5E]/10 text-[#6B7F5E] font-medium'
+                                : 'text-primary hover:bg-gray-50'
+                            }`}
+                          >
+                            {d.name}
+                          </button>
+                        ))}
+                      </div>
                     )}
                   </div>
-                </button>
+                </div>
               );
             })}
           </div>

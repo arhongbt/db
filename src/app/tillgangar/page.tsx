@@ -157,16 +157,16 @@ function TillgangarContent() {
       </div>
 
       {/* Summary cards */}
-      <div className="grid grid-cols-3 gap-3 mb-6">
-        <div className="card text-center py-3">
+      <div className="grid grid-cols-3 gap-3 mb-6" role="group" aria-label="Ekonomisk sammanfattning">
+        <div className="card text-center py-3" aria-label={`Totala tillgångar: ${formatSEK(totalTillgangar)}`}>
           <p className="text-xs text-muted uppercase">Tillgångar</p>
           <p className="text-lg font-bold text-success">{formatSEK(totalTillgangar)}</p>
         </div>
-        <div className="card text-center py-3">
+        <div className="card text-center py-3" aria-label={`Totala skulder: ${formatSEK(totalSkulder)}`}>
           <p className="text-xs text-muted uppercase">Skulder</p>
           <p className="text-lg font-bold text-warn">{formatSEK(totalSkulder)}</p>
         </div>
-        <div className="card text-center py-3">
+        <div className="card text-center py-3" aria-label={`Nettovärde: ${formatSEK(netto)}`}>
           <p className="text-xs text-muted uppercase">Netto</p>
           <p className={`text-lg font-bold ${netto >= 0 ? 'text-success' : 'text-warn'}`}>
             {formatSEK(netto)}
@@ -238,12 +238,12 @@ function TillgangarContent() {
               </p>
             </div>
           ) : (
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-3" role="list">
               {state.tillgangar.map((t) => {
                 const typeInfo = TILLGANG_TYPES.find((tt) => tt.value === t.type);
                 const Icon = typeInfo?.icon ?? Wallet;
                 return (
-                  <div key={t.id} className="card flex items-center gap-3">
+                  <div key={t.id} className="card flex items-center gap-3" role="listitem" aria-label={`${t.description}, ${typeInfo?.label}${t.estimatedValue ? `, värde: ${formatSEK(t.estimatedValue)}` : ''}`}>
                     <Icon className="w-5 h-5 text-accent flex-shrink-0" />
                     <div className="flex-1">
                       <p className="font-medium text-primary">{t.description}</p>
@@ -281,9 +281,9 @@ function TillgangarContent() {
               </p>
             </div>
           ) : (
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-3" role="list">
               {state.skulder.map((s) => (
-                <div key={s.id} className="card flex items-center gap-3">
+                <div key={s.id} className="card flex items-center gap-3" role="listitem" aria-label={`${s.creditor}, ${SKULD_TYPES.find((st) => st.value === s.type)?.label}${s.amount ? `, belopp: ${formatSEK(s.amount)}` : ''}`}>
                   <CreditCard className="w-5 h-5 text-warn flex-shrink-0" />
                   <div className="flex-1 min-w-0">
                     <p className="font-medium text-primary">{s.creditor}</p>

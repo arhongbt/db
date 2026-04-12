@@ -35,7 +35,7 @@ export type Action =
   | { type: 'ADD_FORSAKRING'; payload: Forsakring }
   | { type: 'REMOVE_FORSAKRING'; payload: string }
   | { type: 'TOGGLE_FORSAKRING_CONTACTED'; payload: string }
-  | { type: 'UPDATE_TASK'; payload: { id: string; status: DodsboTask['status'] } }
+  | { type: 'UPDATE_TASK'; payload: { id: string; status?: DodsboTask['status']; assignedTo?: string } }
   | { type: 'SET_STEP'; payload: ProcessStep }
   | { type: 'SET_BOUPPTECKNING_INFO'; payload: Partial<Pick<Dodsbo,
       'deceasedPersonnummer' | 'deceasedAddress' | 'deceasedFolkbokforingsort' |
@@ -191,9 +191,14 @@ export function dodsboReducer(state: Dodsbo, action: Action): Dodsbo {
           t.id === action.payload.id
             ? {
                 ...t,
-                status: action.payload.status,
-                completedAt:
-                  action.payload.status === 'klar' ? now : t.completedAt,
+                ...(action.payload.status !== undefined && {
+                  status: action.payload.status,
+                  completedAt:
+                    action.payload.status === 'klar' ? now : t.completedAt,
+                }),
+                ...(action.payload.assignedTo !== undefined && {
+                  assignedTo: action.payload.assignedTo || undefined,
+                }),
               }
             : t
         ),
