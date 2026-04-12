@@ -485,12 +485,12 @@ function DashboardContent() {
                   key={item.href}
                   href={item.href}
                   className="flex flex-col items-center gap-2 py-4 rounded-2xl transition-all hover:scale-[1.02] active:scale-[0.98]"
-                  style={{ background: '#D6DFCE' }}
+                  style={{ background: 'linear-gradient(135deg, #EEF2EA, #F7F5F0)' }}
                   aria-label={item.label}
                 >
                   <div className="w-12 h-12 rounded-2xl flex items-center justify-center"
-                    style={{ background: '#EEF2EA' }}>
-                    <item.Icon className="w-5 h-5" style={{ color: '#6B7F5E' }} strokeWidth={1.5} />
+                    style={{ background: 'linear-gradient(135deg, #6B7F5E, #4F6145)' }}>
+                    <item.Icon className="w-5 h-5 text-white" strokeWidth={1.5} />
                   </div>
                   <span className="text-xs font-semibold text-primary">{item.label}</span>
                 </Link>
@@ -519,12 +519,12 @@ function DashboardContent() {
                 key={item.href}
                 href={item.href}
                 className="flex flex-col items-center gap-2 py-4 rounded-2xl transition-all hover:scale-[1.02] active:scale-[0.98]"
-                style={{ background: '#D6DFCE' }}
+                style={{ background: 'linear-gradient(135deg, #EEF2EA, #F7F5F0)' }}
                 aria-label={item.label}
               >
                 <div className="w-12 h-12 rounded-2xl flex items-center justify-center"
-                  style={{ background: '#EEF2EA' }}>
-                  <item.Icon className="w-5 h-5" style={{ color: '#6B7F5E' }} strokeWidth={1.5} />
+                  style={{ background: 'linear-gradient(135deg, #6B7F5E, #4F6145)' }}>
+                  <item.Icon className="w-5 h-5 text-white" strokeWidth={1.5} />
                 </div>
                 <span className="text-xs font-semibold text-primary">{item.label}</span>
               </Link>
@@ -549,12 +549,12 @@ function DashboardContent() {
               key={item.href}
               href={item.href}
               className="flex flex-col items-center gap-2 py-4 rounded-2xl transition-all hover:scale-[1.02] active:scale-[0.98]"
-              style={{ background: '#D6DFCE' }}
+              style={{ background: 'linear-gradient(135deg, #EEF2EA, #F7F5F0)' }}
               aria-label={item.label}
             >
               <div className="w-12 h-12 rounded-2xl flex items-center justify-center"
-                style={{ background: '#EEF2EA' }}>
-                <item.Icon className="w-5 h-5" style={{ color: '#6B7F5E' }} strokeWidth={1.5} />
+                style={{ background: 'linear-gradient(135deg, #6B7F5E, #4F6145)' }}>
+                <item.Icon className="w-5 h-5 text-white" strokeWidth={1.5} />
               </div>
               <span className="text-xs font-semibold text-primary">{item.label}</span>
             </Link>
