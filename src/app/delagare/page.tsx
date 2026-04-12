@@ -49,6 +49,7 @@ const createRELATION_LABELS = (t: any) => ({
 
 function DelagareContent() {
   const { t } = useLanguage();
+  const RELATION_LABELS = createRELATION_LABELS(t);
   const { state, dispatch, loading } = useDodsbo();
   const [showForm, setShowForm] = useState(false);
   const [showArvsinfo, setShowArvsinfo] = useState(false);

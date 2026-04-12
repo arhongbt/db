@@ -32,7 +32,8 @@ function calculateInheritance(
   kostnader: number,
   delagareNames: { name: string; relation: string }[],
   hasTestamente: boolean | null,
-  makeNamn?: string,
+  makeNamn: string | undefined,
+  t: (sv: string, en?: string) => string,
 ): CalcResult {
   const netto = tillgangar - skulder - kostnader;
   const result: CalcResult = {
@@ -286,8 +287,10 @@ function ArvskalkylatorContent() {
       delagareNames,
       state.onboarding.hasTestamente,
       make?.name,
+      t,
     ),
-    [state.onboarding.familySituation, tillgangar, skulder, kostnader, delagareNames, state.onboarding.hasTestamente, make?.name]
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [state.onboarding.familySituation, tillgangar, skulder, kostnader, delagareNames, state.onboarding.hasTestamente, make?.name, t]
   );
 
   const situationLabels: Record<FamilySituation, string> = {

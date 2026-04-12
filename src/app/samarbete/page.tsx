@@ -421,6 +421,7 @@ function TabAnteckningar() {
 }
 
 function TabTidslinje() {
+  const { t } = useLanguage();
   const [decisions, setDecisions] = useState<Decision[]>([]);
   const [notes, setNotes] = useState<Note[]>([]);
 

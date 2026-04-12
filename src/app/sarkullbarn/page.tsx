@@ -57,6 +57,7 @@ const createFAQ_ITEMS = (t: any): FAQItem[] => [
 
 export default function SarkullbarnPage() {
   const { t } = useLanguage();
+  const FAQ_ITEMS = createFAQ_ITEMS(t);
   const [expandedFAQ, setExpandedFAQ] = useState<number | null>(0);
 
   return (
