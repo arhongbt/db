@@ -238,6 +238,7 @@ export type TillgangType =
   | 'fritidshus'
   | 'bil'
   | 'aktier_fonder'
+  | 'kryptovalutor'
   | 'pension'
   | 'forsakring'
   | 'losore'

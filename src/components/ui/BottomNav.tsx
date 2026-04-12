@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState, useEffect, useRef } from 'react';
+import { useLanguage } from '@/lib/i18n';
 import {
   Home, Users, Wallet, FileText, FolderOpen, MoreHorizontal, X,
   Calculator, Building2, Camera, Download, Bell, Scale, BookOpen,
@@ -10,11 +11,11 @@ import {
   HomeIcon, Heart, CreditCard, FileCheck, Landmark, Newspaper, Flower2, Flame, Smartphone, Handshake, Baby,
 } from 'lucide-react';
 
-const NAV_ITEMS = [
-  { href: '/dashboard', label: 'Hem', icon: Home },
-  { href: '/uppgifter', label: 'Att göra', icon: FileText },
-  { href: '/tillgangar', label: 'Ekonomi', icon: Wallet },
-  { href: '/dokument', label: 'Dokument', icon: FolderOpen },
+const NAV_ITEMS_KEYS = [
+  { href: '/dashboard', labelKey: 'nav.home', icon: Home },
+  { href: '/uppgifter', labelKey: 'nav.tasks', icon: FileText },
+  { href: '/tillgangar', labelKey: 'nav.economy', icon: Wallet },
+  { href: '/dokument', labelKey: 'nav.documents', icon: FolderOpen },
 ];
 
 const MORE_CATEGORIES = [
@@ -71,6 +72,7 @@ const ALL_MORE_ITEMS = MORE_CATEGORIES.flatMap((c) => c.items);
 
 export function BottomNav() {
   const pathname = usePathname();
+  const { t } = useLanguage();
   const [moreOpen, setMoreOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
@@ -86,6 +88,11 @@ export function BottomNav() {
     document.addEventListener('mousedown', handler);
     return () => document.removeEventListener('mousedown', handler);
   }, [moreOpen]);
+
+  const NAV_ITEMS = NAV_ITEMS_KEYS.map(item => ({
+    ...item,
+    label: t(item.labelKey),
+  }));
 
   const isMoreActive = ALL_MORE_ITEMS.some((item) => pathname === item.href);
 
@@ -104,7 +111,7 @@ export function BottomNav() {
           style={{ borderColor: '#F0EDE6' }}
         >
           <div className="px-5 pt-4 pb-2 flex items-center justify-between sticky top-0 bg-white rounded-t-3xl">
-            <h3 className="font-semibold text-primary text-sm">Alla verktyg</h3>
+            <h3 className="font-semibold text-primary text-sm">{t('nav.all_tools')}</h3>
             <button
               onClick={() => setMoreOpen(false)}
               className="p-2.5 -mr-1 rounded-full hover:bg-gray-100 transition-colors"
@@ -113,6 +120,7 @@ export function BottomNav() {
               <X className="w-5 h-5 text-muted" />
             </button>
           </div>
+          <p className="sr-only">{t('ui.close')}</p>
           <div className="px-3 pb-4">
             {MORE_CATEGORIES.map((category) => (
               <div key={category.title} className="mb-3 last:mb-0">
@@ -178,7 +186,7 @@ export function BottomNav() {
           {/* More button */}
           <button
             onClick={() => setMoreOpen(!moreOpen)}
-            aria-label="Mer verktyg"
+            aria-label={t('nav.more')}
             aria-expanded={moreOpen}
             className="relative flex items-center justify-center transition-all duration-200"
             style={{
@@ -193,7 +201,7 @@ export function BottomNav() {
           >
             <MoreHorizontal className="w-5 h-5 flex-shrink-0" strokeWidth={(moreOpen || isMoreActive) ? 2 : 1.5} />
             {(moreOpen || isMoreActive) && (
-              <span className="text-xs font-semibold whitespace-nowrap">Mer</span>
+              <span className="text-xs font-semibold whitespace-nowrap">{t('nav.more')}</span>
             )}
           </button>
         </div>

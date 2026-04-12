@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { DodsboProvider, useDodsbo } from '@/lib/context';
 import { useAuth } from '@/lib/auth/context';
+import { useLanguage } from '@/lib/i18n';
 import { BottomNav } from '@/components/ui/BottomNav';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -36,6 +37,7 @@ import {
 function InstallningarContent() {
   const { state, dispatch, loading } = useDodsbo();
   const { signOut } = useAuth();
+  const { language, setLanguage, t } = useLanguage();
   const router = useRouter();
   const [showConfirmReset, setShowConfirmReset] = useState(false);
   const [signingOut, setSigningOut] = useState(false);
@@ -353,6 +355,37 @@ function InstallningarContent() {
                 }`}
               />
             </button>
+          </div>
+          <div className="mt-4">
+            <div className="flex items-center justify-between mb-3">
+              <label className="text-sm font-medium text-primary flex items-center gap-2">
+                {t('settings.language')}
+              </label>
+            </div>
+            <div className="flex gap-2">
+              <button
+                onClick={() => setLanguage('sv')}
+                className={`flex-1 px-3 py-2 rounded-lg font-medium text-sm transition-colors flex items-center justify-center gap-2 ${
+                  language === 'sv'
+                    ? 'bg-accent text-white'
+                    : 'bg-white text-primary hover:bg-white border border-[#E8E4DE]'
+                }`}
+              >
+                <span>🇸🇪</span>
+                {t('settings.swedish')}
+              </button>
+              <button
+                onClick={() => setLanguage('en')}
+                className={`flex-1 px-3 py-2 rounded-lg font-medium text-sm transition-colors flex items-center justify-center gap-2 ${
+                  language === 'en'
+                    ? 'bg-accent text-white'
+                    : 'bg-white text-primary hover:bg-white border border-[#E8E4DE]'
+                }`}
+              >
+                <span>🇬🇧</span>
+                {t('settings.english')}
+              </button>
+            </div>
           </div>
         </div>
       </div>

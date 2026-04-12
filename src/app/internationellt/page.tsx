@@ -12,98 +12,698 @@ import {
   ChevronDown,
   ChevronUp,
   ExternalLink,
+  Flag,
+  Plus,
+  Trash2,
+  HelpCircle,
 } from 'lucide-react';
 
-interface Section {
-  id: string;
-  title: string;
-  content: string;
-  details: string[];
+interface CountryInfo {
+  name: string;
+  flag: string;
+  law: string;
+  agreements: string[];
+  challenges: string[];
+  notes: string;
 }
 
-const SECTIONS: Section[] = [
-  {
-    id: 'eu-forordning',
-    title: 'EU:s arvsförordning (650/2012)',
-    content:
-      'EU:s arvsförordning tillämpas sedan 2015 och gäller för flesta medlemsstater. Den förenklar process när dödsboet omfattar flera länder.',
-    details: [
-      'Standardregeln: Arvslagen i det land där den avlidne hade sin hemvist (vanligast bosättningsland) tillämpas.',
-      'Undantag: Testator kan välja att sin nationella arvslag ska tillämpas istället (genom explicit testamente).',
-      'Europeiskt arvsintyg: Kan utfärdas för att bevisa arvsrätter i andra EU-länder.',
-      'Gäller för både dödsbodelägare och juridiska relationer mellan länder.',
+interface ForeignAsset {
+  id: string;
+  country: string;
+  assetType: string;
+  estimatedValue: string;
+  currency: string;
+}
+
+const CURRENCY_RATES: { [key: string]: number } = {
+  SEK: 1,
+  NOK: 0.89,
+  DKK: 0.75,
+  EUR: 11.5,
+  GBP: 13.2,
+  USD: 10.8,
+  PLN: 2.8,
+  TRY: 0.33,
+  CNY: 1.5,
+  THB: 0.32,
+};
+
+const COUNTRY_INFO: { [key: string]: CountryInfo } = {
+  Finland: {
+    name: 'Finland',
+    flag: '🇫🇮',
+    law: 'Finsk arvslag gäller om hemvist i Finland',
+    agreements: [
+      'Nordisk konvention (1934)',
+      'EU-arvsförordningen (650/2012)',
     ],
+    challenges: [
+      'Finsk bolagsskatt kan påverka värdepapper',
+      'Fastigheter kräver lokal registrering',
+    ],
+    notes: 'Som nordiskt land ofta förutsägbar process',
+  },
+  Norge: {
+    name: 'Norge',
+    flag: '🇳🇴',
+    law: 'Norsk arvslag gäller om hemvist i Norge',
+    agreements: [
+      'Nordisk konvention (1934)',
+      'EØS-avtalet (EU-liknande regler)',
+    ],
+    challenges: [
+      'Norge inte EU-medlem, men närmare samarbete',
+      'Fastigheter: Konsultationskrav för utlänningar',
+    ],
+    notes: 'Nordisk konvention gör processen relativt enkel',
+  },
+  Danmark: {
+    name: 'Danmark',
+    flag: '🇩🇰',
+    law: 'Dansk arvslag gäller om hemvist i Danmark',
+    agreements: [
+      'Nordisk konvention (1934)',
+      'EU-arvsförordningen (650/2012)',
+    ],
+    challenges: [
+      'Fastigheter måste registreras på lokal domstol',
+      'Arvsskatt på vissa tillgångar',
+    ],
+    notes: 'EU-medlem, nordisk konvention ger flexibilitet',
+  },
+  Tyskland: {
+    name: 'Tyskland',
+    flag: '🇩🇪',
+    law: 'Tysk arvslag (BGB) gäller om hemvist i Tyskland',
+    agreements: ['EU-arvsförordningen (650/2012)'],
+    challenges: [
+      'Arvsskatt 7-30% beroende på släktskap',
+      'Fastigheter kräver tysk notarie (Notar)',
+      'Komplicerad skattereglering',
+    ],
+    notes: 'Många svenskar med tyska fastigheter — ofta behövs tysk advokat',
+  },
+  Polen: {
+    name: 'Polen',
+    flag: '🇵🇱',
+    law: 'Polsk arvslag gäller om hemvist i Polen',
+    agreements: ['EU-arvsförordningen (650/2012)'],
+    challenges: [
+      'Arvsskatt upp till 20%',
+      'Fastigheter: långsam lokal process',
+      'Valutavexling kan bli dyr',
+    ],
+    notes: 'Många svenska arv från östeuropeiska ursprung',
+  },
+  Turkiet: {
+    name: 'Turkiet',
+    flag: '🇹🇷',
+    law: 'Turkisk arvslag (Türk Medeni Kanunu)',
+    agreements: [
+      'Begränsade avtal med Sverige',
+      'Kan kräva turkisk domstolsbeslut',
+    ],
+    challenges: [
+      'Ingen EU-förordning — komplicerat',
+      'Lokalt dödsbevis och arvintyg krävs',
+      'Fastigheter ofta problematiska',
+      'Valutakontroll kan påverka överföringar',
+    ],
+    notes: 'Mycket komplicerat — starkt rekommenderat att anställa turkisk advokat',
+  },
+  Irak: {
+    name: 'Irak',
+    flag: '🇮🇶',
+    law: 'Islamisk familjerätt och irakisk lag',
+    agreements: [
+      'Mycket begränsade avtal med Sverige',
+      'Irakiska domstolar och notarier krävs',
+    ],
+    challenges: [
+      'Religiös arvsrätt (sharia) kan tillämpas',
+      'Mycket osäker juridisk situation',
+      'Politisk instabilitet',
+      'Valutakontroll på överföringar',
+    ],
+    notes: 'Stark rekommendation: anställ både irakisk advokat och svensk jurist',
+  },
+  Bosnien: {
+    name: 'Bosnien och Hercegovina',
+    flag: '🇧🇦',
+    law: 'Bosnisk arvslag (med regionala variationer)',
+    agreements: [
+      'EU-liknande regler men inte medlem',
+      'Begränsade avtal med Sverige',
+    ],
+    challenges: [
+      'Tres olika system (bosnjacker, serber, kroater)',
+      'Post-krigskomplikationer med egendom',
+      'Långsam domstolsprocess',
+    ],
+    notes: 'Rekommenderas starkt att anställa lokal bosnisk advokat',
+  },
+  Kina: {
+    name: 'Kina',
+    flag: '🇨🇳',
+    law: 'Kinesisk arvslag (PRC Succession Law)',
+    agreements: ['Mycket begränsade avtal'],
+    challenges: [
+      'Kinesiska tillgångar ofta till statsägda företag',
+      'Valutakontroller strikt — svårt att överföra pengar',
+      'Fastigheter: utlänningar kan inte normalt ärva',
+      'Mycket byråkratisk process',
+    ],
+    notes: 'Nästan omöjligt att realisera arv i Kina — konsultera jurist omedelbar',
+  },
+  USA: {
+    name: 'USA',
+    flag: '🇺🇸',
+    law: 'Amerikańsk arvsskatt (Estate Tax) upp till 40%',
+    agreements: [
+      'Begränsade dubbelbeskattningsavtal',
+      'Varje stat har egen lag',
+    ],
+    challenges: [
+      'Förbunden arvsskatt på stora dödsbon',
+      'Statlig arvsskatt kan tillkomma (9-16%)',
+      'Måste ansöka till IRS',
+      'Långsam process',
+    ],
+    notes: 'Mycket viktigt att anställa amerikansk advokat för större dödsbon',
+  },
+  'Förenade Kungariket': {
+    name: 'Förenade Kungariket',
+    flag: '🇬🇧',
+    law: 'Engelsk lag för England, skotsk för Skottland',
+    agreements: [
+      'Post-Brexit: ej EU-medlem',
+      'Bilaterala avtal regleras separat',
+    ],
+    challenges: [
+      'Arvsskatt (Inheritance Tax) upp till 40%',
+      'Probate-processen kan vara lång',
+      'Fastigheter: skotsk vs engelsk rättsordning',
+    ],
+    notes: 'Relativt välreglerat men process kan vara långsamt',
+  },
+  Thailand: {
+    name: 'Thailand',
+    flag: '🇹🇭',
+    law: 'Thailändsk arvslag (Thai Succession Law)',
+    agreements: [
+      'Mycket begränsade avtal',
+      'Svenska ämbetsmän behövs för bevisning',
+    ],
+    challenges: [
+      'Religiös arvsrätt (buddhism)',
+      'Utlänningar kan inte ärva fastigheter',
+      'Valutakontroller på överföringar',
+      'Långsam lokal byråkrati',
+    ],
+    notes: 'Många pensionärer i Thailand — rekommenderas anställa lokal advokat',
+  },
+};
+
+const FAQ_ITEMS = [
+  {
+    question: 'Ska utländska tillgångar med i svensk bouppteckning?',
+    answer: 'Ja, absolut. Alla tillgångar världen över måste registreras i bouppteckningen, även om de är i utlandet. Det spelar ingen roll var tillgångarna ligger — de är en del av dödsboet och måste värderas och dokumenteras.',
   },
   {
-    id: 'nordisk-konvention',
-    title: 'Nordisk konvention',
-    content:
-      'Sverige har särskilda arvsöverenskommelser med Danmark, Finland, Island och Norge. Dessa kan ge enklare regler än EU-förordningen.',
-    details: [
-      'Gäller mellan Sverige, Danmark, Finland, Island och Norge.',
-      'Kan ofta ge mer fördelaktiga villkor än EU-förordningen.',
-      'Hemvist i nordiskt land kan förenkla arvskiftet.',
-      'Reglerna är ofta mer flexibla än EU-standard.',
-    ],
+    question: 'Vilket lands lag gäller för arvet?',
+    answer: 'Som huvudregel gäller lagen i det land där den avlidne hade sin hemvist (hemlighetvistkonceptet). Det är vanligtvis det land där personen faktiskt bodde längre period, inte medborgarskap. EU-arvsförordningen och Nordiska konventionen kan ge undantag.',
   },
   {
-    id: 'tillgangar-utomlands',
-    title: 'Tillgångar utomlands',
-    content:
-      'Fastigheter, bankkonton och värdepapper utomlands regleras ofta av det lokala landets lag, inte svensk lag.',
-    details: [
-      'Fastigheter utomlands: Ofta måste man följa det landet arvsrätt och egendomsrätt.',
-      'Bankkonton utomland: Kontakta banken direkt. De kan kräva lokalt dödsbevis eller arvintyg.',
-      'Värdepapper (aktier, obligationer): Kan kräva lokal registrering eller överföring via lokalt bolag.',
-      'Försäkringar utomland: Förmånstagare kan behöva registreras lokalt.',
-      'Möjligt att behöva anställa lokal advokat för att realisera tillgångarna.',
-    ],
+    question: 'Behöver jag anställa en advokat?',
+    answer: 'Rekommenderas starkt för nästan alla internationella dödsbon. Redan vid ett litet utlandstal eller när flera länder är inblandade kan juridisk rådgivning spara både tid och pengar. För stora dödsbon eller komplicerade länder är det nästan obligatoriskt.',
   },
   {
-    id: 'utlandsk-medborgarskap',
-    title: 'Utländskt medborgarskap',
-    content:
-      'Om den avlidne hade utländskt medborgarskap (eller dubbelt medborgarskap) kan det påverka vilken arvslag som tillämpas.',
-    details: [
-      'Nationell hemvist: Om den avlidne hade hemvist i Sverige men utländskt medborgarskap kan komplicerat.',
-      'Dubbelt medborgarskap: Kan ibland välja mellan två länders arvsregler.',
-      'Hemvist-konceptet: Rätten definieras ofta av hemvist, inte medborgarskap.',
-      'Testamente är ofta det säkraste sättet att klargöra önskemål.',
-    ],
+    question: 'Hur lång tid tar ett internationalt arvskifte?',
+    answer: 'Det beror helt på länder inblandade. Nordiska dödsbon kan ta 3-6 månader. EU-dödsbon 6-12 månader. Länder utanför EU kan ta 1-3 år eller ännu längre, speciellt USA, Kina eller Mellanöstern.',
   },
   {
-    id: 'dubbelbeskattning',
-    title: 'Dubbelbeskattning',
-    content:
-      'Sverige har ingen arvsskatt, men många andra länder gör. Risken för dubbelbeskattning på samma tillgångar kan uppstå.',
-    details: [
-      'Sverige: Ingen arvsskatt sedan 2005. Endast kapitalvinstskatt kan aktuell.',
-      'USA: Kan ta arvsskatt på amerikanska tillgångar (gäller ibland även för icke-medborgare).',
-      'Övriga länder: Många EU-länder och andra länder har arvsskatt (5-60%).',
-      'Dubbelbeskattningsavtal: Sverige har avtal med vissa länder, men inte alla.',
-      'Dokumentation kritisk: Spara alla kvitton och värderingar för att bevisa skatter betalade utomland.',
-    ],
+    question: 'Vad kostar en internationell advokat?',
+    answer: 'Priset varierar enormt beroende på land och komplexitet. En dansk eller norsk advokat kan kosta 100-300 SEK per timme. En amerikansk advokat kan kosta 500+ SEK per timme. Planera för extra kostnader.',
   },
 ];
 
-const INTERNATIONAL_CHECKLIST = [
-  'Identifiera alla länder där den avlidne hade hemvist, tillgångar eller medborgarskap',
-  'Samla in dödsbevis (kanske flera versioner för olika länder)',
-  'Kontakta alla utländska banker och försäkringsbolag direkt',
-  'Klassificera fastigheter och övriga tillgångar per land',
-  'Utreda vilka arvsregler som gäller (hemvist, medborgarskap, testamente)',
-  'Överväg Europeiska arvsintyget om många EU-länder är inblandade',
-  'Inventera eventuella skatter i andra länder',
-  'Dokumentera alla värden och omvandlingar till SEK',
-  'Rådgör med utländsk advokat för väsentliga tillgångar',
-  'Informera alla dödsbodelägare om vilka regler som gäller',
-];
+function StepGuide() {
+  const [currentStep, setCurrentStep] = useState(1);
+
+  const steps = [
+    {
+      number: 1,
+      title: 'Var bodde den avlidne?',
+      description: 'Hemvisten är det viktigaste konceptet',
+      content: (
+        <div className="space-y-3">
+          <p className="text-sm text-primary/80">
+            <strong>Hemvist</strong> är ofta avgörande för vilken arvslag som tillämpas. Det är inte samma som medborgarskap eller var personen var född.
+          </p>
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
+            <p className="text-xs font-medium text-blue-900 mb-2">Hemvist betyder:</p>
+            <ul className="text-xs text-blue-900 space-y-1">
+              <li>• Där personen faktiskt bodde längst tid (vanligtvis 183+ dagar/år)</li>
+              <li>• Där personen hade sitt huvudsakliga hemål</li>
+              <li>• Där de flesta av personens tillgångar var</li>
+            </ul>
+          </div>
+          <p className="text-sm text-primary/70">
+            Enligt EU-arvsförordningen och Nordiska konventionen är hemvistlandet ofta helt avgörande.
+          </p>
+        </div>
+      ),
+    },
+    {
+      number: 2,
+      title: 'Medborgarskap & internationell rätt',
+      description: 'EU-förordning, Nordiska konventionen och lokala lagar',
+      content: (
+        <div className="space-y-3">
+          <div className="space-y-2">
+            <div className="border-l-4 border-accent pl-3">
+              <p className="font-medium text-primary text-sm">EU-arvsförordningen (650/2012)</p>
+              <p className="text-xs text-primary/70 mt-1">
+                Tillämpas mellan EU-medlemsstater. Enkelt: hemvistlandet lag gäller normalt.
+              </p>
+            </div>
+            <div className="border-l-4 border-accent pl-3">
+              <p className="font-medium text-primary text-sm">Nordiska konventionen</p>
+              <p className="text-xs text-primary/70 mt-1">
+                Mellan Sverige, Norge, Danmark, Finland och Island. Ofta mer flexibel än EU-regler.
+              </p>
+            </div>
+            <div className="border-l-4 border-accent pl-3">
+              <p className="font-medium text-primary text-sm">Länder utan överenskommelse</p>
+              <p className="text-xs text-primary/70 mt-1">
+                USA, Kina, Turkiet, Irak etc. Kräver ofta lokal advokat och lokal domstol.
+              </p>
+            </div>
+          </div>
+        </div>
+      ),
+    },
+    {
+      number: 3,
+      title: 'Tillgångar utomlands',
+      description: 'Lägg till och håll koll på utländska tillgångar',
+      content: <ForeignAssetsInput />,
+    },
+    {
+      number: 4,
+      title: 'Vilka myndigheter?',
+      description: 'Dynamisk info baserad på länder',
+      content: (
+        <div className="space-y-3">
+          <p className="text-sm text-primary/80 mb-4">
+            Beroende på vilka länder som är inblandade behövs kontakt med olika myndigheter:
+          </p>
+          <div className="space-y-2">
+            <div className="bg-background p-3 rounded-lg border border-[#E8E4DE]">
+              <p className="font-medium text-sm text-primary">Sverige</p>
+              <p className="text-xs text-primary/70 mt-1">Skatteverket, Domstolsverket, lokala tingsrätt</p>
+            </div>
+            <div className="bg-background p-3 rounded-lg border border-[#E8E4DE]">
+              <p className="font-medium text-sm text-primary">Nordiska länder (Norge, Danmark, Finland)</p>
+              <p className="text-xs text-primary/70 mt-1">Motsvarande myndigheter i respektive land, ofta med bilaterala avtal</p>
+            </div>
+            <div className="bg-background p-3 rounded-lg border border-[#E8E4DE]">
+              <p className="font-medium text-sm text-primary">EU-länder (Tyskland, Polen etc.)</p>
+              <p className="text-xs text-primary/70 mt-1">Lokala domstolar, notarier, skattemyndigheter</p>
+            </div>
+            <div className="bg-background p-3 rounded-lg border border-[#E8E4DE]">
+              <p className="font-medium text-sm text-primary">USA</p>
+              <p className="text-xs text-primary/70 mt-1">IRS (Internal Revenue Service), statlig domstol (Probate Court), lokala skattemyndigheter</p>
+            </div>
+            <div className="bg-background p-3 rounded-lg border border-[#E8E4DE]">
+              <p className="font-medium text-sm text-primary">Övriga länder</p>
+              <p className="text-xs text-primary/70 mt-1">Lokala domstolar, notarier, konsulat och svenska ambassader</p>
+            </div>
+          </div>
+        </div>
+      ),
+    },
+    {
+      number: 5,
+      title: 'Sammanfattning & nästa steg',
+      description: 'Rekommendationer och juridisk hjälp',
+      content: (
+        <div className="space-y-4">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
+            <p className="text-sm font-medium text-blue-900 mb-2">Rekommenderad handlingsplan:</p>
+            <ol className="text-xs text-blue-900 space-y-1.5">
+              <li>1. Samla in och inventera alla utländska tillgångar</li>
+              <li>2. Identifiera vilka länder som är inblandade</li>
+              <li>3. Kontakta svenska länsrätt för arkskifte</li>
+              <li>4. Konsultera internationell advokat snarast</li>
+              <li>5. Skaffa internationella arvsintyg/dödsbevis</li>
+              <li>6. Öppna kontakt med lokala myndigheter</li>
+            </ol>
+          </div>
+          <Link
+            href="/juridisk-hjalp"
+            className="block w-full text-center bg-accent text-white py-3 rounded-lg font-medium text-sm hover:opacity-90 transition-opacity"
+          >
+            Kontakta jurist med internationell erfarenhet
+          </Link>
+        </div>
+      ),
+    },
+  ];
+
+  const currentStepData = steps[currentStep - 1];
+
+  return (
+    <div className="card mb-6">
+      <h2 className="text-lg font-semibold text-primary mb-4">Steg-för-steg guide</h2>
+
+      {/* Step indicator */}
+      <div className="flex gap-2 mb-4">
+        {steps.map((step) => (
+          <button
+            key={step.number}
+            onClick={() => setCurrentStep(step.number)}
+            className={`flex-1 py-2 px-2 rounded-lg text-xs font-medium transition-colors ${
+              currentStep === step.number
+                ? 'bg-accent text-white'
+                : 'bg-background text-primary/70 border border-[#E8E4DE]'
+            }`}
+          >
+            Steg {step.number}
+          </button>
+        ))}
+      </div>
+
+      {/* Content */}
+      <div className="mb-4">
+        <h3 className="font-semibold text-primary mb-1">{currentStepData.title}</h3>
+        <p className="text-xs text-primary/70 mb-3">{currentStepData.description}</p>
+        {currentStepData.content}
+      </div>
+
+      {/* Navigation */}
+      <div className="flex gap-2 pt-4 border-t border-[#E8E4DE]">
+        <button
+          onClick={() => setCurrentStep(Math.max(1, currentStep - 1))}
+          disabled={currentStep === 1}
+          className="flex-1 py-2 px-3 rounded-lg text-sm font-medium border border-[#E8E4DE] text-primary disabled:opacity-50 disabled:cursor-not-allowed hover:bg-background transition-colors"
+        >
+          Föregående
+        </button>
+        <button
+          onClick={() => setCurrentStep(Math.min(5, currentStep + 1))}
+          disabled={currentStep === 5}
+          className="flex-1 py-2 px-3 rounded-lg text-sm font-medium bg-accent text-white disabled:opacity-50 disabled:cursor-not-allowed hover:opacity-90 transition-opacity"
+        >
+          Nästa
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function ForeignAssetsInput() {
+  const [assets, setAssets] = useState<ForeignAsset[]>([]);
+  const [newAsset, setNewAsset] = useState({
+    country: '',
+    assetType: '',
+    estimatedValue: '',
+    currency: 'EUR',
+  });
+
+  const addAsset = () => {
+    if (newAsset.country && newAsset.assetType && newAsset.estimatedValue) {
+      setAssets([
+        ...assets,
+        {
+          id: Date.now().toString(),
+          ...newAsset,
+        },
+      ]);
+      setNewAsset({
+        country: '',
+        assetType: '',
+        estimatedValue: '',
+        currency: 'EUR',
+      });
+    }
+  };
+
+  const deleteAsset = (id: string) => {
+    setAssets(assets.filter((a) => a.id !== id));
+  };
+
+  const getTotalSEK = () => {
+    return assets.reduce((sum, asset) => {
+      const value = parseFloat(asset.estimatedValue) || 0;
+      const rate = CURRENCY_RATES[asset.currency] || 1;
+      return sum + value * rate;
+    }, 0);
+  };
+
+  return (
+    <div className="space-y-4">
+      <div className="grid grid-cols-1 gap-2">
+        <input
+          type="text"
+          placeholder="Land (t.ex. Tyskland)"
+          value={newAsset.country}
+          onChange={(e) => setNewAsset({ ...newAsset, country: e.target.value })}
+          className="w-full px-3 py-2 border border-[#E8E4DE] rounded-lg text-sm"
+        />
+        <input
+          type="text"
+          placeholder="Tillgångstyp (t.ex. Fastighet, Bankkonto)"
+          value={newAsset.assetType}
+          onChange={(e) => setNewAsset({ ...newAsset, assetType: e.target.value })}
+          className="w-full px-3 py-2 border border-[#E8E4DE] rounded-lg text-sm"
+        />
+        <div className="grid grid-cols-2 gap-2">
+          <input
+            type="number"
+            placeholder="Värde"
+            value={newAsset.estimatedValue}
+            onChange={(e) => setNewAsset({ ...newAsset, estimatedValue: e.target.value })}
+            className="w-full px-3 py-2 border border-[#E8E4DE] rounded-lg text-sm"
+          />
+          <select
+            value={newAsset.currency}
+            onChange={(e) => setNewAsset({ ...newAsset, currency: e.target.value })}
+            className="w-full px-3 py-2 border border-[#E8E4DE] rounded-lg text-sm"
+          >
+            {Object.keys(CURRENCY_RATES).map((curr) => (
+              <option key={curr} value={curr}>
+                {curr}
+              </option>
+            ))}
+          </select>
+        </div>
+        <button
+          onClick={addAsset}
+          className="w-full flex items-center justify-center gap-2 bg-accent text-white py-2 rounded-lg text-sm font-medium hover:opacity-90 transition-opacity"
+        >
+          <Plus className="w-4 h-4" />
+          Lägg till tillgång
+        </button>
+      </div>
+
+      {assets.length > 0 && (
+        <div className="space-y-2 pt-2 border-t border-[#E8E4DE]">
+          {assets.map((asset) => {
+            const sek = (parseFloat(asset.estimatedValue) || 0) * (CURRENCY_RATES[asset.currency] || 1);
+            return (
+              <div
+                key={asset.id}
+                className="flex items-center justify-between bg-background p-2 rounded-lg text-sm"
+              >
+                <div className="flex-1">
+                  <p className="font-medium text-primary">{asset.country} — {asset.assetType}</p>
+                  <p className="text-xs text-primary/70">
+                    {asset.estimatedValue} {asset.currency} (≈ {sek.toLocaleString('sv-SE', {
+                      maximumFractionDigits: 0,
+                    })} SEK)
+                  </p>
+                </div>
+                <button
+                  onClick={() => deleteAsset(asset.id)}
+                  className="p-1.5 text-warn hover:bg-white rounded transition-colors"
+                >
+                  <Trash2 className="w-4 h-4" />
+                </button>
+              </div>
+            );
+          })}
+          <div className="bg-accent/10 border border-accent/20 rounded-lg p-3 mt-3">
+            <p className="text-sm font-medium text-primary">Totalt i SEK:</p>
+            <p className="text-lg font-semibold text-accent">
+              {getTotalSEK().toLocaleString('sv-SE', { maximumFractionDigits: 0 })} SEK
+            </p>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function CountryCards() {
+  const [expandedCountry, setExpandedCountry] = useState<string | null>(null);
+
+  return (
+    <div className="card mb-6">
+      <h2 className="text-lg font-semibold text-primary mb-4 flex items-center gap-2">
+        <Flag className="w-5 h-5" />
+        Länderinfo för vanliga destinationer
+      </h2>
+      <div className="space-y-2">
+        {Object.entries(COUNTRY_INFO).map(([key, country]) => {
+          const isExpanded = expandedCountry === key;
+          return (
+            <button
+              key={key}
+              onClick={() => setExpandedCountry(isExpanded ? null : key)}
+              className="w-full text-left bg-background border border-[#E8E4DE] rounded-lg p-3 hover:border-accent transition-colors"
+            >
+              <div className="flex items-center justify-between gap-2">
+                <div className="flex-1">
+                  <p className="font-medium text-primary">
+                    {country.flag} {country.name}
+                  </p>
+                  {!isExpanded && <p className="text-xs text-primary/70 mt-1">{country.law}</p>}
+                </div>
+                {isExpanded ? (
+                  <ChevronUp className="w-5 h-5 text-muted flex-shrink-0" />
+                ) : (
+                  <ChevronDown className="w-5 h-5 text-muted flex-shrink-0" />
+                )}
+              </div>
+
+              {isExpanded && (
+                <div className="mt-3 pt-3 border-t border-[#E8E4DE] space-y-2">
+                  <div>
+                    <p className="font-medium text-sm text-primary">{country.law}</p>
+                  </div>
+                  <div>
+                    <p className="text-xs font-medium text-primary/70 mb-1">Överenskommelser:</p>
+                    <ul className="text-xs text-primary/70 space-y-0.5">
+                      {country.agreements.map((agreement, i) => (
+                        <li key={i}>• {agreement}</li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div>
+                    <p className="text-xs font-medium text-primary/70 mb-1">Särskilda utmaningar:</p>
+                    <ul className="text-xs text-primary/70 space-y-0.5">
+                      {country.challenges.map((challenge, i) => (
+                        <li key={i}>• {challenge}</li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="bg-blue-50 border border-blue-200 rounded p-2 mt-2">
+                    <p className="text-xs text-blue-900">{country.notes}</p>
+                  </div>
+                </div>
+              )}
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+function CurrencyConverter() {
+  const [amount, setAmount] = useState('1000');
+  const [fromCurrency, setFromCurrency] = useState('EUR');
+
+  const toSEK = (parseFloat(amount) || 0) * (CURRENCY_RATES[fromCurrency] || 1);
+
+  return (
+    <div className="card mb-6">
+      <h2 className="text-lg font-semibold text-primary mb-4">Valutakonverterare till SEK</h2>
+      <div className="grid grid-cols-1 gap-3">
+        <div>
+          <label className="text-xs font-medium text-primary/70 block mb-1">Belopp</label>
+          <input
+            type="number"
+            value={amount}
+            onChange={(e) => setAmount(e.target.value)}
+            className="w-full px-3 py-2 border border-[#E8E4DE] rounded-lg text-sm"
+          />
+        </div>
+        <div>
+          <label className="text-xs font-medium text-primary/70 block mb-1">Valuta</label>
+          <select
+            value={fromCurrency}
+            onChange={(e) => setFromCurrency(e.target.value)}
+            className="w-full px-3 py-2 border border-[#E8E4DE] rounded-lg text-sm"
+          >
+            {Object.keys(CURRENCY_RATES).filter((c) => c !== 'SEK').map((curr) => (
+              <option key={curr} value={curr}>
+                {curr}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="bg-accent/10 border border-accent/20 rounded-lg p-3 mt-2">
+          <p className="text-xs font-medium text-primary/70 mb-1">Ungefärligt värde i SEK:</p>
+          <p className="text-2xl font-semibold text-accent">
+            {toSEK.toLocaleString('sv-SE', { maximumFractionDigits: 0 })} SEK
+          </p>
+          <p className="text-xs text-primary/70 mt-1">
+            (Ungefärliga kurser — verifiera alltid aktuell valutakurs före överföring)
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function FAQSection() {
+  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+
+  return (
+    <div className="card mb-6">
+      <h2 className="text-lg font-semibold text-primary mb-4 flex items-center gap-2">
+        <HelpCircle className="w-5 h-5" />
+        Vanliga frågor
+      </h2>
+      <div className="space-y-2">
+        {FAQ_ITEMS.map((item, index) => {
+          const isExpanded = expandedIndex === index;
+          return (
+            <button
+              key={index}
+              onClick={() => setExpandedIndex(isExpanded ? null : index)}
+              className="w-full text-left bg-background border border-[#E8E4DE] rounded-lg p-3 hover:border-accent transition-colors"
+            >
+              <div className="flex items-center justify-between gap-2">
+                <p className="font-medium text-primary text-sm">{item.question}</p>
+                {isExpanded ? (
+                  <ChevronUp className="w-5 h-5 text-muted flex-shrink-0" />
+                ) : (
+                  <ChevronDown className="w-5 h-5 text-muted flex-shrink-0" />
+                )}
+              </div>
+              {isExpanded && (
+                <p className="text-sm text-primary/80 mt-3 pt-3 border-t border-[#E8E4DE] leading-relaxed">
+                  {item.answer}
+                </p>
+              )}
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
 
 function InternationelltContent() {
   const { state } = useDodsbo();
-  const [expandedId, setExpandedId] = useState<string | null>(null);
 
-  const hasInternationalAssets = state.deceasedMedborgarskap && state.deceasedMedborgarskap !== 'Svenska' && state.deceasedMedborgarskap !== 'Sverige';
+  const hasInternationalAssets =
+    state.deceasedMedborgarskap &&
+    state.deceasedMedborgarskap !== 'Svenska' &&
+    state.deceasedMedborgarskap !== 'Sverige';
 
   return (
     <div className="flex flex-col px-5 py-6 pb-24">
@@ -118,126 +718,79 @@ function InternationelltContent() {
         </Link>
         <div>
           <h1 className="text-2xl font-semibold text-primary">Internationella arv</h1>
-          <p className="text-muted text-sm">Utländsk hemvist, tillgångar & medborgarskap</p>
+          <p className="text-muted text-sm">Utländsk hemvist, tillgångar &amp; medborgarskap</p>
+        </div>
+      </div>
+
+      {/* Warning banner */}
+      <div
+        className="card border-2 border-warn bg-warn/5 mb-6"
+        style={{
+          borderColor: '#DC2626',
+          backgroundColor: 'rgba(220, 38, 38, 0.05)',
+        }}
+      >
+        <div className="flex gap-3">
+          <AlertTriangle className="w-5 h-5 text-warn flex-shrink-0 mt-0.5" />
+          <div>
+            <p className="font-semibold text-warn mb-2">
+              Internationella dödsbon är komplexa.
+            </p>
+            <p className="text-sm text-primary/80 mb-3">
+              Vi rekommenderar alltid juridisk rådgivning när utländska tillgångar eller hemvist är inblandade. Denna guide ger endast översiktlig information.
+            </p>
+            <Link
+              href="/juridisk-hjalp"
+              className="inline-flex items-center gap-2 text-warn font-medium text-sm hover:underline"
+            >
+              Kontakta advokat med internationell erfarenhet
+              <ExternalLink className="w-4 h-4" />
+            </Link>
+          </div>
         </div>
       </div>
 
       {/* Auto-detect banner */}
       {hasInternationalAssets && (
-        <div className="info-box mb-4">
+        <div className="card border border-blue-200 bg-blue-50 mb-6">
           <div className="flex gap-2">
-            <Globe className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
+            <Globe className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
             <div>
-              <p className="text-sm font-medium text-primary mb-1">
+              <p className="text-sm font-medium text-blue-900 mb-1">
                 Utländskt medborgarskap upptäckt
               </p>
-              <p className="text-xs text-primary/70">
-                Den avlidne hade medborgarskap i {state.deceasedMedborgarskap}. Denna guide kan vara särskilt relevant.
+              <p className="text-xs text-blue-900/70">
+                Den avlidne hade medborgarskap i {state.deceasedMedborgarskap}. Denna guide är särskilt relevant för er situation.
               </p>
             </div>
           </div>
         </div>
       )}
 
-      {/* Warning box */}
-      <div className="warning-box mb-6">
-        <div className="flex gap-2">
-          <AlertTriangle className="w-5 h-5 text-warn flex-shrink-0 mt-0.5" />
-          <p className="text-sm text-primary">
-            <strong>Internationella arv är komplexa.</strong> Denna guide ger en översikt men ersätter inte juridisk rådgivning. Vi rekommenderar starkt att rådgöra med en advokat för alla utländska tillgångar.
-          </p>
-        </div>
-      </div>
-
       {/* Info box */}
-      <div className="info-box mb-6">
+      <div className="card border border-blue-200 bg-blue-50 mb-6">
         <div className="flex gap-2">
-          <Info className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
-          <p className="text-sm text-primary/70">
-            Vilken arvslag som gäller beror oftast på den avlidnes <strong>hemvist</strong> (där de faktiskt bodde), inte medborgarskap. En testator kan dock välja sin nationella lag.
+          <Info className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
+          <p className="text-sm text-blue-900/80">
+            <strong>Hemvist</strong> är oftast avgörande för vilken arvslag som gäller — inte medborgarskap eller var personen var född.
           </p>
         </div>
       </div>
 
-      {/* Expandable sections */}
-      <div className="flex flex-col gap-2 mb-8">
-        {SECTIONS.map((section) => {
-          const isExpanded = expandedId === section.id;
-          return (
-            <button
-              key={section.id}
-              onClick={() => setExpandedId(isExpanded ? null : section.id)}
-              className="card w-full text-left"
-            >
-              <div className="flex items-start justify-between gap-2">
-                <div className="flex-1">
-                  <p className="font-medium text-primary">{section.title}</p>
-                  {!isExpanded && (
-                    <p className="text-xs text-muted mt-1 line-clamp-1">{section.content}</p>
-                  )}
-                </div>
-                {isExpanded ? (
-                  <ChevronUp className="w-5 h-5 text-muted flex-shrink-0" />
-                ) : (
-                  <ChevronDown className="w-5 h-5 text-muted flex-shrink-0" />
-                )}
-              </div>
+      {/* Step guide */}
+      <StepGuide />
 
-              {isExpanded && (
-                <div className="mt-3 pt-3 border-t border-[#E8E4DE]">
-                  <p className="text-sm text-primary/80 mb-3 leading-relaxed">{section.content}</p>
-                  <ul className="space-y-2">
-                    {section.details.map((detail, i) => (
-                      <li key={i} className="flex gap-2 text-sm text-primary/70">
-                        <span className="text-accent mt-0.5">•</span>
-                        <span>{detail}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </button>
-          );
-        })}
-      </div>
+      {/* Country cards */}
+      <CountryCards />
 
-      {/* Practical checklist */}
-      <div className="card mb-6">
-        <h2 className="text-lg font-semibold text-primary mb-4">Praktisk checklista</h2>
-        <ul className="space-y-3">
-          {INTERNATIONAL_CHECKLIST.map((item, i) => (
-            <li key={i} className="flex gap-3">
-              <span className="text-accent font-bold flex-shrink-0 text-sm">{i + 1}.</span>
-              <span className="text-sm text-primary/80">{item}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
+      {/* Currency converter */}
+      <CurrencyConverter />
 
-      {/* When to hire a lawyer */}
-      <div className="card border-2 border-warn mb-6">
-        <h2 className="text-lg font-semibold text-primary mb-3 flex items-center gap-2">
-          <AlertTriangle className="w-5 h-5 text-warn" />
-          När ska du anställa advokat?
-        </h2>
-        <div className="space-y-2 text-sm text-primary/80">
-          <p>
-            <strong className="text-warn">Vi rekommenderar starkt juridisk rådgivning</strong> om dödsboet omfattar:
-          </p>
-          <ul className="space-y-1.5 ml-2">
-            <li>• Fastigheter utomlands (även liten hyresrätt)</li>
-            <li>• Väsentliga bankkonton eller värdepapper utomland</li>
-            <li>• Företag eller affärsverksamhet i annat land</li>
-            <li>• Dubbelt eller flera medborgarskap</li>
-            <li>• Arv från USA eller andra länder med arvsskatt</li>
-            <li>• Tvister mellan dödsbodelägare om internationell tillämpning</li>
-            <li>• Oklar hemvist eller komplicerad familjesituation</li>
-          </ul>
-        </div>
-      </div>
+      {/* FAQ */}
+      <FAQSection />
 
       {/* Useful links */}
-      <div className="card">
+      <div className="card mb-6">
         <h2 className="text-lg font-semibold text-primary mb-4">Användbara resurser</h2>
         <div className="space-y-2">
           <a

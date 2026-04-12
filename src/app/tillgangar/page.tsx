@@ -18,6 +18,7 @@ import {
   Trash2,
   Info,
   CheckCircle2,
+  Bitcoin,
 } from 'lucide-react';
 import type { Tillgang, TillgangType, Skuld, SkuldType } from '@/types';
 
@@ -29,6 +30,7 @@ const TILLGANG_TYPES: { value: TillgangType; label: string; icon: typeof Wallet 
   { value: 'fritidshus', label: 'Fritidshus/Sommarstuga', icon: Home },
   { value: 'bil', label: 'Bil/fordon', icon: Car },
   { value: 'aktier_fonder', label: 'Aktier & fonder', icon: TrendingUp },
+  { value: 'kryptovalutor', label: 'Kryptovalutor', icon: Bitcoin },
   { value: 'forsakring', label: 'Försäkring', icon: Package },
   { value: 'losore', label: 'Lösöre', icon: Package },
   { value: 'ovrigt', label: 'Övrigt', icon: Wallet },
@@ -155,6 +157,29 @@ function TillgangarContent() {
           </p>
         </div>
       </div>
+
+      {/* Crypto guide link if crypto assets present */}
+      {state.tillgangar.some((t) => t.type === 'kryptovalutor') && (
+        <div className="card border-l-4 border-accent mb-6 bg-accent/5">
+          <div className="flex gap-3">
+            <Bitcoin className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
+            <div className="flex-1">
+              <p className="text-sm text-primary font-medium mb-2">
+                Du har kryptovalutor registrerade
+              </p>
+              <p className="text-xs text-primary/70 mb-3">
+                Kryptohantering kräver teknisk kunskap. Läs vår guide för att hitta privata nycklar, säker överflytt och skatteregler.
+              </p>
+              <a
+                href="/krypto-guide"
+                className="text-accent font-medium text-sm hover:underline inline-block"
+              >
+                Läs vår kryptoguide →
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Summary cards */}
       <div className="grid grid-cols-3 gap-3 mb-6" role="group" aria-label="Ekonomisk sammanfattning">

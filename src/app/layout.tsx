@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import { AuthProvider } from '@/lib/auth/context';
+import { LanguageProvider } from '@/lib/i18n';
 import { ServiceWorkerRegistration } from '@/components/ServiceWorkerRegistration';
 import { CookieBanner } from '@/components/CookieBanner';
 import { FloatingChatButton } from '@/components/ui/FloatingChatButton';
@@ -193,10 +194,12 @@ export default function RootLayout({
           Hoppa till innehål
         </a>
         <AuthProvider>
-          <ServiceWorkerRegistration />
-          <main className="mx-auto max-w-lg" id="main-content">
-            {children}
-          </main>
+          <LanguageProvider>
+            <ServiceWorkerRegistration />
+            <main className="mx-auto max-w-lg" id="main-content">
+              {children}
+            </main>
+          </LanguageProvider>
         </AuthProvider>
         <FloatingChatButton />
         <CookieBanner />

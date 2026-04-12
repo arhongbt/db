@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { DodsboProvider, useDodsbo } from '@/lib/context';
+import { useLanguage } from '@/lib/i18n';
 import {
   AlertTriangle,
   CheckCircle2,
@@ -66,6 +67,7 @@ function DashboardSkeleton() {
 
 function DashboardContent() {
   const { state, loading } = useDodsbo();
+  const { t } = useLanguage();
   const [mounted, setMounted] = useState(false);
   const [notifStatus, setNotifStatus] = useState<'idle' | 'enabled' | 'denied' | 'unsupported'>('idle');
   const [isBankIDVerified, setIsBankIDVerified] = useState(false);
@@ -210,11 +212,11 @@ function DashboardContent() {
       {/* Greeting + settings */}
       <div className="flex items-start justify-between mb-5">
         <div>
-          <p className="text-sm text-muted">Välkommen tillbaka</p>
+          <p className="text-sm text-muted">{t('dashboard.welcome_back')}</p>
           <h1 className="text-xl font-bold text-primary mt-0.5">
             {state.deceasedName
-              ? `${state.deceasedName}s dödsbo`
-              : 'Ditt dödsbo'}
+              ? `${state.deceasedName}s ${t('estate.estate').toLowerCase()}`
+              : t('dashboard.greeting')}
           </h1>
         </div>
         <Link
@@ -233,8 +235,8 @@ function DashboardContent() {
           className="card border-l-4 border-accent bg-accent/5 mb-5 flex items-center justify-between"
         >
           <div>
-            <p className="font-medium text-accent text-sm">Verifiera med BankID</p>
-            <p className="text-xs text-primary/70">Krävs för juridiska tjänster</p>
+            <p className="font-medium text-accent text-sm">{t('dashboard.verify_bankid')}</p>
+            <p className="text-xs text-primary/70">{t('dashboard.verify_bankid_required')}</p>
           </div>
           <ChevronRight className="w-5 h-5 text-accent" />
         </button>
@@ -244,8 +246,8 @@ function DashboardContent() {
         <div className="card border-l-4 border-success bg-success/5 mb-5 flex items-center gap-3">
           <CheckCircle2 className="w-5 h-5 text-success flex-shrink-0" />
           <div>
-            <p className="font-medium text-success text-sm">BankID-verifierad</p>
-            <p className="text-xs text-primary/70">Du kan nu använda juridiska tjänster</p>
+            <p className="font-medium text-success text-sm">{t('dashboard.bankid_verified')}</p>
+            <p className="text-xs text-primary/70">{t('dashboard.bankid_verified_desc')}</p>
           </div>
         </div>
       )}
@@ -276,10 +278,10 @@ function DashboardContent() {
           </div>
         </div>
         <div className="flex-1 min-w-0">
-          <p className="text-xs font-medium text-muted mb-0.5">Du är i fasen</p>
+          <p className="text-xs font-medium text-muted mb-0.5">{t('dashboard.current_phase')}</p>
           <p className="text-base font-bold text-primary leading-tight">{stepLabels[effectiveStep]}</p>
           {daysSinceDeath > 0 && (
-            <p className="text-xs text-muted mt-1">Dag {daysSinceDeath} — ta det i din takt</p>
+            <p className="text-xs text-muted mt-1">{t('dashboard.day')} {daysSinceDeath} — {t('dashboard.take_your_time')}</p>
           )}
         </div>
         <ChevronRight className="w-5 h-5 text-muted flex-shrink-0" />
@@ -292,8 +294,8 @@ function DashboardContent() {
           className="card border-l-4 border-warn bg-[#FEF3EE] mb-5 flex items-center justify-between"
         >
           <div>
-            <p className="font-semibold text-warn">Nödbroms — dag 1-7</p>
-            <p className="text-sm text-primary/70">Steg-för-steg guide för de första dagarna</p>
+            <p className="font-semibold text-warn">{t('dashboard.emergency_brake')}</p>
+            <p className="text-sm text-primary/70">{t('dashboard.emergency_brake_desc')}</p>
           </div>
           <ChevronRight className="w-5 h-5 text-warn" />
         </Link>
@@ -304,29 +306,29 @@ function DashboardContent() {
         <div className="card border-l-4 border-accent bg-accent/5 mb-5 flex items-start gap-3">
           <AlertTriangle className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
           <div>
-            <p className="font-semibold text-accent">Viktigt: Du ärver INTE skulder</p>
+            <p className="font-semibold text-accent">{t('dashboard.debts_info')}</p>
             <p className="text-sm text-primary/70 mt-1">
-              Dödsboets skulder betalas med dödsboets tillgångar. Om skulderna är större försvinner de — du behöver inte betala.
+              {t('dashboard.debts_desc')}
             </p>
           </div>
         </div>
       )}
 
       {/* Quick stats row */}
-      <div className="grid grid-cols-2 gap-3 mb-5" role="group" aria-label="Snabbstatistik">
-        <div className="card text-center" aria-label={`Totalt ${state.delagare.length} dödsbodelägare`}>
+      <div className="grid grid-cols-2 gap-3 mb-5" role="group" aria-label={t('dashboard.statistics')}>
+        <div className="card text-center" aria-label={`${t('dashboard.co_owners')}: ${state.delagare.length}`}>
           <div className="w-10 h-10 rounded-2xl mx-auto mb-2 flex items-center justify-center" style={{ background: '#EEF2EA' }}>
             <User className="w-5 h-5 text-accent" aria-hidden="true" />
           </div>
           <p className="text-2xl font-bold text-primary">{state.delagare.length}</p>
-          <p className="text-xs text-muted">Dödsbodelägare</p>
+          <p className="text-xs text-muted">{t('dashboard.co_owners')}</p>
         </div>
-        <div className="card text-center" aria-label={`Totalt ${upcomingDeadlines.length} kommande frister`}>
+        <div className="card text-center" aria-label={`${t('dashboard.upcoming_deadlines')}: ${upcomingDeadlines.length}`}>
           <div className="w-10 h-10 rounded-2xl mx-auto mb-2 flex items-center justify-center" style={{ background: '#EEF2EA' }}>
             <Calendar className="w-5 h-5 text-accent" aria-hidden="true" />
           </div>
           <p className="text-2xl font-bold text-primary">{upcomingDeadlines.length}</p>
-          <p className="text-xs text-muted">Kommande frister</p>
+          <p className="text-xs text-muted">{t('dashboard.upcoming_deadlines')}</p>
         </div>
       </div>
 
@@ -371,7 +373,7 @@ function DashboardContent() {
           <section className="mb-5">
             <div className="flex items-center gap-2 mb-3">
               <Zap className="w-5 h-5 text-accent" />
-              <h2 className="text-base font-bold text-primary">Gör detta först</h2>
+              <h2 className="text-base font-bold text-primary">{t('dashboard.do_this_first')}</h2>
             </div>
             <div className="flex flex-col gap-2">
               {actions.map((a, i) => (
@@ -402,7 +404,7 @@ function DashboardContent() {
       {upcomingDeadlines.length > 0 && (
         <section className="mb-5">
           <h2 className="text-base font-bold text-primary mb-3">
-            Kommande tidsfrister
+            {t('dashboard.upcoming_deadlines_section')}
           </h2>
           <div className="flex flex-col gap-2">
             {upcomingDeadlines.map((deadline) => {
@@ -424,7 +426,7 @@ function DashboardContent() {
                     <p className="font-medium text-primary text-sm">{deadline.title}</p>
                     <p className="text-xs text-muted mt-0.5">{deadline.description}</p>
                     <p className={`text-xs font-medium mt-1 ${isUrgent ? 'text-warn' : 'text-accent'}`}>
-                      {daysLeft} dagar kvar
+                      {daysLeft} {t('dashboard.days_left')}
                     </p>
                   </div>
                 </div>
@@ -441,10 +443,10 @@ function DashboardContent() {
             <AlertTriangle className="w-5 h-5 text-warn flex-shrink-0 mt-0.5" />
             <div>
               <p className="font-medium text-warn">
-                {passedDeadlines.length} tidsfrist(er) har passerat
+                {passedDeadlines.length} {t('dashboard.missed_deadlines')}
               </p>
               <p className="text-sm text-primary/70 mt-1">
-                Det kan fortfarande gå att ordna. Kontrollera varje punkt.
+                {t('dashboard.missed_deadlines_desc')}
               </p>
             </div>
           </div>
@@ -456,15 +458,15 @@ function DashboardContent() {
         href="/juridisk-hjalp"
         className="card mb-4 flex items-center gap-3"
         style={{ background: 'linear-gradient(135deg, #EEF2EA, #F7F5F0)' }}
-        aria-label="Öppna Mike Ross"
+        aria-label={t('dashboard.ask_mike_ross')}
       >
         <div className="w-11 h-11 rounded-full flex items-center justify-center flex-shrink-0"
           style={{ background: 'linear-gradient(135deg, #6B7F5E, #4F6145)' }}>
           <Bot className="w-5 h-5 text-white" strokeWidth={1.5} />
         </div>
         <div className="flex-1">
-          <p className="font-semibold text-primary">Fråga Mike Ross</p>
-          <p className="text-xs text-muted">Din juridiska AI-assistent</p>
+          <p className="font-semibold text-primary">{t('dashboard.ask_mike_ross')}</p>
+          <p className="text-xs text-muted">{t('dashboard.mike_ross_desc')}</p>
         </div>
         <ChevronRight className="w-5 h-5 text-muted-light flex-shrink-0" />
       </Link>
@@ -485,16 +487,16 @@ function DashboardContent() {
           className="card border-l-4 border-accent bg-accent/5 mb-4 flex items-center justify-between w-full text-left"
         >
           <div>
-            <p className="font-medium text-primary text-sm">Aktivera påminnelser</p>
-            <p className="text-xs text-muted">Få notiser innan viktiga tidsfrister</p>
+            <p className="font-medium text-primary text-sm">{t('dashboard.enable_notifications')}</p>
+            <p className="text-xs text-muted">{t('dashboard.enable_notifications_desc')}</p>
           </div>
-          <span className="text-xs font-medium text-accent bg-accent/10 px-2 py-1 rounded-full">Slå på</span>
+          <span className="text-xs font-medium text-accent bg-accent/10 px-2 py-1 rounded-full">{t('dashboard.turn_on')}</span>
         </button>
       )}
       {notifStatus === 'enabled' && (
         <div className="flex items-center gap-2 mb-4 px-1">
           <CheckCircle2 className="w-4 h-4 text-success" />
-          <span className="text-xs text-muted">Påminnelser aktiva — du notifieras 7, 3 och 1 dag innan frister</span>
+          <span className="text-xs text-muted">{t('dashboard.notifications_active')}</span>
         </div>
       )}
 
@@ -505,9 +507,9 @@ function DashboardContent() {
           className="card border-l-4 border-accent mb-4 flex items-center justify-between"
         >
           <div>
-            <p className="font-medium text-primary text-sm">Bankbrev redo</p>
+            <p className="font-medium text-primary text-sm">{t('dashboard.bankbrev_ready')}</p>
             <p className="text-xs text-muted">
-              {state.onboarding.banks.length} bankbrev har genererats automatiskt
+              {state.onboarding.banks.length} {t('dashboard.bankbrev_ready_desc')}
             </p>
           </div>
           <ChevronRight className="w-5 h-5 text-accent" />
@@ -516,7 +518,7 @@ function DashboardContent() {
 
       {/* Dokument-generatorer */}
       <section className="mb-5">
-        <h2 className="text-base font-bold text-primary mb-3">Skapa dokument</h2>
+        <h2 className="text-base font-bold text-primary mb-3">{t('dashboard.create_documents')}</h2>
         {isSimpleDodsbo ? (
           <>
             {/* Simple dödsbo — simplified options */}
@@ -542,9 +544,9 @@ function DashboardContent() {
             </div>
             {/* Info banner about simple dödsbo */}
             <div className="card border-l-4 border-accent bg-accent/5">
-              <p className="text-sm text-primary font-medium">Ditt dödsbo verkar enkelt</p>
+              <p className="text-sm text-primary font-medium">{t('dashboard.simple_dodsbo')}</p>
               <p className="text-xs text-primary/70 mt-1">
-                Du kan troligen göra en dödsboanmälan istället för full bouppteckning.
+                {t('dashboard.simple_dodsbo_desc')}
               </p>
             </div>
           </>
@@ -579,7 +581,7 @@ function DashboardContent() {
 
       {/* Verktyg & guider */}
       <section className="mb-5">
-        <h2 className="text-base font-bold text-primary mb-3">Verktyg & guider</h2>
+        <h2 className="text-base font-bold text-primary mb-3">{t('dashboard.tools_guides')}</h2>
         <div className="grid grid-cols-3 gap-3">
           {[
             { label: 'Begravning', href: '/begravningsplanering', Icon: Flower2, description: 'Planera begravning och ceremoni' },
@@ -608,8 +610,7 @@ function DashboardContent() {
 
       {/* Legal disclaimer */}
       <p className="text-xs text-center text-muted mt-4 mb-4 px-2">
-        Denna app ger allmän vägledning och ersätter inte juridisk rådgivning.
-        Kontakta alltid en jurist vid osäkerhet.
+        {t('dashboard.legal_disclaimer')}
       </p>
 
       <BottomNav />
