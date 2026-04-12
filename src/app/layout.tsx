@@ -184,7 +184,7 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/icons/icon-192.png" />
         <JsonLd />
       </head>
-      <body className="min-h-dvh md:bg-gray-100">
+      <body className="min-h-dvh">
         <TextScaleLoader />
         {/* Skip navigation link */}
         <a
