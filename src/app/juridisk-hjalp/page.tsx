@@ -11,6 +11,11 @@ import {
   User,
   AlertTriangle,
   Sparkles,
+  Scale,
+  Phone,
+  Clock,
+  Gift,
+  ChevronRight,
 } from 'lucide-react';
 import { PremiumModal } from '@/components/ui/PremiumModal';
 
@@ -83,7 +88,7 @@ function renderInline(text: string) {
       return <em key={i}>{part.slice(1, -1)}</em>;
     }
     if (part.startsWith('`') && part.endsWith('`')) {
-      return <code key={i} className="bg-gray-100 px-1 rounded text-xs font-mono">{part.slice(1, -1)}</code>;
+      return <code key={i} className="bg-background px-1 rounded text-xs font-mono">{part.slice(1, -1)}</code>;
     }
     return part;
   });
@@ -351,7 +356,7 @@ function JuridiskHjalpContent() {
       <div className="flex items-center gap-3 px-5 py-3 border-b bg-background" style={{ borderColor: '#E8E4DE' }}>
         <Link
           href="/dashboard"
-          className="p-2 -ml-2 min-h-[44px] min-w-[44px] flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors"
+          className="p-2 -ml-2 min-h-[44px] min-w-[44px] flex items-center justify-center rounded-full hover:bg-background transition-colors"
           aria-label="Tillbaka"
         >
           <ArrowLeft className="w-5 h-5 text-primary" />
@@ -386,6 +391,7 @@ function JuridiskHjalpContent() {
               arvsordning, testamente — allt som rör dödsbohantering i Sverige.
             </p>
 
+            {/* AI-frågor — primär CTA */}
             <div className="flex flex-col gap-2 w-full max-w-sm">
               <p className="text-xs font-medium text-muted uppercase tracking-wide mb-1">
                 Förslag på frågor
@@ -407,10 +413,30 @@ function JuridiskHjalpContent() {
                 <AlertTriangle className="w-4 h-4 text-warn flex-shrink-0 mt-0.5" />
                 <p className="text-xs text-primary">
                   AI-assistenten ger allmän juridisk information baserad på svensk lag.
-                  Den ersätter inte juridisk rådgivning. Kontakta en jurist vid
-                  komplexa eller känsliga frågor.
+                  Den ersätter inte juridisk rådgivning.
                 </p>
               </div>
+            </div>
+
+            {/* Jurist — subtil teaser längst ner */}
+            <div className="mt-4 w-full max-w-sm">
+              <button
+                onClick={() => {
+                  // TODO: Koppla till bokningslänk
+                  window.open('mailto:kontakt@example.com?subject=Gratis konsultation via Sista Resan', '_blank');
+                }}
+                className="w-full p-3 rounded-xl border flex items-center gap-3 text-left hover:shadow-sm transition-all"
+                style={{ borderColor: '#E8E4DE', background: '#FAFAF8' }}
+              >
+                <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: 'linear-gradient(135deg, #6B7F5E, #4F6145)' }}>
+                  <Scale className="w-4 h-4 text-white" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-xs font-semibold text-primary">Behöver du personlig rådgivning?</p>
+                  <p className="text-[11px] text-muted">Första timmen med vår jurist är gratis</p>
+                </div>
+                <ChevronRight className="w-4 h-4 text-muted flex-shrink-0" />
+              </button>
             </div>
           </div>
         )}
@@ -496,21 +522,48 @@ function JuridiskHjalpContent() {
           </div>
         )}
 
-        {/* Limit reached — soft upgrade prompt with suggestion */}
+        {/* Limit reached — prominent jurist CTA */}
         {isLimitReached && (
-          <div className="mb-4 p-4 bg-accent/5 border border-accent/20 rounded-2xl">
-            <p className="text-sm font-semibold text-primary mb-1">
-              Du har använt dina {FREE_MESSAGE_LIMIT} gratis frågor
-            </p>
-            <p className="text-xs text-muted mb-3">
-              Uppgradera för obegränsade frågor och prioriterat stöd.
-            </p>
-            <button
-              className="btn-primary !rounded-xl !py-2.5 !text-sm w-full"
-              onClick={() => setShowPremiumModal(true)}
-            >
-              Uppgradera till Premium
-            </button>
+          <div className="mb-4 rounded-2xl overflow-hidden border" style={{ borderColor: '#D4DBC9' }}>
+            <div className="p-4" style={{ background: 'linear-gradient(135deg, #EEF2EA 0%, #F7F5F0 100%)' }}>
+              <div className="flex items-center gap-2 mb-2">
+                <Scale className="w-4 h-4 text-accent" />
+                <p className="text-sm font-bold text-primary">
+                  Fick du inte svar på allt?
+                </p>
+              </div>
+              <p className="text-xs text-primary/70 mb-3 leading-relaxed">
+                Vår samarbetsjurist erbjuder en gratis första timme. Specialiserad på arvsrätt, bouppteckning och dödsbon.
+              </p>
+              <div className="flex items-center gap-3 mb-3">
+                <div className="flex items-center gap-1.5">
+                  <Gift className="w-3 h-3 text-accent" />
+                  <span className="text-[11px] text-primary/60">1h gratis</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <Phone className="w-3 h-3 text-accent" />
+                  <span className="text-[11px] text-primary/60">Telefon/video</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <Clock className="w-3 h-3 text-accent" />
+                  <span className="text-[11px] text-primary/60">Svar inom 24h</span>
+                </div>
+              </div>
+              <button
+                className="w-full py-3 text-sm font-semibold text-white rounded-xl flex items-center justify-center gap-2 transition-opacity hover:opacity-90"
+                style={{ background: 'linear-gradient(135deg, #6B7F5E, #4F6145)' }}
+                onClick={() => {
+                  // TODO: Koppla till bokningslänk
+                  window.open('mailto:kontakt@example.com?subject=Gratis konsultation via Sista Resan', '_blank');
+                }}
+              >
+                Boka gratis konsultation
+                <ChevronRight className="w-4 h-4" />
+              </button>
+              <p className="text-[10px] text-primary/40 text-center mt-2">
+                Ingen förpliktelse — extra tid efter överenskommelse
+              </p>
+            </div>
           </div>
         )}
 
