@@ -1,0 +1,1075 @@
+{
+  "communities": {
+    "0": [
+      "page_addarvinge",
+      "page_adddelagare",
+      "page_addtillgang",
+      "page_canproceed",
+      "page_copyphone",
+      "page_generateallletters",
+      "page_generateannouncementtext",
+      "page_generateletterforbank",
+      "page_generatetext",
+      "page_handleaddcustombank",
+      "page_handlecopytext",
+      "page_handledownloaddocx",
+      "page_handledownloadpdf",
+      "page_handleinputchange",
+      "page_handlesave",
+      "page_handlesaveplan",
+      "page_handleshare",
+      "page_mikerosstip",
+      "page_next",
+      "page_prev",
+      "page_removearvinge",
+      "page_togglebank",
+      "src_app_arvskifteshandling_page_tsx",
+      "src_app_bank_guide_page_tsx",
+      "src_app_bankbrev_page_tsx",
+      "src_app_begravningsplanering_page_tsx",
+      "src_app_dodsannons_page_tsx",
+      "src_app_dodsboanmalan_page_tsx",
+      "src_app_minnesida_page_tsx",
+      "src_app_testamente_page_tsx"
+    ],
+    "1": [
+      "bug_report",
+      "bug_report_issue_localstorage",
+      "konkurrent-analys_aatos",
+      "konkurrent-analys_atgardsplan",
+      "konkurrent-analys_dodsboappen",
+      "konkurrent-analys_lexly",
+      "konkurrent-analys_positionering",
+      "konkurrent-analys_rationale_no_lawyer",
+      "konkurrent-analys_rationale_smart_dashboard",
+      "konkurrent-analys_rationale_support_missing",
+      "konkurrent-analys_sjalvbedomning",
+      "projekt_sammanfattning",
+      "projekt_sammanfattning_backlog",
+      "projekt_sammanfattning_juridiska_regler",
+      "skv_form_structure_analysis",
+      "ux_testrapport",
+      "ux_testrapport_accessibility_issues",
+      "ux_testrapport_bankid_wanted",
+      "ux_testrapport_bodelning_missing",
+      "ux_testrapport_foretag_missing",
+      "ux_testrapport_internationellt_missing"
+    ],
+    "2": [
+      "sista_resan_redesign_bottomnavproto",
+      "sista_resan_redesign_dashboardview",
+      "sista_resan_redesign_jsx",
+      "sista_resan_redesign_landingview",
+      "sista_resan_redesign_navtab",
+      "sista_resan_redesign_phaseindicator",
+      "sista_resan_redesign_priorityaction",
+      "sista_resan_redesign_sistaresanredesign",
+      "sista_resan_redesign_statcard",
+      "sista_resan_redesign_taskitem",
+      "sista_resan_redesign_tasksview",
+      "sista_resan_redesign_tokensview"
+    ],
+    "3": [
+      "page_getusedmessages",
+      "page_handlekeydown",
+      "page_handlescroll",
+      "page_handletouchend",
+      "page_handletouchstart",
+      "page_incrementusedmessages",
+      "page_renderinline",
+      "page_rendermarkdown",
+      "page_sendmessage",
+      "page_typewriterbubble",
+      "page_usetypewriter",
+      "src_app_juridisk_hjalp_page_tsx"
+    ],
+    "4": [
+      "page_adddecision",
+      "page_addnote",
+      "page_deletedecision",
+      "page_deletenote",
+      "page_getentrycolor",
+      "page_getentryicon",
+      "page_getstatuscolor",
+      "page_getstatusicon",
+      "page_toggleapproval",
+      "page_updatedecision",
+      "src_app_samarbete_page_tsx"
+    ],
+    "5": [
+      "page_addegendom",
+      "page_calculateinheritance",
+      "page_formatsek",
+      "page_handledownloadavtal",
+      "page_kostnaderskeleton",
+      "page_removeegendom",
+      "page_removekostnad",
+      "src_app_arvskalkylator_page_tsx",
+      "src_app_arvskifte_page_tsx",
+      "src_app_bodelning_page_tsx",
+      "src_app_kostnader_page_tsx"
+    ],
+    "6": [
+      "page_formatfilesize",
+      "page_getcategorylabel",
+      "page_getfileicon",
+      "page_handledelete",
+      "page_handledownload",
+      "page_handledragleave",
+      "page_handledragover",
+      "page_handledrop",
+      "page_handlefileselect",
+      "page_handleupload",
+      "src_app_dokument_page_tsx"
+    ],
+    "7": [
+      "sista_resan_design_c_blobshape",
+      "sista_resan_design_c_bottomnavc",
+      "sista_resan_design_c_dashboardc",
+      "sista_resan_design_c_designc",
+      "sista_resan_design_c_iconbubble",
+      "sista_resan_design_c_jsx",
+      "sista_resan_design_c_landingc",
+      "sista_resan_design_c_navtabc",
+      "sista_resan_design_c_tasksc",
+      "sista_resan_design_c_tokensc"
+    ],
+    "8": [
+      "sista_resan_design_e_blobshape",
+      "sista_resan_design_e_bottomnave",
+      "sista_resan_design_e_dashboarde",
+      "sista_resan_design_e_designe",
+      "sista_resan_design_e_iconbubble",
+      "sista_resan_design_e_jsx",
+      "sista_resan_design_e_landinge",
+      "sista_resan_design_e_navtab",
+      "sista_resan_design_e_taskse",
+      "sista_resan_design_e_tokense"
+    ],
+    "9": [
+      "sista_resan_design_d_blobshape",
+      "sista_resan_design_d_bottomnavd",
+      "sista_resan_design_d_dashboardd",
+      "sista_resan_design_d_designd",
+      "sista_resan_design_d_iconbubble",
+      "sista_resan_design_d_jsx",
+      "sista_resan_design_d_landingd",
+      "sista_resan_design_d_navtabd",
+      "sista_resan_design_d_tasksd",
+      "sista_resan_design_d_tokensd"
+    ],
+    "10": [
+      "generate_bouppteckning_pdf_downloadbouppteckningpdf",
+      "generate_bouppteckning_pdf_ensurespace",
+      "generate_bouppteckning_pdf_rendercontent",
+      "generate_bouppteckning_pdf_renderfields",
+      "generate_bouppteckning_pdf_renderfooters",
+      "generate_bouppteckning_pdf_rendersection",
+      "generate_bouppteckning_pdf_rendertable",
+      "generate_bouppteckning_pdf_rendertitleblock",
+      "generate_bouppteckning_pdf_renderwarnings",
+      "src_lib_generate_bouppteckning_pdf_ts"
+    ],
+    "11": [
+      "invite_service_acceptinvite",
+      "invite_service_createinvite",
+      "invite_service_generatetoken",
+      "invite_service_getinvitebytoken",
+      "invite_service_getinvitelink",
+      "invite_service_getinvites",
+      "invite_service_getmembers",
+      "invite_service_removemember",
+      "invite_service_revokeinvite",
+      "src_lib_supabase_services_invite_service_ts"
+    ],
+    "12": [
+      "bug_report_currentstep_stuck",
+      "projekt_sammanfattning_process_phases",
+      "projekt_sammanfattning_state_management",
+      "skv_form_assets_section",
+      "skv_form_bouppgivare",
+      "skv_form_forrattningsman",
+      "skv_form_liabilities_section",
+      "skv_form_skv4600",
+      "skv_form_skv461",
+      "skv_form_timeline"
+    ],
+    "13": [
+      "sista_resan_design_b_bottomnavb",
+      "sista_resan_design_b_dashboardb",
+      "sista_resan_design_b_designb",
+      "sista_resan_design_b_gloworb",
+      "sista_resan_design_b_jsx",
+      "sista_resan_design_b_landingb",
+      "sista_resan_design_b_navtabb",
+      "sista_resan_design_b_tasksb",
+      "sista_resan_design_b_tokensb"
+    ],
+    "14": [
+      "notifications_calculateupcomingreminders",
+      "notifications_checkandnotifydeadlines",
+      "notifications_getnotificationpermission",
+      "notifications_getnotificationprefs",
+      "notifications_requestnotificationpermission",
+      "notifications_savenotificationprefs",
+      "notifications_sendlocalnotification",
+      "src_lib_notifications_ts"
+    ],
+    "15": [
+      "generate_bodelningsavtal_datacell",
+      "generate_bodelningsavtal_downloadbodelningsavtal",
+      "generate_bodelningsavtal_egendomtable",
+      "generate_bodelningsavtal_formatsek",
+      "generate_bodelningsavtal_headercell",
+      "generate_bodelningsavtal_sectionheading",
+      "generate_bodelningsavtal_subheading",
+      "src_lib_generate_bodelningsavtal_ts"
+    ],
+    "16": [
+      "page_deletedoc",
+      "page_handlefilechange",
+      "page_loaddocs",
+      "page_resetcapture",
+      "page_savedocs",
+      "page_savedocument",
+      "src_app_skanner_page_tsx"
+    ],
+    "17": [
+      "page_togglecryptocheckbox",
+      "page_toggledomainscheckbox",
+      "page_toggleemailcheckbox",
+      "page_togglesection",
+      "page_togglesocialcheckbox",
+      "page_togglestreamingcheckbox",
+      "src_app_digitala_tillgangar_page_tsx"
+    ],
+    "18": [
+      "generate_bouppteckning_formatforsakringtype",
+      "generate_bouppteckning_formatrelation",
+      "generate_bouppteckning_formatsek",
+      "generate_bouppteckning_formatskuldtype",
+      "generate_bouppteckning_formattillgangtype",
+      "generate_bouppteckning_generatebouppteckningdocument",
+      "src_lib_generate_bouppteckning_ts"
+    ],
+    "19": [
+      "src_lib_supabase_services_tasks_service_ts",
+      "tasks_service_addtask",
+      "tasks_service_addtasksbulk",
+      "tasks_service_gettasks",
+      "tasks_service_removetask",
+      "tasks_service_rowtotask",
+      "tasks_service_updatetask"
+    ],
+    "20": [
+      "dokument_service_deletedokument",
+      "dokument_service_formatfilesize",
+      "dokument_service_getcategorylabel",
+      "dokument_service_getdokument",
+      "dokument_service_getdokumenturl",
+      "dokument_service_uploaddokument",
+      "src_lib_supabase_services_dokument_service_ts"
+    ],
+    "21": [
+      "page_async",
+      "page_handlepersonnummerblur",
+      "page_savebouppteckninginfo",
+      "page_settextsize",
+      "src_app_bouppteckning_page_tsx",
+      "src_app_installningar_page_tsx"
+    ],
+    "22": [
+      "export_data_downloadfile",
+      "export_data_esc",
+      "export_data_exportascsv",
+      "export_data_exportasjson",
+      "export_data_sanitize",
+      "src_lib_export_data_ts"
+    ],
+    "23": [
+      "personnummer_formatpersonnummer",
+      "personnummer_isvaliddate",
+      "personnummer_luhncheck",
+      "personnummer_normalize",
+      "personnummer_validatepersonnummer",
+      "src_lib_personnummer_ts"
+    ],
+    "24": [
+      "skulder_service_addskuld",
+      "skulder_service_getskulder",
+      "skulder_service_removeskuld",
+      "skulder_service_rowtoskuld",
+      "skulder_service_updateskuld",
+      "src_lib_supabase_services_skulder_service_ts"
+    ],
+    "25": [
+      "src_lib_supabase_services_tillgangar_service_ts",
+      "tillgangar_service_addtillgang",
+      "tillgangar_service_gettillgangar",
+      "tillgangar_service_removetillgang",
+      "tillgangar_service_rowtotillgang",
+      "tillgangar_service_updatetillgang"
+    ],
+    "26": [
+      "forsakringar_service_addforsakring",
+      "forsakringar_service_getforsakringar",
+      "forsakringar_service_removeforsakring",
+      "forsakringar_service_rowtoforsakring",
+      "forsakringar_service_updateforsakring",
+      "src_lib_supabase_services_forsakringar_service_ts"
+    ],
+    "27": [
+      "dodsbo_service_createdodsbo",
+      "dodsbo_service_deletedodsbo",
+      "dodsbo_service_getdodsbobyid",
+      "dodsbo_service_getdodsbon",
+      "dodsbo_service_updatedodsbo",
+      "src_lib_supabase_services_dodsbo_service_ts"
+    ],
+    "28": [
+      "delagare_service_adddelagare",
+      "delagare_service_getdelagare",
+      "delagare_service_removedelagare",
+      "delagare_service_rowtodelagare",
+      "delagare_service_updatedelagare",
+      "src_lib_supabase_services_delagare_service_ts"
+    ],
+    "29": [
+      "brand_dodsbo",
+      "color_dark_navy_slate",
+      "design_element_dove_bird",
+      "favicon-16x16_bird_logo_favicon",
+      "logo_dove_brand_logo",
+      "logo_svg_dove_brand_logo"
+    ],
+    "30": [
+      "page_fullmaktskeleton",
+      "page_generatebankletters",
+      "page_handlecopy",
+      "src_app_fullmakt_page_tsx",
+      "src_app_skatteverket_guide_page_tsx"
+    ],
+    "31": [
+      "page_getinvitestatus",
+      "page_handleadd",
+      "page_handleinvite",
+      "page_validate",
+      "src_app_delagare_page_tsx"
+    ],
+    "32": [
+      "generate_kallelse_docx_downloadkallelsedocx",
+      "generate_kallelse_docx_fieldrow",
+      "generate_kallelse_docx_sectionline",
+      "generate_kallelse_docx_spacer",
+      "src_lib_generate_kallelse_docx_ts"
+    ],
+    "33": [
+      "src_lib_store_ts",
+      "store_createinitialdodsbo",
+      "store_dodsboreducer",
+      "store_loadstate",
+      "store_savestate"
+    ],
+    "34": [
+      "brand_color_steel_blue",
+      "brand_dove_logo",
+      "favicon-32x32_dove_icon",
+      "icon-192_dove_icon",
+      "icon-512_dove_icon"
+    ],
+    "35": [
+      "page_handlebeforeinstallprompt",
+      "page_handledismiss",
+      "page_handleinstall",
+      "src_app_page_tsx"
+    ],
+    "36": [
+      "page_handlelogin",
+      "page_handleregister",
+      "page_handleresetpassword",
+      "src_app_auth_page_tsx"
+    ],
+    "37": [
+      "page_computestep",
+      "page_dashboardskeleton",
+      "page_statusicon",
+      "src_app_dashboard_page_tsx"
+    ],
+    "38": [
+      "generate_competitor_report_py",
+      "generate_competitor_report_style_header",
+      "generate_competitor_report_style_row"
+    ],
+    "39": [
+      "extract_skv_structure_extract_from_json_file",
+      "extract_skv_structure_py",
+      "extract_skv_structure_rationale_10"
+    ],
+    "40": [
+      "layout_jsonld",
+      "layout_rootlayout",
+      "src_app_layout_tsx"
+    ],
+    "41": [
+      "page_toggledone",
+      "page_urgencybadge",
+      "src_app_nodbroms_page_tsx"
+    ],
+    "42": [
+      "route_checkratelimit",
+      "route_post",
+      "src_app_api_juridisk_ai_route_ts"
+    ],
+    "43": [
+      "page_kallelsecontent",
+      "page_kallelseskeleton",
+      "src_app_kallelse_page_tsx"
+    ],
+    "44": [
+      "page_avslutakontonskeleton",
+      "page_toggleitem",
+      "src_app_avsluta_konton_page_tsx"
+    ],
+    "45": [
+      "page_togglenotifications",
+      "page_togglereminderday",
+      "src_app_paminelser_page_tsx"
+    ],
+    "46": [
+      "decorations_blobdecoration",
+      "decorations_leafdecoration",
+      "src_components_ui_decorations_tsx"
+    ],
+    "47": [
+      "generate_bouppteckning_docx_downloadbouppteckningdocx",
+      "generate_bouppteckning_docx_rendersection",
+      "src_lib_generate_bouppteckning_docx_ts"
+    ],
+    "48": [
+      "context_dodsboprovider",
+      "context_usedodsbo",
+      "src_lib_context_tsx"
+    ],
+    "49": [
+      "src_lib_tasks_ts",
+      "tasks_generatetasks",
+      "tasks_nextid"
+    ],
+    "50": [
+      "context_authprovider",
+      "context_useauth",
+      "src_lib_auth_context_tsx"
+    ],
+    "51": [
+      "bug_report_invite_token",
+      "bug_report_supabase_500",
+      "projekt_sammanfattning_supabase_db"
+    ],
+    "52": [
+      "bug_report_ai_markdown",
+      "bug_report_api_security",
+      "projekt_sammanfattning_mike_ross_ai"
+    ],
+    "53": [
+      "logo_preview_jsx",
+      "logo_preview_logopreview"
+    ],
+    "54": [
+      "generate_icons_generate",
+      "generate_icons_js"
+    ],
+    "55": [
+      "middleware_middleware",
+      "src_middleware_ts"
+    ],
+    "56": [
+      "robots_robots",
+      "src_app_robots_ts"
+    ],
+    "57": [
+      "sitemap_sitemap",
+      "src_app_sitemap_ts"
+    ],
+    "58": [
+      "error_error",
+      "src_app_error_tsx"
+    ],
+    "59": [
+      "not_found_notfound",
+      "src_app_not_found_tsx"
+    ],
+    "60": [
+      "layout_dodsboskulderlayout",
+      "src_app_dodsbo_skulder_layout_tsx"
+    ],
+    "61": [
+      "layout_bouppteckninglayout",
+      "src_app_bouppteckning_layout_tsx"
+    ],
+    "62": [
+      "layout_authlayout",
+      "src_app_auth_layout_tsx"
+    ],
+    "63": [
+      "route_get",
+      "src_app_auth_callback_route_ts"
+    ],
+    "64": [
+      "layout_faqlayout",
+      "src_app_faq_layout_tsx"
+    ],
+    "65": [
+      "page_exportzip",
+      "src_app_exportera_page_tsx"
+    ],
+    "66": [
+      "page_anvandarvillkorpage",
+      "src_app_anvandarvillkor_page_tsx"
+    ],
+    "67": [
+      "page_integritetspolicypage",
+      "src_app_integritetspolicy_page_tsx"
+    ],
+    "68": [
+      "layout_samboarvlayout",
+      "src_app_sambo_arv_layout_tsx"
+    ],
+    "69": [
+      "layout_dashboardlayout",
+      "src_app_dashboard_layout_tsx"
+    ],
+    "70": [
+      "layout_deklararadodsbolayout",
+      "src_app_deklarera_dodsbo_layout_tsx"
+    ],
+    "71": [
+      "layout_nodbromslayout",
+      "src_app_nodbroms_layout_tsx"
+    ],
+    "72": [
+      "layout_arvskiftelayout",
+      "src_app_arvskifte_layout_tsx"
+    ],
+    "73": [
+      "layout_layout",
+      "src_app_dodsbo_fastighet_layout_tsx"
+    ],
+    "74": [
+      "page_dodsbofastighetpage",
+      "src_app_dodsbo_fastighet_page_tsx"
+    ],
+    "75": [
+      "page_sharelink",
+      "src_app_delagare_portal_page_tsx"
+    ],
+    "76": [
+      "page_togglelevel",
+      "src_app_konflikt_page_tsx"
+    ],
+    "77": [
+      "layout_ordlistalayout",
+      "src_app_ordlista_layout_tsx"
+    ],
+    "78": [
+      "layout_onboardinglayout",
+      "src_app_onboarding_layout_tsx"
+    ],
+    "79": [
+      "page_onboardingpage",
+      "src_app_onboarding_page_tsx"
+    ],
+    "80": [
+      "layout_sarkullbarnlayout",
+      "src_app_sarkullbarn_layout_tsx"
+    ],
+    "81": [
+      "serviceworkerregistration_serviceworkerregistration",
+      "src_components_serviceworkerregistration_tsx"
+    ],
+    "82": [
+      "cookiebanner_cookiebanner",
+      "src_components_cookiebanner_tsx"
+    ],
+    "83": [
+      "bottomnav_handler",
+      "src_components_ui_bottomnav_tsx"
+    ],
+    "84": [
+      "floatingchatbutton_floatingchatbutton",
+      "src_components_ui_floatingchatbutton_tsx"
+    ],
+    "85": [
+      "dovelogo_dovelogo",
+      "src_components_ui_dovelogo_tsx"
+    ],
+    "86": [
+      "skipnav_skipnav",
+      "src_components_ui_skipnav_tsx"
+    ],
+    "87": [
+      "mikerosstip_mikerosstip",
+      "src_components_ui_mikerosstip_tsx"
+    ],
+    "88": [
+      "onboardingflow_onboardingflow",
+      "src_components_onboarding_onboardingflow_tsx"
+    ],
+    "89": [
+      "generate_document_docx_downloaddocumentdocx",
+      "src_lib_generate_document_docx_ts"
+    ],
+    "90": [
+      "arvsordning_getarvsordning",
+      "src_lib_arvsordning_ts"
+    ],
+    "91": [
+      "generate_document_pdf_downloaddocumentpdf",
+      "src_lib_generate_document_pdf_ts"
+    ],
+    "92": [
+      "safe_use_auth_useauth",
+      "src_lib_auth_safe_use_auth_ts"
+    ],
+    "93": [
+      "middleware_updatesession",
+      "src_lib_supabase_middleware_ts"
+    ],
+    "94": [
+      "src_lib_supabase_use_supabase_sync_ts",
+      "use_supabase_sync_usesupabasesync"
+    ],
+    "95": [
+      "client_createclient",
+      "src_lib_supabase_client_ts"
+    ],
+    "96": [
+      "server_createclient",
+      "src_lib_supabase_server_ts"
+    ],
+    "97": [
+      "src_lib_tests_store_test_ts",
+      "store_test_makestate"
+    ],
+    "98": [
+      "konkurrent-analys_unique_features",
+      "ux_testrapport_nodbroms_loved"
+    ],
+    "99": [
+      "next_config_js"
+    ],
+    "100": [
+      "next_env_d_ts"
+    ],
+    "101": [
+      "tailwind_config_ts"
+    ],
+    "102": [
+      "generate_ux_report_py"
+    ],
+    "103": [
+      "playwright_config_ts"
+    ],
+    "104": [
+      "vitest_config_ts"
+    ],
+    "105": [
+      "postcss_config_js"
+    ],
+    "106": [
+      "public_sw_js"
+    ],
+    "107": [
+      "e2e_navigation_spec_ts"
+    ],
+    "108": [
+      "e2e_landing_spec_ts"
+    ],
+    "109": [
+      "e2e_pages_spec_ts"
+    ],
+    "110": [
+      "e2e_onboarding_spec_ts"
+    ],
+    "111": [
+      "src_types_index_ts"
+    ],
+    "112": [
+      "src_types_dodsbo_ts"
+    ],
+    "113": [
+      "src_app_opengraph_image_tsx"
+    ],
+    "114": [
+      "src_app_dodsbo_skulder_page_tsx"
+    ],
+    "115": [
+      "src_app_losore_page_tsx"
+    ],
+    "116": [
+      "src_app_foretag_i_dodsbo_page_tsx"
+    ],
+    "117": [
+      "src_app_uppgifter_page_tsx"
+    ],
+    "118": [
+      "src_app_faq_page_tsx"
+    ],
+    "119": [
+      "src_app_tillgangar_page_tsx"
+    ],
+    "120": [
+      "src_app_om_page_tsx"
+    ],
+    "121": [
+      "src_app_sambo_arv_page_tsx"
+    ],
+    "122": [
+      "src_app_forsakringar_page_tsx"
+    ],
+    "123": [
+      "src_app_deklarera_dodsbo_page_tsx"
+    ],
+    "124": [
+      "src_app_api_tests_juridisk_ai_test_ts"
+    ],
+    "125": [
+      "src_app_internationellt_page_tsx"
+    ],
+    "126": [
+      "src_app_tidslinje_page_tsx"
+    ],
+    "127": [
+      "src_app_ordlista_page_tsx"
+    ],
+    "128": [
+      "src_app_sarkullbarn_page_tsx"
+    ],
+    "129": [
+      "src_components_ui_optioncard_tsx"
+    ],
+    "130": [
+      "src_components_ui_juridisktooltip_tsx"
+    ],
+    "131": [
+      "src_components_ui_stepindicator_tsx"
+    ],
+    "132": [
+      "src_lib_supabase_types_ts"
+    ],
+    "133": [
+      "src_lib_supabase_services_index_ts"
+    ],
+    "134": [
+      "src_lib_tests_personnummer_test_ts"
+    ],
+    "135": [
+      "konkurrent-analys_familjens_jurist"
+    ],
+    "136": [
+      "konkurrent-analys_fenix"
+    ],
+    "137": [
+      "konkurrent-analys_lavendla"
+    ],
+    "138": [
+      "konkurrent-analys_bouppteckningar_nu"
+    ],
+    "139": [
+      "bug_report_issue_no_auth"
+    ],
+    "140": [
+      "ux_testrapport_nps"
+    ],
+    "141": [
+      "projekt_sammanfattning_tech_stack"
+    ],
+    "142": [
+      "projekt_sammanfattning_design_system"
+    ],
+    "143": [
+      "projekt_sammanfattning_51_pages"
+    ]
+  },
+  "cohesion": {
+    "0": 0.12,
+    "1": 0.1,
+    "2": 0.17,
+    "3": 0.23,
+    "4": 0.2,
+    "5": 0.2,
+    "6": 0.22,
+    "7": 0.2,
+    "8": 0.2,
+    "9": 0.2,
+    "10": 0.47,
+    "11": 0.22,
+    "12": 0.22,
+    "13": 0.22,
+    "14": 0.36,
+    "15": 0.46,
+    "16": 0.43,
+    "17": 0.29,
+    "18": 0.33,
+    "19": 0.38,
+    "20": 0.29,
+    "21": 0.4,
+    "22": 0.67,
+    "23": 0.6,
+    "24": 0.47,
+    "25": 0.47,
+    "26": 0.47,
+    "27": 0.33,
+    "28": 0.47,
+    "29": 0.47,
+    "30": 0.4,
+    "31": 0.5,
+    "32": 0.7,
+    "33": 0.5,
+    "34": 0.6,
+    "35": 0.5,
+    "36": 0.5,
+    "37": 0.5,
+    "38": 0.67,
+    "39": 0.67,
+    "40": 0.67,
+    "41": 0.67,
+    "42": 1.0,
+    "43": 0.67,
+    "44": 0.67,
+    "45": 0.67,
+    "46": 0.67,
+    "47": 1.0,
+    "48": 0.67,
+    "49": 1.0,
+    "50": 0.67,
+    "51": 0.67,
+    "52": 0.67,
+    "53": 1.0,
+    "54": 1.0,
+    "55": 1.0,
+    "56": 1.0,
+    "57": 1.0,
+    "58": 1.0,
+    "59": 1.0,
+    "60": 1.0,
+    "61": 1.0,
+    "62": 1.0,
+    "63": 1.0,
+    "64": 1.0,
+    "65": 1.0,
+    "66": 1.0,
+    "67": 1.0,
+    "68": 1.0,
+    "69": 1.0,
+    "70": 1.0,
+    "71": 1.0,
+    "72": 1.0,
+    "73": 1.0,
+    "74": 1.0,
+    "75": 1.0,
+    "76": 1.0,
+    "77": 1.0,
+    "78": 1.0,
+    "79": 1.0,
+    "80": 1.0,
+    "81": 1.0,
+    "82": 1.0,
+    "83": 1.0,
+    "84": 1.0,
+    "85": 1.0,
+    "86": 1.0,
+    "87": 1.0,
+    "88": 1.0,
+    "89": 1.0,
+    "90": 1.0,
+    "91": 1.0,
+    "92": 1.0,
+    "93": 1.0,
+    "94": 1.0,
+    "95": 1.0,
+    "96": 1.0,
+    "97": 1.0,
+    "98": 1.0,
+    "99": 1.0,
+    "100": 1.0,
+    "101": 1.0,
+    "102": 1.0,
+    "103": 1.0,
+    "104": 1.0,
+    "105": 1.0,
+    "106": 1.0,
+    "107": 1.0,
+    "108": 1.0,
+    "109": 1.0,
+    "110": 1.0,
+    "111": 1.0,
+    "112": 1.0,
+    "113": 1.0,
+    "114": 1.0,
+    "115": 1.0,
+    "116": 1.0,
+    "117": 1.0,
+    "118": 1.0,
+    "119": 1.0,
+    "120": 1.0,
+    "121": 1.0,
+    "122": 1.0,
+    "123": 1.0,
+    "124": 1.0,
+    "125": 1.0,
+    "126": 1.0,
+    "127": 1.0,
+    "128": 1.0,
+    "129": 1.0,
+    "130": 1.0,
+    "131": 1.0,
+    "132": 1.0,
+    "133": 1.0,
+    "134": 1.0,
+    "135": 1.0,
+    "136": 1.0,
+    "137": 1.0,
+    "138": 1.0,
+    "139": 1.0,
+    "140": 1.0,
+    "141": 1.0,
+    "142": 1.0,
+    "143": 1.0
+  },
+  "gods": [
+    {
+      "id": "page_mikerosstip",
+      "label": "MikeRossTip()",
+      "edges": 10
+    },
+    {
+      "id": "page_handledownloadpdf",
+      "label": "handleDownloadPDF()",
+      "edges": 8
+    },
+    {
+      "id": "konkurrent-analys_sjalvbedomning",
+      "label": "Self-Assessment (Sjalvbedomning)",
+      "edges": 7
+    },
+    {
+      "id": "page_handledownloaddocx",
+      "label": "handleDownloadDocx()",
+      "edges": 6
+    },
+    {
+      "id": "generate_bouppteckning_pdf_downloadbouppteckningpdf",
+      "label": "downloadBouppteckningPDF()",
+      "edges": 6
+    },
+    {
+      "id": "generate_bouppteckning_pdf_rendersection",
+      "label": "renderSection()",
+      "edges": 6
+    },
+    {
+      "id": "generate_bouppteckning_pdf_ensurespace",
+      "label": "ensureSpace()",
+      "edges": 6
+    },
+    {
+      "id": "konkurrent-analys_dodsboappen",
+      "label": "Dodsboappen (Sista Resan)",
+      "edges": 6
+    },
+    {
+      "id": "skv_form_skv4600",
+      "label": "SKV 4600 (Estate Inventory Form)",
+      "edges": 6
+    },
+    {
+      "id": "page_generatetext",
+      "label": "generateText()",
+      "edges": 5
+    }
+  ],
+  "surprises": [
+    {
+      "source": "ISSUE #4: Losore/Kostnader Not Synced to Supabase",
+      "target": "Self-Assessment (Sjalvbedomning)",
+      "source_files": [
+        "BUG-REPORT.md",
+        "graphify-out/converted/konkurrent-analys-och-sjalvbedomning_62088502.md"
+      ],
+      "confidence": "INFERRED",
+      "relation": "semantically_similar_to",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories; semantically similar concepts with no structural link; peripheral node `ISSUE #4: Losore/Kostnader Not Synced to Supabase` unexpectedly reaches hub `Self-Assessment (Sjalvbedomning)`"
+    },
+    {
+      "source": "Bouppteckning Timeline (3 months + 1 month registration)",
+      "target": "Process Phases (Akut, Kartlaggning, Bouppteckning, Arvskifte, Avslutat)",
+      "source_files": [
+        "skv_form_structure_analysis.md",
+        "PROJEKT-SAMMANFATTNING.md"
+      ],
+      "confidence": "INFERRED",
+      "relation": "semantically_similar_to",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories; semantically similar concepts with no structural link"
+    },
+    {
+      "source": "Projekt-Sammanfattning (Sista Resan)",
+      "target": "Dodsboappen (Sista Resan)",
+      "source_files": [
+        "PROJEKT-SAMMANFATTNING.md",
+        "graphify-out/converted/konkurrent-analys-och-sjalvbedomning_62088502.md"
+      ],
+      "confidence": "INFERRED",
+      "relation": "references",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories"
+    },
+    {
+      "source": "UX Finding: Accessibility (a11y) Problems",
+      "target": "Self-Assessment (Sjalvbedomning)",
+      "source_files": [
+        "graphify-out/converted/ux-testrapport-50-personas_1a00e175.md",
+        "graphify-out/converted/konkurrent-analys-och-sjalvbedomning_62088502.md"
+      ],
+      "confidence": "INFERRED",
+      "relation": "semantically_similar_to",
+      "why": "inferred connection - not explicitly stated in source; semantically similar concepts with no structural link; peripheral node `UX Finding: Accessibility (a11y) Problems` unexpectedly reaches hub `Self-Assessment (Sjalvbedomning)`"
+    },
+    {
+      "source": "UX Finding: Bodelning for Gifta is Critically Missing",
+      "target": "Self-Assessment (Sjalvbedomning)",
+      "source_files": [
+        "graphify-out/converted/ux-testrapport-50-personas_1a00e175.md",
+        "graphify-out/converted/konkurrent-analys-och-sjalvbedomning_62088502.md"
+      ],
+      "confidence": "INFERRED",
+      "relation": "semantically_similar_to",
+      "why": "inferred connection - not explicitly stated in source; semantically similar concepts with no structural link; peripheral node `UX Finding: Bodelning for Gifta is Critically Missing` unexpectedly reaches hub `Self-Assessment (Sjalvbedomning)`"
+    }
+  ],
+  "questions": [
+    {
+      "type": "bridge_node",
+      "question": "Why does `MikeRossTip()` connect `Community 0` to `Community 17`, `Community 4`, `Community 30`?",
+      "why": "High betweenness centrality (0.008) - this node is a cross-community bridge."
+    },
+    {
+      "type": "verify_inferred",
+      "question": "Are the 6 inferred relationships involving `Self-Assessment (Sjalvbedomning)` (e.g. with `ISSUE #4: Losore/Kostnader Not Synced to Supabase` and `UX Test Report - 50 Personas`) actually correct?",
+      "why": "`Self-Assessment (Sjalvbedomning)` has 6 INFERRED edges - model-reasoned connections that need verification."
+    },
+    {
+      "type": "isolated_nodes",
+      "question": "What connects `Extract and analyze JSON file content`, `Aatos (Competitor)`, `Familjens Jurist (Competitor)` to the rest of the system?",
+      "why": "35 weakly-connected nodes found - possible documentation gaps or missing edges."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Community 0` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.12 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Community 1` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.1 - nodes in this community are weakly interconnected."
+    }
+  ]
+}

@@ -6,3 +6,6 @@ export * from './forsakringar-service';
 export * from './tasks-service';
 export * from './dokument-service';
 export * from './invite-service';
+export * from './losore-service';
+export * from './kostnader-service';
+export * from './samarbete-service';

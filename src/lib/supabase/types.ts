@@ -387,6 +387,84 @@ export type Database = {
         };
         Relationships: [];
       };
+      losore: {
+        Row: {
+          id: string;
+          dodsbo_id: string;
+          user_id: string;
+          name: string;
+          category: string;
+          estimated_value: number | null;
+          assigned_to: string | null;
+          notes: string | null;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          dodsbo_id: string;
+          user_id: string;
+          name: string;
+          category?: string;
+          estimated_value?: number | null;
+          assigned_to?: string | null;
+          notes?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          dodsbo_id?: string;
+          user_id?: string;
+          name?: string;
+          category?: string;
+          estimated_value?: number | null;
+          assigned_to?: string | null;
+          notes?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
+      kostnader: {
+        Row: {
+          id: string;
+          dodsbo_id: string;
+          user_id: string;
+          category: string;
+          description: string;
+          amount: number;
+          date: string | null;
+          paid_by: string | null;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          dodsbo_id: string;
+          user_id: string;
+          category?: string;
+          description: string;
+          amount?: number;
+          date?: string | null;
+          paid_by?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          dodsbo_id?: string;
+          user_id?: string;
+          category?: string;
+          description?: string;
+          amount?: number;
+          date?: string | null;
+          paid_by?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
     };
     Views: Record<string, never>;
     Functions: Record<string, never>;

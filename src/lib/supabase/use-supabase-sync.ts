@@ -24,6 +24,8 @@ import { getTillgangar, addTillgang, removeTillgang } from './services/tillganga
 import { getSkulder, addSkuld, removeSkuld } from './services/skulder-service';
 import { getForsakringar, addForsakring, removeForsakring, updateForsakring } from './services/forsakringar-service';
 import { getTasks, addTasksBulk, updateTask } from './services/tasks-service';
+import { getLosore, addLosore, updateLosore, removeLosore } from './services/losore-service';
+import { getKostnader, addKostnad, updateKostnad, removeKostnad } from './services/kostnader-service';
 
 interface SyncState {
   /** Supabase row ID for the current dödsbo */
@@ -89,12 +91,16 @@ export function useSupabaseSync(
         { data: skulder },
         { data: forsakringar },
         { data: tasks },
+        { data: losore },
+        { data: kostnader },
       ] = await Promise.all([
         getDelagare(dodsboId),
         getTillgangar(dodsboId),
         getSkulder(dodsboId),
         getForsakringar(dodsboId),
         getTasks(dodsboId),
+        getLosore(dodsboId),
+        getKostnader(dodsboId),
       ]);
 
       if (cancelled) return;
@@ -115,10 +121,8 @@ export function useSupabaseSync(
         skulder: skulder ?? [],
         forsakringar: forsakringar ?? [],
         tasks: tasks ?? [],
-        // lösöre & kostnader are stored in localStorage for now
-        // (no dedicated Supabase table yet — to be added in a future migration)
-        losore: [],
-        kostnader: [],
+        losore: losore ?? [],
+        kostnader: kostnader ?? [],
       };
 
       rawDispatch({ type: 'LOAD_STATE', payload: fullState });
@@ -206,6 +210,8 @@ export function useSupabaseSync(
             'ADD_TILLGANG',
             'ADD_SKULD',
             'ADD_FORSAKRING',
+            'ADD_LOSORE',
+            'ADD_KOSTNAD',
           ];
 
           let dbId = dodsboIdRef.current;
@@ -303,6 +309,30 @@ export function useSupabaseSync(
                 status: action.payload.status,
                 completedAt: action.payload.status === 'klar' ? new Date().toISOString() : undefined,
               });
+              break;
+
+            case 'ADD_LOSORE':
+              if (dbId) await addLosore(dbId, action.payload);
+              break;
+
+            case 'REMOVE_LOSORE':
+              await removeLosore(action.payload);
+              break;
+
+            case 'UPDATE_LOSORE':
+              if (action.payload?.id) await updateLosore(action.payload.id, action.payload);
+              break;
+
+            case 'ADD_KOSTNAD':
+              if (dbId) await addKostnad(dbId, action.payload);
+              break;
+
+            case 'REMOVE_KOSTNAD':
+              await removeKostnad(action.payload);
+              break;
+
+            case 'UPDATE_KOSTNAD':
+              if (action.payload?.id) await updateKostnad(action.payload.id, action.payload);
               break;
 
             case 'RESET':

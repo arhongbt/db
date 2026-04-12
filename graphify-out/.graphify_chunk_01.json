@@ -1,0 +1,939 @@
+{
+  "nodes": [
+    {
+      "id": "konkurrent-analys_dodsboappen",
+      "label": "Dodsboappen (Sista Resan)",
+      "file_type": "document",
+      "source_file": "graphify-out/converted/konkurrent-analys-och-sjalvbedomning_62088502.md",
+      "source_location": "Sheet: Funktionsjamforelse",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "konkurrent-analys_aatos",
+      "label": "Aatos (Competitor)",
+      "file_type": "document",
+      "source_file": "graphify-out/converted/konkurrent-analys-och-sjalvbedomning_62088502.md",
+      "source_location": "Sheet: Konkurrentomdomen",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "konkurrent-analys_familjens_jurist",
+      "label": "Familjens Jurist (Competitor)",
+      "file_type": "document",
+      "source_file": "graphify-out/converted/konkurrent-analys-och-sjalvbedomning_62088502.md",
+      "source_location": "Sheet: Konkurrentomdomen",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "konkurrent-analys_lexly",
+      "label": "Lexly (Competitor)",
+      "file_type": "document",
+      "source_file": "graphify-out/converted/konkurrent-analys-och-sjalvbedomning_62088502.md",
+      "source_location": "Sheet: Konkurrentomdomen",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "konkurrent-analys_fenix",
+      "label": "Fenix Begravning (Competitor)",
+      "file_type": "document",
+      "source_file": "graphify-out/converted/konkurrent-analys-och-sjalvbedomning_62088502.md",
+      "source_location": "Sheet: Konkurrentomdomen",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "konkurrent-analys_lavendla",
+      "label": "Lavendla Juridik (Competitor)",
+      "file_type": "document",
+      "source_file": "graphify-out/converted/konkurrent-analys-och-sjalvbedomning_62088502.md",
+      "source_location": "Sheet: Konkurrentomdomen",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "konkurrent-analys_bouppteckningar_nu",
+      "label": "Bouppteckningar.nu (Competitor)",
+      "file_type": "document",
+      "source_file": "graphify-out/converted/konkurrent-analys-och-sjalvbedomning_62088502.md",
+      "source_location": "Sheet: Konkurrentomdomen",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "konkurrent-analys_sjalvbedomning",
+      "label": "Self-Assessment (Sjalvbedomning)",
+      "file_type": "document",
+      "source_file": "graphify-out/converted/konkurrent-analys-och-sjalvbedomning_62088502.md",
+      "source_location": "Sheet: Var sjalvbedomning",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "konkurrent-analys_atgardsplan",
+      "label": "Action Plan (Atgardsplan)",
+      "file_type": "document",
+      "source_file": "graphify-out/converted/konkurrent-analys-och-sjalvbedomning_62088502.md",
+      "source_location": "Sheet: Atgardsplan",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "konkurrent-analys_positionering",
+      "label": "Competitive Positioning Strategy",
+      "file_type": "document",
+      "source_file": "graphify-out/converted/konkurrent-analys-och-sjalvbedomning_62088502.md",
+      "source_location": "Sheet: Positionering",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "konkurrent-analys_rationale_no_lawyer",
+      "label": "Rationale: No Lawyer Access is Biggest Weakness",
+      "file_type": "document",
+      "source_file": "graphify-out/converted/konkurrent-analys-och-sjalvbedomning_62088502.md",
+      "source_location": "Sheet: Var sjalvbedomning, Jurist-tillgang",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "konkurrent-analys_rationale_support_missing",
+      "label": "Rationale: No Support Channel is a Dealbreaker",
+      "file_type": "document",
+      "source_file": "graphify-out/converted/konkurrent-analys-och-sjalvbedomning_62088502.md",
+      "source_location": "Sheet: Atgardsplan, AKUT",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "konkurrent-analys_rationale_smart_dashboard",
+      "label": "Rationale: Dashboard Shows 18 Links Without Prioritization",
+      "file_type": "document",
+      "source_file": "graphify-out/converted/konkurrent-analys-och-sjalvbedomning_62088502.md",
+      "source_location": "Sheet: Var sjalvbedomning, Dashboard",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "konkurrent-analys_unique_features",
+      "label": "Unique Features (Bankbrev, Kostnader, Losore, Nodbroms, etc.)",
+      "file_type": "document",
+      "source_file": "graphify-out/converted/konkurrent-analys-och-sjalvbedomning_62088502.md",
+      "source_location": "Sheet: Positionering",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "skv_form_structure_analysis",
+      "label": "SKV 4600 Bouppteckning Form Structure Analysis",
+      "file_type": "document",
+      "source_file": "skv_form_structure_analysis.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "skv_form_skv4600",
+      "label": "SKV 4600 (Estate Inventory Form)",
+      "file_type": "document",
+      "source_file": "skv_form_structure_analysis.md",
+      "source_location": "Overall Form Purpose",
+      "source_url": "https://www.skatteverket.se/privat/etjansterochblanketter/blanketterbroschyrer/blanketter/info/4600.4.39f16f103821c58f680006692.html",
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "skv_form_skv461",
+      "label": "SKV 461 Instruction Booklet (Utgava 8)",
+      "file_type": "document",
+      "source_file": "skv_form_structure_analysis.md",
+      "source_location": "Sources",
+      "source_url": "https://www.skatteverket.se/download/18.109dcbe71721adafd25806d/1769511032301/bouppteckning-skv461-utgava08.pdf",
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "skv_form_assets_section",
+      "label": "SKV Form Assets Section (Tillgangar)",
+      "file_type": "document",
+      "source_file": "skv_form_structure_analysis.md",
+      "source_location": "Page 3 - Assets",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "skv_form_liabilities_section",
+      "label": "SKV Form Liabilities Section (Skulder)",
+      "file_type": "document",
+      "source_file": "skv_form_structure_analysis.md",
+      "source_location": "Page 4 - Liabilities",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "skv_form_forrattningsman",
+      "label": "Forrattningsman (Two External Officials)",
+      "file_type": "document",
+      "source_file": "skv_form_structure_analysis.md",
+      "source_location": "Page 1, Page 7+",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "skv_form_bouppgivare",
+      "label": "Bouppgivare (Estate Informant)",
+      "file_type": "document",
+      "source_file": "skv_form_structure_analysis.md",
+      "source_location": "Page 1",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "skv_form_timeline",
+      "label": "Bouppteckning Timeline (3 months + 1 month registration)",
+      "file_type": "document",
+      "source_file": "skv_form_structure_analysis.md",
+      "source_location": "Timeline Critical Dates",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "bug_report",
+      "label": "Penetration Test and Bug Report (2026-04-11)",
+      "file_type": "document",
+      "source_file": "BUG-REPORT.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": "2026-04-11",
+      "author": "Claude (automated)",
+      "contributor": null
+    },
+    {
+      "id": "bug_report_currentstep_stuck",
+      "label": "BUG #1: currentStep Stuck at Nodbroms",
+      "file_type": "document",
+      "source_file": "BUG-REPORT.md",
+      "source_location": "src/app/dashboard/page.tsx",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "bug_report_supabase_500",
+      "label": "BUG #2: Supabase dodsbon Query Returns HTTP 500",
+      "file_type": "document",
+      "source_file": "BUG-REPORT.md",
+      "source_location": "src/lib/supabase/use-supabase-sync.ts",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "bug_report_ai_markdown",
+      "label": "BUG #3: AI Chatbot Markdown Not Rendered",
+      "file_type": "document",
+      "source_file": "BUG-REPORT.md",
+      "source_location": "src/app/juridisk-hjalp/page.tsx",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "bug_report_api_security",
+      "label": "BUG #4: API Route No Security (Rate Limiting Added)",
+      "file_type": "document",
+      "source_file": "BUG-REPORT.md",
+      "source_location": "src/app/api/juridisk-ai/route.ts",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "bug_report_issue_no_auth",
+      "label": "ISSUE #2: API Route Has No Authentication Check",
+      "file_type": "document",
+      "source_file": "BUG-REPORT.md",
+      "source_location": "KNOWN ISSUES",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "bug_report_issue_localstorage",
+      "label": "ISSUE #4: Losore/Kostnader Not Synced to Supabase",
+      "file_type": "document",
+      "source_file": "BUG-REPORT.md",
+      "source_location": "KNOWN ISSUES",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "bug_report_invite_token",
+      "label": "ISSUE #3: Invite Token Security (Permissive RLS)",
+      "file_type": "document",
+      "source_file": "BUG-REPORT.md",
+      "source_location": "supabase/migrations/004_invites.sql",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "ux_testrapport",
+      "label": "UX Test Report - 50 Personas",
+      "file_type": "document",
+      "source_file": "graphify-out/converted/ux-testrapport-50-personas_1a00e175.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "ux_testrapport_nps",
+      "label": "NPS Analysis (Score: -50, Mean: 6.1)",
+      "file_type": "document",
+      "source_file": "graphify-out/converted/ux-testrapport-50-personas_1a00e175.md",
+      "source_location": "Sheet: NPS-analys",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "ux_testrapport_nodbroms_loved",
+      "label": "UX Finding: Nodbroms Loved by 42/50 Personas",
+      "file_type": "document",
+      "source_file": "graphify-out/converted/ux-testrapport-50-personas_1a00e175.md",
+      "source_location": "Sheet: Topp-insikter, POSITIVT",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "ux_testrapport_bodelning_missing",
+      "label": "UX Finding: Bodelning for Gifta is Critically Missing",
+      "file_type": "document",
+      "source_file": "graphify-out/converted/ux-testrapport-50-personas_1a00e175.md",
+      "source_location": "Sheet: Topp-insikter, KRITISKT SAKNAS",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "ux_testrapport_accessibility_issues",
+      "label": "UX Finding: Accessibility (a11y) Problems",
+      "file_type": "document",
+      "source_file": "graphify-out/converted/ux-testrapport-50-personas_1a00e175.md",
+      "source_location": "Sheet: Topp-insikter, UX-PROBLEM",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "ux_testrapport_bankid_wanted",
+      "label": "UX Finding: BankID Login Wanted by 8 Personas",
+      "file_type": "document",
+      "source_file": "graphify-out/converted/ux-testrapport-50-personas_1a00e175.md",
+      "source_location": "Sheet: Topp-insikter, HETT ONSKAT",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "ux_testrapport_internationellt_missing",
+      "label": "UX Finding: International Estates Not Supported",
+      "file_type": "document",
+      "source_file": "graphify-out/converted/ux-testrapport-50-personas_1a00e175.md",
+      "source_location": "Sheet: Topp-insikter, KRITISKT SAKNAS",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "ux_testrapport_foretag_missing",
+      "label": "UX Finding: Company in Estate Not Supported",
+      "file_type": "document",
+      "source_file": "graphify-out/converted/ux-testrapport-50-personas_1a00e175.md",
+      "source_location": "Sheet: Topp-insikter, KRITISKT SAKNAS",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "projekt_sammanfattning",
+      "label": "Projekt-Sammanfattning (Sista Resan)",
+      "file_type": "document",
+      "source_file": "PROJEKT-SAMMANFATTNING.md",
+      "source_location": null,
+      "source_url": "https://db-three-alpha.vercel.app/",
+      "captured_at": "2026-04-12",
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "projekt_sammanfattning_tech_stack",
+      "label": "Tech Stack (Next.js 14, TypeScript, Tailwind, Supabase)",
+      "file_type": "document",
+      "source_file": "PROJEKT-SAMMANFATTNING.md",
+      "source_location": "Section 2: TECH STACK",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "projekt_sammanfattning_design_system",
+      "label": "Design System - Soft Structure",
+      "file_type": "document",
+      "source_file": "PROJEKT-SAMMANFATTNING.md",
+      "source_location": "Section 3: DESIGN SYSTEM",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "projekt_sammanfattning_state_management",
+      "label": "State Management (Dodsbo Type, Context, Store)",
+      "file_type": "document",
+      "source_file": "PROJEKT-SAMMANFATTNING.md",
+      "source_location": "Section 6: STATE MANAGEMENT",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "projekt_sammanfattning_supabase_db",
+      "label": "Supabase Database (10 Tables)",
+      "file_type": "document",
+      "source_file": "PROJEKT-SAMMANFATTNING.md",
+      "source_location": "Section 7: SUPABASE DATABAS",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "projekt_sammanfattning_juridiska_regler",
+      "label": "Swedish Legal Rules (Arvdabalken 1958:637)",
+      "file_type": "document",
+      "source_file": "PROJEKT-SAMMANFATTNING.md",
+      "source_location": "Section 9: JURIDISKA REGLER",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "projekt_sammanfattning_process_phases",
+      "label": "Process Phases (Akut, Kartlaggning, Bouppteckning, Arvskifte, Avslutat)",
+      "file_type": "document",
+      "source_file": "PROJEKT-SAMMANFATTNING.md",
+      "source_location": "Section 9: Processfaser",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "projekt_sammanfattning_51_pages",
+      "label": "51 App Pages (All Routes)",
+      "file_type": "document",
+      "source_file": "PROJEKT-SAMMANFATTNING.md",
+      "source_location": "Section 4: ALLA SIDOR",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "projekt_sammanfattning_backlog",
+      "label": "Backlog (Multi-user, Losore Sync, OCR, Premium)",
+      "file_type": "document",
+      "source_file": "PROJEKT-SAMMANFATTNING.md",
+      "source_location": "Section 11: VAD SOM ATERSTAAR",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "projekt_sammanfattning_mike_ross_ai",
+      "label": "Mike Ross AI (Juridisk Hjalp Chatbot)",
+      "file_type": "document",
+      "source_file": "PROJEKT-SAMMANFATTNING.md",
+      "source_location": "Section 4: Verktyg",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    }
+  ],
+  "edges": [
+    {
+      "source": "konkurrent-analys_sjalvbedomning",
+      "target": "konkurrent-analys_atgardsplan",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "graphify-out/converted/konkurrent-analys-och-sjalvbedomning_62088502.md",
+      "source_location": "Self-assessment findings drive action plan priorities",
+      "weight": 1.0
+    },
+    {
+      "source": "konkurrent-analys_atgardsplan",
+      "target": "konkurrent-analys_positionering",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "graphify-out/converted/konkurrent-analys-och-sjalvbedomning_62088502.md",
+      "source_location": "Action plan addresses positioning gaps",
+      "weight": 1.0
+    },
+    {
+      "source": "konkurrent-analys_rationale_no_lawyer",
+      "target": "konkurrent-analys_dodsboappen",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "graphify-out/converted/konkurrent-analys-och-sjalvbedomning_62088502.md",
+      "source_location": "Sheet: Var sjalvbedomning - Jurist-tillgang rated 0/10",
+      "weight": 1.0
+    },
+    {
+      "source": "konkurrent-analys_rationale_support_missing",
+      "target": "konkurrent-analys_dodsboappen",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "graphify-out/converted/konkurrent-analys-och-sjalvbedomning_62088502.md",
+      "source_location": "Sheet: Atgardsplan - AKUT priority, impact 10/10",
+      "weight": 1.0
+    },
+    {
+      "source": "konkurrent-analys_rationale_smart_dashboard",
+      "target": "konkurrent-analys_dodsboappen",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "graphify-out/converted/konkurrent-analys-och-sjalvbedomning_62088502.md",
+      "source_location": "Sheet: Var sjalvbedomning - Dashboard rated 5/10",
+      "weight": 1.0
+    },
+    {
+      "source": "konkurrent-analys_dodsboappen",
+      "target": "konkurrent-analys_aatos",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "graphify-out/converted/konkurrent-analys-och-sjalvbedomning_62088502.md",
+      "source_location": "Sheet: Funktionsjamforelse",
+      "weight": 1.0
+    },
+    {
+      "source": "konkurrent-analys_dodsboappen",
+      "target": "konkurrent-analys_lexly",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "graphify-out/converted/konkurrent-analys-och-sjalvbedomning_62088502.md",
+      "source_location": "Sheet: Funktionsjamforelse",
+      "weight": 1.0
+    },
+    {
+      "source": "skv_form_skv4600",
+      "target": "skv_form_skv461",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "skv_form_structure_analysis.md",
+      "source_location": "Executive Summary",
+      "weight": 1.0
+    },
+    {
+      "source": "skv_form_skv4600",
+      "target": "skv_form_assets_section",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "skv_form_structure_analysis.md",
+      "source_location": "Page 3",
+      "weight": 1.0
+    },
+    {
+      "source": "skv_form_skv4600",
+      "target": "skv_form_liabilities_section",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "skv_form_structure_analysis.md",
+      "source_location": "Page 4",
+      "weight": 1.0
+    },
+    {
+      "source": "skv_form_skv4600",
+      "target": "skv_form_forrattningsman",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "skv_form_structure_analysis.md",
+      "source_location": "Page 1, Page 7+",
+      "weight": 1.0
+    },
+    {
+      "source": "skv_form_skv4600",
+      "target": "skv_form_bouppgivare",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "skv_form_structure_analysis.md",
+      "source_location": "Page 1",
+      "weight": 1.0
+    },
+    {
+      "source": "skv_form_skv4600",
+      "target": "skv_form_timeline",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "skv_form_structure_analysis.md",
+      "source_location": "Timeline Critical Dates",
+      "weight": 1.0
+    },
+    {
+      "source": "bug_report_currentstep_stuck",
+      "target": "projekt_sammanfattning_process_phases",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "BUG-REPORT.md",
+      "source_location": "BUG #1 - computeStep uses same phase names as process phases",
+      "weight": 0.8
+    },
+    {
+      "source": "bug_report_supabase_500",
+      "target": "projekt_sammanfattning_supabase_db",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "BUG-REPORT.md",
+      "source_location": "BUG #2 references dodsbon table schema",
+      "weight": 1.0
+    },
+    {
+      "source": "bug_report_ai_markdown",
+      "target": "projekt_sammanfattning_mike_ross_ai",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "BUG-REPORT.md",
+      "source_location": "BUG #3 - src/app/juridisk-hjalp/page.tsx",
+      "weight": 1.0
+    },
+    {
+      "source": "bug_report_api_security",
+      "target": "projekt_sammanfattning_mike_ross_ai",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "BUG-REPORT.md",
+      "source_location": "BUG #4 - src/app/api/juridisk-ai/route.ts",
+      "weight": 1.0
+    },
+    {
+      "source": "bug_report_issue_localstorage",
+      "target": "konkurrent-analys_sjalvbedomning",
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "BUG-REPORT.md",
+      "source_location": "Both identify losore/kostnader localStorage as data loss risk",
+      "weight": 0.9
+    },
+    {
+      "source": "bug_report_issue_localstorage",
+      "target": "projekt_sammanfattning_backlog",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "BUG-REPORT.md",
+      "source_location": "Both reference losore+kostnader Supabase sync as needed",
+      "weight": 0.8
+    },
+    {
+      "source": "ux_testrapport",
+      "target": "konkurrent-analys_sjalvbedomning",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "graphify-out/converted/ux-testrapport-50-personas_1a00e175.md",
+      "source_location": "UX test findings validate self-assessment scores",
+      "weight": 0.9
+    },
+    {
+      "source": "ux_testrapport_nodbroms_loved",
+      "target": "konkurrent-analys_unique_features",
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "graphify-out/converted/ux-testrapport-50-personas_1a00e175.md",
+      "source_location": "Nodbroms rated 9/10 in self-assessment, loved by 42/50 in UX test",
+      "weight": 0.9
+    },
+    {
+      "source": "ux_testrapport_accessibility_issues",
+      "target": "konkurrent-analys_sjalvbedomning",
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "graphify-out/converted/ux-testrapport-50-personas_1a00e175.md",
+      "source_location": "a11y rated 3/10 in self-assessment, flagged by 5 personas in UX",
+      "weight": 0.9
+    },
+    {
+      "source": "ux_testrapport_bankid_wanted",
+      "target": "konkurrent-analys_atgardsplan",
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "graphify-out/converted/ux-testrapport-50-personas_1a00e175.md",
+      "source_location": "BankID listed as HOG priority in both action plan and UX findings",
+      "weight": 0.8
+    },
+    {
+      "source": "ux_testrapport_bodelning_missing",
+      "target": "konkurrent-analys_sjalvbedomning",
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "graphify-out/converted/ux-testrapport-50-personas_1a00e175.md",
+      "source_location": "Both identify bodelning integration as critical gap",
+      "weight": 0.8
+    },
+    {
+      "source": "ux_testrapport_internationellt_missing",
+      "target": "konkurrent-analys_sjalvbedomning",
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "graphify-out/converted/ux-testrapport-50-personas_1a00e175.md",
+      "source_location": "International arv rated 4/10 self-assessment, flagged by 5 personas",
+      "weight": 0.8
+    },
+    {
+      "source": "ux_testrapport_foretag_missing",
+      "target": "konkurrent-analys_sjalvbedomning",
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "graphify-out/converted/ux-testrapport-50-personas_1a00e175.md",
+      "source_location": "Foretag i dodsbo rated 4/10 self-assessment, flagged by 3 personas",
+      "weight": 0.8
+    },
+    {
+      "source": "skv_form_structure_analysis",
+      "target": "projekt_sammanfattning",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "skv_form_structure_analysis.md",
+      "source_location": "SKV form analysis informs the app's bouppteckning feature",
+      "weight": 0.8
+    },
+    {
+      "source": "skv_form_forrattningsman",
+      "target": "projekt_sammanfattning_state_management",
+      "relation": "shares_data_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "PROJEKT-SAMMANFATTNING.md",
+      "source_location": "Dodsbo type includes forrattningsman field",
+      "weight": 0.7
+    },
+    {
+      "source": "skv_form_bouppgivare",
+      "target": "projekt_sammanfattning_state_management",
+      "relation": "shares_data_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "PROJEKT-SAMMANFATTNING.md",
+      "source_location": "Dodsbo type includes bouppgivare field",
+      "weight": 0.7
+    },
+    {
+      "source": "skv_form_timeline",
+      "target": "projekt_sammanfattning_process_phases",
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "skv_form_structure_analysis.md",
+      "source_location": "SKV 3-month deadline maps to bouppteckning phase in app",
+      "weight": 0.8
+    },
+    {
+      "source": "projekt_sammanfattning_juridiska_regler",
+      "target": "skv_form_structure_analysis",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "PROJEKT-SAMMANFATTNING.md",
+      "source_location": "Both reference Skatteverket registration deadlines",
+      "weight": 0.8
+    },
+    {
+      "source": "projekt_sammanfattning",
+      "target": "konkurrent-analys_dodsboappen",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "PROJEKT-SAMMANFATTNING.md",
+      "source_location": "Project summary describes the same app analyzed in competitor analysis",
+      "weight": 0.9
+    },
+    {
+      "source": "bug_report",
+      "target": "projekt_sammanfattning",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "BUG-REPORT.md",
+      "source_location": "Bug report targets https://db-three-alpha.vercel.app/",
+      "weight": 1.0
+    },
+    {
+      "source": "bug_report_invite_token",
+      "target": "projekt_sammanfattning_supabase_db",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "BUG-REPORT.md",
+      "source_location": "References supabase/migrations/004_invites.sql",
+      "weight": 1.0
+    },
+    {
+      "source": "konkurrent-analys_rationale_no_lawyer",
+      "target": "ux_testrapport",
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "graphify-out/converted/ux-testrapport-50-personas_1a00e175.md",
+      "source_location": "Gustav Sandberg (jurist persona) confirms missing lawyer features",
+      "weight": 0.8
+    },
+    {
+      "source": "konkurrent-analys_rationale_support_missing",
+      "target": "ux_testrapport",
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "graphify-out/converted/ux-testrapport-50-personas_1a00e175.md",
+      "source_location": "Multiple personas (Goran, Ingrid, etc.) need phone/chat support",
+      "weight": 0.8
+    }
+  ],
+  "hyperedges": [
+    {
+      "id": "localstorage_data_loss_risk",
+      "label": "localStorage Data Loss Risk (Losore + Kostnader)",
+      "nodes": [
+        "bug_report_issue_localstorage",
+        "konkurrent-analys_sjalvbedomning",
+        "projekt_sammanfattning_backlog"
+      ],
+      "relation": "participate_in",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "BUG-REPORT.md"
+    },
+    {
+      "id": "skv_bouppteckning_compliance",
+      "label": "SKV Bouppteckning Compliance (Form Structure + App Feature + Legal Rules)",
+      "nodes": [
+        "skv_form_skv4600",
+        "projekt_sammanfattning_juridiska_regler",
+        "projekt_sammanfattning_process_phases",
+        "skv_form_timeline"
+      ],
+      "relation": "implement",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "skv_form_structure_analysis.md"
+    },
+    {
+      "id": "cross_document_gap_analysis",
+      "label": "Cross-Document Gap Validation (UX Test + Self-Assessment + Action Plan)",
+      "nodes": [
+        "ux_testrapport",
+        "konkurrent-analys_sjalvbedomning",
+        "konkurrent-analys_atgardsplan",
+        "bug_report"
+      ],
+      "relation": "form",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "graphify-out/converted/ux-testrapport-50-personas_1a00e175.md"
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

@@ -135,6 +135,7 @@ function JuridiskHjalpContent() {
   const [mounted, setMounted] = useState(false);
   const [animatingIdx, setAnimatingIdx] = useState<number | null>(null);
   const [usedMessages, setUsedMessages] = useState(0);
+  const [showPremiumModal, setShowPremiumModal] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);

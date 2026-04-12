@@ -5,6 +5,8 @@ import Link from 'next/link';
 import { DodsboProvider, useDodsbo } from '@/lib/context';
 import { BottomNav } from '@/components/ui/BottomNav';
 import { ArrowLeft, Users, Bot, Check, Clock, AlertCircle, Plus, Trash2, Calendar } from 'lucide-react';
+import { createClient } from '@/lib/supabase/client';
+import { getBeslut, addBeslut, updateBeslut, deleteBeslut, getAnteckningar, addAnteckning, deleteAnteckning } from '@/lib/supabase/services/samarbete-service';
 
 function MikeRossTip({ text }: { text: string }) {
   return (
@@ -85,80 +87,93 @@ function TabBeslut() {
   const [showAddForm, setShowAddForm] = useState(false);
   const [newDecisionTitle, setNewDecisionTitle] = useState('');
   const [selectedPredefined, setSelectedPredefined] = useState('');
+  const [dodsboId, setDodsboId] = useState<string | null>(null);
 
   useEffect(() => {
-    const stored = localStorage.getItem('samarbete-beslut');
-    if (stored) {
-      setDecisions(JSON.parse(stored));
-    } else {
-      const initial: Decision[] = PREDEFINED_DECISIONS.map((title) => ({
-        id: Math.random().toString(36).substr(2, 9),
-        title,
-        status: 'Väntar',
-        approvals: state.delagare.reduce((acc, del) => {
-          acc[del.name] = false;
-          return acc;
-        }, {} as Record<string, boolean>),
-        lastUpdated: new Date().toISOString(),
-        createdAt: new Date().toISOString()
-      }));
-      setDecisions(initial);
-      localStorage.setItem('samarbete-beslut', JSON.stringify(initial));
-    }
+    const supabase = createClient();
+    supabase.auth.getUser().then(async ({ data: { user } }) => {
+      if (!user) {
+        const stored = localStorage.getItem('samarbete-beslut');
+        if (stored) {
+          setDecisions(JSON.parse(stored));
+        } else {
+          const initial: Decision[] = PREDEFINED_DECISIONS.map((title) => ({
+            id: Math.random().toString(36).substr(2, 9),
+            title,
+            status: 'Väntar' as DecisionStatus,
+            approvals: state.delagare.reduce((acc, del) => { acc[del.name] = false; return acc; }, {} as Record<string, boolean>),
+            lastUpdated: new Date().toISOString(),
+            createdAt: new Date().toISOString(),
+          }));
+          setDecisions(initial);
+          localStorage.setItem('samarbete-beslut', JSON.stringify(initial));
+        }
+        return;
+      }
+      const { data: dodsbon } = await supabase.from('dodsbon').select('id').order('created_at').limit(1);
+      const dbId = dodsbon?.[0]?.id ?? null;
+      setDodsboId(dbId);
+      if (dbId) {
+        const { data } = await getBeslut(dbId);
+        if (data && data.length > 0) {
+          setDecisions(data.map(row => ({ id: row.id, title: row.title, status: row.status, approvals: row.approvals, lastUpdated: row.updated_at, createdAt: row.created_at })));
+        } else {
+          for (const title of PREDEFINED_DECISIONS) {
+            const approvals = state.delagare.reduce((acc, del) => { acc[del.name] = false; return acc; }, {} as Record<string, boolean>);
+            await addBeslut(dbId, title, approvals);
+          }
+          const { data: seeded } = await getBeslut(dbId);
+          if (seeded) setDecisions(seeded.map(row => ({ id: row.id, title: row.title, status: row.status, approvals: row.approvals, lastUpdated: row.updated_at, createdAt: row.created_at })));
+        }
+      }
+    });
   }, [state.delagare]);
 
-  const updateDecision = (id: string, updatedDecision: Decision) => {
-    const updated = decisions.map(d => d.id === id ? updatedDecision : d);
-    setDecisions(updated);
-    localStorage.setItem('samarbete-beslut', JSON.stringify(updated));
+  const updateDecision = async (id: string, updatedDecision: Decision) => {
+    setDecisions(prev => prev.map(d => d.id === id ? updatedDecision : d));
+    if (dodsboId) {
+      await updateBeslut(id, { status: updatedDecision.status, approvals: updatedDecision.approvals });
+    } else {
+      const updated = decisions.map(d => d.id === id ? updatedDecision : d);
+      localStorage.setItem('samarbete-beslut', JSON.stringify(updated));
+    }
   };
 
   const toggleApproval = (decisionId: string, delagareName: string) => {
     const decision = decisions.find(d => d.id === decisionId);
     if (!decision) return;
-
     const newApprovals = { ...decision.approvals };
     newApprovals[delagareName] = !newApprovals[delagareName];
-
     const allApproved = Object.values(newApprovals).every(v => v === true);
     const newStatus: DecisionStatus = allApproved ? 'Alla godkänt' : 'Väntar';
-
-    updateDecision(decisionId, {
-      ...decision,
-      approvals: newApprovals,
-      status: newStatus,
-      lastUpdated: new Date().toISOString()
-    });
+    updateDecision(decisionId, { ...decision, approvals: newApprovals, status: newStatus, lastUpdated: new Date().toISOString() });
   };
 
-  const addDecision = () => {
+  const addDecision = async () => {
     const title = selectedPredefined || newDecisionTitle;
     if (!title.trim()) return;
-
-    const newDecision: Decision = {
-      id: Math.random().toString(36).substr(2, 9),
-      title,
-      status: 'Väntar',
-      approvals: state.delagare.reduce((acc, del) => {
-        acc[del.name] = false;
-        return acc;
-      }, {} as Record<string, boolean>),
-      lastUpdated: new Date().toISOString(),
-      createdAt: new Date().toISOString()
-    };
-
-    const updated = [...decisions, newDecision];
-    setDecisions(updated);
-    localStorage.setItem('samarbete-beslut', JSON.stringify(updated));
+    const approvals = state.delagare.reduce((acc, del) => { acc[del.name] = false; return acc; }, {} as Record<string, boolean>);
+    if (dodsboId) {
+      const { data } = await addBeslut(dodsboId, title, approvals);
+      if (data) setDecisions(prev => [...prev, { id: data.id, title: data.title, status: data.status, approvals: data.approvals, lastUpdated: data.updated_at, createdAt: data.created_at }]);
+    } else {
+      const newDecision: Decision = { id: Math.random().toString(36).substr(2, 9), title, status: 'Väntar', approvals, lastUpdated: new Date().toISOString(), createdAt: new Date().toISOString() };
+      const updated = [...decisions, newDecision];
+      setDecisions(updated);
+      localStorage.setItem('samarbete-beslut', JSON.stringify(updated));
+    }
     setNewDecisionTitle('');
     setSelectedPredefined('');
     setShowAddForm(false);
   };
 
-  const deleteDecision = (id: string) => {
-    const updated = decisions.filter(d => d.id !== id);
-    setDecisions(updated);
-    localStorage.setItem('samarbete-beslut', JSON.stringify(updated));
+  const deleteDecision = async (id: string) => {
+    setDecisions(prev => prev.filter(d => d.id !== id));
+    if (dodsboId) {
+      await deleteBeslut(id);
+    } else {
+      localStorage.setItem('samarbete-beslut', JSON.stringify(decisions.filter(d => d.id !== id)));
+    }
   };
 
   return (
@@ -278,39 +293,54 @@ function TabBeslut() {
 }
 
 function TabAnteckningar() {
-  const { state } = useDodsbo();
   const [notes, setNotes] = useState<Note[]>([]);
   const [author, setAuthor] = useState('');
   const [content, setContent] = useState('');
+  const [dodsboId, setDodsboId] = useState<string | null>(null);
 
   useEffect(() => {
-    const stored = localStorage.getItem('samarbete-anteckningar');
-    if (stored) {
-      setNotes(JSON.parse(stored));
-    }
+    const supabase = createClient();
+    supabase.auth.getUser().then(async ({ data: { user } }) => {
+      if (!user) {
+        const stored = localStorage.getItem('samarbete-anteckningar');
+        if (stored) setNotes(JSON.parse(stored));
+        return;
+      }
+      const { data: dodsbon } = await supabase.from('dodsbon').select('id').order('created_at').limit(1);
+      const dbId = dodsbon?.[0]?.id ?? null;
+      setDodsboId(dbId);
+      if (dbId) {
+        const { data } = await getAnteckningar(dbId);
+        if (data) setNotes(data.map(row => ({ id: row.id, author: row.author, content: row.content, timestamp: row.created_at })));
+      } else {
+        const stored = localStorage.getItem('samarbete-anteckningar');
+        if (stored) setNotes(JSON.parse(stored));
+      }
+    });
   }, []);
 
-  const addNote = () => {
+  const addNote = async () => {
     if (!author.trim() || !content.trim()) return;
-
-    const newNote: Note = {
-      id: Math.random().toString(36).substr(2, 9),
-      author: author,
-      content,
-      timestamp: new Date().toISOString()
-    };
-
-    const updated = [newNote, ...notes];
-    setNotes(updated);
-    localStorage.setItem('samarbete-anteckningar', JSON.stringify(updated));
+    if (dodsboId) {
+      const { data } = await addAnteckning(dodsboId, author, content);
+      if (data) setNotes(prev => [{ id: data.id, author: data.author, content: data.content, timestamp: data.created_at }, ...prev]);
+    } else {
+      const newNote: Note = { id: Math.random().toString(36).substr(2, 9), author, content, timestamp: new Date().toISOString() };
+      const updated = [newNote, ...notes];
+      setNotes(updated);
+      localStorage.setItem('samarbete-anteckningar', JSON.stringify(updated));
+    }
     setAuthor('');
     setContent('');
   };
 
-  const deleteNote = (id: string) => {
-    const updated = notes.filter(n => n.id !== id);
-    setNotes(updated);
-    localStorage.setItem('samarbete-anteckningar', JSON.stringify(updated));
+  const deleteNote = async (id: string) => {
+    setNotes(prev => prev.filter(n => n.id !== id));
+    if (dodsboId) {
+      await deleteAnteckning(id);
+    } else {
+      localStorage.setItem('samarbete-anteckningar', JSON.stringify(notes.filter(n => n.id !== id)));
+    }
   };
 
   return (

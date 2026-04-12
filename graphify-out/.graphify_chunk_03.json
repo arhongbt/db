@@ -1,0 +1,124 @@
+{
+  "nodes": [
+    {
+      "id": "favicon-32x32_dove_icon",
+      "label": "Dodsbo Favicon 32x32",
+      "file_type": "image",
+      "source_file": "public/favicon-32x32.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "icon-192_dove_icon",
+      "label": "Dodsbo App Icon 192px",
+      "file_type": "image",
+      "source_file": "public/icons/icon-192.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "icon-512_dove_icon",
+      "label": "Dodsbo App Icon 512px",
+      "file_type": "image",
+      "source_file": "public/icons/icon-512.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "brand_dove_logo",
+      "label": "Dodsbo Dove Logo",
+      "file_type": "concept",
+      "source_file": "public/favicon-32x32.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "brand_color_steel_blue",
+      "label": "Brand Color Steel Blue (#3B5168)",
+      "file_type": "concept",
+      "source_file": "public/icons/icon-512.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    }
+  ],
+  "edges": [
+    {
+      "source": "favicon-32x32_dove_icon",
+      "target": "brand_dove_logo",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/favicon-32x32.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "icon-192_dove_icon",
+      "target": "brand_dove_logo",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/icons/icon-192.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "icon-512_dove_icon",
+      "target": "brand_dove_logo",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/icons/icon-512.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "favicon-32x32_dove_icon",
+      "target": "icon-192_dove_icon",
+      "relation": "semantically_similar_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/favicon-32x32.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "icon-192_dove_icon",
+      "target": "icon-512_dove_icon",
+      "relation": "semantically_similar_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/icons/icon-192.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "brand_dove_logo",
+      "target": "brand_color_steel_blue",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/icons/icon-512.png",
+      "source_location": null,
+      "weight": 0.8
+    }
+  ],
+  "hyperedges": [],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

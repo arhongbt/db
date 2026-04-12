@@ -1,0 +1,145 @@
+{
+  "nodes": [
+    {
+      "id": "favicon-16x16_bird_logo_favicon",
+      "label": "Bird Logo Favicon 16x16",
+      "file_type": "image",
+      "source_file": "public/favicon-16x16.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "logo_dove_brand_logo",
+      "label": "Dodsbo Dove Brand Logo (PNG)",
+      "file_type": "image",
+      "source_file": "public/logo.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "logo_svg_dove_brand_logo",
+      "label": "Dodsbo Dove Brand Logo (SVG wrapper)",
+      "file_type": "image",
+      "source_file": "public/logo.svg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "design_element_dove_bird",
+      "label": "Stylized Dove/Bird Motif",
+      "file_type": "image",
+      "source_file": "public/logo.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "color_dark_navy_slate",
+      "label": "Dark Navy/Slate Blue Brand Color",
+      "file_type": "image",
+      "source_file": "public/logo.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "brand_dodsbo",
+      "label": "Dodsbo Application Brand Identity",
+      "file_type": "image",
+      "source_file": "public/logo.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    }
+  ],
+  "edges": [
+    {
+      "source": "favicon-16x16_bird_logo_favicon",
+      "target": "logo_dove_brand_logo",
+      "relation": "semantically_similar_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/favicon-16x16.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "logo_svg_dove_brand_logo",
+      "target": "logo_dove_brand_logo",
+      "relation": "semantically_similar_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/logo.svg",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "logo_dove_brand_logo",
+      "target": "design_element_dove_bird",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/logo.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "logo_dove_brand_logo",
+      "target": "color_dark_navy_slate",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/logo.png",
+      "source_location": null,
+      "weight": 0.8
+    },
+    {
+      "source": "logo_dove_brand_logo",
+      "target": "brand_dodsbo",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "public/logo.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "favicon-16x16_bird_logo_favicon",
+      "target": "brand_dodsbo",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "public/favicon-16x16.png",
+      "source_location": null,
+      "weight": 0.9
+    },
+    {
+      "source": "design_element_dove_bird",
+      "target": "brand_dodsbo",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "public/logo.png",
+      "source_location": null,
+      "weight": 0.8
+    }
+  ],
+  "hyperedges": [],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

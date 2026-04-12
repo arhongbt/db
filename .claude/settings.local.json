@@ -5,7 +5,44 @@
       "Bash(rtk read:*)",
       "Bash(mkdir -p /Users/benzinho/Desktop/dodsbo/.claude/skills/graphify)",
       "Bash(cp /Users/benzinho/.claude/skills/graphify/SKILL.md /Users/benzinho/Desktop/dodsbo/.claude/skills/graphify/SKILL.md)",
-      "Bash(cp /Users/benzinho/.claude/skills/graphify/.graphify_version /Users/benzinho/Desktop/dodsbo/.claude/skills/graphify/.graphify_version)"
+      "Bash(cp /Users/benzinho/.claude/skills/graphify/.graphify_version /Users/benzinho/Desktop/dodsbo/.claude/skills/graphify/.graphify_version)",
+      "mcp__plugin_claude-mem_mcp-search__smart_outline",
+      "Bash(rtk curl:*)",
+      "Bash(rtk npx:*)",
+      "Bash(npm info:*)",
+      "Bash(npm install:*)",
+      "Bash(firecrawl init:*)",
+      "Bash(rtk pip:*)",
+      "Bash(python3 -m pip install crawl4ai --break-system-packages)",
+      "Bash(python3 -m crawl4ai-setup)",
+      "Bash(python3 -c \"import crawl4ai; print\\(crawl4ai.__version__\\)\")",
+      "Bash(crawl4ai-setup)",
+      "Bash(rtk grep:*)",
+      "Bash(echo \"exit: $?\")",
+      "Bash(sed -n '130,160p' /Users/benzinho/Desktop/dodsbo/src/app/juridisk-hjalp/page.tsx)",
+      "Bash(sed -n '285,320p' /Users/benzinho/Desktop/dodsbo/src/app/juridisk-hjalp/page.tsx)",
+      "Bash(sed -n '490,540p' /Users/benzinho/Desktop/dodsbo/src/app/juridisk-hjalp/page.tsx)",
+      "Skill(update-config)",
+      "Skill(update-config:*)",
+      "Bash(rtk git:*)",
+      "Bash(rtk wc:*)",
+      "Bash(sed -n '1,20p' /Users/benzinho/Desktop/dodsbo/src/app/juridisk-hjalp/page.tsx)",
+      "Bash(sed -n '129,175p' /Users/benzinho/Desktop/dodsbo/src/app/juridisk-hjalp/page.tsx)"
+    ]
+  },
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd /Users/benzinho/Desktop/dodsbo && git log origin/main..HEAD --oneline 2>/dev/null | grep -q . && git push origin main 2>&1 | tail -5 || true",
+            "timeout": 60,
+            "statusMessage": "Deploying to Vercel...",
+            "async": true
+          }
+        ]
+      }
     ]
   }
 }

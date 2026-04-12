@@ -1,0 +1,7155 @@
+{
+  "nodes": [
+    {
+      "id": "g0",
+      "type": "group",
+      "label": "D\u00f6dsbo Hantering & Arvingar",
+      "x": 0,
+      "y": 0,
+      "width": 1320,
+      "height": 1120,
+      "color": "1"
+    },
+    {
+      "id": "n_page_mikerosstip",
+      "type": "file",
+      "file": "graphify/obsidian/MikeRossTip().md",
+      "x": 20,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_addarvinge",
+      "type": "file",
+      "file": "graphify/obsidian/addArvinge().md",
+      "x": 220,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_adddelagare",
+      "type": "file",
+      "file": "graphify/obsidian/addDelagare().md",
+      "x": 420,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_addtillgang",
+      "type": "file",
+      "file": "graphify/obsidian/addTillgang().md",
+      "x": 20,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_canproceed",
+      "type": "file",
+      "file": "graphify/obsidian/canProceed().md",
+      "x": 220,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_copyphone",
+      "type": "file",
+      "file": "graphify/obsidian/copyPhone().md",
+      "x": 420,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_generateallletters",
+      "type": "file",
+      "file": "graphify/obsidian/generateAllLetters().md",
+      "x": 20,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_generateannouncementtext",
+      "type": "file",
+      "file": "graphify/obsidian/generateAnnouncementText().md",
+      "x": 220,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_generateletterforbank",
+      "type": "file",
+      "file": "graphify/obsidian/generateLetterForBank().md",
+      "x": 420,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_generatetext",
+      "type": "file",
+      "file": "graphify/obsidian/generateText().md",
+      "x": 20,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_handleaddcustombank",
+      "type": "file",
+      "file": "graphify/obsidian/handleAddCustomBank().md",
+      "x": 220,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_handlecopytext",
+      "type": "file",
+      "file": "graphify/obsidian/handleCopyText().md",
+      "x": 420,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_handledownloaddocx",
+      "type": "file",
+      "file": "graphify/obsidian/handleDownloadDocx().md",
+      "x": 20,
+      "y": 400,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_handledownloadpdf",
+      "type": "file",
+      "file": "graphify/obsidian/handleDownloadPDF().md",
+      "x": 220,
+      "y": 400,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_handleinputchange",
+      "type": "file",
+      "file": "graphify/obsidian/handleInputChange().md",
+      "x": 420,
+      "y": 400,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_handlesave",
+      "type": "file",
+      "file": "graphify/obsidian/handleSave().md",
+      "x": 20,
+      "y": 480,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_handlesaveplan",
+      "type": "file",
+      "file": "graphify/obsidian/handleSavePlan().md",
+      "x": 220,
+      "y": 480,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_handleshare",
+      "type": "file",
+      "file": "graphify/obsidian/handleShare().md",
+      "x": 420,
+      "y": 480,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_next",
+      "type": "file",
+      "file": "graphify/obsidian/next().md",
+      "x": 20,
+      "y": 560,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_app_arvskifteshandling_page_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/page.tsx_39.md",
+      "x": 220,
+      "y": 560,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_app_bank_guide_page_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/page.tsx_40.md",
+      "x": 420,
+      "y": 560,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_app_bankbrev_page_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/page.tsx_31.md",
+      "x": 20,
+      "y": 640,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_app_begravningsplanering_page_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/page.tsx_4.md",
+      "x": 220,
+      "y": 640,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_app_dodsannons_page_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/page.tsx_44.md",
+      "x": 420,
+      "y": 640,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_app_dodsboanmalan_page_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/page.tsx_12.md",
+      "x": 20,
+      "y": 720,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_app_minnesida_page_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/page.tsx_43.md",
+      "x": 220,
+      "y": 720,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_app_testamente_page_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/page.tsx_20.md",
+      "x": 420,
+      "y": 720,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_prev",
+      "type": "file",
+      "file": "graphify/obsidian/prev().md",
+      "x": 20,
+      "y": 800,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_removearvinge",
+      "type": "file",
+      "file": "graphify/obsidian/removeArvinge().md",
+      "x": 220,
+      "y": 800,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_togglebank",
+      "type": "file",
+      "file": "graphify/obsidian/toggleBank().md",
+      "x": 420,
+      "y": 800,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g1",
+      "type": "group",
+      "label": "Konkurrentanalys & Positionering",
+      "x": 1400,
+      "y": 0,
+      "width": 1100,
+      "height": 820,
+      "color": "2"
+    },
+    {
+      "id": "n_konkurrent-analys_aatos",
+      "type": "file",
+      "file": "graphify/obsidian/Aatos (Competitor).md",
+      "x": 1420,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_konkurrent-analys_atgardsplan",
+      "type": "file",
+      "file": "graphify/obsidian/Action Plan (Atgardsplan).md",
+      "x": 1620,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_projekt_sammanfattning_backlog",
+      "type": "file",
+      "file": "graphify/obsidian/Backlog (Multi-user, Losore Sync, OCR, Premium).md",
+      "x": 1820,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_konkurrent-analys_positionering",
+      "type": "file",
+      "file": "graphify/obsidian/Competitive Positioning Strategy.md",
+      "x": 1420,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_konkurrent-analys_dodsboappen",
+      "type": "file",
+      "file": "graphify/obsidian/Dodsboappen (Sista Resan).md",
+      "x": 1620,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_bug_report_issue_localstorage",
+      "type": "file",
+      "file": "graphify/obsidian/ISSUE 4 LosoreKostnader Not Synced to Supabase.md",
+      "x": 1820,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_konkurrent-analys_lexly",
+      "type": "file",
+      "file": "graphify/obsidian/Lexly (Competitor).md",
+      "x": 1420,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_bug_report",
+      "type": "file",
+      "file": "graphify/obsidian/Penetration Test and Bug Report (2026-04-11).md",
+      "x": 1620,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_projekt_sammanfattning",
+      "type": "file",
+      "file": "graphify/obsidian/Projekt-Sammanfattning (Sista Resan).md",
+      "x": 1820,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_konkurrent-analys_rationale_smart_dashboard",
+      "type": "file",
+      "file": "graphify/obsidian/Rationale Dashboard Shows 18 Links Without Prioritization.md",
+      "x": 1420,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_konkurrent-analys_rationale_no_lawyer",
+      "type": "file",
+      "file": "graphify/obsidian/Rationale No Lawyer Access is Biggest Weakness.md",
+      "x": 1620,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_konkurrent-analys_rationale_support_missing",
+      "type": "file",
+      "file": "graphify/obsidian/Rationale No Support Channel is a Dealbreaker.md",
+      "x": 1820,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_skv_form_structure_analysis",
+      "type": "file",
+      "file": "graphify/obsidian/SKV 4600 Bouppteckning Form Structure Analysis.md",
+      "x": 1420,
+      "y": 400,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_konkurrent-analys_sjalvbedomning",
+      "type": "file",
+      "file": "graphify/obsidian/Self-Assessment (Sjalvbedomning).md",
+      "x": 1620,
+      "y": 400,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_projekt_sammanfattning_juridiska_regler",
+      "type": "file",
+      "file": "graphify/obsidian/Swedish Legal Rules (Arvdabalken 1958637).md",
+      "x": 1820,
+      "y": 400,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_ux_testrapport_accessibility_issues",
+      "type": "file",
+      "file": "graphify/obsidian/UX Finding Accessibility (a11y) Problems.md",
+      "x": 1420,
+      "y": 480,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_ux_testrapport_bankid_wanted",
+      "type": "file",
+      "file": "graphify/obsidian/UX Finding BankID Login Wanted by 8 Personas.md",
+      "x": 1620,
+      "y": 480,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_ux_testrapport_bodelning_missing",
+      "type": "file",
+      "file": "graphify/obsidian/UX Finding Bodelning for Gifta is Critically Missing.md",
+      "x": 1820,
+      "y": 480,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_ux_testrapport_foretag_missing",
+      "type": "file",
+      "file": "graphify/obsidian/UX Finding Company in Estate Not Supported.md",
+      "x": 1420,
+      "y": 560,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_ux_testrapport_internationellt_missing",
+      "type": "file",
+      "file": "graphify/obsidian/UX Finding International Estates Not Supported.md",
+      "x": 1620,
+      "y": 560,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_ux_testrapport",
+      "type": "file",
+      "file": "graphify/obsidian/UX Test Report - 50 Personas.md",
+      "x": 1820,
+      "y": 560,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g2",
+      "type": "group",
+      "label": "Sista Resan Redesign",
+      "x": 2580,
+      "y": 0,
+      "width": 880,
+      "height": 520,
+      "color": "3"
+    },
+    {
+      "id": "n_sista_resan_redesign_bottomnavproto",
+      "type": "file",
+      "file": "graphify/obsidian/BottomNavProto().md",
+      "x": 2600,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_sista_resan_redesign_dashboardview",
+      "type": "file",
+      "file": "graphify/obsidian/DashboardView().md",
+      "x": 2800,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_sista_resan_redesign_landingview",
+      "type": "file",
+      "file": "graphify/obsidian/LandingView().md",
+      "x": 3000,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_sista_resan_redesign_navtab",
+      "type": "file",
+      "file": "graphify/obsidian/NavTab().md",
+      "x": 2600,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_sista_resan_redesign_phaseindicator",
+      "type": "file",
+      "file": "graphify/obsidian/PhaseIndicator().md",
+      "x": 2800,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_sista_resan_redesign_priorityaction",
+      "type": "file",
+      "file": "graphify/obsidian/PriorityAction().md",
+      "x": 3000,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_sista_resan_redesign_sistaresanredesign",
+      "type": "file",
+      "file": "graphify/obsidian/SistaResanRedesign().md",
+      "x": 2600,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_sista_resan_redesign_statcard",
+      "type": "file",
+      "file": "graphify/obsidian/StatCard().md",
+      "x": 2800,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_sista_resan_redesign_taskitem",
+      "type": "file",
+      "file": "graphify/obsidian/TaskItem().md",
+      "x": 3000,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_sista_resan_redesign_tasksview",
+      "type": "file",
+      "file": "graphify/obsidian/TasksView().md",
+      "x": 2600,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_sista_resan_redesign_tokensview",
+      "type": "file",
+      "file": "graphify/obsidian/TokensView().md",
+      "x": 2800,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_sista_resan_redesign_jsx",
+      "type": "file",
+      "file": "graphify/obsidian/sista-resan-redesign.jsx.md",
+      "x": 3000,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g3",
+      "type": "group",
+      "label": "Chat & Markdown Rendering",
+      "x": 3540,
+      "y": 0,
+      "width": 880,
+      "height": 520,
+      "color": "4"
+    },
+    {
+      "id": "n_page_typewriterbubble",
+      "type": "file",
+      "file": "graphify/obsidian/TypewriterBubble().md",
+      "x": 3560,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_getusedmessages",
+      "type": "file",
+      "file": "graphify/obsidian/getUsedMessages().md",
+      "x": 3760,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_handlekeydown",
+      "type": "file",
+      "file": "graphify/obsidian/handleKeyDown().md",
+      "x": 3960,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_handlescroll",
+      "type": "file",
+      "file": "graphify/obsidian/handleScroll().md",
+      "x": 3560,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_handletouchend",
+      "type": "file",
+      "file": "graphify/obsidian/handleTouchEnd().md",
+      "x": 3760,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_handletouchstart",
+      "type": "file",
+      "file": "graphify/obsidian/handleTouchStart().md",
+      "x": 3960,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_incrementusedmessages",
+      "type": "file",
+      "file": "graphify/obsidian/incrementUsedMessages().md",
+      "x": 3560,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_app_juridisk_hjalp_page_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/page.tsx_16.md",
+      "x": 3760,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_renderinline",
+      "type": "file",
+      "file": "graphify/obsidian/renderInline().md",
+      "x": 3960,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_rendermarkdown",
+      "type": "file",
+      "file": "graphify/obsidian/renderMarkdown().md",
+      "x": 3560,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_sendmessage",
+      "type": "file",
+      "file": "graphify/obsidian/sendMessage().md",
+      "x": 3760,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_usetypewriter",
+      "type": "file",
+      "file": "graphify/obsidian/useTypewriter().md",
+      "x": 3960,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g4",
+      "type": "group",
+      "label": "Beslut & Anteckningar",
+      "x": 4500,
+      "y": 0,
+      "width": 880,
+      "height": 520,
+      "color": "5"
+    },
+    {
+      "id": "n_page_adddecision",
+      "type": "file",
+      "file": "graphify/obsidian/addDecision().md",
+      "x": 4520,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_addnote",
+      "type": "file",
+      "file": "graphify/obsidian/addNote().md",
+      "x": 4720,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_deletedecision",
+      "type": "file",
+      "file": "graphify/obsidian/deleteDecision().md",
+      "x": 4920,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_deletenote",
+      "type": "file",
+      "file": "graphify/obsidian/deleteNote().md",
+      "x": 4520,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_getentrycolor",
+      "type": "file",
+      "file": "graphify/obsidian/getEntryColor().md",
+      "x": 4720,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_getentryicon",
+      "type": "file",
+      "file": "graphify/obsidian/getEntryIcon().md",
+      "x": 4920,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_getstatuscolor",
+      "type": "file",
+      "file": "graphify/obsidian/getStatusColor().md",
+      "x": 4520,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_getstatusicon",
+      "type": "file",
+      "file": "graphify/obsidian/getStatusIcon().md",
+      "x": 4720,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_app_samarbete_page_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/page.tsx_7.md",
+      "x": 4920,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_toggleapproval",
+      "type": "file",
+      "file": "graphify/obsidian/toggleApproval().md",
+      "x": 4520,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_updatedecision",
+      "type": "file",
+      "file": "graphify/obsidian/updateDecision().md",
+      "x": 4720,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g5",
+      "type": "group",
+      "label": "Arvskalkylator",
+      "x": 5460,
+      "y": 0,
+      "width": 880,
+      "height": 520,
+      "color": "6"
+    },
+    {
+      "id": "n_page_kostnaderskeleton",
+      "type": "file",
+      "file": "graphify/obsidian/KostnaderSkeleton().md",
+      "x": 5480,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_addegendom",
+      "type": "file",
+      "file": "graphify/obsidian/addEgendom().md",
+      "x": 5680,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_calculateinheritance",
+      "type": "file",
+      "file": "graphify/obsidian/calculateInheritance().md",
+      "x": 5880,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_formatsek",
+      "type": "file",
+      "file": "graphify/obsidian/formatSEK().md",
+      "x": 5480,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_handledownloadavtal",
+      "type": "file",
+      "file": "graphify/obsidian/handleDownloadAvtal().md",
+      "x": 5680,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_app_arvskalkylator_page_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/page.tsx_28.md",
+      "x": 5880,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_app_arvskifte_page_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/page.tsx_32.md",
+      "x": 5480,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_app_bodelning_page_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/page.tsx_15.md",
+      "x": 5680,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_app_kostnader_page_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/page.tsx_47.md",
+      "x": 5880,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_removeegendom",
+      "type": "file",
+      "file": "graphify/obsidian/removeEgendom().md",
+      "x": 5480,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_removekostnad",
+      "type": "file",
+      "file": "graphify/obsidian/removeKostnad().md",
+      "x": 5680,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g6",
+      "type": "group",
+      "label": "Filhantering & Upload",
+      "x": 6420,
+      "y": 0,
+      "width": 880,
+      "height": 520,
+      "color": "1"
+    },
+    {
+      "id": "n_page_formatfilesize",
+      "type": "file",
+      "file": "graphify/obsidian/formatFileSize().md",
+      "x": 6440,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_getcategorylabel",
+      "type": "file",
+      "file": "graphify/obsidian/getCategoryLabel().md",
+      "x": 6640,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_getfileicon",
+      "type": "file",
+      "file": "graphify/obsidian/getFileIcon().md",
+      "x": 6840,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_handledelete",
+      "type": "file",
+      "file": "graphify/obsidian/handleDelete().md",
+      "x": 6440,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_handledownload",
+      "type": "file",
+      "file": "graphify/obsidian/handleDownload().md",
+      "x": 6640,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_handledragleave",
+      "type": "file",
+      "file": "graphify/obsidian/handleDragLeave().md",
+      "x": 6840,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_handledragover",
+      "type": "file",
+      "file": "graphify/obsidian/handleDragOver().md",
+      "x": 6440,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_handledrop",
+      "type": "file",
+      "file": "graphify/obsidian/handleDrop().md",
+      "x": 6640,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_handlefileselect",
+      "type": "file",
+      "file": "graphify/obsidian/handleFileSelect().md",
+      "x": 6840,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_handleupload",
+      "type": "file",
+      "file": "graphify/obsidian/handleUpload().md",
+      "x": 6440,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_app_dokument_page_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/page.tsx_48.md",
+      "x": 6640,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g7",
+      "type": "group",
+      "label": "Design Variant C",
+      "x": 7380,
+      "y": 0,
+      "width": 880,
+      "height": 520,
+      "color": "2"
+    },
+    {
+      "id": "n_sista_resan_design_c_blobshape",
+      "type": "file",
+      "file": "graphify/obsidian/BlobShape().md",
+      "x": 7400,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_sista_resan_design_c_bottomnavc",
+      "type": "file",
+      "file": "graphify/obsidian/BottomNavC().md",
+      "x": 7600,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_sista_resan_design_c_dashboardc",
+      "type": "file",
+      "file": "graphify/obsidian/DashboardC().md",
+      "x": 7800,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_sista_resan_design_c_designc",
+      "type": "file",
+      "file": "graphify/obsidian/DesignC().md",
+      "x": 7400,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_sista_resan_design_c_iconbubble",
+      "type": "file",
+      "file": "graphify/obsidian/IconBubble().md",
+      "x": 7600,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_sista_resan_design_c_landingc",
+      "type": "file",
+      "file": "graphify/obsidian/LandingC().md",
+      "x": 7800,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_sista_resan_design_c_navtabc",
+      "type": "file",
+      "file": "graphify/obsidian/NavTabC().md",
+      "x": 7400,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_sista_resan_design_c_tasksc",
+      "type": "file",
+      "file": "graphify/obsidian/TasksC().md",
+      "x": 7600,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_sista_resan_design_c_tokensc",
+      "type": "file",
+      "file": "graphify/obsidian/TokensC().md",
+      "x": 7800,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_sista_resan_design_c_jsx",
+      "type": "file",
+      "file": "graphify/obsidian/sista-resan-design-C.jsx.md",
+      "x": 7400,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g8",
+      "type": "group",
+      "label": "Design Variant E",
+      "x": 8340,
+      "y": 0,
+      "width": 880,
+      "height": 520,
+      "color": "3"
+    },
+    {
+      "id": "n_sista_resan_design_e_blobshape",
+      "type": "file",
+      "file": "graphify/obsidian/BlobShape()_1.md",
+      "x": 8360,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_sista_resan_design_e_bottomnave",
+      "type": "file",
+      "file": "graphify/obsidian/BottomNavE().md",
+      "x": 8560,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_sista_resan_design_e_dashboarde",
+      "type": "file",
+      "file": "graphify/obsidian/DashboardE().md",
+      "x": 8760,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_sista_resan_design_e_designe",
+      "type": "file",
+      "file": "graphify/obsidian/DesignE().md",
+      "x": 8360,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_sista_resan_design_e_iconbubble",
+      "type": "file",
+      "file": "graphify/obsidian/IconBubble()_1.md",
+      "x": 8560,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_sista_resan_design_e_landinge",
+      "type": "file",
+      "file": "graphify/obsidian/LandingE().md",
+      "x": 8760,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_sista_resan_design_e_navtab",
+      "type": "file",
+      "file": "graphify/obsidian/NavTab()_1.md",
+      "x": 8360,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_sista_resan_design_e_taskse",
+      "type": "file",
+      "file": "graphify/obsidian/TasksE().md",
+      "x": 8560,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_sista_resan_design_e_tokense",
+      "type": "file",
+      "file": "graphify/obsidian/TokensE().md",
+      "x": 8760,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_sista_resan_design_e_jsx",
+      "type": "file",
+      "file": "graphify/obsidian/sista-resan-design-E.jsx.md",
+      "x": 8360,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g9",
+      "type": "group",
+      "label": "Design Variant D",
+      "x": 9300,
+      "y": 0,
+      "width": 880,
+      "height": 520,
+      "color": "4"
+    },
+    {
+      "id": "n_sista_resan_design_d_blobshape",
+      "type": "file",
+      "file": "graphify/obsidian/BlobShape()_2.md",
+      "x": 9320,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_sista_resan_design_d_bottomnavd",
+      "type": "file",
+      "file": "graphify/obsidian/BottomNavD().md",
+      "x": 9520,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_sista_resan_design_d_dashboardd",
+      "type": "file",
+      "file": "graphify/obsidian/DashboardD().md",
+      "x": 9720,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_sista_resan_design_d_designd",
+      "type": "file",
+      "file": "graphify/obsidian/DesignD().md",
+      "x": 9320,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_sista_resan_design_d_iconbubble",
+      "type": "file",
+      "file": "graphify/obsidian/IconBubble()_2.md",
+      "x": 9520,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_sista_resan_design_d_landingd",
+      "type": "file",
+      "file": "graphify/obsidian/LandingD().md",
+      "x": 9720,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_sista_resan_design_d_navtabd",
+      "type": "file",
+      "file": "graphify/obsidian/NavTabD().md",
+      "x": 9320,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_sista_resan_design_d_tasksd",
+      "type": "file",
+      "file": "graphify/obsidian/TasksD().md",
+      "x": 9520,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_sista_resan_design_d_tokensd",
+      "type": "file",
+      "file": "graphify/obsidian/TokensD().md",
+      "x": 9720,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_sista_resan_design_d_jsx",
+      "type": "file",
+      "file": "graphify/obsidian/sista-resan-design-D.jsx.md",
+      "x": 9320,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g10",
+      "type": "group",
+      "label": "Bouppteckning PDF",
+      "x": 10260,
+      "y": 0,
+      "width": 880,
+      "height": 520,
+      "color": "5"
+    },
+    {
+      "id": "n_generate_bouppteckning_pdf_downloadbouppteckningpdf",
+      "type": "file",
+      "file": "graphify/obsidian/downloadBouppteckningPDF().md",
+      "x": 10280,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_generate_bouppteckning_pdf_ensurespace",
+      "type": "file",
+      "file": "graphify/obsidian/ensureSpace().md",
+      "x": 10480,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_lib_generate_bouppteckning_pdf_ts",
+      "type": "file",
+      "file": "graphify/obsidian/generate-bouppteckning-pdf.ts.md",
+      "x": 10680,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_generate_bouppteckning_pdf_rendercontent",
+      "type": "file",
+      "file": "graphify/obsidian/renderContent().md",
+      "x": 10280,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_generate_bouppteckning_pdf_renderfields",
+      "type": "file",
+      "file": "graphify/obsidian/renderFields().md",
+      "x": 10480,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_generate_bouppteckning_pdf_renderfooters",
+      "type": "file",
+      "file": "graphify/obsidian/renderFooters().md",
+      "x": 10680,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_generate_bouppteckning_pdf_rendersection",
+      "type": "file",
+      "file": "graphify/obsidian/renderSection().md",
+      "x": 10280,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_generate_bouppteckning_pdf_rendertable",
+      "type": "file",
+      "file": "graphify/obsidian/renderTable().md",
+      "x": 10480,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_generate_bouppteckning_pdf_rendertitleblock",
+      "type": "file",
+      "file": "graphify/obsidian/renderTitleBlock().md",
+      "x": 10680,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_generate_bouppteckning_pdf_renderwarnings",
+      "type": "file",
+      "file": "graphify/obsidian/renderWarnings().md",
+      "x": 10280,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g11",
+      "type": "group",
+      "label": "Inbjudningar & Medlemskap",
+      "x": 11220,
+      "y": 0,
+      "width": 880,
+      "height": 520,
+      "color": "6"
+    },
+    {
+      "id": "n_invite_service_acceptinvite",
+      "type": "file",
+      "file": "graphify/obsidian/acceptInvite().md",
+      "x": 11240,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_invite_service_createinvite",
+      "type": "file",
+      "file": "graphify/obsidian/createInvite().md",
+      "x": 11440,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_invite_service_generatetoken",
+      "type": "file",
+      "file": "graphify/obsidian/generateToken().md",
+      "x": 11640,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_invite_service_getinvitebytoken",
+      "type": "file",
+      "file": "graphify/obsidian/getInviteByToken().md",
+      "x": 11240,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_invite_service_getinvitelink",
+      "type": "file",
+      "file": "graphify/obsidian/getInviteLink().md",
+      "x": 11440,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_invite_service_getinvites",
+      "type": "file",
+      "file": "graphify/obsidian/getInvites().md",
+      "x": 11640,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_invite_service_getmembers",
+      "type": "file",
+      "file": "graphify/obsidian/getMembers().md",
+      "x": 11240,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_lib_supabase_services_invite_service_ts",
+      "type": "file",
+      "file": "graphify/obsidian/invite-service.ts.md",
+      "x": 11440,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_invite_service_removemember",
+      "type": "file",
+      "file": "graphify/obsidian/removeMember().md",
+      "x": 11640,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_invite_service_revokeinvite",
+      "type": "file",
+      "file": "graphify/obsidian/revokeInvite().md",
+      "x": 11240,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g12",
+      "type": "group",
+      "label": "SKV Formul\u00e4r & Process",
+      "x": 0,
+      "y": 1200,
+      "width": 880,
+      "height": 520,
+      "color": "1"
+    },
+    {
+      "id": "n_bug_report_currentstep_stuck",
+      "type": "file",
+      "file": "graphify/obsidian/BUG 1 currentStep Stuck at Nodbroms.md",
+      "x": 20,
+      "y": 1280,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_skv_form_bouppgivare",
+      "type": "file",
+      "file": "graphify/obsidian/Bouppgivare (Estate Informant).md",
+      "x": 220,
+      "y": 1280,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_skv_form_timeline",
+      "type": "file",
+      "file": "graphify/obsidian/Bouppteckning Timeline (3 months + 1 month registration).md",
+      "x": 420,
+      "y": 1280,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_skv_form_forrattningsman",
+      "type": "file",
+      "file": "graphify/obsidian/Forrattningsman (Two External Officials).md",
+      "x": 20,
+      "y": 1360,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_projekt_sammanfattning_process_phases",
+      "type": "file",
+      "file": "graphify/obsidian/Process Phases (Akut, Kartlaggning, Bouppteckning, Arvskifte, Avslutat).md",
+      "x": 220,
+      "y": 1360,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_skv_form_skv4600",
+      "type": "file",
+      "file": "graphify/obsidian/SKV 4600 (Estate Inventory Form).md",
+      "x": 420,
+      "y": 1360,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_skv_form_skv461",
+      "type": "file",
+      "file": "graphify/obsidian/SKV 461 Instruction Booklet (Utgava 8).md",
+      "x": 20,
+      "y": 1440,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_skv_form_assets_section",
+      "type": "file",
+      "file": "graphify/obsidian/SKV Form Assets Section (Tillgangar).md",
+      "x": 220,
+      "y": 1440,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_skv_form_liabilities_section",
+      "type": "file",
+      "file": "graphify/obsidian/SKV Form Liabilities Section (Skulder).md",
+      "x": 420,
+      "y": 1440,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_projekt_sammanfattning_state_management",
+      "type": "file",
+      "file": "graphify/obsidian/State Management (Dodsbo Type, Context, Store).md",
+      "x": 20,
+      "y": 1520,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g13",
+      "type": "group",
+      "label": "Design Variant B",
+      "x": 1400,
+      "y": 1200,
+      "width": 660,
+      "height": 420,
+      "color": "2"
+    },
+    {
+      "id": "n_sista_resan_design_b_bottomnavb",
+      "type": "file",
+      "file": "graphify/obsidian/BottomNavB().md",
+      "x": 1420,
+      "y": 1280,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_sista_resan_design_b_dashboardb",
+      "type": "file",
+      "file": "graphify/obsidian/DashboardB().md",
+      "x": 1620,
+      "y": 1280,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_sista_resan_design_b_designb",
+      "type": "file",
+      "file": "graphify/obsidian/DesignB().md",
+      "x": 1820,
+      "y": 1280,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_sista_resan_design_b_gloworb",
+      "type": "file",
+      "file": "graphify/obsidian/GlowOrb().md",
+      "x": 1420,
+      "y": 1360,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_sista_resan_design_b_landingb",
+      "type": "file",
+      "file": "graphify/obsidian/LandingB().md",
+      "x": 1620,
+      "y": 1360,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_sista_resan_design_b_navtabb",
+      "type": "file",
+      "file": "graphify/obsidian/NavTabB().md",
+      "x": 1820,
+      "y": 1360,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_sista_resan_design_b_tasksb",
+      "type": "file",
+      "file": "graphify/obsidian/TasksB().md",
+      "x": 1420,
+      "y": 1440,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_sista_resan_design_b_tokensb",
+      "type": "file",
+      "file": "graphify/obsidian/TokensB().md",
+      "x": 1620,
+      "y": 1440,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_sista_resan_design_b_jsx",
+      "type": "file",
+      "file": "graphify/obsidian/sista-resan-design-B.jsx.md",
+      "x": 1820,
+      "y": 1440,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g14",
+      "type": "group",
+      "label": "Notifikationer & P\u00e5minnelser",
+      "x": 2580,
+      "y": 1200,
+      "width": 660,
+      "height": 420,
+      "color": "3"
+    },
+    {
+      "id": "n_notifications_calculateupcomingreminders",
+      "type": "file",
+      "file": "graphify/obsidian/calculateUpcomingReminders().md",
+      "x": 2600,
+      "y": 1280,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_notifications_checkandnotifydeadlines",
+      "type": "file",
+      "file": "graphify/obsidian/checkAndNotifyDeadlines().md",
+      "x": 2800,
+      "y": 1280,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_notifications_getnotificationpermission",
+      "type": "file",
+      "file": "graphify/obsidian/getNotificationPermission().md",
+      "x": 3000,
+      "y": 1280,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_notifications_getnotificationprefs",
+      "type": "file",
+      "file": "graphify/obsidian/getNotificationPrefs().md",
+      "x": 2600,
+      "y": 1360,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_lib_notifications_ts",
+      "type": "file",
+      "file": "graphify/obsidian/notifications.ts.md",
+      "x": 2800,
+      "y": 1360,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_notifications_requestnotificationpermission",
+      "type": "file",
+      "file": "graphify/obsidian/requestNotificationPermission().md",
+      "x": 3000,
+      "y": 1360,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_notifications_savenotificationprefs",
+      "type": "file",
+      "file": "graphify/obsidian/saveNotificationPrefs().md",
+      "x": 2600,
+      "y": 1440,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_notifications_sendlocalnotification",
+      "type": "file",
+      "file": "graphify/obsidian/sendLocalNotification().md",
+      "x": 2800,
+      "y": 1440,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g15",
+      "type": "group",
+      "label": "Bodelningsavtal Generator",
+      "x": 3540,
+      "y": 1200,
+      "width": 660,
+      "height": 420,
+      "color": "4"
+    },
+    {
+      "id": "n_generate_bodelningsavtal_datacell",
+      "type": "file",
+      "file": "graphify/obsidian/dataCell().md",
+      "x": 3560,
+      "y": 1280,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_generate_bodelningsavtal_downloadbodelningsavtal",
+      "type": "file",
+      "file": "graphify/obsidian/downloadBodelningsavtal().md",
+      "x": 3760,
+      "y": 1280,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_generate_bodelningsavtal_egendomtable",
+      "type": "file",
+      "file": "graphify/obsidian/egendomTable().md",
+      "x": 3960,
+      "y": 1280,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_generate_bodelningsavtal_formatsek",
+      "type": "file",
+      "file": "graphify/obsidian/formatSEK()_2.md",
+      "x": 3560,
+      "y": 1360,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_lib_generate_bodelningsavtal_ts",
+      "type": "file",
+      "file": "graphify/obsidian/generate-bodelningsavtal.ts.md",
+      "x": 3760,
+      "y": 1360,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_generate_bodelningsavtal_headercell",
+      "type": "file",
+      "file": "graphify/obsidian/headerCell().md",
+      "x": 3960,
+      "y": 1360,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_generate_bodelningsavtal_sectionheading",
+      "type": "file",
+      "file": "graphify/obsidian/sectionHeading().md",
+      "x": 3560,
+      "y": 1440,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_generate_bodelningsavtal_subheading",
+      "type": "file",
+      "file": "graphify/obsidian/subHeading().md",
+      "x": 3760,
+      "y": 1440,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g16",
+      "type": "group",
+      "label": "Dokumentskanner",
+      "x": 4500,
+      "y": 1200,
+      "width": 660,
+      "height": 420,
+      "color": "5"
+    },
+    {
+      "id": "n_page_deletedoc",
+      "type": "file",
+      "file": "graphify/obsidian/deleteDoc().md",
+      "x": 4520,
+      "y": 1280,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_handlefilechange",
+      "type": "file",
+      "file": "graphify/obsidian/handleFileChange().md",
+      "x": 4720,
+      "y": 1280,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_loaddocs",
+      "type": "file",
+      "file": "graphify/obsidian/loadDocs().md",
+      "x": 4920,
+      "y": 1280,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_app_skanner_page_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/page.tsx_19.md",
+      "x": 4520,
+      "y": 1360,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_resetcapture",
+      "type": "file",
+      "file": "graphify/obsidian/resetCapture().md",
+      "x": 4720,
+      "y": 1360,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_savedocs",
+      "type": "file",
+      "file": "graphify/obsidian/saveDocs().md",
+      "x": 4920,
+      "y": 1360,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_savedocument",
+      "type": "file",
+      "file": "graphify/obsidian/saveDocument().md",
+      "x": 4520,
+      "y": 1440,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g17",
+      "type": "group",
+      "label": "Digitala Tillg\u00e5ngar",
+      "x": 5460,
+      "y": 1200,
+      "width": 660,
+      "height": 420,
+      "color": "6"
+    },
+    {
+      "id": "n_src_app_digitala_tillgangar_page_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/page.tsx_30.md",
+      "x": 5480,
+      "y": 1280,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_togglecryptocheckbox",
+      "type": "file",
+      "file": "graphify/obsidian/toggleCryptoCheckbox().md",
+      "x": 5680,
+      "y": 1280,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_toggledomainscheckbox",
+      "type": "file",
+      "file": "graphify/obsidian/toggleDomainsCheckbox().md",
+      "x": 5880,
+      "y": 1280,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_toggleemailcheckbox",
+      "type": "file",
+      "file": "graphify/obsidian/toggleEmailCheckbox().md",
+      "x": 5480,
+      "y": 1360,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_togglesection",
+      "type": "file",
+      "file": "graphify/obsidian/toggleSection().md",
+      "x": 5680,
+      "y": 1360,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_togglesocialcheckbox",
+      "type": "file",
+      "file": "graphify/obsidian/toggleSocialCheckbox().md",
+      "x": 5880,
+      "y": 1360,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_togglestreamingcheckbox",
+      "type": "file",
+      "file": "graphify/obsidian/toggleStreamingCheckbox().md",
+      "x": 5480,
+      "y": 1440,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g18",
+      "type": "group",
+      "label": "Bouppteckning Dokument",
+      "x": 6420,
+      "y": 1200,
+      "width": 660,
+      "height": 420,
+      "color": "1"
+    },
+    {
+      "id": "n_generate_bouppteckning_formatforsakringtype",
+      "type": "file",
+      "file": "graphify/obsidian/formatForsakringType().md",
+      "x": 6440,
+      "y": 1280,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_generate_bouppteckning_formatrelation",
+      "type": "file",
+      "file": "graphify/obsidian/formatRelation().md",
+      "x": 6640,
+      "y": 1280,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_generate_bouppteckning_formatsek",
+      "type": "file",
+      "file": "graphify/obsidian/formatSEK()_1.md",
+      "x": 6840,
+      "y": 1280,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_generate_bouppteckning_formatskuldtype",
+      "type": "file",
+      "file": "graphify/obsidian/formatSkuldType().md",
+      "x": 6440,
+      "y": 1360,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_generate_bouppteckning_formattillgangtype",
+      "type": "file",
+      "file": "graphify/obsidian/formatTillgangType().md",
+      "x": 6640,
+      "y": 1360,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_lib_generate_bouppteckning_ts",
+      "type": "file",
+      "file": "graphify/obsidian/generate-bouppteckning.ts.md",
+      "x": 6840,
+      "y": 1360,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_generate_bouppteckning_generatebouppteckningdocument",
+      "type": "file",
+      "file": "graphify/obsidian/generateBouppteckningDocument().md",
+      "x": 6440,
+      "y": 1440,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g19",
+      "type": "group",
+      "label": "Uppgiftshantering",
+      "x": 7380,
+      "y": 1200,
+      "width": 660,
+      "height": 420,
+      "color": "2"
+    },
+    {
+      "id": "n_tasks_service_addtask",
+      "type": "file",
+      "file": "graphify/obsidian/addTask().md",
+      "x": 7400,
+      "y": 1280,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_tasks_service_addtasksbulk",
+      "type": "file",
+      "file": "graphify/obsidian/addTasksBulk().md",
+      "x": 7600,
+      "y": 1280,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_tasks_service_gettasks",
+      "type": "file",
+      "file": "graphify/obsidian/getTasks().md",
+      "x": 7800,
+      "y": 1280,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_tasks_service_removetask",
+      "type": "file",
+      "file": "graphify/obsidian/removeTask().md",
+      "x": 7400,
+      "y": 1360,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_tasks_service_rowtotask",
+      "type": "file",
+      "file": "graphify/obsidian/rowToTask().md",
+      "x": 7600,
+      "y": 1360,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_lib_supabase_services_tasks_service_ts",
+      "type": "file",
+      "file": "graphify/obsidian/tasks-service.ts.md",
+      "x": 7800,
+      "y": 1360,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_tasks_service_updatetask",
+      "type": "file",
+      "file": "graphify/obsidian/updateTask().md",
+      "x": 7400,
+      "y": 1440,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g20",
+      "type": "group",
+      "label": "Dokumenttj\u00e4nst",
+      "x": 8340,
+      "y": 1200,
+      "width": 660,
+      "height": 420,
+      "color": "3"
+    },
+    {
+      "id": "n_dokument_service_deletedokument",
+      "type": "file",
+      "file": "graphify/obsidian/deleteDokument().md",
+      "x": 8360,
+      "y": 1280,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_lib_supabase_services_dokument_service_ts",
+      "type": "file",
+      "file": "graphify/obsidian/dokument-service.ts.md",
+      "x": 8560,
+      "y": 1280,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_dokument_service_formatfilesize",
+      "type": "file",
+      "file": "graphify/obsidian/formatFileSize()_1.md",
+      "x": 8760,
+      "y": 1280,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_dokument_service_getcategorylabel",
+      "type": "file",
+      "file": "graphify/obsidian/getCategoryLabel()_1.md",
+      "x": 8360,
+      "y": 1360,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_dokument_service_getdokument",
+      "type": "file",
+      "file": "graphify/obsidian/getDokument().md",
+      "x": 8560,
+      "y": 1360,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_dokument_service_getdokumenturl",
+      "type": "file",
+      "file": "graphify/obsidian/getDokumentUrl().md",
+      "x": 8760,
+      "y": 1360,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_dokument_service_uploaddokument",
+      "type": "file",
+      "file": "graphify/obsidian/uploadDokument().md",
+      "x": 8360,
+      "y": 1440,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g21",
+      "type": "group",
+      "label": "Bouppteckning & Inst\u00e4llningar",
+      "x": 9300,
+      "y": 1200,
+      "width": 660,
+      "height": 400,
+      "color": "4"
+    },
+    {
+      "id": "n_page_async",
+      "type": "file",
+      "file": "graphify/obsidian/async().md",
+      "x": 9320,
+      "y": 1280,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_handlepersonnummerblur",
+      "type": "file",
+      "file": "graphify/obsidian/handlePersonnummerBlur().md",
+      "x": 9520,
+      "y": 1280,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_app_bouppteckning_page_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/page.tsx_5.md",
+      "x": 9720,
+      "y": 1280,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_app_installningar_page_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/page.tsx_13.md",
+      "x": 9320,
+      "y": 1360,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_savebouppteckninginfo",
+      "type": "file",
+      "file": "graphify/obsidian/saveBouppteckningInfo().md",
+      "x": 9520,
+      "y": 1360,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_settextsize",
+      "type": "file",
+      "file": "graphify/obsidian/setTextSize().md",
+      "x": 9720,
+      "y": 1360,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g22",
+      "type": "group",
+      "label": "Dataexport",
+      "x": 10260,
+      "y": 1200,
+      "width": 660,
+      "height": 400,
+      "color": "5"
+    },
+    {
+      "id": "n_export_data_downloadfile",
+      "type": "file",
+      "file": "graphify/obsidian/downloadFile().md",
+      "x": 10280,
+      "y": 1280,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_export_data_esc",
+      "type": "file",
+      "file": "graphify/obsidian/esc().md",
+      "x": 10480,
+      "y": 1280,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_lib_export_data_ts",
+      "type": "file",
+      "file": "graphify/obsidian/export-data.ts.md",
+      "x": 10680,
+      "y": 1280,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_export_data_exportascsv",
+      "type": "file",
+      "file": "graphify/obsidian/exportAsCSV().md",
+      "x": 10280,
+      "y": 1360,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_export_data_exportasjson",
+      "type": "file",
+      "file": "graphify/obsidian/exportAsJSON().md",
+      "x": 10480,
+      "y": 1360,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_export_data_sanitize",
+      "type": "file",
+      "file": "graphify/obsidian/sanitize().md",
+      "x": 10680,
+      "y": 1360,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g23",
+      "type": "group",
+      "label": "Personnummer Validering",
+      "x": 11220,
+      "y": 1200,
+      "width": 660,
+      "height": 400,
+      "color": "6"
+    },
+    {
+      "id": "n_personnummer_formatpersonnummer",
+      "type": "file",
+      "file": "graphify/obsidian/formatPersonnummer().md",
+      "x": 11240,
+      "y": 1280,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_personnummer_isvaliddate",
+      "type": "file",
+      "file": "graphify/obsidian/isValidDate().md",
+      "x": 11440,
+      "y": 1280,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_personnummer_luhncheck",
+      "type": "file",
+      "file": "graphify/obsidian/luhnCheck().md",
+      "x": 11640,
+      "y": 1280,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_personnummer_normalize",
+      "type": "file",
+      "file": "graphify/obsidian/normalize().md",
+      "x": 11240,
+      "y": 1360,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_lib_personnummer_ts",
+      "type": "file",
+      "file": "graphify/obsidian/personnummer.ts.md",
+      "x": 11440,
+      "y": 1360,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_personnummer_validatepersonnummer",
+      "type": "file",
+      "file": "graphify/obsidian/validatePersonnummer().md",
+      "x": 11640,
+      "y": 1360,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g24",
+      "type": "group",
+      "label": "Skulder Service",
+      "x": 0,
+      "y": 1800,
+      "width": 660,
+      "height": 400,
+      "color": "1"
+    },
+    {
+      "id": "n_skulder_service_addskuld",
+      "type": "file",
+      "file": "graphify/obsidian/addSkuld().md",
+      "x": 20,
+      "y": 1880,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_skulder_service_getskulder",
+      "type": "file",
+      "file": "graphify/obsidian/getSkulder().md",
+      "x": 220,
+      "y": 1880,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_skulder_service_removeskuld",
+      "type": "file",
+      "file": "graphify/obsidian/removeSkuld().md",
+      "x": 420,
+      "y": 1880,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_skulder_service_rowtoskuld",
+      "type": "file",
+      "file": "graphify/obsidian/rowToSkuld().md",
+      "x": 20,
+      "y": 1960,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_lib_supabase_services_skulder_service_ts",
+      "type": "file",
+      "file": "graphify/obsidian/skulder-service.ts.md",
+      "x": 220,
+      "y": 1960,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_skulder_service_updateskuld",
+      "type": "file",
+      "file": "graphify/obsidian/updateSkuld().md",
+      "x": 420,
+      "y": 1960,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g25",
+      "type": "group",
+      "label": "Tillg\u00e5ngar Service",
+      "x": 1400,
+      "y": 1800,
+      "width": 660,
+      "height": 400,
+      "color": "2"
+    },
+    {
+      "id": "n_tillgangar_service_addtillgang",
+      "type": "file",
+      "file": "graphify/obsidian/addTillgang()_1.md",
+      "x": 1420,
+      "y": 1880,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_tillgangar_service_gettillgangar",
+      "type": "file",
+      "file": "graphify/obsidian/getTillgangar().md",
+      "x": 1620,
+      "y": 1880,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_tillgangar_service_removetillgang",
+      "type": "file",
+      "file": "graphify/obsidian/removeTillgang().md",
+      "x": 1820,
+      "y": 1880,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_tillgangar_service_rowtotillgang",
+      "type": "file",
+      "file": "graphify/obsidian/rowToTillgang().md",
+      "x": 1420,
+      "y": 1960,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_lib_supabase_services_tillgangar_service_ts",
+      "type": "file",
+      "file": "graphify/obsidian/tillgangar-service.ts.md",
+      "x": 1620,
+      "y": 1960,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_tillgangar_service_updatetillgang",
+      "type": "file",
+      "file": "graphify/obsidian/updateTillgang().md",
+      "x": 1820,
+      "y": 1960,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g26",
+      "type": "group",
+      "label": "F\u00f6rs\u00e4kringar Service",
+      "x": 2580,
+      "y": 1800,
+      "width": 660,
+      "height": 400,
+      "color": "3"
+    },
+    {
+      "id": "n_forsakringar_service_addforsakring",
+      "type": "file",
+      "file": "graphify/obsidian/addForsakring().md",
+      "x": 2600,
+      "y": 1880,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_lib_supabase_services_forsakringar_service_ts",
+      "type": "file",
+      "file": "graphify/obsidian/forsakringar-service.ts.md",
+      "x": 2800,
+      "y": 1880,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_forsakringar_service_getforsakringar",
+      "type": "file",
+      "file": "graphify/obsidian/getForsakringar().md",
+      "x": 3000,
+      "y": 1880,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_forsakringar_service_removeforsakring",
+      "type": "file",
+      "file": "graphify/obsidian/removeForsakring().md",
+      "x": 2600,
+      "y": 1960,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_forsakringar_service_rowtoforsakring",
+      "type": "file",
+      "file": "graphify/obsidian/rowToForsakring().md",
+      "x": 2800,
+      "y": 1960,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_forsakringar_service_updateforsakring",
+      "type": "file",
+      "file": "graphify/obsidian/updateForsakring().md",
+      "x": 3000,
+      "y": 1960,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g27",
+      "type": "group",
+      "label": "D\u00f6dsbo CRUD Service",
+      "x": 3540,
+      "y": 1800,
+      "width": 660,
+      "height": 400,
+      "color": "4"
+    },
+    {
+      "id": "n_dodsbo_service_createdodsbo",
+      "type": "file",
+      "file": "graphify/obsidian/createDodsbo().md",
+      "x": 3560,
+      "y": 1880,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_dodsbo_service_deletedodsbo",
+      "type": "file",
+      "file": "graphify/obsidian/deleteDodsbo().md",
+      "x": 3760,
+      "y": 1880,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_lib_supabase_services_dodsbo_service_ts",
+      "type": "file",
+      "file": "graphify/obsidian/dodsbo-service.ts.md",
+      "x": 3960,
+      "y": 1880,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_dodsbo_service_getdodsbobyid",
+      "type": "file",
+      "file": "graphify/obsidian/getDodsboById().md",
+      "x": 3560,
+      "y": 1960,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_dodsbo_service_getdodsbon",
+      "type": "file",
+      "file": "graphify/obsidian/getDodsbon().md",
+      "x": 3760,
+      "y": 1960,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_dodsbo_service_updatedodsbo",
+      "type": "file",
+      "file": "graphify/obsidian/updateDodsbo().md",
+      "x": 3960,
+      "y": 1960,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g28",
+      "type": "group",
+      "label": "Del\u00e4gare Service",
+      "x": 4500,
+      "y": 1800,
+      "width": 660,
+      "height": 400,
+      "color": "5"
+    },
+    {
+      "id": "n_delagare_service_adddelagare",
+      "type": "file",
+      "file": "graphify/obsidian/addDelagare()_1.md",
+      "x": 4520,
+      "y": 1880,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_lib_supabase_services_delagare_service_ts",
+      "type": "file",
+      "file": "graphify/obsidian/delagare-service.ts.md",
+      "x": 4720,
+      "y": 1880,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_delagare_service_getdelagare",
+      "type": "file",
+      "file": "graphify/obsidian/getDelagare().md",
+      "x": 4920,
+      "y": 1880,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_delagare_service_removedelagare",
+      "type": "file",
+      "file": "graphify/obsidian/removeDelagare().md",
+      "x": 4520,
+      "y": 1960,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_delagare_service_rowtodelagare",
+      "type": "file",
+      "file": "graphify/obsidian/rowToDelagare().md",
+      "x": 4720,
+      "y": 1960,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_delagare_service_updatedelagare",
+      "type": "file",
+      "file": "graphify/obsidian/updateDelagare().md",
+      "x": 4920,
+      "y": 1960,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g29",
+      "type": "group",
+      "label": "Varum\u00e4rke & Logotyp",
+      "x": 5460,
+      "y": 1800,
+      "width": 660,
+      "height": 400,
+      "color": "6"
+    },
+    {
+      "id": "n_favicon-16x16_bird_logo_favicon",
+      "type": "file",
+      "file": "graphify/obsidian/Bird Logo Favicon 16x16.md",
+      "x": 5480,
+      "y": 1880,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_color_dark_navy_slate",
+      "type": "file",
+      "file": "graphify/obsidian/Dark NavySlate Blue Brand Color.md",
+      "x": 5680,
+      "y": 1880,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_brand_dodsbo",
+      "type": "file",
+      "file": "graphify/obsidian/Dodsbo Application Brand Identity.md",
+      "x": 5880,
+      "y": 1880,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_logo_dove_brand_logo",
+      "type": "file",
+      "file": "graphify/obsidian/Dodsbo Dove Brand Logo (PNG).md",
+      "x": 5480,
+      "y": 1960,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_logo_svg_dove_brand_logo",
+      "type": "file",
+      "file": "graphify/obsidian/Dodsbo Dove Brand Logo (SVG wrapper).md",
+      "x": 5680,
+      "y": 1960,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_design_element_dove_bird",
+      "type": "file",
+      "file": "graphify/obsidian/Stylized DoveBird Motif.md",
+      "x": 5880,
+      "y": 1960,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g30",
+      "type": "group",
+      "label": "Modul 30",
+      "x": 6420,
+      "y": 1800,
+      "width": 660,
+      "height": 400,
+      "color": "1"
+    },
+    {
+      "id": "n_page_fullmaktskeleton",
+      "type": "file",
+      "file": "graphify/obsidian/FullmaktSkeleton().md",
+      "x": 6440,
+      "y": 1880,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_generatebankletters",
+      "type": "file",
+      "file": "graphify/obsidian/generateBankLetters().md",
+      "x": 6640,
+      "y": 1880,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_handlecopy",
+      "type": "file",
+      "file": "graphify/obsidian/handleCopy().md",
+      "x": 6840,
+      "y": 1880,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_app_fullmakt_page_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/page.tsx_21.md",
+      "x": 6440,
+      "y": 1960,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_app_skatteverket_guide_page_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/page.tsx_27.md",
+      "x": 6640,
+      "y": 1960,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g31",
+      "type": "group",
+      "label": "Modul 31",
+      "x": 7380,
+      "y": 1800,
+      "width": 660,
+      "height": 400,
+      "color": "2"
+    },
+    {
+      "id": "n_page_getinvitestatus",
+      "type": "file",
+      "file": "graphify/obsidian/getInviteStatus().md",
+      "x": 7400,
+      "y": 1880,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_handleadd",
+      "type": "file",
+      "file": "graphify/obsidian/handleAdd().md",
+      "x": 7600,
+      "y": 1880,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_handleinvite",
+      "type": "file",
+      "file": "graphify/obsidian/handleInvite().md",
+      "x": 7800,
+      "y": 1880,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_app_delagare_page_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/page.tsx_29.md",
+      "x": 7400,
+      "y": 1960,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_validate",
+      "type": "file",
+      "file": "graphify/obsidian/validate().md",
+      "x": 7600,
+      "y": 1960,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g32",
+      "type": "group",
+      "label": "Modul 32",
+      "x": 8340,
+      "y": 1800,
+      "width": 660,
+      "height": 400,
+      "color": "3"
+    },
+    {
+      "id": "n_generate_kallelse_docx_downloadkallelsedocx",
+      "type": "file",
+      "file": "graphify/obsidian/downloadKallelseDocx().md",
+      "x": 8360,
+      "y": 1880,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_generate_kallelse_docx_fieldrow",
+      "type": "file",
+      "file": "graphify/obsidian/fieldRow().md",
+      "x": 8560,
+      "y": 1880,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_lib_generate_kallelse_docx_ts",
+      "type": "file",
+      "file": "graphify/obsidian/generate-kallelse-docx.ts.md",
+      "x": 8760,
+      "y": 1880,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_generate_kallelse_docx_sectionline",
+      "type": "file",
+      "file": "graphify/obsidian/sectionLine().md",
+      "x": 8360,
+      "y": 1960,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_generate_kallelse_docx_spacer",
+      "type": "file",
+      "file": "graphify/obsidian/spacer().md",
+      "x": 8560,
+      "y": 1960,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g33",
+      "type": "group",
+      "label": "Modul 33",
+      "x": 9300,
+      "y": 1800,
+      "width": 660,
+      "height": 400,
+      "color": "4"
+    },
+    {
+      "id": "n_store_createinitialdodsbo",
+      "type": "file",
+      "file": "graphify/obsidian/createInitialDodsbo().md",
+      "x": 9320,
+      "y": 1880,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_store_dodsboreducer",
+      "type": "file",
+      "file": "graphify/obsidian/dodsboReducer().md",
+      "x": 9520,
+      "y": 1880,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_store_loadstate",
+      "type": "file",
+      "file": "graphify/obsidian/loadState().md",
+      "x": 9720,
+      "y": 1880,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_store_savestate",
+      "type": "file",
+      "file": "graphify/obsidian/saveState().md",
+      "x": 9320,
+      "y": 1960,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_lib_store_ts",
+      "type": "file",
+      "file": "graphify/obsidian/store.ts.md",
+      "x": 9520,
+      "y": 1960,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g34",
+      "type": "group",
+      "label": "Modul 34",
+      "x": 10260,
+      "y": 1800,
+      "width": 660,
+      "height": 400,
+      "color": "5"
+    },
+    {
+      "id": "n_brand_color_steel_blue",
+      "type": "file",
+      "file": "graphify/obsidian/Brand Color Steel Blue (3B5168).md",
+      "x": 10280,
+      "y": 1880,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_icon-192_dove_icon",
+      "type": "file",
+      "file": "graphify/obsidian/Dodsbo App Icon 192px.md",
+      "x": 10480,
+      "y": 1880,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_icon-512_dove_icon",
+      "type": "file",
+      "file": "graphify/obsidian/Dodsbo App Icon 512px.md",
+      "x": 10680,
+      "y": 1880,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_brand_dove_logo",
+      "type": "file",
+      "file": "graphify/obsidian/Dodsbo Dove Logo.md",
+      "x": 10280,
+      "y": 1960,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_favicon-32x32_dove_icon",
+      "type": "file",
+      "file": "graphify/obsidian/Dodsbo Favicon 32x32.md",
+      "x": 10480,
+      "y": 1960,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g35",
+      "type": "group",
+      "label": "Modul 35",
+      "x": 11220,
+      "y": 1800,
+      "width": 600,
+      "height": 400,
+      "color": "6"
+    },
+    {
+      "id": "n_page_handlebeforeinstallprompt",
+      "type": "file",
+      "file": "graphify/obsidian/handleBeforeInstallPrompt().md",
+      "x": 11240,
+      "y": 1880,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_handledismiss",
+      "type": "file",
+      "file": "graphify/obsidian/handleDismiss().md",
+      "x": 11440,
+      "y": 1880,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_handleinstall",
+      "type": "file",
+      "file": "graphify/obsidian/handleInstall().md",
+      "x": 11640,
+      "y": 1880,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_app_page_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/page.tsx.md",
+      "x": 11240,
+      "y": 1960,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g36",
+      "type": "group",
+      "label": "Modul 36",
+      "x": 0,
+      "y": 2280,
+      "width": 600,
+      "height": 400,
+      "color": "1"
+    },
+    {
+      "id": "n_page_handlelogin",
+      "type": "file",
+      "file": "graphify/obsidian/handleLogin().md",
+      "x": 20,
+      "y": 2360,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_handleregister",
+      "type": "file",
+      "file": "graphify/obsidian/handleRegister().md",
+      "x": 220,
+      "y": 2360,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_handleresetpassword",
+      "type": "file",
+      "file": "graphify/obsidian/handleResetPassword().md",
+      "x": 420,
+      "y": 2360,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_app_auth_page_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/page.tsx_8.md",
+      "x": 20,
+      "y": 2440,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g37",
+      "type": "group",
+      "label": "Modul 37",
+      "x": 1400,
+      "y": 2280,
+      "width": 600,
+      "height": 400,
+      "color": "2"
+    },
+    {
+      "id": "n_page_dashboardskeleton",
+      "type": "file",
+      "file": "graphify/obsidian/DashboardSkeleton().md",
+      "x": 1420,
+      "y": 2360,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_computestep",
+      "type": "file",
+      "file": "graphify/obsidian/computeStep().md",
+      "x": 1620,
+      "y": 2360,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_app_dashboard_page_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/page.tsx_23.md",
+      "x": 1820,
+      "y": 2360,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_statusicon",
+      "type": "file",
+      "file": "graphify/obsidian/statusIcon().md",
+      "x": 1420,
+      "y": 2440,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g38",
+      "type": "group",
+      "label": "Modul 38",
+      "x": 2580,
+      "y": 2280,
+      "width": 600,
+      "height": 400,
+      "color": "3"
+    },
+    {
+      "id": "n_generate_competitor_report_py",
+      "type": "file",
+      "file": "graphify/obsidian/generate-competitor-report.py.md",
+      "x": 2600,
+      "y": 2360,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_generate_competitor_report_style_header",
+      "type": "file",
+      "file": "graphify/obsidian/style_header().md",
+      "x": 2800,
+      "y": 2360,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_generate_competitor_report_style_row",
+      "type": "file",
+      "file": "graphify/obsidian/style_row().md",
+      "x": 3000,
+      "y": 2360,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g39",
+      "type": "group",
+      "label": "Modul 39",
+      "x": 3540,
+      "y": 2280,
+      "width": 600,
+      "height": 400,
+      "color": "4"
+    },
+    {
+      "id": "n_extract_skv_structure_rationale_10",
+      "type": "file",
+      "file": "graphify/obsidian/Extract and analyze JSON file content.md",
+      "x": 3560,
+      "y": 2360,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_extract_skv_structure_extract_from_json_file",
+      "type": "file",
+      "file": "graphify/obsidian/extract_from_json_file().md",
+      "x": 3760,
+      "y": 2360,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_extract_skv_structure_py",
+      "type": "file",
+      "file": "graphify/obsidian/extract_skv_structure.py.md",
+      "x": 3960,
+      "y": 2360,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g40",
+      "type": "group",
+      "label": "Modul 40",
+      "x": 4500,
+      "y": 2280,
+      "width": 600,
+      "height": 400,
+      "color": "5"
+    },
+    {
+      "id": "n_layout_jsonld",
+      "type": "file",
+      "file": "graphify/obsidian/JsonLd().md",
+      "x": 4520,
+      "y": 2360,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_layout_rootlayout",
+      "type": "file",
+      "file": "graphify/obsidian/RootLayout().md",
+      "x": 4720,
+      "y": 2360,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_app_layout_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/layout.tsx.md",
+      "x": 4920,
+      "y": 2360,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g41",
+      "type": "group",
+      "label": "Modul 41",
+      "x": 5460,
+      "y": 2280,
+      "width": 600,
+      "height": 400,
+      "color": "6"
+    },
+    {
+      "id": "n_src_app_nodbroms_page_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/page.tsx_26.md",
+      "x": 5480,
+      "y": 2360,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_toggledone",
+      "type": "file",
+      "file": "graphify/obsidian/toggleDone().md",
+      "x": 5680,
+      "y": 2360,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_urgencybadge",
+      "type": "file",
+      "file": "graphify/obsidian/urgencyBadge().md",
+      "x": 5880,
+      "y": 2360,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g42",
+      "type": "group",
+      "label": "Modul 42",
+      "x": 6420,
+      "y": 2280,
+      "width": 600,
+      "height": 400,
+      "color": "1"
+    },
+    {
+      "id": "n_route_post",
+      "type": "file",
+      "file": "graphify/obsidian/POST().md",
+      "x": 6440,
+      "y": 2360,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_route_checkratelimit",
+      "type": "file",
+      "file": "graphify/obsidian/checkRateLimit().md",
+      "x": 6640,
+      "y": 2360,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_app_api_juridisk_ai_route_ts",
+      "type": "file",
+      "file": "graphify/obsidian/route.ts_1.md",
+      "x": 6840,
+      "y": 2360,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g43",
+      "type": "group",
+      "label": "Modul 43",
+      "x": 7380,
+      "y": 2280,
+      "width": 600,
+      "height": 400,
+      "color": "2"
+    },
+    {
+      "id": "n_page_kallelsecontent",
+      "type": "file",
+      "file": "graphify/obsidian/KallelseContent().md",
+      "x": 7400,
+      "y": 2360,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_kallelseskeleton",
+      "type": "file",
+      "file": "graphify/obsidian/KallelseSkeleton().md",
+      "x": 7600,
+      "y": 2360,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_app_kallelse_page_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/page.tsx_33.md",
+      "x": 7800,
+      "y": 2360,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g44",
+      "type": "group",
+      "label": "Modul 44",
+      "x": 8340,
+      "y": 2280,
+      "width": 600,
+      "height": 400,
+      "color": "3"
+    },
+    {
+      "id": "n_page_avslutakontonskeleton",
+      "type": "file",
+      "file": "graphify/obsidian/AvslutaKontonSkeleton().md",
+      "x": 8360,
+      "y": 2360,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_app_avsluta_konton_page_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/page.tsx_34.md",
+      "x": 8560,
+      "y": 2360,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_toggleitem",
+      "type": "file",
+      "file": "graphify/obsidian/toggleItem().md",
+      "x": 8760,
+      "y": 2360,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g45",
+      "type": "group",
+      "label": "Modul 45",
+      "x": 9300,
+      "y": 2280,
+      "width": 600,
+      "height": 400,
+      "color": "4"
+    },
+    {
+      "id": "n_src_app_paminelser_page_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/page.tsx_35.md",
+      "x": 9320,
+      "y": 2360,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_togglenotifications",
+      "type": "file",
+      "file": "graphify/obsidian/toggleNotifications().md",
+      "x": 9520,
+      "y": 2360,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_togglereminderday",
+      "type": "file",
+      "file": "graphify/obsidian/toggleReminderDay().md",
+      "x": 9720,
+      "y": 2360,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g46",
+      "type": "group",
+      "label": "Modul 46",
+      "x": 10260,
+      "y": 2280,
+      "width": 600,
+      "height": 400,
+      "color": "5"
+    },
+    {
+      "id": "n_decorations_blobdecoration",
+      "type": "file",
+      "file": "graphify/obsidian/BlobDecoration().md",
+      "x": 10280,
+      "y": 2360,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_ui_decorations_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/Decorations.tsx.md",
+      "x": 10480,
+      "y": 2360,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_decorations_leafdecoration",
+      "type": "file",
+      "file": "graphify/obsidian/LeafDecoration().md",
+      "x": 10680,
+      "y": 2360,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g47",
+      "type": "group",
+      "label": "Modul 47",
+      "x": 11220,
+      "y": 2280,
+      "width": 600,
+      "height": 400,
+      "color": "6"
+    },
+    {
+      "id": "n_generate_bouppteckning_docx_downloadbouppteckningdocx",
+      "type": "file",
+      "file": "graphify/obsidian/downloadBouppteckningDocx().md",
+      "x": 11240,
+      "y": 2360,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_lib_generate_bouppteckning_docx_ts",
+      "type": "file",
+      "file": "graphify/obsidian/generate-bouppteckning-docx.ts.md",
+      "x": 11440,
+      "y": 2360,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_generate_bouppteckning_docx_rendersection",
+      "type": "file",
+      "file": "graphify/obsidian/renderSection()_1.md",
+      "x": 11640,
+      "y": 2360,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g48",
+      "type": "group",
+      "label": "Modul 48",
+      "x": 0,
+      "y": 2760,
+      "width": 600,
+      "height": 400,
+      "color": "1"
+    },
+    {
+      "id": "n_context_dodsboprovider",
+      "type": "file",
+      "file": "graphify/obsidian/DodsboProvider().md",
+      "x": 20,
+      "y": 2840,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_lib_context_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/context.tsx.md",
+      "x": 220,
+      "y": 2840,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_context_usedodsbo",
+      "type": "file",
+      "file": "graphify/obsidian/useDodsbo().md",
+      "x": 420,
+      "y": 2840,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g49",
+      "type": "group",
+      "label": "Modul 49",
+      "x": 1400,
+      "y": 2760,
+      "width": 600,
+      "height": 400,
+      "color": "2"
+    },
+    {
+      "id": "n_tasks_generatetasks",
+      "type": "file",
+      "file": "graphify/obsidian/generateTasks().md",
+      "x": 1420,
+      "y": 2840,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_tasks_nextid",
+      "type": "file",
+      "file": "graphify/obsidian/nextId().md",
+      "x": 1620,
+      "y": 2840,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_lib_tasks_ts",
+      "type": "file",
+      "file": "graphify/obsidian/tasks.ts.md",
+      "x": 1820,
+      "y": 2840,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g50",
+      "type": "group",
+      "label": "Modul 50",
+      "x": 2580,
+      "y": 2760,
+      "width": 600,
+      "height": 400,
+      "color": "3"
+    },
+    {
+      "id": "n_context_authprovider",
+      "type": "file",
+      "file": "graphify/obsidian/AuthProvider().md",
+      "x": 2600,
+      "y": 2840,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_lib_auth_context_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/context.tsx_1.md",
+      "x": 2800,
+      "y": 2840,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_context_useauth",
+      "type": "file",
+      "file": "graphify/obsidian/useAuth()_1.md",
+      "x": 3000,
+      "y": 2840,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g51",
+      "type": "group",
+      "label": "Modul 51",
+      "x": 3540,
+      "y": 2760,
+      "width": 600,
+      "height": 400,
+      "color": "4"
+    },
+    {
+      "id": "n_bug_report_supabase_500",
+      "type": "file",
+      "file": "graphify/obsidian/BUG 2 Supabase dodsbon Query Returns HTTP 500.md",
+      "x": 3560,
+      "y": 2840,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_bug_report_invite_token",
+      "type": "file",
+      "file": "graphify/obsidian/ISSUE 3 Invite Token Security (Permissive RLS).md",
+      "x": 3760,
+      "y": 2840,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_projekt_sammanfattning_supabase_db",
+      "type": "file",
+      "file": "graphify/obsidian/Supabase Database (10 Tables).md",
+      "x": 3960,
+      "y": 2840,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g52",
+      "type": "group",
+      "label": "Modul 52",
+      "x": 4500,
+      "y": 2760,
+      "width": 600,
+      "height": 400,
+      "color": "5"
+    },
+    {
+      "id": "n_bug_report_ai_markdown",
+      "type": "file",
+      "file": "graphify/obsidian/BUG 3 AI Chatbot Markdown Not Rendered.md",
+      "x": 4520,
+      "y": 2840,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_bug_report_api_security",
+      "type": "file",
+      "file": "graphify/obsidian/BUG 4 API Route No Security (Rate Limiting Added).md",
+      "x": 4720,
+      "y": 2840,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_projekt_sammanfattning_mike_ross_ai",
+      "type": "file",
+      "file": "graphify/obsidian/Mike Ross AI (Juridisk Hjalp Chatbot).md",
+      "x": 4920,
+      "y": 2840,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g53",
+      "type": "group",
+      "label": "Modul 53",
+      "x": 5460,
+      "y": 2760,
+      "width": 600,
+      "height": 400,
+      "color": "6"
+    },
+    {
+      "id": "n_logo_preview_logopreview",
+      "type": "file",
+      "file": "graphify/obsidian/LogoPreview().md",
+      "x": 5480,
+      "y": 2840,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_logo_preview_jsx",
+      "type": "file",
+      "file": "graphify/obsidian/logo-preview.jsx.md",
+      "x": 5680,
+      "y": 2840,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g54",
+      "type": "group",
+      "label": "Modul 54",
+      "x": 6420,
+      "y": 2760,
+      "width": 600,
+      "height": 400,
+      "color": "1"
+    },
+    {
+      "id": "n_generate_icons_generate",
+      "type": "file",
+      "file": "graphify/obsidian/generate().md",
+      "x": 6440,
+      "y": 2840,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_generate_icons_js",
+      "type": "file",
+      "file": "graphify/obsidian/generate-icons.js.md",
+      "x": 6640,
+      "y": 2840,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g55",
+      "type": "group",
+      "label": "Modul 55",
+      "x": 7380,
+      "y": 2760,
+      "width": 600,
+      "height": 400,
+      "color": "2"
+    },
+    {
+      "id": "n_middleware_middleware",
+      "type": "file",
+      "file": "graphify/obsidian/middleware().md",
+      "x": 7400,
+      "y": 2840,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_middleware_ts",
+      "type": "file",
+      "file": "graphify/obsidian/middleware.ts.md",
+      "x": 7600,
+      "y": 2840,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g56",
+      "type": "group",
+      "label": "Modul 56",
+      "x": 8340,
+      "y": 2760,
+      "width": 600,
+      "height": 400,
+      "color": "3"
+    },
+    {
+      "id": "n_robots_robots",
+      "type": "file",
+      "file": "graphify/obsidian/robots().md",
+      "x": 8360,
+      "y": 2840,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_app_robots_ts",
+      "type": "file",
+      "file": "graphify/obsidian/robots.ts.md",
+      "x": 8560,
+      "y": 2840,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g57",
+      "type": "group",
+      "label": "Modul 57",
+      "x": 9300,
+      "y": 2760,
+      "width": 600,
+      "height": 400,
+      "color": "4"
+    },
+    {
+      "id": "n_sitemap_sitemap",
+      "type": "file",
+      "file": "graphify/obsidian/sitemap().md",
+      "x": 9320,
+      "y": 2840,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_app_sitemap_ts",
+      "type": "file",
+      "file": "graphify/obsidian/sitemap.ts.md",
+      "x": 9520,
+      "y": 2840,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g58",
+      "type": "group",
+      "label": "Modul 58",
+      "x": 10260,
+      "y": 2760,
+      "width": 600,
+      "height": 400,
+      "color": "5"
+    },
+    {
+      "id": "n_error_error",
+      "type": "file",
+      "file": "graphify/obsidian/Error().md",
+      "x": 10280,
+      "y": 2840,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_app_error_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/error.tsx.md",
+      "x": 10480,
+      "y": 2840,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g59",
+      "type": "group",
+      "label": "Modul 59",
+      "x": 11220,
+      "y": 2760,
+      "width": 600,
+      "height": 400,
+      "color": "6"
+    },
+    {
+      "id": "n_not_found_notfound",
+      "type": "file",
+      "file": "graphify/obsidian/NotFound().md",
+      "x": 11240,
+      "y": 2840,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_app_not_found_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/not-found.tsx.md",
+      "x": 11440,
+      "y": 2840,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g60",
+      "type": "group",
+      "label": "Modul 60",
+      "x": 0,
+      "y": 3240,
+      "width": 600,
+      "height": 400,
+      "color": "1"
+    },
+    {
+      "id": "n_layout_dodsboskulderlayout",
+      "type": "file",
+      "file": "graphify/obsidian/DodsboSkulderLayout().md",
+      "x": 20,
+      "y": 3320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_app_dodsbo_skulder_layout_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/layout.tsx_1.md",
+      "x": 220,
+      "y": 3320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g61",
+      "type": "group",
+      "label": "Modul 61",
+      "x": 1400,
+      "y": 3240,
+      "width": 600,
+      "height": 400,
+      "color": "2"
+    },
+    {
+      "id": "n_layout_bouppteckninglayout",
+      "type": "file",
+      "file": "graphify/obsidian/BouppteckningLayout().md",
+      "x": 1420,
+      "y": 3320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_app_bouppteckning_layout_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/layout.tsx_2.md",
+      "x": 1620,
+      "y": 3320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g62",
+      "type": "group",
+      "label": "Modul 62",
+      "x": 2580,
+      "y": 3240,
+      "width": 600,
+      "height": 400,
+      "color": "3"
+    },
+    {
+      "id": "n_layout_authlayout",
+      "type": "file",
+      "file": "graphify/obsidian/AuthLayout().md",
+      "x": 2600,
+      "y": 3320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_app_auth_layout_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/layout.tsx_3.md",
+      "x": 2800,
+      "y": 3320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g63",
+      "type": "group",
+      "label": "Modul 63",
+      "x": 3540,
+      "y": 3240,
+      "width": 600,
+      "height": 400,
+      "color": "4"
+    },
+    {
+      "id": "n_route_get",
+      "type": "file",
+      "file": "graphify/obsidian/GET().md",
+      "x": 3560,
+      "y": 3320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_app_auth_callback_route_ts",
+      "type": "file",
+      "file": "graphify/obsidian/route.ts.md",
+      "x": 3760,
+      "y": 3320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g64",
+      "type": "group",
+      "label": "Modul 64",
+      "x": 4500,
+      "y": 3240,
+      "width": 600,
+      "height": 400,
+      "color": "5"
+    },
+    {
+      "id": "n_layout_faqlayout",
+      "type": "file",
+      "file": "graphify/obsidian/FaqLayout().md",
+      "x": 4520,
+      "y": 3320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_app_faq_layout_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/layout.tsx_4.md",
+      "x": 4720,
+      "y": 3320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g65",
+      "type": "group",
+      "label": "Modul 65",
+      "x": 5460,
+      "y": 3240,
+      "width": 600,
+      "height": 400,
+      "color": "6"
+    },
+    {
+      "id": "n_page_exportzip",
+      "type": "file",
+      "file": "graphify/obsidian/exportZIP().md",
+      "x": 5480,
+      "y": 3320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_app_exportera_page_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/page.tsx_11.md",
+      "x": 5680,
+      "y": 3320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g66",
+      "type": "group",
+      "label": "Modul 66",
+      "x": 6420,
+      "y": 3240,
+      "width": 600,
+      "height": 400,
+      "color": "1"
+    },
+    {
+      "id": "n_page_anvandarvillkorpage",
+      "type": "file",
+      "file": "graphify/obsidian/AnvandarvillkorPage().md",
+      "x": 6440,
+      "y": 3320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_app_anvandarvillkor_page_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/page.tsx_17.md",
+      "x": 6640,
+      "y": 3320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g67",
+      "type": "group",
+      "label": "Modul 67",
+      "x": 7380,
+      "y": 3240,
+      "width": 600,
+      "height": 400,
+      "color": "2"
+    },
+    {
+      "id": "n_page_integritetspolicypage",
+      "type": "file",
+      "file": "graphify/obsidian/IntegritetspolicyPage().md",
+      "x": 7400,
+      "y": 3320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_app_integritetspolicy_page_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/page.tsx_18.md",
+      "x": 7600,
+      "y": 3320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g68",
+      "type": "group",
+      "label": "Modul 68",
+      "x": 8340,
+      "y": 3240,
+      "width": 600,
+      "height": 400,
+      "color": "3"
+    },
+    {
+      "id": "n_layout_samboarvlayout",
+      "type": "file",
+      "file": "graphify/obsidian/SamboArvLayout().md",
+      "x": 8360,
+      "y": 3320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_app_sambo_arv_layout_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/layout.tsx_5.md",
+      "x": 8560,
+      "y": 3320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g69",
+      "type": "group",
+      "label": "Modul 69",
+      "x": 9300,
+      "y": 3240,
+      "width": 600,
+      "height": 400,
+      "color": "4"
+    },
+    {
+      "id": "n_layout_dashboardlayout",
+      "type": "file",
+      "file": "graphify/obsidian/DashboardLayout().md",
+      "x": 9320,
+      "y": 3320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_app_dashboard_layout_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/layout.tsx_6.md",
+      "x": 9520,
+      "y": 3320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g70",
+      "type": "group",
+      "label": "Modul 70",
+      "x": 10260,
+      "y": 3240,
+      "width": 600,
+      "height": 400,
+      "color": "5"
+    },
+    {
+      "id": "n_layout_deklararadodsbolayout",
+      "type": "file",
+      "file": "graphify/obsidian/DeklararaDodsboLayout().md",
+      "x": 10280,
+      "y": 3320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_app_deklarera_dodsbo_layout_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/layout.tsx_7.md",
+      "x": 10480,
+      "y": 3320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g71",
+      "type": "group",
+      "label": "Modul 71",
+      "x": 11220,
+      "y": 3240,
+      "width": 600,
+      "height": 400,
+      "color": "6"
+    },
+    {
+      "id": "n_layout_nodbromslayout",
+      "type": "file",
+      "file": "graphify/obsidian/NodbromsLayout().md",
+      "x": 11240,
+      "y": 3320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_app_nodbroms_layout_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/layout.tsx_8.md",
+      "x": 11440,
+      "y": 3320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g72",
+      "type": "group",
+      "label": "Modul 72",
+      "x": 0,
+      "y": 3720,
+      "width": 600,
+      "height": 400,
+      "color": "1"
+    },
+    {
+      "id": "n_layout_arvskiftelayout",
+      "type": "file",
+      "file": "graphify/obsidian/ArvskifteLayout().md",
+      "x": 20,
+      "y": 3800,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_app_arvskifte_layout_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/layout.tsx_9.md",
+      "x": 220,
+      "y": 3800,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g73",
+      "type": "group",
+      "label": "Modul 73",
+      "x": 1400,
+      "y": 3720,
+      "width": 600,
+      "height": 400,
+      "color": "2"
+    },
+    {
+      "id": "n_layout_layout",
+      "type": "file",
+      "file": "graphify/obsidian/Layout().md",
+      "x": 1420,
+      "y": 3800,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_app_dodsbo_fastighet_layout_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/layout.tsx_10.md",
+      "x": 1620,
+      "y": 3800,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g74",
+      "type": "group",
+      "label": "Modul 74",
+      "x": 2580,
+      "y": 3720,
+      "width": 600,
+      "height": 400,
+      "color": "3"
+    },
+    {
+      "id": "n_page_dodsbofastighetpage",
+      "type": "file",
+      "file": "graphify/obsidian/DodsboFastighetPage().md",
+      "x": 2600,
+      "y": 3800,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_app_dodsbo_fastighet_page_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/page.tsx_36.md",
+      "x": 2800,
+      "y": 3800,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g75",
+      "type": "group",
+      "label": "Modul 75",
+      "x": 3540,
+      "y": 3720,
+      "width": 600,
+      "height": 400,
+      "color": "4"
+    },
+    {
+      "id": "n_src_app_delagare_portal_page_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/page.tsx_41.md",
+      "x": 3560,
+      "y": 3800,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_sharelink",
+      "type": "file",
+      "file": "graphify/obsidian/shareLink().md",
+      "x": 3760,
+      "y": 3800,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g76",
+      "type": "group",
+      "label": "Modul 76",
+      "x": 4500,
+      "y": 3720,
+      "width": 600,
+      "height": 400,
+      "color": "5"
+    },
+    {
+      "id": "n_src_app_konflikt_page_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/page.tsx_42.md",
+      "x": 4520,
+      "y": 3800,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_page_togglelevel",
+      "type": "file",
+      "file": "graphify/obsidian/toggleLevel().md",
+      "x": 4720,
+      "y": 3800,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g77",
+      "type": "group",
+      "label": "Modul 77",
+      "x": 5460,
+      "y": 3720,
+      "width": 600,
+      "height": 400,
+      "color": "6"
+    },
+    {
+      "id": "n_layout_ordlistalayout",
+      "type": "file",
+      "file": "graphify/obsidian/OrdlistaLayout().md",
+      "x": 5480,
+      "y": 3800,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_app_ordlista_layout_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/layout.tsx_11.md",
+      "x": 5680,
+      "y": 3800,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g78",
+      "type": "group",
+      "label": "Modul 78",
+      "x": 6420,
+      "y": 3720,
+      "width": 600,
+      "height": 400,
+      "color": "1"
+    },
+    {
+      "id": "n_layout_onboardinglayout",
+      "type": "file",
+      "file": "graphify/obsidian/OnboardingLayout().md",
+      "x": 6440,
+      "y": 3800,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_app_onboarding_layout_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/layout.tsx_12.md",
+      "x": 6640,
+      "y": 3800,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g79",
+      "type": "group",
+      "label": "Modul 79",
+      "x": 7380,
+      "y": 3720,
+      "width": 600,
+      "height": 400,
+      "color": "2"
+    },
+    {
+      "id": "n_page_onboardingpage",
+      "type": "file",
+      "file": "graphify/obsidian/OnboardingPage().md",
+      "x": 7400,
+      "y": 3800,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_app_onboarding_page_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/page.tsx_46.md",
+      "x": 7600,
+      "y": 3800,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g80",
+      "type": "group",
+      "label": "Modul 80",
+      "x": 8340,
+      "y": 3720,
+      "width": 600,
+      "height": 400,
+      "color": "3"
+    },
+    {
+      "id": "n_layout_sarkullbarnlayout",
+      "type": "file",
+      "file": "graphify/obsidian/SarkullbarnLayout().md",
+      "x": 8360,
+      "y": 3800,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_app_sarkullbarn_layout_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/layout.tsx_13.md",
+      "x": 8560,
+      "y": 3800,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g81",
+      "type": "group",
+      "label": "Modul 81",
+      "x": 9300,
+      "y": 3720,
+      "width": 600,
+      "height": 400,
+      "color": "4"
+    },
+    {
+      "id": "n_serviceworkerregistration_serviceworkerregistration",
+      "type": "file",
+      "file": "graphify/obsidian/ServiceWorkerRegistration().md",
+      "x": 9320,
+      "y": 3800,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_serviceworkerregistration_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/ServiceWorkerRegistration.tsx.md",
+      "x": 9520,
+      "y": 3800,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g82",
+      "type": "group",
+      "label": "Modul 82",
+      "x": 10260,
+      "y": 3720,
+      "width": 600,
+      "height": 400,
+      "color": "5"
+    },
+    {
+      "id": "n_cookiebanner_cookiebanner",
+      "type": "file",
+      "file": "graphify/obsidian/CookieBanner().md",
+      "x": 10280,
+      "y": 3800,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_cookiebanner_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/CookieBanner.tsx.md",
+      "x": 10480,
+      "y": 3800,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g83",
+      "type": "group",
+      "label": "Modul 83",
+      "x": 11220,
+      "y": 3720,
+      "width": 600,
+      "height": 400,
+      "color": "6"
+    },
+    {
+      "id": "n_src_components_ui_bottomnav_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/BottomNav.tsx.md",
+      "x": 11240,
+      "y": 3800,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_bottomnav_handler",
+      "type": "file",
+      "file": "graphify/obsidian/handler().md",
+      "x": 11440,
+      "y": 3800,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g84",
+      "type": "group",
+      "label": "Modul 84",
+      "x": 0,
+      "y": 4200,
+      "width": 600,
+      "height": 400,
+      "color": "1"
+    },
+    {
+      "id": "n_floatingchatbutton_floatingchatbutton",
+      "type": "file",
+      "file": "graphify/obsidian/FloatingChatButton().md",
+      "x": 20,
+      "y": 4280,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_ui_floatingchatbutton_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/FloatingChatButton.tsx.md",
+      "x": 220,
+      "y": 4280,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g85",
+      "type": "group",
+      "label": "Modul 85",
+      "x": 1400,
+      "y": 4200,
+      "width": 600,
+      "height": 400,
+      "color": "2"
+    },
+    {
+      "id": "n_dovelogo_dovelogo",
+      "type": "file",
+      "file": "graphify/obsidian/DoveLogo().md",
+      "x": 1420,
+      "y": 4280,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_ui_dovelogo_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/DoveLogo.tsx.md",
+      "x": 1620,
+      "y": 4280,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g86",
+      "type": "group",
+      "label": "Modul 86",
+      "x": 2580,
+      "y": 4200,
+      "width": 600,
+      "height": 400,
+      "color": "3"
+    },
+    {
+      "id": "n_skipnav_skipnav",
+      "type": "file",
+      "file": "graphify/obsidian/SkipNav().md",
+      "x": 2600,
+      "y": 4280,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_ui_skipnav_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/SkipNav.tsx.md",
+      "x": 2800,
+      "y": 4280,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g87",
+      "type": "group",
+      "label": "Modul 87",
+      "x": 3540,
+      "y": 4200,
+      "width": 600,
+      "height": 400,
+      "color": "4"
+    },
+    {
+      "id": "n_mikerosstip_mikerosstip",
+      "type": "file",
+      "file": "graphify/obsidian/MikeRossTip()_1.md",
+      "x": 3560,
+      "y": 4280,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_ui_mikerosstip_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/MikeRossTip.tsx.md",
+      "x": 3760,
+      "y": 4280,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g88",
+      "type": "group",
+      "label": "Modul 88",
+      "x": 4500,
+      "y": 4200,
+      "width": 600,
+      "height": 400,
+      "color": "5"
+    },
+    {
+      "id": "n_onboardingflow_onboardingflow",
+      "type": "file",
+      "file": "graphify/obsidian/OnboardingFlow().md",
+      "x": 4520,
+      "y": 4280,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_components_onboarding_onboardingflow_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/OnboardingFlow.tsx.md",
+      "x": 4720,
+      "y": 4280,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g89",
+      "type": "group",
+      "label": "Modul 89",
+      "x": 5460,
+      "y": 4200,
+      "width": 600,
+      "height": 400,
+      "color": "6"
+    },
+    {
+      "id": "n_generate_document_docx_downloaddocumentdocx",
+      "type": "file",
+      "file": "graphify/obsidian/downloadDocumentDocx().md",
+      "x": 5480,
+      "y": 4280,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_lib_generate_document_docx_ts",
+      "type": "file",
+      "file": "graphify/obsidian/generate-document-docx.ts.md",
+      "x": 5680,
+      "y": 4280,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g90",
+      "type": "group",
+      "label": "Modul 90",
+      "x": 6420,
+      "y": 4200,
+      "width": 600,
+      "height": 400,
+      "color": "1"
+    },
+    {
+      "id": "n_src_lib_arvsordning_ts",
+      "type": "file",
+      "file": "graphify/obsidian/arvsordning.ts.md",
+      "x": 6440,
+      "y": 4280,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_arvsordning_getarvsordning",
+      "type": "file",
+      "file": "graphify/obsidian/getArvsordning().md",
+      "x": 6640,
+      "y": 4280,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g91",
+      "type": "group",
+      "label": "Modul 91",
+      "x": 7380,
+      "y": 4200,
+      "width": 600,
+      "height": 400,
+      "color": "2"
+    },
+    {
+      "id": "n_generate_document_pdf_downloaddocumentpdf",
+      "type": "file",
+      "file": "graphify/obsidian/downloadDocumentPDF().md",
+      "x": 7400,
+      "y": 4280,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_lib_generate_document_pdf_ts",
+      "type": "file",
+      "file": "graphify/obsidian/generate-document-pdf.ts.md",
+      "x": 7600,
+      "y": 4280,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g92",
+      "type": "group",
+      "label": "Modul 92",
+      "x": 8340,
+      "y": 4200,
+      "width": 600,
+      "height": 400,
+      "color": "3"
+    },
+    {
+      "id": "n_src_lib_auth_safe_use_auth_ts",
+      "type": "file",
+      "file": "graphify/obsidian/safe-use-auth.ts.md",
+      "x": 8360,
+      "y": 4280,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_safe_use_auth_useauth",
+      "type": "file",
+      "file": "graphify/obsidian/useAuth().md",
+      "x": 8560,
+      "y": 4280,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g93",
+      "type": "group",
+      "label": "Modul 93",
+      "x": 9300,
+      "y": 4200,
+      "width": 600,
+      "height": 400,
+      "color": "4"
+    },
+    {
+      "id": "n_src_lib_supabase_middleware_ts",
+      "type": "file",
+      "file": "graphify/obsidian/middleware.ts_1.md",
+      "x": 9320,
+      "y": 4280,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_middleware_updatesession",
+      "type": "file",
+      "file": "graphify/obsidian/updateSession().md",
+      "x": 9520,
+      "y": 4280,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g94",
+      "type": "group",
+      "label": "Modul 94",
+      "x": 10260,
+      "y": 4200,
+      "width": 600,
+      "height": 400,
+      "color": "5"
+    },
+    {
+      "id": "n_src_lib_supabase_use_supabase_sync_ts",
+      "type": "file",
+      "file": "graphify/obsidian/use-supabase-sync.ts.md",
+      "x": 10280,
+      "y": 4280,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_use_supabase_sync_usesupabasesync",
+      "type": "file",
+      "file": "graphify/obsidian/useSupabaseSync().md",
+      "x": 10480,
+      "y": 4280,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g95",
+      "type": "group",
+      "label": "Modul 95",
+      "x": 11220,
+      "y": 4200,
+      "width": 600,
+      "height": 400,
+      "color": "6"
+    },
+    {
+      "id": "n_src_lib_supabase_client_ts",
+      "type": "file",
+      "file": "graphify/obsidian/client.ts.md",
+      "x": 11240,
+      "y": 4280,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_client_createclient",
+      "type": "file",
+      "file": "graphify/obsidian/createClient().md",
+      "x": 11440,
+      "y": 4280,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g96",
+      "type": "group",
+      "label": "Modul 96",
+      "x": 0,
+      "y": 4680,
+      "width": 600,
+      "height": 400,
+      "color": "1"
+    },
+    {
+      "id": "n_server_createclient",
+      "type": "file",
+      "file": "graphify/obsidian/createClient()_1.md",
+      "x": 20,
+      "y": 4760,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_lib_supabase_server_ts",
+      "type": "file",
+      "file": "graphify/obsidian/server.ts.md",
+      "x": 220,
+      "y": 4760,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g97",
+      "type": "group",
+      "label": "Modul 97",
+      "x": 1400,
+      "y": 4680,
+      "width": 600,
+      "height": 400,
+      "color": "2"
+    },
+    {
+      "id": "n_store_test_makestate",
+      "type": "file",
+      "file": "graphify/obsidian/makeState().md",
+      "x": 1420,
+      "y": 4760,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_src_lib_tests_store_test_ts",
+      "type": "file",
+      "file": "graphify/obsidian/store.test.ts.md",
+      "x": 1620,
+      "y": 4760,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g98",
+      "type": "group",
+      "label": "Modul 98",
+      "x": 2580,
+      "y": 4680,
+      "width": 600,
+      "height": 400,
+      "color": "3"
+    },
+    {
+      "id": "n_ux_testrapport_nodbroms_loved",
+      "type": "file",
+      "file": "graphify/obsidian/UX Finding Nodbroms Loved by 4250 Personas.md",
+      "x": 2600,
+      "y": 4760,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_konkurrent-analys_unique_features",
+      "type": "file",
+      "file": "graphify/obsidian/Unique Features (Bankbrev, Kostnader, Losore, Nodbroms, etc.).md",
+      "x": 2800,
+      "y": 4760,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g99",
+      "type": "group",
+      "label": "Modul 99",
+      "x": 3540,
+      "y": 4680,
+      "width": 600,
+      "height": 400,
+      "color": "4"
+    },
+    {
+      "id": "n_next_config_js",
+      "type": "file",
+      "file": "graphify/obsidian/next.config.js.md",
+      "x": 3560,
+      "y": 4760,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g100",
+      "type": "group",
+      "label": "Modul 100",
+      "x": 4500,
+      "y": 4680,
+      "width": 600,
+      "height": 400,
+      "color": "5"
+    },
+    {
+      "id": "n_next_env_d_ts",
+      "type": "file",
+      "file": "graphify/obsidian/next-env.d.ts.md",
+      "x": 4520,
+      "y": 4760,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g101",
+      "type": "group",
+      "label": "Modul 101",
+      "x": 5460,
+      "y": 4680,
+      "width": 600,
+      "height": 400,
+      "color": "6"
+    },
+    {
+      "id": "n_tailwind_config_ts",
+      "type": "file",
+      "file": "graphify/obsidian/tailwind.config.ts.md",
+      "x": 5480,
+      "y": 4760,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g102",
+      "type": "group",
+      "label": "Modul 102",
+      "x": 6420,
+      "y": 4680,
+      "width": 600,
+      "height": 400,
+      "color": "1"
+    },
+    {
+      "id": "n_generate_ux_report_py",
+      "type": "file",
+      "file": "graphify/obsidian/generate-ux-report.py.md",
+      "x": 6440,
+      "y": 4760,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g103",
+      "type": "group",
+      "label": "Modul 103",
+      "x": 7380,
+      "y": 4680,
+      "width": 600,
+      "height": 400,
+      "color": "2"
+    },
+    {
+      "id": "n_playwright_config_ts",
+      "type": "file",
+      "file": "graphify/obsidian/playwright.config.ts.md",
+      "x": 7400,
+      "y": 4760,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g104",
+      "type": "group",
+      "label": "Modul 104",
+      "x": 8340,
+      "y": 4680,
+      "width": 600,
+      "height": 400,
+      "color": "3"
+    },
+    {
+      "id": "n_vitest_config_ts",
+      "type": "file",
+      "file": "graphify/obsidian/vitest.config.ts.md",
+      "x": 8360,
+      "y": 4760,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g105",
+      "type": "group",
+      "label": "Modul 105",
+      "x": 9300,
+      "y": 4680,
+      "width": 600,
+      "height": 400,
+      "color": "4"
+    },
+    {
+      "id": "n_postcss_config_js",
+      "type": "file",
+      "file": "graphify/obsidian/postcss.config.js.md",
+      "x": 9320,
+      "y": 4760,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g106",
+      "type": "group",
+      "label": "Modul 106",
+      "x": 10260,
+      "y": 4680,
+      "width": 600,
+      "height": 400,
+      "color": "5"
+    },
+    {
+      "id": "n_public_sw_js",
+      "type": "file",
+      "file": "graphify/obsidian/sw.js.md",
+      "x": 10280,
+      "y": 4760,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g107",
+      "type": "group",
+      "label": "Modul 107",
+      "x": 11220,
+      "y": 4680,
+      "width": 600,
+      "height": 400,
+      "color": "6"
+    },
+    {
+      "id": "n_e2e_navigation_spec_ts",
+      "type": "file",
+      "file": "graphify/obsidian/navigation.spec.ts.md",
+      "x": 11240,
+      "y": 4760,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g108",
+      "type": "group",
+      "label": "Modul 108",
+      "x": 0,
+      "y": 5160,
+      "width": 600,
+      "height": 400,
+      "color": "1"
+    },
+    {
+      "id": "n_e2e_landing_spec_ts",
+      "type": "file",
+      "file": "graphify/obsidian/landing.spec.ts.md",
+      "x": 20,
+      "y": 5240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g109",
+      "type": "group",
+      "label": "Modul 109",
+      "x": 1400,
+      "y": 5160,
+      "width": 600,
+      "height": 400,
+      "color": "2"
+    },
+    {
+      "id": "n_e2e_pages_spec_ts",
+      "type": "file",
+      "file": "graphify/obsidian/pages.spec.ts.md",
+      "x": 1420,
+      "y": 5240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g110",
+      "type": "group",
+      "label": "Modul 110",
+      "x": 2580,
+      "y": 5160,
+      "width": 600,
+      "height": 400,
+      "color": "3"
+    },
+    {
+      "id": "n_e2e_onboarding_spec_ts",
+      "type": "file",
+      "file": "graphify/obsidian/onboarding.spec.ts.md",
+      "x": 2600,
+      "y": 5240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g111",
+      "type": "group",
+      "label": "Modul 111",
+      "x": 3540,
+      "y": 5160,
+      "width": 600,
+      "height": 400,
+      "color": "4"
+    },
+    {
+      "id": "n_src_types_index_ts",
+      "type": "file",
+      "file": "graphify/obsidian/index.ts.md",
+      "x": 3560,
+      "y": 5240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g112",
+      "type": "group",
+      "label": "Modul 112",
+      "x": 4500,
+      "y": 5160,
+      "width": 600,
+      "height": 400,
+      "color": "5"
+    },
+    {
+      "id": "n_src_types_dodsbo_ts",
+      "type": "file",
+      "file": "graphify/obsidian/dodsbo.ts.md",
+      "x": 4520,
+      "y": 5240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g113",
+      "type": "group",
+      "label": "Modul 113",
+      "x": 5460,
+      "y": 5160,
+      "width": 600,
+      "height": 400,
+      "color": "6"
+    },
+    {
+      "id": "n_src_app_opengraph_image_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/opengraph-image.tsx.md",
+      "x": 5480,
+      "y": 5240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g114",
+      "type": "group",
+      "label": "Modul 114",
+      "x": 6420,
+      "y": 5160,
+      "width": 600,
+      "height": 400,
+      "color": "1"
+    },
+    {
+      "id": "n_src_app_dodsbo_skulder_page_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/page.tsx_1.md",
+      "x": 6440,
+      "y": 5240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g115",
+      "type": "group",
+      "label": "Modul 115",
+      "x": 7380,
+      "y": 5160,
+      "width": 600,
+      "height": 400,
+      "color": "2"
+    },
+    {
+      "id": "n_src_app_losore_page_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/page.tsx_2.md",
+      "x": 7400,
+      "y": 5240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g116",
+      "type": "group",
+      "label": "Modul 116",
+      "x": 8340,
+      "y": 5160,
+      "width": 600,
+      "height": 400,
+      "color": "3"
+    },
+    {
+      "id": "n_src_app_foretag_i_dodsbo_page_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/page.tsx_3.md",
+      "x": 8360,
+      "y": 5240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g117",
+      "type": "group",
+      "label": "Modul 117",
+      "x": 9300,
+      "y": 5160,
+      "width": 600,
+      "height": 400,
+      "color": "4"
+    },
+    {
+      "id": "n_src_app_uppgifter_page_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/page.tsx_6.md",
+      "x": 9320,
+      "y": 5240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g118",
+      "type": "group",
+      "label": "Modul 118",
+      "x": 10260,
+      "y": 5160,
+      "width": 600,
+      "height": 400,
+      "color": "5"
+    },
+    {
+      "id": "n_src_app_faq_page_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/page.tsx_9.md",
+      "x": 10280,
+      "y": 5240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g119",
+      "type": "group",
+      "label": "Modul 119",
+      "x": 11220,
+      "y": 5160,
+      "width": 600,
+      "height": 400,
+      "color": "6"
+    },
+    {
+      "id": "n_src_app_tillgangar_page_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/page.tsx_10.md",
+      "x": 11240,
+      "y": 5240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g120",
+      "type": "group",
+      "label": "Modul 120",
+      "x": 0,
+      "y": 5640,
+      "width": 600,
+      "height": 400,
+      "color": "1"
+    },
+    {
+      "id": "n_src_app_om_page_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/page.tsx_14.md",
+      "x": 20,
+      "y": 5720,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g121",
+      "type": "group",
+      "label": "Modul 121",
+      "x": 1400,
+      "y": 5640,
+      "width": 600,
+      "height": 400,
+      "color": "2"
+    },
+    {
+      "id": "n_src_app_sambo_arv_page_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/page.tsx_22.md",
+      "x": 1420,
+      "y": 5720,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g122",
+      "type": "group",
+      "label": "Modul 122",
+      "x": 2580,
+      "y": 5640,
+      "width": 600,
+      "height": 400,
+      "color": "3"
+    },
+    {
+      "id": "n_src_app_forsakringar_page_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/page.tsx_24.md",
+      "x": 2600,
+      "y": 5720,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g123",
+      "type": "group",
+      "label": "Modul 123",
+      "x": 3540,
+      "y": 5640,
+      "width": 600,
+      "height": 400,
+      "color": "4"
+    },
+    {
+      "id": "n_src_app_deklarera_dodsbo_page_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/page.tsx_25.md",
+      "x": 3560,
+      "y": 5720,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g124",
+      "type": "group",
+      "label": "Modul 124",
+      "x": 4500,
+      "y": 5640,
+      "width": 600,
+      "height": 400,
+      "color": "5"
+    },
+    {
+      "id": "n_src_app_api_tests_juridisk_ai_test_ts",
+      "type": "file",
+      "file": "graphify/obsidian/juridisk-ai.test.ts.md",
+      "x": 4520,
+      "y": 5720,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g125",
+      "type": "group",
+      "label": "Modul 125",
+      "x": 5460,
+      "y": 5640,
+      "width": 600,
+      "height": 400,
+      "color": "6"
+    },
+    {
+      "id": "n_src_app_internationellt_page_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/page.tsx_37.md",
+      "x": 5480,
+      "y": 5720,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g126",
+      "type": "group",
+      "label": "Modul 126",
+      "x": 6420,
+      "y": 5640,
+      "width": 600,
+      "height": 400,
+      "color": "1"
+    },
+    {
+      "id": "n_src_app_tidslinje_page_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/page.tsx_38.md",
+      "x": 6440,
+      "y": 5720,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g127",
+      "type": "group",
+      "label": "Modul 127",
+      "x": 7380,
+      "y": 5640,
+      "width": 600,
+      "height": 400,
+      "color": "2"
+    },
+    {
+      "id": "n_src_app_ordlista_page_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/page.tsx_45.md",
+      "x": 7400,
+      "y": 5720,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g128",
+      "type": "group",
+      "label": "Modul 128",
+      "x": 8340,
+      "y": 5640,
+      "width": 600,
+      "height": 400,
+      "color": "3"
+    },
+    {
+      "id": "n_src_app_sarkullbarn_page_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/page.tsx_49.md",
+      "x": 8360,
+      "y": 5720,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g129",
+      "type": "group",
+      "label": "Modul 129",
+      "x": 9300,
+      "y": 5640,
+      "width": 600,
+      "height": 400,
+      "color": "4"
+    },
+    {
+      "id": "n_src_components_ui_optioncard_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/OptionCard.tsx.md",
+      "x": 9320,
+      "y": 5720,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g130",
+      "type": "group",
+      "label": "Modul 130",
+      "x": 10260,
+      "y": 5640,
+      "width": 600,
+      "height": 400,
+      "color": "5"
+    },
+    {
+      "id": "n_src_components_ui_juridisktooltip_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/JuridiskTooltip.tsx.md",
+      "x": 10280,
+      "y": 5720,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g131",
+      "type": "group",
+      "label": "Modul 131",
+      "x": 11220,
+      "y": 5640,
+      "width": 600,
+      "height": 400,
+      "color": "6"
+    },
+    {
+      "id": "n_src_components_ui_stepindicator_tsx",
+      "type": "file",
+      "file": "graphify/obsidian/StepIndicator.tsx.md",
+      "x": 11240,
+      "y": 5720,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g132",
+      "type": "group",
+      "label": "Modul 132",
+      "x": 0,
+      "y": 6120,
+      "width": 600,
+      "height": 400,
+      "color": "1"
+    },
+    {
+      "id": "n_src_lib_supabase_types_ts",
+      "type": "file",
+      "file": "graphify/obsidian/types.ts.md",
+      "x": 20,
+      "y": 6200,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g133",
+      "type": "group",
+      "label": "Modul 133",
+      "x": 1400,
+      "y": 6120,
+      "width": 600,
+      "height": 400,
+      "color": "2"
+    },
+    {
+      "id": "n_src_lib_supabase_services_index_ts",
+      "type": "file",
+      "file": "graphify/obsidian/index.ts_1.md",
+      "x": 1420,
+      "y": 6200,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g134",
+      "type": "group",
+      "label": "Modul 134",
+      "x": 2580,
+      "y": 6120,
+      "width": 600,
+      "height": 400,
+      "color": "3"
+    },
+    {
+      "id": "n_src_lib_tests_personnummer_test_ts",
+      "type": "file",
+      "file": "graphify/obsidian/personnummer.test.ts.md",
+      "x": 2600,
+      "y": 6200,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g135",
+      "type": "group",
+      "label": "Modul 135",
+      "x": 3540,
+      "y": 6120,
+      "width": 600,
+      "height": 400,
+      "color": "4"
+    },
+    {
+      "id": "n_konkurrent-analys_familjens_jurist",
+      "type": "file",
+      "file": "graphify/obsidian/Familjens Jurist (Competitor).md",
+      "x": 3560,
+      "y": 6200,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g136",
+      "type": "group",
+      "label": "Modul 136",
+      "x": 4500,
+      "y": 6120,
+      "width": 600,
+      "height": 400,
+      "color": "5"
+    },
+    {
+      "id": "n_konkurrent-analys_fenix",
+      "type": "file",
+      "file": "graphify/obsidian/Fenix Begravning (Competitor).md",
+      "x": 4520,
+      "y": 6200,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g137",
+      "type": "group",
+      "label": "Modul 137",
+      "x": 5460,
+      "y": 6120,
+      "width": 600,
+      "height": 400,
+      "color": "6"
+    },
+    {
+      "id": "n_konkurrent-analys_lavendla",
+      "type": "file",
+      "file": "graphify/obsidian/Lavendla Juridik (Competitor).md",
+      "x": 5480,
+      "y": 6200,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g138",
+      "type": "group",
+      "label": "Modul 138",
+      "x": 6420,
+      "y": 6120,
+      "width": 600,
+      "height": 400,
+      "color": "1"
+    },
+    {
+      "id": "n_konkurrent-analys_bouppteckningar_nu",
+      "type": "file",
+      "file": "graphify/obsidian/Bouppteckningar.nu (Competitor).md",
+      "x": 6440,
+      "y": 6200,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g139",
+      "type": "group",
+      "label": "Modul 139",
+      "x": 7380,
+      "y": 6120,
+      "width": 600,
+      "height": 400,
+      "color": "2"
+    },
+    {
+      "id": "n_bug_report_issue_no_auth",
+      "type": "file",
+      "file": "graphify/obsidian/ISSUE 2 API Route Has No Authentication Check.md",
+      "x": 7400,
+      "y": 6200,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g140",
+      "type": "group",
+      "label": "Modul 140",
+      "x": 8340,
+      "y": 6120,
+      "width": 600,
+      "height": 400,
+      "color": "3"
+    },
+    {
+      "id": "n_ux_testrapport_nps",
+      "type": "file",
+      "file": "graphify/obsidian/NPS Analysis (Score -50, Mean 6.1).md",
+      "x": 8360,
+      "y": 6200,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g141",
+      "type": "group",
+      "label": "Modul 141",
+      "x": 9300,
+      "y": 6120,
+      "width": 600,
+      "height": 400,
+      "color": "4"
+    },
+    {
+      "id": "n_projekt_sammanfattning_tech_stack",
+      "type": "file",
+      "file": "graphify/obsidian/Tech Stack (Next.js 14, TypeScript, Tailwind, Supabase).md",
+      "x": 9320,
+      "y": 6200,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g142",
+      "type": "group",
+      "label": "Modul 142",
+      "x": 10260,
+      "y": 6120,
+      "width": 600,
+      "height": 400,
+      "color": "5"
+    },
+    {
+      "id": "n_projekt_sammanfattning_design_system",
+      "type": "file",
+      "file": "graphify/obsidian/Design System - Soft Structure.md",
+      "x": 10280,
+      "y": 6200,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g143",
+      "type": "group",
+      "label": "Modul 143",
+      "x": 11220,
+      "y": 6120,
+      "width": 600,
+      "height": 400,
+      "color": "6"
+    },
+    {
+      "id": "n_projekt_sammanfattning_51_pages",
+      "type": "file",
+      "file": "graphify/obsidian/51 App Pages (All Routes).md",
+      "x": 11240,
+      "y": 6200,
+      "width": 180,
+      "height": 60
+    }
+  ],
+  "edges": [
+    {
+      "id": "e_generate_competitor_report_py_generate_competitor_report_style_header",
+      "fromNode": "n_generate_competitor_report_py",
+      "toNode": "n_generate_competitor_report_style_header",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_generate_competitor_report_py_generate_competitor_report_style_row",
+      "fromNode": "n_generate_competitor_report_py",
+      "toNode": "n_generate_competitor_report_style_row",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_logo_preview_jsx_logo_preview_logopreview",
+      "fromNode": "n_logo_preview_jsx",
+      "toNode": "n_logo_preview_logopreview",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_extract_skv_structure_py_extract_skv_structure_extract_from_json_file",
+      "fromNode": "n_extract_skv_structure_py",
+      "toNode": "n_extract_skv_structure_extract_from_json_file",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_extract_skv_structure_extract_from_json_file_extract_skv_structure_rationale_10",
+      "fromNode": "n_extract_skv_structure_extract_from_json_file",
+      "toNode": "n_extract_skv_structure_rationale_10",
+      "label": "rationale_for [EXTRACTED]"
+    },
+    {
+      "id": "e_sista_resan_redesign_jsx_sista_resan_redesign_navtab",
+      "fromNode": "n_sista_resan_redesign_jsx",
+      "toNode": "n_sista_resan_redesign_navtab",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_sista_resan_redesign_jsx_sista_resan_redesign_bottomnavproto",
+      "fromNode": "n_sista_resan_redesign_jsx",
+      "toNode": "n_sista_resan_redesign_bottomnavproto",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_sista_resan_redesign_jsx_sista_resan_redesign_phaseindicator",
+      "fromNode": "n_sista_resan_redesign_jsx",
+      "toNode": "n_sista_resan_redesign_phaseindicator",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_sista_resan_redesign_jsx_sista_resan_redesign_taskitem",
+      "fromNode": "n_sista_resan_redesign_jsx",
+      "toNode": "n_sista_resan_redesign_taskitem",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_sista_resan_redesign_jsx_sista_resan_redesign_statcard",
+      "fromNode": "n_sista_resan_redesign_jsx",
+      "toNode": "n_sista_resan_redesign_statcard",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_sista_resan_redesign_jsx_sista_resan_redesign_priorityaction",
+      "fromNode": "n_sista_resan_redesign_jsx",
+      "toNode": "n_sista_resan_redesign_priorityaction",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_sista_resan_redesign_jsx_sista_resan_redesign_landingview",
+      "fromNode": "n_sista_resan_redesign_jsx",
+      "toNode": "n_sista_resan_redesign_landingview",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_sista_resan_redesign_jsx_sista_resan_redesign_dashboardview",
+      "fromNode": "n_sista_resan_redesign_jsx",
+      "toNode": "n_sista_resan_redesign_dashboardview",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_sista_resan_redesign_jsx_sista_resan_redesign_tasksview",
+      "fromNode": "n_sista_resan_redesign_jsx",
+      "toNode": "n_sista_resan_redesign_tasksview",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_sista_resan_redesign_jsx_sista_resan_redesign_tokensview",
+      "fromNode": "n_sista_resan_redesign_jsx",
+      "toNode": "n_sista_resan_redesign_tokensview",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_sista_resan_redesign_jsx_sista_resan_redesign_sistaresanredesign",
+      "fromNode": "n_sista_resan_redesign_jsx",
+      "toNode": "n_sista_resan_redesign_sistaresanredesign",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_sista_resan_design_c_jsx_sista_resan_design_c_blobshape",
+      "fromNode": "n_sista_resan_design_c_jsx",
+      "toNode": "n_sista_resan_design_c_blobshape",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_sista_resan_design_c_jsx_sista_resan_design_c_iconbubble",
+      "fromNode": "n_sista_resan_design_c_jsx",
+      "toNode": "n_sista_resan_design_c_iconbubble",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_sista_resan_design_c_jsx_sista_resan_design_c_navtabc",
+      "fromNode": "n_sista_resan_design_c_jsx",
+      "toNode": "n_sista_resan_design_c_navtabc",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_sista_resan_design_c_jsx_sista_resan_design_c_bottomnavc",
+      "fromNode": "n_sista_resan_design_c_jsx",
+      "toNode": "n_sista_resan_design_c_bottomnavc",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_sista_resan_design_c_jsx_sista_resan_design_c_landingc",
+      "fromNode": "n_sista_resan_design_c_jsx",
+      "toNode": "n_sista_resan_design_c_landingc",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_sista_resan_design_c_jsx_sista_resan_design_c_dashboardc",
+      "fromNode": "n_sista_resan_design_c_jsx",
+      "toNode": "n_sista_resan_design_c_dashboardc",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_sista_resan_design_c_jsx_sista_resan_design_c_tasksc",
+      "fromNode": "n_sista_resan_design_c_jsx",
+      "toNode": "n_sista_resan_design_c_tasksc",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_sista_resan_design_c_jsx_sista_resan_design_c_tokensc",
+      "fromNode": "n_sista_resan_design_c_jsx",
+      "toNode": "n_sista_resan_design_c_tokensc",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_sista_resan_design_c_jsx_sista_resan_design_c_designc",
+      "fromNode": "n_sista_resan_design_c_jsx",
+      "toNode": "n_sista_resan_design_c_designc",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_sista_resan_design_b_jsx_sista_resan_design_b_gloworb",
+      "fromNode": "n_sista_resan_design_b_jsx",
+      "toNode": "n_sista_resan_design_b_gloworb",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_sista_resan_design_b_jsx_sista_resan_design_b_navtabb",
+      "fromNode": "n_sista_resan_design_b_jsx",
+      "toNode": "n_sista_resan_design_b_navtabb",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_sista_resan_design_b_jsx_sista_resan_design_b_bottomnavb",
+      "fromNode": "n_sista_resan_design_b_jsx",
+      "toNode": "n_sista_resan_design_b_bottomnavb",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_sista_resan_design_b_jsx_sista_resan_design_b_landingb",
+      "fromNode": "n_sista_resan_design_b_jsx",
+      "toNode": "n_sista_resan_design_b_landingb",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_sista_resan_design_b_jsx_sista_resan_design_b_dashboardb",
+      "fromNode": "n_sista_resan_design_b_jsx",
+      "toNode": "n_sista_resan_design_b_dashboardb",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_sista_resan_design_b_jsx_sista_resan_design_b_tasksb",
+      "fromNode": "n_sista_resan_design_b_jsx",
+      "toNode": "n_sista_resan_design_b_tasksb",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_sista_resan_design_b_jsx_sista_resan_design_b_tokensb",
+      "fromNode": "n_sista_resan_design_b_jsx",
+      "toNode": "n_sista_resan_design_b_tokensb",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_sista_resan_design_b_jsx_sista_resan_design_b_designb",
+      "fromNode": "n_sista_resan_design_b_jsx",
+      "toNode": "n_sista_resan_design_b_designb",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_sista_resan_design_e_jsx_sista_resan_design_e_blobshape",
+      "fromNode": "n_sista_resan_design_e_jsx",
+      "toNode": "n_sista_resan_design_e_blobshape",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_sista_resan_design_e_jsx_sista_resan_design_e_iconbubble",
+      "fromNode": "n_sista_resan_design_e_jsx",
+      "toNode": "n_sista_resan_design_e_iconbubble",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_sista_resan_design_e_jsx_sista_resan_design_e_navtab",
+      "fromNode": "n_sista_resan_design_e_jsx",
+      "toNode": "n_sista_resan_design_e_navtab",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_sista_resan_design_e_jsx_sista_resan_design_e_bottomnave",
+      "fromNode": "n_sista_resan_design_e_jsx",
+      "toNode": "n_sista_resan_design_e_bottomnave",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_sista_resan_design_e_jsx_sista_resan_design_e_landinge",
+      "fromNode": "n_sista_resan_design_e_jsx",
+      "toNode": "n_sista_resan_design_e_landinge",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_sista_resan_design_e_jsx_sista_resan_design_e_dashboarde",
+      "fromNode": "n_sista_resan_design_e_jsx",
+      "toNode": "n_sista_resan_design_e_dashboarde",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_sista_resan_design_e_jsx_sista_resan_design_e_taskse",
+      "fromNode": "n_sista_resan_design_e_jsx",
+      "toNode": "n_sista_resan_design_e_taskse",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_sista_resan_design_e_jsx_sista_resan_design_e_tokense",
+      "fromNode": "n_sista_resan_design_e_jsx",
+      "toNode": "n_sista_resan_design_e_tokense",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_sista_resan_design_e_jsx_sista_resan_design_e_designe",
+      "fromNode": "n_sista_resan_design_e_jsx",
+      "toNode": "n_sista_resan_design_e_designe",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_generate_icons_js_generate_icons_generate",
+      "fromNode": "n_generate_icons_js",
+      "toNode": "n_generate_icons_generate",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_sista_resan_design_d_jsx_sista_resan_design_d_blobshape",
+      "fromNode": "n_sista_resan_design_d_jsx",
+      "toNode": "n_sista_resan_design_d_blobshape",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_sista_resan_design_d_jsx_sista_resan_design_d_iconbubble",
+      "fromNode": "n_sista_resan_design_d_jsx",
+      "toNode": "n_sista_resan_design_d_iconbubble",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_sista_resan_design_d_jsx_sista_resan_design_d_navtabd",
+      "fromNode": "n_sista_resan_design_d_jsx",
+      "toNode": "n_sista_resan_design_d_navtabd",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_sista_resan_design_d_jsx_sista_resan_design_d_bottomnavd",
+      "fromNode": "n_sista_resan_design_d_jsx",
+      "toNode": "n_sista_resan_design_d_bottomnavd",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_sista_resan_design_d_jsx_sista_resan_design_d_landingd",
+      "fromNode": "n_sista_resan_design_d_jsx",
+      "toNode": "n_sista_resan_design_d_landingd",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_sista_resan_design_d_jsx_sista_resan_design_d_dashboardd",
+      "fromNode": "n_sista_resan_design_d_jsx",
+      "toNode": "n_sista_resan_design_d_dashboardd",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_sista_resan_design_d_jsx_sista_resan_design_d_tasksd",
+      "fromNode": "n_sista_resan_design_d_jsx",
+      "toNode": "n_sista_resan_design_d_tasksd",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_sista_resan_design_d_jsx_sista_resan_design_d_tokensd",
+      "fromNode": "n_sista_resan_design_d_jsx",
+      "toNode": "n_sista_resan_design_d_tokensd",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_sista_resan_design_d_jsx_sista_resan_design_d_designd",
+      "fromNode": "n_sista_resan_design_d_jsx",
+      "toNode": "n_sista_resan_design_d_designd",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_middleware_ts_middleware_middleware",
+      "fromNode": "n_src_middleware_ts",
+      "toNode": "n_middleware_middleware",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_robots_ts_robots_robots",
+      "fromNode": "n_src_app_robots_ts",
+      "toNode": "n_robots_robots",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_sitemap_ts_sitemap_sitemap",
+      "fromNode": "n_src_app_sitemap_ts",
+      "toNode": "n_sitemap_sitemap",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_layout_tsx_layout_jsonld",
+      "fromNode": "n_src_app_layout_tsx",
+      "toNode": "n_layout_jsonld",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_layout_tsx_layout_rootlayout",
+      "fromNode": "n_src_app_layout_tsx",
+      "toNode": "n_layout_rootlayout",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_error_tsx_error_error",
+      "fromNode": "n_src_app_error_tsx",
+      "toNode": "n_error_error",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_page_tsx_page_handlebeforeinstallprompt",
+      "fromNode": "n_src_app_page_tsx",
+      "toNode": "n_page_handlebeforeinstallprompt",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_page_tsx_page_handleinstall",
+      "fromNode": "n_src_app_page_tsx",
+      "toNode": "n_page_handleinstall",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_page_tsx_page_handledismiss",
+      "fromNode": "n_src_app_page_tsx",
+      "toNode": "n_page_handledismiss",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_not_found_tsx_not_found_notfound",
+      "fromNode": "n_src_app_not_found_tsx",
+      "toNode": "n_not_found_notfound",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_dodsbo_skulder_layout_tsx_layout_dodsboskulderlayout",
+      "fromNode": "n_src_app_dodsbo_skulder_layout_tsx",
+      "toNode": "n_layout_dodsboskulderlayout",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_begravningsplanering_page_tsx_page_mikerosstip",
+      "fromNode": "n_src_app_begravningsplanering_page_tsx",
+      "toNode": "n_page_mikerosstip",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_begravningsplanering_page_tsx_page_next",
+      "fromNode": "n_src_app_begravningsplanering_page_tsx",
+      "toNode": "n_page_next",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_begravningsplanering_page_tsx_page_prev",
+      "fromNode": "n_src_app_begravningsplanering_page_tsx",
+      "toNode": "n_page_prev",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_begravningsplanering_page_tsx_page_handlesaveplan",
+      "fromNode": "n_src_app_begravningsplanering_page_tsx",
+      "toNode": "n_page_handlesaveplan",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_page_mikerosstip_src_app_samarbete_page_tsx",
+      "fromNode": "n_page_mikerosstip",
+      "toNode": "n_src_app_samarbete_page_tsx",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_page_mikerosstip_src_app_dodsboanmalan_page_tsx",
+      "fromNode": "n_page_mikerosstip",
+      "toNode": "n_src_app_dodsboanmalan_page_tsx",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_page_mikerosstip_src_app_testamente_page_tsx",
+      "fromNode": "n_page_mikerosstip",
+      "toNode": "n_src_app_testamente_page_tsx",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_page_mikerosstip_src_app_skatteverket_guide_page_tsx",
+      "fromNode": "n_page_mikerosstip",
+      "toNode": "n_src_app_skatteverket_guide_page_tsx",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_page_mikerosstip_src_app_digitala_tillgangar_page_tsx",
+      "fromNode": "n_page_mikerosstip",
+      "toNode": "n_src_app_digitala_tillgangar_page_tsx",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_page_mikerosstip_src_app_bankbrev_page_tsx",
+      "fromNode": "n_page_mikerosstip",
+      "toNode": "n_src_app_bankbrev_page_tsx",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_page_mikerosstip_src_app_arvskifteshandling_page_tsx",
+      "fromNode": "n_page_mikerosstip",
+      "toNode": "n_src_app_arvskifteshandling_page_tsx",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_page_mikerosstip_src_app_minnesida_page_tsx",
+      "fromNode": "n_page_mikerosstip",
+      "toNode": "n_src_app_minnesida_page_tsx",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_page_mikerosstip_src_app_dodsannons_page_tsx",
+      "fromNode": "n_page_mikerosstip",
+      "toNode": "n_src_app_dodsannons_page_tsx",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_page_next_src_app_dodsboanmalan_page_tsx",
+      "fromNode": "n_page_next",
+      "toNode": "n_src_app_dodsboanmalan_page_tsx",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_page_next_src_app_testamente_page_tsx",
+      "fromNode": "n_page_next",
+      "toNode": "n_src_app_testamente_page_tsx",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_page_next_src_app_arvskifteshandling_page_tsx",
+      "fromNode": "n_page_next",
+      "toNode": "n_src_app_arvskifteshandling_page_tsx",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_page_prev_src_app_dodsboanmalan_page_tsx",
+      "fromNode": "n_page_prev",
+      "toNode": "n_src_app_dodsboanmalan_page_tsx",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_page_prev_src_app_testamente_page_tsx",
+      "fromNode": "n_page_prev",
+      "toNode": "n_src_app_testamente_page_tsx",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_page_prev_src_app_arvskifteshandling_page_tsx",
+      "fromNode": "n_page_prev",
+      "toNode": "n_src_app_arvskifteshandling_page_tsx",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_bouppteckning_layout_tsx_layout_bouppteckninglayout",
+      "fromNode": "n_src_app_bouppteckning_layout_tsx",
+      "toNode": "n_layout_bouppteckninglayout",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_bouppteckning_page_tsx_page_handlepersonnummerblur",
+      "fromNode": "n_src_app_bouppteckning_page_tsx",
+      "toNode": "n_page_handlepersonnummerblur",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_bouppteckning_page_tsx_page_savebouppteckninginfo",
+      "fromNode": "n_src_app_bouppteckning_page_tsx",
+      "toNode": "n_page_savebouppteckninginfo",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_bouppteckning_page_tsx_page_async",
+      "fromNode": "n_src_app_bouppteckning_page_tsx",
+      "toNode": "n_page_async",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_page_handlepersonnummerblur_page_savebouppteckninginfo",
+      "fromNode": "n_page_handlepersonnummerblur",
+      "toNode": "n_page_savebouppteckninginfo",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_page_async_src_app_installningar_page_tsx",
+      "fromNode": "n_page_async",
+      "toNode": "n_src_app_installningar_page_tsx",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_samarbete_page_tsx_page_getstatuscolor",
+      "fromNode": "n_src_app_samarbete_page_tsx",
+      "toNode": "n_page_getstatuscolor",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_samarbete_page_tsx_page_getstatusicon",
+      "fromNode": "n_src_app_samarbete_page_tsx",
+      "toNode": "n_page_getstatusicon",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_samarbete_page_tsx_page_updatedecision",
+      "fromNode": "n_src_app_samarbete_page_tsx",
+      "toNode": "n_page_updatedecision",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_samarbete_page_tsx_page_toggleapproval",
+      "fromNode": "n_src_app_samarbete_page_tsx",
+      "toNode": "n_page_toggleapproval",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_samarbete_page_tsx_page_adddecision",
+      "fromNode": "n_src_app_samarbete_page_tsx",
+      "toNode": "n_page_adddecision",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_samarbete_page_tsx_page_deletedecision",
+      "fromNode": "n_src_app_samarbete_page_tsx",
+      "toNode": "n_page_deletedecision",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_samarbete_page_tsx_page_addnote",
+      "fromNode": "n_src_app_samarbete_page_tsx",
+      "toNode": "n_page_addnote",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_samarbete_page_tsx_page_deletenote",
+      "fromNode": "n_src_app_samarbete_page_tsx",
+      "toNode": "n_page_deletenote",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_samarbete_page_tsx_page_getentrycolor",
+      "fromNode": "n_src_app_samarbete_page_tsx",
+      "toNode": "n_page_getentrycolor",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_samarbete_page_tsx_page_getentryicon",
+      "fromNode": "n_src_app_samarbete_page_tsx",
+      "toNode": "n_page_getentryicon",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_page_updatedecision_page_toggleapproval",
+      "fromNode": "n_page_updatedecision",
+      "toNode": "n_page_toggleapproval",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_auth_layout_tsx_layout_authlayout",
+      "fromNode": "n_src_app_auth_layout_tsx",
+      "toNode": "n_layout_authlayout",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_auth_page_tsx_page_handlelogin",
+      "fromNode": "n_src_app_auth_page_tsx",
+      "toNode": "n_page_handlelogin",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_auth_page_tsx_page_handleregister",
+      "fromNode": "n_src_app_auth_page_tsx",
+      "toNode": "n_page_handleregister",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_auth_page_tsx_page_handleresetpassword",
+      "fromNode": "n_src_app_auth_page_tsx",
+      "toNode": "n_page_handleresetpassword",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_auth_callback_route_ts_route_get",
+      "fromNode": "n_src_app_auth_callback_route_ts",
+      "toNode": "n_route_get",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_faq_layout_tsx_layout_faqlayout",
+      "fromNode": "n_src_app_faq_layout_tsx",
+      "toNode": "n_layout_faqlayout",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_exportera_page_tsx_page_exportzip",
+      "fromNode": "n_src_app_exportera_page_tsx",
+      "toNode": "n_page_exportzip",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_dodsboanmalan_page_tsx_page_generatetext",
+      "fromNode": "n_src_app_dodsboanmalan_page_tsx",
+      "toNode": "n_page_generatetext",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_dodsboanmalan_page_tsx_page_handledownloadpdf",
+      "fromNode": "n_src_app_dodsboanmalan_page_tsx",
+      "toNode": "n_page_handledownloadpdf",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_dodsboanmalan_page_tsx_page_handledownloaddocx",
+      "fromNode": "n_src_app_dodsboanmalan_page_tsx",
+      "toNode": "n_page_handledownloaddocx",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_page_generatetext_page_handledownloadpdf",
+      "fromNode": "n_page_generatetext",
+      "toNode": "n_page_handledownloadpdf",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_page_generatetext_page_handledownloaddocx",
+      "fromNode": "n_page_generatetext",
+      "toNode": "n_page_handledownloaddocx",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_page_generatetext_src_app_testamente_page_tsx",
+      "fromNode": "n_page_generatetext",
+      "toNode": "n_src_app_testamente_page_tsx",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_page_generatetext_src_app_arvskifteshandling_page_tsx",
+      "fromNode": "n_page_generatetext",
+      "toNode": "n_src_app_arvskifteshandling_page_tsx",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_page_handledownloadpdf_src_app_testamente_page_tsx",
+      "fromNode": "n_page_handledownloadpdf",
+      "toNode": "n_src_app_testamente_page_tsx",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_page_handledownloadpdf_src_app_bankbrev_page_tsx",
+      "fromNode": "n_page_handledownloadpdf",
+      "toNode": "n_src_app_bankbrev_page_tsx",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_page_handledownloadpdf_page_generateallletters",
+      "fromNode": "n_page_handledownloadpdf",
+      "toNode": "n_page_generateallletters",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_page_handledownloadpdf_src_app_arvskifteshandling_page_tsx",
+      "fromNode": "n_page_handledownloadpdf",
+      "toNode": "n_src_app_arvskifteshandling_page_tsx",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_page_handledownloadpdf_src_app_dodsannons_page_tsx",
+      "fromNode": "n_page_handledownloadpdf",
+      "toNode": "n_src_app_dodsannons_page_tsx",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_page_handledownloadpdf_page_generateannouncementtext",
+      "fromNode": "n_page_handledownloadpdf",
+      "toNode": "n_page_generateannouncementtext",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_page_handledownloaddocx_src_app_testamente_page_tsx",
+      "fromNode": "n_page_handledownloaddocx",
+      "toNode": "n_src_app_testamente_page_tsx",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_page_handledownloaddocx_src_app_bankbrev_page_tsx",
+      "fromNode": "n_page_handledownloaddocx",
+      "toNode": "n_src_app_bankbrev_page_tsx",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_page_handledownloaddocx_page_generateallletters",
+      "fromNode": "n_page_handledownloaddocx",
+      "toNode": "n_page_generateallletters",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_page_handledownloaddocx_src_app_arvskifteshandling_page_tsx",
+      "fromNode": "n_page_handledownloaddocx",
+      "toNode": "n_src_app_arvskifteshandling_page_tsx",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_installningar_page_tsx_page_settextsize",
+      "fromNode": "n_src_app_installningar_page_tsx",
+      "toNode": "n_page_settextsize",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_bodelning_page_tsx_page_formatsek",
+      "fromNode": "n_src_app_bodelning_page_tsx",
+      "toNode": "n_page_formatsek",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_bodelning_page_tsx_page_addegendom",
+      "fromNode": "n_src_app_bodelning_page_tsx",
+      "toNode": "n_page_addegendom",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_bodelning_page_tsx_page_removeegendom",
+      "fromNode": "n_src_app_bodelning_page_tsx",
+      "toNode": "n_page_removeegendom",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_bodelning_page_tsx_page_handledownloadavtal",
+      "fromNode": "n_src_app_bodelning_page_tsx",
+      "toNode": "n_page_handledownloadavtal",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_page_formatsek_src_app_arvskalkylator_page_tsx",
+      "fromNode": "n_page_formatsek",
+      "toNode": "n_src_app_arvskalkylator_page_tsx",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_page_formatsek_page_calculateinheritance",
+      "fromNode": "n_page_formatsek",
+      "toNode": "n_page_calculateinheritance",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_page_formatsek_src_app_arvskifte_page_tsx",
+      "fromNode": "n_page_formatsek",
+      "toNode": "n_src_app_arvskifte_page_tsx",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_page_formatsek_src_app_kostnader_page_tsx",
+      "fromNode": "n_page_formatsek",
+      "toNode": "n_src_app_kostnader_page_tsx",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_juridisk_hjalp_page_tsx_page_usetypewriter",
+      "fromNode": "n_src_app_juridisk_hjalp_page_tsx",
+      "toNode": "n_page_usetypewriter",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_juridisk_hjalp_page_tsx_page_rendermarkdown",
+      "fromNode": "n_src_app_juridisk_hjalp_page_tsx",
+      "toNode": "n_page_rendermarkdown",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_juridisk_hjalp_page_tsx_page_renderinline",
+      "fromNode": "n_src_app_juridisk_hjalp_page_tsx",
+      "toNode": "n_page_renderinline",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_juridisk_hjalp_page_tsx_page_typewriterbubble",
+      "fromNode": "n_src_app_juridisk_hjalp_page_tsx",
+      "toNode": "n_page_typewriterbubble",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_juridisk_hjalp_page_tsx_page_getusedmessages",
+      "fromNode": "n_src_app_juridisk_hjalp_page_tsx",
+      "toNode": "n_page_getusedmessages",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_juridisk_hjalp_page_tsx_page_incrementusedmessages",
+      "fromNode": "n_src_app_juridisk_hjalp_page_tsx",
+      "toNode": "n_page_incrementusedmessages",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_juridisk_hjalp_page_tsx_page_handletouchstart",
+      "fromNode": "n_src_app_juridisk_hjalp_page_tsx",
+      "toNode": "n_page_handletouchstart",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_juridisk_hjalp_page_tsx_page_handletouchend",
+      "fromNode": "n_src_app_juridisk_hjalp_page_tsx",
+      "toNode": "n_page_handletouchend",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_juridisk_hjalp_page_tsx_page_handlescroll",
+      "fromNode": "n_src_app_juridisk_hjalp_page_tsx",
+      "toNode": "n_page_handlescroll",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_juridisk_hjalp_page_tsx_page_sendmessage",
+      "fromNode": "n_src_app_juridisk_hjalp_page_tsx",
+      "toNode": "n_page_sendmessage",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_juridisk_hjalp_page_tsx_page_handlekeydown",
+      "fromNode": "n_src_app_juridisk_hjalp_page_tsx",
+      "toNode": "n_page_handlekeydown",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_page_usetypewriter_page_typewriterbubble",
+      "fromNode": "n_page_usetypewriter",
+      "toNode": "n_page_typewriterbubble",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_page_getusedmessages_page_incrementusedmessages",
+      "fromNode": "n_page_getusedmessages",
+      "toNode": "n_page_incrementusedmessages",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_page_incrementusedmessages_page_sendmessage",
+      "fromNode": "n_page_incrementusedmessages",
+      "toNode": "n_page_sendmessage",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_page_sendmessage_page_handlekeydown",
+      "fromNode": "n_page_sendmessage",
+      "toNode": "n_page_handlekeydown",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_anvandarvillkor_page_tsx_page_anvandarvillkorpage",
+      "fromNode": "n_src_app_anvandarvillkor_page_tsx",
+      "toNode": "n_page_anvandarvillkorpage",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_integritetspolicy_page_tsx_page_integritetspolicypage",
+      "fromNode": "n_src_app_integritetspolicy_page_tsx",
+      "toNode": "n_page_integritetspolicypage",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_skanner_page_tsx_page_loaddocs",
+      "fromNode": "n_src_app_skanner_page_tsx",
+      "toNode": "n_page_loaddocs",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_skanner_page_tsx_page_savedocs",
+      "fromNode": "n_src_app_skanner_page_tsx",
+      "toNode": "n_page_savedocs",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_skanner_page_tsx_page_handlefilechange",
+      "fromNode": "n_src_app_skanner_page_tsx",
+      "toNode": "n_page_handlefilechange",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_skanner_page_tsx_page_savedocument",
+      "fromNode": "n_src_app_skanner_page_tsx",
+      "toNode": "n_page_savedocument",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_skanner_page_tsx_page_resetcapture",
+      "fromNode": "n_src_app_skanner_page_tsx",
+      "toNode": "n_page_resetcapture",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_skanner_page_tsx_page_deletedoc",
+      "fromNode": "n_src_app_skanner_page_tsx",
+      "toNode": "n_page_deletedoc",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_page_savedocs_page_savedocument",
+      "fromNode": "n_page_savedocs",
+      "toNode": "n_page_savedocument",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_page_savedocs_page_deletedoc",
+      "fromNode": "n_page_savedocs",
+      "toNode": "n_page_deletedoc",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_page_savedocument_page_resetcapture",
+      "fromNode": "n_page_savedocument",
+      "toNode": "n_page_resetcapture",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_testamente_page_tsx_page_addarvinge",
+      "fromNode": "n_src_app_testamente_page_tsx",
+      "toNode": "n_page_addarvinge",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_testamente_page_tsx_page_removearvinge",
+      "fromNode": "n_src_app_testamente_page_tsx",
+      "toNode": "n_page_removearvinge",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_fullmakt_page_tsx_page_generatebankletters",
+      "fromNode": "n_src_app_fullmakt_page_tsx",
+      "toNode": "n_page_generatebankletters",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_fullmakt_page_tsx_page_fullmaktskeleton",
+      "fromNode": "n_src_app_fullmakt_page_tsx",
+      "toNode": "n_page_fullmaktskeleton",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_fullmakt_page_tsx_page_handlecopy",
+      "fromNode": "n_src_app_fullmakt_page_tsx",
+      "toNode": "n_page_handlecopy",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_page_handlecopy_src_app_skatteverket_guide_page_tsx",
+      "fromNode": "n_page_handlecopy",
+      "toNode": "n_src_app_skatteverket_guide_page_tsx",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_sambo_arv_layout_tsx_layout_samboarvlayout",
+      "fromNode": "n_src_app_sambo_arv_layout_tsx",
+      "toNode": "n_layout_samboarvlayout",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_dashboard_layout_tsx_layout_dashboardlayout",
+      "fromNode": "n_src_app_dashboard_layout_tsx",
+      "toNode": "n_layout_dashboardlayout",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_dashboard_page_tsx_page_dashboardskeleton",
+      "fromNode": "n_src_app_dashboard_page_tsx",
+      "toNode": "n_page_dashboardskeleton",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_dashboard_page_tsx_page_computestep",
+      "fromNode": "n_src_app_dashboard_page_tsx",
+      "toNode": "n_page_computestep",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_dashboard_page_tsx_page_statusicon",
+      "fromNode": "n_src_app_dashboard_page_tsx",
+      "toNode": "n_page_statusicon",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_deklarera_dodsbo_layout_tsx_layout_deklararadodsbolayout",
+      "fromNode": "n_src_app_deklarera_dodsbo_layout_tsx",
+      "toNode": "n_layout_deklararadodsbolayout",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_nodbroms_layout_tsx_layout_nodbromslayout",
+      "fromNode": "n_src_app_nodbroms_layout_tsx",
+      "toNode": "n_layout_nodbromslayout",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_nodbroms_page_tsx_page_toggledone",
+      "fromNode": "n_src_app_nodbroms_page_tsx",
+      "toNode": "n_page_toggledone",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_nodbroms_page_tsx_page_urgencybadge",
+      "fromNode": "n_src_app_nodbroms_page_tsx",
+      "toNode": "n_page_urgencybadge",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_arvskalkylator_page_tsx_page_calculateinheritance",
+      "fromNode": "n_src_app_arvskalkylator_page_tsx",
+      "toNode": "n_page_calculateinheritance",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_api_juridisk_ai_route_ts_route_checkratelimit",
+      "fromNode": "n_src_app_api_juridisk_ai_route_ts",
+      "toNode": "n_route_checkratelimit",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_api_juridisk_ai_route_ts_route_post",
+      "fromNode": "n_src_app_api_juridisk_ai_route_ts",
+      "toNode": "n_route_post",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_route_checkratelimit_route_post",
+      "fromNode": "n_route_checkratelimit",
+      "toNode": "n_route_post",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_delagare_page_tsx_page_handleinvite",
+      "fromNode": "n_src_app_delagare_page_tsx",
+      "toNode": "n_page_handleinvite",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_delagare_page_tsx_page_getinvitestatus",
+      "fromNode": "n_src_app_delagare_page_tsx",
+      "toNode": "n_page_getinvitestatus",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_delagare_page_tsx_page_validate",
+      "fromNode": "n_src_app_delagare_page_tsx",
+      "toNode": "n_page_validate",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_delagare_page_tsx_page_handleadd",
+      "fromNode": "n_src_app_delagare_page_tsx",
+      "toNode": "n_page_handleadd",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_page_validate_page_handleadd",
+      "fromNode": "n_page_validate",
+      "toNode": "n_page_handleadd",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_digitala_tillgangar_page_tsx_page_togglesection",
+      "fromNode": "n_src_app_digitala_tillgangar_page_tsx",
+      "toNode": "n_page_togglesection",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_digitala_tillgangar_page_tsx_page_togglecryptocheckbox",
+      "fromNode": "n_src_app_digitala_tillgangar_page_tsx",
+      "toNode": "n_page_togglecryptocheckbox",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_digitala_tillgangar_page_tsx_page_togglesocialcheckbox",
+      "fromNode": "n_src_app_digitala_tillgangar_page_tsx",
+      "toNode": "n_page_togglesocialcheckbox",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_digitala_tillgangar_page_tsx_page_togglestreamingcheckbox",
+      "fromNode": "n_src_app_digitala_tillgangar_page_tsx",
+      "toNode": "n_page_togglestreamingcheckbox",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_digitala_tillgangar_page_tsx_page_toggleemailcheckbox",
+      "fromNode": "n_src_app_digitala_tillgangar_page_tsx",
+      "toNode": "n_page_toggleemailcheckbox",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_digitala_tillgangar_page_tsx_page_toggledomainscheckbox",
+      "fromNode": "n_src_app_digitala_tillgangar_page_tsx",
+      "toNode": "n_page_toggledomainscheckbox",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_bankbrev_page_tsx_page_handleaddcustombank",
+      "fromNode": "n_src_app_bankbrev_page_tsx",
+      "toNode": "n_page_handleaddcustombank",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_bankbrev_page_tsx_page_togglebank",
+      "fromNode": "n_src_app_bankbrev_page_tsx",
+      "toNode": "n_page_togglebank",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_bankbrev_page_tsx_page_generateletterforbank",
+      "fromNode": "n_src_app_bankbrev_page_tsx",
+      "toNode": "n_page_generateletterforbank",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_bankbrev_page_tsx_page_generateallletters",
+      "fromNode": "n_src_app_bankbrev_page_tsx",
+      "toNode": "n_page_generateallletters",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_bankbrev_page_tsx_page_canproceed",
+      "fromNode": "n_src_app_bankbrev_page_tsx",
+      "toNode": "n_page_canproceed",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_page_togglebank_src_app_bank_guide_page_tsx",
+      "fromNode": "n_page_togglebank",
+      "toNode": "n_src_app_bank_guide_page_tsx",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_page_canproceed_src_app_dodsannons_page_tsx",
+      "fromNode": "n_page_canproceed",
+      "toNode": "n_src_app_dodsannons_page_tsx",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_arvskifte_layout_tsx_layout_arvskiftelayout",
+      "fromNode": "n_src_app_arvskifte_layout_tsx",
+      "toNode": "n_layout_arvskiftelayout",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_kallelse_page_tsx_page_kallelseskeleton",
+      "fromNode": "n_src_app_kallelse_page_tsx",
+      "toNode": "n_page_kallelseskeleton",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_kallelse_page_tsx_page_kallelsecontent",
+      "fromNode": "n_src_app_kallelse_page_tsx",
+      "toNode": "n_page_kallelsecontent",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_avsluta_konton_page_tsx_page_avslutakontonskeleton",
+      "fromNode": "n_src_app_avsluta_konton_page_tsx",
+      "toNode": "n_page_avslutakontonskeleton",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_src_app_avsluta_konton_page_tsx_page_toggleitem",
+      "fromNode": "n_src_app_avsluta_konton_page_tsx",
+      "toNode": "n_page_toggleitem",
+      "label": "contains [EXTRACTED]"
+    }
+  ]
+}

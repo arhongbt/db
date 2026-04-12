@@ -1,7 +1,6 @@
 ---
 name: graphify
-description: any input (code, docs, papers, images) → knowledge graph → clustered communities → HTML + JSON + audit report
-trigger: /graphify
+description: any input (code, docs, papers, images) → knowledge graph → clustered communities → HTML + JSON + audit report. Trigger with /graphify. Use when the user wants to visualize code architecture, map relationships in documents, build knowledge graphs, or explore connections across files.
 ---
 
 # /graphify
