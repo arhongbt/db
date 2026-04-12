@@ -14,7 +14,7 @@ export function FloatingChatButton() {
   }
 
   return (
-    <div className="fixed z-40 bottom-0 left-0 right-0 mx-auto max-w-lg pointer-events-none">
+    <div className="fixed z-40 bottom-0 left-0 right-0 mx-auto max-w-none pointer-events-none">
       <Link
         href="/juridisk-hjalp"
         aria-label="Fråga Mike Ross"

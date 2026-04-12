@@ -71,7 +71,7 @@ export default function LandingPage() {
   };
 
   return (
-    <div className="flex flex-col min-h-dvh relative overflow-hidden w-screen -ml-[calc((100vw-100%)/2)]">
+    <div className="flex flex-col min-h-dvh relative overflow-hidden ">
       {/* Decorative elements — behind all content */}
       <BlobDecoration className="-top-16 -right-20" color="#EEF2EA" size={220} />
       <BlobDecoration className="top-[55%] -left-24" color="#EDF2F6" size={180} />
