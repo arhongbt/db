@@ -196,7 +196,7 @@ export default function RootLayout({
         <AuthProvider>
           <LanguageProvider>
             <ServiceWorkerRegistration />
-            <main className="mx-auto max-w-[430px] min-h-dvh md:shadow-xl md:border-x md:border-gray-200/60 relative" id="main-content">
+            <main className="min-h-dvh relative" id="main-content">
               {children}
               <FloatingChatButton />
             </main>
