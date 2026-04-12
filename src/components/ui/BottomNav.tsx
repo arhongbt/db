@@ -108,7 +108,7 @@ export function BottomNav() {
       {moreOpen && (
         <div
           ref={menuRef}
-          className="fixed bottom-[calc(4rem+env(safe-area-inset-bottom))] left-0 right-0 z-50 bg-white rounded-t-3xl shadow-2xl border-t max-h-[70vh] overflow-y-auto"
+          className="fixed bottom-[calc(4rem+env(safe-area-inset-bottom))] left-0 right-0 z-50 bg-white rounded-t-3xl shadow-2xl border-t max-h-[70vh] overflow-y-auto mx-auto max-w-[430px]"
           style={{ borderColor: '#F0EDE6' }}
         >
           <div className="px-5 pt-4 pb-2 flex items-center justify-between sticky top-0 bg-white rounded-t-3xl">
@@ -157,8 +157,8 @@ export function BottomNav() {
       )}
 
       {/* Bottom nav bar — warm linen background */}
-      <nav className="fixed bottom-0 left-0 right-0 z-50 border-t" style={{ background: '#F7F5F0', borderColor: '#E8E4DE' }}>
-        <div className="mx-auto max-w-lg flex items-center justify-around px-2 py-1.5">
+      <nav className="fixed bottom-0 left-0 right-0 z-50 border-t mx-auto max-w-[430px]" style={{ background: '#F7F5F0', borderColor: '#E8E4DE' }}>
+        <div className="flex items-center justify-around px-2 py-1.5">
           {NAV_ITEMS.map(({ href, label, icon: Icon }) => {
             const isActive = pathname === href;
             return (

@@ -184,7 +184,7 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/icons/icon-192.png" />
         <JsonLd />
       </head>
-      <body className="min-h-dvh">
+      <body className="min-h-dvh md:bg-gray-100">
         <TextScaleLoader />
         {/* Skip navigation link */}
         <a
@@ -196,12 +196,12 @@ export default function RootLayout({
         <AuthProvider>
           <LanguageProvider>
             <ServiceWorkerRegistration />
-            <main className="mx-auto max-w-lg" id="main-content">
+            <main className="mx-auto max-w-[430px] min-h-dvh md:shadow-xl md:border-x md:border-gray-200/60 relative" id="main-content">
               {children}
+              <FloatingChatButton />
             </main>
           </LanguageProvider>
         </AuthProvider>
-        <FloatingChatButton />
         <CookieBanner />
         <Analytics />
         <SpeedInsights />

@@ -28,9 +28,10 @@
     }
   }
 
-  /* Prevent layout shift from scrollbar */
+  /* Prevent layout shift from scrollbar + prevent horizontal overflow */
   html {
     overflow-y: scroll;
+    overflow-x: hidden;
   }
 }
 

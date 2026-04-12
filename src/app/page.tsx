@@ -71,7 +71,7 @@ export default function LandingPage() {
   };
 
   return (
-    <div className="flex flex-col min-h-dvh relative overflow-hidden">
+    <div className="flex flex-col min-h-dvh relative overflow-hidden w-screen -ml-[calc((100vw-100%)/2)]">
       {/* Decorative elements — behind all content */}
       <BlobDecoration className="-top-16 -right-20" color="#EEF2EA" size={220} />
       <BlobDecoration className="top-[55%] -left-24" color="#EDF2F6" size={180} />
@@ -81,7 +81,7 @@ export default function LandingPage() {
       <SparkleDecoration className="bottom-16 right-12" size={12} opacity={0.08} />
 
       {/* All content sits above decorations */}
-      <div className="relative z-10 flex flex-col min-h-dvh">
+      <div className="relative z-10 flex flex-col min-h-dvh max-w-3xl mx-auto w-full">
 
       {/* PWA Install Prompt Banner */}
       {showInstallBanner && (
@@ -114,10 +114,10 @@ export default function LandingPage() {
       {/* Hero — empathetic, calm */}
       <section className="flex flex-col justify-center px-5 pt-10 pb-8">
         <DoveLogo size={48} className="mb-6" />
-        <h1 className="text-4xl font-bold text-primary leading-tight mb-4">
+        <h1 className="text-2xl sm:text-4xl font-bold text-primary leading-tight mb-3">
           {t('Hantera dödsboet tryggt och enkelt', 'Manage the estate safely and simply')}
         </h1>
-        <p className="text-lg text-muted leading-relaxed mb-6">
+        <p className="text-base text-muted leading-relaxed mb-5">
           {t(
             'Att hantera ett dödsbo kan kännas överväldigande. Sista Resan guidar dig steg för steg genom hela processen — i din egen takt.',
             'Managing an estate after a loss can feel overwhelming. Sista Resan guides you through every step — at your own pace.'
@@ -126,7 +126,7 @@ export default function LandingPage() {
       </section>
 
       {/* Trust Badges */}
-      <section className="px-5 pb-8">
+      <section className="px-5 pb-6">
         <div className="grid grid-cols-2 gap-3 sm:flex sm:justify-around">
           {[
             { label: t('2 000+ familjer', '2,000+ families'), icon: Users },
@@ -143,7 +143,7 @@ export default function LandingPage() {
       </section>
 
       {/* Primary CTA */}
-      <section className="px-5 pb-8">
+      <section className="px-5 pb-6">
         {hasExisting ? (
           <>
             <button
@@ -178,11 +178,11 @@ export default function LandingPage() {
       </section>
 
       {/* Features Grid — 6 cards */}
-      <section className="px-5 pb-8">
-        <h2 className="text-2xl font-bold text-primary mb-5">
+      <section className="px-5 pb-6">
+        <h2 className="text-xl font-bold text-primary mb-4">
           {t('Det här appen gör för dig', 'What this app does for you')}
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="grid grid-cols-2 gap-3 sm:gap-4">
           {[
             {
               icon: FileText,
@@ -215,20 +215,20 @@ export default function LandingPage() {
               desc: t('Dela information säkert med andra arvingar', 'Share information securely with other heirs'),
             },
           ].map((feature) => (
-            <div key={feature.title} className="bg-white rounded-2xl border border-[#E8E4DE] p-5 hover:shadow-md transition-shadow">
-              <div className="w-11 h-11 bg-[#6B7F5E]/10 rounded-xl flex items-center justify-center mb-3">
-                <feature.icon className="w-6 h-6 text-[#6B7F5E]" />
+            <div key={feature.title} className="bg-white rounded-2xl border border-[#E8E4DE] p-4 hover:shadow-md transition-shadow">
+              <div className="w-10 h-10 bg-[#6B7F5E]/10 rounded-xl flex items-center justify-center mb-2">
+                <feature.icon className="w-5 h-5 text-[#6B7F5E]" />
               </div>
-              <h3 className="font-semibold text-primary mb-2">{feature.title}</h3>
-              <p className="text-sm text-muted leading-relaxed">{feature.desc}</p>
+              <h3 className="font-semibold text-primary text-sm mb-1">{feature.title}</h3>
+              <p className="text-xs text-muted leading-relaxed">{feature.desc}</p>
             </div>
           ))}
         </div>
       </section>
 
       {/* How it works */}
-      <section className="px-5 pb-8">
-        <h2 className="text-2xl font-bold text-primary mb-5">
+      <section className="px-5 pb-6">
+        <h2 className="text-xl font-bold text-primary mb-4">
           {t('Så fungerar det', 'How it works')}
         </h2>
         <div className="flex flex-col gap-4">
@@ -263,11 +263,11 @@ export default function LandingPage() {
       </section>
 
       {/* Pricing Preview */}
-      <section className="px-5 pb-8">
-        <h2 className="text-2xl font-bold text-primary mb-5">
+      <section className="px-5 pb-6">
+        <h2 className="text-xl font-bold text-primary mb-4">
           {t('Enkla priser', 'Simple pricing')}
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-5">
+        <div className="grid grid-cols-1 gap-3 mb-4">
           {[
             {
               name: t('Gratis', 'Free'),
@@ -297,13 +297,15 @@ export default function LandingPage() {
               ],
             },
           ].map((plan) => (
-            <div key={plan.name} className="bg-white rounded-2xl border border-[#E8E4DE] p-5">
-              <h3 className="font-semibold text-primary mb-2">{plan.name}</h3>
-              <p className="text-2xl font-bold text-[#6B7F5E] mb-4">{plan.price}</p>
-              <ul className="space-y-2">
+            <div key={plan.name} className="bg-white rounded-2xl border border-[#E8E4DE] p-4 flex items-center gap-4">
+              <div className="flex-shrink-0">
+                <h3 className="font-semibold text-primary text-sm">{plan.name}</h3>
+                <p className="text-xl font-bold text-[#6B7F5E]">{plan.price}</p>
+              </div>
+              <ul className="space-y-1 flex-1">
                 {plan.features.map((feature, i) => (
-                  <li key={i} className="flex items-start gap-2 text-sm text-muted">
-                    <CheckCircle2 className="w-4 h-4 text-[#6B7F5E] flex-shrink-0 mt-0.5" />
+                  <li key={i} className="flex items-start gap-1.5 text-xs text-muted">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-[#6B7F5E] flex-shrink-0 mt-0.5" />
                     <span>{feature}</span>
                   </li>
                 ))}
@@ -323,8 +325,8 @@ export default function LandingPage() {
       </section>
 
       {/* Testimonials */}
-      <section className="px-5 pb-8">
-        <h2 className="text-2xl font-bold text-primary mb-5">
+      <section className="px-5 pb-6">
+        <h2 className="text-xl font-bold text-primary mb-4">
           {t('Familjer som använder appen', 'Families using the app')}
         </h2>
         <div className="grid grid-cols-1 gap-4">
@@ -351,21 +353,21 @@ export default function LandingPage() {
               ),
             },
           ].map((testimonial, i) => (
-            <div key={i} className="bg-white rounded-2xl border border-[#E8E4DE] p-5">
-              <div className="flex gap-1 mb-3">
+            <div key={i} className="bg-white rounded-2xl border border-[#E8E4DE] p-4">
+              <div className="flex gap-0.5 mb-2">
                 {[...Array(5)].map((_, j) => (
-                  <Star key={j} className="w-4 h-4 fill-[#6B7F5E] text-[#6B7F5E]" />
+                  <Star key={j} className="w-3.5 h-3.5 fill-[#6B7F5E] text-[#6B7F5E]" />
                 ))}
               </div>
-              <p className="text-sm text-muted leading-relaxed mb-3 italic">"{testimonial.quote}"</p>
-              <p className="text-sm font-medium text-primary">{testimonial.name}</p>
+              <p className="text-sm text-muted leading-relaxed mb-2 italic">"{testimonial.quote}"</p>
+              <p className="text-xs font-medium text-primary">{testimonial.name}</p>
             </div>
           ))}
         </div>
       </section>
 
       {/* Trust signals */}
-      <section className="px-5 pb-8">
+      <section className="px-5 pb-6">
         <div className="bg-[#F7F5F0] rounded-2xl border border-[#E8E4DE] p-5">
           <h3 className="font-semibold text-primary mb-4">
             {t('Du är i trygga händer', 'You are in safe hands')}
@@ -404,7 +406,7 @@ export default function LandingPage() {
       </section>
 
       {/* Mike Ross intro */}
-      <section className="px-5 pb-8">
+      <section className="px-5 pb-6">
         <MikeRossTip
           text={t(
             'Dödsbo, bouppteckning, arvskifte — låter det förvirrande? Inga problem. Jag heter Mike Ross och dyker upp genom hela appen för att förklara juridiska termer på ren svenska. Du behöver inte kunna lagen — det fixar vi tillsammans.',
@@ -414,7 +416,7 @@ export default function LandingPage() {
       </section>
 
       {/* FAQ — SEO rich */}
-      <section className="px-5 pb-8">
+      <section className="px-5 pb-6">
         <h2 className="text-2xl font-bold text-primary mb-4">
           {t('Vanliga frågor', 'Frequently asked questions')}
         </h2>
