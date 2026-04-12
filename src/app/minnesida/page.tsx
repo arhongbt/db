@@ -99,7 +99,7 @@ ${form.citat}
           </div>
 
           {/* Memorial Card */}
-          <div className="bg-white/50 backdrop-blur rounded-3xl p-8 text-center space-y-6">
+          <div className="bg-white rounded-2xl p-8 text-center space-y-6 border" style={{ borderColor: '#E8E4DE' }}>
             <Flame className="w-8 h-8 text-primary/60 mx-auto" />
 
             <div className="h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
@@ -128,7 +128,7 @@ ${form.citat}
             )}
 
             {form.citat && (
-              <div className="bg-primary/5 rounded-2xl p-4 border-l-2 border-primary/30">
+              <div className="bg-white rounded-2xl p-4 border" style={{ borderColor: '#E8E4DE' }}>
                 <p className="text-sm text-primary/80 font-light">
                   {form.citat}
                 </p>
@@ -163,7 +163,7 @@ ${form.citat}
 
   return (
     <div className="min-h-screen bg-background pb-24">
-      <div className="sticky top-0 bg-background border-b border-gray-100 z-10">
+      <div className="sticky top-0 bg-background border-b z-10" style={{ borderColor: '#E8E4DE' }}>
         <div className="max-w-2xl mx-auto px-4 py-4 flex items-center justify-between">
           <Link href="/dashboard" className="flex items-center gap-2 text-primary/60 hover:text-primary">
             <ArrowLeft className="w-5 h-5" />

@@ -33,19 +33,19 @@ function CollapsibleSection({
   onToggle: () => void;
 }) {
   return (
-    <div className="border border-gray-200 rounded-xl overflow-hidden mb-4">
+    <div className="border rounded-2xl overflow-hidden mb-4 bg-white" style={{ borderColor: '#E8E4DE' }}>
       <button
         onClick={onToggle}
-        className="w-full flex items-center justify-between p-4 hover:bg-gray-50 transition-colors"
+        className="w-full flex items-center justify-between p-4 hover:bg-background transition-colors"
       >
         <h3 className="text-base font-semibold text-primary">{title}</h3>
         <ChevronDown
-          className="w-5 h-5 text-gray-600 transition-transform"
+          className="w-5 h-5 text-muted transition-transform"
           style={{ transform: expanded ? 'rotate(180deg)' : 'rotate(0deg)' }}
         />
       </button>
       {expanded && (
-        <div className="border-t border-gray-200 p-4 bg-gray-50">
+        <div className="border-t p-4 bg-white" style={{ borderColor: '#E8E4DE' }}>
           {children}
         </div>
       )}

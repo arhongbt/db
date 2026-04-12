@@ -329,7 +329,7 @@ Adress: ${data.adress}`;
               {SWEDISH_BANKS.map((bank) => (
                 <label
                   key={bank.id}
-                  className="flex items-center gap-3 p-3 border border-gray-200 rounded-xl hover:bg-gray-50 cursor-pointer transition-colors"
+                  className="flex items-center gap-3 p-3 border rounded-2xl hover:bg-background cursor-pointer transition-colors bg-white" style={{ borderColor: '#E8E4DE' }}
                 >
                   <input
                     type="checkbox"
@@ -371,7 +371,7 @@ Adress: ${data.adress}`;
                   {customBanks.map((customBank, idx) => (
                     <div
                       key={idx}
-                      className="flex items-center justify-between p-3 border border-gray-200 rounded-xl bg-gray-50"
+                      className="flex items-center justify-between p-3 border rounded-2xl bg-white" style={{ borderColor: '#E8E4DE' }}
                     >
                       <p className="text-sm text-primary font-semibold">{customBank}</p>
                       <button
@@ -403,10 +403,10 @@ Adress: ${data.adress}`;
               {generateAllLetters().map((letter, idx) => (
                 <div
                   key={idx}
-                  className="border border-gray-200 rounded-xl p-4 bg-white"
+                  className="border rounded-2xl p-4 bg-white" style={{ borderColor: '#E8E4DE' }}
                 >
                   <h3 className="font-bold text-primary mb-3 text-sm">{letter.bankName}</h3>
-                  <pre className="text-xs text-primary/70 whitespace-pre-wrap font-mono overflow-auto max-h-64 p-3 bg-gray-50 rounded">
+                  <pre className="text-xs text-primary/70 whitespace-pre-wrap font-mono overflow-auto max-h-64 p-3 bg-background rounded-xl">
                     {letter.content}
                   </pre>
                 </div>

@@ -9,7 +9,7 @@ import {
   ChevronRight,
   ChevronLeft,
   Bot,
-  Heart,
+  Flower2,
   Info,
   CheckCircle2,
   Radio,
@@ -123,7 +123,7 @@ function BegravningsplaneringContent() {
       {/* Header */}
       <div className="flex items-center gap-3 mb-2">
         <div className="w-10 h-10 rounded-2xl flex items-center justify-center" style={{ background: '#EEF2EA' }}>
-          <Heart className="w-5 h-5 text-accent" />
+          <Flower2 className="w-5 h-5 text-accent" />
         </div>
         <div>
           <h1 className="text-xl font-bold text-primary">Begravningsplanering</h1>
