@@ -5,7 +5,7 @@ import { BottomNav } from '@/components/ui/BottomNav';
 import Link from 'next/link';
 import {
   ArrowLeft,
-  Users,
+  Baby,
   ChevronRight,
   AlertTriangle,
   ChevronDown,
@@ -102,7 +102,7 @@ export default function SarkullbarnPage() {
       {/* Key rights section */}
       <div className="card border-l-4 border-accent mb-6">
         <div className="flex items-center gap-2 mb-4">
-          <Users className="w-5 h-5 text-accent" />
+          <Baby className="w-5 h-5 text-accent" />
           <h2 className="font-semibold text-primary">Särkullbarns speciella rättigheter</h2>
         </div>
 

@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { DodsboProvider, useDodsbo } from '@/lib/context';
 import { BottomNav } from '@/components/ui/BottomNav';
-import { ArrowLeft, Users, Bot, Check, Clock, AlertCircle, Plus, Trash2, Calendar } from 'lucide-react';
+import { ArrowLeft, Handshake, Bot, Check, Clock, AlertCircle, Plus, Trash2, Calendar } from 'lucide-react';
 import { createClient } from '@/lib/supabase/client';
 import { getBeslut, addBeslut, updateBeslut, deleteBeslut, getAnteckningar, addAnteckning, deleteAnteckning } from '@/lib/supabase/services/samarbete-service';
 
@@ -466,7 +466,7 @@ function TabTidslinje() {
       case 'alert':
         return <AlertCircle className="w-3 h-3" />;
       case 'comment':
-        return <Users className="w-3 h-3" />;
+        return <Handshake className="w-3 h-3" />;
       default:
         return <Clock className="w-3 h-3" />;
     }
@@ -524,7 +524,7 @@ function Content() {
             <Link href="/dashboard" className="text-primary hover:text-accent transition">
               <ArrowLeft className="w-5 h-5" />
             </Link>
-            <Users className="w-6 h-6 text-accent" />
+            <Handshake className="w-6 h-6 text-accent" />
             <h1 className="text-2xl font-bold text-primary">Samarbete</h1>
           </div>
 

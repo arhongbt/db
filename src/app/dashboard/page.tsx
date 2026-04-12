@@ -27,6 +27,7 @@ import {
   Newspaper,
   Flower2,
   Heart,
+  Handshake,
 } from 'lucide-react';
 import { BottomNav } from '@/components/ui/BottomNav';
 import type { DodsboTask, ProcessStep, TaskStatus } from '@/types';
@@ -541,7 +542,7 @@ function DashboardContent() {
             { label: 'Begravning', href: '/begravningsplanering', Icon: Flower2 },
             { label: 'Skatteverket', href: '/skatteverket-guide', Icon: FileCheck },
             { label: 'Minnesida', href: '/minnesida', Icon: Heart },
-            ...(state.delagare.length > 1 ? [{ label: 'Samarbete', href: '/samarbete', Icon: Users }] : []),
+            ...(state.delagare.length > 1 ? [{ label: 'Samarbete', href: '/samarbete', Icon: Handshake }] : []),
             { label: 'Mike Ross', href: '/juridisk-hjalp', Icon: Bot },
             { label: 'Exportera', href: '/exportera', Icon: Package },
           ].map((item) => (
