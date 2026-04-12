@@ -449,7 +449,7 @@ function BodelningContent() {
                       Sammanfattning av förorden (valfritt)
                     </span>
                     <p className="text-xs mt-1" style={{ color: '#8B8680' }}>
-                      Beskriv kort vad förorden säger, t.ex. "Fritidshus på Öland är enskild egendom"
+                      Beskriv kort vad förorden säger, t.ex. &quot;Fritidshus på Öland är enskild egendom&quot;
                     </p>
                     <textarea
                       value={aktenskapsForord.summary}
