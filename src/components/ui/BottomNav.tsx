@@ -59,6 +59,7 @@ const MORE_CATEGORIES = [
   {
     title: 'Hjälp & info',
     items: [
+      { href: '/priser', label: 'Priser', icon: CreditCard },
       { href: '/ordlista', label: 'Ordlista', icon: BookOpen },
       { href: '/faq', label: 'Vanliga frågor', icon: HelpCircle },
       { href: '/konflikt', label: 'Konflikter', icon: AlertTriangle },

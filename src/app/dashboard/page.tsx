@@ -242,6 +242,23 @@ function DashboardContent() {
         </button>
       )}
 
+      {/* Upgrade banner */}
+      <Link
+        href="/priser"
+        className="card bg-gradient-to-r from-accent/10 to-accent/5 border-accent/20 mb-5 flex items-center justify-between"
+      >
+        <div className="flex items-center gap-3">
+          <div className="w-9 h-9 rounded-xl bg-accent/15 flex items-center justify-center">
+            <Zap className="w-5 h-5 text-accent" />
+          </div>
+          <div>
+            <p className="font-semibold text-primary text-sm">{t('Lås upp alla verktyg', 'Unlock all tools')}</p>
+            <p className="text-xs text-muted">{t('Från 899 kr — engångsbelopp', 'From SEK 899 — one-time')}</p>
+          </div>
+        </div>
+        <ChevronRight className="w-5 h-5 text-accent" />
+      </Link>
+
       {isBankIDVerified && (
         <div className="card border-l-4 border-success bg-success/5 mb-5 flex items-center gap-3">
           <CheckCircle2 className="w-5 h-5 text-success flex-shrink-0" />
