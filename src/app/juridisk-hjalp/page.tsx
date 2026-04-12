@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { DodsboProvider, useDodsbo } from '@/lib/context';
 import { BottomNav } from '@/components/ui/BottomNav';
+import { BankIDVerification } from '@/components/BankIDVerification';
 import Link from 'next/link';
 import {
   ArrowLeft,
@@ -16,6 +17,7 @@ import {
   Clock,
   Gift,
   ChevronRight,
+  CheckCircle2,
 } from 'lucide-react';
 import { PremiumModal } from '@/components/ui/PremiumModal';
 
@@ -142,6 +144,8 @@ function JuridiskHjalpContent() {
   const [animatingIdx, setAnimatingIdx] = useState<number | null>(null);
   const [usedMessages, setUsedMessages] = useState(0);
   const [showPremiumModal, setShowPremiumModal] = useState(false);
+  const [isBankIDVerified, setIsBankIDVerified] = useState(false);
+  const [showBankIDModal, setShowBankIDModal] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
@@ -154,6 +158,17 @@ function JuridiskHjalpContent() {
   useEffect(() => {
     setMounted(true);
     setUsedMessages(getUsedMessages());
+
+    // Check BankID verification status
+    try {
+      const bankidData = localStorage.getItem('sr_bankid_verified');
+      if (bankidData) {
+        const parsed = JSON.parse(bankidData);
+        setIsBankIDVerified(parsed.verified === true);
+      }
+    } catch {
+      // ignore
+    }
   }, []);
 
   // Detect when user scrolls up manually (ignore programmatic scrolls)
@@ -375,10 +390,31 @@ function JuridiskHjalpContent() {
         </div>
       </div>
 
+      {/* BankID verification prompt */}
+      {!isBankIDVerified && (
+        <div className="px-4 py-3 bg-accent/5 border-b" style={{ borderColor: '#E8E4DE' }}>
+          <div className="flex items-start gap-3">
+            <AlertTriangle className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
+            <div className="flex-1">
+              <p className="text-sm font-medium text-accent">Verifiera först med BankID</p>
+              <p className="text-xs text-primary/70 mt-0.5">
+                För att använda juridisk rådgivning krävs BankID-verifiering.
+              </p>
+              <button
+                onClick={() => setShowBankIDModal(true)}
+                className="mt-2 px-3 py-1.5 bg-accent text-white text-xs font-medium rounded-lg hover:bg-accent/90 transition-colors"
+              >
+                Verifiera nu
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Messages area */}
       <div ref={scrollContainerRef} className="flex-1 overflow-y-auto px-4 py-4 pb-4" role="log" aria-live="polite" aria-atomic="false">
         {/* Welcome state */}
-        {messages.length === 0 && (
+        {messages.length === 0 && isBankIDVerified && (
           <div className="flex flex-col items-center justify-center min-h-[50vh] text-center">
             <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mb-4">
               <Sparkles className="w-8 h-8 text-accent" />
@@ -618,6 +654,17 @@ function JuridiskHjalpContent() {
 
       <BottomNav />
       <PremiumModal isOpen={showPremiumModal} onClose={() => setShowPremiumModal(false)} />
+
+      {/* BankID Modal */}
+      {showBankIDModal && (
+        <BankIDVerification
+          onVerified={() => {
+            setIsBankIDVerified(true);
+            setShowBankIDModal(false);
+          }}
+          onCancel={() => setShowBankIDModal(false)}
+        />
+      )}
     </div>
   );
 }

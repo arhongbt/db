@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { DodsboProvider, useDodsbo } from '@/lib/context';
 import { BottomNav } from '@/components/ui/BottomNav';
+import { PaymentFlow } from '@/components/PaymentFlow';
 import Link from 'next/link';
 import {
   ArrowLeft,
@@ -12,6 +13,7 @@ import {
   Info,
   ChevronDown,
   ChevronUp,
+  Smartphone,
 } from 'lucide-react';
 
 import type { Kostnad, KostnadCategory } from '@/types';
@@ -60,6 +62,7 @@ function KostnaderContent() {
   const [showForm, setShowForm] = useState(false);
   const [showInfo, setShowInfo] = useState(true);
   const [expandedCat, setExpandedCat] = useState<KostnadCategory | null>(null);
+  const [showPaymentFlow, setShowPaymentFlow] = useState(false);
 
   // Form state
   const [formCategory, setFormCategory] = useState<KostnadCategory>('begravning');
@@ -170,6 +173,20 @@ function KostnaderContent() {
           <p className="text-xs text-muted">{kostnader.length} poster</p>
         </div>
       </div>
+
+      {/* Payment option */}
+      {totalKostnad > 0 && (
+        <button
+          onClick={() => setShowPaymentFlow(true)}
+          className="card border-l-4 border-accent bg-accent/5 mb-6 flex items-center justify-between hover:bg-accent/10 transition-colors"
+        >
+          <div>
+            <p className="font-medium text-accent text-sm">Betala dödsbo kostnader</p>
+            <p className="text-xs text-primary/70">{formatSEK(totalKostnad)} via Swish eller kort</p>
+          </div>
+          <Smartphone className="w-5 h-5 text-accent flex-shrink-0" />
+        </button>
+      )}
 
       {/* Who paid breakdown */}
       {Object.keys(payers).length > 1 && (
@@ -318,6 +335,19 @@ function KostnaderContent() {
       </div>
 
       <BottomNav />
+
+      {/* Payment Flow Modal */}
+      {showPaymentFlow && (
+        <PaymentFlow
+          amount={totalKostnad}
+          description="Dödsbokostnader"
+          onComplete={() => {
+            setShowPaymentFlow(false);
+            alert('Betalningen är genomförd. Tack!');
+          }}
+          onCancel={() => setShowPaymentFlow(false)}
+        />
+      )}
     </div>
   );
 }

@@ -28,8 +28,10 @@ import {
   Flower2,
   Heart,
   Handshake,
+  Shield,
 } from 'lucide-react';
 import { BottomNav } from '@/components/ui/BottomNav';
+import { BankIDVerification } from '@/components/BankIDVerification';
 import type { DodsboTask, ProcessStep, TaskStatus } from '@/types';
 import { DEFAULT_TIDSFRISTER } from '@/types';
 import Link from 'next/link';
@@ -66,6 +68,8 @@ function DashboardContent() {
   const { state, loading } = useDodsbo();
   const [mounted, setMounted] = useState(false);
   const [notifStatus, setNotifStatus] = useState<'idle' | 'enabled' | 'denied' | 'unsupported'>('idle');
+  const [isBankIDVerified, setIsBankIDVerified] = useState(false);
+  const [showBankIDModal, setShowBankIDModal] = useState(false);
 
   useEffect(() => setMounted(true), []);
 
@@ -78,6 +82,20 @@ function DashboardContent() {
     else if (perm === 'denied') setNotifStatus('denied');
     else if (perm === 'granted' && prefs.enabled) setNotifStatus('enabled');
     else setNotifStatus('idle');
+  }, [mounted]);
+
+  // Check BankID verification status on mount
+  useEffect(() => {
+    if (!mounted) return;
+    try {
+      const bankidData = localStorage.getItem('sr_bankid_verified');
+      if (bankidData) {
+        const parsed = JSON.parse(bankidData);
+        setIsBankIDVerified(parsed.verified === true);
+      }
+    } catch {
+      // ignore
+    }
   }, [mounted]);
 
   // Check and fire deadline notifications
@@ -207,6 +225,30 @@ function DashboardContent() {
           <Settings className="w-5 h-5 text-muted" />
         </Link>
       </div>
+
+      {/* BankID verification banner */}
+      {!isBankIDVerified && (
+        <button
+          onClick={() => setShowBankIDModal(true)}
+          className="card border-l-4 border-accent bg-accent/5 mb-5 flex items-center justify-between"
+        >
+          <div>
+            <p className="font-medium text-accent text-sm">Verifiera med BankID</p>
+            <p className="text-xs text-primary/70">Krävs för juridiska tjänster</p>
+          </div>
+          <ChevronRight className="w-5 h-5 text-accent" />
+        </button>
+      )}
+
+      {isBankIDVerified && (
+        <div className="card border-l-4 border-success bg-success/5 mb-5 flex items-center gap-3">
+          <CheckCircle2 className="w-5 h-5 text-success flex-shrink-0" />
+          <div>
+            <p className="font-medium text-success text-sm">BankID-verifierad</p>
+            <p className="text-xs text-primary/70">Du kan nu använda juridiska tjänster</p>
+          </div>
+        </div>
+      )}
 
       {/* ── Progress card with ring — Mindify style ── */}
       <Link
@@ -571,6 +613,17 @@ function DashboardContent() {
       </p>
 
       <BottomNav />
+
+      {/* BankID Modal */}
+      {showBankIDModal && (
+        <BankIDVerification
+          onVerified={() => {
+            setIsBankIDVerified(true);
+            setShowBankIDModal(false);
+          }}
+          onCancel={() => setShowBankIDModal(false)}
+        />
+      )}
     </div>
   );
 }

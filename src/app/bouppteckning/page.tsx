@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { DodsboProvider, useDodsbo } from '@/lib/context';
 import { BottomNav } from '@/components/ui/BottomNav';
 import { JuridiskTooltip } from '@/components/ui/JuridiskTooltip';
+import { BankIDVerification } from '@/components/BankIDVerification';
 import Link from 'next/link';
 import {
   ArrowLeft,
@@ -20,6 +21,7 @@ import {
   Download,
   Eye,
   X,
+  Send,
 } from 'lucide-react';
 import { generateBouppteckningDocument } from '@/lib/generate-bouppteckning';
 import { validatePersonnummer, formatPersonnummer } from '@/lib/personnummer';
@@ -42,6 +44,8 @@ function BouppteckningContent() {
   const [showPreview, setShowPreview] = useState(false);
   const [showExtraFields, setShowExtraFields] = useState(false);
   const [previewDoc, setPreviewDoc] = useState<ReturnType<typeof generateBouppteckningDocument> | null>(null);
+  const [isBankIDVerified, setIsBankIDVerified] = useState(false);
+  const [showBankIDModal, setShowBankIDModal] = useState(false);
 
   // Local form state for bouppteckning-specific fields
   const [personnummer, setPersonnummer] = useState(state.deceasedPersonnummer || '');
@@ -87,7 +91,20 @@ function BouppteckningContent() {
     });
   };
 
-  useEffect(() => setMounted(true), []);
+  useEffect(() => {
+    setMounted(true);
+    // Check BankID verification status
+    try {
+      const bankidData = localStorage.getItem('sr_bankid_verified');
+      if (bankidData) {
+        const parsed = JSON.parse(bankidData);
+        setIsBankIDVerified(parsed.verified === true);
+      }
+    } catch {
+      // ignore
+    }
+  }, []);
+
   if (!mounted || loading) {
     return (
       <div className="min-h-dvh bg-background p-6 animate-pulse">
@@ -485,6 +502,24 @@ function BouppteckningContent() {
           Förhandsgranska bouppteckning
         </button>
 
+        {allDone && (
+          <button
+            onClick={() => {
+              if (isBankIDVerified) {
+                // Simulate sending to Skatteverket
+                alert('Bouppteckning skickad till Skatteverket!');
+              } else {
+                setShowBankIDModal(true);
+              }
+            }}
+            className="btn-primary flex items-center justify-center gap-2"
+            style={{ background: isBankIDVerified ? '#6B7F5E' : '#999' }}
+          >
+            <Send className="w-5 h-5" />
+            Skicka digitalt till Skatteverket
+          </button>
+        )}
+
         {!allDone && (
           <p className="text-center text-xs text-muted">
             OBS: Alla steg är inte ifyllda ({completedSteps}/{steps.length}). Du kan fortfarande förhandsgranska.
@@ -630,6 +665,21 @@ function BouppteckningContent() {
       )}
 
       <BottomNav />
+
+      {/* BankID Modal */}
+      {showBankIDModal && (
+        <BankIDVerification
+          onVerified={() => {
+            setIsBankIDVerified(true);
+            setShowBankIDModal(false);
+            // Simulate sending to Skatteverket after verification
+            setTimeout(() => {
+              alert('Bouppteckning skickad till Skatteverket!');
+            }, 500);
+          }}
+          onCancel={() => setShowBankIDModal(false)}
+        />
+      )}
     </div>
   );
 }
