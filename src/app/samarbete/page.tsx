@@ -246,7 +246,7 @@ function TabBeslut() {
             <select
               value={selectedPredefined}
               onChange={(e) => setSelectedPredefined(e.target.value)}
-              className="w-full px-4 py-3 border border-gray-200 rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
+              className="w-full px-4 py-3 border border-[#E8E4DE] rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white"
             >
               <option value="">-- Välj --</option>
               {PREDEFINED_DECISIONS.map((decision) => (
@@ -264,7 +264,7 @@ function TabBeslut() {
               value={newDecisionTitle}
               onChange={(e) => setNewDecisionTitle(e.target.value)}
               placeholder="Skriva här..."
-              className="w-full px-4 py-3 border border-gray-200 rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
+              className="w-full px-4 py-3 border border-[#E8E4DE] rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white"
             />
           </div>
 
@@ -281,7 +281,7 @@ function TabBeslut() {
                 setNewDecisionTitle('');
                 setSelectedPredefined('');
               }}
-              className="flex-1 py-2.5 border border-gray-200 text-primary font-semibold rounded-xl hover:bg-gray-50 transition"
+              className="flex-1 py-2.5 border border-[#E8E4DE] text-primary font-semibold rounded-xl hover:bg-background transition"
             >
               Avbryt
             </button>
@@ -356,7 +356,7 @@ function TabAnteckningar() {
           <select
             value={author}
             onChange={(e) => setAuthor(e.target.value)}
-            className="w-full px-4 py-3 border border-gray-200 rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
+            className="w-full px-4 py-3 border border-[#E8E4DE] rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white"
           >
             <option value="">-- Välj namn --</option>
             {state.delagare.map((del) => (
@@ -373,7 +373,7 @@ function TabAnteckningar() {
             value={content}
             onChange={(e) => setContent(e.target.value)}
             placeholder="Skriv här..."
-            className="w-full px-4 py-3 border border-gray-200 rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background resize-none"
+            className="w-full px-4 py-3 border border-[#E8E4DE] rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white resize-none"
             rows={4}
           />
         </div>
@@ -422,11 +422,24 @@ function TabTidslinje() {
   const [notes, setNotes] = useState<Note[]>([]);
 
   useEffect(() => {
-    const storedDecisions = localStorage.getItem('samarbete-beslut');
-    if (storedDecisions) setDecisions(JSON.parse(storedDecisions));
-
-    const storedNotes = localStorage.getItem('samarbete-anteckningar');
-    if (storedNotes) setNotes(JSON.parse(storedNotes));
+    const supabase = createClient();
+    supabase.auth.getUser().then(async ({ data: { user } }) => {
+      if (!user) {
+        const storedDecisions = localStorage.getItem('samarbete-beslut');
+        if (storedDecisions) setDecisions(JSON.parse(storedDecisions));
+        const storedNotes = localStorage.getItem('samarbete-anteckningar');
+        if (storedNotes) setNotes(JSON.parse(storedNotes));
+        return;
+      }
+      const { data: dodsbon } = await supabase.from('dodsbon').select('id').order('created_at').limit(1);
+      const dbId = dodsbon?.[0]?.id ?? null;
+      if (dbId) {
+        const { data: beslutData } = await getBeslut(dbId);
+        if (beslutData) setDecisions(beslutData.map(row => ({ id: row.id, title: row.title, status: row.status, approvals: row.approvals, lastUpdated: row.updated_at, createdAt: row.created_at })));
+        const { data: antData } = await getAnteckningar(dbId);
+        if (antData) setNotes(antData.map(row => ({ id: row.id, author: row.author, content: row.content, timestamp: row.created_at })));
+      }
+    });
   }, []);
 
   const timelineEntries: TimelineEntry[] = [

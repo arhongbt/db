@@ -46,17 +46,17 @@ import {
 function DashboardSkeleton() {
   return (
     <div className="min-h-dvh bg-background p-6 animate-pulse">
-      <div className="h-8 bg-gray-200 rounded w-3/4 mb-2" />
-      <div className="h-4 bg-gray-200 rounded w-1/2 mb-6" />
-      <div className="h-24 bg-gray-200 rounded-2xl mb-6" />
+      <div className="h-8 bg-[#E8E4DE] rounded w-3/4 mb-2" />
+      <div className="h-4 bg-[#E8E4DE] rounded w-1/2 mb-6" />
+      <div className="h-24 bg-[#E8E4DE] rounded-2xl mb-6" />
       <div className="flex gap-4 mb-6">
-        <div className="h-24 bg-gray-200 rounded-2xl flex-1" />
-        <div className="h-24 bg-gray-200 rounded-2xl flex-1" />
+        <div className="h-24 bg-[#E8E4DE] rounded-2xl flex-1" />
+        <div className="h-24 bg-[#E8E4DE] rounded-2xl flex-1" />
       </div>
-      <div className="h-6 bg-gray-200 rounded w-1/2 mb-4" />
+      <div className="h-6 bg-[#E8E4DE] rounded w-1/2 mb-4" />
       <div className="space-y-3">
-        <div className="h-20 bg-gray-200 rounded-2xl" />
-        <div className="h-20 bg-gray-200 rounded-2xl" />
+        <div className="h-20 bg-[#E8E4DE] rounded-2xl" />
+        <div className="h-20 bg-[#E8E4DE] rounded-2xl" />
       </div>
     </div>
   );

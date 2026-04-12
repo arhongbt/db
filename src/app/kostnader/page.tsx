@@ -176,7 +176,7 @@ function KostnaderContent() {
         <div className="card mb-6">
           <p className="text-xs text-muted uppercase tracking-wide font-semibold mb-2">Vem har betalat</p>
           {Object.entries(payers).map(([name, amount]) => (
-            <div key={name} className="flex justify-between py-1 border-b border-gray-100 last:border-0">
+            <div key={name} className="flex justify-between py-1 border-b border-[#E8E4DE] last:border-0">
               <span className="text-sm text-primary">{name}</span>
               <span className="text-sm font-medium text-primary">{formatSEK(amount)}</span>
             </div>
@@ -237,7 +237,7 @@ function KostnaderContent() {
             <select
               value={formCategory}
               onChange={(e) => setFormCategory(e.target.value as KostnadCategory)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-card text-sm mt-1 focus:outline-none focus:ring-2 focus:ring-accent"
+              className="w-full px-3 py-2 border border-[#E8E4DE] rounded-card text-sm mt-1 focus:outline-none focus:ring-2 focus:ring-accent"
             >
               {CATEGORY_ORDER.map((cat) => (
                 <option key={cat} value={cat}>{CATEGORY_LABELS[cat]}</option>
@@ -252,7 +252,7 @@ function KostnaderContent() {
               value={formDescription}
               onChange={(e) => setFormDescription(e.target.value)}
               placeholder="T.ex. Begravningsbyrå Fonus"
-              className="w-full px-3 py-2 border border-gray-300 rounded-card text-sm mt-1 placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-accent"
+              className="w-full px-3 py-2 border border-[#E8E4DE] rounded-card text-sm mt-1 placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-accent"
             />
           </div>
 
@@ -264,7 +264,7 @@ function KostnaderContent() {
                 value={formAmount}
                 onChange={(e) => setFormAmount(e.target.value)}
                 placeholder="0"
-                className="w-full px-3 py-2 border border-gray-300 rounded-card text-sm mt-1 placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-accent"
+                className="w-full px-3 py-2 border border-[#E8E4DE] rounded-card text-sm mt-1 placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-accent"
               />
             </div>
             <div>
@@ -273,7 +273,7 @@ function KostnaderContent() {
                 type="date"
                 value={formDate}
                 onChange={(e) => setFormDate(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-card text-sm mt-1 focus:outline-none focus:ring-2 focus:ring-accent"
+                className="w-full px-3 py-2 border border-[#E8E4DE] rounded-card text-sm mt-1 focus:outline-none focus:ring-2 focus:ring-accent"
               />
             </div>
           </div>
@@ -285,7 +285,7 @@ function KostnaderContent() {
               value={formPaidBy}
               onChange={(e) => setFormPaidBy(e.target.value)}
               placeholder="T.ex. Anna Svensson"
-              className="w-full px-3 py-2 border border-gray-300 rounded-card text-sm mt-1 placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-accent"
+              className="w-full px-3 py-2 border border-[#E8E4DE] rounded-card text-sm mt-1 placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-accent"
             />
             <p className="text-xs text-muted mt-1">Om en delägare har lagt ut — ska ersättas av dödsboet</p>
           </div>

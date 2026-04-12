@@ -313,7 +313,7 @@ function NodbromsContent() {
       </div>
 
       {/* Disclaimer with acute hardship info */}
-      <div className="mt-12 mb-6 p-4 bg-gray-50 rounded-card border border-gray-200 text-xs text-muted space-y-2">
+      <div className="mt-12 mb-6 p-4 bg-white rounded-card border border-[#E8E4DE] text-xs text-muted space-y-2">
         <p>
           <strong className="text-primary">Denna sida är allmän vägledning,</strong> inte juridisk rådgivning. Situationer varierar.
         </p>

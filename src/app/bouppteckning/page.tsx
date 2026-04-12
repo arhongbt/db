@@ -161,7 +161,7 @@ function BouppteckningContent() {
       <div className="flex items-center gap-3 mb-6">
         <Link
           href="/dashboard"
-          className="p-2 -ml-2 min-h-[44px] min-w-[44px] flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors"
+          className="p-2 -ml-2 min-h-[44px] min-w-[44px] flex items-center justify-center rounded-full hover:bg-background transition-colors"
           aria-label="Tillbaka"
         >
           <ArrowLeft className="w-5 h-5 text-primary" />
@@ -242,7 +242,7 @@ function BouppteckningContent() {
             <Link
               key={step.id}
               href={step.href}
-              className="card flex items-center gap-3 hover:bg-gray-50 transition-colors"
+              className="card flex items-center gap-3 hover:bg-background transition-colors"
             >
               {isComplete ? (
                 <CheckCircle2 className="w-6 h-6 text-success flex-shrink-0" />
@@ -295,7 +295,7 @@ function BouppteckningContent() {
                   ? 'border-warn focus:border-warn'
                   : personnummer.trim() && !pnrError
                   ? 'border-success/50 focus:border-success'
-                  : 'border-gray-200 focus:border-accent'
+                  : 'border-[#E8E4DE] focus:border-accent'
               }`}
             />
             {pnrError && (
@@ -311,7 +311,7 @@ function BouppteckningContent() {
               onChange={(e) => setAddress(e.target.value)}
               onBlur={saveBouppteckningInfo}
               placeholder="Gatuadress, postnummer ort"
-              className="w-full px-4 py-3 text-base border-2 border-gray-200 rounded-card focus:border-accent focus:outline-none"
+              className="w-full px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-card focus:border-accent focus:outline-none"
             />
           </label>
 
@@ -323,7 +323,7 @@ function BouppteckningContent() {
               onChange={(e) => setFolkbokforingsort(e.target.value)}
               onBlur={saveBouppteckningInfo}
               placeholder="T.ex. Stockholms kommun"
-              className="w-full px-4 py-3 text-base border-2 border-gray-200 rounded-card focus:border-accent focus:outline-none"
+              className="w-full px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-card focus:border-accent focus:outline-none"
             />
           </label>
 
@@ -343,7 +343,7 @@ function BouppteckningContent() {
                   className={`py-2.5 px-3 rounded-card text-sm font-medium border-2 transition-colors ${
                     civilstand === opt.value
                       ? 'border-accent bg-primary-lighter/30 text-primary'
-                      : 'border-gray-200 text-muted hover:border-gray-300'
+                      : 'border-[#E8E4DE] text-muted hover:border-gray-300'
                   }`}
                 >
                   {opt.label}
@@ -352,7 +352,7 @@ function BouppteckningContent() {
             </div>
           </div>
 
-          <hr className="border-gray-200" />
+          <hr className="border-[#E8E4DE]" />
           <h3 className="text-base font-semibold text-primary">Förrättning</h3>
 
           <label className="block">
@@ -362,7 +362,7 @@ function BouppteckningContent() {
               value={forrattningsdatum}
               onChange={(e) => setForrattningsdatum(e.target.value)}
               onBlur={saveBouppteckningInfo}
-              className="w-full px-4 py-3 text-base border-2 border-gray-200 rounded-card focus:border-accent focus:outline-none"
+              className="w-full px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-card focus:border-accent focus:outline-none"
             />
           </label>
 
@@ -374,7 +374,7 @@ function BouppteckningContent() {
               onChange={(e) => setBouppgivareName(e.target.value)}
               onBlur={saveBouppteckningInfo}
               placeholder="Den som lämnar uppgifterna"
-              className="w-full px-4 py-3 text-base border-2 border-gray-200 rounded-card focus:border-accent focus:outline-none"
+              className="w-full px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-card focus:border-accent focus:outline-none"
             />
             <span className="text-xs text-muted mt-1 block">Oftast en nära anhörig som känner till dödsboet</span>
           </label>
@@ -387,7 +387,7 @@ function BouppteckningContent() {
               onChange={(e) => setFm1Name(e.target.value)}
               onBlur={saveBouppteckningInfo}
               placeholder="Namn"
-              className="w-full px-4 py-3 text-base border-2 border-gray-200 rounded-card focus:border-accent focus:outline-none"
+              className="w-full px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-card focus:border-accent focus:outline-none"
             />
           </label>
 
@@ -399,7 +399,7 @@ function BouppteckningContent() {
               onChange={(e) => setFm2Name(e.target.value)}
               onBlur={saveBouppteckningInfo}
               placeholder="Namn"
-              className="w-full px-4 py-3 text-base border-2 border-gray-200 rounded-card focus:border-accent focus:outline-none"
+              className="w-full px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-card focus:border-accent focus:outline-none"
             />
             <span className="text-xs text-muted mt-1 block">Två oberoende personer som intygar att uppgifterna stämmer</span>
           </label>
@@ -414,7 +414,7 @@ function BouppteckningContent() {
           </h2>
 
           {/* Deceased info */}
-          <div className="pb-3 mb-3 border-b border-gray-100">
+          <div className="pb-3 mb-3 border-b border-[#E8E4DE]">
             <p className="text-sm text-muted">Den avlidne</p>
             <p className="font-medium text-primary">
               {state.deceasedName || '–'}
@@ -428,7 +428,7 @@ function BouppteckningContent() {
           </div>
 
           {/* Delägare */}
-          <div className="pb-3 mb-3 border-b border-gray-100">
+          <div className="pb-3 mb-3 border-b border-[#E8E4DE]">
             <p className="text-sm text-muted mb-1">Dödsbodelägare</p>
             {state.delagare.length > 0 ? (
               state.delagare.map((d) => (
@@ -455,7 +455,7 @@ function BouppteckningContent() {
                 {formatSEK(totalSkulder)}
               </span>
             </div>
-            <div className="flex justify-between pt-2 border-t border-gray-200">
+            <div className="flex justify-between pt-2 border-t border-[#E8E4DE]">
               <span className="text-base font-semibold text-primary">
                 Behållning
               </span>
@@ -503,13 +503,13 @@ function BouppteckningContent() {
         <div className="fixed inset-0 bg-black/50 z-50 flex items-end sm:items-center justify-center">
           <div className="bg-white w-full max-w-lg max-h-[90vh] rounded-t-2xl sm:rounded-2xl overflow-hidden flex flex-col">
             {/* Modal header */}
-            <div className="flex items-center justify-between px-5 py-4 border-b border-gray-200">
+            <div className="flex items-center justify-between px-5 py-4 border-b border-[#E8E4DE]">
               <h2 className="text-lg font-semibold text-primary">
                 Förhandsgranskning
               </h2>
               <button
                 onClick={() => setShowPreview(false)}
-                className="p-2 hover:bg-gray-100 rounded-full"
+                className="p-2 hover:bg-background rounded-full"
               >
                 <X className="w-5 h-5 text-muted" />
               </button>
@@ -539,7 +539,7 @@ function BouppteckningContent() {
                     {section.fields && (
                       <div className="space-y-1.5 mb-2">
                         {section.fields.map(([label, value], fi) => (
-                          <div key={fi} className="flex justify-between text-sm border-b border-gray-100 pb-1">
+                          <div key={fi} className="flex justify-between text-sm border-b border-[#E8E4DE] pb-1">
                             <span className="text-muted">{label}</span>
                             <span className={`font-medium ${value.startsWith('[') ? 'text-gray-400 italic' : 'text-primary'}`}>
                               {value}
@@ -587,7 +587,7 @@ function BouppteckningContent() {
             </div>
 
             {/* Modal footer */}
-            <div className="px-5 py-4 border-t border-gray-200">
+            <div className="px-5 py-4 border-t border-[#E8E4DE]">
               <p className="text-xs text-muted text-center mb-3">
                 OBS: Detta är ett utkast. En bouppteckning måste granskas av förrättningsmän
                 och skickas till Skatteverket för registrering.
@@ -595,7 +595,7 @@ function BouppteckningContent() {
               <div className="flex gap-3">
                 <button
                   onClick={() => setShowPreview(false)}
-                  className="flex-1 py-3 px-4 rounded-xl border border-gray-200 text-primary font-medium hover:bg-gray-50 transition-colors"
+                  className="flex-1 py-3 px-4 rounded-xl border border-[#E8E4DE] text-primary font-medium hover:bg-background transition-colors"
                 >
                   Stäng
                 </button>

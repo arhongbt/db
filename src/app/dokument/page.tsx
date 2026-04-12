@@ -209,7 +209,7 @@ function DokumentContent() {
           className={`border-2 border-dashed rounded-2xl p-8 mb-6 flex flex-col items-center justify-center cursor-pointer transition-colors ${
             dragOver
               ? 'border-accent bg-accent/5'
-              : 'border-gray-300 hover:border-accent/50'
+              : 'border-[#E8E4DE] hover:border-accent/50'
           }`}
         >
           <Upload className="w-10 h-10 text-gray-400 mb-3" />
@@ -246,7 +246,7 @@ function DokumentContent() {
                 setSelectedFile(null);
                 setError('');
               }}
-              className="p-1 hover:bg-gray-100 rounded-full"
+              className="p-1 hover:bg-background rounded-full"
             >
               <X className="w-5 h-5 text-muted" />
             </button>
@@ -256,7 +256,7 @@ function DokumentContent() {
           {!selectedFile ? (
             <button
               onClick={() => fileInputRef.current?.click()}
-              className="w-full border-2 border-dashed border-gray-300 rounded-xl p-6 flex flex-col items-center gap-2 hover:border-accent/50 transition-colors mb-4"
+              className="w-full border-2 border-dashed border-[#E8E4DE] rounded-xl p-6 flex flex-col items-center gap-2 hover:border-accent/50 transition-colors mb-4"
             >
               <Upload className="w-8 h-8 text-gray-400" />
               <span className="text-sm text-muted">Välj fil</span>
@@ -285,7 +285,7 @@ function DokumentContent() {
               </div>
               <button
                 onClick={() => setSelectedFile(null)}
-                className="p-1 hover:bg-gray-200 rounded-full"
+                className="p-1 hover:bg-background rounded-full"
               >
                 <X className="w-4 h-4 text-muted" />
               </button>
@@ -305,7 +305,7 @@ function DokumentContent() {
                   className={`py-2 px-3 rounded-card text-sm font-medium border-2 transition-colors ${
                     category === cat.value
                       ? 'border-accent bg-primary-lighter/30 text-primary'
-                      : 'border-gray-200 text-muted'
+                      : 'border-[#E8E4DE] text-muted'
                   }`}
                 >
                   {cat.label}
@@ -324,7 +324,7 @@ function DokumentContent() {
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
               placeholder="T.ex. Från Swedbank, saldo per 2024-01-15"
-              className="w-full px-4 py-3 text-base border-2 border-gray-200 rounded-card focus:border-accent focus:outline-none"
+              className="w-full px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-card focus:border-accent focus:outline-none bg-white"
             />
           </label>
 

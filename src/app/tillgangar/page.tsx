@@ -193,7 +193,7 @@ function TillgangarContent() {
               >
                 Gå till dödsboanmälan →
               </a>
-              <div className="pt-3 border-t border-gray-200">
+              <div className="pt-3 border-t border-[#E8E4DE]">
                 <p className="text-xs text-muted">
                   <span className="font-medium">Vid frågor om skulder:</span> Kronofogden <br />
                   <a href="tel:0771737300" className="text-accent hover:underline">0771-73 73 00</a>
@@ -205,7 +205,7 @@ function TillgangarContent() {
       )}
 
       {/* Tabs */}
-      <div className="flex bg-gray-100 rounded-card p-1 mb-4">
+      <div className="flex bg-background rounded-card p-1 mb-4">
         <button
           onClick={() => { setTab('tillgangar'); setShowForm(false); }}
           className={`flex-1 py-2.5 rounded-card text-sm font-medium transition-colors ${
@@ -323,7 +323,7 @@ function TillgangarContent() {
                   className={`py-2 px-3 rounded-card text-sm font-medium border-2 transition-colors ${
                     tType === tt.value
                       ? 'border-accent bg-primary-lighter/30 text-primary'
-                      : 'border-gray-200 text-muted'
+                      : 'border-[#E8E4DE] text-muted'
                   }`}
                 >
                   {tt.label}
@@ -331,7 +331,7 @@ function TillgangarContent() {
               ))}
             </div>
             {tType === 'forsakring' && (
-              <p className="text-xs text-muted mt-2 bg-gray-50 p-2 rounded border border-gray-200">
+              <p className="text-xs text-muted mt-2 bg-background p-2 rounded border border-[#E8E4DE]">
                 Försäkringar med namngiven förmånstagare ingår oftast INTE i dödsboet. Kontrollera med försäkringsbolaget.
               </p>
             )}
@@ -344,7 +344,7 @@ function TillgangarContent() {
               value={tDesc}
               onChange={(e) => { setTDesc(e.target.value); setFormErrors((p) => ({ ...p, tDesc: '' })); }}
               placeholder="T.ex. Sparkonto Swedbank"
-              className={`w-full min-h-touch px-4 py-3 text-base border-2 rounded-card focus:outline-none ${formErrors.tDesc ? 'border-warn' : 'border-gray-200 focus:border-accent'}`}
+              className={`w-full min-h-touch px-4 py-3 text-base border-2 rounded-card focus:outline-none bg-white ${formErrors.tDesc ? 'border-warn' : 'border-[#E8E4DE] focus:border-accent'}`}
             />
             {formErrors.tDesc && <span className="text-xs text-warn mt-1 block">{formErrors.tDesc}</span>}
           </label>
@@ -356,7 +356,7 @@ function TillgangarContent() {
               value={tValue}
               onChange={(e) => { setTValue(e.target.value); setFormErrors((p) => ({ ...p, tValue: '' })); }}
               placeholder="0"
-              className={`w-full min-h-touch px-4 py-3 text-base border-2 rounded-card focus:outline-none ${formErrors.tValue ? 'border-warn' : 'border-gray-200 focus:border-accent'}`}
+              className={`w-full min-h-touch px-4 py-3 text-base border-2 rounded-card focus:outline-none bg-white ${formErrors.tValue ? 'border-warn' : 'border-[#E8E4DE] focus:border-accent'}`}
             />
             {formErrors.tValue && <span className="text-xs text-warn mt-1 block">{formErrors.tValue}</span>}
           </label>
@@ -369,7 +369,7 @@ function TillgangarContent() {
                 value={tTaxeringsvarde}
                 onChange={(e) => { setTTaxeringsvarde(e.target.value); }}
                 placeholder="0"
-                className="w-full min-h-touch px-4 py-3 text-base border-2 border-gray-200 rounded-card focus:outline-none focus:border-accent"
+                className="w-full min-h-touch px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-card focus:outline-none focus:border-accent"
               />
               <p className="text-xs text-muted mt-1">Taxeringsvärdet finns på Skatteverket.se eller senaste fastighetstaxeringen.</p>
             </label>
@@ -396,7 +396,7 @@ function TillgangarContent() {
                   className={`py-2 px-3 rounded-card text-sm font-medium border-2 transition-colors ${
                     sType === st.value
                       ? 'border-accent bg-primary-lighter/30 text-primary'
-                      : 'border-gray-200 text-muted'
+                      : 'border-[#E8E4DE] text-muted'
                   }`}
                 >
                   {st.label}
@@ -412,7 +412,7 @@ function TillgangarContent() {
               value={sCreditor}
               onChange={(e) => { setSCreditor(e.target.value); setFormErrors((p) => ({ ...p, sCreditor: '' })); }}
               placeholder="T.ex. Nordea (bolån)"
-              className={`w-full min-h-touch px-4 py-3 text-base border-2 rounded-card focus:outline-none ${formErrors.sCreditor ? 'border-warn' : 'border-gray-200 focus:border-accent'}`}
+              className={`w-full min-h-touch px-4 py-3 text-base border-2 rounded-card focus:outline-none bg-white ${formErrors.sCreditor ? 'border-warn' : 'border-[#E8E4DE] focus:border-accent'}`}
             />
             {formErrors.sCreditor && <span className="text-xs text-warn mt-1 block">{formErrors.sCreditor}</span>}
           </label>
@@ -424,7 +424,7 @@ function TillgangarContent() {
               value={sAmount}
               onChange={(e) => { setSAmount(e.target.value); setFormErrors((p) => ({ ...p, sAmount: '' })); }}
               placeholder="0"
-              className={`w-full min-h-touch px-4 py-3 text-base border-2 rounded-card focus:outline-none ${formErrors.sAmount ? 'border-warn' : 'border-gray-200 focus:border-accent'}`}
+              className={`w-full min-h-touch px-4 py-3 text-base border-2 rounded-card focus:outline-none bg-white ${formErrors.sAmount ? 'border-warn' : 'border-[#E8E4DE] focus:border-accent'}`}
             />
             {formErrors.sAmount && <span className="text-xs text-warn mt-1 block">{formErrors.sAmount}</span>}
           </label>

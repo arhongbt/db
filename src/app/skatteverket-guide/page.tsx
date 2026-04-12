@@ -33,7 +33,7 @@ function ChecklistItem({
   return (
     <button
       onClick={onChange}
-      className="w-full flex items-center gap-3 p-4 border border-gray-200 rounded-xl hover:bg-gray-50 transition-colors text-left"
+      className="w-full flex items-center gap-3 p-4 border border-[#E8E4DE] rounded-xl hover:bg-background transition-colors text-left"
     >
       {checked ? (
         <CheckCircle2 className="w-5 h-5 text-accent flex-shrink-0" />
@@ -88,7 +88,7 @@ function Step0Overview() {
         Bouppteckningen är en officiell förteckning över den avlidnes alla tillgångar och skulder. Den upprättas av två oberoende förrättningsmän och måste skickas till Skatteverket för registrering.
       </p>
 
-      <div className="mb-8 p-6 bg-gray-50 rounded-2xl border border-gray-200">
+      <div className="mb-8 p-6 bg-background rounded-2xl border border-[#E8E4DE]">
         <h3 className="font-semibold text-primary mb-4">Tidsplan för processen</h3>
         <div className="flex flex-col gap-4">
           <div className="flex items-start gap-3">
@@ -273,7 +273,7 @@ function Step3Submit() {
         Bouppteckningen kan skickas in antingen digitalt eller per post. Kontrollera att alla dokument är med innan du skickar.
       </p>
 
-      <div className="mb-8 p-6 bg-gray-50 rounded-2xl border border-gray-200">
+      <div className="mb-8 p-6 bg-background rounded-2xl border border-[#E8E4DE]">
         <h3 className="font-semibold text-primary mb-3">Postadress (om du skickar per post)</h3>
         <div className="text-sm text-primary/80 space-y-1">
           <p>Skatteverket</p>
@@ -341,7 +341,7 @@ Telefon: [TELEFONNUMMER]`;
         <textarea
           readOnly
           value={templateText}
-          className="w-full p-4 border border-gray-300 rounded-xl font-mono text-xs bg-gray-50 text-primary/80 resize-none"
+          className="w-full p-4 border border-gray-300 rounded-xl font-mono text-xs bg-background text-primary/80 resize-none"
           rows={18}
         />
       </div>
@@ -440,7 +440,7 @@ function Content() {
               className={`px-4 py-2 rounded-full font-semibold text-sm whitespace-nowrap transition-colors flex-shrink-0 ${
                 currentStep === idx
                   ? 'bg-accent text-white'
-                  : 'bg-gray-100 text-primary hover:bg-gray-200'
+                  : 'bg-white text-primary hover:bg-white'
               }`}
             >
               {idx + 1}. {step.title}
@@ -448,7 +448,7 @@ function Content() {
           ))}
         </div>
 
-        <div className="bg-white rounded-2xl p-6 border border-gray-200 mb-8">
+        <div className="bg-white rounded-2xl p-6 border border-[#E8E4DE] mb-8">
           {steps[currentStep].component}
         </div>
 
@@ -456,7 +456,7 @@ function Content() {
           <button
             onClick={() => setCurrentStep(Math.max(0, currentStep - 1))}
             disabled={currentStep === 0}
-            className="flex-1 px-4 py-3 border border-gray-200 rounded-xl font-semibold text-primary hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            className="flex-1 px-4 py-3 border border-[#E8E4DE] rounded-xl font-semibold text-primary hover:bg-background transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
             Föregående
           </button>

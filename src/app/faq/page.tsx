@@ -115,7 +115,7 @@ export default function FaqPage() {
       <div className="flex items-center gap-3 mb-4">
         <Link
           href="/dashboard"
-          className="p-2 -ml-2 min-h-[44px] min-w-[44px] flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors"
+          className="p-2 -ml-2 min-h-[44px] min-w-[44px] flex items-center justify-center rounded-full hover:bg-background transition-colors"
           aria-label="Tillbaka"
         >
           <ArrowLeft className="w-5 h-5 text-primary" />
@@ -134,7 +134,7 @@ export default function FaqPage() {
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           placeholder="Sök frågor..."
-          className="w-full min-h-touch pl-10 pr-4 py-3 text-base border-2 border-gray-200 rounded-card focus:border-accent focus:outline-none"
+          className="w-full min-h-touch pl-10 pr-4 py-3 text-base border-2 border-[#E8E4DE] rounded-card focus:border-accent focus:outline-none"
         />
       </div>
 
@@ -147,7 +147,7 @@ export default function FaqPage() {
             className={`px-3 py-1.5 rounded-full text-sm font-medium whitespace-nowrap transition-colors ${
               activeCategory === cat
                 ? 'bg-primary text-white'
-                : 'bg-gray-100 text-muted'
+                : 'bg-background text-muted'
             }`}
           >
             {cat}
@@ -180,7 +180,7 @@ export default function FaqPage() {
                 )}
               </div>
               {isExpanded && (
-                <div className="mt-3 pt-3 border-t border-gray-100">
+                <div className="mt-3 pt-3 border-t border-[#E8E4DE]">
                   <p className="text-sm text-primary/80 leading-relaxed">{faq.answer}</p>
                   <p className="text-xs text-accent mt-2">{faq.category}</p>
                 </div>

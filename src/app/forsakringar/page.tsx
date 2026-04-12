@@ -226,7 +226,7 @@ function ForsakringarContent() {
                     </p>
                   )}
                 </div>
-                <div className="flex items-center justify-between mt-3 pt-3 border-t border-gray-100">
+                <div className="flex items-center justify-between mt-3 pt-3 border-t border-[#E8E4DE]">
                   <button
                     onClick={() => dispatch({ type: 'TOGGLE_FORSAKRING_CONTACTED', payload: f.id })}
                     className="flex items-center gap-2"
@@ -269,7 +269,7 @@ function ForsakringarContent() {
                   className={`py-2 px-3 rounded-card text-sm font-medium border-2 transition-colors ${
                     fType === ft.value
                       ? 'border-accent bg-primary-lighter/30 text-primary'
-                      : 'border-gray-200 text-muted'
+                      : 'border-[#E8E4DE] text-muted'
                   }`}
                 >
                   {ft.label}
@@ -285,7 +285,7 @@ function ForsakringarContent() {
               value={company}
               onChange={(e) => { setCompany(e.target.value); setFormErrors((p) => ({ ...p, company: '' })); }}
               placeholder="T.ex. Folksam, If, Trygg-Hansa"
-              className={`w-full min-h-touch px-4 py-3 text-base border-2 rounded-card focus:outline-none ${formErrors.company ? 'border-warn' : 'border-gray-200 focus:border-accent'}`}
+              className={`w-full min-h-touch px-4 py-3 text-base border-2 rounded-card focus:outline-none bg-white ${formErrors.company ? 'border-warn' : 'border-[#E8E4DE] focus:border-accent'}`}
               autoFocus
             />
             {formErrors.company && <span className="text-xs text-warn mt-1 block">{formErrors.company}</span>}
@@ -298,7 +298,7 @@ function ForsakringarContent() {
               value={policyNr}
               onChange={(e) => setPolicyNr(e.target.value)}
               placeholder="Valfritt"
-              className="w-full min-h-touch px-4 py-3 text-base border-2 border-gray-200 rounded-card focus:border-accent focus:outline-none"
+              className="w-full min-h-touch px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-card focus:border-accent focus:outline-none"
             />
           </label>
 
@@ -309,7 +309,7 @@ function ForsakringarContent() {
               value={beneficiary}
               onChange={(e) => setBeneficiary(e.target.value)}
               placeholder="Dödsboet, make/maka, barn..."
-              className="w-full min-h-touch px-4 py-3 text-base border-2 border-gray-200 rounded-card focus:border-accent focus:outline-none"
+              className="w-full min-h-touch px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-card focus:border-accent focus:outline-none"
             />
           </label>
 
@@ -320,7 +320,7 @@ function ForsakringarContent() {
               value={value}
               onChange={(e) => { setValue(e.target.value); setFormErrors((p) => ({ ...p, value: '' })); }}
               placeholder="0"
-              className={`w-full min-h-touch px-4 py-3 text-base border-2 rounded-card focus:outline-none ${formErrors.value ? 'border-warn' : 'border-gray-200 focus:border-accent'}`}
+              className={`w-full min-h-touch px-4 py-3 text-base border-2 rounded-card focus:outline-none bg-white ${formErrors.value ? 'border-warn' : 'border-[#E8E4DE] focus:border-accent'}`}
             />
             {formErrors.value && <span className="text-xs text-warn mt-1 block">{formErrors.value}</span>}
           </label>

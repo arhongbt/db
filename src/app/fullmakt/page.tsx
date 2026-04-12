@@ -457,7 +457,7 @@ function FullmaktContent() {
 
                     {isExpanded && (
                       <div className="mt-4">
-                        <pre className="bg-gray-50 rounded-card p-4 text-xs text-primary/80 whitespace-pre-wrap font-mono leading-relaxed overflow-x-auto max-h-96 overflow-y-auto">
+                        <pre className="bg-white rounded-card p-4 text-xs text-primary/80 whitespace-pre-wrap font-mono leading-relaxed overflow-x-auto max-h-96 overflow-y-auto">
                           {generatedText}
                         </pre>
                         <div className="flex gap-2 mt-3">

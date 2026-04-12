@@ -138,7 +138,7 @@ function DelagarePortalContent() {
               <span className="text-muted">Kostnader ({state.kostnader.length} st)</span>
               <span className="text-warn font-medium">-{totalKostnader.toLocaleString('sv-SE')} kr</span>
             </div>
-            <div className="border-t border-border pt-2 flex justify-between text-sm font-semibold">
+            <div className="border-t border-[#E8E4DE] pt-2 flex justify-between text-sm font-semibold">
               <span className="text-primary">Nettobehållning</span>
               <span className={(totalTillgangar - totalSkulder - totalKostnader) >= 0 ? 'text-success' : 'text-warn'}>
                 {(totalTillgangar - totalSkulder - totalKostnader).toLocaleString('sv-SE')} kr
@@ -187,7 +187,7 @@ function DelagarePortalContent() {
                   </button>
 
                   {expandedId === d.id && (
-                    <div className="mt-3 pt-3 border-t border-border space-y-2 animate-fadeIn">
+                    <div className="mt-3 pt-3 border-t border-[#E8E4DE] space-y-2 animate-fadeIn">
                       {d.email && (
                         <a href={`mailto:${d.email}`} className="flex items-center gap-2 text-xs text-accent">
                           <Mail className="w-3.5 h-3.5" /> {d.email}
@@ -237,7 +237,7 @@ function DelagarePortalContent() {
                   value={inviteEmail}
                   onChange={e => setInviteEmail(e.target.value)}
                   placeholder="namn@exempel.se"
-                  className="w-full px-3 py-2 border-2 border-gray-200 rounded-xl text-sm
+                  className="w-full px-3 py-2 border-2 border-[#E8E4DE] rounded-xl text-sm
                              focus:border-accent focus:outline-none transition-colors"
                 />
               </div>
@@ -285,7 +285,7 @@ function DelagarePortalContent() {
                     <input
                       readOnly
                       value={inviteLink}
-                      className="flex-1 text-xs bg-white border border-gray-200 rounded-lg px-2 py-1.5 text-primary"
+                      className="flex-1 text-xs bg-white border border-[#E8E4DE] rounded-lg px-2 py-1.5 text-primary"
                     />
                     <button
                       onClick={() => {

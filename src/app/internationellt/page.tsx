@@ -184,7 +184,7 @@ function InternationelltContent() {
               </div>
 
               {isExpanded && (
-                <div className="mt-3 pt-3 border-t border-gray-100">
+                <div className="mt-3 pt-3 border-t border-[#E8E4DE]">
                   <p className="text-sm text-primary/80 mb-3 leading-relaxed">{section.content}</p>
                   <ul className="space-y-2">
                     {section.details.map((detail, i) => (

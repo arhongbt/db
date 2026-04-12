@@ -48,7 +48,7 @@ function MikeRossTip({ text }: { text: string }) {
   );
 }
 
-const inputCls = "w-full px-4 py-3 border border-gray-200 rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background";
+const inputCls = "w-full px-4 py-3 border border-[#E8E4DE] rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white";
 
 function DodsboanmalanContent() {
   const { state } = useDodsbo();
@@ -171,21 +171,21 @@ function DodsboanmalanContent() {
               <div className="grid grid-cols-2 gap-2">
                 {([['hyresratt','Hyresrätt'],['bostadsratt','Bostadsrätt'],['villa','Villa/hus'],['annat','Annat']] as const).map(([val,label]) => (
                   <button key={val} onClick={() => setData({...data, boendeform: val})}
-                    className={`py-3 rounded-xl text-sm font-medium transition-colors ${data.boendeform === val ? 'bg-accent text-white' : 'bg-background text-primary border border-gray-200'}`}>{label}</button>
+                    className={`py-3 rounded-xl text-sm font-medium transition-colors ${data.boendeform === val ? 'bg-accent text-white' : 'bg-white text-primary border border-[#E8E4DE]'}`}>{label}</button>
                 ))}
               </div>
             </div>
             <div className="flex items-center justify-between py-2">
               <span className="text-sm text-primary">Testamente finns?</span>
               <button onClick={() => setData({...data, testamenteFinns: !data.testamenteFinns})}
-                className={`w-12 h-7 rounded-full transition-colors relative ${data.testamenteFinns ? 'bg-accent' : 'bg-gray-200'}`}>
+                className={`w-12 h-7 rounded-full transition-colors relative ${data.testamenteFinns ? 'bg-accent' : 'bg-[#E8E4DE]'}`}>
                 <div className={`absolute top-1 w-5 h-5 rounded-full bg-white shadow transition-transform ${data.testamenteFinns ? 'translate-x-6' : 'translate-x-1'}`} />
               </button>
             </div>
             <div className="flex items-center justify-between py-2">
               <span className="text-sm text-primary">Försäkring finns?</span>
               <button onClick={() => setData({...data, forsakringFinns: !data.forsakringFinns})}
-                className={`w-12 h-7 rounded-full transition-colors relative ${data.forsakringFinns ? 'bg-accent' : 'bg-gray-200'}`}>
+                className={`w-12 h-7 rounded-full transition-colors relative ${data.forsakringFinns ? 'bg-accent' : 'bg-[#E8E4DE]'}`}>
                 <div className={`absolute top-1 w-5 h-5 rounded-full bg-white shadow transition-transform ${data.forsakringFinns ? 'translate-x-6' : 'translate-x-1'}`} />
               </button>
             </div>
@@ -225,7 +225,7 @@ function DodsboanmalanContent() {
 
       <div className="flex gap-3 mt-6">
         {step > 0 && (
-          <button onClick={prev} className="flex-1 py-3 rounded-xl text-sm font-semibold border-2 border-gray-200 text-primary hover:bg-gray-50 transition-colors flex items-center justify-center gap-1">
+          <button onClick={prev} className="flex-1 py-3 rounded-xl text-sm font-semibold border-2 border-[#E8E4DE] text-primary hover:bg-background transition-colors flex items-center justify-center gap-1">
             <ChevronLeft className="w-4 h-4" /> Tillbaka
           </button>
         )}

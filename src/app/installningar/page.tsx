@@ -136,7 +136,7 @@ function InstallningarContent() {
       <div className="flex items-center gap-3 mb-6">
         <Link
           href="/dashboard"
-          className="p-2 -ml-2 min-h-[44px] min-w-[44px] flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors"
+          className="p-2 -ml-2 min-h-[44px] min-w-[44px] flex items-center justify-center rounded-full hover:bg-white transition-colors"
           aria-label="Tillbaka"
         >
           <ArrowLeft className="w-5 h-5 text-primary" />
@@ -181,7 +181,7 @@ function InstallningarContent() {
                 onChange={(e) =>
                   setFormData({ ...formData, deceasedName: e.target.value })
                 }
-                className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-accent focus:outline-none transition-colors"
+                className="w-full px-4 py-3 border-2 border-[#E8E4DE] rounded-xl focus:border-accent focus:outline-none transition-colors"
               />
             </div>
             <div>
@@ -194,7 +194,7 @@ function InstallningarContent() {
                 onChange={(e) =>
                   setFormData({ ...formData, deathDate: e.target.value })
                 }
-                className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-accent focus:outline-none transition-colors"
+                className="w-full px-4 py-3 border-2 border-[#E8E4DE] rounded-xl focus:border-accent focus:outline-none transition-colors"
               />
             </div>
             <div>
@@ -206,7 +206,7 @@ function InstallningarContent() {
                 onChange={(e) =>
                   setFormData({ ...formData, familySituation: e.target.value as any })
                 }
-                className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-accent focus:outline-none transition-colors"
+                className="w-full px-4 py-3 border-2 border-[#E8E4DE] rounded-xl focus:border-accent focus:outline-none transition-colors"
               >
                 <option value="gift_med_gemensamma_barn">Gift med gemensamma barn</option>
                 <option value="gift_med_sarkullebarn">Gift med särskilda barn</option>
@@ -226,7 +226,7 @@ function InstallningarContent() {
                 onChange={(e) =>
                   setFormData({ ...formData, housingType: e.target.value as any })
                 }
-                className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-accent focus:outline-none transition-colors"
+                className="w-full px-4 py-3 border-2 border-[#E8E4DE] rounded-xl focus:border-accent focus:outline-none transition-colors"
               >
                 <option value="hyresratt">Hyresrätt</option>
                 <option value="bostadsratt">Bostadsrätt</option>
@@ -235,7 +235,7 @@ function InstallningarContent() {
                 <option value="ingen_bostad">Ingen bostad</option>
               </select>
             </div>
-            <div className="flex items-center justify-between p-3 border border-gray-200 rounded-xl">
+            <div className="flex items-center justify-between p-3 border border-[#E8E4DE] rounded-xl">
               <label className="text-sm font-medium text-primary">
                 Finns testamente?
               </label>
@@ -316,7 +316,7 @@ function InstallningarContent() {
                   className={`flex-1 px-3 py-2 rounded-lg font-medium text-sm transition-colors ${
                     textSize === size
                       ? 'bg-accent text-white'
-                      : 'bg-gray-100 text-primary hover:bg-gray-200'
+                      : 'bg-white text-primary hover:bg-white'
                   }`}
                 >
                   {size === 'normal' && 'Normal'}
@@ -326,7 +326,7 @@ function InstallningarContent() {
               ))}
             </div>
           </div>
-          <div className="flex items-center justify-between p-3 border border-gray-200 rounded-xl">
+          <div className="flex items-center justify-between p-3 border border-[#E8E4DE] rounded-xl">
             <label className="text-sm font-medium text-primary flex items-center gap-2">
               <Contrast className="w-4 h-4" />
               Högt kontrast
@@ -352,7 +352,7 @@ function InstallningarContent() {
         <h2 className="text-sm font-semibold text-muted uppercase tracking-wide mb-4">
           Påminnelser
         </h2>
-        <div className="flex items-center justify-between p-3 border border-gray-200 rounded-xl">
+        <div className="flex items-center justify-between p-3 border border-[#E8E4DE] rounded-xl">
           <label className="text-sm font-medium text-primary flex items-center gap-2">
             <Bell className="w-4 h-4" />
             Push-notiser för tidsfrister
@@ -404,14 +404,14 @@ function InstallningarContent() {
         <div className="flex gap-3">
           <button
             onClick={() => exportAsCSV(state)}
-            className="flex-1 flex items-center justify-center gap-2 py-3 px-4 border-2 border-gray-200 rounded-xl text-sm font-medium text-primary hover:bg-gray-50 transition-colors"
+            className="flex-1 flex items-center justify-center gap-2 py-3 px-4 border-2 border-[#E8E4DE] rounded-xl text-sm font-medium text-primary hover:bg-white transition-colors"
           >
             <Download className="w-4 h-4" />
             CSV (Excel)
           </button>
           <button
             onClick={() => exportAsJSON(state)}
-            className="flex-1 flex items-center justify-center gap-2 py-3 px-4 border-2 border-gray-200 rounded-xl text-sm font-medium text-primary hover:bg-gray-50 transition-colors"
+            className="flex-1 flex items-center justify-center gap-2 py-3 px-4 border-2 border-[#E8E4DE] rounded-xl text-sm font-medium text-primary hover:bg-white transition-colors"
           >
             <FileText className="w-4 h-4" />
             JSON (backup)
@@ -432,7 +432,7 @@ function InstallningarContent() {
           <Link
             key={item.href}
             href={item.href}
-            className="card flex items-center justify-between hover:bg-gray-50 transition-colors"
+            className="card flex items-center justify-between hover:bg-white transition-colors"
           >
             <div className="flex items-center gap-3">
               <item.icon className="w-5 h-5 text-accent" />
@@ -489,7 +489,7 @@ function InstallningarContent() {
         <button
           onClick={handleSignOut}
           disabled={signingOut}
-          className="card flex items-center justify-center gap-2 py-3 text-accent text-sm font-medium hover:bg-gray-50 transition-colors"
+          className="card flex items-center justify-center gap-2 py-3 text-accent text-sm font-medium hover:bg-white transition-colors"
         >
           <LogOut className="w-4 h-4" />
           {signingOut ? 'Loggar ut...' : 'Logga ut'}

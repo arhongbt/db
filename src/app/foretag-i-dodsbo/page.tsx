@@ -279,12 +279,12 @@ function ForetagContent() {
             <a href="tel:0771670670" className="text-sm text-accent hover:underline">0771-670 670</a>
             <p className="text-xs text-muted mt-0.5">Styrelseskifte, ägarändringar</p>
           </div>
-          <div className="border-t border-gray-100 pt-3">
+          <div className="border-t border-[#E8E4DE] pt-3">
             <p className="text-sm font-medium text-primary">Skatteverket (F-skatt, moms)</p>
             <a href="tel:0771567567" className="text-sm text-accent hover:underline">0771-567 567</a>
             <p className="text-xs text-muted mt-0.5">Dödsfall, avslutning, deklaration</p>
           </div>
-          <div className="border-t border-gray-100 pt-3">
+          <div className="border-t border-[#E8E4DE] pt-3">
             <p className="text-sm font-medium text-primary">Arbetsmiljöverket (anställda)</p>
             <a href="tel:0771892892" className="text-sm text-accent hover:underline">0771-892 892</a>
             <p className="text-xs text-muted mt-0.5">Uppsägning, lönefrågor</p>

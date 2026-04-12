@@ -71,7 +71,7 @@ export default function SarkullbarnPage() {
       <div className="flex items-center gap-3 mb-6">
         <Link
           href="/dashboard"
-          className="p-2 -ml-2 min-h-[44px] min-w-[44px] flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors"
+          className="p-2 -ml-2 min-h-[44px] min-w-[44px] flex items-center justify-center rounded-full hover:bg-background transition-colors"
           aria-label="Tillbaka"
         >
           <ArrowLeft className="w-5 h-5 text-primary" />
@@ -270,7 +270,7 @@ export default function SarkullbarnPage() {
                 )}
               </div>
               {expandedFAQ === index && (
-                <div className="mt-3 pt-3 border-t border-gray-200">
+                <div className="mt-3 pt-3 border-t border-[#E8E4DE]">
                   <p className="text-sm text-primary/70">{item.answer}</p>
                 </div>
               )}

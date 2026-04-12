@@ -38,6 +38,7 @@ const MORE_CATEGORIES = [
       { href: '/samarbete', label: 'Samarbete', icon: Handshake },
       { href: '/juridisk-hjalp', label: 'Mike Ross', icon: Bot },
       { href: '/delagare', label: 'Delägare', icon: Users },
+      { href: '/checklistor', label: 'Checklistor', icon: FileCheck },
       { href: '/skanner', label: 'Skanner', icon: Camera },
       { href: '/exportera', label: 'Exportera', icon: Download },
       { href: '/paminelser', label: 'Påminnelser', icon: Bell },

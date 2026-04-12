@@ -2,8 +2,9 @@
 
 import { useState, useRef, useCallback } from 'react';
 import Link from 'next/link';
-import { ArrowLeft, Camera, Upload, FileText, Check, X, Loader2 } from 'lucide-react';
+import { ArrowLeft, Camera, Upload, FileText, Check, X, Loader2, Eye } from 'lucide-react';
 import { BottomNav } from '@/components/ui/BottomNav';
+import Tesseract from 'tesseract.js';
 
 type DocCategory = 'saldobesked' | 'dodsbevis' | 'testamente' | 'forsakringsbrev' | 'kvitto' | 'ovrigt';
 
@@ -49,45 +50,50 @@ export default function SkannerPage() {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const cameraInputRef = useRef<HTMLInputElement>(null);
 
+  const [ocrProgress, setOcrProgress] = useState(0);
+
   const processImage = useCallback(async (file: File) => {
     setProcessing(true);
+    setOcrProgress(0);
     setPreviewUrl(URL.createObjectURL(file));
 
     try {
-      // Use browser-native OCR via createImageBitmap + canvas
-      const img = await createImageBitmap(file);
-      const canvas = document.createElement('canvas');
-      canvas.width = img.width;
-      canvas.height = img.height;
-      const ctx = canvas.getContext('2d')!;
-      ctx.drawImage(img, 0, 0);
+      // Run Tesseract.js OCR with Swedish + English support
+      const result = await Tesseract.recognize(file, 'swe+eng', {
+        logger: (m) => {
+          if (m.status === 'recognizing text') {
+            setOcrProgress(Math.round((m.progress || 0) * 100));
+          }
+        },
+      });
 
-      // Store image without OCR — text extraction can be added later
-      let text = '(Bilden sparas — textextraktion kan läggas till senare)';
-
+      const text = result.data.text.trim() || '(Ingen text kunde extraheras från bilden)';
       setExtractedText(text);
 
-      // Auto-categorize based on text content
+      // Auto-categorize based on extracted text
       const lower = text.toLowerCase();
-      if (lower.includes('saldo') || lower.includes('konto') || lower.includes('bank')) {
+      if (lower.includes('saldo') || lower.includes('konto') || lower.includes('bank') || lower.includes('ränta')) {
         setSelectedCategory('saldobesked');
-      } else if (lower.includes('dödsbevis') || lower.includes('dödsfall')) {
+      } else if (lower.includes('dödsbevis') || lower.includes('dödsfall') || lower.includes('folkbokföring')) {
         setSelectedCategory('dodsbevis');
-      } else if (lower.includes('testamente') || lower.includes('förordnande')) {
+      } else if (lower.includes('testamente') || lower.includes('förordnande') || lower.includes('sista vilja')) {
         setSelectedCategory('testamente');
-      } else if (lower.includes('försäkring') || lower.includes('premie') || lower.includes('livförsäkring')) {
+      } else if (lower.includes('försäkring') || lower.includes('premie') || lower.includes('livförsäkring') || lower.includes('efterlevande')) {
         setSelectedCategory('forsakringsbrev');
-      } else if (lower.includes('kvitto') || lower.includes('faktura') || lower.includes('belopp')) {
+      } else if (lower.includes('kvitto') || lower.includes('faktura') || lower.includes('belopp') || lower.includes('moms')) {
         setSelectedCategory('kvitto');
+      } else {
+        setSelectedCategory('ovrigt');
       }
 
       setShowResult(true);
     } catch (err) {
-      console.error('Image processing error:', err);
-      setExtractedText('Kunde inte bearbeta bilden.');
+      console.error('OCR error:', err);
+      setExtractedText('Kunde inte bearbeta bilden. Försök med en tydligare bild.');
       setShowResult(true);
     } finally {
       setProcessing(false);
+      setOcrProgress(0);
     }
   }, []);
 
@@ -142,9 +148,18 @@ export default function SkannerPage() {
 
         {/* Processing overlay */}
         {processing && (
-          <div className="card mb-4 flex items-center gap-3">
-            <Loader2 className="w-5 h-5 text-accent animate-spin" />
-            <p className="text-sm text-primary">Bearbetar bild och extraherar text...</p>
+          <div className="card mb-4">
+            <div className="flex items-center gap-3 mb-3">
+              <Loader2 className="w-5 h-5 text-accent animate-spin" />
+              <p className="text-sm text-primary font-medium">Läser text från bilden med OCR...</p>
+            </div>
+            <div className="w-full bg-background rounded-full h-2">
+              <div
+                className="h-2 rounded-full transition-all duration-300"
+                style={{ width: `${ocrProgress}%`, background: 'linear-gradient(135deg, #6B7F5E, #4F6145)' }}
+              />
+            </div>
+            <p className="text-xs text-muted mt-1">{ocrProgress}% klart</p>
           </div>
         )}
 
@@ -154,7 +169,7 @@ export default function SkannerPage() {
             <img
               src={previewUrl}
               alt="Skannat dokument"
-              className="w-full rounded-lg mb-4 max-h-64 object-contain bg-gray-100"
+              className="w-full rounded-lg mb-4 max-h-64 object-contain bg-background"
             />
 
             {/* Category picker */}
@@ -248,7 +263,7 @@ export default function SkannerPage() {
                     <img
                       src={doc.imageUrl}
                       alt={doc.fileName}
-                      className="w-16 h-16 rounded object-cover bg-gray-100 shrink-0"
+                      className="w-16 h-16 rounded object-cover bg-background shrink-0"
                     />
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-1">

@@ -208,7 +208,7 @@ Skapat med Sista Resan — ${today}`;
                 value={data.namn}
                 onChange={(e) => setData({ ...data, namn: e.target.value })}
                 placeholder="Anna Andersson"
-                className="w-full px-4 py-3 border border-gray-200 rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
+                className="w-full px-4 py-3 border border-[#E8E4DE] rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
               />
             </div>
             <div>
@@ -217,7 +217,7 @@ Skapat med Sista Resan — ${today}`;
                 value={data.personnummer}
                 onChange={(e) => setData({ ...data, personnummer: e.target.value })}
                 placeholder="XXXXXX-XXXX"
-                className="w-full px-4 py-3 border border-gray-200 rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
+                className="w-full px-4 py-3 border border-[#E8E4DE] rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
               />
             </div>
             <div>
@@ -226,7 +226,7 @@ Skapat med Sista Resan — ${today}`;
                 value={data.adress}
                 onChange={(e) => setData({ ...data, adress: e.target.value })}
                 placeholder="Storgatan 1"
-                className="w-full px-4 py-3 border border-gray-200 rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
+                className="w-full px-4 py-3 border border-[#E8E4DE] rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
               />
             </div>
             <div>
@@ -235,7 +235,7 @@ Skapat med Sista Resan — ${today}`;
                 value={data.ort}
                 onChange={(e) => setData({ ...data, ort: e.target.value })}
                 placeholder="Stockholm"
-                className="w-full px-4 py-3 border border-gray-200 rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
+                className="w-full px-4 py-3 border border-[#E8E4DE] rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
               />
             </div>
           </div>
@@ -269,20 +269,20 @@ Skapat med Sista Resan — ${today}`;
               value={newArvinge.namn}
               onChange={(e) => setNewArvinge({ ...newArvinge, namn: e.target.value })}
               placeholder="Namn"
-              className="w-full px-4 py-3 border border-gray-200 rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
+              className="w-full px-4 py-3 border border-[#E8E4DE] rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
             />
             <div className="grid grid-cols-2 gap-3">
               <input
                 value={newArvinge.relation}
                 onChange={(e) => setNewArvinge({ ...newArvinge, relation: e.target.value })}
                 placeholder="Relation (t.ex. dotter)"
-                className="w-full px-4 py-3 border border-gray-200 rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background text-sm"
+                className="w-full px-4 py-3 border border-[#E8E4DE] rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background text-sm"
               />
               <input
                 value={newArvinge.andel}
                 onChange={(e) => setNewArvinge({ ...newArvinge, andel: e.target.value })}
                 placeholder="Andel (t.ex. 50%)"
-                className="w-full px-4 py-3 border border-gray-200 rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background text-sm"
+                className="w-full px-4 py-3 border border-[#E8E4DE] rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background text-sm"
               />
             </div>
             <button
@@ -311,7 +311,7 @@ Skapat med Sista Resan — ${today}`;
                 onChange={(e) => setData({ ...data, specialOnske: e.target.value })}
                 placeholder="T.ex. 'Min samling tavlor ska tillfalla min dotter Eva. Arvet ska vara enskild egendom.'"
                 rows={5}
-                className="w-full px-4 py-3 border border-gray-200 rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background resize-none text-sm"
+                className="w-full px-4 py-3 border border-[#E8E4DE] rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background resize-none text-sm"
               />
             </div>
 
@@ -345,7 +345,7 @@ Skapat med Sista Resan — ${today}`;
                 </div>
               </div>
 
-              <div className="h-px bg-gray-100" />
+              <div className="h-px bg-white" />
 
               <div className="flex items-start gap-2">
                 <Heart className="w-4 h-4 text-accent mt-0.5" />
@@ -360,7 +360,7 @@ Skapat med Sista Resan — ${today}`;
 
               {data.specialOnske && (
                 <>
-                  <div className="h-px bg-gray-100" />
+                  <div className="h-px bg-white" />
                   <div className="flex items-start gap-2">
                     <Info className="w-4 h-4 text-accent mt-0.5" />
                     <div>
@@ -404,7 +404,7 @@ Skapat med Sista Resan — ${today}`;
       {/* Navigation buttons */}
       <div className="flex gap-3 mt-6">
         {step > 0 && (
-          <button onClick={prev} className="flex-1 py-3 rounded-xl text-sm font-semibold border-2 border-gray-200 text-primary hover:bg-gray-50 transition-colors flex items-center justify-center gap-1">
+          <button onClick={prev} className="flex-1 py-3 rounded-xl text-sm font-semibold border-2 border-[#E8E4DE] text-primary hover:bg-gray-50 transition-colors flex items-center justify-center gap-1">
             <ChevronLeft className="w-4 h-4" /> Tillbaka
           </button>
         )}

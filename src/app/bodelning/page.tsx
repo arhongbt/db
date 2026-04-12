@@ -132,7 +132,7 @@ function BodelningContent() {
       <div className="flex items-center gap-3 mb-6">
         <Link
           href="/dashboard"
-          className="p-2 -ml-2 min-h-[44px] min-w-[44px] flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors"
+          className="p-2 -ml-2 min-h-[44px] min-w-[44px] flex items-center justify-center rounded-full hover:bg-background transition-colors"
           aria-label="Tillbaka"
         >
           <ArrowLeft className="w-5 h-5 text-primary" />
@@ -255,7 +255,7 @@ function BodelningContent() {
                 value={samboName}
                 onChange={(e) => setSamboName(e.target.value)}
                 placeholder="Förnamn Efternamn"
-                className="w-full px-4 py-3 text-base border-2 border-gray-200 rounded-card focus:border-accent focus:outline-none"
+                className="w-full px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-card focus:border-accent focus:outline-none"
               />
             </label>
             <label className="block">
@@ -265,7 +265,7 @@ function BodelningContent() {
                 value={samboPnr}
                 onChange={(e) => setSamboPnr(e.target.value)}
                 placeholder="ÅÅMMDD-XXXX"
-                className="w-full px-4 py-3 text-base border-2 border-gray-200 rounded-card focus:border-accent focus:outline-none"
+                className="w-full px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-card focus:border-accent focus:outline-none"
               />
             </label>
           </div>
@@ -295,7 +295,7 @@ function BodelningContent() {
             {samboEgendom.map((item) => (
               <div
                 key={item.id}
-                className="flex items-center justify-between py-3 border-b border-gray-100 last:border-0"
+                className="flex items-center justify-between py-3 border-b border-[#E8E4DE] last:border-0"
               >
                 <div className="flex items-center gap-3">
                   {item.typ === 'bostad' ? (
@@ -325,7 +325,7 @@ function BodelningContent() {
 
             {/* Add form */}
             {showAddForm && (
-              <div className="mt-4 p-4 bg-gray-50 rounded-card space-y-3">
+              <div className="mt-4 p-4 bg-white rounded-card space-y-3">
                 <label className="block">
                   <span className="text-xs font-medium text-primary mb-1 block">Beskrivning</span>
                   <input
@@ -333,7 +333,7 @@ function BodelningContent() {
                     value={newItem.beskrivning}
                     onChange={(e) => setNewItem({ ...newItem, beskrivning: e.target.value })}
                     placeholder="T.ex. Lägenhet Storgatan 5 eller Soffa IKEA"
-                    className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg focus:border-accent focus:outline-none"
+                    className="w-full px-3 py-2 text-sm border border-[#E8E4DE] rounded-lg focus:border-accent focus:outline-none"
                   />
                 </label>
 
@@ -343,7 +343,7 @@ function BodelningContent() {
                     <select
                       value={newItem.typ}
                       onChange={(e) => setNewItem({ ...newItem, typ: e.target.value as 'bostad' | 'bohag' })}
-                      className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg focus:border-accent focus:outline-none"
+                      className="w-full px-3 py-2 text-sm border border-[#E8E4DE] rounded-lg focus:border-accent focus:outline-none"
                     >
                       <option value="bostad">Bostad</option>
                       <option value="bohag">Bohag</option>
@@ -356,7 +356,7 @@ function BodelningContent() {
                       value={newItem.varde}
                       onChange={(e) => setNewItem({ ...newItem, varde: e.target.value })}
                       placeholder="0"
-                      className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg focus:border-accent focus:outline-none"
+                      className="w-full px-3 py-2 text-sm border border-[#E8E4DE] rounded-lg focus:border-accent focus:outline-none"
                     />
                   </label>
                 </div>
@@ -374,7 +374,7 @@ function BodelningContent() {
                 <div className="flex gap-2 pt-2">
                   <button
                     onClick={() => setShowAddForm(false)}
-                    className="flex-1 py-2 px-3 text-sm rounded-lg border border-gray-200 text-primary hover:bg-gray-100 transition-colors"
+                    className="flex-1 py-2 px-3 text-sm rounded-lg border border-[#E8E4DE] text-primary hover:bg-background transition-colors"
                   >
                     Avbryt
                   </button>
@@ -398,7 +398,7 @@ function BodelningContent() {
                 <h3 className="font-semibold text-primary">Bodelningsberäkning</h3>
               </div>
 
-              <div className="space-y-2 mb-4 pb-4 border-b border-gray-200">
+              <div className="space-y-2 mb-4 pb-4 border-b border-[#E8E4DE]">
                 <div className="flex justify-between">
                   <span className="text-sm text-muted">Bostäder</span>
                   <span className="text-sm font-medium">
@@ -574,7 +574,7 @@ function BodelningContent() {
               Bodelningsberäkning
             </h2>
 
-            <div className="space-y-2 mb-6 pb-6 border-b border-gray-200">
+            <div className="space-y-2 mb-6 pb-6 border-b border-[#E8E4DE]">
               <div className="flex justify-between">
                 <span className="text-sm text-muted">Tillgångar</span>
                 <span className="text-sm font-medium text-success">{formatSEK(totalTillgangar)}</span>
@@ -615,20 +615,20 @@ function BodelningContent() {
                   value={enskildegenodom}
                   onChange={(e) => setEnskildegenodom(e.target.value)}
                   placeholder="0"
-                  className="w-full px-3 py-2 border border-gray-200 rounded-card text-primary placeholder-muted focus:outline-none focus:ring-2 focus:ring-accent/50"
+                  className="w-full px-3 py-2 border border-[#E8E4DE] rounded-card text-primary placeholder-muted focus:outline-none focus:ring-2 focus:ring-accent/50"
                 />
               </div>
             )}
 
             {/* Results */}
-            <div className="space-y-3 mt-6 pt-6 border-t border-gray-200">
+            <div className="space-y-3 mt-6 pt-6 border-t border-[#E8E4DE]">
               <div className="flex items-center gap-2 mb-3">
                 <Scale className="w-5 h-5 text-accent" />
                 <h3 className="font-semibold text-primary">Bodelningsresultat</h3>
               </div>
 
               {hasAktenskapsForord && enskildegenodomBelopp > 0 && (
-                <div className="bg-gray-50 rounded-card p-3 mb-3">
+                <div className="bg-white rounded-card p-3 mb-3">
                   <div className="flex justify-between mb-2">
                     <span className="text-sm text-muted">Enskild egendom</span>
                     <span className="text-sm font-medium text-primary">{formatSEK(enskildegenodomBelopp)}</span>

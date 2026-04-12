@@ -8,7 +8,7 @@ export default function DeklararaDodsboPage() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header with back link */}
-      <div className="sticky top-0 z-40 bg-white border-b border-border">
+      <div className="sticky top-0 z-40 bg-white border-b border-[#E8E4DE]">
         <div className="max-w-2xl mx-auto px-4 py-4">
           <Link
             href="/dashboard"
@@ -47,7 +47,7 @@ export default function DeklararaDodsboPage() {
         </div>
 
         {/* Introduction section */}
-        <section className="mb-8 p-6 bg-white rounded-lg border border-border">
+        <section className="mb-8 p-6 bg-white rounded-lg border border-[#E8E4DE]">
           <h2 className="text-xl font-bold text-primary mb-4">Varför måste dödsboet deklarera?</h2>
           <div className="space-y-3 text-muted">
             <p>
@@ -63,7 +63,7 @@ export default function DeklararaDodsboPage() {
         </section>
 
         {/* What needs to be declared section */}
-        <section className="mb-8 p-6 bg-white rounded-lg border border-border">
+        <section className="mb-8 p-6 bg-white rounded-lg border border-[#E8E4DE]">
           <h2 className="text-xl font-bold text-primary mb-4">Vad ska dödsboet deklarera?</h2>
           <p className="text-muted mb-4">
             Dödsboet ska deklarera alla inkomster från den 1 januari fram till dödsdagen. Här är vad som behöver redovisas:
@@ -81,7 +81,7 @@ export default function DeklararaDodsboPage() {
           <h2 className="text-2xl font-bold text-primary mb-4">Steg för steg</h2>
           <div className="space-y-4">
             {/* Step 1 */}
-            <div className="p-5 bg-white rounded-lg border border-border hover:shadow-md transition-shadow">
+            <div className="p-5 bg-white rounded-lg border border-[#E8E4DE] hover:shadow-md transition-shadow">
               <div className="flex items-start gap-4">
                 <div className="flex-shrink-0 w-10 h-10 bg-accent/10 rounded-full flex items-center justify-center">
                   <span className="font-bold text-accent">1</span>
@@ -103,7 +103,7 @@ export default function DeklararaDodsboPage() {
             </div>
 
             {/* Step 2 */}
-            <div className="p-5 bg-white rounded-lg border border-border hover:shadow-md transition-shadow">
+            <div className="p-5 bg-white rounded-lg border border-[#E8E4DE] hover:shadow-md transition-shadow">
               <div className="flex items-start gap-4">
                 <div className="flex-shrink-0 w-10 h-10 bg-accent/10 rounded-full flex items-center justify-center">
                   <span className="font-bold text-accent">2</span>
@@ -119,7 +119,7 @@ export default function DeklararaDodsboPage() {
             </div>
 
             {/* Step 3 */}
-            <div className="p-5 bg-white rounded-lg border border-border hover:shadow-md transition-shadow">
+            <div className="p-5 bg-white rounded-lg border border-[#E8E4DE] hover:shadow-md transition-shadow">
               <div className="flex items-start gap-4">
                 <div className="flex-shrink-0 w-10 h-10 bg-accent/10 rounded-full flex items-center justify-center">
                   <span className="font-bold text-accent">3</span>
@@ -139,7 +139,7 @@ export default function DeklararaDodsboPage() {
             </div>
 
             {/* Step 4 */}
-            <div className="p-5 bg-white rounded-lg border border-border hover:shadow-md transition-shadow">
+            <div className="p-5 bg-white rounded-lg border border-[#E8E4DE] hover:shadow-md transition-shadow">
               <div className="flex items-start gap-4">
                 <div className="flex-shrink-0 w-10 h-10 bg-accent/10 rounded-full flex items-center justify-center">
                   <span className="font-bold text-accent">4</span>
@@ -155,7 +155,7 @@ export default function DeklararaDodsboPage() {
             </div>
 
             {/* Step 5 */}
-            <div className="p-5 bg-white rounded-lg border border-border hover:shadow-md transition-shadow">
+            <div className="p-5 bg-white rounded-lg border border-[#E8E4DE] hover:shadow-md transition-shadow">
               <div className="flex items-start gap-4">
                 <div className="flex-shrink-0 w-10 h-10 bg-accent/10 rounded-full flex items-center justify-center">
                   <span className="font-bold text-accent">5</span>
@@ -177,7 +177,7 @@ export default function DeklararaDodsboPage() {
           <h2 className="text-2xl font-bold text-primary mb-4">Vanliga frågor</h2>
           <div className="space-y-4">
             {/* FAQ 1 */}
-            <details className="p-5 bg-white rounded-lg border border-border group cursor-pointer hover:bg-gray-50 transition-colors">
+            <details className="p-5 bg-white rounded-lg border border-[#E8E4DE] group cursor-pointer hover:bg-white transition-colors">
               <summary className="flex items-center justify-between font-semibold text-primary">
                 <span>Vad är inkomstdeklaration för dödsbo?</span>
                 <ChevronRight className="w-5 h-5 group-open:rotate-90 transition-transform" />
@@ -192,7 +192,7 @@ export default function DeklararaDodsboPage() {
             </details>
 
             {/* FAQ 2 */}
-            <details className="p-5 bg-white rounded-lg border border-border group cursor-pointer hover:bg-gray-50 transition-colors">
+            <details className="p-5 bg-white rounded-lg border border-[#E8E4DE] group cursor-pointer hover:bg-white transition-colors">
               <summary className="flex items-center justify-between font-semibold text-primary">
                 <span>Vem är ansvarig för deklarationen?</span>
                 <ChevronRight className="w-5 h-5 group-open:rotate-90 transition-transform" />
@@ -207,7 +207,7 @@ export default function DeklararaDodsboPage() {
             </details>
 
             {/* FAQ 3 */}
-            <details className="p-5 bg-white rounded-lg border border-border group cursor-pointer hover:bg-gray-50 transition-colors">
+            <details className="p-5 bg-white rounded-lg border border-[#E8E4DE] group cursor-pointer hover:bg-white transition-colors">
               <summary className="flex items-center justify-between font-semibold text-primary">
                 <span>Vad är K-blankett för fastigheter?</span>
                 <ChevronRight className="w-5 h-5 group-open:rotate-90 transition-transform" />
@@ -222,7 +222,7 @@ export default function DeklararaDodsboPage() {
             </details>
 
             {/* FAQ 4 */}
-            <details className="p-5 bg-white rounded-lg border border-border group cursor-pointer hover:bg-gray-50 transition-colors">
+            <details className="p-5 bg-white rounded-lg border border-[#E8E4DE] group cursor-pointer hover:bg-white transition-colors">
               <summary className="flex items-center justify-between font-semibold text-primary">
                 <span>Vad händer om deklarationen lämnas in för sent?</span>
                 <ChevronRight className="w-5 h-5 group-open:rotate-90 transition-transform" />
@@ -237,7 +237,7 @@ export default function DeklararaDodsboPage() {
             </details>
 
             {/* FAQ 5 */}
-            <details className="p-5 bg-white rounded-lg border border-border group cursor-pointer hover:bg-gray-50 transition-colors">
+            <details className="p-5 bg-white rounded-lg border border-[#E8E4DE] group cursor-pointer hover:bg-white transition-colors">
               <summary className="flex items-center justify-between font-semibold text-primary">
                 <span>Kan dödsboet få förluster eller avdrag?</span>
                 <ChevronRight className="w-5 h-5 group-open:rotate-90 transition-transform" />
@@ -340,7 +340,7 @@ export default function DeklararaDodsboPage() {
         </section>
 
         {/* Legal disclaimer */}
-        <section className="mb-8 p-4 bg-gray-50 rounded-lg border border-gray-200 text-xs text-muted">
+        <section className="mb-8 p-4 bg-white rounded-lg border border-gray-200 text-xs text-muted">
           <p>
             <span className="font-semibold">Juridisk ansvarsfriskrivning:</span> Denna information är allmän vägledning
             och ersätter inte rådgivning från en kvalificerad skattekonsult eller juridisk rådgivare.

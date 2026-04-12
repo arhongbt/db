@@ -193,7 +193,7 @@ som inte förväntas ärva.`;
             type="date"
             value={forrattningsDatum}
             onChange={(e) => setForrattningsDatum(e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-card text-sm focus:outline-none focus:ring-2 focus:ring-accent"
+            className="w-full px-3 py-2 border border-[#E8E4DE] rounded-card text-sm focus:outline-none focus:ring-2 focus:ring-accent"
           />
         </div>
 
@@ -205,7 +205,7 @@ som inte förväntas ärva.`;
             type="time"
             value={forrattningsTid}
             onChange={(e) => setForrattningsTid(e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-card text-sm focus:outline-none focus:ring-2 focus:ring-accent"
+            className="w-full px-3 py-2 border border-[#E8E4DE] rounded-card text-sm focus:outline-none focus:ring-2 focus:ring-accent"
           />
         </div>
 
@@ -218,14 +218,14 @@ som inte förväntas ärva.`;
             value={forrattningsPlats}
             onChange={(e) => setForrattningsPlats(e.target.value)}
             placeholder="T.ex. hemma hos efterlevande, juristbyrån..."
-            className="w-full px-3 py-2 border border-gray-300 rounded-card text-sm placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-accent"
+            className="w-full px-3 py-2 border border-[#E8E4DE] rounded-card text-sm placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-accent"
           />
         </div>
       </div>
 
       {/* Preview */}
       <h2 className="font-semibold text-primary mb-2">Förhandsvisning</h2>
-      <pre className="bg-gray-50 rounded-card p-4 text-xs text-primary/80 whitespace-pre-wrap font-mono leading-relaxed overflow-x-auto max-h-80 overflow-y-auto mb-4">
+      <pre className="bg-white rounded-card p-4 text-xs text-primary/80 whitespace-pre-wrap font-mono leading-relaxed overflow-x-auto max-h-80 overflow-y-auto mb-4">
         {kallelseText}
       </pre>
 

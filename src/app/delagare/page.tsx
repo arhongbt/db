@@ -196,7 +196,7 @@ function DelagareContent() {
               Vem ärver?
             </p>
             {arvsinfo.heirs.map((h, i) => (
-              <div key={i} className="flex justify-between py-1.5 border-b border-gray-200 last:border-0">
+              <div key={i} className="flex justify-between py-1.5 border-b border-[#E8E4DE] last:border-0">
                 <span className="text-sm font-medium">{h.relation}</span>
                 <span className="text-sm text-muted">{h.share}</span>
               </div>
@@ -263,7 +263,7 @@ function DelagareContent() {
 
                 {/* Invite actions */}
                 {d.email && (
-                  <div className="mt-3 pt-3 border-t border-gray-100 flex items-center gap-2">
+                  <div className="mt-3 pt-3 border-t border-[#E8E4DE] flex items-center gap-2">
                     {isAccepted ? (
                       <span className="flex items-center gap-1.5 text-xs text-success">
                         <CheckCircle2 className="w-3.5 h-3.5" />
@@ -329,7 +329,7 @@ function DelagareContent() {
               value={name}
               onChange={(e) => { setName(e.target.value); setErrors((p) => ({ ...p, name: '' })); }}
               placeholder="Förnamn Efternamn"
-              className={`w-full min-h-touch px-4 py-3 text-base border-2 rounded-card focus:outline-none ${errors.name ? 'border-warn' : 'border-gray-200 focus:border-accent'}`}
+              className={`w-full min-h-touch px-4 py-3 text-base border-2 rounded-card focus:outline-none ${errors.name ? 'border-warn' : 'border-[#E8E4DE] focus:border-accent'}`}
               autoFocus
             />
             {errors.name && <span className="text-xs text-warn mt-1 block">{errors.name}</span>}
@@ -350,7 +350,7 @@ function DelagareContent() {
                       ? 'border-accent bg-primary-lighter/30 text-primary'
                       : errors.relation
                       ? 'border-warn/50 text-muted hover:border-warn'
-                      : 'border-gray-200 text-muted hover:border-gray-300'
+                      : 'border-[#E8E4DE] text-muted hover:border-gray-300'
                   }`}
                 >
                   {RELATION_LABELS[r]}
@@ -367,7 +367,7 @@ function DelagareContent() {
               value={phone}
               onChange={(e) => { setPhone(e.target.value); setErrors((p) => ({ ...p, phone: '' })); }}
               placeholder="070-123 45 67"
-              className={`w-full min-h-touch px-4 py-3 text-base border-2 rounded-card focus:outline-none ${errors.phone ? 'border-warn' : 'border-gray-200 focus:border-accent'}`}
+              className={`w-full min-h-touch px-4 py-3 text-base border-2 rounded-card focus:outline-none ${errors.phone ? 'border-warn' : 'border-[#E8E4DE] focus:border-accent'}`}
             />
             {errors.phone && <span className="text-xs text-warn mt-1 block">{errors.phone}</span>}
           </label>
@@ -379,7 +379,7 @@ function DelagareContent() {
               value={email}
               onChange={(e) => { setEmail(e.target.value); setErrors((p) => ({ ...p, email: '' })); }}
               placeholder="namn@exempel.se"
-              className={`w-full min-h-touch px-4 py-3 text-base border-2 rounded-card focus:outline-none ${errors.email ? 'border-warn' : 'border-gray-200 focus:border-accent'}`}
+              className={`w-full min-h-touch px-4 py-3 text-base border-2 rounded-card focus:outline-none ${errors.email ? 'border-warn' : 'border-[#E8E4DE] focus:border-accent'}`}
             />
             {errors.email && <span className="text-xs text-warn mt-1 block">{errors.email}</span>}
           </label>

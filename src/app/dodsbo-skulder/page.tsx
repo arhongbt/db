@@ -187,21 +187,21 @@ function DodsboSkulderContent() {
           Prioritering av skuldbetalning
         </h2>
         <div className="space-y-2">
-          <div className="flex items-center justify-between py-2 border-b border-gray-100 last:border-0">
+          <div className="flex items-center justify-between py-2 border-b border-[#E8E4DE] last:border-0">
             <span className="text-sm text-primary">
               <strong>1. Begravning &amp; ceremoni</strong>
             </span>
             <span className="text-xs font-semibold text-accent">Högst prio</span>
           </div>
-          <div className="flex items-center justify-between py-2 border-b border-gray-100">
+          <div className="flex items-center justify-between py-2 border-b border-[#E8E4DE]">
             <span className="text-sm text-primary">2. Dödsboets administrationskostnader</span>
             <span className="text-xs text-muted">(juridik, bouppteckning)</span>
           </div>
-          <div className="flex items-center justify-between py-2 border-b border-gray-100">
+          <div className="flex items-center justify-between py-2 border-b border-[#E8E4DE]">
             <span className="text-sm text-primary">3. Arbetslöne- &amp; pensionsskulder</span>
             <span></span>
           </div>
-          <div className="flex items-center justify-between py-2 border-b border-gray-100">
+          <div className="flex items-center justify-between py-2 border-b border-[#E8E4DE]">
             <span className="text-sm text-primary">4. Skatteskulder</span>
             <span></span>
           </div>
@@ -212,7 +212,7 @@ function DodsboSkulderContent() {
             <span className="text-xs font-semibold text-warn">Lägst prio</span>
           </div>
         </div>
-        <p className="text-xs text-muted mt-3 p-2 bg-gray-50 rounded">
+        <p className="text-xs text-muted mt-3 p-2 bg-white rounded">
           Om dödsboet är insolvent kan låga prioriteter få mindre eller ingenting.
         </p>
       </div>
@@ -241,7 +241,7 @@ function DodsboSkulderContent() {
                 )}
               </button>
               {expandedFaq === item.id && (
-                <div className="mt-2 pt-2 border-t border-gray-100">
+                <div className="mt-2 pt-2 border-t border-[#E8E4DE]">
                   <p className="text-sm text-primary/80 leading-relaxed">
                     {item.answer}
                   </p>
@@ -275,14 +275,14 @@ function DodsboSkulderContent() {
         </h2>
         <Link
           href="/dodsboanmalan"
-          className="card flex items-center justify-between hover:bg-gray-50 transition-colors"
+          className="card flex items-center justify-between hover:bg-white transition-colors"
         >
           <span className="text-sm font-medium text-primary">Dödsboanmälan</span>
           <ChevronRight className="w-4 h-4 text-muted" />
         </Link>
         <Link
           href="/juridisk-hjalp"
-          className="card flex items-center justify-between hover:bg-gray-50 transition-colors"
+          className="card flex items-center justify-between hover:bg-white transition-colors"
         >
           <span className="text-sm font-medium text-primary">
             Juridisk AI-assistent
@@ -291,7 +291,7 @@ function DodsboSkulderContent() {
         </Link>
         <Link
           href="/arvskifte"
-          className="card flex items-center justify-between hover:bg-gray-50 transition-colors"
+          className="card flex items-center justify-between hover:bg-white transition-colors"
         >
           <span className="text-sm font-medium text-primary">Arvskifte</span>
           <ChevronRight className="w-4 h-4 text-muted" />

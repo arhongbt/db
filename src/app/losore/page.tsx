@@ -226,7 +226,7 @@ function LosoreContent() {
               const value = delagareBreakdown.get(name) ?? 0;
               const itemCount = items.filter(i => i.assignedTo === name).length;
               return (
-                <div key={name} className="flex items-center justify-between p-2 bg-gray-50 rounded-card">
+                <div key={name} className="flex items-center justify-between p-2 bg-white rounded-card">
                   <span className="text-sm text-primary font-medium">{name}</span>
                   <div className="text-right">
                     <p className="text-sm font-semibold text-primary">{formatSEK(value)}</p>
@@ -254,8 +254,8 @@ function LosoreContent() {
                 setFormErrors(p => ({ ...p, formName: '' }));
               }}
               placeholder="T.ex. Soffa, Guldring, Tavla"
-              className={`w-full px-4 py-3 border-2 rounded-xl focus:outline-none transition-colors ${
-                formErrors.formName ? 'border-warn' : 'border-gray-200 focus:border-accent'
+              className={`w-full px-4 py-3 border-2 rounded-xl focus:outline-none transition-colors bg-white ${
+                formErrors.formName ? 'border-warn' : 'border-[#E8E4DE] focus:border-accent'
               }`}
             />
             {formErrors.formName && <span className="text-xs text-warn mt-1 block">{formErrors.formName}</span>}
@@ -266,7 +266,7 @@ function LosoreContent() {
             <select
               value={formCategory}
               onChange={(e) => setFormCategory(e.target.value as LosoreItem['category'])}
-              className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-accent focus:outline-none transition-colors"
+              className="w-full px-4 py-3 border-2 border-[#E8E4DE] rounded-xl focus:border-accent focus:outline-none transition-colors"
             >
               {CATEGORY_ORDER.map(cat => (
                 <option key={cat} value={cat}>
@@ -286,8 +286,8 @@ function LosoreContent() {
                 setFormErrors(p => ({ ...p, formValue: '' }));
               }}
               placeholder="0"
-              className={`w-full px-4 py-3 border-2 rounded-xl focus:outline-none transition-colors ${
-                formErrors.formValue ? 'border-warn' : 'border-gray-200 focus:border-accent'
+              className={`w-full px-4 py-3 border-2 rounded-xl focus:outline-none transition-colors bg-white ${
+                formErrors.formValue ? 'border-warn' : 'border-[#E8E4DE] focus:border-accent'
               }`}
             />
             {formErrors.formValue && <span className="text-xs text-warn mt-1 block">{formErrors.formValue}</span>}
@@ -299,7 +299,7 @@ function LosoreContent() {
               <select
                 value={formAssignedTo}
                 onChange={(e) => setFormAssignedTo(e.target.value)}
-                className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-accent focus:outline-none transition-colors"
+                className="w-full px-4 py-3 border-2 border-[#E8E4DE] rounded-xl focus:border-accent focus:outline-none transition-colors"
               >
                 <option value="">— Ej tilldelad —</option>
                 {delagareNames.map(name => (
@@ -315,7 +315,7 @@ function LosoreContent() {
               value={formNotes}
               onChange={(e) => setFormNotes(e.target.value)}
               placeholder="T.ex. Märkning, skick, särskilda instruktioner..."
-              className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-accent focus:outline-none transition-colors min-h-[80px]"
+              className="w-full px-4 py-3 border-2 border-[#E8E4DE] rounded-xl focus:border-accent focus:outline-none transition-colors min-h-[80px]"
             />
           </label>
 
@@ -394,7 +394,7 @@ function LosoreContent() {
                         <select
                           value={item.assignedTo || ''}
                           onChange={(e) => handleUpdateAssignment(item.id, e.target.value)}
-                          className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:border-accent focus:outline-none transition-colors"
+                          className="w-full px-3 py-2 border border-[#E8E4DE] rounded-lg text-sm focus:border-accent focus:outline-none transition-colors"
                         >
                           <option value="">— Ej tilldelad —</option>
                           {delagareNames.map(name => (

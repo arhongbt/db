@@ -56,11 +56,11 @@ function UppgifterContent() {
 
   if (!mounted || loading) return (
     <div className="min-h-dvh bg-background p-6 animate-pulse">
-      <div className="h-8 bg-gray-200 rounded w-1/2 mb-2" />
-      <div className="h-4 bg-gray-200 rounded w-1/3 mb-6" />
-      <div className="h-10 bg-gray-200 rounded-full mb-6" />
+      <div className="h-8 bg-[#E8E4DE] rounded w-1/2 mb-2" />
+      <div className="h-4 bg-[#E8E4DE] rounded w-1/3 mb-6" />
+      <div className="h-10 bg-[#E8E4DE] rounded-full mb-6" />
       <div className="space-y-3">
-        {[1,2,3,4].map(i => <div key={i} className="h-24 bg-gray-200 rounded-2xl" />)}
+        {[1,2,3,4].map(i => <div key={i} className="h-24 bg-[#E8E4DE] rounded-2xl" />)}
       </div>
     </div>
   );
@@ -145,7 +145,7 @@ function UppgifterContent() {
       </div>
 
       {/* Progress bar */}
-      <div className="w-full h-2 bg-gray-200 rounded-full mb-6">
+      <div className="w-full h-2 bg-[#E8E4DE] rounded-full mb-6">
         <div
           className="h-2 bg-success rounded-full transition-all duration-500"
           style={{ width: `${tasks.length > 0 ? (totalDone / tasks.length) * 100 : 0}%` }}
@@ -173,7 +173,7 @@ function UppgifterContent() {
           className={`px-4 py-2 min-h-[44px] rounded-full text-sm font-medium whitespace-nowrap transition-colors ${
             filterStep === 'all'
               ? 'bg-primary text-white'
-              : 'bg-gray-100 text-primary/70 hover:bg-gray-200'
+              : 'bg-gray-100 text-primary/70 hover:bg-[#E8E4DE]'
           }`}
         >
           Alla
@@ -187,7 +187,7 @@ function UppgifterContent() {
             className={`px-4 py-2 min-h-[44px] rounded-full text-sm font-medium whitespace-nowrap transition-colors ${
               filterStep === s
                 ? 'bg-primary text-white'
-                : 'bg-gray-100 text-primary/70 hover:bg-gray-200'
+                : 'bg-gray-100 text-primary/70 hover:bg-[#E8E4DE]'
             }`}
           >
             {STEP_LABELS[s].split(' (')[0]}

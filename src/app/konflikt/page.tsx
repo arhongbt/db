@@ -182,7 +182,7 @@ function KonfliktContent() {
                 </div>
 
                 {isExpanded && (
-                  <div className="mt-4 pt-4 border-t border-gray-100">
+                  <div className="mt-4 pt-4 border-t border-[#E8E4DE]">
                     <ul className="space-y-2 mb-3">
                       {level.details.map((detail, i) => (
                         <li
@@ -410,7 +410,7 @@ function KonfliktContent() {
       </div>
 
       {/* Legal disclaimer */}
-      <div className="bg-gray-50 rounded-card px-4 py-3 mb-6">
+      <div className="bg-white rounded-card px-4 py-3 mb-6">
         <p className="text-xs text-muted leading-relaxed">
           <strong>Juridisk varning:</strong> Denna sida ger endast allmän
           information om möjligheter vid konflikter i dödsbo. Det är inte

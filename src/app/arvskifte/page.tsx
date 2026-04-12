@@ -109,7 +109,7 @@ function ArvskifteContent() {
             <span className="text-sm text-muted">Skulder</span>
             <span className="text-sm font-medium text-warn">{formatSEK(totalSkulder)}</span>
           </div>
-          <div className="flex justify-between pt-2 border-t border-gray-200">
+          <div className="flex justify-between pt-2 border-t border-[#E8E4DE]">
             <span className="font-semibold text-primary">Att fördela</span>
             <span className={`font-bold text-lg ${netto >= 0 ? 'text-success' : 'text-warn'}`}>
               {formatSEK(netto)}
@@ -127,7 +127,7 @@ function ArvskifteContent() {
         <p className="text-sm text-primary/80 mb-3">{arvsinfo.summary}</p>
         <div className="bg-primary-lighter/20 rounded-card p-3">
           {arvsinfo.heirs.map((h, i) => (
-            <div key={i} className="flex justify-between py-1.5 border-b border-gray-200/50 last:border-0">
+            <div key={i} className="flex justify-between py-1.5 border-b border-[#E8E4DE]/50 last:border-0">
               <span className="text-sm font-medium text-primary">{h.relation}</span>
               <span className="text-sm text-muted">{h.share}</span>
             </div>
@@ -241,7 +241,7 @@ function ArvskifteContent() {
           ) : (
             <div className="space-y-3">
               {state.delagare.filter((d) => d.isDelagare).map((d) => (
-                <div key={d.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-card">
+                <div key={d.id} className="flex items-center justify-between p-3 bg-white rounded-card">
                   <div>
                     <p className="font-medium text-primary">{d.name}</p>
                     <p className="text-xs text-muted">Lika del</p>
