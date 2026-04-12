@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(rtk ls:*)",
+      "Bash(rtk read:*)",
+      "Bash(mkdir -p /Users/benzinho/Desktop/dodsbo/.claude/skills/graphify)",
+      "Bash(cp /Users/benzinho/.claude/skills/graphify/SKILL.md /Users/benzinho/Desktop/dodsbo/.claude/skills/graphify/SKILL.md)",
+      "Bash(cp /Users/benzinho/.claude/skills/graphify/.graphify_version /Users/benzinho/Desktop/dodsbo/.claude/skills/graphify/.graphify_version)"
+    ]
+  }
+}
