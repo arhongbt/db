@@ -150,10 +150,10 @@ som inte förväntas ärva.`;
 
       <div className="flex items-center gap-3 mb-2">
         <Mail className="w-7 h-7 text-accent" />
-        <h1 className="text-2xl font-semibold text-primary">Kallelse</h1>
+        <h1 className="text-2xl font-semibold text-primary">{t('Kallelse', 'Summons')}</h1>
       </div>
       <p className="text-muted mb-6">
-        Skapa kallelse till bouppteckningsförrättningen som ska skickas till alla dödsbodelägare.
+        {t('Skapa kallelse till bouppteckningsförrättningen som ska skickas till alla dödsbodelägare.', 'Create a summons to the estate inventory procedure that should be sent to all estate heirs.')}
       </p>
 
       {/* Deadline warning */}
@@ -162,11 +162,10 @@ som inte förväntas ärva.`;
           <AlertTriangle className="w-5 h-5 text-warn flex-shrink-0 mt-0.5" />
           <div>
             <p className="font-medium text-warn">
-              {daysLeft} dagar kvar till deadline
+              {t(`${daysLeft} dagar kvar till deadline`, `${daysLeft} days left until deadline`)}
             </p>
             <p className="text-sm text-primary/70">
-              Bouppteckningsförrättningen ska hållas inom 3 månader från dödsfallet
-              ({deadlineDate?.toLocaleDateString('sv-SE')}). Begär anstånd hos Skatteverket om du behöver mer tid.
+              {t(`Bouppteckningsförrättningen ska hållas inom 3 månader från dödsfallet (${deadlineDate?.toLocaleDateString('sv-SE')}). Begär anstånd hos Skatteverket om du behöver mer tid.`, `The estate inventory procedure must be held within 3 months from the date of death (${deadlineDate?.toLocaleDateString('en-US')}). Request an extension from the Tax Agency if you need more time.`)}
             </p>
           </div>
         </div>
@@ -176,20 +175,18 @@ som inte förväntas ärva.`;
         <div className="flex items-start gap-2">
           <Info className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
           <p className="text-sm text-primary/80">
-            Alla dödsbodelägare ska kallas till förrättningen, även de som bor på annan ort.
-            Kallelsen bör skickas minst 2 veckor i förväg. Den som inte kan närvara kan
-            skicka ombud med fullmakt.
+            {t('Alla dödsbodelägare ska kallas till förrättningen, även de som bor på annan ort. Kallelsen bör skickas minst 2 veckor i förväg. Den som inte kan närvara kan skicka ombud med fullmakt.', 'All estate heirs must be summoned to the procedure, even those living in other locations. The summons should be sent at least 2 weeks in advance. Those who cannot attend can send a representative with power of attorney.')}
           </p>
         </div>
       </div>
 
       {/* Settings */}
       <div className="card mb-6 space-y-4">
-        <h2 className="font-semibold text-primary text-sm">Förrättningsuppgifter</h2>
+        <h2 className="font-semibold text-primary text-sm">{t('Förrättningsuppgifter', 'Procedure Details')}</h2>
 
         <div>
           <label className="flex items-center gap-2 text-sm font-medium text-primary mb-1">
-            <Calendar className="w-4 h-4 text-muted" /> Datum
+            <Calendar className="w-4 h-4 text-muted" /> {t('Datum', 'Date')}
           </label>
           <input
             type="date"
@@ -201,7 +198,7 @@ som inte förväntas ärva.`;
 
         <div>
           <label className="flex items-center gap-2 text-sm font-medium text-primary mb-1">
-            <Clock className="w-4 h-4 text-muted" /> Tid
+            <Clock className="w-4 h-4 text-muted" /> {t('Tid', 'Time')}
           </label>
           <input
             type="time"
@@ -213,20 +210,20 @@ som inte förväntas ärva.`;
 
         <div>
           <label className="flex items-center gap-2 text-sm font-medium text-primary mb-1">
-            <MapPin className="w-4 h-4 text-muted" /> Plats
+            <MapPin className="w-4 h-4 text-muted" /> {t('Plats', 'Location')}
           </label>
           <input
             type="text"
             value={forrattningsPlats}
             onChange={(e) => setForrattningsPlats(e.target.value)}
-            placeholder="T.ex. hemma hos efterlevande, juristbyrån..."
+            placeholder={t('T.ex. hemma hos efterlevande, juristbyrån...', 'E.g. at the surviving spouse\'s home, law firm...')}
             className="w-full px-3 py-2 border border-[#E8E4DE] rounded-card text-sm placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-accent"
           />
         </div>
       </div>
 
       {/* Preview */}
-      <h2 className="font-semibold text-primary mb-2">Förhandsvisning</h2>
+      <h2 className="font-semibold text-primary mb-2">{t('Förhandsvisning', 'Preview')}</h2>
       <pre className="bg-white rounded-card p-4 text-xs text-primary/80 whitespace-pre-wrap font-mono leading-relaxed overflow-x-auto max-h-80 overflow-y-auto mb-4">
         {kallelseText}
       </pre>
@@ -239,17 +236,17 @@ som inte förväntas ärva.`;
           {copied ? (
             <>
               <CheckCircle2 className="w-5 h-5" />
-              Kopierad!
+              {t('Kopierad!', 'Copied!')}
             </>
           ) : (
             <>
               <Copy className="w-5 h-5" />
-              Kopiera
+              {t('Kopiera', 'Copy')}
             </>
           )}
         </button>
         <button
-          onClick={() => downloadDocumentPDF('Kallelse till bouppteckningsförrättning', kallelseText, 'kallelse-bouppteckning')}
+          onClick={() => downloadDocumentPDF(t('Kallelse till bouppteckningsförrättning', 'Summons to Estate Inventory Procedure'), kallelseText, 'kallelse-bouppteckning')}
           className="flex-1 btn-secondary flex items-center justify-center gap-2"
         >
           <Download className="w-5 h-5" />
@@ -274,15 +271,13 @@ som inte förväntas ärva.`;
           className="flex-1 py-3 px-4 rounded-xl bg-accent/10 text-accent font-medium hover:bg-accent/20 transition-colors flex items-center justify-center gap-2"
         >
           <Mail className="w-5 h-5" />
-          Word
+          {t('Word', 'Word')}
         </button>
       </div>
 
       <div className="bg-primary-lighter/30 rounded-card p-4">
         <p className="text-xs text-muted leading-relaxed">
-          Skicka kallelsen med rekommenderat brev eller e-post. Spara bevis på att alla
-          dödsbodelägare har fått kallelsen — det kan behövas vid registreringen hos
-          Skatteverket.
+          {t('Skicka kallelsen med rekommenderat brev eller e-post. Spara bevis på att alla dödsbodelägare har fått kallelsen — det kan behövas vid registreringen hos Skatteverket.', 'Send the summons by registered mail or email. Keep proof that all estate heirs have received the summons — it may be needed when registering with the Tax Agency.')}
         </p>
       </div>
 

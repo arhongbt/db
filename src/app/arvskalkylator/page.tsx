@@ -50,6 +50,8 @@ function calculateInheritance(
   }
 
   const barn = delagareNames.filter(d => d.relation === 'barn' || d.relation === 'barnbarn');
+  // Prisbasbelopp uppdateras årligen av SCB — kontrollera på scb.se/prisbasbelopp
+  // 2025: 57 300 kr | 2026: uppdatera här när SCB publicerar nytt värde
   const PRISBASBELOPP = 57300;
 
   switch (familySituation) {

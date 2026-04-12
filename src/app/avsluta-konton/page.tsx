@@ -40,78 +40,78 @@ interface AccountCategory {
   items: AccountItem[];
 }
 
-const ACCOUNT_CATEGORIES: AccountCategory[] = [
+const createAccountCategories = (t: (sv: string, en: string) => string): AccountCategory[] => [
   {
     id: 'banker',
-    title: 'Banker',
+    title: t('Banker', 'Banks'),
     icon: Building2,
     items: [
-      { id: 'swedbank', name: 'Swedbank', phone: '0771-22 11 22', url: 'https://www.swedbank.se', info: 'Ring kundtjänst med dödsfallsintyg. Begär saldobesked per dödsdagen. Alla delägare måste godkänna avslut.' },
-      { id: 'handelsbanken', name: 'Handelsbanken', phone: '0771-77 88 99', url: 'https://www.handelsbanken.se', info: 'Kontakta närmaste kontor. Ta med dödsbevis och legitimation. Bankfack inventeras med två vittnen.' },
-      { id: 'seb', name: 'SEB', phone: '0771-365 365', url: 'https://www.seb.se', info: 'Ring privatrådgivning. Begär saldobesked, stoppa autogiro. Fullmakt krävs om inte alla delägare medverkar.' },
-      { id: 'nordea', name: 'Nordea', phone: '0771-22 44 88', url: 'https://www.nordea.se', info: 'Ring eller besök kontor. Meddela dödsfall, begär kontoutdrag per dödsdagen. Beställ saldobesked.' },
-      { id: 'lansforsakringar', name: 'Länsförsäkringar', phone: '08-588 400 00', url: 'https://www.lansforsakringar.se', info: 'Kontakta ditt lokala LF-bolag. Hanterar både bank och försäkring. Begär samlat besked.' },
-      { id: 'skandia', name: 'Skandia', phone: '0771-55 55 00', url: 'https://www.skandia.se', info: 'Ring kundtjänst. Kontrollera pensioner, fonder och försäkringar. Begär samlat besked.' },
-      { id: 'ica_banken', name: 'ICA Banken', phone: '033-47 47 00', url: 'https://www.icabanken.se', info: 'Ring kundtjänst. Avsluta konton och kort. Kontrollera ICA-försäkringar.' },
-      { id: 'avanza', name: 'Avanza', phone: '08-562 250 00', url: 'https://www.avanza.se', info: 'Ring eller mejla. Begär depåvärde per dödsdagen. Fullmakt krävs för att flytta värdepapper.' },
+      { id: 'swedbank', name: 'Swedbank', phone: '0771-22 11 22', url: 'https://www.swedbank.se', info: t('Ring kundtjänst med dödsfallsintyg. Begär saldobesked per dödsdagen. Alla delägare måste godkänna avslut.', 'Call customer service with death certificate. Request balance statement as of death date. All co-owners must approve closure.') },
+      { id: 'handelsbanken', name: 'Handelsbanken', phone: '0771-77 88 99', url: 'https://www.handelsbanken.se', info: t('Kontakta närmaste kontor. Ta med dödsbevis och legitimation. Bankfack inventeras med två vittnen.', 'Contact nearest branch. Bring death certificate and ID. Safe deposit box inventoried with two witnesses.') },
+      { id: 'seb', name: 'SEB', phone: '0771-365 365', url: 'https://www.seb.se', info: t('Ring privatrådgivning. Begär saldobesked, stoppa autogiro. Fullmakt krävs om inte alla delägare medverkar.', 'Call private advisory. Request balance statement, cancel standing orders. Power of attorney required if not all co-owners participate.') },
+      { id: 'nordea', name: 'Nordea', phone: '0771-22 44 88', url: 'https://www.nordea.se', info: t('Ring eller besök kontor. Meddela dödsfall, begär kontoutdrag per dödsdagen. Beställ saldobesked.', 'Call or visit branch. Report death, request account statement as of death date. Order balance certificate.') },
+      { id: 'lansforsakringar', name: 'Länsförsäkringar', phone: '08-588 400 00', url: 'https://www.lansforsakringar.se', info: t('Kontakta ditt lokala LF-bolag. Hanterar både bank och försäkring. Begär samlat besked.', 'Contact your local LF office. Handles both banking and insurance. Request comprehensive statement.') },
+      { id: 'skandia', name: 'Skandia', phone: '0771-55 55 00', url: 'https://www.skandia.se', info: t('Ring kundtjänst. Kontrollera pensioner, fonder och försäkringar. Begär samlat besked.', 'Call customer service. Check pensions, funds and insurance. Request comprehensive statement.') },
+      { id: 'ica_banken', name: 'ICA Banken', phone: '033-47 47 00', url: 'https://www.icabanken.se', info: t('Ring kundtjänst. Avsluta konton och kort. Kontrollera ICA-försäkringar.', 'Call customer service. Close accounts and cards. Check ICA insurance policies.') },
+      { id: 'avanza', name: 'Avanza', phone: '08-562 250 00', url: 'https://www.avanza.se', info: t('Ring eller mejla. Begär depåvärde per dödsdagen. Fullmakt krävs för att flytta värdepapper.', 'Call or email. Request depot value as of death date. Power of attorney required to transfer securities.') },
     ],
   },
   {
     id: 'forsakringar',
-    title: 'Försäkringsbolag',
+    title: t('Försäkringsbolag', 'Insurance companies'),
     icon: Heart,
     items: [
-      { id: 'if', name: 'If Skadeförsäkring', phone: '0771-815 818', url: 'https://www.if.se', info: 'Anmäl dödsfallet. Kontrollera hem-, bil- och olycksfallsförsäkring. Fråga om grupplivförsäkring.' },
-      { id: 'trygg_hansa', name: 'Trygg-Hansa', phone: '0771-11 11 00', url: 'https://www.trygghansa.se', info: 'Ring kundtjänst med personnummer. Kontrollera livförsäkring och efterlevandeskydd.' },
-      { id: 'folksam', name: 'Folksam', phone: '0771-950 950', url: 'https://www.folksam.se', info: 'Kontrollera grupplivförsäkring via fack/förbund. Folksam hanterar många kollektivavtalsförsäkringar.' },
-      { id: 'spf', name: 'SPP / Storebrand', phone: '020-51 52 53', url: 'https://www.spp.se', info: 'Kontrollera tjänstepension och efterlevandeskydd. Fråga om utbetalning till dödsboet.' },
-      { id: 'alecta', name: 'Alecta', phone: '020-78 22 80', url: 'https://www.alecta.se', info: 'Tjänstepension för privatanställda tjänstemän. Kontrollera ITP och familjepension.' },
-      { id: 'afa', name: 'AFA Försäkring', phone: '0771-88 00 99', url: 'https://www.afa.se', info: 'Kollektivavtalad försäkring. Kan ge dödsfallsersättning. Kontrollera TGL (tjänstegrupplivförsäkring).' },
+      { id: 'if', name: 'If Skadeförsäkring', phone: '0771-815 818', url: 'https://www.if.se', info: t('Anmäl dödsfallet. Kontrollera hem-, bil- och olycksfallsförsäkring. Fråga om grupplivförsäkring.', 'Report death. Check home, car and accident insurance. Ask about group life insurance.') },
+      { id: 'trygg_hansa', name: 'Trygg-Hansa', phone: '0771-11 11 00', url: 'https://www.trygghansa.se', info: t('Ring kundtjänst med personnummer. Kontrollera livförsäkring och efterlevandeskydd.', 'Call customer service with ID number. Check life insurance and survivor coverage.') },
+      { id: 'folksam', name: 'Folksam', phone: '0771-950 950', url: 'https://www.folksam.se', info: t('Kontrollera grupplivförsäkring via fack/förbund. Folksam hanterar många kollektivavtalsförsäkringar.', 'Check group life insurance through union/association. Folksam handles many collective insurance policies.') },
+      { id: 'spf', name: 'SPP / Storebrand', phone: '020-51 52 53', url: 'https://www.spp.se', info: t('Kontrollera tjänstepension och efterlevandeskydd. Fråga om utbetalning till dödsboet.', 'Check occupational pension and survivor coverage. Ask about payout to estate.') },
+      { id: 'alecta', name: 'Alecta', phone: '020-78 22 80', url: 'https://www.alecta.se', info: t('Tjänstepension för privatanställda tjänstemän. Kontrollera ITP och familjepension.', 'Occupational pension for privately employed professionals. Check ITP and family pension.') },
+      { id: 'afa', name: 'AFA Försäkring', phone: '0771-88 00 99', url: 'https://www.afa.se', info: t('Kollektivavtalad försäkring. Kan ge dödsfallsersättning. Kontrollera TGL (tjänstegrupplivförsäkring).', 'Collective agreement insurance. May provide death benefit. Check TGL (occupational group life insurance).') },
     ],
   },
   {
     id: 'abonnemang',
-    title: 'Telefon & bredband',
+    title: t('Telefon & bredband', 'Phone & internet'),
     icon: Smartphone,
     items: [
-      { id: 'telia', name: 'Telia', phone: '020-20 20 20', url: 'https://www.telia.se', info: 'Ring med dödsfallsintyg. Säg upp mobil, bredband, TV. Bindningstid gäller inte vid dödsfall.' },
-      { id: 'tele2', name: 'Tele2', phone: '0200-23 23 23', url: 'https://www.tele2.se', info: 'Ring kundtjänst. Dödsboet kan säga upp avtal utan bindningstid.' },
-      { id: 'tre', name: 'Tre', phone: '0771-33 33 33', url: 'https://www.tre.se', info: 'Kontakta kundtjänst med personnummer och dödsbevis.' },
-      { id: 'telenor', name: 'Telenor', phone: '020-22 22 22', url: 'https://www.telenor.se', info: 'Ring eller besök butik med dödsbevis. Avsluta mobil och bredband.' },
+      { id: 'telia', name: 'Telia', phone: '020-20 20 20', url: 'https://www.telia.se', info: t('Ring med dödsfallsintyg. Säg upp mobil, bredband, TV. Bindningstid gäller inte vid dödsfall.', 'Call with death certificate. Cancel mobile, broadband, TV. Contract terms do not apply upon death.') },
+      { id: 'tele2', name: 'Tele2', phone: '0200-23 23 23', url: 'https://www.tele2.se', info: t('Ring kundtjänst. Dödsboet kan säga upp avtal utan bindningstid.', 'Call customer service. Estate can cancel contract without notice period.') },
+      { id: 'tre', name: 'Tre', phone: '0771-33 33 33', url: 'https://www.tre.se', info: t('Kontakta kundtjänst med personnummer och dödsbevis.', 'Contact customer service with ID number and death certificate.') },
+      { id: 'telenor', name: 'Telenor', phone: '020-22 22 22', url: 'https://www.telenor.se', info: t('Ring eller besök butik med dödsbevis. Avsluta mobil och bredband.', 'Call or visit store with death certificate. Cancel mobile and broadband.') },
     ],
   },
   {
     id: 'fordon',
-    title: 'Fordon & transport',
+    title: t('Fordon & transport', 'Vehicles & transport'),
     icon: Car,
     items: [
-      { id: 'transportstyrelsen', name: 'Transportstyrelsen', phone: '0771-503 503', url: 'https://www.transportstyrelsen.se', info: 'Avregistrera eller ägarbyt fordon. Betala fordonsskatt. Dödsboet står som ägare tills det säljs/överlåts.' },
-      { id: 'bilforsakring', name: 'Bilförsäkring', info: 'Kontakta ditt försäkringsbolag. Bilförsäkringen gäller tills vidare men bör uppdateras.' },
+      { id: 'transportstyrelsen', name: 'Transportstyrelsen', phone: '0771-503 503', url: 'https://www.transportstyrelsen.se', info: t('Avregistrera eller ägarbyt fordon. Betala fordonsskatt. Dödsboet står som ägare tills det säljs/överlåts.', 'Deregister or change vehicle ownership. Pay vehicle tax. Estate is owner until sold/transferred.') },
+      { id: 'bilforsakring', name: t('Bilförsäkring', 'Car insurance'), info: t('Kontakta ditt försäkringsbolag. Bilförsäkringen gäller tills vidare men bör uppdateras.', 'Contact your insurance company. Car insurance remains in effect but should be updated.') },
     ],
   },
   {
     id: 'digitalt',
-    title: 'Digitala tjänster',
+    title: t('Digitala tjänster', 'Digital services'),
     icon: Wifi,
     items: [
-      { id: 'skatteverket_digital', name: 'Skatteverket — digital brevlåda', phone: '0771-567 567', url: 'https://www.skatteverket.se', info: 'Avregistrera från digital brevlåda. Posten börjar komma i fysisk form igen.' },
-      { id: 'streaming', name: 'Streamingtjänster', info: 'Avsluta alla streamingtjänster: Spotify, Netflix, HBO Max, Disney+, Viaplay, YouTube Premium, Apple TV+ m.fl. Kontakta varje tjänsts support med dödsbevis, eller logga in och avsluta prenumerationen direkt.' },
-      { id: 'apple', name: 'Apple ID', url: 'https://support.apple.com/deceased', info: 'Apple har en process för att hantera kontot för en avliden person. Kräver dödsbevis och ibland domstolsbeslut.' },
-      { id: 'google', name: 'Google-konto', url: 'https://support.google.com/accounts/troubleshooter/6357590', info: 'Google Inactive Account Manager eller begäran om radering med dödsbevis.' },
-      { id: 'facebook', name: 'Facebook / Meta', url: 'https://www.facebook.com/help/1506822589577997', info: 'Kontot kan omvandlas till minnesplats eller raderas. Kräver dödsbevis.' },
+      { id: 'skatteverket_digital', name: t('Skatteverket — digital brevlåda', 'Tax Agency — digital mailbox'), phone: '0771-567 567', url: 'https://www.skatteverket.se', info: t('Avregistrera från digital brevlåda. Posten börjar komma i fysisk form igen.', 'Deregister from digital mailbox. Mail will resume in physical form.') },
+      { id: 'streaming', name: t('Streamingtjänster', 'Streaming services'), info: t('Avsluta alla streamingtjänster: Spotify, Netflix, HBO Max, Disney+, Viaplay, YouTube Premium, Apple TV+ m.fl. Kontakta varje tjänsts support med dödsbevis, eller logga in och avsluta prenumerationen direkt.', 'Cancel all streaming services: Spotify, Netflix, HBO Max, Disney+, Viaplay, YouTube Premium, Apple TV+ and others. Contact each service\'s support with death certificate, or log in and cancel subscription directly.') },
+      { id: 'apple', name: 'Apple ID', url: 'https://support.apple.com/deceased', info: t('Apple har en process för att hantera kontot för en avliden person. Kräver dödsbevis och ibland domstolsbeslut.', 'Apple has a process to handle account for deceased person. Requires death certificate and sometimes court order.') },
+      { id: 'google', name: t('Google-konto', 'Google account'), url: 'https://support.google.com/accounts/troubleshooter/6357590', info: t('Google Inactive Account Manager eller begäran om radering med dödsbevis.', 'Google Inactive Account Manager or deletion request with death certificate.') },
+      { id: 'facebook', name: t('Facebook / Meta', 'Facebook / Meta'), url: 'https://www.facebook.com/help/1506822589577997', info: t('Kontot kan omvandlas till minnesplats eller raderas. Kräver dödsbevis.', 'Account can be converted to memorial or deleted. Requires death certificate.') },
     ],
   },
   {
     id: 'ovriga',
-    title: 'Övriga abonnemang',
+    title: t('Övriga abonnemang', 'Other subscriptions'),
     icon: CreditCard,
     items: [
-      { id: 'el', name: 'Elbolag', info: 'Kontakta elleverantören och elnätsbolaget. Avsluta eller överlåt elavtalet. Mätarställning bör noteras.' },
-      { id: 'hyresvard', name: 'Hyresvärd', info: 'Dödsboet har 1 månads uppsägningstid (ej 3). Meddela snarast. Se brevmall under Fullmakter.' },
-      { id: 'tidningar', name: 'Tidningsprenumerationer', info: 'Kontakta varje tidning. De flesta accepterar dödsbevis som underlag för omedelbar uppsägning.' },
-      { id: 'fackforbund', name: 'Fackförbund', info: 'Avsluta medlemskap. Kontrollera om det finns grupplivförsäkring (TGL) via facket — ofta 1-3 prisbasbelopp.' },
-      { id: 'a_kassa', name: 'A-kassa', info: 'Avsluta medlemskap. Kontrollera eventuella utestående utbetalningar.' },
-      { id: 'pensionsmyndigheten', name: 'Pensionsmyndigheten', phone: '0771-776 776', url: 'https://www.pensionsmyndigheten.se', info: 'Meddela dödsfall. Kontrollera allmän pension, efterlevandepension och premiepension.' },
+      { id: 'el', name: t('Elbolag', 'Electricity company'), info: t('Kontakta elleverantören och elnätsbolaget. Avsluta eller överlåt elavtalet. Mätarställning bör noteras.', 'Contact electricity supplier and grid operator. Cancel or transfer electricity contract. Note meter reading.') },
+      { id: 'hyresvard', name: t('Hyresvärd', 'Landlord'), info: t('Dödsboet har 1 månads uppsägningstid (ej 3). Meddela snarast. Se brevmall under Fullmakter.', 'Estate has 1 month notice period (not 3). Notify immediately. See letter template under Powers of attorney.') },
+      { id: 'tidningar', name: t('Tidningsprenumerationer', 'Newspaper subscriptions'), info: t('Kontakta varje tidning. De flesta accepterar dödsbevis som underlag för omedelbar uppsägning.', 'Contact each newspaper. Most accept death certificate for immediate cancellation.') },
+      { id: 'fackforbund', name: t('Fackförbund', 'Labor union'), info: t('Avsluta medlemskap. Kontrollera om det finns grupplivförsäkring (TGL) via facket — ofta 1-3 prisbasbelopp.', 'Cancel membership. Check for group life insurance (TGL) through union — often 1-3 price base amounts.') },
+      { id: 'a_kassa', name: t('A-kassa', 'Unemployment insurance'), info: t('Avsluta medlemskap. Kontrollera eventuella utestående utbetalningar.', 'Cancel membership. Check for any outstanding payments.') },
+      { id: 'pensionsmyndigheten', name: t('Pensionsmyndigheten', 'Swedish Pensions Agency'), phone: '0771-776 776', url: 'https://www.pensionsmyndigheten.se', info: t('Meddela dödsfall. Kontrollera allmän pension, efterlevandepension och premiepension.', 'Report death. Check general pension, survivor pension and premium pension.') },
     ],
   },
 ];
@@ -132,6 +132,7 @@ function AvslutaKontonSkeleton() {
 
 function AvslutaKontonContent() {
   const { loading } = useDodsbo();
+  const { t } = useLanguage();
   const [mounted, setMounted] = useState(false);
   const [expandedCat, setExpandedCat] = useState<string | null>('banker');
   const [checkedItems, setCheckedItems] = useState<Set<string>>(new Set());
@@ -160,6 +161,7 @@ function AvslutaKontonContent() {
 
   if (!mounted || loading) return <AvslutaKontonSkeleton />;
 
+  const ACCOUNT_CATEGORIES = createAccountCategories(t);
   const totalItems = ACCOUNT_CATEGORIES.reduce((sum, c) => sum + c.items.length, 0);
   const doneCount = checkedItems.size;
 
@@ -171,16 +173,16 @@ function AvslutaKontonContent() {
 
       <div className="flex items-center gap-3 mb-2">
         <XCircle className="w-7 h-7 text-accent" />
-        <h1 className="text-2xl font-semibold text-primary">Avsluta konton</h1>
+        <h1 className="text-2xl font-semibold text-primary">{t('Avsluta konton', 'Close accounts')}</h1>
       </div>
       <p className="text-muted mb-4">
-        Checklista för att avsluta den avlidnes konton, abonnemang och tjänster.
+        {t('Checklista för att avsluta den avlidnes konton, abonnemang och tjänster.', 'Checklist for closing deceased\'s accounts, subscriptions and services.')}
       </p>
 
       {/* Progress */}
       <div className="card mb-6">
         <div className="flex items-center justify-between mb-2">
-          <span className="text-sm font-medium text-primary">Framsteg</span>
+          <span className="text-sm font-medium text-primary">{t('Framsteg', 'Progress')}</span>
           <span className="text-sm text-muted">{doneCount} / {totalItems}</span>
         </div>
         <div className="w-full bg-gray-100 rounded-full h-3">
@@ -195,8 +197,7 @@ function AvslutaKontonContent() {
         <div className="flex items-start gap-2">
           <Info className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
           <p className="text-sm text-primary/80">
-            Du behöver inte avsluta allt på en gång. Bocka av vartefter du gör framsteg.
-            Ha dödsbevis och fullmakt till hands vid varje kontakt.
+            {t('Du behöver inte avsluta allt på en gång. Bocka av vartefter du gör framsteg. Ha dödsbevis och fullmakt till hands vid varje kontakt.', 'You don\'t need to close everything at once. Check off as you make progress. Keep death certificate and power of attorney ready for each contact.')}
           </p>
         </div>
       </div>
@@ -217,7 +218,7 @@ function AvslutaKontonContent() {
                 <Icon className="w-5 h-5 text-accent" />
                 <div className="text-left">
                   <p className="font-medium text-primary">{cat.title}</p>
-                  <p className="text-xs text-muted">{catDone} / {cat.items.length} klart</p>
+                  <p className="text-xs text-muted">{catDone} / {cat.items.length} {t('klart', 'done')}</p>
                 </div>
               </div>
               {isExpanded
@@ -261,7 +262,7 @@ function AvslutaKontonContent() {
                                 rel="noopener noreferrer"
                                 className="inline-flex items-center gap-1 text-xs text-accent hover:underline"
                               >
-                                <ExternalLink className="w-3 h-3" /> Webbplats
+                                <ExternalLink className="w-3 h-3" /> {t('Webbplats', 'Website')}
                               </a>
                             )}
                           </div>
@@ -278,9 +279,7 @@ function AvslutaKontonContent() {
 
       <div className="bg-primary-lighter/30 rounded-card p-4">
         <p className="text-xs text-muted leading-relaxed">
-          Listan täcker de vanligaste kontona och tjänsterna. Den avlidne kan ha haft
-          ytterligare abonnemang — kontrollera kontoutdrag och post för att hitta dem.
-          Dina framsteg sparas lokalt på den här enheten.
+          {t('Listan täcker de vanligaste kontona och tjänsterna. Den avlidne kan ha haft ytterligare abonnemang — kontrollera kontoutdrag och post för att hitta dem. Dina framsteg sparas lokalt på den här enheten.', 'This list covers the most common accounts and services. The deceased may have had additional subscriptions — check bank statements and mail to find them. Your progress is saved locally on this device.')}
         </p>
       </div>
 

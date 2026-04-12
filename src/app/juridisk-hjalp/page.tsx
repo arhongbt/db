@@ -459,7 +459,7 @@ function JuridiskHjalpContent() {
               <button
                 onClick={() => {
                   // TODO: Koppla till bokningslänk
-                  window.open('mailto:kontakt@example.com?subject=Gratis konsultation via Sista Resan', '_blank');
+                  window.open('mailto:hej@sistaresan.se?subject=Gratis konsultation via Sista Resan', '_blank');
                 }}
                 className="w-full p-3 rounded-xl border flex items-center gap-3 text-left hover:shadow-sm transition-all"
                 style={{ borderColor: '#E8E4DE', background: '#FAFAF8' }}
@@ -590,7 +590,7 @@ function JuridiskHjalpContent() {
                 style={{ background: 'linear-gradient(135deg, #6B7F5E, #4F6145)' }}
                 onClick={() => {
                   // TODO: Koppla till bokningslänk
-                  window.open('mailto:kontakt@example.com?subject=Gratis konsultation via Sista Resan', '_blank');
+                  window.open('mailto:hej@sistaresan.se?subject=Gratis konsultation via Sista Resan', '_blank');
                 }}
               >
                 {t('Boka gratis konsultation', 'Book free consultation')}

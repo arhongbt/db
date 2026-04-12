@@ -8,6 +8,7 @@ import { DodsboProvider, useDodsbo } from '@/lib/context';
 import { BottomNav } from '@/components/ui/BottomNav';
 
 function MikeRossTip({ text }: { text: string }) {
+  const { t } = useLanguage();
   return (
     <div className="flex gap-3 p-4 rounded-2xl mb-5" style={{ background: '#EEF2EA' }}>
       <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
@@ -15,7 +16,7 @@ function MikeRossTip({ text }: { text: string }) {
         <Bot className="w-4 h-4 text-white" />
       </div>
       <div>
-        <p className="text-xs font-semibold text-accent mb-0.5">Mike Ross</p>
+        <p className="text-xs font-semibold text-accent mb-0.5">{t('Mike Ross', 'Mike Ross')}</p>
         <p className="text-sm text-primary/80 leading-relaxed">{text}</p>
       </div>
     </div>
@@ -37,33 +38,36 @@ interface AnnouncementData {
   valgörenhet: string;
 }
 
-const STEPS = [
-  { title: 'Uppgifter om den avlidne', id: 'info' },
-  { title: 'Välj mall', id: 'template' },
-  { title: 'Anpassa text', id: 'customize' },
-  { title: 'Granska & kopiera', id: 'review' },
+const createSteps = (t: (sv: string, en: string) => string) => [
+  { title: t('Uppgifter om den avlidne', 'Information about deceased'), id: 'info' },
+  { title: t('Välj mall', 'Choose template'), id: 'template' },
+  { title: t('Anpassa text', 'Customize text'), id: 'customize' },
+  { title: t('Granska & kopiera', 'Review & copy'), id: 'review' },
 ];
 
-const TEMPLATES = {
+const createTemplates = (t: (sv: string, en: string) => string) => ({
   klassisk: {
-    label: 'Klassisk',
+    label: t('Klassisk', 'Classic'),
     preview: '✝ [Namn]\n[Född]–[Avliden]\nhar stilla lämnat oss.\n[Sörjande]',
-    description: 'Traditionell dödsannons med kors',
+    description: t('Traditionell dödsannons med kors', 'Traditional obituary with cross'),
   },
   enkel: {
-    label: 'Enkel',
+    label: t('Enkel', 'Simple'),
     preview: '[Namn]\n[Ort]\nhar somnat in.\n[Sörjande]',
-    description: 'Enkel och direkt',
+    description: t('Enkel och direkt', 'Simple and direct'),
   },
   personlig: {
-    label: 'Personlig',
+    label: t('Personlig', 'Personal'),
     preview: '[Namn]\n[Ort]\n[Fri text]\n[Sörjande]',
-    description: 'Helt fritt utformad',
+    description: t('Helt fritt utformad', 'Completely free format'),
   },
-};
+});
 
 function Content() {
   const { state } = useDodsbo();
+  const { t } = useLanguage();
+  const STEPS = createSteps(t);
+  const TEMPLATES = createTemplates(t);
   const [step, setStep] = useState(0);
   const [data, setData] = useState<AnnouncementData>({
     namn: state.deceasedName || '',
@@ -136,7 +140,7 @@ function Content() {
               <ArrowLeft className="w-5 h-5" />
             </Link>
             <Newspaper className="w-6 h-6 text-accent" />
-            <h1 className="text-2xl font-bold text-primary">Dödsannons</h1>
+            <h1 className="text-2xl font-bold text-primary">{t('Dödsannons', 'Obituary')}</h1>
           </div>
           {/* Progress indicator */}
           <div className="flex gap-2">
@@ -164,49 +168,49 @@ function Content() {
         {/* Step 0: Uppgifter om den avlidne */}
         {step === 0 && (
           <div className="card space-y-4">
-            <h2 className="text-xl font-bold text-primary">Uppgifter om den avlidne</h2>
-            <MikeRossTip text="En dödsannons publiceras i tidningen för att informera om dödsfallet. Det finns inga krav på att publicera en, men det är vanligt och uppskattas av vänner och bekanta som kanske inte fått reda på det direkt." />
+            <h2 className="text-xl font-bold text-primary">{t('Uppgifter om den avlidne', 'Information about deceased')}</h2>
+            <MikeRossTip text={t('En dödsannons publiceras i tidningen för att informera om dödsfallet. Det finns inga krav på att publicera en, men det är vanligt och uppskattas av vänner och bekanta som kanske inte fått reda på det direkt.', 'An obituary is published in the newspaper to announce the death. There is no requirement to publish one, but it is common and appreciated by friends and acquaintances who may not have heard the news directly.')} />
 
             <div>
-              <label className="block text-sm font-medium text-primary mb-2">Namn *</label>
+              <label className="block text-sm font-medium text-primary mb-2">{t('Namn', 'Name')} *</label>
               <input
                 type="text"
                 value={data.namn}
                 onChange={e => handleInputChange('namn', e.target.value)}
-                placeholder="Förnamn och efternamn"
+                placeholder={t('Förnamn och efternamn', 'First and last name')}
                 className="w-full px-4 py-3 border border-gray-200 rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-primary mb-2">Född *</label>
+              <label className="block text-sm font-medium text-primary mb-2">{t('Född', 'Born')} *</label>
               <input
                 type="text"
                 value={data.fdd}
                 onChange={e => handleInputChange('fdd', e.target.value)}
-                placeholder="t.ex. 15 januari 1940"
+                placeholder={t('t.ex. 15 januari 1940', 'e.g. January 15, 1940')}
                 className="w-full px-4 py-3 border border-gray-200 rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-primary mb-2">Avliden *</label>
+              <label className="block text-sm font-medium text-primary mb-2">{t('Avliden', 'Died')} *</label>
               <input
                 type="text"
                 value={data.avliden}
                 onChange={e => handleInputChange('avliden', e.target.value)}
-                placeholder="t.ex. 8 april 2024"
+                placeholder={t('t.ex. 8 april 2024', 'e.g. April 8, 2024')}
                 className="w-full px-4 py-3 border border-gray-200 rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-primary mb-2">Ort *</label>
+              <label className="block text-sm font-medium text-primary mb-2">{t('Ort', 'City')} *</label>
               <input
                 type="text"
                 value={data.ort}
                 onChange={e => handleInputChange('ort', e.target.value)}
-                placeholder="Där de bodde"
+                placeholder={t('Där de bodde', 'Where they lived')}
                 className="w-full px-4 py-3 border border-gray-200 rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
               />
             </div>
@@ -216,8 +220,8 @@ function Content() {
         {/* Step 1: Välj mall */}
         {step === 1 && (
           <div className="card space-y-4">
-            <h2 className="text-xl font-bold text-primary">Välj mall</h2>
-            <MikeRossTip text="Den klassiska mallen passar de flesta. Om du väljer 'Personlig' kan du skriva helt fritt. Kors (✝) är valfritt — det är vanligt men inte obligatoriskt." />
+            <h2 className="text-xl font-bold text-primary">{t('Välj mall', 'Choose template')}</h2>
+            <MikeRossTip text={t('Den klassiska mallen passar de flesta. Om du väljer \'Personlig\' kan du skriva helt fritt. Kors (✝) är valfritt — det är vanligt men inte obligatoriskt.', 'The classic template works for most people. If you choose \'Personal\' you can write freely. Cross (✝) is optional — it\'s common but not required.')} />
 
             <div className="grid gap-3">
               {(Object.entries(TEMPLATES) as [Template, any][]).map(([key, template]) => (
@@ -242,12 +246,12 @@ function Content() {
         {/* Step 2: Anpassa text */}
         {step === 2 && (
           <div className="card space-y-4">
-            <h2 className="text-xl font-bold text-primary">Anpassa text</h2>
-            <MikeRossTip text="Sörjande listas vanligtvis i ordningen: make/maka, barn, barnbarn. Du behöver inte använda efternamn. Det är vanligt att skriva 'Begravningen har ägt rum' eller ange datum och plats." />
+            <h2 className="text-xl font-bold text-primary">{t('Anpassa text', 'Customize text')}</h2>
+            <MikeRossTip text={t('Sörjande listas vanligtvis i ordningen: make/maka, barn, barnbarn. Du behöver inte använda efternamn. Det är vanligt att skriva \'Begravningen har ägt rum\' eller ange datum och plats.', 'Mourners are usually listed in order: spouse, children, grandchildren. You don\'t need to use surnames. It\'s common to write \'The funeral has taken place\' or specify date and location.')} />
 
             {data.template === 'klassisk' && (
               <div>
-                <label className="block text-sm font-medium text-primary mb-3">Symbol</label>
+                <label className="block text-sm font-medium text-primary mb-3">{t('Symbol', 'Symbol')}</label>
                 <div className="flex gap-4">
                   {['✝', '☆', '⚘'].map(sym => (
                     <label key={sym} className="flex items-center gap-2 cursor-pointer">
@@ -266,24 +270,24 @@ function Content() {
 
             <div>
               <label className="block text-sm font-medium text-primary mb-2">
-                Sörjande *
+                {t('Sörjande', 'Mourners')} *
               </label>
               <textarea
                 value={data.sorjande}
                 onChange={e => handleInputChange('sorjande', e.target.value)}
-                placeholder="Make/Maka, barn, barnbarn&#10;t.ex. Anna&#10;Erik och Eva med familjer&#10;Barnbarnen"
+                placeholder={t('Make/Maka, barn, barnbarn&#10;t.ex. Anna&#10;Erik och Eva med familjer&#10;Barnbarnen', 'Spouse, children, grandchildren&#10;e.g. Anna&#10;Erik and Eva with families&#10;The grandchildren')}
                 rows={4}
                 className="w-full px-4 py-3 border border-gray-200 rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-primary mb-2">Begravningsinformation (valfritt)</label>
+              <label className="block text-sm font-medium text-primary mb-2">{t('Begravningsinformation (valfritt)', 'Funeral information (optional)')}</label>
               <input
                 type="text"
                 value={data.begravning}
                 onChange={e => handleInputChange('begravning', e.target.value)}
-                placeholder="t.ex. Begravningen äger rum den 15 maj i Hedvig Eleonora kyrka"
+                placeholder={t('t.ex. Begravningen äger rum den 15 maj i Hedvig Eleonora kyrka', 'e.g. The funeral takes place on May 15 at Hedvig Eleonora Church')}
                 className="w-full px-4 py-3 border border-gray-200 rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
               />
             </div>
@@ -296,14 +300,14 @@ function Content() {
                   onChange={e => handleInputChange('blommorValgörenhet', e.target.checked)}
                   className="w-4 h-4 accent-accent rounded"
                 />
-                <span className="text-sm font-medium text-primary">Hänvisa blommor till välgörenhet</span>
+                <span className="text-sm font-medium text-primary">{t('Hänvisa blommor till välgörenhet', 'Direct flowers to charity')}</span>
               </label>
               {data.blommorValgörenhet && (
                 <input
                   type="text"
                   value={data.valgörenhet}
                   onChange={e => handleInputChange('valgörenhet', e.target.value)}
-                  placeholder="t.ex. Röda Korset eller Cancerfonden"
+                  placeholder={t('t.ex. Röda Korset eller Cancerfonden', 'e.g. Red Cross or Cancer Foundation')}
                   className="w-full px-4 py-3 border border-gray-200 rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
                 />
               )}
@@ -314,8 +318,8 @@ function Content() {
         {/* Step 3: Granska & kopiera */}
         {step === 3 && (
           <div className="card space-y-4">
-            <h2 className="text-xl font-bold text-primary">Granska & kopiera</h2>
-            <MikeRossTip text="En dödsannons i DN eller SvD kostar ca 3 000–8 000 kr beroende på storlek. Lokaltidningar är ofta billigare. Ring tidningens annonsavdelning — de hjälper dig med allt." />
+            <h2 className="text-xl font-bold text-primary">{t('Granska & kopiera', 'Review & copy')}</h2>
+            <MikeRossTip text={t('En dödsannons i DN eller SvD kostar ca 3 000–8 000 kr beroende på storlek. Lokaltidningar är ofta billigare. Ring tidningens annonsavdelning — de hjälper dig med allt.', 'An obituary in DN or SvD costs approximately 3,000–8,000 SEK depending on size. Local newspapers are often cheaper. Call the newspaper\'s advertisement department — they help with everything.')} />
 
             {/* Preview */}
             <div className="bg-white border border-gray-200 rounded-xl p-8 my-6">
@@ -327,7 +331,7 @@ function Content() {
             {/* Info box */}
             <div className="flex gap-3 p-4 bg-blue-50 rounded-xl border border-blue-200">
               <Info className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
-              <p className="text-sm text-blue-900">Skicka texten till tidningens annonsavdelning. De hjälper dig med layout och typsnitt.</p>
+              <p className="text-sm text-blue-900">{t('Skicka texten till tidningens annonsavdelning. De hjälper dig med layout och typsnitt.', 'Send the text to the newspaper\'s advertisement department. They help with layout and typography.')}</p>
             </div>
 
             {/* Action buttons */}
@@ -339,12 +343,12 @@ function Content() {
                 {copied ? (
                   <>
                     <CheckCircle2 className="w-5 h-5" />
-                    Kopierad!
+                    {t('Kopierad!', 'Copied!')}
                   </>
                 ) : (
                   <>
                     <Copy className="w-5 h-5" />
-                    Kopiera text
+                    {t('Kopiera text', 'Copy text')}
                   </>
                 )}
               </button>
@@ -352,7 +356,7 @@ function Content() {
                 onClick={handleDownloadPDF}
                 className="w-full px-4 py-3 bg-gray-100 text-primary rounded-xl font-medium hover:bg-gray-200 transition"
               >
-                Ladda ner som PDF
+                {t('Ladda ner som PDF', 'Download as PDF')}
               </button>
             </div>
           </div>
@@ -367,7 +371,7 @@ function Content() {
             className="flex-1 py-3 px-4 rounded-2xl border-2 font-medium text-primary text-sm transition-colors"
             style={{ borderColor: '#E8E4DE' }}
           >
-            ← Tillbaka
+            ← {t('Tillbaka', 'Back')}
           </button>
         )}
         <button
@@ -377,7 +381,7 @@ function Content() {
           disabled={step === 3}
           className="flex-1 btn-primary !rounded-2xl !py-3 !text-sm"
         >
-          {step < 3 ? 'Nästa →' : '✓ Klar'}
+          {step < 3 ? t('Nästa →', 'Next →') : t('✓ Klar', '✓ Done')}
         </button>
       </div>
 

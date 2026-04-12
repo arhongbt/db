@@ -17,32 +17,32 @@ interface BankGuide {
   specialInfo?: string;
 }
 
-const BANK_GUIDES: BankGuide[] = [
+const getBankGuides = (t: (sv: string, en: string) => string): BankGuide[] => [
   {
     id: 'swedbank',
     name: 'Swedbank',
     phone: '0771-22 11 22',
     web: 'swedbank.se/dodsbo',
-    openHours: 'Mån-fre 08:00-18:00',
+    openHours: t('Mån-fre 08:00-18:00', 'Mon-Fri 08:00-18:00'),
     steps: [
-      'Ring kundtjänst eller besök kontor — meddela dödsfallet',
-      'Konton spärras automatiskt, autogiro stoppas',
-      'Begär saldobesked per dödsdagen',
-      'Be om kontoutdrag 3 månader före och efter dödsdagen',
-      'Fråga om befintliga lån, kreditkort och fonder',
-      'Fråga om eventuella bankfack',
-      'Ansök om dödsbokonto för löpande utgifter',
+      t('Ring kundtjänst eller besök kontor — meddela dödsfallet', 'Call customer service or visit an office — notify of the death'),
+      t('Konton spärras automatiskt, autogiro stoppas', 'Accounts are frozen automatically, standing orders are stopped'),
+      t('Begär saldobesked per dödsdagen', 'Request balance statement for the date of death'),
+      t('Be om kontoutdrag 3 månader före och efter dödsdagen', 'Ask for account statements 3 months before and after the date of death'),
+      t('Fråga om befintliga lån, kreditkort och fonder', 'Ask about existing loans, credit cards, and funds'),
+      t('Fråga om eventuella bankfack', 'Ask about any safe deposit boxes'),
+      t('Ansök om dödsbokonto för löpande utgifter', 'Apply for an estate account for ongoing expenses'),
     ],
     documents: [
-      'Dödsbevis (från vården eller Skatteverket)',
-      'Legitimation (din egen)',
-      'Fullmakt (om du inte är ensam dödsbodelägare)',
-      'Registrerad bouppteckning (krävs för uttag)',
+      t('Dödsbevis (från vården eller Skatteverket)', 'Death certificate (from healthcare or Tax Agency)'),
+      t('Legitimation (din egen)', 'ID card (your own)'),
+      t('Fullmakt (om du inte är ensam dödsbodelägare)', 'Power of attorney (if you are not the sole estate heir)'),
+      t('Registrerad bouppteckning (krävs för uttag)', 'Registered inventory of estate (required for withdrawal)'),
     ],
     tips: [
-      'Swedbank kan öppna ett dödsbokonto för löpande betalningar (el, hyra) innan bouppteckning är klar.',
-      'Internetbanken stängs av direkt — se till att notera alla automatiska betalningar först.',
-      'Fonder och aktier fryses på dödsdagen — värdet bestäms av den dagens kurs.',
+      t('Swedbank kan öppna ett dödsbokonto för löpande betalningar (el, hyra) innan bouppteckning är klar.', 'Swedbank can open an estate account for ongoing payments (electricity, rent) before the inventory is complete.'),
+      t('Internetbanken stängs av direkt — se till att notera alla automatiska betalningar först.', 'Online banking is closed immediately — make sure to note all automatic payments first.'),
+      t('Fonder och aktier fryses på dödsdagen — värdet bestäms av den dagens kurs.', 'Funds and shares are frozen on the date of death — the value is determined by that day\'s rate.'),
     ],
   },
   {
@@ -50,25 +50,25 @@ const BANK_GUIDES: BankGuide[] = [
     name: 'Handelsbanken',
     phone: '0771-77 88 99',
     web: 'handelsbanken.se/dodsbo',
-    openHours: 'Mån-fre 08:00-18:00',
+    openHours: t('Mån-fre 08:00-18:00', 'Mon-Fri 08:00-18:00'),
     steps: [
-      'Kontakta lokalt kontor — Handelsbanken föredrar personligt besök',
-      'Konton spärras, Swish och BankID avaktiveras',
-      'Begär saldobesked per dödsdagen',
-      'Be om att stoppa autogiro och stående överföringar',
-      'Fråga om bankfack — kräver bouppteckningsförrättning för öppning',
-      'Begär kontoutdrag och fondinformation',
+      t('Kontakta lokalt kontor — Handelsbanken föredrar personligt besök', 'Contact local office — Handelsbanken prefers in-person visits'),
+      t('Konton spärras, Swish och BankID avaktiveras', 'Accounts are frozen, Swish and BankID are deactivated'),
+      t('Begär saldobesked per dödsdagen', 'Request balance statement for the date of death'),
+      t('Be om att stoppa autogiro och stående överföringar', 'Ask to stop standing orders and transfers'),
+      t('Fråga om bankfack — kräver bouppteckningsförrättning för öppning', 'Ask about safe deposit boxes — requires estate inventory procedure to open'),
+      t('Begär kontoutdrag och fondinformation', 'Request account statements and fund information'),
     ],
     documents: [
-      'Dödsbevis',
-      'Legitimation',
-      'Fullmakt från alla dödsbodelägare (vid uttag)',
-      'Registrerad bouppteckning (för slutligt uttag)',
+      t('Dödsbevis', 'Death certificate'),
+      t('Legitimation', 'ID card'),
+      t('Fullmakt från alla dödsbodelägare (vid uttag)', 'Power of attorney from all estate heirs (for withdrawal)'),
+      t('Registrerad bouppteckning (för slutligt uttag)', 'Registered inventory of estate (for final withdrawal)'),
     ],
     tips: [
-      'Handelsbanken är lokal — gå till samma kontor som den avlidne tillhörde.',
-      'Be om en personlig bankman som kan följa ärendet hela vägen.',
-      'Bankfack: Begär att det öppnas i samband med bouppteckningsförrättningen med förrättningsmannen närvarande.',
+      t('Handelsbanken är lokal — gå till samma kontor som den avlidne tillhörde.', 'Handelsbanken is local — go to the same office as the deceased belonged to.'),
+      t('Be om en personlig bankman som kan följa ärendet hela vägen.', 'Ask for a personal banker who can follow your case all the way.'),
+      t('Bankfack: Begär att det öppnas i samband med bouppteckningsförrättningen med förrättningsmannen närvarande.', 'Safe deposit box: Request that it be opened during the estate inventory procedure with the official present.'),
     ],
   },
   {
@@ -76,26 +76,26 @@ const BANK_GUIDES: BankGuide[] = [
     name: 'SEB',
     phone: '0771-365 365',
     web: 'seb.se/dodsbo',
-    openHours: 'Mån-fre 08:00-18:00',
+    openHours: t('Mån-fre 08:00-18:00', 'Mon-Fri 08:00-18:00'),
     steps: [
-      'Ring kundtjänst eller besök kontor — anmäl dödsfallet',
-      'Konton fryses, kortbetalningar stoppas',
-      'Begär saldobesked per dödsdagen',
-      'Fråga om sparande: fonder, ISK, KF, depåer',
-      'Kontrollera om det finns företagskonton',
-      'Fråga om tjänstepension via SEB Pension',
-      'Begär kontoutdrag för relevanta perioder',
+      t('Ring kundtjänst eller besök kontor — anmäl dödsfallet', 'Call customer service or visit an office — report the death'),
+      t('Konton fryses, kortbetalningar stoppas', 'Accounts are frozen, card payments are stopped'),
+      t('Begär saldobesked per dödsdagen', 'Request balance statement for the date of death'),
+      t('Fråga om sparande: fonder, ISK, KF, depåer', 'Ask about savings: funds, ISK, building societies, deposits'),
+      t('Kontrollera om det finns företagskonton', 'Check if there are business accounts'),
+      t('Fråga om tjänstepension via SEB Pension', 'Ask about occupational pension through SEB Pension'),
+      t('Begär kontoutdrag för relevanta perioder', 'Request account statements for relevant periods'),
     ],
     documents: [
-      'Dödsbevis',
-      'Legitimation',
-      'Fullmakt (mallar finns på SEB:s hemsida)',
-      'Registrerad bouppteckning (för avslut)',
+      t('Dödsbevis', 'Death certificate'),
+      t('Legitimation', 'ID card'),
+      t('Fullmakt (mallar finns på SEB:s hemsida)', 'Power of attorney (templates available on SEB\'s website)'),
+      t('Registrerad bouppteckning (för avslut)', 'Registered inventory of estate (for closure)'),
     ],
     tips: [
-      'SEB har en särskild dödsboavdelning — be att bli kopplad dit.',
-      'Om den avlidne hade ISK eller kapitalförsäkring, fråga om latent skatt som ska noteras i bouppteckningen.',
-      'SEB:s mobilbank stängs av omedelbart, men du kan få tillgång till historik via kundtjänst.',
+      t('SEB har en särskild dödsboavdelning — be att bli kopplad dit.', 'SEB has a special estate department — ask to be transferred there.'),
+      t('Om den avlidne hade ISK eller kapitalförsäkring, fråga om latent skatt som ska noteras i bouppteckningen.', 'If the deceased had an ISK or capital insurance, ask about latent tax that should be noted in the inventory.'),
+      t('SEB:s mobilbank stängs av omedelbart, men du kan få tillgång till historik via kundtjänst.', 'SEB\'s mobile bank is closed immediately, but you can get access to history through customer service.'),
     ],
   },
   {
@@ -103,26 +103,26 @@ const BANK_GUIDES: BankGuide[] = [
     name: 'Nordea',
     phone: '0771-22 44 88',
     web: 'nordea.se/dodsbo',
-    openHours: 'Mån-fre 08:00-20:00',
+    openHours: t('Mån-fre 08:00-20:00', 'Mon-Fri 08:00-20:00'),
     steps: [
-      'Ring kundtjänst — dödsfall anmäls per telefon',
-      'Nordea skickar informationspaket om dödsbo till dig',
-      'Konton spärras, kort avaktiveras',
-      'Begär saldobesked per dödsdagen',
-      'Fråga om bolån — ränta fortsätter löpa',
-      'Kontrollera Nordea Liv & Pension-försäkringar',
-      'Fråga om värdepappersdepåer',
+      t('Ring kundtjänst — dödsfall anmäls per telefon', 'Call customer service — death is reported by phone'),
+      t('Nordea skickar informationspaket om dödsbo till dig', 'Nordea sends an information package about the estate to you'),
+      t('Konton spärras, kort avaktiveras', 'Accounts are frozen, cards are deactivated'),
+      t('Begär saldobesked per dödsdagen', 'Request balance statement for the date of death'),
+      t('Fråga om bolån — ränta fortsätter löpa', 'Ask about mortgage — interest continues to accrue'),
+      t('Kontrollera Nordea Liv & Pension-försäkringar', 'Check Nordea Life & Pension insurance'),
+      t('Fråga om värdepappersdepåer', 'Ask about securities deposits'),
     ],
     documents: [
-      'Dödsbevis',
-      'Legitimation',
-      'Fullmakt (Nordeas egen mall)',
-      'Registrerad bouppteckning (för avslut av konton)',
+      t('Dödsbevis', 'Death certificate'),
+      t('Legitimation', 'ID card'),
+      t('Fullmakt (Nordeas egen mall)', 'Power of attorney (Nordea\'s own template)'),
+      t('Registrerad bouppteckning (för avslut av konton)', 'Registered inventory of estate (for closing accounts)'),
     ],
     tips: [
-      'Nordea har längre öppettider (till 20:00) — bra om du jobbar dagtid.',
-      'Nordea Liv & Pension är ett separat bolag — ring dem separat på 0771-42 42 00.',
-      'Om bolån finns: räntorna fortsätter löpa. Prata med banken om amorteringsfrihet under dödsboperioden.',
+      t('Nordea har längre öppettider (till 20:00) — bra om du jobbar dagtid.', 'Nordea has longer opening hours (until 20:00) — good if you work during the day.'),
+      t('Nordea Liv & Pension är ett separat bolag — ring dem separat på 0771-42 42 00.', 'Nordea Life & Pension is a separate company — call them separately at 0771-42 42 00.'),
+      t('Om bolån finns: räntorna fortsätter löpa. Prata med banken om amorteringsfrihet under dödsboperioden.', 'If there is a mortgage: interest continues to accrue. Talk to the bank about payment holidays during the estate period.'),
     ],
   },
   {
@@ -130,25 +130,25 @@ const BANK_GUIDES: BankGuide[] = [
     name: 'Länsförsäkringar',
     phone: '08-588 400 00',
     web: 'lansforsakringar.se',
-    openHours: 'Mån-fre 08:00-17:00',
+    openHours: t('Mån-fre 08:00-17:00', 'Mon-Fri 08:00-17:00'),
     steps: [
-      'Kontakta ditt lokala Länsförsäkringar-bolag',
-      'Anmäl dödsfallet — gäller både bank och försäkring',
-      'Begär saldobesked per dödsdagen',
-      'Kontrollera hemförsäkring, livförsäkring och pension',
-      'Fråga om grupplivförsäkring via arbetsgivare',
-      'Begär information om alla produkter hos den avlidne',
+      t('Kontakta ditt lokala Länsförsäkringar-bolag', 'Contact your local Länsförsäkringar office'),
+      t('Anmäl dödsfallet — gäller både bank och försäkring', 'Report the death — applies to both bank and insurance'),
+      t('Begär saldobesked per dödsdagen', 'Request balance statement for the date of death'),
+      t('Kontrollera hemförsäkring, livförsäkring och pension', 'Check home insurance, life insurance, and pension'),
+      t('Fråga om grupplivförsäkring via arbetsgivare', 'Ask about group life insurance through employer'),
+      t('Begär information om alla produkter hos den avlidne', 'Request information about all products of the deceased'),
     ],
     documents: [
-      'Dödsbevis',
-      'Legitimation',
-      'Fullmakt',
-      'Registrerad bouppteckning',
+      t('Dödsbevis', 'Death certificate'),
+      t('Legitimation', 'ID card'),
+      t('Fullmakt', 'Power of attorney'),
+      t('Registrerad bouppteckning', 'Registered inventory of estate'),
     ],
     tips: [
-      'Länsförsäkringar är både bank OCH försäkringsbolag — ett samtal kan täcka båda delarna.',
-      'Kontrollera om den avlidne hade grupplivförsäkring genom arbetsgivare — den administreras ofta av LF.',
-      'Varje län har sitt eget bolag — kontakta rätt regionalt bolag.',
+      t('Länsförsäkringar är både bank OCH försäkringsbolag — ett samtal kan täcka båda delarna.', 'Länsförsäkringar is both a bank AND an insurance company — one call can cover both.'),
+      t('Kontrollera om den avlidne hade grupplivförsäkring genom arbetsgivare — den administreras ofta av LF.', 'Check if the deceased had group life insurance through their employer — it is often administered by LF.'),
+      t('Varje län har sitt eget bolag — kontakta rätt regionalt bolag.', 'Each region has its own company — contact the right regional office.'),
     ],
   },
 ];
@@ -157,6 +157,7 @@ export default function BankGuidePage() {
   const { t } = useLanguage();
   const [expanded, setExpanded] = useState<string | null>(null);
   const [copied, setCopied] = useState<string | null>(null);
+  const bankGuides = getBankGuides(t);
 
   const toggleBank = (id: string) => {
     setExpanded(expanded === id ? null : id);
@@ -192,7 +193,7 @@ export default function BankGuidePage() {
 
         {/* Bank cards */}
         <div className="space-y-3">
-          {BANK_GUIDES.map(bank => (
+          {bankGuides.map(bank => (
             <div key={bank.id} className="card">
               <button
                 onClick={() => toggleBank(bank.id)}
@@ -234,7 +235,7 @@ export default function BankGuidePage() {
 
                   {/* Steps */}
                   <div>
-                    <p className="text-xs font-semibold text-primary mb-2">Steg att följa:</p>
+                    <p className="text-xs font-semibold text-primary mb-2">{t('Steg att följa:', 'Steps to follow:')}</p>
                     <div className="space-y-2">
                       {bank.steps.map((step, i) => (
                         <div key={i} className="flex gap-2">
@@ -247,7 +248,7 @@ export default function BankGuidePage() {
 
                   {/* Documents */}
                   <div>
-                    <p className="text-xs font-semibold text-primary mb-2">Dokument du behöver:</p>
+                    <p className="text-xs font-semibold text-primary mb-2">{t('Dokument du behöver:', 'Documents you need:')}</p>
                     <div className="space-y-1">
                       {bank.documents.map((doc, i) => (
                         <div key={i} className="flex items-center gap-2">
@@ -260,7 +261,7 @@ export default function BankGuidePage() {
 
                   {/* Tips */}
                   <div className="bg-background rounded-lg p-3">
-                    <p className="text-xs font-semibold text-primary mb-2">Tips:</p>
+                    <p className="text-xs font-semibold text-primary mb-2">{t('Tips:', 'Tips:')}</p>
                     <div className="space-y-2">
                       {bank.tips.map((tip, i) => (
                         <p key={i} className="text-xs text-muted leading-relaxed">• {tip}</p>

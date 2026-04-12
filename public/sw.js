@@ -1,43 +1,75 @@
 // Service Worker for Sista Resan PWA
-const CACHE_NAME = 'sistaresan-v3';
+const CACHE_NAME = 'sistaresan-v4';
 const STATIC_ASSETS = [
+  // Core
   '/',
   '/dashboard',
   '/uppgifter',
-  '/delagare',
-  '/dokument',
-  '/fullmakt',
-  '/kallelse',
-  '/avsluta-konton',
-  '/arvskifte',
-  '/kostnader',
-  '/tidslinje',
-  '/nodbroms',
-  '/faq',
-  '/bodelning',
-  '/dodsboanmalan',
-  '/losore',
-  '/konflikt',
-  '/ordlista',
-  '/internationellt',
-  '/foretag-i-dodsbo',
-  '/juridisk-hjalp',
-  '/bouppteckning',
   '/tillgangar',
-  '/forsakringar',
-  '/arvskalkylator',
+  '/dokument',
+
+  // Auth & onboarding
+  '/auth',
+  '/onboarding',
+
+  // Document creation
+  '/testamente',
+  '/arvskifteshandling',
+  '/dodsboanmalan',
+  '/bankbrev',
+  '/dodsannons',
+  '/fullmakt',
+
+  // Tools & planning
+  '/begravningsplanering',
+  '/skatteverket-guide',
+  '/minnesida',
+  '/samarbete',
+  '/juridisk-hjalp',
+  '/delagare',
+  '/delagare-portal',
+  '/checklistor',
   '/skanner',
   '/exportera',
-  '/bank-guide',
-  '/delagare-portal',
   '/paminelser',
-  '/installningar',
-  '/bankbrev',
-  '/minnesida',
   '/digitala-tillgangar',
-  '/begravningsplanering',
-  '/samarbete',
+
+  // Calculators & wizards
+  '/arvskalkylator',
+  '/arvskifte',
+  '/bodelning',
+  '/bouppteckning',
+  '/kostnader',
+  '/losore',
+
+  // Guides
+  '/dodsbo-fastighet',
   '/sarkullbarn',
+  '/sambo-arv',
+  '/dodsbo-skulder',
+  '/deklarera-dodsbo',
+  '/krypto-guide',
+
+  // Help & info
+  '/priser',
+  '/ordlista',
+  '/faq',
+  '/konflikt',
+  '/internationellt',
+  '/foretag-i-dodsbo',
+
+  // Other pages
+  '/nodbroms',
+  '/tidslinje',
+  '/kallelse',
+  '/forsakringar',
+  '/avsluta-konton',
+  '/installningar',
+  '/om',
+  '/integritetspolicy',
+  '/anvandarvillkor',
+
+  // Static assets
   '/manifest.json',
   '/icons/icon-192.png',
   '/icons/icon-512.png',

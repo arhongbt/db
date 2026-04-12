@@ -338,7 +338,7 @@ function KonfliktContent() {
               <span className="text-accent mt-0.5">•</span>
               <span>
                 <strong>Jourhavande medmänniska:</strong>
-                <a href="tel:0870216 80" className="text-primary font-medium hover:underline ml-1">
+                <a href="tel:08-7021680" className="text-primary font-medium hover:underline ml-1">
                   08-702 16 80
                 </a>
                 <span className="text-primary/60"> (dygnet runt)</span>
