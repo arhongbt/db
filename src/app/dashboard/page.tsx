@@ -485,7 +485,7 @@ function DashboardContent() {
                   key={item.href}
                   href={item.href}
                   className="flex flex-col items-center gap-2 py-4 rounded-2xl transition-all hover:scale-[1.02] active:scale-[0.98]"
-                  style={{ background: '#EEF2EA60' }}
+                  style={{ background: '#D6DFCE' }}
                   aria-label={item.label}
                 >
                   <div className="w-12 h-12 rounded-2xl flex items-center justify-center"
@@ -519,7 +519,7 @@ function DashboardContent() {
                 key={item.href}
                 href={item.href}
                 className="flex flex-col items-center gap-2 py-4 rounded-2xl transition-all hover:scale-[1.02] active:scale-[0.98]"
-                style={{ background: '#EEF2EA60' }}
+                style={{ background: '#D6DFCE' }}
                 aria-label={item.label}
               >
                 <div className="w-12 h-12 rounded-2xl flex items-center justify-center"
@@ -549,7 +549,7 @@ function DashboardContent() {
               key={item.href}
               href={item.href}
               className="flex flex-col items-center gap-2 py-4 rounded-2xl transition-all hover:scale-[1.02] active:scale-[0.98]"
-              style={{ background: '#EEF2EA60' }}
+              style={{ background: '#D6DFCE' }}
               aria-label={item.label}
             >
               <div className="w-12 h-12 rounded-2xl flex items-center justify-center"
