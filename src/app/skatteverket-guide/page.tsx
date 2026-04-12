@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useLanguage } from '@/lib/i18n';
 import { DodsboProvider, useDodsbo } from '@/lib/context';
 import { BottomNav } from '@/components/ui/BottomNav';
 import { ArrowLeft, CheckCircle2, Circle, Bot, FileCheck, AlertCircle, Info, Copy } from 'lucide-react';
@@ -40,20 +41,22 @@ function ChecklistItem({
       ) : (
         <Circle className="w-5 h-5 text-gray-300 flex-shrink-0" />
       )}
-      <span className={checked ? 'line-through text-gray-400' : 'text-primary'}>{label}</span>
+      <span className={checked ? 'line-through text-gray-400' : 'text-primary'}>{useLanguage().t(label, label)}</span>
     </button>
   );
 }
 
 function ProgressCounter({ completed, total }: { completed: number; total: number }) {
+  const { t } = useLanguage();
   return (
     <div className="text-sm text-muted mb-6">
-      {completed} av {total} klara
+      {completed} {t('av', 'of')} {total} {t('klara', 'done')}
     </div>
   );
 }
 
 function Step0Overview() {
+  const { t } = useLanguage();
   const { state } = useDodsbo();
   const deathDate = state.deathDate ? new Date(state.deathDate) : null;
 
@@ -82,19 +85,19 @@ function Step0Overview() {
     <div>
       <ProgressCounter completed={0} total={6} />
 
-      <h2 className="text-2xl font-bold text-primary mb-4">Vad är bouppteckning?</h2>
+      <h2 className="text-2xl font-bold text-primary mb-4">{t('Vad är bouppteckning?', 'What is an estate inventory?')}</h2>
 
       <p className="text-primary/80 mb-6">
-        Bouppteckningen är en officiell förteckning över den avlidnes alla tillgångar och skulder. Den upprättas av två oberoende förrättningsmän och måste skickas till Skatteverket för registrering.
+        {t('Bouppteckningen är en officiell förteckning över den avlidnes alla tillgångar och skulder. Den upprättas av två oberoende förrättningsmän och måste skickas till Skatteverket för registrering.', 'The estate inventory is an official record of the deceased\'s all assets and liabilities. It is prepared by two independent estate administrators and must be submitted to the Swedish Tax Agency for registration.')}
       </p>
 
       <div className="mb-8 p-6 bg-background rounded-2xl border border-[#E8E4DE]">
-        <h3 className="font-semibold text-primary mb-4">Tidsplan för processen</h3>
+        <h3 className="font-semibold text-primary mb-4">{t('Tidsplan för processen', 'Timeline for the process')}</h3>
         <div className="flex flex-col gap-4">
           <div className="flex items-start gap-3">
             <div className="w-6 h-6 rounded-full bg-accent flex items-center justify-center flex-shrink-0 text-white text-xs font-bold">1</div>
             <div>
-              <p className="font-semibold text-primary">Dödsdatum</p>
+              <p className="font-semibold text-primary">{t('Dödsdatum', 'Date of death')}</p>
               <p className="text-sm text-primary/60">{deathDate?.toLocaleDateString('sv-SE')}</p>
             </div>
           </div>
@@ -102,8 +105,8 @@ function Step0Overview() {
           <div className="flex items-start gap-3">
             <div className="w-6 h-6 rounded-full bg-accent flex items-center justify-center flex-shrink-0 text-white text-xs font-bold">2</div>
             <div>
-              <p className="font-semibold text-primary">Förrättning</p>
-              <p className="text-sm text-primary/60">Inom 3 månader</p>
+              <p className="font-semibold text-primary">{t('Förrättning', 'Probate')}</p>
+              <p className="text-sm text-primary/60">{t('Inom 3 månader', 'Within 3 months')}</p>
               {förrättningDeadline && (
                 <p className="text-xs text-accent mt-1">
                   Senast: {förrättningDeadline.toLocaleDateString('sv-SE')}
@@ -115,8 +118,8 @@ function Step0Overview() {
           <div className="flex items-start gap-3">
             <div className="w-6 h-6 rounded-full bg-accent flex items-center justify-center flex-shrink-0 text-white text-xs font-bold">3</div>
             <div>
-              <p className="font-semibold text-primary">Inlämning till Skatteverket</p>
-              <p className="text-sm text-primary/60">1 månad efter förrättning</p>
+              <p className="font-semibold text-primary">{t('Inlämning till Skatteverket', 'Submission to Swedish Tax Agency')}</p>
+              <p className="text-sm text-primary/60">{t('1 månad efter förrättning', '1 month after probate')}</p>
               {inlämningDeadline && (
                 <p className="text-xs text-accent mt-1">
                   Senast: {inlämningDeadline.toLocaleDateString('sv-SE')}
@@ -133,28 +136,29 @@ function Step0Overview() {
             <>
               <AlertCircle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
               <div>
-                <p className="font-semibold text-red-900">Deadline har passerat</p>
-                <p className="text-sm text-red-800">Du kan ansöka om förlängning hos Skatteverket.</p>
+                <p className="font-semibold text-red-900">{t('Deadline har passerat', 'Deadline has passed')}</p>
+                <p className="text-sm text-red-800">{t('Du kan ansöka om förlängning hos Skatteverket.', 'You can apply for an extension from the Swedish Tax Agency.')}</p>
               </div>
             </>
           ) : isApproaching ? (
             <>
               <AlertCircle className="w-5 h-5 text-yellow-600 flex-shrink-0 mt-0.5" />
               <div>
-                <p className="font-semibold text-yellow-900">{daysRemaining} dagar kvar</p>
-                <p className="text-sm text-yellow-800">Inlämningen måste vara hos Skatteverket innan deadline.</p>
+                <p className="font-semibold text-yellow-900">{daysRemaining} {t('dagar kvar', 'days remaining')}</p>
+                <p className="text-sm text-yellow-800">{t('Inlämningen måste vara hos Skatteverket innan deadline.', 'The submission must be with the Swedish Tax Agency before the deadline.')}</p>
               </div>
             </>
           ) : null}
         </div>
       )}
 
-      <MikeRossTip text="Bouppteckningen är en lista över den avlidnes alla tillgångar och skulder. Den måste förrättas inom 3 månader från dödsfallet och skickas till Skatteverket senast 1 månad efter förrättningen." />
+      <MikeRossTip text={t('Bouppteckningen är en lista över den avlidnes alla tillgångar och skulder. Den måste förrättas inom 3 månader från dödsfallet och skickas till Skatteverket senast 1 månad efter förrättningen.', 'The estate inventory is a list of the deceased\'s all assets and liabilities. It must be completed within 3 months from the death and submitted to the Swedish Tax Agency no later than 1 month after the completion.')} />
     </div>
   );
 }
 
 function Step1Preparation() {
+  const { t } = useLanguage();
   const [checked, setChecked] = useState<boolean[]>([false, false, false, false, false, false]);
 
   const items = [
@@ -172,10 +176,10 @@ function Step1Preparation() {
     <div>
       <ProgressCounter completed={completedCount} total={6} />
 
-      <h2 className="text-2xl font-bold text-primary mb-4">Förbered förrättningen</h2>
+      <h2 className="text-2xl font-bold text-primary mb-4">{t('Förbered förrättningen', 'Prepare for probate')}</h2>
 
       <p className="text-primary/80 mb-6">
-        Innan förrättningen kan genomföras behöver du samla in dokument och utse förrättningsmän. Använd checklistan nedan för att hålla ordning.
+        {t('Innan förrättningen kan genomföras behöver du samla in dokument och utse förrättningsmän. Använd checklistan nedan för att hålla ordning.', 'Before the probate can take place, you need to gather documents and appoint estate administrators. Use the checklist below to keep track.')}
       </p>
 
       <div className="space-y-3 mb-8">
@@ -193,7 +197,7 @@ function Step1Preparation() {
         ))}
       </div>
 
-      <MikeRossTip text="Förrättningsmännen ansvarar för att bouppteckningen är korrekt. De behöver inte vara jurister — det räcker med att de är opartiska och förstår uppgiften. Dödsbodelägare och efterarvingar får INTE vara förrättningsmän." />
+      <MikeRossTip text={t('Förrättningsmännen ansvarar för att bouppteckningen är korrekt. De behöver inte vara jurister — det räcker med att de är opartiska och förstår uppgiften. Dödsbodelägare och efterarvingar får INTE vara förrättningsmän.', 'The estate administrators are responsible for ensuring the estate inventory is correct. They don\'t need to be lawyers — it\'s enough that they are impartial and understand the task. Estate owners and heirs are NOT allowed to be estate administrators.')} />
     </div>
   );
 }

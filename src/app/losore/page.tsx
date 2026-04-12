@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useLanguage } from '@/lib/i18n';
 import { DodsboProvider, useDodsbo } from '@/lib/context';
 import { BottomNav } from '@/components/ui/BottomNav';
 import Link from 'next/link';
@@ -40,6 +41,7 @@ const CATEGORY_ORDER: LosoreCategory[] = [
 
 function LosoreContent() {
   const { state, dispatch, loading } = useDodsbo();
+  const { t } = useLanguage();
   const items = state.losore || [];
   const [showForm, setShowForm] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -220,16 +222,16 @@ function LosoreContent() {
         className="inline-flex items-center gap-2 text-accent mb-4 hover:text-primary transition-colors w-fit"
       >
         <ArrowLeft className="w-4 h-4" />
-        <span className="text-sm font-medium">Tillbaka</span>
+        <span className="text-sm font-medium">{t('Tillbaka', 'Back')}</span>
       </Link>
 
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
-        <h1 className="text-2xl font-semibold text-primary">Lösöre</h1>
+        <h1 className="text-2xl font-semibold text-primary">{t('Lösöre', 'Personal property')}</h1>
         <button
           onClick={() => setShowForm(true)}
           className="w-12 h-12 bg-accent text-white rounded-full flex items-center justify-center shadow-md hover:bg-primary-light transition-colors"
-          aria-label="Lägg till"
+          aria-label={t('Lägg till', 'Add')}
         >
           <Plus className="w-6 h-6" />
         </button>
@@ -240,7 +242,7 @@ function LosoreContent() {
         <div className="flex gap-2">
           <Info className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
           <p className="text-sm text-primary/70">
-            Lösöre är personliga tillhörigheter som inte är fast egendom. Det kan vara möbler, smycken, konst, bilar, och andra fysiska föremål.
+            {t('Lösöre är personliga tillhörigheter som inte är fast egendom. Det kan vara möbler, smycken, konst, bilar, och andra fysiska föremål.', 'Personal property is personal possessions that are not real estate. It can be furniture, jewelry, art, cars, and other physical objects.')}
           </p>
         </div>
       </div>
@@ -250,15 +252,15 @@ function LosoreContent() {
         <div className="card mb-6">
           <div className="grid grid-cols-3 gap-3 mb-4">
             <div className="text-center">
-              <p className="text-xs text-muted uppercase mb-1">Föremål</p>
+              <p className="text-xs text-muted uppercase mb-1">{t('Föremål', 'Items')}</p>
               <p className="text-lg font-bold text-primary">{items.length}</p>
             </div>
             <div className="text-center">
-              <p className="text-xs text-muted uppercase mb-1">Totalt värde</p>
+              <p className="text-xs text-muted uppercase mb-1">{t('Totalt värde', 'Total value')}</p>
               <p className="text-lg font-bold text-success">{formatSEK(totalValue)}</p>
             </div>
             <div className="text-center">
-              <p className="text-xs text-muted uppercase mb-1">Tilldelad</p>
+              <p className="text-xs text-muted uppercase mb-1">{t('Tilldelad', 'Assigned')}</p>
               <p className="text-lg font-bold text-primary">{assignedCount}/{items.length}</p>
             </div>
           </div>
@@ -275,8 +277,8 @@ function LosoreContent() {
                 isFair ? 'text-success' : 'text-yellow-700'
               }`}>
                 {isFair
-                  ? 'Fördelningen verkar rättvis'
-                  : 'Ojämn fördelning — några får mycket mer än andra'}
+                  ? t('Fördelningen verkar rättvis', 'The distribution appears fair')
+                  : t('Ojämn fördelning — några får mycket mer än andra', 'Uneven distribution — some get much more than others')}
               </p>
             </div>
           )}
@@ -286,7 +288,7 @@ function LosoreContent() {
       {/* Per-delägare breakdown */}
       {delagareBreakdown.size > 0 && (
         <div className="card mb-6">
-          <h3 className="text-sm font-semibold text-primary mb-3">Tilldelning per delägare</h3>
+          <h3 className="text-sm font-semibold text-primary mb-3">{t('Tilldelning per delägare', 'Distribution per co-owner')}</h3>
           <div className="space-y-2">
             {delagareNames.map(name => {
               const value = delagareBreakdown.get(name) ?? 0;
@@ -296,7 +298,7 @@ function LosoreContent() {
                   <span className="text-sm text-primary font-medium">{name}</span>
                   <div className="text-right">
                     <p className="text-sm font-semibold text-primary">{formatSEK(value)}</p>
-                    <p className="text-xs text-muted">{itemCount} föremål</p>
+                    <p className="text-xs text-muted">{itemCount} {t('föremål', 'items')}</p>
                   </div>
                 </div>
               );
@@ -308,11 +310,11 @@ function LosoreContent() {
       {/* Add form */}
       {showForm && (
         <div className="card border-2 border-accent mb-6">
-          <h3 className="text-lg font-semibold text-primary mb-4">Lägg till föremål</h3>
+          <h3 className="text-lg font-semibold text-primary mb-4">{t('Lägg till föremål', 'Add item')}</h3>
 
           {/* Photo upload section */}
           <div className="mb-4">
-            <span className="text-sm font-medium text-primary mb-2 block">Foto (valfritt)</span>
+            <span className="text-sm font-medium text-primary mb-2 block">{t('Foto (valfritt)', 'Photo (optional)')}</span>
             {formImageUrl ? (
               <div className="relative w-full mb-3">
                 <img
@@ -323,7 +325,7 @@ function LosoreContent() {
                 <button
                   onClick={() => setFormImageUrl(null)}
                   className="absolute top-2 right-2 p-1 bg-white rounded-full shadow-md hover:bg-gray-100 transition-colors"
-                  aria-label="Ta bort foto"
+                  aria-label={t('Ta bort foto', 'Remove photo')}
                 >
                   <X className="w-4 h-4 text-primary" />
                 </button>
@@ -343,7 +345,7 @@ function LosoreContent() {
                   className="flex items-center justify-center gap-2 w-full px-4 py-3 border-2 border-[#E8E4DE] rounded-2xl cursor-pointer hover:border-accent hover:bg-gray-50 transition-colors bg-white"
                 >
                   <Camera className="w-5 h-5 text-accent" />
-                  <span className="text-sm font-medium text-primary">Ta foto eller ladda upp</span>
+                  <span className="text-sm font-medium text-primary">{t('Ta foto eller ladda upp', 'Take photo or upload')}</span>
                 </label>
               </>
             )}
@@ -351,7 +353,7 @@ function LosoreContent() {
           </div>
 
           <label className="block mb-4">
-            <span className="text-sm font-medium text-primary mb-1 block">Namn på föremål *</span>
+            <span className="text-sm font-medium text-primary mb-1 block">{t('Namn på föremål *', 'Name of item *')}</span>
             <input
               type="text"
               value={formName}
@@ -359,7 +361,7 @@ function LosoreContent() {
                 setFormName(e.target.value);
                 setFormErrors(p => ({ ...p, formName: '' }));
               }}
-              placeholder="T.ex. Soffa, Guldring, Tavla"
+              placeholder={t('T.ex. Soffa, Guldring, Tavla', 'E.g. Sofa, Gold ring, Painting')}
               className={`w-full px-4 py-3 border-2 rounded-xl focus:outline-none transition-colors bg-white ${
                 formErrors.formName ? 'border-warn' : 'border-[#E8E4DE] focus:border-accent'
               }`}
@@ -368,7 +370,7 @@ function LosoreContent() {
           </label>
 
           <label className="block mb-4">
-            <span className="text-sm font-medium text-primary mb-1 block">Kategori *</span>
+            <span className="text-sm font-medium text-primary mb-1 block">{t('Kategori *', 'Category *')}</span>
             <select
               value={formCategory}
               onChange={(e) => setFormCategory(e.target.value as LosoreItem['category'])}
@@ -383,7 +385,7 @@ function LosoreContent() {
           </label>
 
           <label className="block mb-4">
-            <span className="text-sm font-medium text-primary mb-1 block">Uppskattat värde (kr) *</span>
+            <span className="text-sm font-medium text-primary mb-1 block">{t('Uppskattat värde (kr) *', 'Estimated value (SEK) *')}</span>
             <input
               type="number"
               value={formValue}
@@ -402,7 +404,7 @@ function LosoreContent() {
           {delagareNames.length > 0 && (
             <>
               <label className="block mb-4">
-                <span className="text-sm font-medium text-primary mb-1 block">Tilldelad till (valfritt)</span>
+                <span className="text-sm font-medium text-primary mb-1 block">{t('Tilldelad till (valfritt)', 'Assigned to (optional)')}</span>
                 <select
                   value={formAssignedTo}
                   onChange={(e) => setFormAssignedTo(e.target.value)}
@@ -416,7 +418,7 @@ function LosoreContent() {
               </label>
 
               <label className="block mb-4">
-                <span className="text-sm font-medium text-primary mb-1 block">Tilldelad till arving (valfritt)</span>
+                <span className="text-sm font-medium text-primary mb-1 block">{t('Tilldelad till arving (valfritt)', 'Assigned to heir (optional)')}</span>
                 <select
                   value={formTilldeladTill}
                   onChange={(e) => setFormTilldeladTill(e.target.value)}
@@ -432,11 +434,11 @@ function LosoreContent() {
           )}
 
           <label className="block mb-4">
-            <span className="text-sm font-medium text-primary mb-1 block">Anteckningar (valfritt)</span>
+            <span className="text-sm font-medium text-primary mb-1 block">{t('Anteckningar (valfritt)', 'Notes (optional)')}</span>
             <textarea
               value={formNotes}
               onChange={(e) => setFormNotes(e.target.value)}
-              placeholder="T.ex. Märkning, skick, särskilda instruktioner..."
+              placeholder={t('T.ex. Märkning, skick, särskilda instruktioner...', 'E.g. Markings, condition, special instructions...')}
               className="w-full px-4 py-3 border-2 border-[#E8E4DE] rounded-xl focus:border-accent focus:outline-none transition-colors min-h-[80px]"
             />
           </label>
@@ -450,14 +452,14 @@ function LosoreContent() {
               }}
               className="btn-secondary flex-1"
             >
-              Avbryt
+              {t('Avbryt', 'Cancel')}
             </button>
             <button
               onClick={handleAddItem}
               disabled={!formName.trim() || !formValue}
               className="btn-primary flex-1"
             >
-              Lägg till
+              {t('Lägg till', 'Add')}
             </button>
           </div>
         </div>
@@ -468,10 +470,10 @@ function LosoreContent() {
         <div className="flex-1 flex flex-col items-center justify-center text-center py-12">
           <AlertCircle className="w-16 h-16 text-gray-300 mb-4" />
           <h2 className="text-lg font-medium text-primary mb-2">
-            Inga föremål ännu
+            {t('Inga föremål ännu', 'No items yet')}
           </h2>
           <p className="text-muted text-sm max-w-xs">
-            Det är okej att ta det i din takt. Lägg till föremål när du känner dig redo.
+            {t('Det är okej att ta det i din takt. Lägg till föremål när du känner dig redo.', 'It\'s okay to take your time. Add items when you\'re ready.')}
           </p>
         </div>
       ) : (
@@ -514,7 +516,7 @@ function LosoreContent() {
                         <button
                           onClick={() => handleDeleteItem(item.id)}
                           className="p-2 min-h-[44px] min-w-[44px] flex items-center justify-center text-muted hover:text-warn transition-colors flex-shrink-0"
-                          aria-label={`Ta bort ${item.name}`}
+                          aria-label={t(`Ta bort ${item.name}`, `Remove ${item.name}`)}
                         >
                           <Trash2 className="w-4 h-4" />
                         </button>
@@ -535,7 +537,7 @@ function LosoreContent() {
                           onChange={(e) => handleUpdateAssignment(item.id, e.target.value)}
                           className="w-full px-3 py-2 border border-[#E8E4DE] rounded-lg text-sm focus:border-accent focus:outline-none transition-colors mb-2"
                         >
-                          <option value="">— Ej tilldelad —</option>
+                          <option value="">{t('— Ej tilldelad —', '— Not assigned —')}</option>
                           {delagareNames.map(name => (
                             <option key={name} value={name}>{name}</option>
                           ))}
@@ -544,7 +546,7 @@ function LosoreContent() {
 
                       {item.assignedTo && (
                         <p className="text-xs text-primary/70">
-                          Tilldelad: <span className="font-medium">{item.assignedTo}</span>
+                          {t('Tilldelad:', 'Assigned to:')} <span className="font-medium">{item.assignedTo}</span>
                         </p>
                       )}
                     </div>
@@ -561,7 +563,7 @@ function LosoreContent() {
         <div className="flex gap-2">
           <Info className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
           <p className="text-xs text-primary/70">
-            <span className="font-semibold">Juridisk anmärkning:</span> Lösöre ska tas upp i bouppteckningen (ÄB 20 kap. 4 §). Värdet uppskattas till försäljningsvärdet.
+            <span className="font-semibold">{t('Juridisk anmärkning:', 'Legal note:')}</span> {t('Lösöre ska tas upp i bouppteckningen (ÄB 20 kap. 4 §). Värdet uppskattas till försäljningsvärdet.', 'Personal property must be listed in the estate inventory (AB Chapter 20, Section 4). The value is estimated at the sales value.')}
           </p>
         </div>
       </div>

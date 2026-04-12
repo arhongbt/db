@@ -149,27 +149,27 @@ function InstallningarContent() {
         <Link
           href="/dashboard"
           className="p-2 -ml-2 min-h-[44px] min-w-[44px] flex items-center justify-center rounded-full hover:bg-white transition-colors"
-          aria-label="Tillbaka"
+          aria-label={t('Tillbaka', 'Back')}
         >
           <ArrowLeft className="w-5 h-5 text-primary" />
         </Link>
-        <h1 className="text-2xl font-semibold text-primary">Inställningar</h1>
+        <h1 className="text-2xl font-semibold text-primary">{t('Inställningar', 'Settings')}</h1>
       </div>
 
       {/* Edit onboarding section */}
       <div className="card mb-6">
         <h2 className="text-sm font-semibold text-muted uppercase tracking-wide mb-4">
-          Redigera uppgifter
+          {t('Redigera uppgifter', 'Edit Information')}
         </h2>
         {!editingOnboarding ? (
           <>
             {state.deceasedName && (
               <div className="space-y-2 mb-4">
-                <p className="text-sm text-muted">Dödsbo</p>
+                <p className="text-sm text-muted">{t('Dödsbo', 'Estate')}</p>
                 <p className="font-semibold text-primary text-lg">{state.deceasedName}</p>
                 {state.deathDate && (
                   <p className="text-sm text-muted">
-                    Dödsdatum: {new Date(state.deathDate).toLocaleDateString('sv-SE')}
+                    {t('Dödsdatum: ', 'Date of death: ')}{new Date(state.deathDate).toLocaleDateString('sv-SE')}
                   </p>
                 )}
               </div>
@@ -178,14 +178,14 @@ function InstallningarContent() {
               onClick={() => setEditingOnboarding(true)}
               className="btn-primary w-full"
             >
-              Redigera
+              {t('Redigera', 'Edit')}
             </button>
           </>
         ) : (
           <div className="space-y-4">
             <div>
               <label className="block text-sm font-medium text-primary mb-2">
-                Namn på avliden
+                {t('Namn på avliden', 'Name of deceased')}
               </label>
               <input
                 type="text"
@@ -198,7 +198,7 @@ function InstallningarContent() {
             </div>
             <div>
               <label className="block text-sm font-medium text-primary mb-2">
-                Dödsdatum
+                {t('Dödsdatum', 'Date of death')}
               </label>
               <input
                 type="date"
@@ -211,7 +211,7 @@ function InstallningarContent() {
             </div>
             <div>
               <label className="block text-sm font-medium text-primary mb-2">
-                Familjsituation
+                {t('Familjsituation', 'Family situation')}
               </label>
               <select
                 value={formData.familySituation}
@@ -220,18 +220,18 @@ function InstallningarContent() {
                 }
                 className="w-full px-4 py-3 border-2 border-[#E8E4DE] rounded-xl focus:border-accent focus:outline-none transition-colors"
               >
-                <option value="gift_med_gemensamma_barn">Gift med gemensamma barn</option>
-                <option value="gift_med_sarkullebarn">Gift med särskilda barn</option>
-                <option value="gift_utan_barn">Gift utan barn</option>
-                <option value="ogift_med_barn">Ogift med barn</option>
-                <option value="sambo_med_barn">Sambo med barn</option>
-                <option value="sambo_utan_barn">Sambo utan barn</option>
-                <option value="ensamstaende_utan_barn">Ensamstående utan barn</option>
+                <option value="gift_med_gemensamma_barn">{t('Gift med gemensamma barn', 'Married with shared children')}</option>
+                <option value="gift_med_sarkullebarn">{t('Gift med särskilda barn', 'Married with separate children')}</option>
+                <option value="gift_utan_barn">{t('Gift utan barn', 'Married without children')}</option>
+                <option value="ogift_med_barn">{t('Ogift med barn', 'Unmarried with children')}</option>
+                <option value="sambo_med_barn">{t('Sambo med barn', 'Cohabiting with children')}</option>
+                <option value="sambo_utan_barn">{t('Sambo utan barn', 'Cohabiting without children')}</option>
+                <option value="ensamstaende_utan_barn">{t('Ensamstående utan barn', 'Single without children')}</option>
               </select>
             </div>
             <div>
               <label className="block text-sm font-medium text-primary mb-2">
-                Boendetyp
+                {t('Boendetyp', 'Housing type')}
               </label>
               <select
                 value={formData.housingType}
@@ -240,16 +240,16 @@ function InstallningarContent() {
                 }
                 className="w-full px-4 py-3 border-2 border-[#E8E4DE] rounded-xl focus:border-accent focus:outline-none transition-colors"
               >
-                <option value="hyresratt">Hyresrätt</option>
-                <option value="bostadsratt">Bostadsrätt</option>
-                <option value="villa">Villa</option>
-                <option value="fritidshus">Fritidshus</option>
-                <option value="ingen_bostad">Ingen bostad</option>
+                <option value="hyresratt">{t('Hyresrätt', 'Rental apartment')}</option>
+                <option value="bostadsratt">{t('Bostadsrätt', 'Tenant-owned apartment')}</option>
+                <option value="villa">{t('Villa', 'House')}</option>
+                <option value="fritidshus">{t('Fritidshus', 'Holiday home')}</option>
+                <option value="ingen_bostad">{t('Ingen bostad', 'No property')}</option>
               </select>
             </div>
             <div className="flex items-center justify-between p-3 border border-[#E8E4DE] rounded-xl">
               <label className="text-sm font-medium text-primary">
-                Finns testamente?
+                {t('Finns testamente?', 'Is there a will?')}
               </label>
               <button
                 onClick={() =>
@@ -271,13 +271,13 @@ function InstallningarContent() {
                 onClick={() => setEditingOnboarding(false)}
                 className="btn-secondary flex-1"
               >
-                Avbryt
+                {t('Avbryt', 'Cancel')}
               </button>
               <button
                 onClick={handleSaveOnboarding}
                 className="btn-primary flex-1"
               >
-                Spara
+                {t('Spara', 'Save')}
               </button>
             </div>
           </div>
@@ -287,19 +287,19 @@ function InstallningarContent() {
       {/* Current dödsbo info */}
       {state.deceasedName && !editingOnboarding && (
         <div className="card mb-6">
-          <p className="text-sm text-muted mb-1">Statistik</p>
+          <p className="text-sm text-muted mb-1">{t('Statistik', 'Statistics')}</p>
           <div className="grid grid-cols-3 gap-2 mt-3">
             <div className="text-center">
               <p className="text-lg font-bold text-primary">{state.delagare.length}</p>
-              <p className="text-xs text-muted">Delägare</p>
+              <p className="text-xs text-muted">{t('Delägare', 'Co-owners')}</p>
             </div>
             <div className="text-center">
               <p className="text-lg font-bold text-primary">{state.tillgangar.length}</p>
-              <p className="text-xs text-muted">Tillgångar</p>
+              <p className="text-xs text-muted">{t('Tillgångar', 'Assets')}</p>
             </div>
             <div className="text-center">
               <p className="text-lg font-bold text-primary">{state.tasks.length}</p>
-              <p className="text-xs text-muted">Uppgifter</p>
+              <p className="text-xs text-muted">{t('Uppgifter', 'Tasks')}</p>
             </div>
           </div>
         </div>
@@ -308,14 +308,14 @@ function InstallningarContent() {
       {/* Accessibility section */}
       <div className="card mb-6">
         <h2 className="text-sm font-semibold text-muted uppercase tracking-wide mb-4">
-          Tillgänglighet
+          {t('Tillgänglighet', 'Accessibility')}
         </h2>
         <div className="space-y-4">
           <div>
             <div className="flex items-center justify-between mb-3">
               <label className="text-sm font-medium text-primary flex items-center gap-2">
                 <Type className="w-4 h-4" />
-                Textstorlek
+                {t('Textstorlek', 'Text size')}
               </label>
             </div>
             <div className="flex gap-2">
@@ -331,9 +331,9 @@ function InstallningarContent() {
                       : 'bg-white text-primary hover:bg-white'
                   }`}
                 >
-                  {size === 'normal' && 'Normal'}
-                  {size === 'large' && 'Stor'}
-                  {size === 'xlarge' && 'Mycket stor'}
+                  {size === 'normal' && t('Normal', 'Normal')}
+                  {size === 'large' && t('Stor', 'Large')}
+                  {size === 'xlarge' && t('Mycket stor', 'Extra large')}
                 </button>
               ))}
             </div>
@@ -341,7 +341,7 @@ function InstallningarContent() {
           <div className="flex items-center justify-between p-3 border border-[#E8E4DE] rounded-xl">
             <label className="text-sm font-medium text-primary flex items-center gap-2">
               <Contrast className="w-4 h-4" />
-              Högt kontrast
+              {t('Högt kontrast', 'High contrast')}
             </label>
             <button
               onClick={handleHighContrastToggle}
@@ -393,12 +393,12 @@ function InstallningarContent() {
       {/* Notification settings */}
       <div className="card mb-6">
         <h2 className="text-sm font-semibold text-muted uppercase tracking-wide mb-4">
-          Påminnelser
+          {t('Påminnelser', 'Reminders')}
         </h2>
         <div className="flex items-center justify-between p-3 border border-[#E8E4DE] rounded-xl">
           <label className="text-sm font-medium text-primary flex items-center gap-2">
             <Bell className="w-4 h-4" />
-            Push-notiser för tidsfrister
+            {t('Push-notiser för tidsfrister', 'Push notifications for deadlines')}
           </label>
           <button
             onClick={async () => {
@@ -426,12 +426,12 @@ function InstallningarContent() {
         </div>
         {notificationsEnabled && (
           <p className="text-xs text-muted mt-2 px-1">
-            Du får notiser 7, 3 och 1 dag innan varje tidsfrist.
+            {t('Du får notiser 7, 3 och 1 dag innan varje tidsfrist.', 'You will receive notifications 7, 3, and 1 day before each deadline.')}
           </p>
         )}
         {getNotificationPermission() === 'denied' && (
           <p className="text-xs text-warn mt-2 px-1">
-            Notiser är blockerade i din webbläsare. Gå till webbläsarens inställningar för att aktivera.
+            {t('Notiser är blockerade i din webbläsare. Gå till webbläsarens inställningar för att aktivera.', 'Notifications are blocked in your browser. Go to browser settings to enable them.')}
           </p>
         )}
       </div>
@@ -439,10 +439,10 @@ function InstallningarContent() {
       {/* Data export */}
       <div className="card mb-6">
         <h2 className="text-sm font-semibold text-muted uppercase tracking-wide mb-4">
-          Exportera data
+          {t('Exportera data', 'Export data')}
         </h2>
         <p className="text-xs text-muted mb-3">
-          Ladda ner en kopia av all data i dödsboet. Dela med jurist eller spara som backup.
+          {t('Ladda ner en kopia av all data i dödsboet. Dela med jurist eller spara som backup.', 'Download a copy of all estate data. Share with a lawyer or save as backup.')}
         </p>
         <div className="flex gap-3">
           <button
@@ -450,14 +450,14 @@ function InstallningarContent() {
             className="flex-1 flex items-center justify-center gap-2 py-3 px-4 border-2 border-[#E8E4DE] rounded-xl text-sm font-medium text-primary hover:bg-white transition-colors"
           >
             <Download className="w-4 h-4" />
-            CSV (Excel)
+            {t('CSV (Excel)', 'CSV (Excel)')}
           </button>
           <button
             onClick={() => exportAsJSON(state)}
             className="flex-1 flex items-center justify-center gap-2 py-3 px-4 border-2 border-[#E8E4DE] rounded-xl text-sm font-medium text-primary hover:bg-white transition-colors"
           >
             <FileText className="w-4 h-4" />
-            JSON (backup)
+            {t('JSON (backup)', 'JSON (backup)')}
           </button>
         </div>
       </div>
@@ -465,12 +465,12 @@ function InstallningarContent() {
       {/* Navigation links */}
       <div className="flex flex-col gap-2 mb-6">
         <h2 className="text-sm font-semibold text-muted uppercase tracking-wide mb-1">
-          Hjälp & information
+          {t('Hjälp & information', 'Help & information')}
         </h2>
         {[
-          { href: '/faq', label: 'Vanliga frågor', icon: HelpCircle },
-          { href: '/nodbroms', label: 'Nödbroms — dag 1-7', icon: AlertTriangle },
-          { href: '/tidslinje', label: 'Tidslinje', icon: BookOpen },
+          { href: '/faq', label: t('Vanliga frågor', 'FAQ'), icon: HelpCircle },
+          { href: '/nodbroms', label: t('Nödbroms — dag 1-7', 'Emergency guide — days 1-7'), icon: AlertTriangle },
+          { href: '/tidslinje', label: t('Tidslinje', 'Timeline'), icon: BookOpen },
         ].map((item) => (
           <Link
             key={item.href}
@@ -489,14 +489,14 @@ function InstallningarContent() {
       {/* Useful contacts */}
       <div className="flex flex-col gap-2 mb-6">
         <h2 className="text-sm font-semibold text-muted uppercase tracking-wide mb-1">
-          Viktiga kontakter
+          {t('Viktiga kontakter', 'Important contacts')}
         </h2>
         <div className="card space-y-3">
           {[
-            { name: 'Skatteverket', phone: '0771-567 567', desc: 'Bouppteckning, folkbokföring' },
-            { name: 'Kronofogden', phone: '0771-73 73 00', desc: 'Skulder, betalningsföreläggande' },
-            { name: 'Försäkringskassan', phone: '0771-524 524', desc: 'Pension, sjukpenning' },
-            { name: 'Jourhavande medmänniska', phone: '08-702 16 80', desc: 'Stöd & samtal (kvällar/nätter)' },
+            { name: 'Skatteverket', phone: '0771-567 567', desc: t('Bouppteckning, folkbokföring', 'Estate inventory, population register') },
+            { name: 'Kronofogden', phone: '0771-73 73 00', desc: t('Skulder, betalningsföreläggande', 'Debts, payment orders') },
+            { name: 'Försäkringskassan', phone: '0771-524 524', desc: t('Pension, sjukpenning', 'Pension, sick benefits') },
+            { name: 'Jourhavande medmänniska', phone: '08-702 16 80', desc: t('Stöd & samtal (kvällar/nätter)', 'Support & counseling (evenings/nights)') },
           ].map((contact) => (
             <div key={contact.name} className="flex items-start justify-between">
               <div>
@@ -514,11 +514,9 @@ function InstallningarContent() {
         <div className="flex gap-2">
           <Info className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
           <div>
-            <p className="text-sm font-medium text-primary">Om appen</p>
+            <p className="text-sm font-medium text-primary">{t('Om appen', 'About the app')}</p>
             <p className="text-sm text-primary/70 mt-1">
-              Dödsbo-appen ger vägledning baserat på svensk lagstiftning.
-              Den ersätter inte juridisk rådgivning. Vid komplexa fall
-              rekommenderar vi att kontakta en jurist.
+              {t('Dödsbo-appen ger vägledning baserat på svensk lagstiftning. Den ersätter inte juridisk rådgivning. Vid komplexa fall rekommenderar vi att kontakta en jurist.', 'The estate app provides guidance based on Swedish law. It does not replace legal advice. For complex matters, we recommend contacting a lawyer.')}
             </p>
           </div>
         </div>
@@ -527,7 +525,7 @@ function InstallningarContent() {
       {/* Account actions */}
       <div className="flex flex-col gap-3 mb-6">
         <h2 className="text-sm font-semibold text-muted uppercase tracking-wide mb-1">
-          Konto
+          {t('Konto', 'Account')}
         </h2>
         <button
           onClick={handleSignOut}
@@ -535,7 +533,7 @@ function InstallningarContent() {
           className="card flex items-center justify-center gap-2 py-3 text-accent text-sm font-medium hover:bg-white transition-colors"
         >
           <LogOut className="w-4 h-4" />
-          {signingOut ? 'Loggar ut...' : 'Logga ut'}
+          {signingOut ? t('Loggar ut...', 'Signing out...') : t('Logga ut', 'Sign out')}
         </button>
       </div>
 
@@ -548,27 +546,27 @@ function InstallningarContent() {
           >
             <span className="flex items-center justify-center gap-2">
               <Trash2 className="w-4 h-4" />
-              Radera all data och börja om
+              {t('Radera all data och börja om', 'Delete all data and start over')}
             </span>
           </button>
         ) : (
           <div className="card border-2 border-warn">
-            <p className="font-medium text-warn mb-2">Är du säker?</p>
+            <p className="font-medium text-warn mb-2">{t('Är du säker?', 'Are you sure?')}</p>
             <p className="text-sm text-primary/70 mb-4">
-              All data raderas permanent — dödsbodelägare, tillgångar, skulder, försäkringar och uppgifter.
+              {t('All data raderas permanent — dödsbodelägare, tillgångar, skulder, försäkringar och uppgifter.', 'All data will be permanently deleted — co-owners, assets, debts, insurance, and tasks.')}
             </p>
             <div className="flex gap-3">
               <button
                 onClick={() => setShowConfirmReset(false)}
                 className="btn-secondary flex-1"
               >
-                Avbryt
+                {t('Avbryt', 'Cancel')}
               </button>
               <button
                 onClick={handleReset}
                 className="flex-1 min-h-touch px-6 py-3 bg-warn text-white font-semibold rounded-card"
               >
-                Radera allt
+                {t('Radera allt', 'Delete all')}
               </button>
             </div>
           </div>
@@ -578,13 +576,13 @@ function InstallningarContent() {
       {/* Legal links */}
       <div className="flex flex-col gap-2 mb-6">
         <h2 className="text-sm font-semibold text-muted uppercase tracking-wide mb-1">
-          Juridik
+          {t('Juridik', 'Legal')}
         </h2>
         <div className="card space-y-3">
           {[
-            { href: '/integritetspolicy', label: 'Integritetspolicy' },
-            { href: '/anvandarvillkor', label: 'Användarvillkor' },
-            { href: '/om', label: 'Om oss' },
+            { href: '/integritetspolicy', label: t('Integritetspolicy', 'Privacy Policy') },
+            { href: '/anvandarvillkor', label: t('Användarvillkor', 'Terms of Use') },
+            { href: '/om', label: t('Om oss', 'About us') },
           ].map((item) => (
             <Link
               key={item.href}

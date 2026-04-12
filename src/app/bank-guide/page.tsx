@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useLanguage } from '@/lib/i18n';
 import Link from 'next/link';
 import { ArrowLeft, Building2, Phone, Globe, ChevronDown, ChevronUp, CheckCircle2, Copy, Check } from 'lucide-react';
 
@@ -153,6 +154,7 @@ const BANK_GUIDES: BankGuide[] = [
 ];
 
 export default function BankGuidePage() {
+  const { t } = useLanguage();
   const [expanded, setExpanded] = useState<string | null>(null);
   const [copied, setCopied] = useState<string | null>(null);
 
@@ -175,17 +177,16 @@ export default function BankGuidePage() {
 
         <div className="flex items-center gap-3 mb-2">
           <Building2 className="w-6 h-6 text-accent" />
-          <h1 className="text-2xl font-semibold text-primary">Bank-guide</h1>
+          <h1 className="text-2xl font-semibold text-primary">{t('Bank-guide', 'Bank Guide')}</h1>
         </div>
         <p className="text-muted text-sm mb-6">
-          Steg-för-steg instruktioner för varje storbank. Vad du ska säga, vilka dokument du behöver, och tips.
+          {t('Steg-för-steg instruktioner för varje storbank. Vad du ska säga, vilka dokument du behöver, och tips.', 'Step-by-step instructions for each major bank. What to say, what documents you need, and tips.')}
         </p>
 
         {/* Info box */}
         <div className="info-box mb-6">
           <p className="text-xs text-muted">
-            Ring banken så snart som möjligt efter dödsfallet. Konton spärras för att skydda
-            dödsboet, men löpande betalningar (el, hyra) kan lösas med ett dödsbokonto.
+            {t('Ring banken så snart som möjligt efter dödsfallet. Konton spärras för att skydda dödsboet, men löpande betalningar (el, hyra) kan lösas med ett dödsbokonto.', 'Call the bank as soon as possible after the death. Accounts are frozen to protect the estate, but ongoing payments (electricity, rent) can be handled with an estate account.')}
           </p>
         </div>
 
@@ -274,13 +275,13 @@ export default function BankGuidePage() {
 
         {/* General tips */}
         <div className="card mt-6 border-l-4 border-accent">
-          <p className="font-semibold text-primary text-sm mb-2">Generella tips</p>
+          <p className="font-semibold text-primary text-sm mb-2">{t('Generella tips', 'General tips')}</p>
           <div className="space-y-2 text-xs text-muted">
-            <p>• Säg alltid: &ldquo;Jag ringer angående ett dödsfall&rdquo; — du kopplas direkt till rätt avdelning.</p>
-            <p>• Ha dödsbevis och ditt eget leg redo vid varje samtal.</p>
-            <p>• Be alltid om skriftlig bekräftelse via e-post.</p>
-            <p>• Notera namn på handläggaren och ärendenummer.</p>
-            <p>• Saldobesked per dödsdagen behövs till bouppteckningen — begär det direkt.</p>
+            <p>• {t('Säg alltid: &ldquo;Jag ringer angående ett dödsfall&rdquo; — du kopplas direkt till rätt avdelning.', 'Always say: "I\'m calling about a death" — you\'ll be transferred directly to the right department.')}</p>
+            <p>• {t('Ha dödsbevis och ditt eget leg redo vid varje samtal.', 'Have the death certificate and your own ID ready for every call.')}</p>
+            <p>• {t('Be alltid om skriftlig bekräftelse via e-post.', 'Always ask for written confirmation via email.')}</p>
+            <p>• {t('Notera namn på handläggaren och ärendenummer.', 'Note the case officer\'s name and case number.')}</p>
+            <p>• {t('Saldobesked per dödsdagen behövs till bouppteckningen — begär det direkt.', 'Balance statement for the date of death is needed for the inventory — ask for it immediately.')}</p>
           </div>
         </div>
       </div>

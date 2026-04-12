@@ -1,5 +1,6 @@
 'use client';
 
+import { useLanguage } from '@/lib/i18n';
 import Link from 'next/link';
 import { ArrowLeft, Home, FileText, AlertTriangle, CheckCircle2, ChevronRight } from 'lucide-react';
 import { BottomNav } from '@/components/ui/BottomNav';

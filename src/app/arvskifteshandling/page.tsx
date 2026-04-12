@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useLanguage } from '@/lib/i18n';
 import { DodsboProvider, useDodsbo } from '@/lib/context';
 import { BottomNav } from '@/components/ui/BottomNav';
 import Link from 'next/link';
@@ -78,6 +79,7 @@ function MikeRossTip({ text }: { text: string }) {
 }
 
 function ArvskifteContent() {
+  const { t } = useLanguage();
   const { state } = useDodsbo();
   const [step, setStep] = useState(0);
   const [data, setData] = useState<ArvskifteData>(() => ({

@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/lib/auth/context';
+import { useLanguage } from '@/lib/i18n';
 import Link from 'next/link';
 import { DoveLogo } from '@/components/ui/DoveLogo';
 // Decorations removed — caused z-index/visibility bugs on mobile
@@ -12,6 +13,7 @@ type AuthTab = 'login' | 'register' | 'reset';
 export default function AuthPage() {
   const router = useRouter();
   const { user, signIn, signUp, resetPassword } = useAuth();
+  const { t } = useLanguage();
   const [tab, setTab] = useState<AuthTab>('login');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -37,7 +39,7 @@ export default function AuthPage() {
       await signIn(email, password);
       router.push('/dashboard');
     } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : 'Något gick fel. Försök igen.';
+      const errorMessage = err instanceof Error ? err.message : t('Något gick fel. Försök igen.', 'Something went wrong. Try again.');
       setError(errorMessage);
     } finally {
       setLoading(false);
@@ -50,12 +52,12 @@ export default function AuthPage() {
     setSuccess('');
 
     if (password !== confirmPassword) {
-      setError('Lösenorden matchar inte.');
+      setError(t('Lösenorden matchar inte.', 'Passwords do not match.'));
       return;
     }
 
     if (password.length < 6) {
-      setError('Lösenordet måste vara minst 6 tecken.');
+      setError(t('Lösenordet måste vara minst 6 tecken.', 'Password must be at least 6 characters.'));
       return;
     }
 
@@ -63,13 +65,13 @@ export default function AuthPage() {
 
     try {
       await signUp(email, password);
-      setSuccess('Kolla din e-post för bekräftelse!');
+      setSuccess(t('Kolla din e-post för bekräftelse!', 'Check your email for confirmation!'));
       setEmail('');
       setPassword('');
       setConfirmPassword('');
       setLoading(false);
     } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : 'Något gick fel. Försök igen.';
+      const errorMessage = err instanceof Error ? err.message : t('Något gick fel. Försök igen.', 'Something went wrong. Try again.');
       setError(errorMessage);
       setLoading(false);
     }
@@ -83,11 +85,11 @@ export default function AuthPage() {
 
     try {
       await resetPassword(email);
-      setSuccess('Länk för återställning skickad. Kolla din e-post.');
+      setSuccess(t('Länk för återställning skickad. Kolla din e-post.', 'Reset link sent. Check your email.'));
       setEmail('');
       setLoading(false);
     } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : 'Något gick fel. Försök igen.';
+      const errorMessage = err instanceof Error ? err.message : t('Något gick fel. Försök igen.', 'Something went wrong. Try again.');
       setError(errorMessage);
       setLoading(false);
     }
@@ -103,7 +105,7 @@ export default function AuthPage() {
             <DoveLogo size={48} />
           </div>
           <h1 className="text-2xl font-bold text-primary mb-2">Sista Resan</h1>
-          <p className="text-muted text-sm">Vi finns här för dig</p>
+          <p className="text-muted text-sm">{t('Vi finns här för dig', 'We are here for you')}</p>
         </div>
 
         {/* Tab navigation */}
@@ -121,7 +123,7 @@ export default function AuthPage() {
             }`}
             style={tab === 'login' ? { background: 'linear-gradient(135deg, #6B7F5E, #4F6145)' } : undefined}
           >
-            Logga in
+            {t('Logga in', 'Sign in')}
           </button>
           <button
             onClick={() => {
@@ -136,7 +138,7 @@ export default function AuthPage() {
             }`}
             style={tab === 'register' ? { background: 'linear-gradient(135deg, #6B7F5E, #4F6145)' } : undefined}
           >
-            Skapa konto
+            {t('Skapa konto', 'Create account')}
           </button>
         </div>
 
@@ -160,14 +162,14 @@ export default function AuthPage() {
             <div className="card space-y-4">
               <div>
                 <label htmlFor="login-email" className="block text-sm font-medium text-primary mb-1.5">
-                  E-postadress
+                  {t('E-postadress', 'Email address')}
                 </label>
                 <input
                   id="login-email"
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="din@email.se"
+                  placeholder={t('din@email.se', 'your@email.com')}
                   required
                   className="w-full px-4 py-3 border border-gray-200 rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all bg-background"
                 />
@@ -175,7 +177,7 @@ export default function AuthPage() {
 
               <div>
                 <label htmlFor="login-password" className="block text-sm font-medium text-primary mb-1.5">
-                  Lösenord
+                  {t('Lösenord', 'Password')}
                 </label>
                 <input
                   id="login-password"
@@ -193,7 +195,7 @@ export default function AuthPage() {
                 disabled={loading}
                 className="btn-primary"
               >
-                {loading ? 'Loggar in...' : 'Logga in'}
+                {loading ? t('Loggar in...', 'Signing in...') : t('Logga in', 'Sign in')}
               </button>
 
               <button
@@ -201,7 +203,7 @@ export default function AuthPage() {
                 onClick={() => setTab('reset')}
                 className="w-full py-2 text-accent hover:text-primary text-sm font-medium transition-colors"
               >
-                Glömt lösenord?
+                {t('Glömt lösenord?', 'Forgot password?')}
               </button>
             </div>
           </form>
@@ -213,14 +215,14 @@ export default function AuthPage() {
             <div className="card space-y-4">
               <div>
                 <label htmlFor="register-email" className="block text-sm font-medium text-primary mb-1.5">
-                  E-postadress
+                  {t('E-postadress', 'Email address')}
                 </label>
                 <input
                   id="register-email"
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="din@email.se"
+                  placeholder={t('din@email.se', 'your@email.com')}
                   required
                   className="w-full px-4 py-3 border border-gray-200 rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all bg-background"
                 />
@@ -228,7 +230,7 @@ export default function AuthPage() {
 
               <div>
                 <label htmlFor="register-password" className="block text-sm font-medium text-primary mb-1.5">
-                  Lösenord
+                  {t('Lösenord', 'Password')}
                 </label>
                 <input
                   id="register-password"
@@ -239,12 +241,12 @@ export default function AuthPage() {
                   required
                   className="w-full px-4 py-3 border border-gray-200 rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all bg-background"
                 />
-                <p className="text-xs text-muted mt-1.5">Minst 6 tecken</p>
+                <p className="text-xs text-muted mt-1.5">{t('Minst 6 tecken', 'At least 6 characters')}</p>
               </div>
 
               <div>
                 <label htmlFor="register-confirm" className="block text-sm font-medium text-primary mb-1.5">
-                  Bekräfta lösenord
+                  {t('Bekräfta lösenord', 'Confirm password')}
                 </label>
                 <input
                   id="register-confirm"
@@ -262,7 +264,7 @@ export default function AuthPage() {
                 disabled={loading}
                 className="btn-primary"
               >
-                {loading ? 'Skapar konto...' : 'Skapa konto'}
+                {loading ? t('Skapar konto...', 'Creating account...') : t('Skapa konto', 'Create account')}
               </button>
             </div>
           </form>
@@ -272,20 +274,20 @@ export default function AuthPage() {
         {tab === 'reset' && (
           <form onSubmit={handleResetPassword} className="animate-fadeIn">
             <div className="info-box mb-4">
-              Vi skickar en säker länk till din e-postadress där du kan återställa ditt lösenord.
+              {t('Vi skickar en säker länk till din e-postadress där du kan återställa ditt lösenord.', 'We will send a secure link to your email where you can reset your password.')}
             </div>
 
             <div className="card space-y-4">
               <div>
                 <label htmlFor="reset-email" className="block text-sm font-medium text-primary mb-1.5">
-                  E-postadress
+                  {t('E-postadress', 'Email address')}
                 </label>
                 <input
                   id="reset-email"
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="din@email.se"
+                  placeholder={t('din@email.se', 'your@email.com')}
                   required
                   className="w-full px-4 py-3 border border-gray-200 rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all bg-background"
                 />
@@ -296,7 +298,7 @@ export default function AuthPage() {
                 disabled={loading}
                 className="btn-primary"
               >
-                {loading ? 'Skickar...' : 'Skicka återställningslänk'}
+                {loading ? t('Skickar...', 'Sending...') : t('Skicka återställningslänk', 'Send reset link')}
               </button>
 
               <button
@@ -304,16 +306,16 @@ export default function AuthPage() {
                 onClick={() => setTab('login')}
                 className="w-full py-2 text-accent hover:text-primary text-sm font-medium transition-colors"
               >
-                Tillbaka till logga in
+                {t('Tillbaka till logga in', 'Back to sign in')}
               </button>
             </div>
           </form>
         )}
         {/* Footer links */}
         <div className="flex justify-center gap-4 mt-8 text-xs text-muted">
-          <Link href="/om" className="hover:text-accent transition-colors">Om oss</Link>
-          <Link href="/integritetspolicy" className="hover:text-accent transition-colors">Integritetspolicy</Link>
-          <Link href="/anvandarvillkor" className="hover:text-accent transition-colors">Villkor</Link>
+          <Link href="/om" className="hover:text-accent transition-colors">{t('Om oss', 'About')}</Link>
+          <Link href="/integritetspolicy" className="hover:text-accent transition-colors">{t('Integritetspolicy', 'Privacy Policy')}</Link>
+          <Link href="/anvandarvillkor" className="hover:text-accent transition-colors">{t('Villkor', 'Terms')}</Link>
         </div>
       </div>
     </div>

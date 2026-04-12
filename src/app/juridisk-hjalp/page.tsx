@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect, useCallback } from 'react';
+import { useLanguage } from '@/lib/i18n';
 import { DodsboProvider, useDodsbo } from '@/lib/context';
 import { BottomNav } from '@/components/ui/BottomNav';
 import { BankIDVerification } from '@/components/BankIDVerification';
@@ -111,12 +112,12 @@ function TypewriterBubble({ content, animate, onDone }: { content: string; anima
 }
 
 const SUGGESTED_QUESTIONS = [
-  'Vad är skillnaden mellan laglott och arvslott?',
-  'Ärver man skulder i Sverige?',
-  'Vad händer om bouppteckningen är sen?',
-  'Hur fungerar arvsrätt för sambor?',
-  'Vad är fri förfoganderätt?',
-  'Kan särkullbarn kräva sin del direkt?',
+  { sv: 'Vad är skillnaden mellan laglott och arvslott?', en: 'What is the difference between laglott and arvslott?' },
+  { sv: 'Ärver man skulder i Sverige?', en: 'Do you inherit debts in Sweden?' },
+  { sv: 'Vad händer om bouppteckningen är sen?', en: 'What happens if the inventory is late?' },
+  { sv: 'Hur fungerar arvsrätt för sambor?', en: 'How do inheritance rights work for unmarried partners?' },
+  { sv: 'Vad är fri förfoganderätt?', en: 'What is free disposal right?' },
+  { sv: 'Kan särkullbarn kräva sin del direkt?', en: 'Can children from other relationships demand their share immediately?' },
 ];
 
 const FREE_MESSAGE_LIMIT = 25;
@@ -135,6 +136,7 @@ function incrementUsedMessages(): number {
 }
 
 function JuridiskHjalpContent() {
+  const { t } = useLanguage();
   const { state, loading } = useDodsbo();
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
@@ -315,7 +317,7 @@ function JuridiskHjalpContent() {
 
     // Check free message limit
     if (isLimitReached) {
-      setError('Du har använt alla dina gratis frågor. Uppgradera till Premium för obegränsad tillgång.');
+      setError(t('Du har använt alla dina gratis frågor. Uppgradera till Premium för obegränsad tillgång.', 'You have used all your free questions. Upgrade to Premium for unlimited access.'));
       return;
     }
 
@@ -339,7 +341,7 @@ function JuridiskHjalpContent() {
       const data = await res.json();
 
       if (!res.ok) {
-        setError(data.error || 'Ett fel uppstod.');
+        setError(data.error || t('Ett fel uppstod.', 'An error occurred.'));
         setIsLoading(false);
         return;
       }
@@ -352,7 +354,7 @@ function JuridiskHjalpContent() {
       setMessages(prev => [...prev, assistantMsg]);
       setAnimatingIdx(newMessages.length);
     } catch {
-      setError('Kunde inte ansluta. Kontrollera din internetanslutning.');
+      setError(t('Kunde inte ansluta. Kontrollera din internetanslutning.', 'Could not connect. Check your internet connection.'));
     } finally {
       setIsLoading(false);
     }
@@ -372,7 +374,7 @@ function JuridiskHjalpContent() {
         <Link
           href="/dashboard"
           className="p-2 -ml-2 min-h-[44px] min-w-[44px] flex items-center justify-center rounded-full hover:bg-background transition-colors"
-          aria-label="Tillbaka"
+          aria-label={t('Tillbaka', 'Back')}
         >
           <ArrowLeft className="w-5 h-5 text-primary" />
         </Link>
@@ -384,7 +386,7 @@ function JuridiskHjalpContent() {
             <h1 className="text-base font-semibold text-primary">Mike Ross</h1>
             <div className="flex items-center gap-1.5">
               <span className="w-2 h-2 rounded-full bg-green-400" />
-              <p className="text-xs text-muted">Online — juridisk AI-assistent</p>
+              <p className="text-xs text-muted">{t('Online — juridisk AI-assistent', 'Online — legal AI assistant')}</p>
             </div>
           </div>
         </div>
@@ -396,15 +398,15 @@ function JuridiskHjalpContent() {
           <div className="flex items-start gap-3">
             <AlertTriangle className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
             <div className="flex-1">
-              <p className="text-sm font-medium text-accent">Verifiera först med BankID</p>
+              <p className="text-sm font-medium text-accent">{t('Verifiera först med BankID', 'Verify with BankID first')}</p>
               <p className="text-xs text-primary/70 mt-0.5">
-                För att använda juridisk rådgivning krävs BankID-verifiering.
+                {t('För att använda juridisk rådgivning krävs BankID-verifiering.', 'BankID verification is required to use legal advice.')}
               </p>
               <button
                 onClick={() => setShowBankIDModal(true)}
                 className="mt-2 px-3 py-1.5 bg-accent text-white text-xs font-medium rounded-lg hover:bg-accent/90 transition-colors"
               >
-                Verifiera nu
+                {t('Verifiera nu', 'Verify now')}
               </button>
             </div>
           </div>
@@ -420,26 +422,25 @@ function JuridiskHjalpContent() {
               <Sparkles className="w-8 h-8 text-accent" />
             </div>
             <h2 className="text-xl font-semibold text-primary mb-2">
-              Hej, jag är Mike Ross
+              {t('Hej, jag är Mike Ross', 'Hi, I\'m Mike Ross')}
             </h2>
             <p className="text-muted text-sm max-w-xs mb-6">
-              Din juridiska assistent. Fråga mig om bouppteckning, arvskifte,
-              arvsordning, testamente — allt som rör dödsbohantering i Sverige.
+              {t('Din juridiska assistent. Fråga mig om bouppteckning, arvskifte, arvsordning, testamente — allt som rör dödsbohantering i Sverige.', 'Your legal assistant. Ask me about inventory, inheritance division, order of succession, wills — everything related to estate administration in Sweden.')}
             </p>
 
             {/* AI-frågor — primär CTA */}
             <div className="flex flex-col gap-2 w-full max-w-sm">
               <p className="text-xs font-medium text-muted uppercase tracking-wide mb-1">
-                Förslag på frågor
+                {t('Förslag på frågor', 'Suggested questions')}
               </p>
               {SUGGESTED_QUESTIONS.map((q) => (
                 <button
-                  key={q}
-                  onClick={() => sendMessage(q)}
+                  key={q.sv}
+                  onClick={() => sendMessage(t(q.sv, q.en))}
                   className="text-left px-4 py-3 rounded-2xl text-sm text-primary hover:bg-accent/10 transition-colors"
                   style={{ background: '#EFEDE8' }}
                 >
-                  {q}
+                  {t(q.sv, q.en)}
                 </button>
               ))}
             </div>
@@ -448,8 +449,7 @@ function JuridiskHjalpContent() {
               <div className="flex gap-2">
                 <AlertTriangle className="w-4 h-4 text-warn flex-shrink-0 mt-0.5" />
                 <p className="text-xs text-primary">
-                  AI-assistenten ger allmän juridisk information baserad på svensk lag.
-                  Den ersätter inte juridisk rådgivning.
+                  {t('AI-assistenten ger allmän juridisk information baserad på svensk lag. Den ersätter inte juridisk rådgivning.', 'The AI assistant provides general legal information based on Swedish law. It does not replace legal advice.')}
                 </p>
               </div>
             </div>
@@ -468,8 +468,8 @@ function JuridiskHjalpContent() {
                   <Scale className="w-4 h-4 text-white" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-xs font-semibold text-primary">Behöver du personlig rådgivning?</p>
-                  <p className="text-[11px] text-muted">Första timmen med vår jurist är gratis</p>
+                  <p className="text-xs font-semibold text-primary">{t('Behöver du personlig rådgivning?', 'Need personal legal advice?')}</p>
+                  <p className="text-[11px] text-muted">{t('Första timmen med vår jurist är gratis', 'First hour with our lawyer is free')}</p>
                 </div>
                 <ChevronRight className="w-4 h-4 text-muted flex-shrink-0" />
               </button>
@@ -553,7 +553,7 @@ function JuridiskHjalpContent() {
         {!isLimitReached && remainingMessages <= 3 && remainingMessages > 0 && (
           <div className="mb-3 text-center">
             <p className="text-xs text-muted">
-              Du har {remainingMessages} meddelande{remainingMessages !== 1 ? 'n' : ''} kvar
+              {t(`Du har ${remainingMessages} meddelande${remainingMessages !== 1 ? 'n' : ''} kvar`, `You have ${remainingMessages} message${remainingMessages !== 1 ? 's' : ''} left`)}
             </p>
           </div>
         )}
@@ -565,24 +565,24 @@ function JuridiskHjalpContent() {
               <div className="flex items-center gap-2 mb-2">
                 <Scale className="w-4 h-4 text-accent" />
                 <p className="text-sm font-bold text-primary">
-                  Fick du inte svar på allt?
+                  {t('Fick du inte svar på allt?', 'Didn\'t get answers to everything?')}
                 </p>
               </div>
               <p className="text-xs text-primary/70 mb-3 leading-relaxed">
-                Vår samarbetsjurist erbjuder en gratis första timme. Specialiserad på arvsrätt, bouppteckning och dödsbon.
+                {t('Vår samarbetsjurist erbjuder en gratis första timme. Specialiserad på arvsrätt, bouppteckning och dödsbon.', 'Our partner lawyer offers a free first hour. Specialized in inheritance law, estate inventory, and estate administration.')}
               </p>
               <div className="flex items-center gap-3 mb-3">
                 <div className="flex items-center gap-1.5">
                   <Gift className="w-3 h-3 text-accent" />
-                  <span className="text-[11px] text-primary/60">1h gratis</span>
+                  <span className="text-[11px] text-primary/60">{t('1h gratis', '1h free')}</span>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <Phone className="w-3 h-3 text-accent" />
-                  <span className="text-[11px] text-primary/60">Telefon/video</span>
+                  <span className="text-[11px] text-primary/60">{t('Telefon/video', 'Phone/video')}</span>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <Clock className="w-3 h-3 text-accent" />
-                  <span className="text-[11px] text-primary/60">Svar inom 24h</span>
+                  <span className="text-[11px] text-primary/60">{t('Svar inom 24h', 'Response within 24h')}</span>
                 </div>
               </div>
               <button
@@ -593,11 +593,11 @@ function JuridiskHjalpContent() {
                   window.open('mailto:kontakt@example.com?subject=Gratis konsultation via Sista Resan', '_blank');
                 }}
               >
-                Boka gratis konsultation
+                {t('Boka gratis konsultation', 'Book free consultation')}
                 <ChevronRight className="w-4 h-4" />
               </button>
               <p className="text-[10px] text-primary/40 text-center mt-2">
-                Ingen förpliktelse — extra tid efter överenskommelse
+                {t('Ingen förpliktelse — extra tid efter överenskommelse', 'No obligation — extra time by agreement')}
               </p>
             </div>
           </div>
@@ -608,14 +608,19 @@ function JuridiskHjalpContent() {
           {/* Quick reply chips */}
           {mounted && messages.length > 0 && (
             <div className="flex gap-1 overflow-x-auto pb-1 mb-2 scrollbar-hide">
-              {['Berätta mer', 'Ge ett exempel', 'Vilken lag gäller?', 'Vad bör jag göra?'].map((chip) => (
+              {[
+                { sv: 'Berätta mer', en: 'Tell me more' },
+                { sv: 'Ge ett exempel', en: 'Give an example' },
+                { sv: 'Vilken lag gäller?', en: 'Which law applies?' },
+                { sv: 'Vad bör jag göra?', en: 'What should I do?' }
+              ].map((chip) => (
                 <button
-                  key={chip}
-                  onClick={() => sendMessage(chip)}
+                  key={chip.sv}
+                  onClick={() => sendMessage(t(chip.sv, chip.en))}
                   disabled={isLoading}
                   className="flex-shrink-0 px-3 py-1.5 bg-accent/8 border border-accent/20 text-xs font-medium text-accent rounded-full hover:bg-accent/15 transition-colors disabled:opacity-50"
                 >
-                  {chip}
+                  {t(chip.sv, chip.en)}
                 </button>
               ))}
             </div>
@@ -626,7 +631,7 @@ function JuridiskHjalpContent() {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={handleKeyDown}
-              placeholder="Ställ en fråga om arvsrätt..."
+              placeholder={t('Ställ en fråga om arvsrätt...', 'Ask a question about inheritance rights...')}
               rows={1}
               className="flex-1 px-4 py-3 rounded-2xl resize-none
                          focus:outline-none focus:ring-2 focus:ring-accent/30 transition-all
@@ -640,7 +645,7 @@ function JuridiskHjalpContent() {
               className="p-3 bg-accent text-white rounded-2xl hover:bg-accent/90
                          transition-all shadow-sm disabled:opacity-40 disabled:cursor-not-allowed
                          flex-shrink-0"
-              aria-label="Skicka meddelande"
+              aria-label={t('Skicka meddelande', 'Send message')}
             >
               <Send className="w-5 h-5" />
             </button>
@@ -648,7 +653,7 @@ function JuridiskHjalpContent() {
         </>
 
         <p className="text-xs text-center text-gray-400 mt-2">
-          AI kan göra misstag. Verifiera viktig information med en jurist.
+          {t('AI kan göra misstag. Verifiera viktig information med en jurist.', 'AI can make mistakes. Verify important information with a lawyer.')}
         </p>
       </div>
 

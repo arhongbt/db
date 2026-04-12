@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useLanguage } from '@/lib/i18n';
 import { DodsboProvider, useDodsbo } from '@/lib/context';
 import { BottomNav } from '@/components/ui/BottomNav';
 import { PaymentFlow } from '@/components/PaymentFlow';
@@ -57,6 +58,7 @@ function KostnaderSkeleton() {
 
 function KostnaderContent() {
   const { state, dispatch, loading } = useDodsbo();
+  const { t } = useLanguage();
   const kostnader = state.kostnader || [];
   const [mounted, setMounted] = useState(false);
   const [showForm, setShowForm] = useState(false);
@@ -135,15 +137,15 @@ function KostnaderContent() {
   return (
     <div className="flex flex-col min-h-dvh px-5 py-6 pb-24">
       <Link href="/dashboard" className="inline-flex items-center gap-2 text-sm text-muted hover:text-primary mb-4">
-        <ArrowLeft className="w-4 h-4" /> Dashboard
+        <ArrowLeft className="w-4 h-4" /> {t('Dashboard', 'Dashboard')}
       </Link>
 
       <div className="flex items-center gap-3 mb-2">
         <Receipt className="w-7 h-7 text-accent" />
-        <h1 className="text-2xl font-semibold text-primary">Dödsbokostnader</h1>
+        <h1 className="text-2xl font-semibold text-primary">{t('Dödsbokostnader', 'Estate costs')}</h1>
       </div>
       <p className="text-muted mb-6">
-        Håll koll på alla utgifter som dödsboet har. Dessa dras av före arvskiftet.
+        {t('Håll koll på alla utgifter som dödsboet har. Dessa dras av före arvskiftet.', 'Keep track of all estate expenses. These are deducted before the distribution of the estate.')}
       </p>
 
       {showInfo && (
@@ -152,11 +154,9 @@ function KostnaderContent() {
           <div className="flex items-start gap-2">
             <Info className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
             <div className="text-sm text-primary/80">
-              <p className="font-medium mb-1">Varför spåra kostnader?</p>
+              <p className="font-medium mb-1">{t('Varför spåra kostnader?', 'Why track expenses?')}</p>
               <p>
-                Dödsboets kostnader (begravning, juridik, värdering, städning m.m.) dras av
-                från tillgångarna <strong>innan</strong> arvet fördelas. Om en dödsbodelägare
-                har lagt ut pengar ska de ersättas av dödsboet. Spara alla kvitton!
+                {t('Dödsboets kostnader (begravning, juridik, värdering, städning m.m.) dras av från tillgångarna innan arvet fördelas. Om en dödsbodelägare har lagt ut pengar ska de ersättas av dödsboet. Spara alla kvitton!', 'Estate expenses (funeral, legal, appraisal, cleaning, etc.) are deducted from the assets before the inheritance is distributed. If a co-owner has advanced money, it should be reimbursed from the estate. Keep all receipts!')}
               </p>
             </div>
           </div>
@@ -167,10 +167,10 @@ function KostnaderContent() {
       <div className="card mb-6">
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-xs text-muted">Totala dödsbokostnader</p>
+            <p className="text-xs text-muted">{t('Totala dödsbokostnader', 'Total estate costs')}</p>
             <p className="text-2xl font-bold text-primary">{formatSEK(totalKostnad)}</p>
           </div>
-          <p className="text-xs text-muted">{kostnader.length} poster</p>
+          <p className="text-xs text-muted">{kostnader.length} {t('poster', 'items')}</p>
         </div>
       </div>
 
@@ -181,8 +181,8 @@ function KostnaderContent() {
           className="card border-l-4 border-accent bg-accent/5 mb-6 flex items-center justify-between hover:bg-accent/10 transition-colors"
         >
           <div>
-            <p className="font-medium text-accent text-sm">Betala dödsbo kostnader</p>
-            <p className="text-xs text-primary/70">{formatSEK(totalKostnad)} via Swish eller kort</p>
+            <p className="font-medium text-accent text-sm">{t('Betala dödsbo kostnader', 'Pay estate costs')}</p>
+            <p className="text-xs text-primary/70">{formatSEK(totalKostnad)} {t('via Swish eller kort', 'via Swish or card')}</p>
           </div>
           <Smartphone className="w-5 h-5 text-accent flex-shrink-0" />
         </button>
@@ -191,7 +191,7 @@ function KostnaderContent() {
       {/* Who paid breakdown */}
       {Object.keys(payers).length > 1 && (
         <div className="card mb-6">
-          <p className="text-xs text-muted uppercase tracking-wide font-semibold mb-2">Vem har betalat</p>
+          <p className="text-xs text-muted uppercase tracking-wide font-semibold mb-2">{t('Vem har betalat', 'Who has paid')}</p>
           {Object.entries(payers).map(([name, amount]) => (
             <div key={name} className="flex justify-between py-1 border-b border-[#E8E4DE] last:border-0">
               <span className="text-sm text-primary">{name}</span>
@@ -247,10 +247,10 @@ function KostnaderContent() {
       {/* Add form */}
       {showForm ? (
         <div className="card mb-6 space-y-3">
-          <h3 className="font-semibold text-primary text-sm">Lägg till kostnad</h3>
+          <h3 className="font-semibold text-primary text-sm">{t('Lägg till kostnad', 'Add expense')}</h3>
 
           <div>
-            <label className="text-xs text-muted font-medium">Kategori</label>
+            <label className="text-xs text-muted font-medium">{t('Kategori', 'Category')}</label>
             <select
               value={formCategory}
               onChange={(e) => setFormCategory(e.target.value as KostnadCategory)}
@@ -263,19 +263,19 @@ function KostnaderContent() {
           </div>
 
           <div>
-            <label className="text-xs text-muted font-medium">Beskrivning</label>
+            <label className="text-xs text-muted font-medium">{t('Beskrivning', 'Description')}</label>
             <input
               type="text"
               value={formDescription}
               onChange={(e) => setFormDescription(e.target.value)}
-              placeholder="T.ex. Begravningsbyrå Fonus"
+              placeholder={t('T.ex. Begravningsbyrå Fonus', 'E.g. Funeral home Fonus')}
               className="w-full px-3 py-2 border border-[#E8E4DE] rounded-card text-sm mt-1 placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-accent"
             />
           </div>
 
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="text-xs text-muted font-medium">Belopp (kr)</label>
+              <label className="text-xs text-muted font-medium">{t('Belopp (kr)', 'Amount (SEK)')}</label>
               <input
                 type="number"
                 value={formAmount}
@@ -285,7 +285,7 @@ function KostnaderContent() {
               />
             </div>
             <div>
-              <label className="text-xs text-muted font-medium">Datum</label>
+              <label className="text-xs text-muted font-medium">{t('Datum', 'Date')}</label>
               <input
                 type="date"
                 value={formDate}
@@ -296,23 +296,23 @@ function KostnaderContent() {
           </div>
 
           <div>
-            <label className="text-xs text-muted font-medium">Utlagt av (valfritt)</label>
+            <label className="text-xs text-muted font-medium">{t('Utlagt av (valfritt)', 'Paid by (optional)')}</label>
             <input
               type="text"
               value={formPaidBy}
               onChange={(e) => setFormPaidBy(e.target.value)}
-              placeholder="T.ex. Anna Svensson"
+              placeholder={t('T.ex. Anna Svensson', 'E.g. Anna Svensson')}
               className="w-full px-3 py-2 border border-[#E8E4DE] rounded-card text-sm mt-1 placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-accent"
             />
-            <p className="text-xs text-muted mt-1">Om en delägare har lagt ut — ska ersättas av dödsboet</p>
+            <p className="text-xs text-muted mt-1">{t('Om en delägare har lagt ut — ska ersättas av dödsboet', 'If a co-owner has advanced money — it should be reimbursed by the estate')}</p>
           </div>
 
           <div className="flex gap-2">
             <button onClick={addKostnad} className="flex-1 btn-primary text-sm">
-              Spara
+              {t('Spara', 'Save')}
             </button>
             <button onClick={() => setShowForm(false)} className="flex-1 btn-secondary text-sm">
-              Avbryt
+              {t('Avbryt', 'Cancel')}
             </button>
           </div>
         </div>
@@ -322,15 +322,13 @@ function KostnaderContent() {
           className="btn-primary flex items-center justify-center gap-2 mb-6"
         >
           <Plus className="w-5 h-5" />
-          Lägg till kostnad
+          {t('Lägg till kostnad', 'Add expense')}
         </button>
       )}
 
       <div className="bg-primary-lighter/30 rounded-card p-4">
         <p className="text-xs text-muted leading-relaxed">
-          Dödsbokostnader dras av från behållningen innan arvet fördelas (ÄB 18 kap.).
-          Begravningskostnader har företräde framför andra skulder. Spara alla kvitton
-          för redovisning i bouppteckningen och arvskiftet.
+          {t('Dödsbokostnader dras av från behållningen innan arvet fördelas (ÄB 18 kap.). Begravningskostnader har företräde framför andra skulder. Spara alla kvitton för redovisning i bouppteckningen och arvskiftet.', 'Estate costs are deducted from the assets before the inheritance is distributed (AB Chapter 18). Funeral expenses take precedence over other debts. Keep all receipts for reporting in the estate inventory and distribution.')}
         </p>
       </div>
 

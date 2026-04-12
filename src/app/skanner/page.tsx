@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useRef, useCallback } from 'react';
+import { useLanguage } from '@/lib/i18n';
 import Link from 'next/link';
 import { ArrowLeft, Camera, Upload, FileText, Check, X, Loader2, Eye } from 'lucide-react';
 import { BottomNav } from '@/components/ui/BottomNav';
@@ -40,6 +41,7 @@ function saveDocs(docs: ScannedDoc[]) {
 }
 
 export default function SkannerPage() {
+  const { t } = useLanguage();
   const [docs, setDocs] = useState<ScannedDoc[]>(() => loadDocs());
   const [capturing, setCapturing] = useState(false);
   const [processing, setProcessing] = useState(false);
@@ -135,15 +137,15 @@ export default function SkannerPage() {
     <div className="min-h-dvh bg-background pb-24">
       <div className="px-5 py-6">
         <Link href="/dashboard" className="inline-flex items-center gap-2 text-sm text-muted hover:text-primary mb-6">
-          <ArrowLeft className="w-4 h-4" /> Dashboard
+          <ArrowLeft className="w-4 h-4" /> {{t('Dashboard', 'Dashboard')}}
         </Link>
 
         <div className="flex items-center gap-3 mb-2">
           <Camera className="w-6 h-6 text-accent" />
-          <h1 className="text-2xl font-semibold text-primary">Dokumentskanner</h1>
+          <h1 className="text-2xl font-semibold text-primary">{t('Dokumentskanner', 'Document scanner')}</h1>
         </div>
         <p className="text-muted text-sm mb-6">
-          Fota kvitton, brev och dokument direkt med kameran, eller ladda upp från telefonen.
+          {{t('Fota kvitton, brev och dokument direkt med kameran, eller ladda upp från telefonen.', 'Take photos of receipts, letters and documents directly with the camera, or upload from your phone.')}}
         </p>
 
         {/* Processing overlay */}
@@ -151,7 +153,7 @@ export default function SkannerPage() {
           <div className="card mb-4">
             <div className="flex items-center gap-3 mb-3">
               <Loader2 className="w-5 h-5 text-accent animate-spin" />
-              <p className="text-sm text-primary font-medium">Läser text från bilden med OCR...</p>
+              <p className="text-sm text-primary font-medium">{t('Läser text från bilden med OCR...', 'Reading text from image with OCR...')}</p>
             </div>
             <div className="w-full bg-background rounded-full h-2">
               <div
@@ -159,7 +161,7 @@ export default function SkannerPage() {
                 style={{ width: `${ocrProgress}%`, background: 'linear-gradient(135deg, #6B7F5E, #4F6145)' }}
               />
             </div>
-            <p className="text-xs text-muted mt-1">{ocrProgress}% klart</p>
+            <p className="text-xs text-muted mt-1">{ocrProgress}% {{t('klart', 'done')}}</p>
           </div>
         )}
 
@@ -173,7 +175,7 @@ export default function SkannerPage() {
             />
 
             {/* Category picker */}
-            <p className="text-xs text-muted mb-2">Kategori</p>
+            <p className="text-xs text-muted mb-2">{{t('Kategori', 'Category')}}</p>
             <div className="flex flex-wrap gap-2 mb-4">
               {CATEGORIES.map(cat => (
                 <button
@@ -193,7 +195,7 @@ export default function SkannerPage() {
             {/* Extracted text */}
             {extractedText && (
               <div className="mb-4">
-                <p className="text-xs text-muted mb-1">Extraherad text</p>
+                <p className="text-xs text-muted mb-1">{{t('Extraherad text', 'Extracted text')}}</p>
                 <textarea
                   value={extractedText}
                   onChange={e => setExtractedText(e.target.value)}
@@ -205,10 +207,10 @@ export default function SkannerPage() {
 
             <div className="flex gap-3">
               <button onClick={saveDocument} className="btn-primary flex items-center justify-center gap-2 text-sm">
-                <Check className="w-4 h-4" /> Spara
+                <Check className="w-4 h-4" /> {{t('Spara', 'Save')}}
               </button>
               <button onClick={resetCapture} className="btn-secondary flex items-center justify-center gap-2 text-sm">
-                <X className="w-4 h-4" /> Avbryt
+                <X className="w-4 h-4" /> {{t('Avbryt', 'Cancel')}}
               </button>
             </div>
           </div>
@@ -221,13 +223,13 @@ export default function SkannerPage() {
               onClick={() => cameraInputRef.current?.click()}
               className="btn-primary flex items-center justify-center gap-2 py-4"
             >
-              <Camera className="w-5 h-5" /> Öppna kameran och fota
+              <Camera className="w-5 h-5" /> {{t('Öppna kameran och fota', 'Open camera and take photo')}}
             </button>
             <button
               onClick={() => fileInputRef.current?.click()}
               className="btn-secondary flex items-center justify-center gap-2"
             >
-              <Upload className="w-4 h-4" /> Välj bild från telefonen
+              <Upload className="w-4 h-4" /> {{t('Välj bild från telefonen', 'Choose image from phone')}}
             </button>
           </div>
         )}
@@ -253,7 +255,7 @@ export default function SkannerPage() {
         {docs.length > 0 && (
           <>
             <h2 className="font-semibold text-primary text-sm mb-3">
-              Sparade dokument ({docs.length})
+              {{t('Sparade dokument', 'Saved documents')}} ({docs.length})
             </h2>
             <div className="space-y-3">
               {docs.map(doc => {
@@ -291,8 +293,8 @@ export default function SkannerPage() {
         {docs.length === 0 && !showResult && !processing && (
           <div className="text-center py-12 text-muted">
             <FileText className="w-12 h-12 mx-auto mb-3 opacity-30" />
-            <p className="text-sm">Inga skannade dokument ännu.</p>
-            <p className="text-xs mt-1">Fota ett kvitto eller brev för att komma igång.</p>
+            <p className="text-sm">{{t('Inga skannade dokument ännu.', 'No scanned documents yet.')}}</p>
+            <p className="text-xs mt-1">{{t('Fota ett kvitto eller brev för att komma igång.', 'Take a photo of a receipt or letter to get started.')}}</p>
           </div>
         )}
       </div>

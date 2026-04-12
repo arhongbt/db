@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useLanguage } from '@/lib/i18n';
 import { BottomNav } from '@/components/ui/BottomNav';
 import Link from 'next/link';
 import { ArrowLeft, ChevronDown, ChevronUp, Search, BookOpen } from 'lucide-react';
@@ -94,6 +95,7 @@ const FAQ_ITEMS: FaqItem[] = [
 ];
 
 export default function FaqPage() {
+  const { t } = useLanguage();
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState<string>('Alla');
@@ -116,13 +118,13 @@ export default function FaqPage() {
         <Link
           href="/dashboard"
           className="p-2 -ml-2 min-h-[44px] min-w-[44px] flex items-center justify-center rounded-full hover:bg-background transition-colors"
-          aria-label="Tillbaka"
+          aria-label={t('Tillbaka', 'Back')}
         >
           <ArrowLeft className="w-5 h-5 text-primary" />
         </Link>
         <div>
-          <h1 className="text-2xl font-semibold text-primary">Vanliga frågor</h1>
-          <p className="text-muted text-sm">{FAQ_ITEMS.length} frågor & svar</p>
+          <h1 className="text-2xl font-semibold text-primary">{t('Vanliga frågor', 'FAQ')}</h1>
+          <p className="text-muted text-sm">{FAQ_ITEMS.length} {t('frågor & svar', 'questions & answers')}</p>
         </div>
       </div>
 
@@ -133,7 +135,7 @@ export default function FaqPage() {
           type="text"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          placeholder="Sök frågor..."
+          placeholder={t('Sök frågor...', 'Search questions...')}
           className="w-full min-h-touch pl-10 pr-4 py-3 text-base border-2 border-[#E8E4DE] rounded-card focus:border-accent focus:outline-none"
         />
       </div>
@@ -193,7 +195,7 @@ export default function FaqPage() {
       {filtered.length === 0 && (
         <div className="flex-1 flex flex-col items-center justify-center text-center py-12">
           <BookOpen className="w-16 h-16 text-gray-300 mb-4" />
-          <p className="text-muted">Inga frågor matchade sökningen.</p>
+          <p className="text-muted">{t('Inga frågor matchade sökningen.', 'No questions matched your search.')}</p>
         </div>
       )}
 

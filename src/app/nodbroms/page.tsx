@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useLanguage } from '@/lib/i18n';
 import { DodsboProvider, useDodsbo } from '@/lib/context';
 import { BottomNav } from '@/components/ui/BottomNav';
 import Link from 'next/link';
@@ -144,6 +145,7 @@ const NODBROMS_STEPS: NodbromsStep[] = [
 
 function NodbromsContent() {
   const { state } = useDodsbo();
+  const { t } = useLanguage();
   const [expandedId, setExpandedId] = useState<string | null>('lugn');
   const [doneSteps, setDoneSteps] = useState<Set<string>>(new Set());
 
@@ -159,9 +161,9 @@ function NodbromsContent() {
   const urgencyBadge = (urgency: string) => {
     switch (urgency) {
       case 'akut':
-        return <span className="px-2 py-0.5 bg-red-100 text-warn text-xs font-semibold rounded-full">Akut</span>;
+        return <span className="px-2 py-0.5 bg-red-100 text-warn text-xs font-semibold rounded-full">{t('Akut', 'Acute')}</span>;
       case 'viktig':
-        return <span className="px-2 py-0.5 bg-orange-100 text-orange-600 text-xs font-semibold rounded-full">Viktigt</span>;
+        return <span className="px-2 py-0.5 bg-orange-100 text-orange-600 text-xs font-semibold rounded-full">{t('Viktigt', 'Important')}</span>;
       default:
         return null;
     }
@@ -174,21 +176,20 @@ function NodbromsContent() {
         <Link
           href="/dashboard"
           className="p-2 -ml-2 min-h-[44px] min-w-[44px] flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors"
-          aria-label="Tillbaka"
+          aria-label={t('Tillbaka', 'Back')}
         >
           <ArrowLeft className="w-5 h-5 text-primary" />
         </Link>
         <div>
-          <h1 className="text-2xl font-semibold text-primary">Nödbroms</h1>
-          <p className="text-muted text-sm">De första 7 dagarna</p>
+          <h1 className="text-2xl font-semibold text-primary">{t('Nödbroms', 'Emergency Brakes')}</h1>
+          <p className="text-muted text-sm">{t('De första 7 dagarna', 'The first 7 days')}</p>
         </div>
       </div>
 
       {/* Reassurance box */}
       <div className="info-box mb-6 mt-4">
         <p className="text-sm">
-          <strong>Du klarar det här.</strong> Det finns inga krav på att allt ska ske på en gång.
-          Gör en sak i taget, i din egen takt. Denna lista är en guide — inte en deadline.
+          <strong>{t('Du klarar det här.', 'You can do this.')}</strong> {t('Det finns inga krav på att allt ska ske på en gång. Gör en sak i taget, i din egen takt. Denna lista är en guide — inte en deadline.', 'There are no requirements for everything to happen at once. Do one thing at a time, at your own pace. This list is a guide — not a deadline.')}
         </p>
       </div>
 
@@ -201,7 +202,7 @@ function NodbromsContent() {
           />
         </div>
         <span className="text-sm font-medium text-muted">
-          {doneSteps.size}/{NODBROMS_STEPS.length}
+          {doneSteps.size}/{NODBROMS_STEPS.length} {t('', '')}
         </span>
       </div>
 
@@ -238,11 +239,11 @@ function NodbromsContent() {
 
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-0.5">
-                    <span className="text-xs font-semibold text-accent">{step.day}</span>
+                    <span className="text-xs font-semibold text-accent">{t(step.day, step.day === 'Dag 1' ? 'Day 1' : step.day === 'Dag 1–3' ? 'Days 1–3' : step.day === 'Dag 2–5' ? 'Days 2–5' : step.day === 'Dag 3–7' ? 'Days 3–7' : step.day === 'Dag 5–7' ? 'Days 5–7' : step.day)}</span>
                     {urgencyBadge(step.urgency)}
                   </div>
                   <p className={`font-medium ${isDone ? 'line-through text-muted' : 'text-primary'}`}>
-                    {step.title}
+                    {t(step.title, step.title)}
                   </p>
                 </div>
 
@@ -256,13 +257,13 @@ function NodbromsContent() {
               {/* Expanded content */}
               {isExpanded && (
                 <div className="mt-4 ml-9">
-                  <p className="text-sm text-primary/80 mb-3">{step.description}</p>
+                  <p className="text-sm text-primary/80 mb-3">{t(step.description, step.description)}</p>
 
                   <ul className="space-y-2 mb-3">
                     {step.details.map((detail, i) => (
                       <li key={i} className="flex gap-2 text-sm text-primary/70">
                         <span className="text-accent mt-0.5">•</span>
-                        <span>{detail}</span>
+                        <span>{t(detail, detail)}</span>
                       </li>
                     ))}
                   </ul>
@@ -272,11 +273,11 @@ function NodbromsContent() {
                       <div className="flex gap-2">
                         <AlertTriangle className="w-5 h-5 text-orange-600 flex-shrink-0 mt-0.5" />
                         <div className="flex-1">
-                          <strong className="text-orange-900 block mb-2">{step.urgentAccessInfo.title}</strong>
+                          <strong className="text-orange-900 block mb-2">{t(step.urgentAccessInfo.title, step.urgentAccessInfo.title)}</strong>
                           <ul className="space-y-2">
                             {step.urgentAccessInfo.content.map((item, i) => (
                               <li key={i} className="text-orange-800">
-                                <span className="text-orange-600 mr-2">•</span>{item}
+                                <span className="text-orange-600 mr-2">•</span>{t(item, item)}
                               </li>
                             ))}
                           </ul>
@@ -287,8 +288,8 @@ function NodbromsContent() {
 
                   {step.tips && (
                     <div className="bg-primary-lighter/30 rounded-card p-3 text-sm">
-                      <strong className="text-primary">Tips:</strong>{' '}
-                      <span className="text-primary/80">{step.tips.split(/(\d[\d\s-]{6,})/).map((part: string, j: number) => {
+                      <strong className="text-primary">{t('Tips:', 'Tips:')}</strong>{' '}
+                      <span className="text-primary/80">{t(step.tips, step.tips).split(/(\d[\d\s-]{6,})/).map((part: string, j: number) => {
                         const digits = part.replace(/[^0-9]/g, '');
                         return digits.length >= 8 ? (
                           <a key={j} href={`tel:${digits}`} className="text-accent hover:underline">{part}</a>
@@ -315,10 +316,10 @@ function NodbromsContent() {
       {/* Disclaimer with acute hardship info */}
       <div className="mt-12 mb-6 p-4 bg-white rounded-card border border-[#E8E4DE] text-xs text-muted space-y-2">
         <p>
-          <strong className="text-primary">Denna sida är allmän vägledning,</strong> inte juridisk rådgivning. Situationer varierar.
+          <strong className="text-primary">{t('Denna sida är allmän vägledning,', 'This page is general guidance,')} </strong>{t('inte juridisk rådgivning. Situationer varierar.', 'not legal advice. Situations vary.')}
         </p>
         <p>
-          <strong className="text-orange-600">Vid akut ekonomisk nöd</strong> — kontakta kommunens socialtjänst omedelbar. De kan ge ekonomiskt bistånd när behovet är brådskande.
+          <strong className="text-orange-600">{t('Vid akut ekonomisk nöd', 'In case of acute financial hardship')}</strong> {t('— kontakta kommunens socialtjänst omedelbar. De kan ge ekonomiskt bistånd när behovet är brådskande.', '— contact your local social services immediately. They can provide financial assistance when the need is urgent.')}
         </p>
       </div>
 

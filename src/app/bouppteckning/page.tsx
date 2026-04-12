@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useLanguage } from '@/lib/i18n';
 import { DodsboProvider, useDodsbo } from '@/lib/context';
 import { BottomNav } from '@/components/ui/BottomNav';
 import { JuridiskTooltip } from '@/components/ui/JuridiskTooltip';
@@ -39,6 +40,7 @@ interface BouppteckningStep {
 }
 
 function BouppteckningContent() {
+  const { t } = useLanguage();
   const { state, dispatch, loading } = useDodsbo();
   const [mounted, setMounted] = useState(false);
   const [showPreview, setShowPreview] = useState(false);
@@ -120,39 +122,39 @@ function BouppteckningContent() {
   const steps: BouppteckningStep[] = [
     {
       id: 'delagare',
-      title: 'Dödsbodelägare',
-      description: 'Alla som har rätt till arvet ska finnas med',
+      title: t('Dödsbodelägare', 'Estate Co-owners'),
+      description: t('Alla som har rätt till arvet ska finnas med', 'Everyone entitled to the inheritance should be included'),
       icon: Users,
       checkFn: () => state.delagare.length > 0,
       href: '/delagare',
-      details: `${state.delagare.length} person(er) tillagda`,
+      details: `${state.delagare.length} ${t('person(er) tillagda', 'person(s) added')}`,
     },
     {
       id: 'tillgangar',
-      title: 'Tillgångar',
-      description: 'Bankkonton, fastighet, fordon, aktier, lösöre',
+      title: t('Tillgångar', 'Assets'),
+      description: t('Bankkonton, fastighet, fordon, aktier, lösöre', 'Bank accounts, property, vehicles, stocks, personal items'),
       icon: Wallet,
       checkFn: () => state.tillgangar.length > 0,
       href: '/tillgangar',
-      details: `${state.tillgangar.length} tillgång(ar) registrerade`,
+      details: `${state.tillgangar.length} ${t('tillgång(ar) registrerade', 'asset(s) registered')}`,
     },
     {
       id: 'skulder',
-      title: 'Skulder',
-      description: 'Bolån, konsumentlån, kreditkort, skatteskulder',
+      title: t('Skulder', 'Debts'),
+      description: t('Bolån, konsumentlån, kreditkort, skatteskulder', 'Mortgages, consumer loans, credit card debt, tax debt'),
       icon: CreditCard,
       checkFn: () => state.skulder.length > 0 || state.tillgangar.length > 0,
       href: '/tillgangar',
-      details: `${state.skulder.length} skuld(er) registrerade`,
+      details: `${state.skulder.length} ${t('skuld(er) registrerade', 'debt(s) registered')}`,
     },
     {
       id: 'forsakringar',
-      title: 'Försäkringar',
-      description: 'Liv-, grupp-, tjänste- och privata försäkringar',
+      title: t('Försäkringar', 'Insurance'),
+      description: t('Liv-, grupp-, tjänste- och privata försäkringar', 'Life, group, occupational, and personal insurance'),
       icon: Home,
       checkFn: () => state.forsakringar.length > 0,
       href: '/forsakringar',
-      details: `${state.forsakringar.length} försäkring(ar)`,
+      details: `${state.forsakringar.length} ${t('försäkring(ar)', 'insurance policy/policies')}`,
     },
   ];
 
@@ -179,14 +181,14 @@ function BouppteckningContent() {
         <Link
           href="/dashboard"
           className="p-2 -ml-2 min-h-[44px] min-w-[44px] flex items-center justify-center rounded-full hover:bg-background transition-colors"
-          aria-label="Tillbaka"
+          aria-label={t('Tillbaka', 'Back')}
         >
           <ArrowLeft className="w-5 h-5 text-primary" />
         </Link>
         <div>
-          <h1 className="text-2xl font-semibold text-primary">Bouppteckning</h1>
+          <h1 className="text-2xl font-semibold text-primary">{t('Bouppteckning', 'Estate Inventory')}</h1>
           <p className="text-muted text-sm">
-            Samla underlag steg för steg
+            {t('Samla underlag steg för steg', 'Gather documentation step by step')}
           </p>
         </div>
       </div>
@@ -197,12 +199,10 @@ function BouppteckningContent() {
           <Info className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
           <div>
             <p className="text-sm font-medium text-primary">
-              Vad är en bouppteckning?
+              {t('Vad är en bouppteckning?', 'What is an estate inventory?')}
             </p>
             <p className="text-sm text-primary/70 mt-1">
-              En förteckning av den avlidnes alla tillgångar och skulder per dödsdagen.
-              Den ska upprättas inom 3 månader och skickas till Skatteverket inom 4 månader.
-              Två utomstående <JuridiskTooltip term="förrättningsman">förrättningsmän</JuridiskTooltip> krävs.
+              {t('En förteckning av den avlidnes alla tillgångar och skulder per dödsdagen. Den ska upprättas inom 3 månader och skickas till Skatteverket inom 4 månader. Två utomstående förrättningsmän krävs.', 'A record of the deceased\'s assets and liabilities as of the date of death. It must be prepared within 3 months and submitted to the Swedish Tax Agency within 4 months. Two independent witnesses are required.')}
             </p>
           </div>
         </div>
@@ -210,7 +210,7 @@ function BouppteckningContent() {
 
       {/* Mike Ross förklarar */}
       <MikeRossTip
-        text="Bouppteckning låter krångligt, men det är i grunden bara en lista över allt den avlidne ägde och var skyldig. Förrättningsmännen är två oberoende personer som intygar att listan stämmer — de behöver inte vara jurister. Bouppgivaren är den som bäst kände till den avlidnes ekonomi."
+        text={t('Bouppteckning låter krångligt, men det är i grunden bara en lista över allt den avlidne ägde och var skyldig. Förrättningsmännen är två oberoende personer som intygar att listan stämmer — de behöver inte vara jurister. Bouppgivaren är den som bäst kände till den avlidnes ekonomi.', 'Estate inventory seems complicated, but it\'s basically just a list of everything the deceased owned and owed. The witnesses are two independent people who confirm the list is accurate—they don\'t need to be lawyers. The property reporter is someone who knew the deceased\'s finances well.')}
         className="mb-5"
       />
 
@@ -218,10 +218,10 @@ function BouppteckningContent() {
       <div className="card mb-6">
         <div className="flex justify-between items-center mb-2">
           <span className="text-sm font-medium text-primary">
-            Insamlingsprogress
+            {t('Insamlingsprogress', 'Collection Progress')}
           </span>
           <span className="text-sm text-muted">
-            {completedSteps}/{steps.length} klara
+            {completedSteps}/{steps.length} {t('klara', 'done')}
           </span>
         </div>
         <div className="w-full h-2 bg-gray-200 rounded-full mb-4">
@@ -236,7 +236,7 @@ function BouppteckningContent() {
           <div className="flex items-center gap-2 text-sm">
             <AlertTriangle className="w-4 h-4 text-warn" />
             <span className="text-primary/70">
-              Frist:{' '}
+              {t('Frist', 'Deadline')}: {' '}
               {new Date(
                 new Date(state.deathDate).getTime() + 90 * 24 * 60 * 60 * 1000
               ).toLocaleDateString('sv-SE', {
@@ -244,7 +244,7 @@ function BouppteckningContent() {
                 month: 'long',
                 year: 'numeric',
               })}{' '}
-              (3 månader efter dödsfallet)
+              ({t('3 månader efter dödsfallet', '3 months after death')})
             </span>
           </div>
         )}
@@ -286,8 +286,8 @@ function BouppteckningContent() {
         <div className="flex items-center gap-3">
           <FileText className="w-5 h-5 text-accent" />
           <div>
-            <span className="font-medium text-primary">Komplettera för Skatteverket</span>
-            <p className="text-xs text-muted">Personnummer, adress, förrättningsmän</p>
+            <span className="font-medium text-primary">{t('Komplettera för Skatteverket', 'Complete for Swedish Tax Agency')}</span>
+            <p className="text-xs text-muted">{t('Personnummer, adress, förrättningsmän', 'ID number, address, witnesses')}</p>
           </div>
         </div>
         <ChevronRight className={`w-5 h-5 text-muted transition-transform ${showExtraFields ? 'rotate-90' : ''}`} />
@@ -295,17 +295,17 @@ function BouppteckningContent() {
 
       {showExtraFields && (
         <div className="card border-2 border-accent/30 mb-6 space-y-4">
-          <h3 className="text-base font-semibold text-primary">Den avlidnes uppgifter</h3>
+          <h3 className="text-base font-semibold text-primary">{t('Den avlidnes uppgifter', 'Deceased Information')}</h3>
 
           <label className="block">
-            <span className="text-sm font-medium text-primary mb-1 block">Personnummer</span>
+            <span className="text-sm font-medium text-primary mb-1 block">{t('Personnummer', 'ID Number')}</span>
             <input
               type="text"
               inputMode="numeric"
               value={personnummer}
               onChange={(e) => { setPersonnummer(e.target.value); setPnrError(''); }}
               onBlur={handlePersonnummerBlur}
-              placeholder="ÅÅÅÅMMDD-XXXX"
+              placeholder={t('ÅÅÅÅMMDD-XXXX', 'YYYYMMDD-XXXX')}
               autoComplete="off"
               className={`w-full px-4 py-3 text-base border-2 rounded-card focus:outline-none ${
                 pnrError
@@ -321,37 +321,37 @@ function BouppteckningContent() {
           </label>
 
           <label className="block">
-            <span className="text-sm font-medium text-primary mb-1 block">Adress</span>
+            <span className="text-sm font-medium text-primary mb-1 block">{t('Adress', 'Address')}</span>
             <input
               type="text"
               value={address}
               onChange={(e) => setAddress(e.target.value)}
               onBlur={saveBouppteckningInfo}
-              placeholder="Gatuadress, postnummer ort"
+              placeholder={t('Gatuadress, postnummer ort', 'Street address, postal code city')}
               className="w-full px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-card focus:border-accent focus:outline-none"
             />
           </label>
 
           <label className="block">
-            <span className="text-sm font-medium text-primary mb-1 block">Folkbokföringsort</span>
+            <span className="text-sm font-medium text-primary mb-1 block">{t('Folkbokföringsort', 'Registration Municipality')}</span>
             <input
               type="text"
               value={folkbokforingsort}
               onChange={(e) => setFolkbokforingsort(e.target.value)}
               onBlur={saveBouppteckningInfo}
-              placeholder="T.ex. Stockholms kommun"
+              placeholder={t('T.ex. Stockholms kommun', 'E.g. Stockholm Municipality')}
               className="w-full px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-card focus:border-accent focus:outline-none"
             />
           </label>
 
           <div>
-            <span className="text-sm font-medium text-primary mb-2 block">Civilstånd</span>
+            <span className="text-sm font-medium text-primary mb-2 block">{t('Civilstånd', 'Marital Status')}</span>
             <div className="grid grid-cols-2 gap-2">
               {([
-                { value: 'gift', label: 'Gift' },
-                { value: 'ogift', label: 'Ogift' },
-                { value: 'anka_ankling', label: 'Änka/änkling' },
-                { value: 'skild', label: 'Skild' },
+                { value: 'gift', label: t('Gift', 'Married') },
+                { value: 'ogift', label: t('Ogift', 'Single') },
+                { value: 'anka_ankling', label: t('Änka/änkling', 'Widow/Widower') },
+                { value: 'skild', label: t('Skild', 'Divorced') },
               ] as const).map((opt) => (
                 <button
                   key={opt.value}
@@ -370,10 +370,10 @@ function BouppteckningContent() {
           </div>
 
           <hr className="border-[#E8E4DE]" />
-          <h3 className="text-base font-semibold text-primary">Förrättning</h3>
+          <h3 className="text-base font-semibold text-primary">{t('Förrättning', 'Estate Proceeding')}</h3>
 
           <label className="block">
-            <span className="text-sm font-medium text-primary mb-1 block">Förrättningsdatum</span>
+            <span className="text-sm font-medium text-primary mb-1 block">{t('Förrättningsdatum', 'Date of Proceeding')}</span>
             <input
               type="date"
               value={forrattningsdatum}
@@ -384,41 +384,41 @@ function BouppteckningContent() {
           </label>
 
           <label className="block">
-            <span className="text-sm font-medium text-primary mb-1 block">Bouppgivare</span>
+            <span className="text-sm font-medium text-primary mb-1 block">{t('Bouppgivare', 'Property Reporter')}</span>
             <input
               type="text"
               value={bouppgivareName}
               onChange={(e) => setBouppgivareName(e.target.value)}
               onBlur={saveBouppteckningInfo}
-              placeholder="Den som lämnar uppgifterna"
+              placeholder={t('Den som lämnar uppgifterna', 'Person providing information')}
               className="w-full px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-card focus:border-accent focus:outline-none"
             />
-            <span className="text-xs text-muted mt-1 block">Oftast en nära anhörig som känner till dödsboet</span>
+            <span className="text-xs text-muted mt-1 block">{t('Oftast en nära anhörig som känner till dödsboet', 'Usually a close relative familiar with the estate')}</span>
           </label>
 
           <label className="block">
-            <span className="text-sm font-medium text-primary mb-1 block">Förrättningsman 1</span>
+            <span className="text-sm font-medium text-primary mb-1 block">{t('Förrättningsman 1', 'Witness 1')}</span>
             <input
               type="text"
               value={fm1Name}
               onChange={(e) => setFm1Name(e.target.value)}
               onBlur={saveBouppteckningInfo}
-              placeholder="Namn"
+              placeholder={t('Namn', 'Name')}
               className="w-full px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-card focus:border-accent focus:outline-none"
             />
           </label>
 
           <label className="block">
-            <span className="text-sm font-medium text-primary mb-1 block">Förrättningsman 2</span>
+            <span className="text-sm font-medium text-primary mb-1 block">{t('Förrättningsman 2', 'Witness 2')}</span>
             <input
               type="text"
               value={fm2Name}
               onChange={(e) => setFm2Name(e.target.value)}
               onBlur={saveBouppteckningInfo}
-              placeholder="Namn"
+              placeholder={t('Namn', 'Name')}
               className="w-full px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-card focus:border-accent focus:outline-none"
             />
-            <span className="text-xs text-muted mt-1 block">Två oberoende personer som intygar att uppgifterna stämmer</span>
+            <span className="text-xs text-muted mt-1 block">{t('Två oberoende personer som intygar att uppgifterna stämmer', 'Two independent people confirming the accuracy of the information')}</span>
           </label>
         </div>
       )}
@@ -427,18 +427,18 @@ function BouppteckningContent() {
       {(state.tillgangar.length > 0 || state.skulder.length > 0) && (
         <div className="card border-2 border-primary-lighter mb-6">
           <h2 className="text-lg font-semibold text-primary mb-4">
-            Sammanfattning
+            {t('Sammanfattning', 'Summary')}
           </h2>
 
           {/* Deceased info */}
           <div className="pb-3 mb-3 border-b border-[#E8E4DE]">
-            <p className="text-sm text-muted">Den avlidne</p>
+            <p className="text-sm text-muted">{t('Den avlidne', 'The Deceased')}</p>
             <p className="font-medium text-primary">
               {state.deceasedName || '–'}
             </p>
             {state.deathDate && (
               <p className="text-sm text-muted">
-                Dödsdatum:{' '}
+                {t('Dödsdatum', 'Date of Death')}: {' '}
                 {new Date(state.deathDate).toLocaleDateString('sv-SE')}
               </p>
             )}
@@ -446,7 +446,7 @@ function BouppteckningContent() {
 
           {/* Delägare */}
           <div className="pb-3 mb-3 border-b border-[#E8E4DE]">
-            <p className="text-sm text-muted mb-1">Dödsbodelägare</p>
+            <p className="text-sm text-muted mb-1">{t('Dödsbodelägare', 'Estate Co-owners')}</p>
             {state.delagare.length > 0 ? (
               state.delagare.map((d) => (
                 <p key={d.id} className="text-sm text-primary">
@@ -454,27 +454,27 @@ function BouppteckningContent() {
                 </p>
               ))
             ) : (
-              <p className="text-sm text-muted italic">Inga tillagda</p>
+              <p className="text-sm text-muted italic">{t('Inga tillagda', 'None added')}</p>
             )}
           </div>
 
           {/* Ekonomisk sammanfattning */}
           <div className="space-y-2">
             <div className="flex justify-between">
-              <span className="text-sm text-muted">Tillgångar</span>
+              <span className="text-sm text-muted">{t('Tillgångar', 'Assets')}</span>
               <span className="text-sm font-medium text-success">
                 {formatSEK(totalTillgangar)}
               </span>
             </div>
             <div className="flex justify-between">
-              <span className="text-sm text-muted">Skulder</span>
+              <span className="text-sm text-muted">{t('Skulder', 'Debts')}</span>
               <span className="text-sm font-medium text-warn">
                 {formatSEK(totalSkulder)}
               </span>
             </div>
             <div className="flex justify-between pt-2 border-t border-[#E8E4DE]">
               <span className="text-base font-semibold text-primary">
-                Behållning
+                {t('Behållning', 'Net Estate')}
               </span>
               <span
                 className={`text-base font-bold ${
@@ -499,7 +499,7 @@ function BouppteckningContent() {
           className="btn-primary flex items-center justify-center gap-2"
         >
           <Eye className="w-5 h-5" />
-          Förhandsgranska bouppteckning
+          {t('Förhandsgranska bouppteckning', 'Preview Estate Inventory')}
         </button>
 
         {allDone && (
@@ -507,7 +507,7 @@ function BouppteckningContent() {
             onClick={() => {
               if (isBankIDVerified) {
                 // Simulate sending to Skatteverket
-                alert('Bouppteckning skickad till Skatteverket!');
+                alert(t('Bouppteckning skickad till Skatteverket!', 'Estate inventory sent to Swedish Tax Agency!'));
               } else {
                 setShowBankIDModal(true);
               }
@@ -516,20 +516,20 @@ function BouppteckningContent() {
             style={{ background: isBankIDVerified ? '#6B7F5E' : '#999' }}
           >
             <Send className="w-5 h-5" />
-            Skicka digitalt till Skatteverket
+            {t('Skicka digitalt till Skatteverket', 'Send digitally to Swedish Tax Agency')}
           </button>
         )}
 
         {!allDone && (
           <p className="text-center text-xs text-muted">
-            OBS: Alla steg är inte ifyllda ({completedSteps}/{steps.length}). Du kan fortfarande förhandsgranska.
+            {t('OBS: Alla steg är inte ifyllda', 'NOTE: Not all steps are completed')} ({completedSteps}/{steps.length}). {t('Du kan fortfarande förhandsgranska.', 'You can still preview.')}
           </p>
         )}
       </div>
 
       {!allDone && (
         <p className="text-center text-xs text-muted mt-2">
-          Du kan alltid komma tillbaka och uppdatera informationen.
+          {t('Du kan alltid komma tillbaka och uppdatera informationen.', 'You can always come back and update the information.')}
         </p>
       )}
 
@@ -540,7 +540,7 @@ function BouppteckningContent() {
             {/* Modal header */}
             <div className="flex items-center justify-between px-5 py-4 border-b border-[#E8E4DE]">
               <h2 className="text-lg font-semibold text-primary">
-                Förhandsgranskning
+                {t('Förhandsgranskning', 'Preview')}
               </h2>
               <button
                 onClick={() => setShowPreview(false)}
@@ -624,15 +624,14 @@ function BouppteckningContent() {
             {/* Modal footer */}
             <div className="px-5 py-4 border-t border-[#E8E4DE]">
               <p className="text-xs text-muted text-center mb-3">
-                OBS: Detta är ett utkast. En bouppteckning måste granskas av förrättningsmän
-                och skickas till Skatteverket för registrering.
+                {t('OBS: Detta är ett utkast. En bouppteckning måste granskas av förrättningsmän och skickas till Skatteverket för registrering.', 'NOTE: This is a draft. An estate inventory must be reviewed by witnesses and submitted to the Swedish Tax Agency for registration.')}
               </p>
               <div className="flex gap-3">
                 <button
                   onClick={() => setShowPreview(false)}
                   className="flex-1 py-3 px-4 rounded-xl border border-[#E8E4DE] text-primary font-medium hover:bg-background transition-colors"
                 >
-                  Stäng
+                  {t('Stäng', 'Close')}
                 </button>
                 <button
                   onClick={async () => {
@@ -644,7 +643,7 @@ function BouppteckningContent() {
                   className="flex-1 btn-primary flex items-center justify-center gap-2"
                 >
                   <Download className="w-4 h-4" />
-                  PDF
+                  {t('PDF', 'PDF')}
                 </button>
                 <button
                   onClick={async () => {
@@ -656,7 +655,7 @@ function BouppteckningContent() {
                   className="flex-1 py-3 px-4 rounded-xl bg-accent/10 text-accent font-medium hover:bg-accent/20 transition-colors flex items-center justify-center gap-2"
                 >
                   <FileText className="w-4 h-4" />
-                  Word
+                  {t('Word', 'Word')}
                 </button>
               </div>
             </div>

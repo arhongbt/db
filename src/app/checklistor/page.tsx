@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { useLanguage } from '@/lib/i18n';
 import { ArrowLeft, Printer, CheckSquare, Landmark, FileText, Heart, Scale, Shield, Phone } from 'lucide-react';
 import { BottomNav } from '@/components/ui/BottomNav';
 
@@ -126,6 +127,7 @@ const CHECKLISTS: Checklist[] = [
 ];
 
 export default function ChecklistorPage() {
+  const { t } = useLanguage();
   const [selected, setSelected] = useState<string | null>(null);
   const [checklists, setChecklists] = useState(CHECKLISTS);
 
@@ -167,10 +169,10 @@ export default function ChecklistorPage() {
           )}
           <div className="flex-1">
             <h1 className="text-2xl font-semibold text-primary">
-              {selected ? selectedList?.title : 'Checklistor'}
+              {selected ? selectedList?.title : t('Checklistor', 'Checklists')}
             </h1>
             <p className="text-muted text-sm">
-              {selected ? selectedList?.description : 'Utskriftsvänliga checklistor för varje steg'}
+              {selected ? selectedList?.description : t('Utskriftsvänliga checklistor för varje steg', 'Printable checklists for each step')}
             </p>
           </div>
           {selected && (
@@ -178,7 +180,7 @@ export default function ChecklistorPage() {
               onClick={handlePrint}
               className="p-2.5 rounded-xl hover:bg-white transition-colors print:hidden"
               style={{ border: '1px solid #E8E4DE' }}
-              aria-label="Skriv ut"
+              aria-label={t('Skriv ut', 'Print')}
             >
               <Printer className="w-5 h-5 text-accent" />
             </button>
@@ -233,7 +235,7 @@ export default function ChecklistorPage() {
             <div className="hidden print:block mb-6">
               <h1 className="text-2xl font-bold">{selectedList.title}</h1>
               <p className="text-gray-600">{selectedList.description}</p>
-              <p className="text-sm text-gray-500 mt-1">Sista Resan — utskrift {new Date().toLocaleDateString('sv-SE')}</p>
+              <p className="text-sm text-gray-500 mt-1">{t('Sista Resan — utskrift', 'Sista Resan — print')} {new Date().toLocaleDateString('sv-SE')}</p>
               <hr className="mt-4" />
             </div>
 
@@ -274,7 +276,7 @@ export default function ChecklistorPage() {
             {/* Progress summary */}
             <div className="mt-6 p-4 bg-white border rounded-2xl print:hidden" style={{ borderColor: '#E8E4DE' }}>
               <div className="flex items-center justify-between mb-2">
-                <p className="text-sm font-semibold text-primary">Framsteg</p>
+                <p className="text-sm font-semibold text-primary">{t('Framsteg', 'Progress')}</p>
                 <p className="text-sm font-semibold text-accent">
                   {selectedList.items.filter(i => i.done).length} / {selectedList.items.length}
                 </p>

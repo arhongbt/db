@@ -7,7 +7,7 @@ export type Language = 'sv' | 'en';
 interface LanguageContextType {
   language: Language;
   setLanguage: (lang: Language) => void;
-  t: (key: string) => string;
+  t: (keyOrSwedish: string, english?: string) => string;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
@@ -326,8 +326,14 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     }
   };
 
-  const t = (key: string): string => {
-    return translations[language][key] || translations['sv'][key] || key;
+  // Two modes:
+  // t('dict.key') — dictionary lookup for shared UI strings
+  // t('Swedish text', 'English text') — inline translation for page content
+  const t = (keyOrSwedish: string, english?: string): string => {
+    if (english !== undefined) {
+      return language === 'en' ? english : keyOrSwedish;
+    }
+    return translations[language][keyOrSwedish] || translations['sv'][keyOrSwedish] || keyOrSwedish;
   };
 
   if (!mounted) {
@@ -345,7 +351,10 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 const defaultContext: LanguageContextType = {
   language: 'sv',
   setLanguage: () => {},
-  t: (key: string) => translations['sv'][key] || key,
+  t: (keyOrSwedish: string, english?: string) => {
+    if (english !== undefined) return keyOrSwedish;
+    return translations['sv'][keyOrSwedish] || keyOrSwedish;
+  },
 };
 
 export function useLanguage() {

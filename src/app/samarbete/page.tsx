@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useLanguage } from '@/lib/i18n';
 import Link from 'next/link';
 import { DodsboProvider, useDodsbo } from '@/lib/context';
 import { BottomNav } from '@/components/ui/BottomNav';
@@ -50,11 +51,11 @@ interface TimelineEntry {
 }
 
 const PREDEFINED_DECISIONS = [
-  'Godkänna bouppteckning',
-  'Godkänna arvskifte',
-  'Sälja bostad',
-  'Sälja fordon',
-  'Fördela lösöre'
+  { sv: 'Godkänna bouppteckning', en: 'Approve estate inventory' },
+  { sv: 'Godkänna arvskifte', en: 'Approve inheritance division' },
+  { sv: 'Sälja bostad', en: 'Sell property' },
+  { sv: 'Sälja fordon', en: 'Sell vehicle' },
+  { sv: 'Fördela lösöre', en: 'Distribute movable assets' }
 ];
 
 function getStatusColor(status: DecisionStatus): string {
@@ -82,6 +83,7 @@ function getStatusIcon(status: DecisionStatus) {
 }
 
 function TabBeslut() {
+  const { t } = useLanguage();
   const { state } = useDodsbo();
   const [decisions, setDecisions] = useState<Decision[]>([]);
   const [showAddForm, setShowAddForm] = useState(false);
@@ -97,9 +99,9 @@ function TabBeslut() {
         if (stored) {
           setDecisions(JSON.parse(stored));
         } else {
-          const initial: Decision[] = PREDEFINED_DECISIONS.map((title) => ({
+          const initial: Decision[] = PREDEFINED_DECISIONS.map((item) => ({
             id: Math.random().toString(36).substr(2, 9),
-            title,
+            title: item.sv,
             status: 'Väntar' as DecisionStatus,
             approvals: state.delagare.reduce((acc, del) => { acc[del.name] = false; return acc; }, {} as Record<string, boolean>),
             lastUpdated: new Date().toISOString(),
@@ -118,9 +120,9 @@ function TabBeslut() {
         if (data && data.length > 0) {
           setDecisions(data.map(row => ({ id: row.id, title: row.title, status: row.status, approvals: row.approvals, lastUpdated: row.updated_at, createdAt: row.created_at })));
         } else {
-          for (const title of PREDEFINED_DECISIONS) {
+          for (const item of PREDEFINED_DECISIONS) {
             const approvals = state.delagare.reduce((acc, del) => { acc[del.name] = false; return acc; }, {} as Record<string, boolean>);
-            await addBeslut(dbId, title, approvals);
+            await addBeslut(dbId, item.sv, approvals);
           }
           const { data: seeded } = await getBeslut(dbId);
           if (seeded) setDecisions(seeded.map(row => ({ id: row.id, title: row.title, status: row.status, approvals: row.approvals, lastUpdated: row.updated_at, createdAt: row.created_at })));
@@ -178,7 +180,7 @@ function TabBeslut() {
 
   return (
     <div>
-      <MikeRossTip text="Alla dödsbodelägare måste vara överens om beslut. Här kan ni hålla koll på vilka beslut som tagits och vem som godkänt." />
+      <MikeRossTip text={t('Alla dödsbodelägare måste vara överens om beslut. Här kan ni hålla koll på vilka beslut som tagits och vem som godkänt.', 'All estate owners must agree on decisions. Here you can track what decisions have been made and who has approved them.')} />
 
       <div className="space-y-4 mb-6">
         {decisions.map((decision) => (
@@ -192,7 +194,7 @@ function TabBeslut() {
                     style={{ background: getStatusColor(decision.status) }}
                   >
                     {getStatusIcon(decision.status)}
-                    {decision.status}
+                    {t(decision.status, decision.status === 'Väntar' ? 'Pending' : decision.status === 'Pågår' ? 'In progress' : 'All approved')}
                   </div>
                   <span className="text-xs text-muted-light">
                     {new Date(decision.lastUpdated).toLocaleDateString('sv-SE')}
@@ -235,35 +237,35 @@ function TabBeslut() {
           className="w-full py-3 border-2 border-dashed border-accent text-accent font-semibold rounded-xl hover:bg-accent/5 transition flex items-center justify-center gap-2"
         >
           <Plus className="w-4 h-4" />
-          Lägg till beslut
+          {t('Lägg till beslut', 'Add decision')}
         </button>
       ) : (
         <div className="bg-white border rounded-2xl p-4 mb-6">
-          <h3 className="font-semibold text-primary mb-3">Lägg till nytt beslut</h3>
+          <h3 className="font-semibold text-primary mb-3">{t('Lägg till nytt beslut', 'Add new decision')}</h3>
 
           <div className="mb-3">
-            <label className="block text-xs font-semibold text-primary mb-2">Välj fördefinierat beslut</label>
+            <label className="block text-xs font-semibold text-primary mb-2">{t('Välj fördefinierat beslut', 'Choose predefined decision')}</label>
             <select
               value={selectedPredefined}
               onChange={(e) => setSelectedPredefined(e.target.value)}
               className="w-full px-4 py-3 border border-[#E8E4DE] rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white"
             >
-              <option value="">-- Välj --</option>
-              {PREDEFINED_DECISIONS.map((decision) => (
-                <option key={decision} value={decision}>
-                  {decision}
+              <option value="">-- {t('Välj', 'Choose')} --</option>
+              {PREDEFINED_DECISIONS.map((item) => (
+                <option key={item.sv} value={item.sv}>
+                  {t(item.sv, item.en)}
                 </option>
               ))}
             </select>
           </div>
 
           <div className="mb-3">
-            <label className="block text-xs font-semibold text-primary mb-2">Eller skriv eget beslut</label>
+            <label className="block text-xs font-semibold text-primary mb-2">{t('Eller skriv eget beslut', 'Or write your own decision')}</label>
             <input
               type="text"
               value={newDecisionTitle}
               onChange={(e) => setNewDecisionTitle(e.target.value)}
-              placeholder="Skriva här..."
+              placeholder={t('Skriva här...', 'Write here...')}
               className="w-full px-4 py-3 border border-[#E8E4DE] rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white"
             />
           </div>
@@ -273,7 +275,7 @@ function TabBeslut() {
               onClick={addDecision}
               className="flex-1 py-2.5 bg-accent text-white font-semibold rounded-xl hover:opacity-90 transition"
             >
-              Lägg till
+              {t('Lägg till', 'Add')}
             </button>
             <button
               onClick={() => {
@@ -283,7 +285,7 @@ function TabBeslut() {
               }}
               className="flex-1 py-2.5 border border-[#E8E4DE] text-primary font-semibold rounded-xl hover:bg-background transition"
             >
-              Avbryt
+              {t('Avbryt', 'Cancel')}
             </button>
           </div>
         </div>
@@ -293,6 +295,7 @@ function TabBeslut() {
 }
 
 function TabAnteckningar() {
+  const { t } = useLanguage();
   const { state } = useDodsbo();
   const [notes, setNotes] = useState<Note[]>([]);
   const [author, setAuthor] = useState('');
@@ -346,19 +349,19 @@ function TabAnteckningar() {
 
   return (
     <div>
-      <MikeRossTip text="Skriv anteckningar som alla delägare kan se. Perfekt för att dokumentera telefonsamtal, överenskommelser eller viktiga detaljer." />
+      <MikeRossTip text={t('Skriv anteckningar som alla delägare kan se. Perfekt för att dokumentera telefonsamtal, överenskommelser eller viktiga detaljer.', 'Write notes that all co-owners can see. Perfect for documenting phone calls, agreements or important details.')} />
 
       <div className="bg-white border rounded-2xl p-4 mb-6">
-        <h3 className="font-semibold text-primary mb-3">Ny anteckning</h3>
+        <h3 className="font-semibold text-primary mb-3">{t('Ny anteckning', 'New note')}</h3>
 
         <div className="mb-3">
-          <label className="block text-xs font-semibold text-primary mb-2">Författare</label>
+          <label className="block text-xs font-semibold text-primary mb-2">{t('Författare', 'Author')}</label>
           <select
             value={author}
             onChange={(e) => setAuthor(e.target.value)}
             className="w-full px-4 py-3 border border-[#E8E4DE] rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white"
           >
-            <option value="">-- Välj namn --</option>
+            <option value="">-- {t('Välj namn', 'Choose name')} --</option>
             {state.delagare.map((del) => (
               <option key={del.name} value={del.name}>
                 {del.name}
@@ -368,11 +371,11 @@ function TabAnteckningar() {
         </div>
 
         <div className="mb-3">
-          <label className="block text-xs font-semibold text-primary mb-2">Anteckning</label>
+          <label className="block text-xs font-semibold text-primary mb-2">{t('Anteckning', 'Note')}</label>
           <textarea
             value={content}
             onChange={(e) => setContent(e.target.value)}
-            placeholder="Skriv här..."
+            placeholder={t('Skriv här...', 'Write here...')}
             className="w-full px-4 py-3 border border-[#E8E4DE] rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white resize-none"
             rows={4}
           />
@@ -382,7 +385,7 @@ function TabAnteckningar() {
           onClick={addNote}
           className="w-full py-2.5 bg-accent text-white font-semibold rounded-xl hover:opacity-90 transition"
         >
-          Lägg till anteckning
+          {t('Lägg till anteckning', 'Add note')}
         </button>
       </div>
 
@@ -410,7 +413,7 @@ function TabAnteckningar() {
 
       {notes.length === 0 && (
         <div className="text-center py-8">
-          <p className="text-muted-light text-sm">Inga anteckningar än</p>
+          <p className="text-muted-light text-sm">{t('Inga anteckningar än', 'No notes yet')}</p>
         </div>
       )}
     </div>
@@ -487,7 +490,7 @@ function TabTidslinje() {
 
   return (
     <div>
-      <MikeRossTip text="Tidslinjen visar alla viktiga händelser i ordning. Det hjälper er att hålla koll på vad som hänt och vad som behöver göras." />
+      <MikeRossTip text={t('Tidslinjen visar alla viktiga händelser i ordning. Det hjälper er att hålla koll på vad som hänt och vad som behöver göras.', 'The timeline shows all important events in order. It helps you keep track of what has happened and what needs to be done.')} />
 
       <div className="space-y-4">
         {timelineEntries.map((entry, index) => (
@@ -518,7 +521,7 @@ function TabTidslinje() {
 
       {timelineEntries.length === 0 && (
         <div className="text-center py-8">
-          <p className="text-muted-light text-sm">Ingen aktivitet än</p>
+          <p className="text-muted-light text-sm">{t('Ingen aktivitet än', 'No activity yet')}</p>
         </div>
       )}
     </div>
@@ -526,6 +529,7 @@ function TabTidslinje() {
 }
 
 function Content() {
+  const { t } = useLanguage();
   const [tab, setTab] = useState<'beslut' | 'anteckningar' | 'tidslinje'>('beslut');
 
   return (
@@ -538,7 +542,7 @@ function Content() {
               <ArrowLeft className="w-5 h-5" />
             </Link>
             <Handshake className="w-6 h-6 text-accent" />
-            <h1 className="text-2xl font-bold text-primary">Samarbete</h1>
+            <h1 className="text-2xl font-bold text-primary">{t('Samarbete', 'Collaboration')}</h1>
           </div>
 
           {/* Tabs */}
@@ -550,7 +554,7 @@ function Content() {
               }`}
               style={tab === 'beslut' ? { background: 'linear-gradient(135deg, #6B7F5E, #4F6145)' } : undefined}
             >
-              Beslut
+              {t('Beslut', 'Decisions')}
             </button>
             <button
               onClick={() => setTab('anteckningar')}
@@ -559,7 +563,7 @@ function Content() {
               }`}
               style={tab === 'anteckningar' ? { background: 'linear-gradient(135deg, #6B7F5E, #4F6145)' } : undefined}
             >
-              Anteckningar
+              {t('Anteckningar', 'Notes')}
             </button>
             <button
               onClick={() => setTab('tidslinje')}
@@ -568,7 +572,7 @@ function Content() {
               }`}
               style={tab === 'tidslinje' ? { background: 'linear-gradient(135deg, #6B7F5E, #4F6145)' } : undefined}
             >
-              Tidslinje
+              {t('Tidslinje', 'Timeline')}
             </button>
           </div>
         </div>

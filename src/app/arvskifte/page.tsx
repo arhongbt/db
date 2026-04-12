@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useLanguage } from '@/lib/i18n';
 import { DodsboProvider, useDodsbo } from '@/lib/context';
 import { BottomNav } from '@/components/ui/BottomNav';
 import { getArvsordning } from '@/lib/arvsordning';
@@ -21,6 +22,7 @@ import {
 import { MikeRossTip } from '@/components/ui/MikeRossTip';
 
 function ArvskifteContent() {
+  const { t } = useLanguage();
   const { state } = useDodsbo();
   const [mounted, setMounted] = useState(false);
   const [showSteps, setShowSteps] = useState(false);
@@ -64,13 +66,13 @@ function ArvskifteContent() {
         <Link
           href="/dashboard"
           className="p-2 -ml-2 min-h-[44px] min-w-[44px] flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors"
-          aria-label="Tillbaka"
+          aria-label={t('Tillbaka', 'Back')}
         >
           <ArrowLeft className="w-5 h-5 text-primary" />
         </Link>
         <div>
-          <h1 className="text-2xl font-semibold text-primary">Arvskifte</h1>
-          <p className="text-muted text-sm">Fördelning av arvet</p>
+          <h1 className="text-2xl font-semibold text-primary">{t('Arvskifte', 'Estate Distribution')}</h1>
+          <p className="text-muted text-sm">{t('Fördelning av arvet', 'Distribution of the inheritance')}</p>
         </div>
       </div>
 
@@ -79,11 +81,9 @@ function ArvskifteContent() {
         <div className="flex gap-2">
           <Info className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
           <div>
-            <p className="text-sm font-medium text-primary">Vad är arvskifte?</p>
+            <p className="text-sm font-medium text-primary">{t('Vad är arvskifte?', 'What is estate distribution?')}</p>
             <p className="text-sm text-primary/70 mt-1">
-              Ett arvskifte är ett avtal mellan alla dödsbodelägare om hur tillgångarna
-              ska fördelas. Det görs efter att bouppteckningen är registrerad hos Skatteverket.
-              Om det bara finns en dödsbodelägare behövs inget arvskifte.
+              {t('Ett arvskifte är ett avtal mellan alla dödsbodelägare om hur tillgångarna ska fördelas. Det görs efter att bouppteckningen är registrerad hos Skatteverket. Om det bara finns en dödsbodelägare behövs inget arvskifte.', 'Estate distribution is an agreement among all estate co-owners about how assets will be divided. It is done after the estate inventory is registered with the Tax Agency. If there is only one co-owner, no distribution is needed.')}
             </p>
           </div>
         </div>
@@ -91,26 +91,26 @@ function ArvskifteContent() {
 
       {/* Mike Ross förklarar */}
       <MikeRossTip
-        text="Arvsordningen i Sverige följer tre klasser: först barn (arvslott), sedan föräldrar och syskon, sist far- och morföräldrar. Laglotten är halva arvslotten — den kan ett barn alltid kräva, även om ett testamente säger annorlunda. Särkullbarn (barn från tidigare förhållande) har rätt att få ut sin del direkt, till skillnad från gemensamma barn som väntar tills den efterlevande maken också gått bort."
+        text={t('Arvsordningen i Sverige följer tre klasser: först barn (arvslott), sedan föräldrar och syskon, sist far- och morföräldrar. Laglotten är halva arvslotten — den kan ett barn alltid kräva, även om ett testamente säger annorlunda. Särkullbarn (barn från tidigare förhållande) har rätt att få ut sin del direkt, till skillnad från gemensamma barn som väntar tills den efterlevande maken också gått bort.', 'Swedish inheritance law follows three classes: first children (inheritance share), then parents and siblings, finally grandparents. The legal portion is half the inheritance share—children can always claim it, even if a will says otherwise. Non-mutual children (from previous relationships) have the right to claim their portion immediately, unlike mutual children who wait until the surviving spouse also passes.')}
         className="mb-5"
       />
 
       {/* Net estate */}
       <div className="card mb-6">
         <h2 className="text-sm font-semibold text-muted uppercase tracking-wide mb-3">
-          Dödsboets behållning
+          {t('Dödsboets behållning', 'Estate Net Value')}
         </h2>
         <div className="space-y-2">
           <div className="flex justify-between">
-            <span className="text-sm text-muted">Tillgångar</span>
+            <span className="text-sm text-muted">{t('Tillgångar', 'Assets')}</span>
             <span className="text-sm font-medium text-success">{formatSEK(totalTillgangar)}</span>
           </div>
           <div className="flex justify-between">
-            <span className="text-sm text-muted">Skulder</span>
+            <span className="text-sm text-muted">{t('Skulder', 'Debts')}</span>
             <span className="text-sm font-medium text-warn">{formatSEK(totalSkulder)}</span>
           </div>
           <div className="flex justify-between pt-2 border-t border-[#E8E4DE]">
-            <span className="font-semibold text-primary">Att fördela</span>
+            <span className="font-semibold text-primary">{t('Att fördela', 'To Distribute')}</span>
             <span className={`font-bold text-lg ${netto >= 0 ? 'text-success' : 'text-warn'}`}>
               {formatSEK(netto)}
             </span>
@@ -122,7 +122,7 @@ function ArvskifteContent() {
       <div className="card border-l-4 border-accent mb-6">
         <div className="flex items-center gap-2 mb-2">
           <Scale className="w-5 h-5 text-accent" />
-          <h2 className="font-semibold text-primary">Arvsordning</h2>
+          <h2 className="font-semibold text-primary">{t('Arvsordning', 'Inheritance Order')}</h2>
         </div>
         <p className="text-sm text-primary/80 mb-3">{arvsinfo.summary}</p>
         <div className="bg-primary-lighter/20 rounded-card p-3">
@@ -150,11 +150,11 @@ function ArvskifteContent() {
         <div className="card mb-6">
           <div className="flex items-center gap-2 mb-3">
             <PieChart className="w-5 h-5 text-accent" />
-            <h2 className="font-semibold text-primary">Uppskattad fördelning</h2>
+            <h2 className="font-semibold text-primary">{t('Uppskattad fördelning', 'Estimated Distribution')}</h2>
           </div>
 
           <p className="text-xs text-muted mb-4">
-            Förenklad beräkning. Faktisk fördelning beror på testamente, äktenskapsförord och bodelning.
+            {t('Förenklad beräkning. Faktisk fördelning beror på testamente, äktenskapsförord och bodelning.', 'Simplified calculation. Actual distribution depends on will, prenuptial agreements, and marital property division.')}
           </p>
 
           {spouseTakesAll && spouse ? (
@@ -162,7 +162,7 @@ function ArvskifteContent() {
               <div className="flex items-center justify-between p-3 bg-primary-lighter/20 rounded-card">
                 <div>
                   <p className="font-medium text-primary">{spouse.name}</p>
-                  <p className="text-xs text-muted">Make/maka — fri förfoganderätt</p>
+                  <p className="text-xs text-muted">{t('Make/maka — fri förfoganderätt', 'Spouse — full right of disposal')}</p>
                 </div>
                 <p className="font-bold text-primary">{formatSEK(netto)}</p>
               </div>
@@ -214,7 +214,7 @@ function ArvskifteContent() {
               <div className="flex items-center justify-between p-3 bg-primary-lighter/20 rounded-card">
                 <div>
                   <p className="font-medium text-primary">{spouse.name}</p>
-                  <p className="text-xs text-muted">Make/maka — fri förfoganderätt</p>
+                  <p className="text-xs text-muted">{t('Make/maka — fri förfoganderätt', 'Spouse — full right of disposal')}</p>
                 </div>
                 <p className="font-bold text-primary">
                   {formatSEK(children.length > 0 ? netto / (children.length + 1) : netto)}

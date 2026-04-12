@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useMemo } from 'react';
+import { useLanguage } from '@/lib/i18n';
 import { DodsboProvider, useDodsbo } from '@/lib/context';
 import { BottomNav } from '@/components/ui/BottomNav';
 import Link from 'next/link';
@@ -226,6 +227,7 @@ const GLOSSARY_TERMS: GlossaryTerm[] = [
 ];
 
 function OrdlistaContent() {
+  const { t } = useLanguage();
   const { state } = useDodsbo();
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -272,21 +274,21 @@ function OrdlistaContent() {
         <Link
           href="/dashboard"
           className="p-2 -ml-2 min-h-[44px] min-w-[44px] flex items-center justify-center rounded-full hover:bg-background transition-colors"
-          aria-label="Tillbaka"
+          aria-label={t('Tillbaka', 'Back')}
         >
           <ArrowLeft className="w-5 h-5 text-primary" />
         </Link>
         <div>
           <h1 className="text-2xl font-semibold text-primary">
-            Juridisk ordlista
+            {t('Juridisk ordlista', 'Legal Glossary')}
           </h1>
           <p className="text-muted text-sm">
-            {GLOSSARY_TERMS.length} termer förklarade
+            {GLOSSARY_TERMS.length} {t('termer förklarade', 'terms explained')}
           </p>
         </div>
       </div>
 
-      <MikeRossTip text="Juridisk terminologi kan vara förvirrande — men du behöver inte kunna allt. De viktigaste begreppen att förstå är: laglott (barnens skyddade del), bouppgivare (den som ansvarar för bouppteckningen) och arvskifte (det formella dokumentet som fördelar arvet)." />
+      <MikeRossTip text={t('Juridisk terminologi kan vara förvirrande — men du behöver inte kunna allt. De viktigaste begreppen att förstå är: laglott (barnens skyddade del), bouppgivare (den som ansvarar för bouppteckningen) och arvskifte (det formella dokumentet som fördelar arvet).', 'Legal terminology can be confusing — but you don\'t need to know everything. The most important concepts to understand are: laglott (children\'s protected share), bouppgivare (person responsible for inventory), and arvskifte (formal document that distributes inheritance).')} />
 
       {/* Search */}
       <div className="relative mb-6">
@@ -295,7 +297,7 @@ function OrdlistaContent() {
           type="text"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          placeholder="Sök i ordlistan..."
+          placeholder={t('Sök i ordlistan...', 'Search the glossary...')}
           className="w-full min-h-touch pl-10 pr-4 py-3 text-base border-2 border-[#E8E4DE] rounded-card focus:border-accent focus:outline-none bg-white"
         />
       </div>
@@ -303,8 +305,8 @@ function OrdlistaContent() {
       {/* Results info */}
       {searchTerm && (
         <p className="text-sm text-muted mb-4">
-          {filteredTerms.length} term{filteredTerms.length !== 1 ? 'er' : ''}{' '}
-          matchade
+          {filteredTerms.length} {t('term', 'term')}{filteredTerms.length !== 1 ? t('er', 's') : ''}{' '}
+          {t('matchade', 'matched')}
         </p>
       )}
 
@@ -336,9 +338,9 @@ function OrdlistaContent() {
         </div>
       ) : (
         <div className="flex-1 flex flex-col items-center justify-center text-center py-12">
-          <p className="text-muted mb-2">Inga termer matchade sökningen.</p>
+          <p className="text-muted mb-2">{t('Inga termer matchade sökningen.', 'No terms matched your search.')}</p>
           <p className="text-xs text-muted/70">
-            Försök ett annat ord eller bläddra bland alla termer.
+            {t('Försök ett annat ord eller bläddra bland alla termer.', 'Try another word or browse all terms.')}
           </p>
         </div>
       )}

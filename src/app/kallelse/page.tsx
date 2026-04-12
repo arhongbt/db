@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useLanguage } from '@/lib/i18n';
 import { DodsboProvider, useDodsbo } from '@/lib/context';
 import { BottomNav } from '@/components/ui/BottomNav';
 import Link from 'next/link';
@@ -30,6 +31,7 @@ function KallelseSkeleton() {
 }
 
 function KallelseContent() {
+  const { t } = useLanguage();
   const { state, loading } = useDodsbo();
   const [mounted, setMounted] = useState(false);
   const [copied, setCopied] = useState(false);

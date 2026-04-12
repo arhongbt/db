@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useMemo } from 'react';
+import { useLanguage } from '@/lib/i18n';
 import Link from 'next/link';
 import {
   ArrowLeft, Bell, BellOff, Clock, AlertTriangle, CheckCircle2, ChevronRight,
@@ -27,6 +28,7 @@ interface CustomReminder {
 
 function PaminelserContent() {
   const { state } = useDodsbo();
+  const { t } = useLanguage();
   const [prefs, setPrefs] = useState(getNotificationPrefs());
   const [permission, setPermission] = useState<NotificationPermission | 'unsupported'>('default');
   const [customReminders, setCustomReminders] = useState<CustomReminder[]>([]);
@@ -179,15 +181,15 @@ function PaminelserContent() {
     <div className="min-h-dvh bg-background pb-24">
       <div className="px-5 py-6">
         <Link href="/dashboard" className="inline-flex items-center gap-2 text-sm text-muted hover:text-primary mb-6">
-          <ArrowLeft className="w-4 h-4" /> Dashboard
+          <ArrowLeft className="w-4 h-4" /> {t('Dashboard', 'Dashboard')}
         </Link>
 
         <div className="flex items-center gap-3 mb-2">
           <Bell className="w-6 h-6 text-accent" />
-          <h1 className="text-2xl font-semibold text-primary">Påminnelser & Tidsfrister</h1>
+          <h1 className="text-2xl font-semibold text-primary">{t('Påminnelser & Tidsfrister', 'Reminders & Deadlines')}</h1>
         </div>
         <p className="text-muted text-sm mb-6">
-          Få notifieringar innan viktiga tidsfrister löper ut.
+          {t('Få notifieringar innan viktiga tidsfrister löper ut.', 'Get notifications before important deadlines expire.')}
         </p>
 
         {/* Timeline visualization */}
@@ -195,7 +197,7 @@ function PaminelserContent() {
           <div className="mb-6 bg-white rounded-2xl p-4" style={{ borderColor: '#E8E4DE', borderWidth: 1 }}>
             <div className="flex items-center gap-2 mb-4">
               <Zap className="w-5 h-5 text-accent" />
-              <h3 className="font-semibold text-primary text-sm">Tidslinje kommande</h3>
+              <h3 className="font-semibold text-primary text-sm">{t('Tidslinje kommande', 'Timeline upcoming')}</h3>
             </div>
             <div className="space-y-2">
               {allUpcoming.slice(0, 4).map((item, idx) => (
@@ -210,7 +212,7 @@ function PaminelserContent() {
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="text-xs font-medium text-primary truncate">{item.title}</p>
-                    <p className="text-xs text-muted">{item.daysLeft} dagar</p>
+                    <p className="text-xs text-muted">{item.daysLeft} {t('dagar', 'days')}</p>
                   </div>
                 </div>
               ))}
@@ -228,9 +230,9 @@ function PaminelserContent() {
                 <BellOff className="w-5 h-5 text-muted" />
               )}
               <div>
-                <p className="font-semibold text-primary text-sm">Push-notiser (pretend)</p>
+                <p className="font-semibold text-primary text-sm">{t('Push-notiser (pretend)', 'Push notifications (pretend)')}</p>
                 <p className="text-xs text-muted">
-                  {pushEnabled ? 'Aktiverade' : 'Avaktiverade'}
+                  {pushEnabled ? t('Aktiverade', 'Enabled') : t('Avaktiverade', 'Disabled')}
                 </p>
               </div>
             </div>
@@ -248,7 +250,7 @@ function PaminelserContent() {
 
           {pushEnabled && (
             <div>
-              <p className="text-xs text-muted mb-2">Påminn mig:</p>
+              <p className="text-xs text-muted mb-2">{t('Påminn mig:', 'Remind me:')}</p>
               <div className="flex flex-wrap gap-2">
                 {[14, 7, 3, 1].map(day => (
                   <button
@@ -260,7 +262,7 @@ function PaminelserContent() {
                         : 'bg-white text-primary border-border hover:border-accent'
                     }`}
                   >
-                    {day} {day === 1 ? 'dag' : 'dagar'} före
+                    {day} {day === 1 ? t('dag', 'day') : t('dagar', 'days')} {t('före', 'before')}
                   </button>
                 ))}
               </div>
@@ -278,9 +280,9 @@ function PaminelserContent() {
                 <Mail className="w-5 h-5 text-muted opacity-50" />
               )}
               <div>
-                <p className="font-semibold text-primary text-sm">E-post påminnelser (pretend)</p>
+                <p className="font-semibold text-primary text-sm">{t('E-post påminnelser (pretend)', 'Email reminders (pretend)')}</p>
                 <p className="text-xs text-muted">
-                  {emailEnabled ? 'Aktiverade' : 'Avaktiverade'}
+                  {emailEnabled ? t('Aktiverade', 'Enabled') : t('Avaktiverade', 'Disabled')}
                 </p>
               </div>
             </div>
@@ -307,7 +309,7 @@ function PaminelserContent() {
                 className="w-full text-sm px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-accent"
                 style={{ borderColor: '#E8E4DE' }}
               />
-              <p className="text-xs text-muted mt-2">Vi skickar påminnelser till denna adress.</p>
+              <p className="text-xs text-muted mt-2">{t('Vi skickar påminnelser till denna adress.', 'We send reminders to this address.')}</p>
             </div>
           )}
         </div>
@@ -315,9 +317,9 @@ function PaminelserContent() {
         {!state.deathDate && (
           <div className="card text-center py-8">
             <Clock className="w-8 h-8 mx-auto text-muted mb-3 opacity-30" />
-            <p className="text-sm text-muted">Ange dödsdatum i inställningarna för att se tidsfrister.</p>
+            <p className="text-sm text-muted">{t('Ange dödsdatum i inställningarna för att se tidsfrister.', 'Enter date of death in settings to see deadlines.')}</p>
             <Link href="/installningar" className="text-xs text-accent hover:underline mt-2 inline-block">
-              Gå till inställningar
+              {t('Gå till inställningar', 'Go to settings')}
             </Link>
           </div>
         )}
@@ -326,7 +328,7 @@ function PaminelserContent() {
         {upcoming.length > 0 && (
           <>
             <h2 className="font-semibold text-primary text-sm mb-3">
-              Svenska juridiska tidsfrister ({upcoming.length})
+              {t('Svenska juridiska tidsfrister', 'Swedish legal deadlines')} ({upcoming.length})
             </h2>
             <div className="space-y-3 mb-6">
               {upcoming.map(d => (
@@ -355,7 +357,7 @@ function PaminelserContent() {
                       }`}>
                         {d.daysLeft}
                       </p>
-                      <p className="text-xs text-muted">dagar</p>
+                      <p className="text-xs text-muted">{t('dagar', 'days')}</p>
                     </div>
                   </div>
                   <p className="text-xs text-muted mt-2">
@@ -363,7 +365,7 @@ function PaminelserContent() {
                   </p>
                   {d.consequence && (
                     <p className="text-xs text-red-500 mt-1">
-                      Om du missar: {d.consequence}
+                      {t('Om du missar:', 'If you miss:')} {d.consequence}
                     </p>
                   )}
                 </div>
@@ -376,13 +378,13 @@ function PaminelserContent() {
         <div className="mb-6">
           <div className="flex items-center justify-between mb-3">
             <h2 className="font-semibold text-primary text-sm">
-              Egna påminnelser ({customReminders.filter(r => r.enabled).length})
+              {t('Egna påminnelser', 'Custom reminders')} ({customReminders.filter(r => r.enabled).length})
             </h2>
             <button
               onClick={() => setShowAddReminder(!showAddReminder)}
               className="flex items-center gap-1 text-xs text-accent hover:text-accent"
             >
-              <Plus className="w-4 h-4" /> Lägg till
+              <Plus className="w-4 h-4" /> {t('Lägg till', 'Add')}
             </button>
           </div>
 
@@ -392,7 +394,7 @@ function PaminelserContent() {
                 type="text"
                 value={newReminderTitle}
                 onChange={(e) => setNewReminderTitle(e.target.value)}
-                placeholder="T.ex. Kontakta banken"
+                placeholder={t('T.ex. Kontakta banken', 'E.g. Contact the bank')}
                 className="w-full text-sm px-3 py-2 border rounded-lg mb-3 focus:outline-none focus:ring-2 focus:ring-accent"
                 style={{ borderColor: '#E8E4DE' }}
               />
@@ -407,7 +409,7 @@ function PaminelserContent() {
                 onClick={addCustomReminder}
                 className="w-full bg-accent text-white text-sm px-3 py-2 rounded-lg hover:opacity-90 transition-opacity"
               >
-                Spara påminnelse
+                {t('Spara påminnelse', 'Save reminder')}
               </button>
             </div>
           )}
@@ -439,7 +441,7 @@ function PaminelserContent() {
                           {reminder.title}
                         </p>
                         <p className="text-xs text-muted">
-                          {reminderDate.toLocaleDateString('sv-SE')} · {daysLeft > 0 ? `${daysLeft} dagar` : 'Förfallen'}
+                          {reminderDate.toLocaleDateString('sv-SE')} · {daysLeft > 0 ? t(`${daysLeft} dagar`, `${daysLeft} days`) : t('Förfallen', 'Expired')}
                         </p>
                       </div>
                     </div>
@@ -456,7 +458,7 @@ function PaminelserContent() {
           ) : (
             <div className="text-center py-6 text-muted">
               <Calendar className="w-8 h-8 mx-auto mb-2 opacity-30" />
-              <p className="text-xs">Inga egna påminnelser ännu. Lägg till en ovanför.</p>
+              <p className="text-xs">{t('Inga egna påminnelser ännu. Lägg till en ovanför.', 'No custom reminders yet. Add one above.')}</p>
             </div>
           )}
         </div>
@@ -465,7 +467,7 @@ function PaminelserContent() {
         {passed.length > 0 && (
           <>
             <h2 className="font-semibold text-muted text-sm mb-3">
-              Passerade ({passed.length})
+              {t('Passerade', 'Passed')} ({passed.length})
             </h2>
             <div className="space-y-2 mb-6">
               {passed.map(d => (
@@ -474,7 +476,7 @@ function PaminelserContent() {
                     <CheckCircle2 className="w-4 h-4 text-green-600 shrink-0" />
                     <p className="text-sm text-primary">{d.title}</p>
                     <span className="text-xs text-muted ml-auto">
-                      {Math.abs(d.daysLeft)} dagar sedan
+                      {Math.abs(d.daysLeft)} {t('dagar sedan', 'days ago')}
                     </span>
                   </div>
                 </div>

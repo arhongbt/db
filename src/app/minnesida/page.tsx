@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useLanguage } from '@/lib/i18n';
 import { Heart, ArrowLeft, Bot, Flame, Copy, Check } from 'lucide-react';
 import Link from 'next/link';
 import { DodsboProvider, useDodsbo } from '@/lib/context';
@@ -22,13 +23,14 @@ function MikeRossTip({ text }: { text: string }) {
 }
 
 const colorThemes = [
-  { name: 'Ljus', value: '#F7F5F0', label: 'Ljus' },
-  { name: 'Natur', value: '#EEF2EA', label: 'Natur' },
-  { name: 'Himmel', value: '#E8EFF5', label: 'Himmel' },
-  { name: 'Solnedgång', value: '#F5EDE8', label: 'Solnedgång' },
+  { name: 'Ljus', value: '#F7F5F0', label: 'Light', labelSv: 'Ljus' },
+  { name: 'Natur', value: '#EEF2EA', label: 'Nature', labelSv: 'Natur' },
+  { name: 'Himmel', value: '#E8EFF5', label: 'Sky', labelSv: 'Himmel' },
+  { name: 'Solnedgång', value: '#F5EDE8', label: 'Sunset', labelSv: 'Solnedgång' },
 ];
 
 function MemorialContent() {
+  const { t } = useLanguage();
   let state = { deceasedName: '', deathDate: '' };
   try {
     const dodsboContext = useDodsbo();
@@ -94,7 +96,7 @@ ${form.citat}
               className="flex items-center gap-2 text-primary/70 hover:text-primary mb-6"
             >
               <ArrowLeft className="w-5 h-5" />
-              <span className="text-sm">Tillbaka till redigering</span>
+              <span className="text-sm">{t('Tillbaka till redigering', 'Back to edit')}</span>
             </button>
           </div>
 
@@ -145,12 +147,12 @@ ${form.citat}
                 {copied ? (
                   <>
                     <Check className="w-4 h-4" />
-                    Kopierad!
+                    {t('Kopierad!', 'Copied!')}
                   </>
                 ) : (
                   <>
                     <Copy className="w-4 h-4" />
-                    Dela minnesida
+                    {t('Dela minnesida', 'Share memorial')}
                   </>
                 )}
               </button>
@@ -170,7 +172,7 @@ ${form.citat}
           </Link>
           <h1 className="flex items-center gap-2 text-xl font-bold text-primary">
             <Heart className="w-5 h-5 fill-primary" />
-            Minnesida
+            {t('Minnesida', 'Memorial page')}
           </h1>
           <div className="w-5" />
         </div>
@@ -180,24 +182,24 @@ ${form.citat}
         {isGuestMode && (
           <div className="mb-6 p-4 bg-accent/10 border border-accent/30 rounded-2xl">
             <p className="text-sm text-primary font-medium">
-              Du kan skapa en minnesida utan att starta ett dödsbo. Fyll i uppgifterna nedan.
+              {t('Du kan skapa en minnesida utan att starta ett dödsbo. Fyll i uppgifterna nedan.', 'You can create a memorial page without starting an estate. Fill in the information below.')}
             </p>
           </div>
         )}
 
-        <MikeRossTip text="En minnesida är ett fint sätt att hedra den du förlorat. Du kan dela den med familj och vänner. Allt sparas lokalt på din enhet — inget publiceras utan ditt godkännande." />
+        <MikeRossTip text={t('En minnesida är ett fint sätt att hedra den du förlorat. Du kan dela den med familj och vänner. Allt sparas lokalt på din enhet — inget publiceras utan ditt godkännande.', 'A memorial page is a nice way to honor the person you lost. You can share it with family and friends. Everything is saved locally on your device — nothing is published without your approval.')} />
 
         <div className="space-y-5">
           {/* Namn */}
           <div>
             <label className="block text-sm font-semibold text-primary mb-2">
-              Namn
+              {t('Namn', 'Name')}
             </label>
             <input
               type="text"
               value={form.namn}
               onChange={(e) => handleInputChange('namn', e.target.value)}
-              placeholder="Namn på den du saknar"
+              placeholder={t('Namn på den du saknar', 'Name of the person you miss')}
               className="w-full px-4 py-3 border border-[#E8E4DE] rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white"
             />
           </div>
@@ -205,13 +207,13 @@ ${form.citat}
           {/* Född */}
           <div>
             <label className="block text-sm font-semibold text-primary mb-2">
-              Född
+              {t('Född', 'Born')}
             </label>
             <input
               type="text"
               value={form.född}
               onChange={(e) => handleInputChange('född', e.target.value)}
-              placeholder="t.ex. 12 mars 1945"
+              placeholder={t('t.ex. 12 mars 1945', 'e.g. March 12, 1945')}
               className="w-full px-4 py-3 border border-[#E8E4DE] rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white"
             />
           </div>
@@ -219,13 +221,13 @@ ${form.citat}
           {/* Avliden */}
           <div>
             <label className="block text-sm font-semibold text-primary mb-2">
-              Avliden
+              {t('Avliden', 'Died')}
             </label>
             <input
               type="text"
               value={form.avliden}
               onChange={(e) => handleInputChange('avliden', e.target.value)}
-              placeholder="Datum för bortgången"
+              placeholder={t('Datum för bortgången', 'Date of passing')}
               className="w-full px-4 py-3 border border-[#E8E4DE] rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white"
             />
           </div>
@@ -233,12 +235,12 @@ ${form.citat}
           {/* Minnesord */}
           <div>
             <label className="block text-sm font-semibold text-primary mb-2">
-              Minnesord
+              {t('Minnesord', 'Words of remembrance')}
             </label>
             <textarea
               value={form.minnesord}
               onChange={(e) => handleInputChange('minnesord', e.target.value)}
-              placeholder="Skriv några ord om den du saknar..."
+              placeholder={t('Skriv några ord om den du saknar...', 'Write a few words about the person you miss...')}
               rows={4}
               className="w-full px-4 py-3 border border-[#E8E4DE] rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white resize-none"
             />
@@ -247,12 +249,12 @@ ${form.citat}
           {/* Favoritminne */}
           <div>
             <label className="block text-sm font-semibold text-primary mb-2">
-              Favoritminne
+              {t('Favoritminne', 'Favorite memory')}
             </label>
             <textarea
               value={form.favoritminne}
               onChange={(e) => handleInputChange('favoritminne', e.target.value)}
-              placeholder="Dela ett kärt minne..."
+              placeholder={t('Dela ett kärt minne...', 'Share a cherished memory...')}
               rows={3}
               className="w-full px-4 py-3 border border-[#E8E4DE] rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white resize-none"
             />
@@ -261,13 +263,13 @@ ${form.citat}
           {/* Citat eller livsvisdom */}
           <div>
             <label className="block text-sm font-semibold text-primary mb-2">
-              Citat eller livsvisdom
+              {t('Citat eller livsvisdom', 'Quote or life wisdom')}
             </label>
             <input
               type="text"
               value={form.citat}
               onChange={(e) => handleInputChange('citat', e.target.value)}
-              placeholder="Ett citat som speglar personen..."
+              placeholder={t('Ett citat som speglar personen...', 'A quote that reflects the person...')}
               className="w-full px-4 py-3 border border-[#E8E4DE] rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white"
             />
           </div>
@@ -275,7 +277,7 @@ ${form.citat}
           {/* Color Theme Picker */}
           <div>
             <label className="block text-sm font-semibold text-primary mb-3">
-              Färgtema
+              {t('Färgtema', 'Color theme')}
             </label>
             <div className="flex gap-3">
               {colorThemes.map((theme) => (
@@ -293,7 +295,7 @@ ${form.citat}
                     }`}
                     style={{ background: theme.value }}
                   />
-                  <span className="text-xs text-primary/70">{theme.label}</span>
+                  <span className="text-xs text-primary/70">{t(theme.labelSv, theme.label)}</span>
                 </button>
               ))}
             </div>
@@ -305,7 +307,7 @@ ${form.citat}
               onClick={() => setIsPreview(true)}
               className="flex-1 px-4 py-3 bg-accent text-white rounded-xl font-semibold hover:bg-accent/90 transition-colors"
             >
-              Förhandsgranska
+              {t('Förhandsgranska', 'Preview')}
             </button>
             <button
               onClick={handleSave}
@@ -315,7 +317,7 @@ ${form.citat}
                   : 'bg-primary text-white hover:bg-primary/90'
               }`}
             >
-              {saved ? 'Sparad!' : 'Spara minnesida'}
+              {saved ? t('Sparad!', 'Saved!') : t('Spara minnesida', 'Save memorial')}
             </button>
           </div>
         </div>

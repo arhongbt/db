@@ -1,6 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useState } from 'react';
+import { useLanguage } from '@/lib/i18n';
 import { DodsboProvider, useDodsbo } from '@/lib/context';
 import { BottomNav } from '@/components/ui/BottomNav';
 import { OptionCard } from '@/components/ui/OptionCard';
@@ -30,23 +31,24 @@ import type { Database } from '@/lib/supabase/types';
 
 type InviteRow = Database['public']['Tables']['invites']['Row'];
 
-const RELATION_LABELS: Record<Relation, string> = {
-  make_maka: 'Make/maka',
-  sambo: 'Sambo',
-  barn: 'Barn',
-  barnbarn: 'Barnbarn',
-  foralder: 'Förälder',
-  syskon: 'Syskon',
-  annan_slakting: 'Annan släkting',
-  testamentstagare: 'Testamentstagare',
-  god_man: 'God man',
-  ombud: 'Ombud',
-  vardnadshavare: 'Vårdnadshavare',
-  foralder_avliden: 'Förälder till den avlidne',
-  van_annan: 'Vän/annan',
-};
+const createRELATION_LABELS = (t: any) => ({
+  make_maka: t('Make/maka', 'Spouse'),
+  sambo: t('Sambo', 'Cohabiting partner'),
+  barn: t('Barn', 'Child'),
+  barnbarn: t('Barnbarn', 'Grandchild'),
+  foralder: t('Förälder', 'Parent'),
+  syskon: t('Syskon', 'Sibling'),
+  annan_slakting: t('Annan släkting', 'Other relative'),
+  testamentstagare: t('Testamentstagare', 'Beneficiary'),
+  god_man: t('God man', 'Legal guardian'),
+  ombud: t('Ombud', 'Authorized representative'),
+  vardnadshavare: t('Vårdnadshavare', 'Custodian'),
+  foralder_avliden: t('Förälder till den avlidne', 'Parent of deceased'),
+  van_annan: t('Vän/annan', 'Friend/Other'),
+} as Record<Relation, string>);
 
 function DelagareContent() {
+  const { t } = useLanguage();
   const { state, dispatch, loading } = useDodsbo();
   const [showForm, setShowForm] = useState(false);
   const [showArvsinfo, setShowArvsinfo] = useState(false);
@@ -110,13 +112,13 @@ function DelagareContent() {
 
   const validate = (): boolean => {
     const errs: Record<string, string> = {};
-    if (!name.trim()) errs.name = 'Namn krävs';
-    if (!relation) errs.relation = 'Välj relation';
+    if (!name.trim()) errs.name = t('Namn krävs', 'Name required');
+    if (!relation) errs.relation = t('Välj relation', 'Select relation');
     if (email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
-      errs.email = 'Ogiltig e-postadress';
+      errs.email = t('Ogiltig e-postadress', 'Invalid email address');
     }
     if (phone.trim() && !/^[\d\s\-+()]{6,20}$/.test(phone.trim())) {
-      errs.phone = 'Ogiltigt telefonnummer';
+      errs.phone = t('Ogiltigt telefonnummer', 'Invalid phone number');
     }
     setErrors(errs);
     return Object.keys(errs).length === 0;

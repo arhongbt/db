@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useMemo } from 'react';
+import { useLanguage } from '@/lib/i18n';
 import Link from 'next/link';
 import {
   ArrowLeft, Users, Share2, CheckCircle2, Clock, AlertTriangle,
@@ -11,6 +12,7 @@ import { createInvite, getInviteLink } from '@/lib/supabase/services/invite-serv
 
 function DelagarePortalContent() {
   const { state } = useDodsbo();
+  const { t } = useLanguage();
   const [copiedLink, setCopiedLink] = useState(false);
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [showInvite, setShowInvite] = useState(false);
@@ -27,25 +29,25 @@ function DelagarePortalContent() {
 
   // Phase labels
   const phaseLabels: Record<string, string> = {
-    akut: 'Akut (dag 1-7)',
-    kartlaggning: 'Kartläggning',
-    bouppteckning: 'Bouppteckning',
-    arvskifte: 'Arvskifte',
-    avslutat: 'Avslutat',
+    akut: t('Akut (dag 1-7)', 'Emergency (day 1-7)'),
+    kartlaggning: t('Kartläggning', 'Mapping'),
+    bouppteckning: t('Bouppteckning', 'Estate inventory'),
+    arvskifte: t('Arvskifte', 'Inheritance division'),
+    avslutat: t('Avslutat', 'Completed'),
   };
 
   // Key milestones
   const milestones = useMemo(() => {
     const items = [
-      { label: 'Bank kontaktad', done: state.tasks.some(t => t.id?.includes('bank') && t.status === 'klar') },
-      { label: 'Försäkringar kontrollerade', done: state.forsakringar.length > 0 && state.forsakringar.every(f => f.contacted) },
-      { label: 'Bouppteckning påbörjad', done: state.forrattningsdatum !== undefined },
-      { label: 'Tillgångar inventerade', done: state.tillgangar.length > 0 },
-      { label: 'Skulder kartlagda', done: state.skulder.length >= 0 && state.tasks.some(t => t.id?.includes('skuld') && t.status === 'klar') },
-      { label: 'Arvskifte genomfört', done: state.currentStep === 'avslutat' },
+      { label: t('Bank kontaktad', 'Bank contacted'), done: state.tasks.some(t => t.id?.includes('bank') && t.status === 'klar') },
+      { label: t('Försäkringar kontrollerade', 'Insurance checked'), done: state.forsakringar.length > 0 && state.forsakringar.every(f => f.contacted) },
+      { label: t('Bouppteckning påbörjad', 'Estate inventory started'), done: state.forrattningsdatum !== undefined },
+      { label: t('Tillgångar inventerade', 'Assets inventoried'), done: state.tillgangar.length > 0 },
+      { label: t('Skulder kartlagda', 'Debts mapped'), done: state.skulder.length >= 0 && state.tasks.some(t => t.id?.includes('skuld') && t.status === 'klar') },
+      { label: t('Arvskifte genomfört', 'Inheritance divided'), done: state.currentStep === 'avslutat' },
     ];
     return items;
-  }, [state]);
+  }, [state, t]);
 
   // Summary stats
   const totalTillgangar = state.tillgangar.reduce((s, t) => s + (t.confirmedValue || t.estimatedValue || 0), 0);
@@ -63,36 +65,36 @@ function DelagarePortalContent() {
     <div className="min-h-dvh bg-background">
       <div className="px-5 py-6">
         <Link href="/dashboard" className="inline-flex items-center gap-2 text-sm text-muted hover:text-primary mb-6">
-          <ArrowLeft className="w-4 h-4" /> Dashboard
+          <ArrowLeft className="w-4 h-4" /> {t('Dashboard', 'Dashboard')}
         </Link>
 
         <div className="flex items-center justify-between mb-2">
           <div className="flex items-center gap-3">
             <Users className="w-6 h-6 text-accent" />
-            <h1 className="text-2xl font-semibold text-primary">Delägare & Status</h1>
+            <h1 className="text-2xl font-semibold text-primary">{t('Delägare & Status', 'Co-owners & Status')}</h1>
           </div>
           <button
             onClick={shareLink}
             className="flex items-center gap-1 text-xs text-accent hover:text-accent-dark transition-colors"
           >
             {copiedLink ? <Check className="w-4 h-4" /> : <Share2 className="w-4 h-4" />}
-            {copiedLink ? 'Kopierat!' : 'Dela status'}
+            {copiedLink ? t('Kopierat!', 'Copied!') : t('Dela status', 'Share status')}
           </button>
         </div>
         <p className="text-muted text-sm mb-6">
-          Överblick för alla dödsbodelägare — framsteg, milstolpar och ekonomi.
+          {t('Överblick för alla dödsbodelägare — framsteg, milstolpar och ekonomi.', 'Overview for all co-owners — progress, milestones, and finances.')}
         </p>
 
         {/* Overall progress */}
         <div className="card mb-4">
           <div className="flex items-center justify-between mb-2">
             <div>
-              <p className="text-xs text-muted">Nuvarande fas</p>
+              <p className="text-xs text-muted">{t('Nuvarande fas', 'Current phase')}</p>
               <p className="font-semibold text-primary">{phaseLabels[state.currentStep]}</p>
             </div>
             <div className="text-right">
               <p className="text-2xl font-bold text-accent">{progressPercent}%</p>
-              <p className="text-xs text-muted">{completedTasks}/{totalTasks} klara</p>
+              <p className="text-xs text-muted">{completedTasks}/{totalTasks} {t('klara', 'done')}</p>
             </div>
           </div>
           <div className="h-3 bg-primary-lighter rounded-full overflow-hidden">
@@ -105,7 +107,7 @@ function DelagarePortalContent() {
 
         {/* Milestones */}
         <div className="card mb-4">
-          <p className="font-semibold text-primary text-sm mb-3">Milstolpar</p>
+          <p className="font-semibold text-primary text-sm mb-3">{t('Milstolpar', 'Milestones')}</p>
           <div className="space-y-2">
             {milestones.map((m, i) => (
               <div key={i} className="flex items-center gap-3">
@@ -124,22 +126,22 @@ function DelagarePortalContent() {
 
         {/* Economic summary */}
         <div className="card mb-4">
-          <p className="font-semibold text-primary text-sm mb-3">Ekonomisk sammanfattning</p>
+          <p className="font-semibold text-primary text-sm mb-3">{t('Ekonomisk sammanfattning', 'Financial summary')}</p>
           <div className="space-y-2">
             <div className="flex justify-between text-sm">
-              <span className="text-muted">Tillgångar ({state.tillgangar.length} st)</span>
+              <span className="text-muted">{t('Tillgångar', 'Assets')} ({state.tillgangar.length} {t('st', 'pcs')})</span>
               <span className="text-primary font-medium">{totalTillgangar.toLocaleString('sv-SE')} kr</span>
             </div>
             <div className="flex justify-between text-sm">
-              <span className="text-muted">Skulder ({state.skulder.length} st)</span>
+              <span className="text-muted">{t('Skulder', 'Debts')} ({state.skulder.length} {t('st', 'pcs')})</span>
               <span className="text-warn font-medium">-{totalSkulder.toLocaleString('sv-SE')} kr</span>
             </div>
             <div className="flex justify-between text-sm">
-              <span className="text-muted">Kostnader ({state.kostnader.length} st)</span>
+              <span className="text-muted">{t('Kostnader', 'Costs')} ({state.kostnader.length} {t('st', 'pcs')})</span>
               <span className="text-warn font-medium">-{totalKostnader.toLocaleString('sv-SE')} kr</span>
             </div>
             <div className="border-t border-[#E8E4DE] pt-2 flex justify-between text-sm font-semibold">
-              <span className="text-primary">Nettobehållning</span>
+              <span className="text-primary">{t('Nettobehållning', 'Net value')}</span>
               <span className={(totalTillgangar - totalSkulder - totalKostnader) >= 0 ? 'text-success' : 'text-warn'}>
                 {(totalTillgangar - totalSkulder - totalKostnader).toLocaleString('sv-SE')} kr
               </span>
@@ -150,14 +152,14 @@ function DelagarePortalContent() {
         {/* Delägare list */}
         <div className="mb-4">
           <p className="font-semibold text-primary text-sm mb-3">
-            Dödsbodelägare ({state.delagare.length})
+            {t('Dödsbodelägare', 'Co-owners')} ({state.delagare.length})
           </p>
           {state.delagare.length === 0 ? (
             <div className="card text-center py-6">
               <Users className="w-8 h-8 mx-auto text-muted mb-2 opacity-30" />
-              <p className="text-sm text-muted">Inga delägare registrerade ännu.</p>
+              <p className="text-sm text-muted">{t('Inga delägare registrerade ännu.', 'No co-owners registered yet.')}</p>
               <Link href="/delagare" className="text-xs text-accent hover:underline mt-1 inline-block">
-                Lägg till delägare
+                {t('Lägg till delägare', 'Add co-owner')}
               </Link>
             </div>
           ) : (
@@ -212,31 +214,31 @@ function DelagarePortalContent() {
         {/* Invite section */}
         <div className="card mb-4">
           <div className="flex items-center justify-between mb-3">
-            <p className="font-semibold text-primary text-sm">Bjud in delägare</p>
+            <p className="font-semibold text-primary text-sm">{t('Bjud in delägare', 'Invite co-owners')}</p>
             <button
               onClick={() => { setShowInvite(!showInvite); setInviteLink(null); setInviteError(null); }}
               className="flex items-center gap-1 text-xs text-accent"
             >
               {showInvite ? <X className="w-4 h-4" /> : <UserPlus className="w-4 h-4" />}
-              {showInvite ? 'Stäng' : 'Ny inbjudan'}
+              {showInvite ? t('Stäng', 'Close') : t('Ny inbjudan', 'New invitation')}
             </button>
           </div>
 
           {!showInvite && (
             <p className="text-xs text-muted">
-              Skicka en inbjudningslänk till medarvingar så de kan följa dödsboprocessen.
+              {t('Skicka en inbjudningslänk till medarvingar så de kan följa dödsboprocessen.', 'Send an invitation link to co-heirs so they can follow the estate process.')}
             </p>
           )}
 
           {showInvite && (
             <div className="space-y-3">
               <div>
-                <label className="text-xs text-muted block mb-1">E-postadress</label>
+                <label className="text-xs text-muted block mb-1">{t('E-postadress', 'Email address')}</label>
                 <input
                   type="email"
                   value={inviteEmail}
                   onChange={e => setInviteEmail(e.target.value)}
-                  placeholder="namn@exempel.se"
+                  placeholder={t('namn@exempel.se', 'name@example.com')}
                   className="w-full px-3 py-2 border-2 border-[#E8E4DE] rounded-xl text-sm
                              focus:border-accent focus:outline-none transition-colors"
                 />
@@ -257,7 +259,7 @@ function DelagarePortalContent() {
                       setInviteLink(getInviteLink(data.token));
                     }
                   } catch (err: unknown) {
-                    const msg = err instanceof Error ? err.message : 'Kunde inte skapa inbjudan';
+                    const msg = err instanceof Error ? err.message : t('Kunde inte skapa inbjudan', 'Could not create invitation');
                     setInviteError(msg);
                   } finally {
                     setInviteLoading(false);
@@ -268,9 +270,9 @@ function DelagarePortalContent() {
                            hover:bg-accent/90 transition-colors disabled:opacity-40 flex items-center justify-center gap-2"
               >
                 {inviteLoading ? (
-                  <><Loader2 className="w-4 h-4 animate-spin" /> Skapar...</>
+                  <><Loader2 className="w-4 h-4 animate-spin" /> {t('Skapar...', 'Creating...')}</>
                 ) : (
-                  <><UserPlus className="w-4 h-4" /> Skapa inbjudningslänk</>
+                  <><UserPlus className="w-4 h-4" /> {t('Skapa inbjudningslänk', 'Create invitation link')}</>
                 )}
               </button>
 
@@ -280,7 +282,7 @@ function DelagarePortalContent() {
 
               {inviteLink && (
                 <div className="bg-accent/5 border border-accent/20 rounded-xl p-3">
-                  <p className="text-xs text-muted mb-2">Länk skapad! Dela med delägaren:</p>
+                  <p className="text-xs text-muted mb-2">{t('Länk skapad! Dela med delägaren:', 'Link created! Share with the co-owner:')}</p>
                   <div className="flex items-center gap-2">
                     <input
                       readOnly
@@ -298,7 +300,7 @@ function DelagarePortalContent() {
                       {linkCopied ? <Check className="w-4 h-4" /> : <Link2 className="w-4 h-4" />}
                     </button>
                   </div>
-                  {linkCopied && <p className="text-xs text-accent mt-1">Kopierat!</p>}
+                  {linkCopied && <p className="text-xs text-accent mt-1">{t('Kopierat!', 'Copied!')}</p>}
                 </div>
               )}
             </div>
@@ -308,14 +310,14 @@ function DelagarePortalContent() {
         {/* Upcoming deadlines */}
         {state.deathDate && (
           <div className="card mb-4">
-            <p className="font-semibold text-primary text-sm mb-3">Kommande tidsfrister</p>
+            <p className="font-semibold text-primary text-sm mb-3">{t('Kommande tidsfrister', 'Upcoming deadlines')}</p>
             {(() => {
               const deathDate = new Date(state.deathDate);
               const now = new Date();
               const deadlines = [
-                { label: 'Bouppteckning (förrättning)', days: 90 },
-                { label: 'Bouppteckning (inlämning)', days: 120 },
-                { label: 'Klander av testamente', days: 180 },
+                { label: t('Bouppteckning (förrättning)', 'Estate inventory (execution)'), days: 90 },
+                { label: t('Bouppteckning (inlämning)', 'Estate inventory (submission)'), days: 120 },
+                { label: t('Klander av testamente', 'Will challenge'), days: 180 },
               ].map(d => {
                 const deadline = new Date(deathDate);
                 deadline.setDate(deadline.getDate() + d.days);
@@ -324,7 +326,7 @@ function DelagarePortalContent() {
               }).filter(d => d.daysLeft > 0);
 
               if (deadlines.length === 0) {
-                return <p className="text-xs text-muted">Alla tidsfrister har passerat.</p>;
+                return <p className="text-xs text-muted">{t('Alla tidsfrister har passerat.', 'All deadlines have passed.')}</p>;
               }
 
               return (
@@ -333,7 +335,7 @@ function DelagarePortalContent() {
                     <div key={i} className="flex items-center justify-between">
                       <span className="text-xs text-primary">{d.label}</span>
                       <span className={`text-xs font-medium ${d.daysLeft <= 14 ? 'text-warn' : d.daysLeft <= 30 ? 'text-amber-600' : 'text-muted'}`}>
-                        {d.daysLeft} dagar kvar
+                        {d.daysLeft} {t('dagar kvar', 'days left')}
                       </span>
                     </div>
                   ))}

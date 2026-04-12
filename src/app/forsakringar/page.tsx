@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useLanguage } from '@/lib/i18n';
 import { DodsboProvider, useDodsbo } from '@/lib/context';
 import { BottomNav } from '@/components/ui/BottomNav';
 import {
@@ -28,6 +29,7 @@ const FORSAKRING_TYPES: { value: ForsakringType; label: string; tip: string }[] 
 
 function ForsakringarContent() {
   const { state, dispatch, loading } = useDodsbo();
+  const { t } = useLanguage();
   const [showForm, setShowForm] = useState(false);
   const [fType, setFType] = useState<ForsakringType>('livforsakring');
   const [company, setCompany] = useState('');
@@ -79,17 +81,17 @@ function ForsakringarContent() {
     <div className="flex flex-col px-5 py-6 pb-24">
       <div className="flex items-center justify-between mb-4">
         <div>
-          <h1 className="text-2xl font-semibold text-primary">Försäkringar</h1>
+          <h1 className="text-2xl font-semibold text-primary">{t('Försäkringar', 'Insurances')}</h1>
           <p className="text-muted text-sm mt-1">
             {state.forsakringar.length > 0
-              ? `${contacted}/${state.forsakringar.length} kontaktade`
-              : 'Inventera alla försäkringar'}
+              ? t(`${contacted}/${state.forsakringar.length} kontaktade`, `${contacted}/${state.forsakringar.length} contacted`)
+              : t('Inventera alla försäkringar', 'Inventory all insurances')}
           </p>
         </div>
         <button
           onClick={() => setShowForm(true)}
           className="w-12 h-12 bg-accent text-white rounded-full flex items-center justify-center shadow-md"
-          aria-label="Lägg till försäkring"
+          aria-label={t('Lägg till försäkring', 'Add insurance')}
         >
           <Plus className="w-6 h-6" />
         </button>
@@ -100,10 +102,9 @@ function ForsakringarContent() {
         <div className="flex gap-2">
           <Info className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
           <div>
-            <p className="text-sm font-medium text-primary">Var hittar jag försäkringarna?</p>
+            <p className="text-sm font-medium text-primary">{t('Var hittar jag försäkringarna?', 'Where do I find the insurances?')}</p>
             <p className="text-sm text-primary/70 mt-1">
-              Kontakta arbetsgivaren, fackförbundet, banken och kontrollera kontoutdrag för
-              automatiska dragningar. Minpension.se visar tjänstepension.
+              {t('Kontakta arbetsgivaren, fackförbundet, banken och kontrollera kontoutdrag för automatiska dragningar. Minpension.se visar tjänstepension.', 'Contact the employer, the union, the bank and check account statements for automatic deductions. Minpension.se shows occupational pensions.')}
             </p>
           </div>
         </div>
@@ -114,10 +115,9 @@ function ForsakringarContent() {
         <div className="flex gap-2">
           <Shield className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
           <div>
-            <p className="text-sm font-medium text-primary">Mike Ross tips: Kontakta arbetsgivaren!</p>
+            <p className="text-sm font-medium text-primary">{t('Mike Ross tips: Kontakta arbetsgivaren!', 'Mike Ross tip: Contact the employer!')}</p>
             <p className="text-sm text-primary/70 mt-1">
-              Många glömmer att fråga arbetsgivaren om grupplivförsäkring och tjänstepensionsförsäkring.
-              Dessa kan tillsammans vara värda hundratusentals kronor och är mycket viktiga att inventera.
+              {t('Många glömmer att fråga arbetsgivaren om grupplivförsäkring och tjänstepensionsförsäkring. Dessa kan tillsammans vara värda hundratusentals kronor och är mycket viktiga att inventera.', 'Many forget to ask the employer about group life insurance and occupational pension insurance. These together can be worth hundreds of thousands of kronor and are very important to inventory.')}
             </p>
           </div>
         </div>
@@ -126,11 +126,11 @@ function ForsakringarContent() {
       {/* Insurance categories */}
       <div className="mb-6">
         <h2 className="text-sm font-semibold text-muted uppercase tracking-wide mb-3">
-          Vilka försäkringar ingår i dödsboet?
+          {t('Vilka försäkringar ingår i dödsboet?', 'Which insurances are part of the estate?')}
         </h2>
         <div className="space-y-3">
           <div className="card bg-success/5 border-l-4 border-success">
-            <p className="text-sm font-semibold text-primary mb-2">✓ Försäkringar som ingår i dödsboet</p>
+            <p className="text-sm font-semibold text-primary mb-2">✓ {t('Försäkringar som ingår i dödsboet', 'Insurances that are part of the estate')}</p>
             <ul className="text-sm text-primary/80 space-y-1">
               <li>• <strong>Hemförsäkring</strong> — täcker sakskador på huset/lägenheten</li>
               <li>• <strong>Bilförsäkring</strong> — för fordon i dödsboet</li>
@@ -138,7 +138,7 @@ function ForsakringarContent() {
             </ul>
           </div>
           <div className="card bg-warn/5 border-l-4 border-warn">
-            <p className="text-sm font-semibold text-primary mb-2">✗ Försäkringar som INTE ingår i dödsboet</p>
+            <p className="text-sm font-semibold text-primary mb-2">✗ {{t('Försäkringar som INTE ingår i dödsboet', 'Insurances that do NOT belong to the estate')}}</p>
             <ul className="text-sm text-primary/80 space-y-1">
               <li>• <strong>Livförsäkring med förmånstagare</strong> — går direkt till förmånstagaren</li>
               <li>• <strong>Grupplivförsäkring (GFL)</strong> — från arbetsgivare, till förmånstagare</li>
@@ -152,7 +152,7 @@ function ForsakringarContent() {
       {!showForm && (
         <div className="mb-6">
           <h2 className="text-sm font-semibold text-muted uppercase tracking-wide mb-3">
-            Checklista: Försäkringar att kolla
+            {{t('Checklista: Försäkringar att kolla', 'Checklist: Insurances to check')}}
           </h2>
           <div className="flex flex-col gap-2">
             {FORSAKRING_TYPES.filter(ft => ft.value !== 'ovrigt').map((ft) => {
@@ -186,10 +186,9 @@ function ForsakringarContent() {
             <div className="flex gap-2">
               <Phone className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
               <div>
-                <p className="text-sm font-medium text-primary">Begravningshjälp via Försäkringskassan</p>
+                <p className="text-sm font-medium text-primary">{t('Begravningshjälp via Försäkringskassan', 'Burial assistance via the Social Insurance Agency')}</p>
                 <p className="text-sm text-primary/70 mt-1">
-                  Alla har rätt till begravningshjälp från staten. År 2024 är det halva prisbasbeloppet,
-                  cirka <strong>28 650 kr</strong>. Ansök inom 6 månader efter begravningen.
+                  {{t('Alla har rätt till begravningshjälp från staten. År 2024 är det halva prisbasbeloppet, cirka', 'Everyone has the right to burial assistance from the state. In 2024, it is half the price base amount, approximately')}} <strong>28 650 kr</strong>. {{t('Ansök inom 6 månader efter begravningen.', 'Apply within 6 months after the funeral.')}}
                 </p>
               </div>
             </div>
@@ -201,7 +200,7 @@ function ForsakringarContent() {
       {state.forsakringar.length > 0 && !showForm && (
         <div className="mb-6">
           <h2 className="text-sm font-semibold text-muted uppercase tracking-wide mb-3">
-            Tillagda försäkringar
+            {{t('Tillagda försäkringar', 'Added insurances')}}
           </h2>
           <div className="flex flex-col gap-3">
             {state.forsakringar.map((f) => (
@@ -214,7 +213,7 @@ function ForsakringarContent() {
                     </p>
                     {f.beneficiary && (
                       <p className="text-sm text-accent mt-1">
-                        Förmånstagare: {f.beneficiary}
+                        {{t('Förmånstagare:', 'Beneficiary:')}} {f.beneficiary}
                       </p>
                     )}
                   </div>
@@ -237,13 +236,13 @@ function ForsakringarContent() {
                       <Circle className="w-4 h-4 text-gray-300" />
                     )}
                     <span className={`text-sm ${f.contacted ? 'text-success' : 'text-muted'}`}>
-                      {f.contacted ? 'Kontaktad' : 'Markera som kontaktad'}
+                      {f.contacted ? t('Kontaktad', 'Contacted') : t('Markera som kontaktad', 'Mark as contacted')}
                     </span>
                   </button>
                   <button
                     onClick={() => dispatch({ type: 'REMOVE_FORSAKRING', payload: f.id })}
                     className="p-1.5 text-muted hover:text-warn transition-colors"
-                    aria-label={`Ta bort ${f.company}`}
+                    aria-label={t(`Ta bort ${f.company}`, `Remove ${f.company}`)}
                   >
                     <Trash2 className="w-4 h-4" />
                   </button>
@@ -257,10 +256,10 @@ function ForsakringarContent() {
       {/* Add form */}
       {showForm && (
         <div className="card border-2 border-accent">
-          <h3 className="text-lg font-semibold text-primary mb-4">Ny försäkring</h3>
+          <h3 className="text-lg font-semibold text-primary mb-4">{t('Ny försäkring', 'New insurance')}</h3>
 
           <div className="mb-4">
-            <span className="text-sm font-medium text-primary mb-2 block">Typ</span>
+            <span className="text-sm font-medium text-primary mb-2 block">{t('Typ', 'Type')}</span>
             <div className="grid grid-cols-2 gap-2">
               {FORSAKRING_TYPES.map((ft) => (
                 <button
@@ -279,12 +278,12 @@ function ForsakringarContent() {
           </div>
 
           <label className="block mb-4">
-            <span className="text-sm font-medium text-primary mb-1 block">Bolag *</span>
+            <span className="text-sm font-medium text-primary mb-1 block">{t('Bolag *', 'Company *')}</span>
             <input
               type="text"
               value={company}
               onChange={(e) => { setCompany(e.target.value); setFormErrors((p) => ({ ...p, company: '' })); }}
-              placeholder="T.ex. Folksam, If, Trygg-Hansa"
+              placeholder={t('T.ex. Folksam, If, Trygg-Hansa', 'E.g. Folksam, If, Trygg-Hansa')}
               className={`w-full min-h-touch px-4 py-3 text-base border-2 rounded-card focus:outline-none bg-white ${formErrors.company ? 'border-warn' : 'border-[#E8E4DE] focus:border-accent'}`}
               autoFocus
             />
@@ -292,7 +291,7 @@ function ForsakringarContent() {
           </label>
 
           <label className="block mb-4">
-            <span className="text-sm font-medium text-primary mb-1 block">Försäkringsnummer</span>
+            <span className="text-sm font-medium text-primary mb-1 block">{t('Försäkringsnummer', 'Policy number')}</span>
             <input
               type="text"
               value={policyNr}
@@ -303,18 +302,18 @@ function ForsakringarContent() {
           </label>
 
           <label className="block mb-4">
-            <span className="text-sm font-medium text-primary mb-1 block">Förmånstagare</span>
+            <span className="text-sm font-medium text-primary mb-1 block">{t('Förmånstagare', 'Beneficiary')}</span>
             <input
               type="text"
               value={beneficiary}
               onChange={(e) => setBeneficiary(e.target.value)}
-              placeholder="Dödsboet, make/maka, barn..."
+              placeholder={t('Dödsboet, make/maka, barn...', 'The estate, spouse, children...')}
               className="w-full min-h-touch px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-card focus:border-accent focus:outline-none"
             />
           </label>
 
           <label className="block mb-6">
-            <span className="text-sm font-medium text-primary mb-1 block">Uppskattat värde (kr)</span>
+            <span className="text-sm font-medium text-primary mb-1 block">{t('Uppskattat värde (kr)', 'Estimated value (SEK)')}</span>
             <input
               type="number"
               value={value}
@@ -326,8 +325,8 @@ function ForsakringarContent() {
           </label>
 
           <div className="flex gap-3">
-            <button onClick={() => setShowForm(false)} className="btn-secondary flex-1">Avbryt</button>
-            <button onClick={handleAdd} disabled={!company.trim()} className="btn-primary flex-1">Lägg till</button>
+            <button onClick={() => setShowForm(false)} className="btn-secondary flex-1">{t('Avbryt', 'Cancel')}</button>
+            <button onClick={handleAdd} disabled={!company.trim()} className="btn-primary flex-1">{t('Lägg till', 'Add')}</button>
           </div>
         </div>
       )}

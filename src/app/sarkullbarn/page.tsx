@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useLanguage } from '@/lib/i18n';
 import { BottomNav } from '@/components/ui/BottomNav';
 import Link from 'next/link';
 import {
@@ -19,50 +20,43 @@ interface FAQItem {
   answer: string;
 }
 
-const FAQ_ITEMS: FAQItem[] = [
+const createFAQ_ITEMS = (t: any): FAQItem[] => [
   {
-    question: 'Vad är särkullbarn?',
-    answer:
-      'Särkullbarn är barn som endast en av föräldrarna är gemensam för. I en ny relation där en eller båda parter har barn från tidigare förhållanden, är dessa barn särkullbarn gentemot den nya partnerns andra barn.',
+    question: t('Vad är särkullbarn?', 'What are non-mutual children?'),
+    answer: t('Särkullbarn är barn som endast en av föräldrarna är gemensam för. I en ny relation där en eller båda parter har barn från tidigare förhållanden, är dessa barn särkullbarn gentemot den nya partnerns andra barn.', 'Non-mutual children are children who have only one parent in common. In a new relationship where one or both parties have children from previous relationships, these children are non-mutual siblings to the new partner\'s other children.'),
   },
   {
-    question: 'Vilken arvsrätt har särkullbarn?',
-    answer:
-      'Särkullbarn ärver enligt samma arvsordning som vanliga barn, men de har särskilda rättigheter. De kan kräva ut sin arvslott (laglott) omedelbar när dödsboet är till och från, utan att behöva vänta på den efterlevande makens eller makans bortgång.',
+    question: t('Vilken arvsrätt har särkullbarn?', 'What inheritance rights do non-mutual children have?'),
+    answer: t('Särkullbarn ärver enligt samma arvsordning som vanliga barn, men de har särskilda rättigheter. De kan kräva ut sin arvslott (laglott) omedelbar när dödsboet är till och från, utan att behöva vänta på den efterlevande makens eller makans bortgång.', 'Non-mutual children inherit according to the same rules as other children, but have special rights. They can claim their legal portion (laglott) immediately when the estate is finalized, without waiting for the surviving spouse to pass away.'),
   },
   {
-    question: 'Vad är skillnaden mellan laglott och arvslott?',
-    answer:
-      'Arvslott är den del av arvet som utgör en arvings lagliga andel. Laglott är hälften av arvslotten, vilket är det minimibelopp en arvinge har rätt till även om testamentet fördelar arvet annorlunda. För särkullbarn är laglotten en viktig skyddsrätt.',
+    question: t('Vad är skillnaden mellan laglott och arvslott?', 'What is the difference between legal portion and inheritance share?'),
+    answer: t('Arvslott är den del av arvet som utgör en arvings lagliga andel. Laglott är hälften av arvslotten, vilket är det minimibelopp en arvinge har rätt till även om testamentet fördelar arvet annorlunda. För särkullbarn är laglotten en viktig skyddsrätt.', 'Inheritance share is the portion of the estate that represents an heir\'s legal entitlement. Legal portion (laglott) is half the inheritance share, the minimum amount an heir can claim even if a will distributes otherwise. For non-mutual children, this is an important protection.'),
   },
   {
-    question: 'Kan särkullbarn välja att inte ta ut sitt arv omedelbar?',
-    answer:
-      'Ja. Särkullbarn kan frivilligt välja att inte kräva ut sin laglott direkt. De kan då låta pengarna stanna i dödsboet för att stödja den återstående maken eller makan. Detta måste göras frivilligt och skriftligt.',
+    question: t('Kan särkullbarn välja att inte ta ut sitt arv omedelbar?', 'Can non-mutual children choose not to claim their inheritance immediately?'),
+    answer: t('Ja. Särkullbarn kan frivilligt välja att inte kräva ut sin laglott direkt. De kan då låta pengarna stanna i dödsboet för att stödja den återstående maken eller makan. Detta måste göras frivilligt och skriftligt.', 'Yes. Non-mutual children can voluntarily choose not to claim their portion immediately. They can allow the funds to remain in the estate to support the surviving spouse. This must be done voluntarily and in writing.'),
   },
   {
-    question: 'Hur beräknas laglotten för särkullbarn?',
-    answer:
-      'Laglotten är hälften av arvslotten. Arvslotten beräknas genom att dödsboets nettoförmögenhet divideras med antal arvingar. För särkullbarn: laglott = (nettoförmögenhet ÷ antal arvingar) ÷ 2.',
+    question: t('Hur beräknas laglotten för särkullbarn?', 'How is the legal portion calculated for non-mutual children?'),
+    answer: t('Laglotten är hälften av arvslotten. Arvslotten beräknas genom att dödsboets nettoförmögenhet divideras med antal arvingar. För särkullbarn: laglott = (nettoförmögenhet ÷ antal arvingar) ÷ 2.', 'The legal portion is half the inheritance share. Inheritance share is calculated by dividing the estate\'s net value by the number of heirs. For non-mutual children: legal portion = (net value ÷ number of heirs) ÷ 2.'),
   },
   {
-    question: 'Kan den efterlevande maken/makan vägra särkullbarnets arv?',
-    answer:
-      'Nej. Den efterlevande maken/makan kan inte vägra särkullbarnets lagliga rätt till laglotten. Om särkullbarnet kräver sitt belopp, måste det betalas ut från dödsboet.',
+    question: t('Kan den efterlevande maken/makan vägra särkullbarnets arv?', 'Can the surviving spouse refuse the non-mutual child\'s inheritance?'),
+    answer: t('Nej. Den efterlevande maken/makan kan inte vägra särkullbarnets lagliga rätt till laglotten. Om särkullbarnet kräver sitt belopp, måste det betalas ut från dödsboet.', 'No. The surviving spouse cannot refuse the non-mutual child\'s legal right to their portion. If the non-mutual child claims their amount, it must be paid from the estate.'),
   },
   {
-    question: 'Vad händer om det inte finns tillräckligt med pengar för laglotten?',
-    answer:
-      'Om dödsboet inte har tillräckligt med likvida medel kan dödsboet behöva sälja tillgångar (fastigheter, värdepapper) eller ta lån för att betala ut laglotten.',
+    question: t('Vad händer om det inte finns tillräckligt med pengar för laglotten?', 'What happens if the estate doesn\'t have enough funds for the legal portion?'),
+    answer: t('Om dödsboet inte har tillräckligt med likvida medel kan dödsboet behöva sälja tillgångar (fastigheter, värdepapper) eller ta lån för att betala ut laglotten.', 'If the estate lacks liquid funds, it may need to sell assets (property, securities) or take a loan to pay out the legal portion.'),
   },
   {
-    question: 'Behöver särkullbarn godkänna arvskiftet?',
-    answer:
-      'Ja, alla arvingar, inklusive särkullbarn, måste godkänna arvskifteshandlingen. Om särkullbarnet inte är myndig måste deras förälder godkänna.',
+    question: t('Behöver särkullbarn godkänna arvskiftet?', 'Do non-mutual children need to approve the estate distribution?'),
+    answer: t('Ja, alla arvingar, inklusive särkullbarn, måste godkänna arvskifteshandlingen. Om särkullbarnet inte är myndig måste deras förälder godkänna.', 'Yes, all heirs, including non-mutual children, must approve the estate distribution document. If the non-mutual child is not an adult, their parent must approve.'),
   },
 ];
 
 export default function SarkullbarnPage() {
+  const { t } = useLanguage();
   const [expandedFAQ, setExpandedFAQ] = useState<number | null>(0);
 
   return (
@@ -72,28 +66,26 @@ export default function SarkullbarnPage() {
         <Link
           href="/dashboard"
           className="p-2 -ml-2 min-h-[44px] min-w-[44px] flex items-center justify-center rounded-full hover:bg-background transition-colors"
-          aria-label="Tillbaka"
+          aria-label={t('Tillbaka', 'Back')}
         >
           <ArrowLeft className="w-5 h-5 text-primary" />
         </Link>
         <div>
-          <h1 className="text-2xl font-semibold text-primary">Särkullbarn och arv</h1>
-          <p className="text-muted text-sm">Speciella rättigheter i arvskiftet</p>
+          <h1 className="text-2xl font-semibold text-primary">{t('Särkullbarn och arv', 'Non-mutual Children and Inheritance')}</h1>
+          <p className="text-muted text-sm">{t('Speciella rättigheter i arvskiftet', 'Special rights in estate distribution')}</p>
         </div>
       </div>
 
-      <MikeRossTip text="Särkullbarn är juridiskt skyddade — de kan kräva sin laglott (halva arvslotten) direkt vid dödsfallet, utan att vänta på att styvföräldern också dör. Det kan skapa ekonomisk press om bostad eller kapital är bundet. Planera detta tidigt." />
+      <MikeRossTip text={t('Särkullbarn är juridiskt skyddade — de kan kräva sin laglott (halva arvslotten) direkt vid dödsfallet, utan att vänta på att styvföräldern också dör. Det kan skapa ekonomisk press om bostad eller kapital är bundet. Planera detta tidigt.', 'Non-mutual children are legally protected—they can claim their legal portion (half the inheritance share) immediately upon death, without waiting for the step-parent to pass. This can create financial pressure if housing or capital is tied up. Plan ahead.')} />
 
       {/* Intro info box */}
       <div className="info-box mb-6">
         <div className="flex gap-2">
           <Info className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
           <div>
-            <p className="text-sm font-medium text-primary">Vad är särkullbarn?</p>
+            <p className="text-sm font-medium text-primary">{t('Vad är särkullbarn?', 'What are non-mutual children?')}</p>
             <p className="text-sm text-primary/70 mt-1">
-              Särkullbarn är barn från tidigare relationer i en ny familj. De har samma arvsrätt som andra barn,
-              men med en viktig skillnad: de kan kräva ut sin laglott omedelbar utan att behöva vänta på
-              den återstående makens eller makans död.
+              {t('Särkullbarn är barn från tidigare relationer i en ny familj. De har samma arvsrätt som andra barn, men med en viktig skillnad: de kan kräva ut sin laglott omedelbar utan att behöva vänta på den återstående makens eller makans död.', 'Non-mutual children are children from previous relationships in a new family. They have the same inheritance rights as other children, but with an important difference: they can claim their legal portion immediately without waiting for the surviving spouse to pass away.')}
             </p>
           </div>
         </div>
@@ -108,26 +100,23 @@ export default function SarkullbarnPage() {
 
         <div className="space-y-4">
           <div className="border-l-2 border-accent pl-4">
-            <p className="font-medium text-primary text-sm mb-1">1. Rätt till omedelbar utbetalning</p>
+            <p className="font-medium text-primary text-sm mb-1">{t('1. Rätt till omedelbar utbetalning', '1. Right to immediate payment')}</p>
             <p className="text-sm text-primary/70">
-              Till skillnad från andra barn kan särkullbarn kräva att få sin laglott utbetald direkt från dödsboet,
-              utan att behöva vänta på den efterlevande makens eller makans bortgång.
+              {t('Till skillnad från andra barn kan särkullbarn kräva att få sin laglott utbetald direkt från dödsboet, utan att behöva vänta på den efterlevande makens eller makans bortgång.', 'Unlike other children, non-mutual children can demand their legal portion be paid immediately from the estate, without waiting for the surviving spouse to pass away.')}
             </p>
           </div>
 
           <div className="border-l-2 border-accent pl-4">
-            <p className="font-medium text-primary text-sm mb-1">2. Laglott är ett säkrat belopp</p>
+            <p className="font-medium text-primary text-sm mb-1">{t('2. Laglott är ett säkrat belopp', '2. Legal portion is a protected amount')}</p>
             <p className="text-sm text-primary/70">
-              Laglotten är hälften av arvslotten och kan inte tas bort genom testamente. Detta är ett viktigt skydd
-              för särkullbarn.
+              {t('Laglotten är hälften av arvslotten och kan inte tas bort genom testamente. Detta är ett viktigt skydd för särkullbarn.', 'The legal portion is half the inheritance share and cannot be removed by will. This is important protection for non-mutual children.')}
             </p>
           </div>
 
           <div className="border-l-2 border-accent pl-4">
-            <p className="font-medium text-primary text-sm mb-1">3. Frivillig avstäelse möjlig</p>
+            <p className="font-medium text-primary text-sm mb-1">{t('3. Frivillig avstäelse möjlig', '3. Voluntary waiver possible')}</p>
             <p className="text-sm text-primary/70">
-              Särkullbarn kan frivilligt välja att inte ta ut sin laglott omedelbar för att stödja den efterlevande
-              maken eller makan, men detta måste göras skriftligt.
+              {t('Särkullbarn kan frivilligt välja att inte ta ut sin laglott omedelbar för att stödja den efterlevande maken eller makan, men detta måste göras skriftligt.', 'Non-mutual children can voluntarily choose not to claim their legal portion immediately to support the surviving spouse, but this must be done in writing.')}
             </p>
           </div>
         </div>

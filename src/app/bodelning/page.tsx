@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useLanguage } from '@/lib/i18n';
 import { DodsboProvider, useDodsbo } from '@/lib/context';
 import { BottomNav } from '@/components/ui/BottomNav';
 import { JuridiskTooltip } from '@/components/ui/JuridiskTooltip';
@@ -51,6 +52,7 @@ interface EnskildeEgendomItem {
 }
 
 function BodelningContent() {
+  const { t } = useLanguage();
   const { state } = useDodsbo();
   const [mounted, setMounted] = useState(false);
 
@@ -279,23 +281,23 @@ function BodelningContent() {
           <Link
             href="/dashboard"
             className="p-2 -ml-2 min-h-[44px] min-w-[44px] flex items-center justify-center rounded-full hover:bg-white transition-colors"
-            aria-label="Tillbaka"
+            aria-label={t('Tillbaka', 'Back')}
           >
             <ArrowLeft className="w-5 h-5" style={{ color: '#6B7F5E' }} />
           </Link>
           <div>
             <h1 className="text-2xl font-semibold" style={{ color: '#2C3E3A' }}>
-              Bodelning
+              {t('Bodelning', 'Marital Property Division')}
             </h1>
             <p className="text-sm" style={{ color: '#8B8680' }}>
-              Steg-för-steg guide för delning av giftorättsgods
+              {t('Steg-för-steg guide för delning av giftorättsgods', 'Step-by-step guide for dividing marital property')}
             </p>
           </div>
         </div>
 
         {/* Mike Ross info */}
         <MikeRossTip
-          text="Vid bodelning delas giftorättsgodset lika mellan makarna. Enskild egendom (genom äktenskapsförord, gåva eller arv) hålls utanför. Efter bodelningen fördelas resten genom arvskifte."
+          text={t('Vid bodelning delas giftorättsgodset lika mellan makarna. Enskild egendom (genom äktenskapsförord, gåva eller arv) hålls utanför. Efter bodelningen fördelas resten genom arvskifte.', 'In marital property division, marital property is divided equally between spouses. Separate property (through prenuptial agreements, gifts, or inheritance) is excluded. After division, the remainder is distributed through estate distribution.')}
           className="mb-5"
         />
 
@@ -307,10 +309,10 @@ function BodelningContent() {
           <AlertTriangle className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#D97706' }} />
           <div>
             <p className="font-medium text-sm" style={{ color: '#D97706' }}>
-              Bodelning MÅSTE göras före arvskifte
+              {t('Bodelning MÅSTE göras före arvskifte', 'Marital property division MUST be done before estate distribution')}
             </p>
             <p className="text-sm mt-1" style={{ color: '#6B5D55' }}>
-              Enligt Äktenskapsbalken måste giftorättsgodset delas innan arven fördelas.
+              {t('Enligt Äktenskapsbalken måste giftorättsgodset delas innan arven fördelas.', 'According to the Marriage Code, marital property must be divided before inheritance is distributed.')}
             </p>
           </div>
         </div>
@@ -356,7 +358,7 @@ function BodelningContent() {
                   )}
                 </button>
                 <span className="text-xs text-center" style={{ color: '#8B8680' }}>
-                  {['Förord', 'Giftogds', 'Enskild', 'Beräkning', 'Samm.'][step - 1]}
+                  {[t('Förord', 'Agreement'), t('Giftogds', 'Marital Prop'), t('Enskild', 'Separate'), t('Beräkning', 'Calculate'), t('Samm.', 'Summary')][step - 1]}
                 </span>
               </div>
             ))}
@@ -374,10 +376,10 @@ function BodelningContent() {
                 <HelpCircle className="w-5 h-5 mt-0.5" style={{ color: '#6B7F5E' }} />
                 <div className="flex-1">
                   <h2 className="font-semibold text-base" style={{ color: '#2C3E3A' }}>
-                    Fanns det ett äktenskapsförord?
+                    {t('Fanns det ett äktenskapsförord?', 'Was there a prenuptial agreement?')}
                   </h2>
                   <p className="text-sm mt-2" style={{ color: '#6B5D55' }}>
-                    Ett äktenskapsförord är ett skriftligt avtal mellan makarna som kan utesluta viss egendom från bodelning. Den egendom som nämns i förorden är <strong>enskild egendom</strong> och delas inte.
+                    {t('Ett äktenskapsförord är ett skriftligt avtal mellan makarna som kan utesluta viss egendom från bodelning. Den egendom som nämns i förorden är enskild egendom och delas inte.', 'A prenuptial agreement is a written contract between spouses that can exclude certain property from division. Property mentioned in the agreement is separate property and is not divided.')}
                   </p>
                 </div>
               </div>
@@ -388,17 +390,17 @@ function BodelningContent() {
                 style={{ backgroundColor: '#F7F5F0' }}
               >
                 <p className="text-xs font-semibold mb-2" style={{ color: '#8B8680' }}>
-                  JURIDISK INFO: Äktenskapsförord
+                  {t('JURIDISK INFO: Äktenskapsförord', 'LEGAL INFO: Prenuptial Agreement')}
                 </p>
                 <ul className="text-xs space-y-1" style={{ color: '#6B5D55' }}>
                   <li>
-                    <strong>Kan innehålla:</strong> Gåvor från före äktenskapet, arv, fritidshus, sparande
+                    <strong>{t('Kan innehålla:', 'Can contain:')}</strong> {t('Gåvor från före äktenskapet, arv, fritidshus, sparande', 'Pre-marriage gifts, inheritance, vacation homes, savings')}
                   </li>
                   <li>
-                    <strong>Måste vara:</strong> Skriftligt och undertecknat av båda makarna
+                    <strong>{t('Måste vara:', 'Must be:')}</strong> {t('Skriftligt och undertecknat av båda makarna', 'Written and signed by both spouses')}
                   </li>
                   <li>
-                    <strong>Effekt:</strong> Den egendom som nämns är enskild egendom och delas ej
+                    <strong>{t('Effekt:', 'Effect:')}</strong> {t('Den egendom som nämns är enskild egendom och delas ej', 'Property mentioned is separate property and is not divided')}
                   </li>
                 </ul>
               </div>
@@ -420,7 +422,7 @@ function BodelningContent() {
                     color: aktenskapsForord.exists === false ? 'white' : '#2C3E3A',
                   }}
                 >
-                  Nej, inget förord
+                  {t('Nej, inget förord', 'No, no agreement')}
                 </button>
                 <button
                   onClick={() => {
@@ -437,7 +439,7 @@ function BodelningContent() {
                     color: aktenskapsForord.exists === true ? 'white' : '#2C3E3A',
                   }}
                 >
-                  Ja, det finns förord
+                  {t('Ja, det finns förord', 'Yes, there is an agreement')}
                 </button>
               </div>
 
@@ -1409,7 +1411,7 @@ function BodelningContent() {
           <Link
             href="/dashboard"
             className="p-2 -ml-2 min-h-[44px] min-w-[44px] flex items-center justify-center rounded-full hover:bg-white transition-colors"
-            aria-label="Tillbaka"
+            aria-label={t('Tillbaka', 'Back')}
           >
             <ArrowLeft className="w-5 h-5" style={{ color: '#6B7F5E' }} />
           </Link>

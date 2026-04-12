@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useLanguage } from '@/lib/i18n';
 import { DodsboProvider, useDodsbo } from '@/lib/context';
 import { BottomNav } from '@/components/ui/BottomNav';
 import Link from 'next/link';
@@ -502,6 +503,7 @@ const COMPANY_SECTIONS: CompanySection[] = [
 ];
 
 function ForetagContent() {
+  const { t } = useLanguage();
   const { state } = useDodsbo();
   const [selectedType, setSelectedType] = useState<BusinessType>(null);
   const [expandedSection, setExpandedSection] = useState<string | null>(null);

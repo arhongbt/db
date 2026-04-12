@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useLanguage } from '@/lib/i18n';
 import { DodsboProvider, useDodsbo } from '@/lib/context';
 import { BottomNav } from '@/components/ui/BottomNav';
 import { SWEDISH_BANKS } from '@/types';
@@ -33,6 +34,7 @@ function MikeRossTip({ text }: { text: string }) {
 }
 
 function BankbrevContent() {
+  const { t } = useLanguage();
   const { state } = useDodsbo();
   const [currentStep, setCurrentStep] = useState(0);
   const [customBanks, setCustomBanks] = useState<string[]>([]);
@@ -185,7 +187,7 @@ Adress: ${data.adress}`;
           </button>
           <div className="flex items-center gap-2">
             <Landmark className="w-6 h-6 text-accent" />
-            <h1 className="text-xl font-bold text-primary">Bankbrev</h1>
+            <h1 className="text-xl font-bold text-primary">{t('Bankbrev', 'Bank Letter')}</h1>
           </div>
         </div>
       </div>
@@ -196,27 +198,27 @@ Adress: ${data.adress}`;
         {currentStep === 0 && (
           <div>
             <div className="mb-6">
-              <h2 className="text-2xl font-bold text-primary mb-2">Uppgifter om den avlidne</h2>
-              <p className="text-sm text-muted">Steg 1 av 4</p>
+              <h2 className="text-2xl font-bold text-primary mb-2">{t('Uppgifter om den avlidne', 'Information about the deceased')}</h2>
+              <p className="text-sm text-muted">{t('Steg 1 av 4', 'Step 1 of 4')}</p>
             </div>
 
-            <MikeRossTip text="Banken behöver namn, personnummer och dödsdatum för att kunna identifiera den avlidnes konton. Ha dödsbeviset redo — banken kräver det som bilaga." />
+            <MikeRossTip text={t('Banken behöver namn, personnummer och dödsdatum för att kunna identifiera den avlidnes konton. Ha dödsbeviset redo — banken kräver det som bilaga.', 'The bank needs name, personal number, and date of death to identify the deceased\'s accounts. Have the death certificate ready — the bank requires it as an attachment.')} />
 
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-semibold text-primary mb-2">Namn</label>
+                <label className="block text-sm font-semibold text-primary mb-2">{t('Namn', 'Name')}</label>
                 <input
                   type="text"
                   value={data.avlidenNamn}
                   onChange={(e) => setData({ ...data, avlidenNamn: e.target.value })}
-                  placeholder="Förnamn Efternamn"
+                  placeholder={t('Förnamn Efternamn', 'First name Last name')}
                   className="w-full px-4 py-3 border rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white" style={{ borderColor: '#E8E4DE' }}
                 />
               </div>
 
               <div>
                 <label className="block text-sm font-semibold text-primary mb-2">
-                  Personnummer
+                  {t('Personnummer', 'Personal number')}
                 </label>
                 <input
                   type="text"
@@ -228,7 +230,7 @@ Adress: ${data.adress}`;
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-primary mb-2">Dödsdatum</label>
+                <label className="block text-sm font-semibold text-primary mb-2">{t('Dödsdatum', 'Date of death')}</label>
                 <input
                   type="date"
                   value={data.dödsdatum}

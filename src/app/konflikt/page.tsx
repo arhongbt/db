@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useLanguage } from '@/lib/i18n';
 import { DodsboProvider, useDodsbo } from '@/lib/context';
 import { BottomNav } from '@/components/ui/BottomNav';
 import Link from 'next/link';
@@ -103,6 +104,7 @@ const ESCALATION_LEVELS: EscalationLevel[] = [
 ];
 
 function KonfliktContent() {
+  const { t } = useLanguage();
   const { state } = useDodsbo();
   const [expandedLevels, setExpandedLevels] = useState<Set<string>>(
     new Set(['level1'])
@@ -124,34 +126,31 @@ function KonfliktContent() {
         <Link
           href="/dashboard"
           className="p-2 -ml-2 min-h-[44px] min-w-[44px] flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors"
-          aria-label="Tillbaka"
+          aria-label={t('Tillbaka', 'Back')}
         >
           <ArrowLeft className="w-5 h-5 text-primary" />
         </Link>
         <div>
           <h1 className="text-2xl font-semibold text-primary">
-            Oenighet i dödsboet
+            {t('Oenighet i dödsboet', 'Disputes in the estate')}
           </h1>
-          <p className="text-muted text-sm">Vad du kan göra</p>
+          <p className="text-muted text-sm">{t('Vad du kan göra', 'What you can do')}</p>
         </div>
       </div>
 
-      <MikeRossTip text="Konflikter i dödsbon är vanligare än man tror — speciellt när känslor och ekonomi blandas. Juridiskt sett har alla delägare lika rätt att säga nej. Det innebär att ingenting kan säljas eller delas utan allas godkännande, vilket ibland kräver domstolsförordnad skiftesman." />
+      <MikeRossTip text={t('Konflikter i dödsbon är vanligare än man tror — speciellt när känslor och ekonomi blandas. Juridiskt sett har alla delägare lika rätt att säga nej. Det innebär att ingenting kan säljas eller delas utan allas godkännande, vilket ibland kräver domstolsförordnad skiftesman.', 'Disputes in estates are more common than you\'d think — especially when emotions and money mix. Legally, all co-heirs have equal right to say no. This means nothing can be sold or divided without everyone\'s approval, which sometimes requires court-appointed distribution officer.')} />
 
       {/* Info box */}
       <div className="info-box mb-6">
         <p className="text-sm">
-          <strong>När dödsbodelägarna inte kan komma överens om fördelningen
-          finns det hjälp att få.</strong> Du behöver inte låsa dig fast i
-          konflikten — det finns flera vägar framåt, från samtal till juridisk
-          hjälp.
+          <strong>{t('När dödsbodelägarna inte kan komma överens om fördelningen finns det hjälp att få.', 'When estate co-heirs cannot agree on distribution, there is help available.')}</strong> {t('Du behöver inte låsa dig fast i konflikten — det finns flera vägar framåt, från samtal till juridisk hjälp.', 'You don\'t need to lock yourself into the conflict — there are several ways forward, from conversation to legal help.')}
         </p>
       </div>
 
       {/* Escalation levels */}
       <div className="mb-6">
         <h2 className="text-lg font-semibold text-primary mb-4">
-          Eskaleringsmöjligheter
+          {t('Eskaleringsmöjligheter', 'Escalation options')}
         </h2>
         <div className="flex flex-col gap-3">
           {ESCALATION_LEVELS.map((level) => {

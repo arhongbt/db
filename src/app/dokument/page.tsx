@@ -1,6 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { useLanguage } from '@/lib/i18n';
 import { DodsboProvider, useDodsbo } from '@/lib/context';
 import { BottomNav } from '@/components/ui/BottomNav';
 // Decorations removed — caused z-index/visibility bugs on mobile
@@ -39,6 +40,7 @@ function getFileIcon(mimeType: string) {
 }
 
 function DokumentContent() {
+  const { t } = useLanguage();
   const { state, loading: stateLoading } = useDodsbo();
   const [dokuments, setDokuments] = useState<DokumentRow[]>([]);
   const [loading, setLoading] = useState(true);
@@ -70,7 +72,7 @@ function DokumentContent() {
   // Handle file selection
   const handleFileSelect = (file: File) => {
     if (file.size > MAX_FILE_SIZE) {
-      setError(`Filen är för stor (max ${formatFileSize(MAX_FILE_SIZE)})`);
+      setError(t(`Filen är för stor (max ${formatFileSize(MAX_FILE_SIZE)})`, `File is too large (max ${formatFileSize(MAX_FILE_SIZE)})`));
       return;
     }
     setSelectedFile(file);
@@ -115,7 +117,7 @@ function DokumentContent() {
       setDokuments((prev) => [data, ...prev]);
     }
 
-    setSuccess(`"${selectedFile.name}" uppladdad!`);
+    setSuccess(t(`"${selectedFile.name}" uppladdad!`, `"${selectedFile.name}" uploaded!`));
     setSelectedFile(null);
     setCategory('ovrigt');
     setNotes('');
@@ -133,7 +135,7 @@ function DokumentContent() {
 
   // Delete
   const handleDelete = async (doc: DokumentRow) => {
-    if (!confirm(`Ta bort "${doc.file_name}"?`)) return;
+    if (!confirm(t(`Ta bort "${doc.file_name}"?`, `Delete "${doc.file_name}"?`))) return;
     await deleteDokument(doc.id, doc.storage_path);
     setDokuments((prev) => prev.filter((d) => d.id !== doc.id));
   };
@@ -164,11 +166,11 @@ function DokumentContent() {
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
         <div>
-          <h1 className="text-2xl font-semibold text-primary">Dokument</h1>
+          <h1 className="text-2xl font-semibold text-primary">{t('Dokument', 'Documents')}</h1>
           <p className="text-muted text-sm mt-1">
             {dokuments.length > 0
-              ? `${dokuments.length} fil(er) uppladdade`
-              : 'Ladda upp underlag till bouppteckningen'}
+              ? t(`${dokuments.length} fil(er) uppladdade`, `${dokuments.length} file(s) uploaded`)
+              : t('Ladda upp underlag till bouppteckningen', 'Upload documents for the estate inventory')}
           </p>
         </div>
         <button
@@ -177,7 +179,7 @@ function DokumentContent() {
             setSelectedFile(null);
           }}
           className="w-12 h-12 bg-accent text-white rounded-full flex items-center justify-center shadow-md"
-          aria-label="Ladda upp dokument"
+          aria-label={t('Ladda upp dokument', 'Upload document')}
         >
           <Plus className="w-6 h-6" />
         </button>
@@ -214,10 +216,10 @@ function DokumentContent() {
         >
           <Upload className="w-10 h-10 text-gray-400 mb-3" />
           <p className="text-sm font-medium text-primary mb-1">
-            Dra och släpp fil här
+            {t('Dra och släpp fil här', 'Drag and drop file here')}
           </p>
           <p className="text-xs text-muted">
-            eller klicka för att välja (max {formatFileSize(MAX_FILE_SIZE)})
+            {t('eller klicka för att välja', 'or click to choose')} (max {formatFileSize(MAX_FILE_SIZE)})
           </p>
           <input
             ref={fileInputRef}
@@ -238,7 +240,7 @@ function DokumentContent() {
         <div className="card border-2 border-accent mb-6">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-lg font-semibold text-primary">
-              Ladda upp dokument
+              {t('Ladda upp dokument', 'Upload document')}
             </h3>
             <button
               onClick={() => {
@@ -259,7 +261,7 @@ function DokumentContent() {
               className="w-full border-2 border-dashed border-[#E8E4DE] rounded-xl p-6 flex flex-col items-center gap-2 hover:border-accent/50 transition-colors mb-4"
             >
               <Upload className="w-8 h-8 text-gray-400" />
-              <span className="text-sm text-muted">Välj fil</span>
+              <span className="text-sm text-muted">{t('Välj fil', 'Choose file')}</span>
               <input
                 ref={fileInputRef}
                 type="file"
@@ -295,7 +297,7 @@ function DokumentContent() {
           {/* Category */}
           <div className="mb-4">
             <span className="text-sm font-medium text-primary mb-2 block">
-              Kategori
+              {t('Kategori', 'Category')}
             </span>
             <div className="grid grid-cols-2 gap-2">
               {DOKUMENT_CATEGORIES.map((cat) => (
@@ -308,7 +310,7 @@ function DokumentContent() {
                       : 'border-[#E8E4DE] text-muted'
                   }`}
                 >
-                  {cat.label}
+                  {t(cat.label, cat.label)}
                 </button>
               ))}
             </div>
@@ -317,13 +319,13 @@ function DokumentContent() {
           {/* Notes */}
           <label className="block mb-4">
             <span className="text-sm font-medium text-primary mb-1 block">
-              Anteckning (valfritt)
+              {t('Anteckning (valfritt)', 'Note (optional)')}
             </span>
             <input
               type="text"
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
-              placeholder="T.ex. Från Swedbank, saldo per 2024-01-15"
+              placeholder={t('T.ex. Från Swedbank, saldo per 2024-01-15', 'E.g. From Swedbank, balance as of 2024-01-15')}
               className="w-full px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-card focus:border-accent focus:outline-none bg-white"
             />
           </label>
@@ -345,7 +347,7 @@ function DokumentContent() {
               }}
               className="btn-secondary flex-1"
             >
-              Avbryt
+              {t('Avbryt', 'Cancel')}
             </button>
             <button
               onClick={handleUpload}
@@ -355,12 +357,12 @@ function DokumentContent() {
               {uploading ? (
                 <>
                   <Loader2 className="w-4 h-4 animate-spin" />
-                  Laddar upp...
+                  {t('Laddar upp...', 'Uploading...')}
                 </>
               ) : (
                 <>
                   <Upload className="w-4 h-4" />
-                  Ladda upp
+                  {t('Ladda upp', 'Upload')}
                 </>
               )}
             </button>
@@ -382,11 +384,10 @@ function DokumentContent() {
         <div className="flex-1 flex flex-col items-center justify-center text-center py-12">
           <FileText className="w-16 h-16 text-gray-300 mb-4" />
           <h2 className="text-lg font-medium text-primary mb-2">
-            Inga dokument ännu
+            {t('Inga dokument ännu', 'No documents yet')}
           </h2>
           <p className="text-muted text-sm max-w-xs">
-            Samla viktiga handlingar här efterhand — dödsbevis, saldobesked, testamente.
-            Allt behöver inte vara klart på en gång.
+            {t('Samla viktiga handlingar här efterhand — dödsbevis, saldobesked, testamente. Allt behöver inte vara klart på en gång.', 'Gather important documents here gradually — death certificate, account statements, will. Everything doesn\'t have to be ready at once.')}
           </p>
         </div>
       ) : (
@@ -394,7 +395,7 @@ function DokumentContent() {
           {Object.entries(grouped).map(([cat, docs]) => (
             <div key={cat}>
               <h2 className="text-xs font-semibold text-muted uppercase tracking-wide mb-2">
-                {getCategoryLabel(cat)} ({docs.length})
+                {t(getCategoryLabel(cat), getCategoryLabel(cat))} ({docs.length})
               </h2>
               <div className="flex flex-col gap-2">
                 {docs.map((doc) => {
@@ -417,14 +418,14 @@ function DokumentContent() {
                       <button
                         onClick={() => handleDownload(doc)}
                         className="p-2 text-accent hover:bg-accent/10 rounded-full transition-colors"
-                        aria-label="Ladda ner"
+                        aria-label={t('Ladda ner', 'Download')}
                       >
                         <Download className="w-4 h-4" />
                       </button>
                       <button
                         onClick={() => handleDelete(doc)}
                         className="p-2 text-muted hover:text-warn transition-colors"
-                        aria-label="Ta bort"
+                        aria-label={t('Ta bort', 'Delete')}
                       >
                         <Trash2 className="w-4 h-4" />
                       </button>

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useLanguage } from '@/lib/i18n';
 import { DodsboProvider, useDodsbo } from '@/lib/context';
 import { BottomNav } from '@/components/ui/BottomNav';
 // Decorations removed — caused z-index/visibility bugs on mobile
@@ -47,6 +48,7 @@ const SKULD_TYPES: { value: SkuldType; label: string }[] = [
 
 function TillgangarContent() {
   const { state, dispatch, loading } = useDodsbo();
+  const { t } = useLanguage();
   const [tab, setTab] = useState<'tillgangar' | 'skulder'>('tillgangar');
   const [showForm, setShowForm] = useState(false);
   const [formErrors, setFormErrors] = useState<Record<string, string>>({});
@@ -137,11 +139,11 @@ function TillgangarContent() {
 
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
-        <h1 className="text-2xl font-semibold text-primary">Ekonomi</h1>
+        <h1 className="text-2xl font-semibold text-primary">{t('Ekonomi', 'Finances')}</h1>
         <button
           onClick={() => { setShowForm(true); }}
           className="w-12 h-12 bg-accent text-white rounded-full flex items-center justify-center shadow-md hover:bg-primary-light transition-colors"
-          aria-label="Lägg till"
+          aria-label={t('Lägg till', 'Add')}
         >
           <Plus className="w-6 h-6" />
         </button>
@@ -152,8 +154,7 @@ function TillgangarContent() {
         <div className="flex gap-2">
           <Info className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
           <p className="text-sm text-primary/70">
-            Ange uppskattade värden per dödsdagen. Bankerna skickar saldobesked —
-            exakta belopp kan uppdateras senare.
+            {t('Ange uppskattade värden per dödsdagen. Bankerna skickar saldobesked — exakta belopp kan uppdateras senare.', 'Enter estimated values as of the date of death. Banks will send account statements — exact amounts can be updated later.')}
           </p>
         </div>
       </div>
@@ -182,17 +183,17 @@ function TillgangarContent() {
       )}
 
       {/* Summary cards */}
-      <div className="grid grid-cols-3 gap-3 mb-6" role="group" aria-label="Ekonomisk sammanfattning">
-        <div className="card text-center py-3" aria-label={`Totala tillgångar: ${formatSEK(totalTillgangar)}`}>
-          <p className="text-xs text-muted uppercase">Tillgångar</p>
+      <div className="grid grid-cols-3 gap-3 mb-6" role="group" aria-label={t('Ekonomisk sammanfattning', 'Financial summary')}>
+        <div className="card text-center py-3" aria-label={t(`Totala tillgångar: ${formatSEK(totalTillgangar)}`, `Total assets: ${formatSEK(totalTillgangar)}`)}>
+          <p className="text-xs text-muted uppercase">{t('Tillgångar', 'Assets')}</p>
           <p className="text-lg font-bold text-success">{formatSEK(totalTillgangar)}</p>
         </div>
-        <div className="card text-center py-3" aria-label={`Totala skulder: ${formatSEK(totalSkulder)}`}>
-          <p className="text-xs text-muted uppercase">Skulder</p>
+        <div className="card text-center py-3" aria-label={t(`Totala skulder: ${formatSEK(totalSkulder)}`, `Total debts: ${formatSEK(totalSkulder)}`)}>
+          <p className="text-xs text-muted uppercase">{t('Skulder', 'Debts')}</p>
           <p className="text-lg font-bold text-warn">{formatSEK(totalSkulder)}</p>
         </div>
-        <div className="card text-center py-3" aria-label={`Nettovärde: ${formatSEK(netto)}`}>
-          <p className="text-xs text-muted uppercase">Netto</p>
+        <div className="card text-center py-3" aria-label={t(`Nettovärde: ${formatSEK(netto)}`, `Net value: ${formatSEK(netto)}`)}>
+          <p className="text-xs text-muted uppercase">{t('Netto', 'Net')}</p>
           <p className={`text-lg font-bold ${netto >= 0 ? 'text-success' : 'text-warn'}`}>
             {formatSEK(netto)}
           </p>
@@ -205,18 +206,18 @@ function TillgangarContent() {
           <div className="flex gap-3">
             <CheckCircle2 className="w-6 h-6 text-success flex-shrink-0 mt-0.5" />
             <div className="flex-1">
-              <h3 className="font-semibold text-primary mb-3">Du ärver INTE skulder</h3>
+              <h3 className="font-semibold text-primary mb-3">{t('Du ärver INTE skulder', 'You do NOT inherit debts')}</h3>
               <p className="text-sm text-primary/80 mb-3">
-                I Sverige ärver man aldrig skulder. Dödsboets skulder betalas med dödsboets tillgångar. Om skulderna överstiger tillgångarna försvinner resten — du behöver inte betala ur egen ficka.
+                {t('I Sverige ärver man aldrig skulder. Dödsboets skulder betalas med dödsboets tillgångar. Om skulderna överstiger tillgångarna försvinner resten — du behöver inte betala ur egen ficka.', 'In Sweden, you never inherit debts. The estate\'s debts are paid from the estate\'s assets. If the debts exceed the assets, the remainder disappears — you don\'t need to pay from your own pocket.')}
               </p>
               <p className="text-sm text-primary/80 mb-4">
-                Om dödsboet saknar tillgångar kan du göra en dödsboanmälan istället för bouppteckning.
+                {t('Om dödsboet saknar tillgångar kan du göra en dödsboanmälan istället för bouppteckning.', 'If the estate lacks assets, you can file an estate notification instead of an inventory.')}
               </p>
               <a
                 href="/dodsboanmalan"
                 className="text-accent font-medium text-sm hover:underline inline-block mb-4"
               >
-                Gå till dödsboanmälan →
+                {t('Gå till dödsboanmälan →', 'Go to estate notification →')}
               </a>
               <div className="pt-3 border-t border-[#E8E4DE]">
                 <p className="text-xs text-muted">
@@ -237,7 +238,7 @@ function TillgangarContent() {
             tab === 'tillgangar' ? 'bg-white text-primary shadow-sm' : 'text-muted'
           }`}
         >
-          Tillgångar ({state.tillgangar.length})
+          {t('Tillgångar', 'Assets')} ({state.tillgangar.length})
         </button>
         <button
           onClick={() => { setTab('skulder'); setShowForm(false); }}
@@ -245,7 +246,7 @@ function TillgangarContent() {
             tab === 'skulder' ? 'bg-white text-primary shadow-sm' : 'text-muted'
           }`}
         >
-          Skulder ({state.skulder.length})
+          {t('Skulder', 'Debts')} ({state.skulder.length})
         </button>
       </div>
 
@@ -256,10 +257,10 @@ function TillgangarContent() {
             <div className="flex-1 flex flex-col items-center justify-center text-center py-12">
               <Wallet className="w-16 h-16 text-gray-300 mb-4" />
               <h2 className="text-lg font-medium text-primary mb-2">
-                Inga tillgångar ännu
+                {t('Inga tillgångar ännu', 'No assets yet')}
               </h2>
               <p className="text-muted text-sm max-w-xs">
-                Du kan lägga till bankkonton, bostad och annat när du har fått översikt. Det behöver inte ske på en gång.
+                {t('Du kan lägga till bankkonton, bostad och annat när du har fått översikt. Det behöver inte ske på en gång.', 'You can add bank accounts, properties and more when you have an overview. It doesn\'t have to happen all at once.')}
               </p>
             </div>
           ) : (
@@ -299,10 +300,10 @@ function TillgangarContent() {
             <div className="flex-1 flex flex-col items-center justify-center text-center py-12">
               <CreditCard className="w-16 h-16 text-gray-300 mb-4" />
               <h2 className="text-lg font-medium text-primary mb-2">
-                Inga skulder registrerade
+                {t('Inga skulder registrerade', 'No debts registered')}
               </h2>
               <p className="text-muted text-sm max-w-xs">
-                Lägg till bolån, konsumentlån, kreditkort och andra skulder.
+                {t('Lägg till bolån, konsumentlån, kreditkort och andra skulder.', 'Add mortgages, consumer loans, credit cards and other debts.')}
               </p>
             </div>
           ) : (
@@ -336,10 +337,10 @@ function TillgangarContent() {
       {/* Add forms */}
       {showForm && tab === 'tillgangar' && (
         <div className="card border-2 border-accent">
-          <h3 className="text-lg font-semibold text-primary mb-4">Ny tillgång</h3>
+          <h3 className="text-lg font-semibold text-primary mb-4">{t('Ny tillgång', 'New asset')}</h3>
 
           <div className="mb-4">
-            <span className="text-sm font-medium text-primary mb-2 block">Typ</span>
+            <span className="text-sm font-medium text-primary mb-2 block">{t('Typ', 'Type')}</span>
             <div className="grid grid-cols-2 gap-2">
               {TILLGANG_TYPES.map((tt) => (
                 <button
@@ -357,25 +358,25 @@ function TillgangarContent() {
             </div>
             {tType === 'forsakring' && (
               <p className="text-xs text-muted mt-2 bg-background p-2 rounded border border-[#E8E4DE]">
-                Försäkringar med namngiven förmånstagare ingår oftast INTE i dödsboet. Kontrollera med försäkringsbolaget.
+                {t('Försäkringar med namngiven förmånstagare ingår oftast INTE i dödsboet. Kontrollera med försäkringsbolaget.', 'Insurances with a named beneficiary usually do NOT belong to the estate. Check with the insurance company.')}
               </p>
             )}
           </div>
 
           <label className="block mb-4">
-            <span className="text-sm font-medium text-primary mb-1 block">Beskrivning *</span>
+            <span className="text-sm font-medium text-primary mb-1 block">{t('Beskrivning *', 'Description *')}</span>
             <input
               type="text"
               value={tDesc}
               onChange={(e) => { setTDesc(e.target.value); setFormErrors((p) => ({ ...p, tDesc: '' })); }}
-              placeholder="T.ex. Sparkonto Swedbank"
+              placeholder={t('T.ex. Sparkonto Swedbank', 'E.g. Savings account Swedbank')}
               className={`w-full min-h-touch px-4 py-3 text-base border-2 rounded-card focus:outline-none bg-white ${formErrors.tDesc ? 'border-warn' : 'border-[#E8E4DE] focus:border-accent'}`}
             />
             {formErrors.tDesc && <span className="text-xs text-warn mt-1 block">{formErrors.tDesc}</span>}
           </label>
 
           <label className="block mb-4">
-            <span className="text-sm font-medium text-primary mb-1 block">Uppskattat värde (kr)</span>
+            <span className="text-sm font-medium text-primary mb-1 block">{t('Uppskattat värde (kr)', 'Estimated value (SEK)')}</span>
             <input
               type="number"
               value={tValue}
@@ -388,7 +389,7 @@ function TillgangarContent() {
 
           {['bostadsratt', 'villa', 'jordbruksfastighet', 'fritidshus'].includes(tType) && (
             <label className="block mb-4">
-              <span className="text-sm font-medium text-primary mb-1 block">Taxeringsvärde (kr)</span>
+              <span className="text-sm font-medium text-primary mb-1 block">{t('Taxeringsvärde (kr)', 'Assessed value (SEK)')}</span>
               <input
                 type="number"
                 value={tTaxeringsvarde}
@@ -396,23 +397,23 @@ function TillgangarContent() {
                 placeholder="0"
                 className="w-full min-h-touch px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-card focus:outline-none focus:border-accent"
               />
-              <p className="text-xs text-muted mt-1">Taxeringsvärdet finns på Skatteverket.se eller senaste fastighetstaxeringen.</p>
+              <p className="text-xs text-muted mt-1">{t('Taxeringsvärdet finns på Skatteverket.se eller senaste fastighetstaxeringen.', 'The assessed value is found on Skatteverket.se or the latest property valuation.')}</p>
             </label>
           )}
 
           <div className="flex gap-3">
-            <button onClick={() => setShowForm(false)} className="btn-secondary flex-1">Avbryt</button>
-            <button onClick={handleAddTillgang} disabled={!tDesc.trim()} className="btn-primary flex-1">Lägg till</button>
+            <button onClick={() => setShowForm(false)} className="btn-secondary flex-1">{t('Avbryt', 'Cancel')}</button>
+            <button onClick={handleAddTillgang} disabled={!tDesc.trim()} className="btn-primary flex-1">{t('Lägg till', 'Add')}</button>
           </div>
         </div>
       )}
 
       {showForm && tab === 'skulder' && (
         <div className="card border-2 border-accent">
-          <h3 className="text-lg font-semibold text-primary mb-4">Ny skuld</h3>
+          <h3 className="text-lg font-semibold text-primary mb-4">{t('Ny skuld', 'New debt')}</h3>
 
           <div className="mb-4">
-            <span className="text-sm font-medium text-primary mb-2 block">Typ</span>
+            <span className="text-sm font-medium text-primary mb-2 block">{t('Typ', 'Type')}</span>
             <div className="grid grid-cols-2 gap-2">
               {SKULD_TYPES.map((st) => (
                 <button
@@ -431,19 +432,19 @@ function TillgangarContent() {
           </div>
 
           <label className="block mb-4">
-            <span className="text-sm font-medium text-primary mb-1 block">Fordringsägare *</span>
+            <span className="text-sm font-medium text-primary mb-1 block">{t('Fordringsägare *', 'Creditor *')}</span>
             <input
               type="text"
               value={sCreditor}
               onChange={(e) => { setSCreditor(e.target.value); setFormErrors((p) => ({ ...p, sCreditor: '' })); }}
-              placeholder="T.ex. Nordea (bolån)"
+              placeholder={t('T.ex. Nordea (bolån)', 'E.g. Nordea (mortgage)')}
               className={`w-full min-h-touch px-4 py-3 text-base border-2 rounded-card focus:outline-none bg-white ${formErrors.sCreditor ? 'border-warn' : 'border-[#E8E4DE] focus:border-accent'}`}
             />
             {formErrors.sCreditor && <span className="text-xs text-warn mt-1 block">{formErrors.sCreditor}</span>}
           </label>
 
           <label className="block mb-4">
-            <span className="text-sm font-medium text-primary mb-1 block">Belopp (kr)</span>
+            <span className="text-sm font-medium text-primary mb-1 block">{t('Belopp (kr)', 'Amount (SEK)')}</span>
             <input
               type="number"
               value={sAmount}
@@ -455,8 +456,8 @@ function TillgangarContent() {
           </label>
 
           <div className="flex gap-3">
-            <button onClick={() => setShowForm(false)} className="btn-secondary flex-1">Avbryt</button>
-            <button onClick={handleAddSkuld} disabled={!sCreditor.trim()} className="btn-primary flex-1">Lägg till</button>
+            <button onClick={() => setShowForm(false)} className="btn-secondary flex-1">{t('Avbryt', 'Cancel')}</button>
+            <button onClick={handleAddSkuld} disabled={!sCreditor.trim()} className="btn-primary flex-1">{t('Lägg till', 'Add')}</button>
           </div>
         </div>
       )}

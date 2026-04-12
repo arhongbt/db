@@ -1,10 +1,12 @@
 'use client';
 
+import { useLanguage } from '@/lib/i18n';
 import Link from 'next/link';
 import { ArrowLeft, FileText, ChevronRight, AlertTriangle, Calendar } from 'lucide-react';
 import { BottomNav } from '@/components/ui/BottomNav';
 
 export default function DeklararaDodsboPage() {
+  const { t } = useLanguage();
   return (
     <div className="min-h-screen bg-background">
       {/* Header with back link */}
@@ -15,7 +17,7 @@ export default function DeklararaDodsboPage() {
             className="inline-flex items-center gap-2 text-accent hover:text-accent-dark transition-colors"
           >
             <ArrowLeft className="w-5 h-5" />
-            Tillbaka
+            {t('Tillbaka', 'Back')}
           </Link>
         </div>
       </div>
@@ -24,8 +26,8 @@ export default function DeklararaDodsboPage() {
       <main className="max-w-2xl mx-auto px-4 py-8 pb-32">
         {/* Title */}
         <div className="mb-8">
-          <h1 className="text-4xl font-bold text-primary mb-2">Deklarera dödsbo</h1>
-          <p className="text-muted">En guide till hur dödsboet deklarerar sin inkomst för Skatteverket</p>
+          <h1 className="text-4xl font-bold text-primary mb-2">{t('Deklarera dödsbo', 'File estate tax return')}</h1>
+          <p className="text-muted">{t('En guide till hur dödsboet deklarerar sin inkomst för Skatteverket', 'A guide to how the estate files its income to the Swedish Tax Agency')}</p>
         </div>
 
         {/* Warning box */}

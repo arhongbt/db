@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useLanguage } from '@/lib/i18n';
 import Link from 'next/link';
 import { ArrowLeft, Bot, Newspaper, Copy, CheckCircle2, Info } from 'lucide-react';
 import { DodsboProvider, useDodsbo } from '@/lib/context';

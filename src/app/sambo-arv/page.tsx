@@ -2,9 +2,11 @@
 
 import Link from 'next/link';
 import { ArrowLeft, Users, ChevronRight, AlertTriangle } from 'lucide-react';
+import { useLanguage } from '@/lib/i18n';
 import { BottomNav } from '@/components/ui/BottomNav';
 
 export default function SamboArvPage() {
+  const { t } = useLanguage();
   return (
     <div className="min-h-screen bg-background pb-24">
       {/* Header */}
@@ -13,7 +15,7 @@ export default function SamboArvPage() {
           <Link href="/dashboard" className="p-2 hover:bg-secondary rounded-lg transition-colors">
             <ArrowLeft className="w-5 h-5 text-primary" />
           </Link>
-          <h1 className="text-xl font-semibold text-primary">Sambo och arv</h1>
+          <h1 className="text-xl font-semibold text-primary">{t('Sambo och arv', 'Cohabiting Partner and Inheritance')}</h1>
         </div>
       </div>
 
@@ -23,9 +25,9 @@ export default function SamboArvPage() {
         <div className="bg-[#FEF3EE] border border-warn/20 rounded-lg p-4 flex gap-3">
           <AlertTriangle className="w-5 h-5 text-warn flex-shrink-0 mt-0.5" />
           <div>
-            <p className="font-semibold text-primary mb-1">Viktigt att veta</p>
+            <p className="font-semibold text-primary mb-1">{t('Viktigt att veta', 'Important to Know')}</p>
             <p className="text-sm text-primary">
-              Sambor ärver inte varandra automatiskt. Utan testamente får den överlevande sambons partner ingenting från dödsboet.
+              {t('Sambor ärver inte varandra automatiskt. Utan testamente får den överlevande sambons partner ingenting från dödsboet.', 'Cohabiting partners do not inherit from each other automatically. Without a will, the surviving partner gets nothing from the estate.')}
             </p>
           </div>
         </div>

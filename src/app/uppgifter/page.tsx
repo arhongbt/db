@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useLanguage } from '@/lib/i18n';
 import { DodsboProvider, useDodsbo } from '@/lib/context';
 import { BottomNav } from '@/components/ui/BottomNav';
 // Decorations removed — caused z-index/visibility bugs on mobile
@@ -41,6 +42,7 @@ const PRIORITY_ICON: Record<string, { icon: typeof AlertTriangle; color: string 
 
 function UppgifterContent() {
   const { state, dispatch, loading } = useDodsbo();
+  const { t } = useLanguage();
   const [mounted, setMounted] = useState(false);
   const [filterStep, setFilterStep] = useState<ProcessStep | 'all'>('all');
   const [filterAssignee, setFilterAssignee] = useState<string | 'all'>('all');
@@ -141,9 +143,9 @@ function UppgifterContent() {
     <div className="flex flex-col px-5 py-6 pb-24">
 
       <div className="mb-4">
-        <h1 className="text-2xl font-semibold text-primary">Att göra</h1>
+        <h1 className="text-2xl font-semibold text-primary">{t('Att göra', 'To do')}</h1>
         <p className="text-muted text-sm mt-1">
-          {totalDone}/{tasks.length} uppgifter klara
+          {totalDone}/{tasks.length} {t('uppgifter klara', 'tasks completed')}
         </p>
       </div>
 
@@ -161,14 +163,14 @@ function UppgifterContent() {
           <div className="flex items-center gap-2">
             <CheckCircle2 className="w-5 h-5 text-success" />
             <p className="font-medium text-primary text-sm">
-              Alla uppgifter klara! Du har gått vidare till: {STEP_LABELS[advancedTo]}
+              {t('Alla uppgifter klara! Du har gått vidare till:', 'All tasks completed! You have advanced to:')} {STEP_LABELS[advancedTo]}
             </p>
           </div>
         </div>
       )}
 
       {/* Step filters */}
-      <div className="flex gap-2 mb-4 overflow-x-auto pb-1" role="tablist" aria-label="Filtrera efter steg">
+      <div className="flex gap-2 mb-4 overflow-x-auto pb-1" role="tablist" aria-label={t('Filtrera efter steg', 'Filter by step')}>
         <button
           onClick={() => setFilterStep('all')}
           role="tab"
@@ -179,7 +181,7 @@ function UppgifterContent() {
               : 'bg-gray-100 text-primary/70 hover:bg-[#E8E4DE]'
           }`}
         >
-          Alla
+          {t('Alla', 'All')}
         </button>
         {(['akut', 'kartlaggning', 'bouppteckning', 'arvskifte'] as ProcessStep[]).map((s) => (
           <button
@@ -200,7 +202,7 @@ function UppgifterContent() {
       </div>
 
       {/* Assignee filters */}
-      <div className="flex gap-2 mb-4 overflow-x-auto pb-1" role="tablist" aria-label="Filtrera efter tilldelning">
+      <div className="flex gap-2 mb-4 overflow-x-auto pb-1" role="tablist" aria-label={t('Filtrera efter tilldelning', 'Filter by assignee')}>
         <button
           onClick={() => setFilterAssignee('all')}
           role="tab"
@@ -211,7 +213,7 @@ function UppgifterContent() {
               : 'bg-gray-100 text-primary/70 hover:bg-[#E8E4DE]'
           }`}
         >
-          Alla
+          {t('Alla', 'All')}
         </button>
         {state.delagare.filter((d) => d.isDelagare).map((d) => (
           <button
@@ -234,7 +236,7 @@ function UppgifterContent() {
       <button
         onClick={() => setShowDone(!showDone)}
         aria-pressed={showDone}
-        aria-label={showDone ? 'Dölj klara uppgifter' : 'Visa klara uppgifter'}
+        aria-label={showDone ? t('Dölj klara uppgifter', 'Hide completed tasks') : t('Visa klara uppgifter', 'Show completed tasks')}
         className={`flex items-center gap-2 mb-4 px-3 py-2 min-h-[44px] rounded-lg text-sm font-medium transition-colors ${
           showDone
             ? 'bg-success/10 text-success'
@@ -242,7 +244,7 @@ function UppgifterContent() {
         }`}
       >
         <CheckCircle2 className="w-4 h-4" />
-        {showDone ? 'Dölj klara' : 'Visa klara'}
+        {showDone ? t('Dölj klara', 'Hide completed') : t('Visa klara', 'Show completed')}
       </button>
 
       {/* Task list grouped by step */}
@@ -302,14 +304,14 @@ function UppgifterContent() {
                           }`}
                         >
                           {isOverdue
-                            ? `${daysSinceDeath - task.deadlineDays} dagar försenad`
-                            : `${task.deadlineDays - daysSinceDeath} dagar kvar`}
+                            ? t(`${daysSinceDeath - task.deadlineDays} dagar försenad`, `${daysSinceDeath - task.deadlineDays} days overdue`)
+                            : t(`${task.deadlineDays - daysSinceDeath} dagar kvar`, `${task.deadlineDays - daysSinceDeath} days left`)}
                         </p>
                       )}
                       {task.externalUrl && task.status !== 'klar' && (
                         <span className="inline-flex items-center gap-1 text-xs text-accent mt-1">
                           <ExternalLink className="w-3 h-3" />
-                          Länk
+                          {t('Länk', 'Link')}
                         </span>
                       )}
                     </div>
@@ -327,8 +329,8 @@ function UppgifterContent() {
                           ? 'bg-[#6B7F5E] text-white'
                           : 'border border-[#E8E4DE] text-[#E8E4DE] hover:border-primary hover:text-primary'
                       }`}
-                      aria-label={task.assignedTo ? `Ändra tilldelning från ${task.assignedTo}` : 'Tilldela uppgift till dödsbodelägare'}
-                      title={task.assignedTo ? `Tilldelad till ${task.assignedTo}` : 'Tilldela uppgift'}
+                      aria-label={task.assignedTo ? t(`Ändra tilldelning från ${task.assignedTo}`, `Change assignment from ${task.assignedTo}`) : t('Tilldela uppgift till dödsbodelägare', 'Assign task to estate co-owner')}
+                      title={task.assignedTo ? t(`Tilldelad till ${task.assignedTo}`, `Assigned to ${task.assignedTo}`) : t('Tilldela uppgift', 'Assign task')}
                     >
                       {task.assignedTo ? initials : '+'}
                     </button>
@@ -346,7 +348,7 @@ function UppgifterContent() {
                           }}
                           className="block w-full text-left px-3 py-2 text-sm text-muted hover:bg-gray-50 border-b border-[#E8E4DE] last:border-b-0"
                         >
-                          Ingen
+                          {t('Ingen', 'None')}
                         </button>
                         {state.delagare.filter((d) => d.isDelagare).map((d) => (
                           <button
@@ -378,7 +380,7 @@ function UppgifterContent() {
         <div className="flex-1 flex flex-col items-center justify-center text-center py-12">
           <CheckCircle2 className="w-16 h-16 text-success mb-4" />
           <h2 className="text-lg font-medium text-primary">
-            {showDone ? 'Inga uppgifter i denna kategori' : 'Alla uppgifter klara!'}
+            {showDone ? t('Inga uppgifter i denna kategori', 'No tasks in this category') : t('Alla uppgifter klara!', 'All tasks completed!')}
           </h2>
         </div>
       )}
