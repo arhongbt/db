@@ -465,6 +465,60 @@ export type Database = {
         };
         Relationships: [];
       };
+      samarbete_beslut: {
+        Row: {
+          id: string;
+          dodsbo_id: string;
+          title: string;
+          status: string;
+          approvals: Record<string, boolean>;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          dodsbo_id: string;
+          title: string;
+          status?: string;
+          approvals?: Record<string, boolean>;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          dodsbo_id?: string;
+          title?: string;
+          status?: string;
+          approvals?: Record<string, boolean>;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
+      samarbete_anteckningar: {
+        Row: {
+          id: string;
+          dodsbo_id: string;
+          author: string;
+          content: string;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          dodsbo_id: string;
+          author: string;
+          content: string;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          dodsbo_id?: string;
+          author?: string;
+          content?: string;
+          created_at?: string;
+        };
+        Relationships: [];
+      };
     };
     Views: Record<string, never>;
     Functions: Record<string, never>;
