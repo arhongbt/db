@@ -138,7 +138,7 @@ function ForsakringarContent() {
             </ul>
           </div>
           <div className="card bg-warn/5 border-l-4 border-warn">
-            <p className="text-sm font-semibold text-primary mb-2">✗ {{t('Försäkringar som INTE ingår i dödsboet', 'Insurances that do NOT belong to the estate')}}</p>
+            <p className="text-sm font-semibold text-primary mb-2">✗ {t('Försäkringar som INTE ingår i dödsboet', 'Insurances that do NOT belong to the estate')}</p>
             <ul className="text-sm text-primary/80 space-y-1">
               <li>• <strong>Livförsäkring med förmånstagare</strong> — går direkt till förmånstagaren</li>
               <li>• <strong>Grupplivförsäkring (GFL)</strong> — från arbetsgivare, till förmånstagare</li>
@@ -152,7 +152,7 @@ function ForsakringarContent() {
       {!showForm && (
         <div className="mb-6">
           <h2 className="text-sm font-semibold text-muted uppercase tracking-wide mb-3">
-            {{t('Checklista: Försäkringar att kolla', 'Checklist: Insurances to check')}}
+            {t('Checklista: Försäkringar att kolla', 'Checklist: Insurances to check')}
           </h2>
           <div className="flex flex-col gap-2">
             {FORSAKRING_TYPES.filter(ft => ft.value !== 'ovrigt').map((ft) => {
@@ -188,7 +188,7 @@ function ForsakringarContent() {
               <div>
                 <p className="text-sm font-medium text-primary">{t('Begravningshjälp via Försäkringskassan', 'Burial assistance via the Social Insurance Agency')}</p>
                 <p className="text-sm text-primary/70 mt-1">
-                  {{t('Alla har rätt till begravningshjälp från staten. År 2024 är det halva prisbasbeloppet, cirka', 'Everyone has the right to burial assistance from the state. In 2024, it is half the price base amount, approximately')}} <strong>28 650 kr</strong>. {{t('Ansök inom 6 månader efter begravningen.', 'Apply within 6 months after the funeral.')}}
+                  {t('Alla har rätt till begravningshjälp från staten. År 2024 är det halva prisbasbeloppet, cirka', 'Everyone has the right to burial assistance from the state. In 2024, it is half the price base amount, approximately')} <strong>28 650 kr</strong>. {t('Ansök inom 6 månader efter begravningen.', 'Apply within 6 months after the funeral.')}
                 </p>
               </div>
             </div>
@@ -200,7 +200,7 @@ function ForsakringarContent() {
       {state.forsakringar.length > 0 && !showForm && (
         <div className="mb-6">
           <h2 className="text-sm font-semibold text-muted uppercase tracking-wide mb-3">
-            {{t('Tillagda försäkringar', 'Added insurances')}}
+            {t('Tillagda försäkringar', 'Added insurances')}
           </h2>
           <div className="flex flex-col gap-3">
             {state.forsakringar.map((f) => (
@@ -213,7 +213,7 @@ function ForsakringarContent() {
                     </p>
                     {f.beneficiary && (
                       <p className="text-sm text-accent mt-1">
-                        {{t('Förmånstagare:', 'Beneficiary:')}} {f.beneficiary}
+                        {t('Förmånstagare:', 'Beneficiary:')} {f.beneficiary}
                       </p>
                     )}
                   </div>

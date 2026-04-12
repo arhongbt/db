@@ -84,14 +84,14 @@ export default function AnvandarvillkorPage() {
           <section>
             <h2>{t('8. Ansvarsbegränsning', '8. Limitation of liability')}</h2>
             <p>
-              {{t('Sista Resan ansvarar inte för direkta eller indirekta skador som uppstår genom användning av tjänsten, inklusive men inte begränsat till ekonomiska förluster, missade tidsfrister eller felaktiga beräkningar. Vårt ansvar är under alla omständigheter begränsat till det belopp du har betalat för tjänsten under de senaste 12 månaderna.', 'Sista Resan is not responsible for direct or indirect damages arising from use of the service, including but not limited to financial losses, missed deadlines, or calculation errors. Our liability is in all cases limited to the amount you have paid for the service in the past 12 months.')}}
+              {t('Sista Resan ansvarar inte för direkta eller indirekta skador som uppstår genom användning av tjänsten, inklusive men inte begränsat till ekonomiska förluster, missade tidsfrister eller felaktiga beräkningar. Vårt ansvar är under alla omständigheter begränsat till det belopp du har betalat för tjänsten under de senaste 12 månaderna.', 'Sista Resan is not responsible for direct or indirect damages arising from use of the service, including but not limited to financial losses, missed deadlines, or calculation errors. Our liability is in all cases limited to the amount you have paid for the service in the past 12 months.')}
             </p>
           </section>
 
           <section>
             <h2>{t('9. Tvistlösning', '9. Dispute resolution')}</h2>
             <p>
-              {{t('Dessa villkor regleras av svensk lag. Tvister som inte kan lösas i samförstånd ska avgöras av Allmänna reklamationsnämnden (ARN) eller svensk allmän domstol.', 'These terms are governed by Swedish law. Disputes that cannot be resolved by mutual agreement shall be settled by the General Complaints Board (ARN) or a Swedish court.')}}
+              {t('Dessa villkor regleras av svensk lag. Tvister som inte kan lösas i samförstånd ska avgöras av Allmänna reklamationsnämnden (ARN) eller svensk allmän domstol.', 'These terms are governed by Swedish law. Disputes that cannot be resolved by mutual agreement shall be settled by the General Complaints Board (ARN) or a Swedish court.')}
             </p>
           </section>
 
