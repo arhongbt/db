@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Flower2, ArrowLeft, Bot, Flame, Copy, Check } from 'lucide-react';
+import { Heart, ArrowLeft, Bot, Flame, Copy, Check } from 'lucide-react';
 import Link from 'next/link';
 import { DodsboProvider, useDodsbo } from '@/lib/context';
 import { BottomNav } from '@/components/ui/BottomNav';
@@ -169,7 +169,7 @@ ${form.citat}
             <ArrowLeft className="w-5 h-5" />
           </Link>
           <h1 className="flex items-center gap-2 text-xl font-bold text-primary">
-            <Flower2 className="w-5 h-5 text-primary" />
+            <Heart className="w-5 h-5 fill-primary" />
             Minnesida
           </h1>
           <div className="w-5" />

@@ -7,7 +7,7 @@ import {
   Home, Users, Wallet, FileText, FolderOpen, MoreHorizontal, X,
   Calculator, Building2, Camera, Download, Bell, Scale, BookOpen,
   HelpCircle, Globe, Briefcase, AlertTriangle, Bot, PenTool, ScrollText, FileX,
-  HomeIcon, CreditCard, FileCheck, Landmark, Newspaper, Flower2, Flame, Smartphone,
+  HomeIcon, Heart, CreditCard, FileCheck, Landmark, Newspaper, Flower2, Flame, Smartphone,
 } from 'lucide-react';
 
 const NAV_ITEMS = [
@@ -34,7 +34,7 @@ const MORE_CATEGORIES = [
     items: [
       { href: '/begravningsplanering', label: 'Begravning', icon: Flower2 },
       { href: '/skatteverket-guide', label: 'Skatteverket', icon: FileCheck },
-      { href: '/minnesida', label: 'Minnesida', icon: Flower2 },
+      { href: '/minnesida', label: 'Minnesida', icon: Heart },
       { href: '/samarbete', label: 'Samarbete', icon: Users },
       { href: '/juridisk-hjalp', label: 'Mike Ross', icon: Bot },
       { href: '/delagare', label: 'Delägare', icon: Users },
@@ -49,7 +49,7 @@ const MORE_CATEGORIES = [
     items: [
       { href: '/dodsbo-fastighet', label: 'Fastighet', icon: HomeIcon },
       { href: '/sarkullbarn', label: 'Särkullbarn', icon: Users },
-      { href: '/sambo-arv', label: 'Sambo & arv', icon: Flower2 },
+      { href: '/sambo-arv', label: 'Sambo & arv', icon: Users },
       { href: '/dodsbo-skulder', label: 'Skulder', icon: CreditCard },
       { href: '/deklarera-dodsbo', label: 'Deklaration', icon: FileCheck },
     ],
