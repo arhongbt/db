@@ -12,6 +12,7 @@ import {
   AlertTriangle,
   Sparkles,
 } from 'lucide-react';
+import { PremiumModal } from '@/components/ui/PremiumModal';
 
 interface Message {
   role: 'user' | 'assistant';
@@ -504,7 +505,10 @@ function JuridiskHjalpContent() {
             <p className="text-xs text-muted mb-3">
               Uppgradera för obegränsade frågor och prioriterat stöd.
             </p>
-            <button className="btn-primary !rounded-xl !py-2.5 !text-sm w-full">
+            <button
+              className="btn-primary !rounded-xl !py-2.5 !text-sm w-full"
+              onClick={() => setShowPremiumModal(true)}
+            >
               Uppgradera till Premium
             </button>
           </div>
@@ -560,6 +564,7 @@ function JuridiskHjalpContent() {
       </div>
 
       <BottomNav />
+      <PremiumModal isOpen={showPremiumModal} onClose={() => setShowPremiumModal(false)} />
     </div>
   );
 }

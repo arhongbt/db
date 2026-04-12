@@ -293,6 +293,7 @@ function TabBeslut() {
 }
 
 function TabAnteckningar() {
+  const { state } = useDodsbo();
   const [notes, setNotes] = useState<Note[]>([]);
   const [author, setAuthor] = useState('');
   const [content, setContent] = useState('');

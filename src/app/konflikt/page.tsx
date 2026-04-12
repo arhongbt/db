@@ -13,6 +13,7 @@ import {
   Gavel,
   FileText,
 } from 'lucide-react';
+import { MikeRossTip } from '@/components/ui/MikeRossTip';
 
 interface ConflictScenario {
   title: string;
@@ -134,6 +135,8 @@ function KonfliktContent() {
           <p className="text-muted text-sm">Vad du kan göra</p>
         </div>
       </div>
+
+      <MikeRossTip text="Konflikter i dödsbon är vanligare än man tror — speciellt när känslor och ekonomi blandas. Juridiskt sett har alla delägare lika rätt att säga nej. Det innebär att ingenting kan säljas eller delas utan allas godkännande, vilket ibland kräver domstolsförordnad skiftesman." />
 
       {/* Info box */}
       <div className="info-box mb-6">

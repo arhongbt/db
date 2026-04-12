@@ -49,6 +49,7 @@ export type Action =
   | { type: 'SET_KOSTNADER'; payload: Kostnad[] }
   | { type: 'ADD_KOSTNAD'; payload: Kostnad }
   | { type: 'REMOVE_KOSTNAD'; payload: string }
+  | { type: 'UPDATE_KOSTNAD'; payload: Kostnad }
   | { type: 'LOAD_STATE'; payload: Dodsbo }
   | { type: 'RESET' };
 
@@ -229,6 +230,9 @@ export function dodsboReducer(state: Dodsbo, action: Action): Dodsbo {
 
     case 'REMOVE_KOSTNAD':
       return { ...state, kostnader: state.kostnader.filter((k) => k.id !== action.payload), updatedAt: now };
+
+    case 'UPDATE_KOSTNAD':
+      return { ...state, kostnader: state.kostnader.map((k) => k.id === action.payload.id ? action.payload : k), updatedAt: now };
 
     case 'LOAD_STATE':
       return {

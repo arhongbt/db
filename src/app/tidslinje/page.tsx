@@ -12,6 +12,7 @@ import {
   Calendar,
   Flag,
 } from 'lucide-react';
+import { MikeRossTip } from '@/components/ui/MikeRossTip';
 import { DEFAULT_TIDSFRISTER } from '@/types';
 import type { ProcessStep } from '@/types';
 
@@ -99,6 +100,9 @@ function TidslinjeContent() {
   return (
     <div className="flex flex-col px-5 py-6 pb-24">
       <h1 className="text-2xl font-semibold text-primary mb-2">Tidslinje</h1>
+
+      <MikeRossTip text="Tidsfrister i dödsbo är lag, inte rekommendationer. Bouppteckning ska lämnas till Skatteverket inom 4 månader — missar ni det riskerar ni böter. Hyresrätt måste sägas upp inom 1 månad, annars fortsätter hyran löpa. Börja tidigt." />
+
       {deathDate && (
         <p className="text-muted mb-6">
           Dag {daysSinceDeath} — {deathDate.toLocaleDateString('sv-SE', { day: 'numeric', month: 'long', year: 'numeric' })}

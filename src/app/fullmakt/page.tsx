@@ -19,6 +19,7 @@ import {
   Mail,
   Info,
 } from 'lucide-react';
+import { MikeRossTip } from '@/components/ui/MikeRossTip';
 
 // ── Template definitions ──
 
@@ -411,6 +412,8 @@ function FullmaktContent() {
           </div>
         </div>
       )}
+
+      <MikeRossTip text="En fullmakt ger någon rätt att agera i dödsboets namn — t.ex. tömma konton eller sälja egendom. Den måste vara skriftlig och undertecknad av alla delägare för att vara giltig. En generalfullmakt upphör automatiskt vid dödsfall, så ni behöver en ny dödsbo-specifik fullmakt." />
 
       <div className="info-box mb-6">
         <div className="flex items-start gap-2">

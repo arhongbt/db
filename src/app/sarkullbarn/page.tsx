@@ -12,6 +12,7 @@ import {
   ChevronUp,
   Info,
 } from 'lucide-react';
+import { MikeRossTip } from '@/components/ui/MikeRossTip';
 
 interface FAQItem {
   question: string;
@@ -80,6 +81,8 @@ export default function SarkullbarnPage() {
           <p className="text-muted text-sm">Speciella rättigheter i arvskiftet</p>
         </div>
       </div>
+
+      <MikeRossTip text="Särkullbarn är juridiskt skyddade — de kan kräva sin laglott (halva arvslotten) direkt vid dödsfallet, utan att vänta på att styvföräldern också dör. Det kan skapa ekonomisk press om bostad eller kapital är bundet. Planera detta tidigt." />
 
       {/* Intro info box */}
       <div className="info-box mb-6">

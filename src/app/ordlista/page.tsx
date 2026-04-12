@@ -5,6 +5,7 @@ import { DodsboProvider, useDodsbo } from '@/lib/context';
 import { BottomNav } from '@/components/ui/BottomNav';
 import Link from 'next/link';
 import { ArrowLeft, Search } from 'lucide-react';
+import { MikeRossTip } from '@/components/ui/MikeRossTip';
 
 interface GlossaryTerm {
   term: string;
@@ -284,6 +285,8 @@ function OrdlistaContent() {
           </p>
         </div>
       </div>
+
+      <MikeRossTip text="Juridisk terminologi kan vara förvirrande — men du behöver inte kunna allt. De viktigaste begreppen att förstå är: laglott (barnens skyddade del), bouppgivare (den som ansvarar för bouppteckningen) och arvskifte (det formella dokumentet som fördelar arvet)." />
 
       {/* Search */}
       <div className="relative mb-6">
