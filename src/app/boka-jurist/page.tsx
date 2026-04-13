@@ -76,32 +76,24 @@ export default function BokaJuristPage() {
         </div>
       </div>
 
-      {/* Elfsight widget — rubrik och bild dolda via CSS-klippning */}
+      {/* Elfsight widget — visar juristens riktiga kalender */}
       <div className="px-6">
         <h2 className="text-lg font-bold text-primary mb-3">
           {t('Välj en tid nedan', 'Pick a time below')}
         </h2>
 
-        {/*
-          CSS-trick: vi sveper widgeten i en wrapper med overflow:hidden,
-          och pushar widgeten uppåt med negativ margin-top så att
-          Elfsights eget service-card-header (bild + "Gratis Juridisk rådgivning")
-          klipps bort. Justera --crop-top om Elfsight ändrar sin layout.
-        */}
         <div
-          className="rounded-2xl border overflow-hidden"
+          className="rounded-2xl border overflow-hidden p-2"
           style={{ background: 'var(--bg-card)', borderColor: 'var(--border)' }}
         >
-          <div className="elfsight-crop-wrapper">
-            <Script
-              src="https://static.elfsight.com/platform/platform.js"
-              strategy="lazyOnload"
-            />
-            <div
-              className="elfsight-app-5b0d7d76-3025-4851-b668-95a83cd58a0e"
-              data-elfsight-app-lazy
-            />
-          </div>
+          <Script
+            src="https://static.elfsight.com/platform/platform.js"
+            strategy="lazyOnload"
+          />
+          <div
+            className="elfsight-app-5b0d7d76-3025-4851-b668-95a83cd58a0e"
+            data-elfsight-app-lazy
+          />
         </div>
 
         <p className="text-xs text-muted text-center mt-3 leading-relaxed">
@@ -111,26 +103,6 @@ export default function BokaJuristPage() {
           )}
         </p>
       </div>
-
-      {/* Inline-styles för CSS-klippning av Elfsight-headern */}
-      <style jsx global>{`
-        .elfsight-crop-wrapper {
-          --crop-top: 150px;
-          position: relative;
-          overflow: hidden;
-          padding-top: 8px;
-        }
-        .elfsight-crop-wrapper > .elfsight-app-5b0d7d76-3025-4851-b668-95a83cd58a0e {
-          margin-top: calc(var(--crop-top) * -1);
-          padding-top: var(--crop-top);
-        }
-        /* På små skärmar — mindre crop eftersom layouten är kompaktare */
-        @media (max-width: 640px) {
-          .elfsight-crop-wrapper {
-            --crop-top: 120px;
-          }
-        }
-      `}</style>
 
       <BottomNav />
     </main>
