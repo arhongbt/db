@@ -46,11 +46,81 @@ export function AppSettingsProvider({ children }: { children: React.ReactNode })
     }
   }, []);
 
+  const fixDarkInlineStyles = useCallback((isDark: boolean) => {
+    if (!isDark) return;
+    // Color mappings: light → dark
+    const colorMap: Record<string, string> = {
+      '#F7F5F0': 'var(--bg)',
+      '#f7f5f0': 'var(--bg)',
+      '#FFFFFF': 'var(--bg-card)',
+      '#ffffff': 'var(--bg-card)',
+      'white': 'var(--bg-card)',
+      '#E8E4DE': 'var(--border)',
+      '#e8e4de': 'var(--border)',
+      '#F0EDE6': 'var(--border-light)',
+      '#f0ede6': 'var(--border-light)',
+      '#2A2622': 'var(--text)',
+      '#2a2622': 'var(--text)',
+      '#524B45': 'var(--text-secondary)',
+      '#524b45': 'var(--text-secondary)',
+      '#6B6560': 'var(--text-secondary)',
+      '#6b6560': 'var(--text-secondary)',
+      '#EEF2EA': 'var(--accent-soft)',
+      '#eef2ea': 'var(--accent-soft)',
+    };
+    requestAnimationFrame(() => {
+      document.querySelectorAll('[style]').forEach(el => {
+        const style = (el as HTMLElement).style;
+        // Fix background
+        if (style.background) {
+          let bg = style.background;
+          Object.entries(colorMap).forEach(([from, to]) => {
+            bg = bg.replace(new RegExp(from.replace('#', '\\#'), 'gi'), to);
+          });
+          if (bg !== style.background) style.background = bg;
+        }
+        if (style.backgroundColor) {
+          Object.entries(colorMap).forEach(([from, to]) => {
+            if (style.backgroundColor.toLowerCase().includes(from.toLowerCase())) {
+              style.backgroundColor = to;
+            }
+          });
+        }
+        // Fix border-color
+        if (style.borderColor) {
+          Object.entries(colorMap).forEach(([from, to]) => {
+            if (style.borderColor.toLowerCase().includes(from.toLowerCase())) {
+              style.borderColor = to;
+            }
+          });
+        }
+        // Fix color
+        if (style.color) {
+          Object.entries(colorMap).forEach(([from, to]) => {
+            if (style.color.toLowerCase().includes(from.toLowerCase())) {
+              style.color = to;
+            }
+          });
+        }
+      });
+    });
+  }, []);
+
+  // Re-run inline style fixer on navigation / DOM changes
+  useEffect(() => {
+    if (settings.theme !== 'dark') return;
+    const observer = new MutationObserver(() => fixDarkInlineStyles(true));
+    observer.observe(document.body, { childList: true, subtree: true });
+    fixDarkInlineStyles(true);
+    return () => observer.disconnect();
+  }, [settings.theme, fixDarkInlineStyles]);
+
   const persist = useCallback((s: AppSettings) => {
     localStorage.setItem("sr_app_settings", JSON.stringify(s));
     document.documentElement.setAttribute("data-theme", s.theme);
     document.documentElement.setAttribute("data-text-size", s.textSize);
-  }, []);
+    fixDarkInlineStyles(s.theme === 'dark');
+  }, [fixDarkInlineStyles]);
 
   const setTheme = useCallback((t: "light" | "dark") => {
     setSettings(prev => {

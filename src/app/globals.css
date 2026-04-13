@@ -273,20 +273,42 @@
   --shadow-color: rgba(0,0,0,0.3);
 }
 
-/* Dark mode overrides for Tailwind utility classes */
-[data-theme="dark"] .bg-white {
+/* ============================================
+   Dark mode — comprehensive overrides
+   ============================================ */
+
+/* --- Backgrounds --- */
+[data-theme="dark"] .bg-white,
+[data-theme="dark"] .bg-surface {
   background-color: var(--bg-card) !important;
 }
 [data-theme="dark"] .bg-gray-50,
-[data-theme="dark"] .bg-gray-100 {
+[data-theme="dark"] .bg-gray-100,
+[data-theme="dark"] .bg-green-50,
+[data-theme="dark"] .bg-amber-50,
+[data-theme="dark"] .bg-blue-50,
+[data-theme="dark"] .bg-red-50,
+[data-theme="dark"] .bg-indigo-50,
+[data-theme="dark"] .bg-orange-50,
+[data-theme="dark"] .bg-purple-50 {
   background-color: var(--border-light) !important;
 }
-[data-theme="dark"] .bg-gray-200 {
+[data-theme="dark"] .bg-gray-200,
+[data-theme="dark"] .bg-green-100,
+[data-theme="dark"] .bg-amber-100,
+[data-theme="dark"] .bg-blue-100,
+[data-theme="dark"] .bg-red-100,
+[data-theme="dark"] .bg-indigo-100,
+[data-theme="dark"] .bg-orange-100,
+[data-theme="dark"] .bg-purple-100 {
   background-color: var(--border) !important;
 }
+
+/* --- Text --- */
 [data-theme="dark"] .text-gray-900,
 [data-theme="dark"] .text-gray-800,
-[data-theme="dark"] .text-gray-700 {
+[data-theme="dark"] .text-gray-700,
+[data-theme="dark"] .text-black {
   color: var(--text) !important;
 }
 [data-theme="dark"] .text-gray-600,
@@ -297,9 +319,16 @@
 [data-theme="dark"] .text-gray-300 {
   color: #666 !important;
 }
-[data-theme="dark"] .text-black {
-  color: var(--text) !important;
-}
+[data-theme="dark"] .text-green-700,
+[data-theme="dark"] .text-green-800 { color: #8FA67E !important; }
+[data-theme="dark"] .text-amber-700,
+[data-theme="dark"] .text-amber-800 { color: #F59E0B !important; }
+[data-theme="dark"] .text-blue-700,
+[data-theme="dark"] .text-blue-800 { color: #60A5FA !important; }
+[data-theme="dark"] .text-red-700,
+[data-theme="dark"] .text-red-800 { color: #F87171 !important; }
+
+/* --- Borders --- */
 [data-theme="dark"] .border-gray-100,
 [data-theme="dark"] .border-gray-200,
 [data-theme="dark"] .border-gray-300 {
@@ -309,82 +338,36 @@
 [data-theme="dark"] .divide-gray-200 > :not([hidden]) ~ :not([hidden]) {
   border-color: var(--border) !important;
 }
-/* Dark mode for inline styles using common light colors */
-[data-theme="dark"] [style*="background: #F7F5F0"],
-[data-theme="dark"] [style*="background:#F7F5F0"],
-[data-theme="dark"] [style*="background-color: #F7F5F0"] {
-  background: var(--bg) !important;
-}
-[data-theme="dark"] [style*="background: #FFFFFF"],
-[data-theme="dark"] [style*="background:#FFFFFF"],
-[data-theme="dark"] [style*="background: white"],
-[data-theme="dark"] [style*="background-color: #FFFFFF"] {
-  background: var(--bg-card) !important;
-}
-[data-theme="dark"] [style*="border-color: #E8E4DE"],
-[data-theme="dark"] [style*="borderColor: '#E8E4DE'"],
-[data-theme="dark"] [style*="border-color:#E8E4DE"] {
-  border-color: var(--border) !important;
-}
-[data-theme="dark"] [style*="color: #2A2622"],
-[data-theme="dark"] [style*="color:#2A2622"],
-[data-theme="dark"] [style*="color: #524B45"],
-[data-theme="dark"] [style*="color:#524B45"] {
-  color: var(--text) !important;
-}
-/* Dark mode for green gradient cards */
-[data-theme="dark"] [style*="background: linear-gradient(135deg, #EEF2EA"],
-[data-theme="dark"] [style*="background: linear-gradient(135deg, #EDF2F6"],
-[data-theme="dark"] [style*="background: linear-gradient(135deg, #FEF3EE"] {
-  background: var(--bg-card) !important;
-}
-/* BottomNav dark mode */
-[data-theme="dark"] [style*="background: '#F7F5F0'"] {
-  background: var(--bg) !important;
-}
-/* Accent-based backgrounds in dark mode */
-[data-theme="dark"] .bg-accent\/5,
-[data-theme="dark"] .bg-accent\/10 {
-  background-color: var(--accent-soft) !important;
-}
-[data-theme="dark"] .bg-green-50,
-[data-theme="dark"] .bg-green-100,
-[data-theme="dark"] .bg-amber-50,
-[data-theme="dark"] .bg-amber-100,
-[data-theme="dark"] .bg-blue-50,
-[data-theme="dark"] .bg-blue-100,
-[data-theme="dark"] .bg-red-50,
-[data-theme="dark"] .bg-indigo-50 {
-  background-color: var(--border-light) !important;
-}
-[data-theme="dark"] .text-green-700,
-[data-theme="dark"] .text-green-800 {
-  color: #8FA67E !important;
-}
-[data-theme="dark"] .text-amber-700,
-[data-theme="dark"] .text-amber-800 {
-  color: #F59E0B !important;
-}
-[data-theme="dark"] .text-blue-700,
-[data-theme="dark"] .text-blue-800 {
-  color: #60A5FA !important;
-}
-[data-theme="dark"] .text-red-700,
-[data-theme="dark"] .text-red-800 {
-  color: #F87171 !important;
-}
-/* Ring and shadow in dark mode */
-[data-theme="dark"] .shadow-sm,
-[data-theme="dark"] .shadow,
-[data-theme="dark"] .shadow-md,
-[data-theme="dark"] .shadow-lg {
-  --tw-shadow-color: rgba(0,0,0,0.3);
-}
-/* Hover states in dark mode */
+
+/* --- Hover --- */
 [data-theme="dark"] .hover\:bg-gray-50:hover,
 [data-theme="dark"] .hover\:bg-gray-100:hover {
   background-color: var(--border) !important;
 }
+
+/* --- Accent soft backgrounds --- */
+[data-theme="dark"] .bg-accent\/5,
+[data-theme="dark"] .bg-accent\/10,
+[data-theme="dark"] .bg-accent\/15,
+[data-theme="dark"] .bg-accent\/20 {
+  background-color: var(--accent-soft) !important;
+}
+
+/* --- Shadows --- */
+[data-theme="dark"] .shadow-sm,
+[data-theme="dark"] .shadow,
+[data-theme="dark"] .shadow-md,
+[data-theme="dark"] .shadow-lg,
+[data-theme="dark"] .shadow-xl,
+[data-theme="dark"] .shadow-2xl {
+  --tw-shadow-color: rgba(0,0,0,0.4);
+}
+
+/* ============================================
+   Dark mode — inline style overrides
+   Uses JavaScript mutation observer instead.
+   See AppSettingsProvider for runtime fixup.
+   ============================================ */
 
 /* Accessibility: large text mode */
 [data-text-size="large"] {
