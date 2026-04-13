@@ -321,27 +321,27 @@ function StepGuide() {
           </p>
           <div className="space-y-2">
             <div className="bg-background p-3 rounded-lg border"
-              style={{ borderColor: 'var(--border)' }}">
+              style={{ borderColor: 'var(--border)' }}>
               <p className="font-medium text-sm text-primary">Sverige</p>
               <p className="text-xs text-primary/70 mt-1">Skatteverket, Domstolsverket, lokala tingsrätt</p>
             </div>
             <div className="bg-background p-3 rounded-lg border"
-              style={{ borderColor: 'var(--border)' }}">
+              style={{ borderColor: 'var(--border)' }}>
               <p className="font-medium text-sm text-primary">Nordiska länder (Norge, Danmark, Finland)</p>
               <p className="text-xs text-primary/70 mt-1">Motsvarande myndigheter i respektive land, ofta med bilaterala avtal</p>
             </div>
             <div className="bg-background p-3 rounded-lg border"
-              style={{ borderColor: 'var(--border)' }}">
+              style={{ borderColor: 'var(--border)' }}>
               <p className="font-medium text-sm text-primary">EU-länder (Tyskland, Polen etc.)</p>
               <p className="text-xs text-primary/70 mt-1">Lokala domstolar, notarier, skattemyndigheter</p>
             </div>
             <div className="bg-background p-3 rounded-lg border"
-              style={{ borderColor: 'var(--border)' }}">
+              style={{ borderColor: 'var(--border)' }}>
               <p className="font-medium text-sm text-primary">USA</p>
               <p className="text-xs text-primary/70 mt-1">IRS (Internal Revenue Service), statlig domstol (Probate Court), lokala skattemyndigheter</p>
             </div>
             <div className="bg-background p-3 rounded-lg border"
-              style={{ borderColor: 'var(--border)' }}">
+              style={{ borderColor: 'var(--border)' }}>
               <p className="font-medium text-sm text-primary">Övriga länder</p>
               <p className="text-xs text-primary/70 mt-1">Lokala domstolar, notarier, konsulat och svenska ambassader</p>
             </div>
