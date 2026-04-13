@@ -270,46 +270,87 @@ export default function LandingPage() {
             {
               name: t('Gratis', 'Free'),
               price: '0 kr',
+              badge: null as string | null,
               features: [
-                t('Bouppteckning', 'Estate inventory'),
-                t('Tidslinje', 'Timeline'),
-                t('Grundguider', 'Basic guides'),
+                t('Checklista & tidslinje', 'Checklist & timeline'),
+                t('Ordlista & grundguider', 'Glossary & basic guides'),
+                t('1 användare', '1 user'),
               ],
             },
             {
-              name: t('Standard', 'Standard'),
-              price: '899 kr',
+              name: t('Bas', 'Basic'),
+              price: '499 kr',
+              badge: null,
               features: [
                 t('Allt från Gratis', 'Everything from Free'),
-                t('PDF-export', 'PDF export'),
-                t('AI-assistenten Mike Ross', 'AI assistant Mike Ross'),
+                t('Bouppteckning & OCR-skanner', 'Estate inventory & OCR scanner'),
+                t('PDF/Word-export', 'PDF/Word export'),
               ],
             },
             {
-              name: t('Premium', 'Premium'),
-              price: '1 499 kr',
+              name: t('Familj', 'Family'),
+              price: '899 kr',
+              badge: t('Mest populär', 'Most popular'),
               features: [
-                t('Allt från Standard', 'Everything from Standard'),
-                t('Arvskalkylator', 'Inheritance calculator'),
-                t('Prioriterad support', 'Priority support'),
+                t('Allt från Bas', 'Everything from Basic'),
+                t('Upp till 3 användare', 'Up to 3 users'),
+                t('AI-jurist Mike Ross (obegränsad)', 'AI lawyer Mike Ross (unlimited)'),
               ],
             },
-          ].map((plan) => (
-            <div key={plan.name} className="rounded-2xl border p-4 flex items-center gap-4" style={{ background: 'var(--bg-card)', borderColor: 'var(--border)' }}>
-              <div className="flex-shrink-0">
-                <h3 className="font-semibold text-primary text-sm">{plan.name}</h3>
-                <p className="text-xl font-bold text-[#6B7F5E]">{plan.price}</p>
+            {
+              name: t('Lifetime Familj', 'Lifetime Family'),
+              price: '2 499 kr',
+              badge: t('Komplett', 'Complete'),
+              features: [
+                t('Obegränsat antal användare', 'Unlimited users'),
+                t('Internationella & företagsdödsbon', 'International & business estates'),
+                t('Personlig jurist + alla uppdateringar', 'Personal lawyer + all updates'),
+              ],
+            },
+          ].map((plan) => {
+            const isPopular = plan.badge === t('Mest populär', 'Most popular');
+            const isLifetime = plan.name === t('Lifetime Familj', 'Lifetime Family');
+            return (
+              <div
+                key={plan.name}
+                className="relative rounded-2xl border p-4 flex items-center gap-4"
+                style={{
+                  background: 'var(--bg-card)',
+                  borderColor: isPopular ? '#6B7F5E' : isLifetime ? '#D4AF37' : 'var(--border)',
+                  borderWidth: isPopular || isLifetime ? '2px' : '1px',
+                }}
+              >
+                {plan.badge && (
+                  <div
+                    className="absolute -top-2.5 left-4 px-2.5 py-0.5 rounded-full text-[10px] font-semibold text-white"
+                    style={{ background: isLifetime ? 'linear-gradient(90deg, #8B6914, #D4AF37)' : '#6B7F5E' }}
+                  >
+                    {plan.badge}
+                  </div>
+                )}
+                <div className="flex-shrink-0 min-w-[90px]">
+                  <h3 className="font-semibold text-primary text-sm">{plan.name}</h3>
+                  <p
+                    className="text-xl font-bold"
+                    style={{ color: isLifetime ? '#8B6914' : '#6B7F5E' }}
+                  >
+                    {plan.price}
+                  </p>
+                </div>
+                <ul className="space-y-1 flex-1">
+                  {plan.features.map((feature, i) => (
+                    <li key={i} className="flex items-start gap-1.5 text-xs text-muted">
+                      <CheckCircle2
+                        className="w-3.5 h-3.5 flex-shrink-0 mt-0.5"
+                        style={{ color: isLifetime ? '#8B6914' : '#6B7F5E' }}
+                      />
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <ul className="space-y-1 flex-1">
-                {plan.features.map((feature, i) => (
-                  <li key={i} className="flex items-start gap-1.5 text-xs text-muted">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-[#6B7F5E] flex-shrink-0 mt-0.5" />
-                    <span>{feature}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+            );
+          })}
         </div>
         <div className="text-center">
           <Link
