@@ -26,7 +26,7 @@ import { loadState } from '@/lib/store';
 import { useLanguage } from '@/lib/i18n';
 import { DoveLogo } from '@/components/ui/DoveLogo';
 import { MikeRossTip } from '@/components/ui/MikeRossTip';
-import { BlobDecoration, LeafDecoration, SparkleDecoration } from '@/components/ui/Decorations';
+import { LeafDecoration, SparkleDecoration } from '@/components/ui/Decorations';
 
 export default function LandingPage() {
   const router = useRouter();
@@ -72,13 +72,11 @@ export default function LandingPage() {
 
   return (
     <div className="flex flex-col min-h-dvh relative overflow-hidden ">
-      {/* Decorative elements — behind all content */}
-      <BlobDecoration className="-top-16 -right-20" color="#EEF2EA" size={220} />
-      <BlobDecoration className="top-[55%] -left-24" color="#EDF2F6" size={180} />
-      <LeafDecoration className="top-8 right-6" size={36} opacity={0.12} />
-      <SparkleDecoration className="top-[25%] right-8" size={16} opacity={0.1} />
-      <LeafDecoration className="bottom-[30%] left-3" size={22} opacity={0.08} color="#6E8BA4" />
-      <SparkleDecoration className="bottom-16 right-12" size={12} opacity={0.08} />
+      {/* Decorative elements — subtle, no colored blobs */}
+      <LeafDecoration className="top-8 right-6" size={36} opacity={0.1} />
+      <SparkleDecoration className="top-[25%] right-8" size={16} opacity={0.08} />
+      <LeafDecoration className="bottom-[30%] left-3" size={22} opacity={0.06} color="#6E8BA4" />
+      <SparkleDecoration className="bottom-16 right-12" size={12} opacity={0.06} />
 
       {/* All content sits above decorations */}
       <div className="relative z-10 flex flex-col min-h-dvh max-w-3xl mx-auto w-full">
