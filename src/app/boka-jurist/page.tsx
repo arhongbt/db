@@ -4,7 +4,7 @@ import Script from 'next/script';
 import Link from 'next/link';
 import { useLanguage } from '@/lib/i18n';
 import { BottomNav } from '@/components/ui/BottomNav';
-import { ArrowLeft, Scale, Calendar, Clock, Shield, CheckCircle2 } from 'lucide-react';
+import { ArrowLeft, Scale, CheckCircle2 } from 'lucide-react';
 
 export default function BokaJuristPage() {
   const { t } = useLanguage();
@@ -15,63 +15,29 @@ export default function BokaJuristPage() {
       <div className="px-6 pt-6 pb-4">
         <Link
           href="/juridisk-hjalp"
-          className="inline-flex items-center gap-1 text-muted mb-4 text-sm"
+          className="inline-flex items-center gap-1 text-muted mb-6 text-sm"
         >
           <ArrowLeft className="w-4 h-4" />
           {t('Tillbaka', 'Back')}
         </Link>
 
-        <div className="flex items-start gap-3 mb-4">
+        {/* V\u00e5g-ikon som hero */}
+        <div className="flex flex-col items-center text-center mb-6">
           <div
-            className="w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0"
-            style={{ background: 'rgba(107, 127, 94, 0.12)' }}
+            className="w-20 h-20 rounded-3xl flex items-center justify-center mb-4"
+            style={{ background: 'linear-gradient(135deg, #6B7F5E, #4F6145)' }}
           >
-            <Scale className="w-6 h-6" style={{ color: '#6B7F5E' }} />
+            <Scale className="w-10 h-10 text-white" strokeWidth={1.8} />
           </div>
-          <div>
-            <h1 className="text-2xl font-bold text-primary leading-tight">
-              {t('Boka juristkonsultation', 'Book a lawyer consultation')}
-            </h1>
-            <p className="text-sm text-muted mt-1 leading-relaxed">
-              {t(
-                'V\u00e4lj en tid som passar dig. En erfaren jurist g\u00e5r igenom d\u00f6dsboet med dig \u2014 digitalt via video.',
-                'Choose a time that suits you. An experienced lawyer will review the estate with you \u2014 digitally via video.'
-              )}
-            </p>
-          </div>
-        </div>
-      </div>
-
-      {/* Benefits */}
-      <div className="px-6 mb-6">
-        <div className="grid grid-cols-3 gap-2">
-          {[
-            {
-              icon: Clock,
-              title: t('60 min', '60 min'),
-              sub: t('konsultation', 'consultation'),
-            },
-            {
-              icon: Calendar,
-              title: t('Digital', 'Digital'),
-              sub: t('via video', 'via video'),
-            },
-            {
-              icon: Shield,
-              title: t('Inkluderat', 'Included'),
-              sub: t('i Lifetime', 'in Lifetime'),
-            },
-          ].map(({ icon: Icon, title, sub }) => (
-            <div
-              key={title}
-              className="rounded-2xl border p-3 text-center"
-              style={{ background: 'var(--bg-card)', borderColor: 'var(--border)' }}
-            >
-              <Icon className="w-5 h-5 mx-auto mb-1.5" style={{ color: '#6B7F5E' }} />
-              <p className="text-xs font-semibold text-primary">{title}</p>
-              <p className="text-[11px] text-muted">{sub}</p>
-            </div>
-          ))}
+          <h1 className="text-2xl font-bold text-primary leading-tight">
+            {t('Boka juristkonsultation', 'Book a lawyer consultation')}
+          </h1>
+          <p className="text-sm text-muted mt-2 leading-relaxed max-w-md">
+            {t(
+              'V\u00e4lj en tid som passar dig. En erfaren jurist g\u00e5r igenom d\u00f6dsboet med dig \u2014 digitalt via video.',
+              'Choose a time that suits you. An experienced lawyer will review the estate with you \u2014 digitally via video.'
+            )}
+          </p>
         </div>
       </div>
 
