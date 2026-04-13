@@ -202,8 +202,7 @@ function BouppteckningContent() {
           </p>
           <p className="text-sm text-primary/70 mt-1">
             {t('En förteckning av den avlidnes alla tillgångar och skulder per dödsdagen. Den ska upprättas inom 3 månader och skickas till Skatteverket inom 4 månader. Två utomstående förrättningsmän krävs.', 'A record of the deceased\'s assets and liabilities as of the date of death. It must be prepared within 3 months and submitted to the Swedish Tax Agency within 4 months. Two independent witnesses are required.')}
-            </p>
-          </div>
+          </p>
         </div>
       </div>
 
