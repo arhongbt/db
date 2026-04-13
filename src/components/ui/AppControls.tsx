@@ -117,10 +117,6 @@ export function AppControlBar() {
           >
             <Search className="w-4 h-4" />
             <span>Sök i appen...</span>
-            <kbd className="ml-auto text-[10px] px-1.5 py-0.5 rounded-md"
-              style={{ background: "var(--border-light)", color: "var(--text-secondary)" }}>
-              ⌘K
-            </kbd>
           </button>
 
           {/* Settings toggle */}

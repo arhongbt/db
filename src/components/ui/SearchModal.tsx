@@ -204,8 +204,7 @@ export default function SearchModal({ isOpen, onClose }: { isOpen: boolean; onCl
         </div>
 
         {/* Footer */}
-        <div className="px-4 py-2 border-t border-gray-100 flex items-center justify-between">
-          <p className="text-[10px] text-gray-300">⌘K {t("för att söka", "to search")}</p>
+        <div className="px-4 py-2 border-t border-gray-100 flex items-center justify-end">
           <p className="text-[10px] text-gray-300">ESC {t("för att stänga", "to close")}</p>
         </div>
       </div>
