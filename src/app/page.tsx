@@ -353,14 +353,14 @@ export default function LandingPage() {
               ),
             },
           ].map((testimonial, i) => (
-            <div key={i} className=”rounded-2xl border p-4” style={{ background: 'var(--bg-card)', borderColor: 'var(--border)' }}>
-              <div className=”flex gap-0.5 mb-2”>
+            <div key={i} className="rounded-2xl border p-4" style={{ background: 'var(--bg-card)', borderColor: 'var(--border)' }}>
+              <div className="flex gap-0.5 mb-2">
                 {[...Array(5)].map((_, j) => (
-                  <Star key={j} className=”w-3.5 h-3.5 fill-[#6B7F5E] text-[#6B7F5E]” />
+                  <Star key={j} className="w-3.5 h-3.5 fill-[#6B7F5E] text-[#6B7F5E]" />
                 ))}
               </div>
-              <p className=”text-sm text-muted leading-relaxed mb-2 italic”>{“””}{testimonial.quote}{“””}</p>
-              <p className=”text-xs font-medium text-primary”>{testimonial.name}</p>
+              <p className="text-sm text-muted leading-relaxed mb-2 italic">"{testimonial.quote}"</p>
+              <p className="text-xs font-medium text-primary">{testimonial.name}</p>
             </div>
           ))}
         </div>
