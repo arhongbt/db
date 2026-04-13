@@ -39,6 +39,7 @@ const MORE_CATEGORIES = [
       { href: '/minnesida', label: 'Minnesida', icon: Heart },
       { href: '/samarbete', label: 'Samarbete', icon: Handshake },
       { href: '/juridisk-hjalp', label: 'Mike Ross', icon: Bot },
+      { href: '/boka-jurist', label: 'Boka jurist', icon: Scale },
       { href: '/delagare', label: 'Delägare', icon: Users },
       { href: '/checklistor', label: 'Checklistor', icon: FileCheck },
       { href: '/skanner', label: 'Skanner', icon: Camera },

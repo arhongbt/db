@@ -17,6 +17,7 @@ import {
   Sparkles,
   ArrowRight,
   HelpCircle,
+  Scale,
   Infinity as InfinityIcon,
 } from 'lucide-react';
 
@@ -234,7 +235,7 @@ export default function PriserPage() {
       </div>
 
       {/* Trust badges */}
-      <div className="px-6 mb-6">
+      <div className="px-6 mb-4">
         <div className="flex flex-wrap gap-2">
           {[
             { icon: Shield, text: t('GDPR-s\u00e4krad', 'GDPR-secured') },
@@ -251,6 +252,31 @@ export default function PriserPage() {
             </div>
           ))}
         </div>
+      </div>
+
+      {/* Boka jurist CTA */}
+      <div className="px-6 mb-6">
+        <Link
+          href="/boka-jurist"
+          className="flex items-center gap-3 rounded-2xl border p-3.5 transition-all hover:opacity-90"
+          style={{ background: 'var(--bg-card)', borderColor: 'var(--border)' }}
+        >
+          <div
+            className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
+            style={{ background: 'linear-gradient(135deg, #6B7F5E, #4F6145)' }}
+          >
+            <Scale className="w-5 h-5 text-white" />
+          </div>
+          <div className="flex-1 min-w-0">
+            <p className="text-sm font-semibold text-primary">
+              {t('Boka digital juristkonsultation', 'Book a digital lawyer consultation')}
+            </p>
+            <p className="text-xs text-muted">
+              {t('Gratis f\u00f6rsta timme \u2014 v\u00e4lj tid direkt', 'Free first hour \u2014 pick a time directly')}
+            </p>
+          </div>
+          <ArrowRight className="w-4 h-4 text-muted flex-shrink-0" />
+        </Link>
       </div>
 
       {/* Plan cards */}
