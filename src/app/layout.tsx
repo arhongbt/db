@@ -6,6 +6,7 @@ import { ServiceWorkerRegistration } from '@/components/ServiceWorkerRegistratio
 import { CookieBanner } from '@/components/CookieBanner';
 import { FloatingChatButton } from '@/components/ui/FloatingChatButton';
 import { TextScaleLoader } from '@/components/TextScaleLoader';
+import { AppSettingsProvider, AppControlBar } from '@/components/ui/AppControls';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 
@@ -195,11 +196,16 @@ export default function RootLayout({
         </a>
         <AuthProvider>
           <LanguageProvider>
-            <ServiceWorkerRegistration />
-            <main className="min-h-dvh relative" id="main-content">
-              {children}
-              <FloatingChatButton />
-            </main>
+            <AppSettingsProvider>
+              <ServiceWorkerRegistration />
+              <AppControlBar />
+              <main className="min-h-dvh relative pt-14" id="main-content">
+                <div className="page-transition">
+                  {children}
+                </div>
+                <FloatingChatButton />
+              </main>
+            </AppSettingsProvider>
           </LanguageProvider>
         </AuthProvider>
         <CookieBanner />
