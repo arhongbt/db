@@ -26,12 +26,20 @@ interface Arvinge {
   andel: string; // e.g. "50%"
 }
 
+interface Villkor {
+  id: string;
+  type: string; // 'nyttjanderätt', 'enskild-egendom', 'åldersvillkor', 'förvaltare', 'sekundoförordnande'
+  description: string;
+  targetArvinge?: string; // optional: specific heir this applies to
+}
+
 interface TestamenteData {
   namn: string;
   personnummer: string;
   adress: string;
   ort: string;
   arvingar: Arvinge[];
+  villkor: Villkor[];
   specialOnske: string;
   samtycke: boolean;
 }
@@ -42,6 +50,7 @@ const INITIAL: TestamenteData = {
   adress: '',
   ort: '',
   arvingar: [],
+  villkor: [],
   specialOnske: '',
   samtycke: false,
 };
@@ -49,6 +58,7 @@ const INITIAL: TestamenteData = {
 const STEPS = [
   { title: 'Dina uppgifter', desc: 'Vem skriver testamentet?' },
   { title: 'Arvingar', desc: 'Vem ska ärva?' },
+  { title: 'Villkor', desc: 'Lägg till villkor för arvet' },
   { title: 'Särskilda önskemål', desc: 'Har du speciella önskemål?' },
   { title: 'Granska & ladda ner', desc: 'Se över och hämta ditt testamente' },
 ];
@@ -69,11 +79,47 @@ function MikeRossTip({ text }: { text: string }) {
   );
 }
 
+// ── Villkor templates ──
+const VILLKOR_TEMPLATES = [
+  {
+    type: 'nyttjanderätt',
+    label: 'Nyttjanderätt',
+    description: 'Min make/maka ska ha nyttjanderätt till bostaden',
+    placeholder: 'T.ex. Min make ska ha nyttjanderätt till familjebostaden under sin livstid'
+  },
+  {
+    type: 'enskild-egendom',
+    label: 'Enskild egendom',
+    description: 'Arvet är enskild egendom (skyddas vid skilsmässa)',
+    placeholder: 'T.ex. Arvet ska klassificeras som enskild egendom'
+  },
+  {
+    type: 'åldersvillkor',
+    label: 'Åldersvillkor',
+    description: 'Arvinge måste vara X år för att få sitt arv',
+    placeholder: 'T.ex. Min son ska först få sitt arv när han fyllt 25 år'
+  },
+  {
+    type: 'förvaltare',
+    label: 'Förvaltare',
+    description: 'Utse en förvaltare för minderårig arvinge',
+    placeholder: 'T.ex. Min sambo ska förvalta arvet för mina barn tills de blir myndiga'
+  },
+  {
+    type: 'sekundoförordnande',
+    label: 'Sekundoförordnande',
+    description: 'Alternativ arvinge om primär arvinge skulle dö',
+    placeholder: 'T.ex. Om min son inte är vid liv vid min död, ska hans andel tillfalla hans barn'
+  },
+];
+
 function TestamenteContent() {
   const { t } = useLanguage();
   const [step, setStep] = useState(0);
   const [data, setData] = useState<TestamenteData>(INITIAL);
   const [newArvinge, setNewArvinge] = useState({ namn: '', relation: '', andel: '' });
+  const [newVillkor, setNewVillkor] = useState({ type: '', description: '', targetArvinge: '' });
+  const [selectedVillkorType, setSelectedVillkorType] = useState<string | null>(null);
 
   const next = () => setStep((s) => Math.min(s + 1, STEPS.length - 1));
   const prev = () => setStep((s) => Math.max(s - 1, 0));
@@ -94,12 +140,38 @@ function TestamenteContent() {
     setData((d) => ({ ...d, arvingar: d.arvingar.filter((a) => a.id !== id) }));
   };
 
+  const addVillkor = () => {
+    if (!newVillkor.description.trim()) return;
+    setData((d) => ({
+      ...d,
+      villkor: [
+        ...d.villkor,
+        { ...newVillkor, id: crypto.randomUUID() },
+      ],
+    }));
+    setNewVillkor({ type: '', description: '', targetArvinge: '' });
+    setSelectedVillkorType(null);
+  };
+
+  const removeVillkor = (id: string) => {
+    setData((d) => ({ ...d, villkor: d.villkor.filter((v) => v.id !== id) }));
+  };
+
+  const selectVillkorTemplate = (template: typeof VILLKOR_TEMPLATES[0]) => {
+    setSelectedVillkorType(template.type);
+    setNewVillkor({ type: template.type, description: template.description, targetArvinge: '' });
+  };
+
   // ── Generate document text ──
   const generateText = () => {
     const today = new Date().toLocaleDateString('sv-SE');
     const arvingeList = data.arvingar
       .map((a, i) => `${i + 1}. ${a.namn} (${a.relation}) — ${a.andel || 'lika del'}`)
       .join('\n');
+
+    const villkorSection = data.villkor.length > 0
+      ? `VILLKOR FÖR ARVET\n\n${data.villkor.map((v, i) => `${i + 1}. ${v.description}`).join('\n')}\n\n`
+      : '';
 
     return `TESTAMENTE
 
@@ -111,8 +183,7 @@ Min kvarlåtenskap ska fördelas enligt följande:
 
 ${arvingeList}
 
-${data.specialOnske ? `SÄRSKILDA ÖNSKEMÅL\n\n${data.specialOnske}\n` : ''}
-ÖVRIGT
+${villkorSection}${data.specialOnske ? `SÄRSKILDA ÖNSKEMÅL\n\n${data.specialOnske}\n` : ''}ÖVRIGT
 
 Detta testamente ersätter alla eventuella tidigare testamenten.
 
@@ -298,10 +369,93 @@ Skapat med Sista Resan — ${today}`;
         </div>
       )}
 
-      {/* ── Step 2: Special wishes ── */}
+      {/* ── Step 2: Villkor ── */}
       {step === 2 && (
         <div className="animate-fadeIn">
-          <MikeRossTip text="Här kan du skriva särskilda önskemål. Till exempel: vem som ska ta hand om husdjur, om du vill att en viss person ska få ett specifikt föremål, eller om du vill att arvet ska vara enskild egendom." />
+          <MikeRossTip text="Villkor är speciella förutsättningar för arvet. Du kan till exempel bestämma att en arvinge måste vara 25 år för att få sitt arv, eller att arvet är enskild egendom som skyddas vid skilsmässa." />
+
+          {data.villkor.length > 0 && (
+            <div className="space-y-2 mb-4">
+              {data.villkor.map((v) => (
+                <div key={v.id} className="card flex items-start justify-between gap-3">
+                  <div>
+                    <p className="font-medium text-primary text-sm">{v.description}</p>
+                    {v.targetArvinge && <p className="text-xs text-muted">Gäller: {v.targetArvinge}</p>}
+                  </div>
+                  <button onClick={() => removeVillkor(v.id)} className="text-warn text-xs font-medium flex-shrink-0">
+                    Ta bort
+                  </button>
+                </div>
+              ))}
+            </div>
+          )}
+
+          <div className="card space-y-4">
+            <p className="text-sm font-semibold text-primary">Välj villkorstyp</p>
+
+            <div className="grid grid-cols-1 gap-2">
+              {VILLKOR_TEMPLATES.map((template) => (
+                <button
+                  key={template.type}
+                  onClick={() => selectVillkorTemplate(template)}
+                  className={`p-3 rounded-xl text-left border-2 transition-all ${
+                    selectedVillkorType === template.type
+                      ? 'border-accent bg-accent/5'
+                      : 'border-[#E8E4DE] hover:border-accent/30'
+                  }`}
+                >
+                  <p className="font-medium text-sm text-primary">{template.label}</p>
+                  <p className="text-xs text-muted mt-0.5">{template.description}</p>
+                </button>
+              ))}
+            </div>
+
+            {selectedVillkorType && (
+              <div className="space-y-3 pt-3 border-t border-[#E8E4DE]">
+                <p className="text-sm font-semibold text-primary">Beskriv villkoret</p>
+                <textarea
+                  value={newVillkor.description}
+                  onChange={(e) => setNewVillkor({ ...newVillkor, description: e.target.value })}
+                  placeholder={VILLKOR_TEMPLATES.find(t => t.type === selectedVillkorType)?.placeholder}
+                  rows={3}
+                  className="w-full px-4 py-3 border border-[#E8E4DE] rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background resize-none text-sm"
+                />
+
+                {data.arvingar.length > 0 && (
+                  <div>
+                    <label className="block text-sm font-medium text-primary mb-1.5">
+                      Gäller specifik arvinge <span className="text-muted font-normal">(valfritt)</span>
+                    </label>
+                    <select
+                      value={newVillkor.targetArvinge}
+                      onChange={(e) => setNewVillkor({ ...newVillkor, targetArvinge: e.target.value })}
+                      className="w-full px-4 py-3 border border-[#E8E4DE] rounded-xl text-primary focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background text-sm"
+                    >
+                      <option value="">— Alla arvingar</option>
+                      {data.arvingar.map((a) => (
+                        <option key={a.id} value={a.namn}>{a.namn}</option>
+                      ))}
+                    </select>
+                  </div>
+                )}
+
+                <button
+                  onClick={addVillkor}
+                  disabled={!newVillkor.description.trim()}
+                  className="w-full py-3 rounded-xl text-sm font-semibold transition-colors bg-accent/10 text-accent hover:bg-accent/20 disabled:opacity-40"
+                >
+                  + Lägg till villkor
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* ── Step 3: Special wishes ── */}
+      {step === 3 && (
+        <div className="animate-fadeIn">
+          <MikeRossTip text="Här kan du skriva särskilda önskemål. Till exempel: vem som ska ta hand om husdjur, om du vill att en viss person ska få ett specifikt föremål, eller andra speciella instruktioner." />
 
           <div className="card space-y-4">
             <div>
@@ -329,8 +483,8 @@ Skapat med Sista Resan — ${today}`;
         </div>
       )}
 
-      {/* ── Step 3: Review & download ── */}
-      {step === 3 && (
+      {/* ── Step 4: Review & download ── */}
+      {step === 4 && (
         <div className="animate-fadeIn">
           <MikeRossTip text="Här ser du en sammanfattning. Ladda ner som PDF eller Word, skriv ut och signera med två vittnen. Vittnena måste vara närvarande samtidigt och får inte vara arvingar." />
 
@@ -359,6 +513,21 @@ Skapat med Sista Resan — ${today}`;
                   {data.arvingar.length === 0 && <p className="text-xs text-warn">Inga arvingar tillagda</p>}
                 </div>
               </div>
+
+              {data.villkor.length > 0 && (
+                <>
+                  <div className="h-px bg-white" />
+                  <div className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-accent mt-0.5" />
+                    <div>
+                      <p className="text-sm font-medium text-primary">{data.villkor.length} villkor</p>
+                      {data.villkor.map((v) => (
+                        <p key={v.id} className="text-xs text-muted">{v.description.slice(0, 80)}{v.description.length > 80 ? '...' : ''}</p>
+                      ))}
+                    </div>
+                  </div>
+                </>
+              )}
 
               {data.specialOnske && (
                 <>

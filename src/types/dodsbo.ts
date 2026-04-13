@@ -348,14 +348,32 @@ export interface Tidsfrist {
 // ============================================================
 
 export const SWEDISH_BANKS = [
+  // Storbanker
   { id: 'swedbank', name: 'Swedbank', phone: '0771-22 11 22' },
   { id: 'handelsbanken', name: 'Handelsbanken', phone: '0771-77 88 99' },
   { id: 'seb', name: 'SEB', phone: '0771-365 365' },
   { id: 'nordea', name: 'Nordea', phone: '0771-22 44 88' },
+  // Försäkringsbanker
   { id: 'lansforsakringar', name: 'Länsförsäkringar', phone: '08-588 400 00' },
-  { id: 'ica_banken', name: 'ICA Banken', phone: '033-47 47 00' },
-  { id: 'skandiabanken', name: 'Skandiabanken', phone: '0771-55 55 00' },
+  { id: 'skandia', name: 'Skandia', phone: '0771-55 55 00' },
+  // Sparbanker
   { id: 'sparbanken', name: 'Sparbanken', phone: '' },
+  { id: 'sparbanken_syd', name: 'Sparbanken Syd', phone: '0411-82 20 00' },
+  { id: 'sparbanken_nord', name: 'Sparbanken Nord', phone: '0910-77 14 00' },
+  // Nischbanker
+  { id: 'ica_banken', name: 'ICA Banken', phone: '033-47 47 00' },
+  { id: 'avanza', name: 'Avanza', phone: '08-562 250 00' },
+  { id: 'nordnet', name: 'Nordnet', phone: '08-506 330 00' },
+  { id: 'sbab', name: 'SBAB', phone: '0771-45 30 00' },
+  { id: 'collector', name: 'Collector Bank', phone: '010-161 00 00' },
+  { id: 'marginalen', name: 'Marginalen Bank', phone: '08-411 60 00' },
+  { id: 'klarna', name: 'Klarna', phone: '08-120 120 00' },
+  { id: 'resurs', name: 'Resurs Bank', phone: '042-382 000' },
+  // Utländska med svensk verksamhet
+  { id: 'danske_bank', name: 'Danske Bank', phone: '075-075 00 00' },
+  { id: 'dnb', name: 'DNB', phone: '08-473 44 00' },
+  { id: 'norwegian', name: 'Norwegian (Bank Norwegian)', phone: '0770-22 23 24' },
+  { id: 'santander', name: 'Santander Consumer Bank', phone: '08-470 50 00' },
 ] as const;
 
 // ============================================================

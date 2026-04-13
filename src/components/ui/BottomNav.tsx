@@ -8,7 +8,7 @@ import {
   Home, Users, Wallet, FileText, FolderOpen, MoreHorizontal, X,
   Calculator, Building2, Camera, Download, Bell, Scale, BookOpen,
   HelpCircle, Globe, Briefcase, AlertTriangle, Bot, PenTool, ScrollText, FileX,
-  HomeIcon, Heart, CreditCard, FileCheck, Landmark, Newspaper, Flower2, Flame, Smartphone, Handshake, Baby,
+  HomeIcon, Heart, CreditCard, FileCheck, Landmark, Newspaper, Flower2, Flame, Smartphone, Handshake, Baby, Calendar, FileDown, Gem,
 } from 'lucide-react';
 
 const NAV_ITEMS_KEYS = [
@@ -33,6 +33,7 @@ const MORE_CATEGORIES = [
   {
     title: 'Verktyg & planering',
     items: [
+      { href: '/kalender', label: 'Kalender', icon: Calendar },
       { href: '/begravningsplanering', label: 'Begravning', icon: Flower2 },
       { href: '/skatteverket-guide', label: 'Skatteverket', icon: FileCheck },
       { href: '/minnesida', label: 'Minnesida', icon: Heart },
@@ -44,6 +45,8 @@ const MORE_CATEGORIES = [
       { href: '/exportera', label: 'Exportera', icon: Download },
       { href: '/paminelser', label: 'Påminnelser', icon: Bell },
       { href: '/digitala-tillgangar', label: 'Digitalt', icon: Smartphone },
+      { href: '/vardering', label: 'Värdering', icon: Gem },
+      { href: '/sammanfattning', label: 'Sammanfattning', icon: FileDown },
     ],
   },
   {

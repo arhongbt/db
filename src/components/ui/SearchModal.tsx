@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef, useMemo } from "react";
 import { Search, X, ArrowRight, FileText, Calculator, BookOpen, Users, Shield, Clock, Heart } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useLanguage } from "@/context/LanguageContext";
+import { useLanguage } from "@/lib/i18n";
 
 interface SearchItem {
   title: string;
@@ -41,6 +41,9 @@ const SEARCH_INDEX: SearchItem[] = [
   { title: "Begravningsplanering", titleEn: "Funeral Planning", description: "Planera begravning", descriptionEn: "Plan funeral", href: "/begravningsplanering", icon: Heart, category: "Verktyg", keywords: ["begravning","funeral","ceremoni","kyrka"] },
   { title: "Minnessida", titleEn: "Memorial Page", description: "Skapa en minnesplats", descriptionEn: "Create a memorial", href: "/minnessida", icon: Heart, category: "Verktyg", keywords: ["minne","memorial","hyllning"] },
   { title: "Påminnelser", titleEn: "Reminders", description: "Sätt deadlines och påminnelser", descriptionEn: "Set deadlines and reminders", href: "/paminelser", icon: Clock, category: "Verktyg", keywords: ["påminnelse","deadline","reminder","datum"] },
+  { title: "Kalender", titleEn: "Calendar", description: "Gemensam kalender med tidsfrister", descriptionEn: "Shared calendar with deadlines", href: "/kalender", icon: Clock, category: "Verktyg", keywords: ["kalender","calendar","datum","deadline","tidsfrist","möte"] },
+  { title: "Värdering av lösöre", titleEn: "Property Valuation", description: "Värdera lösöre och tillhörigheter", descriptionEn: "Value personal property and belongings", href: "/vardering", icon: Calculator, category: "Verktyg", keywords: ["värdering","lösöre","valuation","möbler","smycken","elektronik"] },
+  { title: "Sammanfattning", titleEn: "Summary", description: "Översikt och PDF-export av hela processen", descriptionEn: "Overview and PDF export of the entire process", href: "/sammanfattning", icon: FileText, category: "Verktyg", keywords: ["sammanfattning","summary","pdf","export","översikt","progress"] },
 
   // Guider
   { title: "Nödbroms", titleEn: "Emergency Steps", description: "Första dagarna — vad göra nu?", descriptionEn: "First days — what to do now?", href: "/nodbroms", icon: Shield, category: "Guide", keywords: ["nödbroms","akut","dag 1","emergency","first"] },
