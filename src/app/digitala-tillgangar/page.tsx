@@ -9,7 +9,7 @@ import { ArrowLeft, Smartphone, ChevronDown, Bot, CheckCircle2, Circle } from 'l
 
 function MikeRossTip({ text }: { text: string }) {
   return (
-    <div className="flex gap-3 p-4 rounded-2xl mb-5" style={{ background: '#EEF2EA' }}>
+    <div className="flex gap-3 p-4 rounded-2xl mb-5" style={{ background: 'var(--accent-soft)' }}>
       <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
         style={{ background: 'linear-gradient(135deg, #6B7F5E, #4F6145)' }}>
         <Bot className="w-4 h-4 text-white" />
@@ -34,10 +34,10 @@ function CollapsibleSection({
   onToggle: () => void;
 }) {
   return (
-    <div className="border rounded-2xl overflow-hidden mb-4 bg-white" style={{ borderColor: '#E8E4DE' }}>
+    <div className="border rounded-2xl overflow-hidden mb-4" style={{ borderColor: 'var(--border)', background: 'var(--bg-card)' }}>
       <button
         onClick={onToggle}
-        className="w-full flex items-center justify-between p-4 hover:bg-background transition-colors"
+        className="w-full flex items-center justify-between p-4 hover:opacity-70 transition-opacity"
       >
         <h3 className="text-base font-semibold text-primary">{title}</h3>
         <ChevronDown
@@ -46,7 +46,7 @@ function CollapsibleSection({
         />
       </button>
       {expanded && (
-        <div className="border-t p-4 bg-white" style={{ borderColor: '#E8E4DE' }}>
+        <div className="border-t p-4" style={{ borderColor: 'var(--border)', background: 'var(--bg-card)' }}>
           {children}
         </div>
       )}
@@ -217,7 +217,7 @@ function Content() {
               />
             </div>
 
-            <div className="p-3 rounded-lg" style={{ background: '#FFF3CD', borderLeft: '4px solid #FFC107' }}>
+            <div className="p-3 rounded-lg" style={{ background: 'var(--accent-soft)', borderLeft: '4px solid var(--accent)' }}>
               <p className="text-sm text-primary">
                 <strong>Viktigt:</strong> Utan lösenord eller seed phrase kan krypto vara oåtkomligt. Kontakta börsen med dödsbevis — vissa kan hjälpa.
               </p>
@@ -235,7 +235,7 @@ function Content() {
             <div>
               <p className="text-sm font-semibold text-primary mb-3">Checklista:</p>
 
-              <div className="mb-4 p-3 bg-white border rounded-2xl" style={{ borderColor: '#E8E4DE' }}>
+              <div className="mb-4 p-3 border rounded-2xl" style={{ background: 'var(--bg-card)', borderColor: 'var(--border)' }}>
                 <p className="text-sm font-medium text-primary mb-2">Facebook</p>
                 <p className="text-xs text-gray-600 mb-2">Minnessida eller radera</p>
                 <a
@@ -255,7 +255,7 @@ function Content() {
                 </div>
               </div>
 
-              <div className="mb-4 p-3 bg-white border rounded-2xl" style={{ borderColor: '#E8E4DE' }}>
+              <div className="mb-4 p-3 border rounded-2xl" style={{ background: 'var(--bg-card)', borderColor: 'var(--border)' }}>
                 <p className="text-sm font-medium text-primary mb-2">Instagram</p>
                 <p className="text-xs text-gray-600 mb-2">Minneskonto eller radera</p>
                 <a
@@ -275,7 +275,7 @@ function Content() {
                 </div>
               </div>
 
-              <div className="mb-4 p-3 bg-white border rounded-2xl" style={{ borderColor: '#E8E4DE' }}>
+              <div className="mb-4 p-3 border rounded-2xl" style={{ background: 'var(--bg-card)', borderColor: 'var(--border)' }}>
                 <p className="text-sm font-medium text-primary mb-2">LinkedIn</p>
                 <p className="text-xs text-gray-600 mb-2">Stäng via support</p>
                 <div className="mt-2">
@@ -287,7 +287,7 @@ function Content() {
                 </div>
               </div>
 
-              <div className="mb-4 p-3 bg-white border rounded-2xl" style={{ borderColor: '#E8E4DE' }}>
+              <div className="mb-4 p-3 border rounded-2xl" style={{ background: 'var(--bg-card)', borderColor: 'var(--border)' }}>
                 <p className="text-sm font-medium text-primary mb-2">Google/Gmail</p>
                 <p className="text-xs text-gray-600 mb-2">Inactive Account Manager kan ha ställts in</p>
                 <div className="mt-2">
@@ -306,7 +306,7 @@ function Content() {
               />
             </div>
 
-            <div className="p-3 rounded-lg" style={{ background: '#D1ECF1', borderLeft: '4px solid #17A2B8' }}>
+            <div className="p-3 rounded-lg" style={{ background: 'var(--bg-card)', borderLeft: '4px solid var(--accent)' }}>
               <p className="text-sm text-primary">
                 <strong>Tips:</strong> Skärmdumpa viktiga meddelanden och foton innan du stänger konton — de kan vara värdefulla minnen.
               </p>
@@ -360,7 +360,7 @@ function Content() {
               />
             </div>
 
-            <div className="p-3 rounded-lg" style={{ background: '#E7D4F5', borderLeft: '4px solid #9C27B0' }}>
+            <div className="p-3 rounded-lg" style={{ background: 'var(--bg-card)', borderLeft: '4px solid var(--accent)' }}>
               <p className="text-sm text-primary">
                 <strong>Så gör du:</strong> Kontrollera bankutdrag för månatliga dragningar. Avsluta varje tjänst via deras support med dödsbevis.
               </p>
@@ -378,7 +378,7 @@ function Content() {
             <div>
               <p className="text-sm font-semibold text-primary mb-3">Checklista:</p>
 
-              <div className="mb-4 p-3 bg-white border rounded-2xl" style={{ borderColor: '#E8E4DE' }}>
+              <div className="mb-4 p-3 border rounded-2xl" style={{ background: 'var(--bg-card)', borderColor: 'var(--border)' }}>
                 <p className="text-sm font-medium text-primary mb-2">Gmail/Outlook</p>
                 <p className="text-xs text-gray-600 mb-2">Kan ge tillgång via dödsbevis + bouppteckning</p>
                 <div className="mt-2">
@@ -390,7 +390,7 @@ function Content() {
                 </div>
               </div>
 
-              <div className="mb-4 p-3 bg-white border rounded-2xl" style={{ borderColor: '#E8E4DE' }}>
+              <div className="mb-4 p-3 border rounded-2xl" style={{ background: 'var(--bg-card)', borderColor: 'var(--border)' }}>
                 <p className="text-sm font-medium text-primary mb-2">iCloud</p>
                 <p className="text-xs text-gray-600 mb-2">Apple har Legacy Contact-program</p>
                 <div className="mt-2">
@@ -402,7 +402,7 @@ function Content() {
                 </div>
               </div>
 
-              <div className="mb-4 p-3 bg-white border rounded-2xl" style={{ borderColor: '#E8E4DE' }}>
+              <div className="mb-4 p-3 border rounded-2xl" style={{ background: 'var(--bg-card)', borderColor: 'var(--border)' }}>
                 <p className="text-sm font-medium text-primary mb-2">Dropbox/Google Drive</p>
                 <p className="text-xs text-gray-600 mb-2">Kan innehålla viktiga dokument</p>
                 <div className="mt-2">
@@ -433,7 +433,7 @@ function Content() {
               />
             </div>
 
-            <div className="p-3 rounded-lg" style={{ background: '#E8F5E9', borderLeft: '4px solid #4CAF50' }}>
+            <div className="p-3 rounded-lg" style={{ background: 'var(--bg-card)', borderLeft: '4px solid var(--accent)' }}>
               <p className="text-sm text-primary">
                 <strong>Viktigt:</strong> Kontrollera domänregistratören för förnyelsedatum. Utan förnyelse kan domänen försvinna eller tas över av andra.
               </p>

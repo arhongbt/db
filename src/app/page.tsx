@@ -134,7 +134,7 @@ export default function LandingPage() {
             { label: t('GDPR-säkrad', 'GDPR secured'), icon: Lock },
             { label: t('Juridiskt granskad', 'Legally reviewed'), icon: Scale },
           ].map((badge, i) => (
-            <div key={i} className="flex flex-col items-center gap-2 p-3 rounded-lg bg-white border border-[#E8E4DE]">
+            <div key={i} className="flex flex-col items-center gap-2 p-3 rounded-lg border" style={{ background: 'var(--bg-card)', borderColor: 'var(--border)' }}>
               <badge.icon className="w-5 h-5 text-[#6B7F5E]" />
               <span className="text-xs font-medium text-primary text-center">{badge.label}</span>
             </div>
@@ -215,8 +215,8 @@ export default function LandingPage() {
               desc: t('Dela information säkert med andra arvingar', 'Share information securely with other heirs'),
             },
           ].map((feature) => (
-            <div key={feature.title} className="bg-white rounded-2xl border border-[#E8E4DE] p-4 hover:shadow-md transition-shadow">
-              <div className="w-10 h-10 bg-[#6B7F5E]/10 rounded-xl flex items-center justify-center mb-2">
+            <div key={feature.title} className="rounded-2xl border p-4 hover:shadow-md transition-shadow" style={{ background: 'var(--bg-card)', borderColor: 'var(--border)' }}>
+              <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-2" style={{ background: 'var(--accent-soft)' }}>
                 <feature.icon className="w-5 h-5 text-[#6B7F5E]" />
               </div>
               <h3 className="font-semibold text-primary text-sm mb-1">{feature.title}</h3>
@@ -297,7 +297,7 @@ export default function LandingPage() {
               ],
             },
           ].map((plan) => (
-            <div key={plan.name} className="bg-white rounded-2xl border border-[#E8E4DE] p-4 flex items-center gap-4">
+            <div key={plan.name} className="rounded-2xl border p-4 flex items-center gap-4" style={{ background: 'var(--bg-card)', borderColor: 'var(--border)' }}>
               <div className="flex-shrink-0">
                 <h3 className="font-semibold text-primary text-sm">{plan.name}</h3>
                 <p className="text-xl font-bold text-[#6B7F5E]">{plan.price}</p>
@@ -353,14 +353,14 @@ export default function LandingPage() {
               ),
             },
           ].map((testimonial, i) => (
-            <div key={i} className="bg-white rounded-2xl border border-[#E8E4DE] p-4">
-              <div className="flex gap-0.5 mb-2">
+            <div key={i} className=”rounded-2xl border p-4” style={{ background: 'var(--bg-card)', borderColor: 'var(--border)' }}>
+              <div className=”flex gap-0.5 mb-2”>
                 {[...Array(5)].map((_, j) => (
-                  <Star key={j} className="w-3.5 h-3.5 fill-[#6B7F5E] text-[#6B7F5E]" />
+                  <Star key={j} className=”w-3.5 h-3.5 fill-[#6B7F5E] text-[#6B7F5E]” />
                 ))}
               </div>
-              <p className="text-sm text-muted leading-relaxed mb-2 italic">{"“"}{testimonial.quote}{"”"}</p>
-              <p className="text-xs font-medium text-primary">{testimonial.name}</p>
+              <p className=”text-sm text-muted leading-relaxed mb-2 italic”>{“””}{testimonial.quote}{“””}</p>
+              <p className=”text-xs font-medium text-primary”>{testimonial.name}</p>
             </div>
           ))}
         </div>
@@ -368,7 +368,7 @@ export default function LandingPage() {
 
       {/* Trust signals */}
       <section className="px-5 pb-6">
-        <div className="bg-[#F7F5F0] rounded-2xl border border-[#E8E4DE] p-5">
+        <div className="rounded-2xl border p-5" style={{ background: 'var(--bg-card)', borderColor: 'var(--border)' }}>
           <h3 className="font-semibold text-primary mb-4">
             {t('Du är i trygga händer', 'You are in safe hands')}
           </h3>
@@ -451,7 +451,7 @@ export default function LandingPage() {
               ),
             },
           ].map((faq, i) => (
-            <details key={i} className="bg-white rounded-2xl border border-[#E8E4DE] p-4 group">
+            <details key={i} className="rounded-2xl border p-4 group" style={{ background: 'var(--bg-card)', borderColor: 'var(--border)' }}>
               <summary className="flex items-center justify-between cursor-pointer font-medium text-primary text-sm list-none">
                 {faq.q}
                 <ChevronRight className="w-4 h-4 text-muted transition-transform group-open:rotate-90 flex-shrink-0" />

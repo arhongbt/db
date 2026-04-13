@@ -136,7 +136,8 @@ export default function FaqPage() {
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           placeholder={t('Sök frågor...', 'Search questions...')}
-          className="w-full min-h-touch pl-10 pr-4 py-3 text-base border-2 border-[#E8E4DE] rounded-card focus:border-accent focus:outline-none"
+          className="w-full min-h-touch pl-10 pr-4 py-3 text-base border-2 rounded-card focus:border-accent focus:outline-none"
+          style={{ borderColor: 'var(--border)', background: 'var(--bg-card)' }}
         />
       </div>
 
@@ -149,8 +150,9 @@ export default function FaqPage() {
             className={`px-3 py-1.5 rounded-full text-sm font-medium whitespace-nowrap transition-colors ${
               activeCategory === cat
                 ? 'bg-primary text-white'
-                : 'bg-background text-muted'
-            }`}
+                : 'text-muted'
+              }`}
+              style={activeCategory !== cat ? { background: 'var(--bg-card)' } : {}}
           >
             {cat}
           </button>
@@ -182,7 +184,7 @@ export default function FaqPage() {
                 )}
               </div>
               {isExpanded && (
-                <div className="mt-3 pt-3 border-t border-[#E8E4DE]">
+                <div className="mt-3 pt-3 border-t" style={{ borderColor: 'var(--border)' }}>
                   <p className="text-sm text-primary/80 leading-relaxed">{faq.answer}</p>
                   <p className="text-xs text-accent mt-2">{faq.category}</p>
                 </div>

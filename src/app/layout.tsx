@@ -199,7 +199,7 @@ export default function RootLayout({
             <AppSettingsProvider>
               <ServiceWorkerRegistration />
               <AppControlBar />
-              <main className="min-h-dvh relative pt-14" id="main-content">
+              <main className="min-h-dvh relative pt-14 pb-24" id="main-content">
                 <div className="page-transition">
                   {children}
                 </div>

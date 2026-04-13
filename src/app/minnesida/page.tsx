@@ -9,7 +9,7 @@ import { BottomNav } from '@/components/ui/BottomNav';
 
 function MikeRossTip({ text }: { text: string }) {
   return (
-    <div className="flex gap-3 p-4 rounded-2xl mb-5" style={{ background: '#EEF2EA' }}>
+    <div className="flex gap-3 p-4 rounded-2xl mb-5" style={{ background: 'var(--accent-soft)' }}>
       <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
         style={{ background: 'linear-gradient(135deg, #6B7F5E, #4F6145)' }}>
         <Bot className="w-4 h-4 text-white" />
@@ -101,7 +101,7 @@ ${form.citat}
           </div>
 
           {/* Memorial Card */}
-          <div className="bg-white rounded-2xl p-8 text-center space-y-6 border" style={{ borderColor: '#E8E4DE' }}>
+          <div className="rounded-2xl p-8 text-center space-y-6 border" style={{ background: 'var(--bg-card)', borderColor: 'var(--border)' }}>
             <Flame className="w-8 h-8 text-primary/60 mx-auto" />
 
             <div className="h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
@@ -130,7 +130,7 @@ ${form.citat}
             )}
 
             {form.citat && (
-              <div className="bg-white rounded-2xl p-4 border" style={{ borderColor: '#E8E4DE' }}>
+              <div className="rounded-2xl p-4 border" style={{ background: 'var(--bg)', borderColor: 'var(--border)' }}>
                 <p className="text-sm text-primary/80 font-light">
                   {form.citat}
                 </p>
@@ -165,7 +165,7 @@ ${form.citat}
 
   return (
     <div className="min-h-screen bg-background pb-24">
-      <div className="sticky top-0 bg-background border-b z-10" style={{ borderColor: '#E8E4DE' }}>
+      <div className="sticky top-0 bg-background border-b z-10" style={{ borderColor: 'var(--border)' }}>
         <div className="max-w-2xl mx-auto px-4 py-4 flex items-center justify-between">
           <Link href="/dashboard" className="flex items-center gap-2 text-primary/60 hover:text-primary">
             <ArrowLeft className="w-5 h-5" />
@@ -200,7 +200,8 @@ ${form.citat}
               value={form.namn}
               onChange={(e) => handleInputChange('namn', e.target.value)}
               placeholder={t('Namn på den du saknar', 'Name of the person you miss')}
-              className="w-full px-4 py-3 border border-[#E8E4DE] rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white"
+              className="w-full px-4 py-3 border rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
+              style={{ borderColor: 'var(--border)', background: 'var(--bg-card)' }}
             />
           </div>
 
@@ -214,7 +215,8 @@ ${form.citat}
               value={form.född}
               onChange={(e) => handleInputChange('född', e.target.value)}
               placeholder={t('t.ex. 12 mars 1945', 'e.g. March 12, 1945')}
-              className="w-full px-4 py-3 border border-[#E8E4DE] rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white"
+              className="w-full px-4 py-3 border rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
+              style={{ borderColor: 'var(--border)', background: 'var(--bg-card)' }}
             />
           </div>
 
@@ -228,7 +230,8 @@ ${form.citat}
               value={form.avliden}
               onChange={(e) => handleInputChange('avliden', e.target.value)}
               placeholder={t('Datum för bortgången', 'Date of passing')}
-              className="w-full px-4 py-3 border border-[#E8E4DE] rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white"
+              className="w-full px-4 py-3 border rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
+              style={{ borderColor: 'var(--border)', background: 'var(--bg-card)' }}
             />
           </div>
 
@@ -270,7 +273,8 @@ ${form.citat}
               value={form.citat}
               onChange={(e) => handleInputChange('citat', e.target.value)}
               placeholder={t('Ett citat som speglar personen...', 'A quote that reflects the person...')}
-              className="w-full px-4 py-3 border border-[#E8E4DE] rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white"
+              className="w-full px-4 py-3 border rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
+              style={{ borderColor: 'var(--border)', background: 'var(--bg-card)' }}
             />
           </div>
 

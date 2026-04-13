@@ -338,7 +338,8 @@ function UppgifterContent() {
                     {/* Dropdown menu */}
                     {openAssigneeId === task.id && (
                       <div
-                        className="absolute right-0 mt-1 bg-white border border-[#E8E4DE] rounded-lg shadow-lg z-10 min-w-[160px]"
+                        className="absolute right-0 mt-1 border rounded-lg shadow-lg z-10 min-w-[160px]"
+                        style={{ background: 'var(--bg-card)', borderColor: 'var(--border)' }}
                         onClick={(e) => e.stopPropagation()}
                       >
                         <button
@@ -346,7 +347,8 @@ function UppgifterContent() {
                             dispatch({ type: 'UPDATE_TASK', payload: { id: task.id, assignedTo: '' } });
                             setOpenAssigneeId(null);
                           }}
-                          className="block w-full text-left px-3 py-2 text-sm text-muted hover:bg-gray-50 border-b border-[#E8E4DE] last:border-b-0"
+                          className="block w-full text-left px-3 py-2 text-sm text-muted hover:opacity-70 border-b last:border-b-0 transition-opacity"
+                          style={{ borderColor: 'var(--border)' }}
                         >
                           {t('Ingen', 'None')}
                         </button>
@@ -357,11 +359,12 @@ function UppgifterContent() {
                               dispatch({ type: 'UPDATE_TASK', payload: { id: task.id, assignedTo: d.name } });
                               setOpenAssigneeId(null);
                             }}
-                            className={`block w-full text-left px-3 py-2 text-sm transition-colors border-b border-[#E8E4DE] last:border-b-0 ${
+                            className={`block w-full text-left px-3 py-2 text-sm transition-colors border-b last:border-b-0 ${
                               task.assignedTo === d.name
                                 ? 'bg-[#6B7F5E]/10 text-[#6B7F5E] font-medium'
-                                : 'text-primary hover:bg-gray-50'
+                                : 'text-primary hover:opacity-70'
                             }`}
+                            style={{ borderColor: 'var(--border)' }}
                           >
                             {d.name}
                           </button>

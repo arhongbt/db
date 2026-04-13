@@ -87,7 +87,7 @@ function DodsboSkulderContent() {
       </p>
 
       {/* Key reassurance message */}
-      <div className="card mb-6 border-2 border-accent/20 bg-accent/5">
+      <div className="card mb-6 border-2" style={{ borderColor: 'var(--border)', background: 'var(--accent-soft)' }}>
         <div className="flex gap-3">
           <CheckCircle2 className="w-6 h-6 text-accent flex-shrink-0 mt-0.5" />
           <div>
@@ -160,7 +160,7 @@ function DodsboSkulderContent() {
       </div>
 
       {/* Insolvent estate explanation */}
-      <div className="card mb-6 bg-[#FDF6EA] border border-warn/20">
+      <div className="card mb-6 border" style={{ background: 'var(--accent-soft)', borderColor: 'var(--border)' }}>
         <h3 className="text-sm font-semibold text-primary mb-2 flex items-center gap-2">
           <AlertTriangle className="w-5 h-5 text-warn" />
           Vad är ett insolvent dödsbo?
@@ -188,7 +188,7 @@ function DodsboSkulderContent() {
           Prioritering av skuldbetalning
         </h2>
         <div className="space-y-2">
-          <div className="flex items-center justify-between py-2 border-b border-[#E8E4DE] last:border-0">
+          <div className="flex items-center justify-between py-2 border-b last:border-0" style={{ borderColor: 'var(--border)' }}>
             <span className="text-sm text-primary">
               <strong>1. Begravning &amp; ceremoni</strong>
             </span>
@@ -213,7 +213,7 @@ function DodsboSkulderContent() {
             <span className="text-xs font-semibold text-warn">Lägst prio</span>
           </div>
         </div>
-        <p className="text-xs text-muted mt-3 p-2 bg-white rounded">
+        <p className="text-xs text-muted mt-3 p-2 rounded" style={{ background: 'var(--bg-card)' }}>
           Om dödsboet är insolvent kan låga prioriteter få mindre eller ingenting.
         </p>
       </div>
@@ -242,7 +242,7 @@ function DodsboSkulderContent() {
                 )}
               </button>
               {expandedFaq === item.id && (
-                <div className="mt-2 pt-2 border-t border-[#E8E4DE]">
+                <div className="mt-2 pt-2 border-t" style={{ borderColor: 'var(--border)' }}>
                   <p className="text-sm text-primary/80 leading-relaxed">
                     {item.answer}
                   </p>
@@ -300,7 +300,7 @@ function DodsboSkulderContent() {
       </div>
 
       {/* Legal disclaimer */}
-      <div className="bg-primary-lighter/30 rounded-card p-4 mb-6">
+      <div className="rounded-card p-4 mb-6" style={{ background: 'var(--bg)' }}>
         <p className="text-xs text-muted leading-relaxed">
           Denna information är baserad på svensk lag (Ärvdabalken). Det är inte juridisk
           rådgivning. Vid komplicerade situationer eller osäkerhet rekommenderas juridisk

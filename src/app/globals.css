@@ -363,6 +363,108 @@
   --tw-shadow-color: rgba(0,0,0,0.4);
 }
 
+/* --- Force dark on ALL remaining light backgrounds --- */
+[data-theme="dark"] main .bg-white\/80,
+[data-theme="dark"] main .bg-white\/90,
+[data-theme="dark"] main .bg-white\/95 {
+  background-color: var(--bg-card) !important;
+}
+
+/* --- Info/status colored boxes --- */
+[data-theme="dark"] .bg-blue-50\/80,
+[data-theme="dark"] .bg-green-50\/80,
+[data-theme="dark"] .bg-amber-50\/80,
+[data-theme="dark"] .bg-red-50\/80 {
+  background-color: var(--border-light) !important;
+}
+[data-theme="dark"] .text-blue-600,
+[data-theme="dark"] .text-blue-500 {
+  color: #60A5FA !important;
+}
+[data-theme="dark"] .text-green-600,
+[data-theme="dark"] .text-green-500 {
+  color: #8FA67E !important;
+}
+[data-theme="dark"] .text-amber-600,
+[data-theme="dark"] .text-amber-500 {
+  color: #FBBF24 !important;
+}
+[data-theme="dark"] .text-red-600,
+[data-theme="dark"] .text-red-500 {
+  color: #F87171 !important;
+}
+
+/* --- Buttons that are white/light in dark mode --- */
+[data-theme="dark"] button.bg-white,
+[data-theme="dark"] a.bg-white,
+[data-theme="dark"] .btn-secondary {
+  background-color: var(--bg-card) !important;
+  color: var(--text) !important;
+  border-color: var(--border) !important;
+}
+
+/* --- Ring colors --- */
+[data-theme="dark"] .ring-gray-100,
+[data-theme="dark"] .ring-gray-200 {
+  --tw-ring-color: var(--border) !important;
+}
+
+/* --- Placeholder text --- */
+[data-theme="dark"] .placeholder\:text-gray-400::placeholder,
+[data-theme="dark"] .placeholder\:text-gray-500::placeholder {
+  color: #666 !important;
+}
+
+/* --- Input fields --- */
+[data-theme="dark"] input,
+[data-theme="dark"] textarea,
+[data-theme="dark"] select {
+  background-color: var(--bg-card) !important;
+  color: var(--text) !important;
+  border-color: var(--border) !important;
+}
+
+/* --- Tables --- */
+[data-theme="dark"] table {
+  color: var(--text) !important;
+}
+[data-theme="dark"] th {
+  background-color: var(--border-light) !important;
+  color: var(--text) !important;
+}
+[data-theme="dark"] td {
+  border-color: var(--border) !important;
+}
+[data-theme="dark"] tr:hover {
+  background-color: var(--border-light) !important;
+}
+
+/* --- Specific component overrides --- */
+/* FAQ accordion boxes */
+[data-theme="dark"] details,
+[data-theme="dark"] summary {
+  background-color: var(--bg-card) !important;
+  color: var(--text) !important;
+}
+
+/* --- Border on cards and containers --- */
+[data-theme="dark"] [class*="border-"] {
+  border-color: var(--border);
+}
+[data-theme="dark"] .border {
+  border-color: var(--border) !important;
+}
+[data-theme="dark"] .border-t,
+[data-theme="dark"] .border-b {
+  border-color: var(--border) !important;
+}
+
+/* --- SVG icons color fix --- */
+[data-theme="dark"] .text-gray-200 svg,
+[data-theme="dark"] .text-gray-300 svg {
+  color: #555 !important;
+}
+
 /* ============================================
    Dark mode — inline style overrides
    Uses JavaScript mutation observer instead.

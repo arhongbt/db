@@ -22,7 +22,7 @@ export default function SamboArvPage() {
       {/* Content */}
       <div className="max-w-2xl mx-auto px-4 py-6 space-y-6">
         {/* Warning Box */}
-        <div className="bg-[#FEF3EE] border border-warn/20 rounded-lg p-4 flex gap-3">
+        <div className="border rounded-lg p-4 flex gap-3" style={{ background: 'var(--accent-soft)', borderColor: 'var(--border)' }}>
           <AlertTriangle className="w-5 h-5 text-warn flex-shrink-0 mt-0.5" />
           <div>
             <p className="font-semibold text-primary mb-1">{t('Viktigt att veta', 'Important to Know')}</p>
@@ -33,7 +33,7 @@ export default function SamboArvPage() {
         </div>
 
         {/* Introduction Card */}
-        <div className="bg-white border border-border rounded-2xl p-5 space-y-3">
+        <div className="border border-border rounded-2xl p-5 space-y-3" style={{ background: 'var(--bg-card)' }}>
           <div className="flex items-start gap-3">
             <Users className="w-6 h-6 text-accent flex-shrink-0 mt-1" />
             <div>
@@ -46,7 +46,7 @@ export default function SamboArvPage() {
         </div>
 
         {/* Key Points Card */}
-        <div className="bg-white border border-border rounded-2xl overflow-hidden">
+        <div className="border border-border rounded-2xl overflow-hidden" style={{ background: 'var(--bg-card)' }}>
           <div className="bg-secondary px-5 py-3 border-b border-border">
             <h3 className="font-semibold text-primary">De viktigaste reglerna</h3>
           </div>
@@ -95,7 +95,7 @@ export default function SamboArvPage() {
             <span>Utan testamente</span>
             <ChevronRight className="w-4 h-4 text-muted" />
           </h3>
-          <div className="bg-secondary/50 rounded p-4 space-y-3 text-sm">
+          <div className="rounded p-4 space-y-3 text-sm" style={{ background: 'var(--bg)' }}>
             <p className="text-muted">
               Om en sambo dör utan testamente gäller ärvdabalkens regler:
             </p>
@@ -122,7 +122,7 @@ export default function SamboArvPage() {
             <span>Med testamente</span>
             <ChevronRight className="w-4 h-4 text-muted" />
           </h3>
-          <div className="bg-secondary/50 rounded p-4 space-y-3 text-sm">
+          <div className="rounded p-4 space-y-3 text-sm" style={{ background: 'var(--bg)' }}>
             <p className="text-muted">
               Med ett korrekt upprättat testamente kan sambor:
             </p>
@@ -150,16 +150,16 @@ export default function SamboArvPage() {
             Även utan testamente har en sambo rätt att kräva bodelning av:
           </p>
           <div className="grid grid-cols-2 gap-3">
-            <div className="bg-secondary/50 rounded p-3">
+            <div className="rounded p-3" style={{ background: 'var(--bg)' }}>
               <p className="font-medium text-sm text-primary mb-1">Det gemensamma hemmet</p>
               <p className="text-xs text-muted">Fastighet eller lägenhet som ägs gemensamt</p>
             </div>
-            <div className="bg-secondary/50 rounded p-3">
+            <div className="rounded p-3" style={{ background: 'var(--bg)' }}>
               <p className="font-medium text-sm text-primary mb-1">Möbler & inredning</p>
               <p className="text-xs text-muted">Hushållets möbler och inventarier</p>
             </div>
           </div>
-          <p className="text-xs text-muted bg-[#FDF6EA] border border-warn/20 rounded p-3">
+          <p className="text-xs text-muted border rounded p-3" style={{ background: 'var(--accent-soft)', borderColor: 'var(--border)' }}>
             Bodelning måste påkrävas senast tre år efter dödfallet. Därefter förlorar den överlevande rättigheten.
           </p>
         </div>
@@ -169,7 +169,7 @@ export default function SamboArvPage() {
           <h3 className="font-semibold text-primary">Sambo vs. Gift — skillnaden</h3>
           <div className="space-y-3 text-sm">
             <div className="grid grid-cols-2 gap-3">
-              <div className="bg-secondary/50 rounded p-3">
+              <div className="rounded p-3" style={{ background: 'var(--bg)' }}>
                 <p className="font-semibold text-primary mb-2">Gifta</p>
                 <ul className="space-y-1 text-muted">
                   <li>✓ Ärvningsrätt automatisk</li>
@@ -178,7 +178,7 @@ export default function SamboArvPage() {
                   <li>✓ Försörjningsrätt</li>
                 </ul>
               </div>
-              <div className="bg-secondary/50 rounded p-3">
+              <div className="rounded p-3" style={{ background: 'var(--bg)' }}>
                 <p className="font-semibold text-primary mb-2">Sambor</p>
                 <ul className="space-y-1 text-muted">
                   <li>✗ Ingen automatisk ärvningsrätt</li>
@@ -192,7 +192,7 @@ export default function SamboArvPage() {
         </div>
 
         {/* FAQ */}
-        <div className="bg-white border border-border rounded-2xl overflow-hidden">
+        <div className="border border-border rounded-2xl overflow-hidden" style={{ background: 'var(--bg-card)' }}>
           <div className="bg-secondary px-5 py-3 border-b border-border">
             <h3 className="font-semibold text-primary">Vanliga frågor</h3>
           </div>
@@ -244,7 +244,7 @@ export default function SamboArvPage() {
         </Link>
 
         {/* Legal Disclaimer */}
-        <div className="text-xs text-muted bg-secondary/30 rounded p-4 border border-border/50">
+        <div className="text-xs text-muted rounded p-4 border" style={{ background: 'var(--bg)', borderColor: 'var(--border)' }}>
           <p className="font-medium mb-1">Juridisk ansvarsfriskrivning</p>
           <p>
             Denna information är endast för allmän vägledning och utgör inte juridisk rådgivning. Reglerna kring samboarv kan vara komplexa och individuell situation spelar stor roll. Vi rekommenderar att du kontaktar en jurist för personlig rådgivning angående ditt specifika fall.

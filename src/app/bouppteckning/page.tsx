@@ -194,15 +194,14 @@ function BouppteckningContent() {
       </div>
 
       {/* Info box */}
-      <div className="info-box mb-6">
-        <div className="flex gap-2">
-          <Info className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
-          <div>
-            <p className="text-sm font-medium text-primary">
-              {t('Vad är en bouppteckning?', 'What is an estate inventory?')}
-            </p>
-            <p className="text-sm text-primary/70 mt-1">
-              {t('En förteckning av den avlidnes alla tillgångar och skulder per dödsdagen. Den ska upprättas inom 3 månader och skickas till Skatteverket inom 4 månader. Två utomstående förrättningsmän krävs.', 'A record of the deceased\'s assets and liabilities as of the date of death. It must be prepared within 3 months and submitted to the Swedish Tax Agency within 4 months. Two independent witnesses are required.')}
+      <div className="mb-6 rounded-xl p-4 flex gap-2" style={{ background: 'var(--accent-soft)' }}>
+        <Info className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
+        <div>
+          <p className="text-sm font-medium text-primary">
+            {t('Vad är en bouppteckning?', 'What is an estate inventory?')}
+          </p>
+          <p className="text-sm text-primary/70 mt-1">
+            {t('En förteckning av den avlidnes alla tillgångar och skulder per dödsdagen. Den ska upprättas inom 3 månader och skickas till Skatteverket inom 4 månader. Två utomstående förrättningsmän krävs.', 'A record of the deceased\'s assets and liabilities as of the date of death. It must be prepared within 3 months and submitted to the Swedish Tax Agency within 4 months. Two independent witnesses are required.')}
             </p>
           </div>
         </div>
@@ -536,9 +535,9 @@ function BouppteckningContent() {
       {/* Preview modal */}
       {showPreview && previewDoc && (
         <div className="fixed inset-0 bg-black/50 z-50 flex items-end sm:items-center justify-center">
-          <div className="bg-white w-full max-w-lg max-h-[90vh] rounded-t-2xl sm:rounded-2xl overflow-hidden flex flex-col">
+          <div className="w-full max-w-lg max-h-[90vh] rounded-t-2xl sm:rounded-2xl overflow-hidden flex flex-col" style={{ background: 'var(--bg)' }}>
             {/* Modal header */}
-            <div className="flex items-center justify-between px-5 py-4 border-b border-[#E8E4DE]">
+            <div className="flex items-center justify-between px-5 py-4 border-b" style={{ borderColor: 'var(--border)' }}>
               <h2 className="text-lg font-semibold text-primary">
                 {t('Förhandsgranskning', 'Preview')}
               </h2>
@@ -622,14 +621,15 @@ function BouppteckningContent() {
             </div>
 
             {/* Modal footer */}
-            <div className="px-5 py-4 border-t border-[#E8E4DE]">
+            <div className="px-5 py-4 border-t" style={{ borderColor: 'var(--border)' }}>
               <p className="text-xs text-muted text-center mb-3">
                 {t('OBS: Detta är ett utkast. En bouppteckning måste granskas av förrättningsmän och skickas till Skatteverket för registrering.', 'NOTE: This is a draft. An estate inventory must be reviewed by witnesses and submitted to the Swedish Tax Agency for registration.')}
               </p>
               <div className="flex gap-3">
                 <button
                   onClick={() => setShowPreview(false)}
-                  className="flex-1 py-3 px-4 rounded-xl border border-[#E8E4DE] text-primary font-medium hover:bg-background transition-colors"
+                  className="flex-1 py-3 px-4 rounded-xl border text-primary font-medium hover:opacity-70 transition-opacity"
+                  style={{ borderColor: 'var(--border)', background: 'var(--bg-card)' }}
                 >
                   {t('Stäng', 'Close')}
                 </button>

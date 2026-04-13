@@ -370,7 +370,7 @@ function JuridiskHjalpContent() {
   return (
     <div className="flex flex-col h-dvh bg-background">
       {/* Header */}
-      <div className="flex items-center gap-3 px-5 py-3 border-b bg-background" style={{ borderColor: '#E8E4DE' }}>
+      <div className="flex items-center gap-3 px-5 py-3 border-b bg-background" style={{ borderColor: 'var(--border)' }}>
         <Link
           href="/dashboard"
           className="p-2 -ml-2 min-h-[44px] min-w-[44px] flex items-center justify-center rounded-full hover:bg-background transition-colors"
@@ -394,7 +394,7 @@ function JuridiskHjalpContent() {
 
       {/* BankID verification prompt */}
       {!isBankIDVerified && (
-        <div className="px-4 py-3 bg-accent/5 border-b" style={{ borderColor: '#E8E4DE' }}>
+        <div className="px-4 py-3 bg-accent/5 border-b" style={{ borderColor: 'var(--border)' }}>
           <div className="flex items-start gap-3">
             <AlertTriangle className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
             <div className="flex-1">
@@ -437,15 +437,15 @@ function JuridiskHjalpContent() {
                 <button
                   key={q.sv}
                   onClick={() => sendMessage(t(q.sv, q.en))}
-                  className="text-left px-4 py-3 rounded-2xl text-sm text-primary hover:bg-accent/10 transition-colors"
-                  style={{ background: '#EFEDE8' }}
+                  className="text-left px-4 py-3 rounded-2xl text-sm text-primary hover:opacity-80 transition-opacity"
+                  style={{ background: 'var(--bg-card)' }}
                 >
                   {t(q.sv, q.en)}
                 </button>
               ))}
             </div>
 
-            <div className="mt-6 p-3 bg-[#FDF6EA] border border-warn/20 rounded-xl max-w-sm">
+            <div className="mt-6 p-3 rounded-xl max-w-sm border" style={{ background: 'var(--accent-soft)', borderColor: 'var(--border)' }}>
               <div className="flex gap-2">
                 <AlertTriangle className="w-4 h-4 text-warn flex-shrink-0 mt-0.5" />
                 <p className="text-xs text-primary">
@@ -496,7 +496,7 @@ function JuridiskHjalpContent() {
                   ? 'bg-accent text-white rounded-br-sm shadow-sm'
                   : 'text-primary rounded-bl-sm'
               }`}
-              style={msg.role === 'assistant' ? { background: '#EFEDE8' } : {}}
+              style={msg.role === 'assistant' ? { background: 'var(--bg-card)' } : {}}
             >
               {msg.role === 'assistant' ? (
                 <TypewriterBubble
@@ -522,7 +522,7 @@ function JuridiskHjalpContent() {
             <div className="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center flex-shrink-0">
               <Bot className="w-4 h-4 text-accent" />
             </div>
-            <div className="px-4 py-3 rounded-2xl rounded-bl-sm" style={{ background: '#EFEDE8' }}>
+            <div className="px-4 py-3 rounded-2xl rounded-bl-sm" style={{ background: 'var(--bg-card)' }}>
               <div className="flex items-center gap-1.5">
                 <span className="w-2 h-2 bg-accent/50 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
                 <span className="w-2 h-2 bg-accent/50 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
@@ -535,7 +535,7 @@ function JuridiskHjalpContent() {
         {/* Error */}
         {error && (
           <div className="flex justify-center mb-4">
-            <div className="bg-[#FEF3EE] border border-warn/20 px-4 py-3 rounded-xl max-w-sm">
+            <div className="border px-4 py-3 rounded-xl max-w-sm" style={{ background: 'var(--accent-soft)', borderColor: 'var(--border)' }}>
               <div className="flex gap-2">
                 <AlertTriangle className="w-4 h-4 text-warn flex-shrink-0 mt-0.5" />
                 <p className="text-sm text-warn">{error}</p>
@@ -548,7 +548,7 @@ function JuridiskHjalpContent() {
       </div>
 
       {/* Input area */}
-      <div className="border-t bg-background px-4 py-3 pb-24" style={{ borderColor: '#E8E4DE' }}>
+      <div className="border-t bg-background px-4 py-3 pb-24" style={{ borderColor: 'var(--border)' }}>
         {/* Remaining messages warning — shows when 3 or fewer left */}
         {!isLimitReached && remainingMessages <= 3 && remainingMessages > 0 && (
           <div className="mb-3 text-center">
@@ -560,8 +560,8 @@ function JuridiskHjalpContent() {
 
         {/* Limit reached — prominent jurist CTA */}
         {isLimitReached && (
-          <div className="mb-4 rounded-2xl overflow-hidden border" style={{ borderColor: '#D4DBC9' }}>
-            <div className="p-4" style={{ background: 'linear-gradient(135deg, #EEF2EA 0%, #F7F5F0 100%)' }}>
+          <div className="mb-4 rounded-2xl overflow-hidden border" style={{ borderColor: 'var(--border)' }}>
+            <div className="p-4" style={{ background: 'var(--accent-soft)' }}>
               <div className="flex items-center gap-2 mb-2">
                 <Scale className="w-4 h-4 text-accent" />
                 <p className="text-sm font-bold text-primary">
@@ -618,7 +618,8 @@ function JuridiskHjalpContent() {
                   key={chip.sv}
                   onClick={() => sendMessage(t(chip.sv, chip.en))}
                   disabled={isLoading}
-                  className="flex-shrink-0 px-3 py-1.5 bg-accent/8 border border-accent/20 text-xs font-medium text-accent rounded-full hover:bg-accent/15 transition-colors disabled:opacity-50"
+                  className="flex-shrink-0 px-3 py-1.5 border text-xs font-medium text-accent rounded-full hover:opacity-80 transition-opacity disabled:opacity-50"
+                  style={{ background: 'var(--accent-soft)', borderColor: 'var(--border)' }}
                 >
                   {t(chip.sv, chip.en)}
                 </button>
@@ -635,8 +636,8 @@ function JuridiskHjalpContent() {
               rows={1}
               className="flex-1 px-4 py-3 rounded-2xl resize-none
                          focus:outline-none focus:ring-2 focus:ring-accent/30 transition-all
-                         text-sm text-primary placeholder:text-gray-400"
-              style={{ border: '2px solid #E8E4DE' }}
+                         text-sm text-primary placeholder:text-gray-400 border-2"
+              style={{ borderColor: 'var(--border)', background: 'var(--bg-card)' }}
               disabled={isLoading}
             />
             <button
