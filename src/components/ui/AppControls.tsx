@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, createContext, useContext, useCallback } from "react";
-import { Search, Moon, Sun, Type, Settings2 } from "lucide-react";
+import { Search, Moon, Sun } from "lucide-react";
 import SearchModal from "./SearchModal";
 
 // ============================================
@@ -82,8 +82,7 @@ export function AppSettingsProvider({ children }: { children: React.ReactNode })
 // ============================================
 export function AppControlBar() {
   const [searchOpen, setSearchOpen] = useState(false);
-  const [panelOpen, setPanelOpen] = useState(false);
-  const { settings, setTheme, setTextSize } = useAppSettings();
+  const { settings, setTheme } = useAppSettings();
 
   // Cmd+K shortcut
   useEffect(() => {
@@ -119,88 +118,21 @@ export function AppControlBar() {
             <span>Sök i appen...</span>
           </button>
 
-          {/* Settings toggle */}
+          {/* Dark mode toggle */}
           <button
-            onClick={() => setPanelOpen(!panelOpen)}
+            onClick={() => setTheme(settings.theme === "dark" ? "light" : "dark")}
             className="w-10 h-10 rounded-xl flex items-center justify-center transition-all press-effect"
             style={{
-              background: "var(--bg-card)",
-              border: "1px solid var(--border)",
+              background: settings.theme === "dark" ? "#374151" : "var(--bg-card)",
+              border: `1px solid ${settings.theme === "dark" ? "#4B5563" : "var(--border)"}`,
               boxShadow: "0 2px 8px var(--shadow-color)",
-              color: "var(--text-secondary)",
+              color: settings.theme === "dark" ? "#FCD34D" : "var(--text-secondary)",
             }}
+            aria-label={settings.theme === "dark" ? "Byt till ljust tema" : "Byt till mörkt tema"}
           >
-            <Settings2 className="w-4 h-4" />
+            {settings.theme === "dark" ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
           </button>
         </div>
-
-        {/* Settings panel */}
-        {panelOpen && (
-          <div
-            className="max-w-lg mx-auto mt-2 rounded-xl p-4 pointer-events-auto animate-slideUp"
-            style={{
-              background: "var(--bg-card)",
-              border: "1px solid var(--border)",
-              boxShadow: "0 8px 30px var(--shadow-color)",
-            }}
-          >
-            {/* Theme */}
-            <div className="flex items-center justify-between mb-3">
-              <span className="text-sm font-medium" style={{ color: "var(--text)" }}>Tema</span>
-              <div className="flex gap-1">
-                <button
-                  onClick={() => setTheme("light")}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
-                    settings.theme === "light"
-                      ? "bg-amber-100 text-amber-700"
-                      : ""
-                  }`}
-                  style={settings.theme !== "light" ? { background: "var(--border-light)", color: "var(--text-secondary)" } : {}}
-                >
-                  <Sun className="w-3.5 h-3.5 inline mr-1" />
-                  Ljust
-                </button>
-                <button
-                  onClick={() => setTheme("dark")}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
-                    settings.theme === "dark"
-                      ? "bg-indigo-100 text-indigo-700"
-                      : ""
-                  }`}
-                  style={settings.theme !== "dark" ? { background: "var(--border-light)", color: "var(--text-secondary)" } : {}}
-                >
-                  <Moon className="w-3.5 h-3.5 inline mr-1" />
-                  Mörkt
-                </button>
-              </div>
-            </div>
-
-            {/* Text size */}
-            <div className="flex items-center justify-between">
-              <span className="text-sm font-medium" style={{ color: "var(--text)" }}>Textstorlek</span>
-              <div className="flex gap-1">
-                {([
-                  { key: "normal", label: "A", size: "text-xs" },
-                  { key: "large", label: "A", size: "text-sm" },
-                  { key: "xlarge", label: "A", size: "text-base" },
-                ] as const).map(opt => (
-                  <button
-                    key={opt.key}
-                    onClick={() => setTextSize(opt.key)}
-                    className={`w-9 h-9 rounded-lg font-bold transition-all flex items-center justify-center ${opt.size} ${
-                      settings.textSize === opt.key
-                        ? "bg-green-100 text-green-700"
-                        : ""
-                    }`}
-                    style={settings.textSize !== opt.key ? { background: "var(--border-light)", color: "var(--text-secondary)" } : {}}
-                  >
-                    {opt.label}
-                  </button>
-                ))}
-              </div>
-            </div>
-          </div>
-        )}
       </div>
 
       <SearchModal isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
