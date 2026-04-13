@@ -78,6 +78,17 @@
     background: linear-gradient(135deg, #FEF3EE, #FFFFFF);
   }
 
+  /* Dark mode gradient cards */
+  [data-theme="dark"] .card-sage {
+    background: linear-gradient(135deg, #2A3326, var(--bg-card));
+  }
+  [data-theme="dark"] .card-blue {
+    background: linear-gradient(135deg, #1E2A35, var(--bg-card));
+  }
+  [data-theme="dark"] .card-warn {
+    background: linear-gradient(135deg, #352420, var(--bg-card));
+  }
+
   /* Step indicator for onboarding */
   .step-dot {
     @apply w-2.5 h-2.5 rounded-full bg-gray-300 transition-all duration-300;
@@ -101,6 +112,16 @@
     @apply rounded-card p-5 text-base;
     background: linear-gradient(135deg, #FEF3EE, #FFFFFF);
     border: 1px solid rgba(196,112,75,0.10);
+  }
+
+  /* Dark mode info/warning boxes */
+  [data-theme="dark"] .info-box {
+    background: linear-gradient(135deg, #2A3326, var(--bg-card));
+    border-color: rgba(143,166,126,0.15);
+  }
+  [data-theme="dark"] .warning-box {
+    background: linear-gradient(135deg, #352420, var(--bg-card));
+    border-color: rgba(196,112,75,0.15);
   }
 
   /* Icon bubble — rounded icon container */
@@ -250,6 +271,119 @@
   --accent: #8FA67E;
   --accent-soft: #2A3326;
   --shadow-color: rgba(0,0,0,0.3);
+}
+
+/* Dark mode overrides for Tailwind utility classes */
+[data-theme="dark"] .bg-white {
+  background-color: var(--bg-card) !important;
+}
+[data-theme="dark"] .bg-gray-50,
+[data-theme="dark"] .bg-gray-100 {
+  background-color: var(--border-light) !important;
+}
+[data-theme="dark"] .bg-gray-200 {
+  background-color: var(--border) !important;
+}
+[data-theme="dark"] .text-gray-900,
+[data-theme="dark"] .text-gray-800,
+[data-theme="dark"] .text-gray-700 {
+  color: var(--text) !important;
+}
+[data-theme="dark"] .text-gray-600,
+[data-theme="dark"] .text-gray-500 {
+  color: var(--text-secondary) !important;
+}
+[data-theme="dark"] .text-gray-400,
+[data-theme="dark"] .text-gray-300 {
+  color: #666 !important;
+}
+[data-theme="dark"] .text-black {
+  color: var(--text) !important;
+}
+[data-theme="dark"] .border-gray-100,
+[data-theme="dark"] .border-gray-200,
+[data-theme="dark"] .border-gray-300 {
+  border-color: var(--border) !important;
+}
+[data-theme="dark"] .divide-gray-100 > :not([hidden]) ~ :not([hidden]),
+[data-theme="dark"] .divide-gray-200 > :not([hidden]) ~ :not([hidden]) {
+  border-color: var(--border) !important;
+}
+/* Dark mode for inline styles using common light colors */
+[data-theme="dark"] [style*="background: #F7F5F0"],
+[data-theme="dark"] [style*="background:#F7F5F0"],
+[data-theme="dark"] [style*="background-color: #F7F5F0"] {
+  background: var(--bg) !important;
+}
+[data-theme="dark"] [style*="background: #FFFFFF"],
+[data-theme="dark"] [style*="background:#FFFFFF"],
+[data-theme="dark"] [style*="background: white"],
+[data-theme="dark"] [style*="background-color: #FFFFFF"] {
+  background: var(--bg-card) !important;
+}
+[data-theme="dark"] [style*="border-color: #E8E4DE"],
+[data-theme="dark"] [style*="borderColor: '#E8E4DE'"],
+[data-theme="dark"] [style*="border-color:#E8E4DE"] {
+  border-color: var(--border) !important;
+}
+[data-theme="dark"] [style*="color: #2A2622"],
+[data-theme="dark"] [style*="color:#2A2622"],
+[data-theme="dark"] [style*="color: #524B45"],
+[data-theme="dark"] [style*="color:#524B45"] {
+  color: var(--text) !important;
+}
+/* Dark mode for green gradient cards */
+[data-theme="dark"] [style*="background: linear-gradient(135deg, #EEF2EA"],
+[data-theme="dark"] [style*="background: linear-gradient(135deg, #EDF2F6"],
+[data-theme="dark"] [style*="background: linear-gradient(135deg, #FEF3EE"] {
+  background: var(--bg-card) !important;
+}
+/* BottomNav dark mode */
+[data-theme="dark"] [style*="background: '#F7F5F0'"] {
+  background: var(--bg) !important;
+}
+/* Accent-based backgrounds in dark mode */
+[data-theme="dark"] .bg-accent\/5,
+[data-theme="dark"] .bg-accent\/10 {
+  background-color: var(--accent-soft) !important;
+}
+[data-theme="dark"] .bg-green-50,
+[data-theme="dark"] .bg-green-100,
+[data-theme="dark"] .bg-amber-50,
+[data-theme="dark"] .bg-amber-100,
+[data-theme="dark"] .bg-blue-50,
+[data-theme="dark"] .bg-blue-100,
+[data-theme="dark"] .bg-red-50,
+[data-theme="dark"] .bg-indigo-50 {
+  background-color: var(--border-light) !important;
+}
+[data-theme="dark"] .text-green-700,
+[data-theme="dark"] .text-green-800 {
+  color: #8FA67E !important;
+}
+[data-theme="dark"] .text-amber-700,
+[data-theme="dark"] .text-amber-800 {
+  color: #F59E0B !important;
+}
+[data-theme="dark"] .text-blue-700,
+[data-theme="dark"] .text-blue-800 {
+  color: #60A5FA !important;
+}
+[data-theme="dark"] .text-red-700,
+[data-theme="dark"] .text-red-800 {
+  color: #F87171 !important;
+}
+/* Ring and shadow in dark mode */
+[data-theme="dark"] .shadow-sm,
+[data-theme="dark"] .shadow,
+[data-theme="dark"] .shadow-md,
+[data-theme="dark"] .shadow-lg {
+  --tw-shadow-color: rgba(0,0,0,0.3);
+}
+/* Hover states in dark mode */
+[data-theme="dark"] .hover\:bg-gray-50:hover,
+[data-theme="dark"] .hover\:bg-gray-100:hover {
+  background-color: var(--border) !important;
 }
 
 /* Accessibility: large text mode */

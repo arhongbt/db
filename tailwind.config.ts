@@ -10,27 +10,28 @@ const config: Config = {
     extend: {
       colors: {
         // Sista Resan — "Soft Structure" palette
+        // Uses CSS variables so dark mode works automatically
         primary: {
-          DEFAULT: '#2A2622',   // warm charcoal
-          light: '#4A4540',     // warm slate
-          lighter: '#F0EDE6',   // warm sand
+          DEFAULT: 'var(--text)',
+          light: 'var(--text-secondary)',
+          lighter: 'var(--border-light)',
         },
         accent: {
-          DEFAULT: '#6B7F5E',   // sage green
-          dark: '#4F6145',      // sage dark
-          light: '#8FA882',     // sage light
+          DEFAULT: 'var(--accent)',
+          dark: '#4F6145',
+          light: '#8FA882',
         },
         info: {
-          DEFAULT: '#6E8BA4',   // dusty blue
+          DEFAULT: '#6E8BA4',
           dark: '#567A93',
-          light: '#EDF2F6',     // dusty blue tint
+          light: 'var(--accent-soft)',
         },
-        warn: '#C4704B',        // terracotta (bara varningar)
-        success: '#6B7F5E',     // sage = success
-        background: '#F7F5F0',  // warm linen
-        surface: '#FFFFFF',
-        muted: '#6B6560',       // warm gray
-        'muted-light': '#9C9590',
+        warn: '#C4704B',
+        success: 'var(--accent)',
+        background: 'var(--bg)',
+        surface: 'var(--bg-card)',
+        muted: 'var(--text-secondary)',
+        'muted-light': 'var(--text-secondary)',
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],

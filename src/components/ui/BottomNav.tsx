@@ -111,10 +111,10 @@ export function BottomNav() {
       {moreOpen && (
         <div
           ref={menuRef}
-          className="fixed bottom-[calc(4rem+env(safe-area-inset-bottom))] left-0 right-0 z-50 bg-white rounded-t-3xl shadow-2xl border-t max-h-[70vh] overflow-y-auto"
-          style={{ borderColor: '#F0EDE6' }}
+          className="fixed bottom-[calc(4rem+env(safe-area-inset-bottom))] left-0 right-0 z-50 rounded-t-3xl shadow-2xl border-t max-h-[70vh] overflow-y-auto"
+          style={{ borderColor: 'var(--border)', background: 'var(--bg-card)' }}
         >
-          <div className="px-5 pt-4 pb-2 flex items-center justify-between sticky top-0 bg-white rounded-t-3xl">
+          <div className="px-5 pt-4 pb-2 flex items-center justify-between sticky top-0 rounded-t-3xl" style={{ background: 'var(--bg-card)' }}>
             <h3 className="font-semibold text-primary text-sm">{t('nav.all_tools')}</h3>
             <button
               onClick={() => setMoreOpen(false)}
@@ -159,8 +159,8 @@ export function BottomNav() {
         </div>
       )}
 
-      {/* Bottom nav bar — warm linen background */}
-      <nav className="fixed bottom-0 left-0 right-0 z-50 border-t" style={{ background: '#F7F5F0', borderColor: '#E8E4DE' }}>
+      {/* Bottom nav bar */}
+      <nav className="fixed bottom-0 left-0 right-0 z-50 border-t" style={{ background: 'var(--bg)', borderColor: 'var(--border)' }}>
         <div className="flex items-center justify-around px-2 py-1.5">
           {NAV_ITEMS.map(({ href, label, icon: Icon }) => {
             const isActive = pathname === href;
@@ -173,8 +173,8 @@ export function BottomNav() {
                   minWidth: isActive ? '100px' : '56px',
                   height: '44px',
                   borderRadius: '22px',
-                  background: isActive ? '#6B7F5E' : 'transparent',
-                  color: isActive ? '#FFFFFF' : '#524B45',
+                  background: isActive ? 'var(--accent)' : 'transparent',
+                  color: isActive ? '#FFFFFF' : 'var(--text-secondary)',
                   gap: '6px',
                   padding: isActive ? '0 16px' : '0 8px',
                 }}
@@ -197,8 +197,8 @@ export function BottomNav() {
               minWidth: (moreOpen || isMoreActive) ? '90px' : '56px',
               height: '44px',
               borderRadius: '22px',
-              background: (moreOpen || isMoreActive) ? '#6B7F5E' : 'transparent',
-              color: (moreOpen || isMoreActive) ? '#FFFFFF' : '#524B45',
+              background: (moreOpen || isMoreActive) ? 'var(--accent)' : 'transparent',
+              color: (moreOpen || isMoreActive) ? '#FFFFFF' : 'var(--text-secondary)',
               gap: '6px',
               padding: (moreOpen || isMoreActive) ? '0 16px' : '0 8px',
             }}
@@ -210,7 +210,7 @@ export function BottomNav() {
           </button>
         </div>
         {/* Safe area for iOS */}
-        <div className="h-[env(safe-area-inset-bottom)]" style={{ background: '#F7F5F0' }} />
+        <div className="h-[env(safe-area-inset-bottom)]" style={{ background: 'var(--bg)' }} />
       </nav>
     </>
   );
