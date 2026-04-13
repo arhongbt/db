@@ -48,56 +48,62 @@ export function AppSettingsProvider({ children }: { children: React.ReactNode })
 
   const fixDarkInlineStyles = useCallback((isDark: boolean) => {
     if (!isDark) return;
-    // Color mappings: light → dark
-    const colorMap: Record<string, string> = {
-      '#F7F5F0': 'var(--bg)',
-      '#f7f5f0': 'var(--bg)',
-      '#FFFFFF': 'var(--bg-card)',
-      '#ffffff': 'var(--bg-card)',
-      'white': 'var(--bg-card)',
-      '#E8E4DE': 'var(--border)',
-      '#e8e4de': 'var(--border)',
-      '#F0EDE6': 'var(--border-light)',
-      '#f0ede6': 'var(--border-light)',
-      '#2A2622': 'var(--text)',
-      '#2a2622': 'var(--text)',
-      '#524B45': 'var(--text-secondary)',
-      '#524b45': 'var(--text-secondary)',
-      '#6B6560': 'var(--text-secondary)',
-      '#6b6560': 'var(--text-secondary)',
-      '#EEF2EA': 'var(--accent-soft)',
-      '#eef2ea': 'var(--accent-soft)',
-    };
+    // RGB color mappings — browsers convert hex to rgb() in computed styles
+    const rgbBgMap: [string, string][] = [
+      // Light backgrounds → dark
+      ['rgb(247, 245, 240)', 'var(--bg)'],           // #F7F5F0
+      ['rgb(255, 255, 255)', 'var(--bg-card)'],       // #FFFFFF
+      ['rgb(240, 237, 230)', 'var(--border-light)'],   // #F0EDE6
+      ['rgb(232, 228, 222)', 'var(--border)'],         // #E8E4DE
+      ['rgb(238, 242, 234)', 'var(--accent-soft)'],    // #EEF2EA
+      ['rgb(237, 242, 246)', '#1E2A35'],               // #EDF2F6 info-light
+      ['rgb(254, 243, 238)', '#352420'],               // #FEF3EE warn-light
+    ];
+    const rgbTextMap: [string, string][] = [
+      ['rgb(42, 38, 34)', 'var(--text)'],              // #2A2622
+      ['rgb(82, 75, 69)', 'var(--text-secondary)'],    // #524B45
+      ['rgb(107, 101, 96)', 'var(--text-secondary)'],  // #6B6560
+      ['rgb(74, 69, 64)', 'var(--text-secondary)'],    // #4A4540
+    ];
+    const rgbBorderMap: [string, string][] = [
+      ['rgb(232, 228, 222)', 'var(--border)'],         // #E8E4DE
+      ['rgb(240, 237, 230)', 'var(--border-light)'],   // #F0EDE6
+    ];
+
     requestAnimationFrame(() => {
       document.querySelectorAll('[style]').forEach(el => {
         const style = (el as HTMLElement).style;
-        // Fix background
+        // Fix background (handles gradients too)
         if (style.background) {
           let bg = style.background;
-          Object.entries(colorMap).forEach(([from, to]) => {
-            bg = bg.replace(new RegExp(from.replace('#', '\\#'), 'gi'), to);
+          let changed = false;
+          rgbBgMap.forEach(([from, to]) => {
+            if (bg.includes(from)) {
+              bg = bg.replace(new RegExp(from.replace(/[()]/g, '\\$&'), 'g'), to);
+              changed = true;
+            }
           });
-          if (bg !== style.background) style.background = bg;
+          if (changed) style.background = bg;
         }
         if (style.backgroundColor) {
-          Object.entries(colorMap).forEach(([from, to]) => {
-            if (style.backgroundColor.toLowerCase().includes(from.toLowerCase())) {
+          rgbBgMap.forEach(([from, to]) => {
+            if (style.backgroundColor === from) {
               style.backgroundColor = to;
             }
           });
         }
         // Fix border-color
         if (style.borderColor) {
-          Object.entries(colorMap).forEach(([from, to]) => {
-            if (style.borderColor.toLowerCase().includes(from.toLowerCase())) {
+          rgbBorderMap.forEach(([from, to]) => {
+            if (style.borderColor === from) {
               style.borderColor = to;
             }
           });
         }
-        // Fix color
+        // Fix text color
         if (style.color) {
-          Object.entries(colorMap).forEach(([from, to]) => {
-            if (style.color.toLowerCase().includes(from.toLowerCase())) {
+          rgbTextMap.forEach(([from, to]) => {
+            if (style.color === from) {
               style.color = to;
             }
           });
