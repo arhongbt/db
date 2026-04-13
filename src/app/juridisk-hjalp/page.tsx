@@ -456,11 +456,8 @@ function JuridiskHjalpContent() {
 
             {/* Jurist — subtil teaser längst ner */}
             <div className="mt-4 w-full max-w-sm">
-              <button
-                onClick={() => {
-                  // TODO: Koppla till bokningslänk
-                  window.open('mailto:hej@sistaresan.se?subject=Gratis konsultation via Sista Resan', '_blank');
-                }}
+              <Link
+                href="/boka-jurist"
                 className="w-full p-3 rounded-xl border flex items-center gap-3 text-left hover:shadow-sm transition-all"
                 style={{ borderColor: 'var(--border)', background: 'var(--bg-card)' }}
               >
@@ -469,10 +466,10 @@ function JuridiskHjalpContent() {
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="text-xs font-semibold text-primary">{t('Behöver du personlig rådgivning?', 'Need personal legal advice?')}</p>
-                  <p className="text-[11px] text-muted">{t('Första timmen med vår jurist är gratis', 'First hour with our lawyer is free')}</p>
+                  <p className="text-[11px] text-muted">{t('Boka digital konsultation med vår jurist', 'Book a digital consultation with our lawyer')}</p>
                 </div>
                 <ChevronRight className="w-4 h-4 text-muted flex-shrink-0" />
-              </button>
+              </Link>
             </div>
           </div>
         )}
@@ -585,17 +582,14 @@ function JuridiskHjalpContent() {
                   <span className="text-[11px] text-primary/60">{t('Svar inom 24h', 'Response within 24h')}</span>
                 </div>
               </div>
-              <button
+              <Link
+                href="/boka-jurist"
                 className="w-full py-3 text-sm font-semibold text-white rounded-xl flex items-center justify-center gap-2 transition-opacity hover:opacity-90"
                 style={{ background: 'linear-gradient(135deg, #6B7F5E, #4F6145)' }}
-                onClick={() => {
-                  // TODO: Koppla till bokningslänk
-                  window.open('mailto:hej@sistaresan.se?subject=Gratis konsultation via Sista Resan', '_blank');
-                }}
               >
                 {t('Boka gratis konsultation', 'Book free consultation')}
                 <ChevronRight className="w-4 h-4" />
-              </button>
+              </Link>
               <p className="text-[10px] text-primary/40 text-center mt-2">
                 {t('Ingen förpliktelse — extra tid efter överenskommelse', 'No obligation — extra time by agreement')}
               </p>
