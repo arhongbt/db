@@ -466,6 +466,68 @@
 }
 
 /* ============================================
+   Dark mode — Tailwind arbitrary value overrides
+   ============================================ */
+[data-theme="dark"] .bg-\[\#FEF3EE\] {
+  background-color: #352420 !important;
+}
+[data-theme="dark"] .bg-\[\#EEF2EA\] {
+  background-color: var(--accent-soft) !important;
+}
+[data-theme="dark"] .bg-\[\#EDF2F6\] {
+  background-color: #1E2A35 !important;
+}
+[data-theme="dark"] .bg-\[\#E8E4DE\] {
+  background-color: var(--border) !important;
+}
+[data-theme="dark"] .bg-\[\#F7F5F0\] {
+  background-color: var(--bg) !important;
+}
+[data-theme="dark"] .bg-\[\#FFFFFF\] {
+  background-color: var(--bg-card) !important;
+}
+[data-theme="dark"] .hover\:bg-\[\#E8E4DE\]:hover {
+  background-color: var(--border) !important;
+}
+[data-theme="dark"] .bg-\[\#6B7F5E\]\/10 {
+  background-color: var(--accent-soft) !important;
+}
+
+/* Info/warning box utility classes used across app */
+[data-theme="dark"] .bg-info-light,
+[data-theme="dark"] .bg-warn-light {
+  background-color: var(--border-light) !important;
+}
+[data-theme="dark"] .bg-primary-lighter,
+[data-theme="dark"] .bg-primary-lighter\/30 {
+  background-color: var(--border-light) !important;
+}
+
+/* Text color overrides for blue info boxes (fixes unreadable blue-900 on dark) */
+[data-theme="dark"] .text-blue-900,
+[data-theme="dark"] .text-blue-950 {
+  color: #93C5FD !important;
+}
+[data-theme="dark"] .text-green-900,
+[data-theme="dark"] .text-green-950 {
+  color: #86EFAC !important;
+}
+[data-theme="dark"] .text-amber-900,
+[data-theme="dark"] .text-amber-950 {
+  color: #FCD34D !important;
+}
+[data-theme="dark"] .text-red-900,
+[data-theme="dark"] .text-red-950 {
+  color: #FCA5A5 !important;
+}
+
+/* Bg primary/accent used as container backgrounds */
+[data-theme="dark"] .bg-primary {
+  background-color: var(--bg-card) !important;
+  color: var(--text) !important;
+}
+
+/* ============================================
    Dark mode — inline style overrides
    Uses JavaScript mutation observer instead.
    See AppSettingsProvider for runtime fixup.

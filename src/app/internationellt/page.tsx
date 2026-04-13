@@ -262,8 +262,8 @@ function StepGuide() {
             <strong>Hemvist</strong> är ofta avgörande för vilken arvslag som tillämpas. Det är inte samma som medborgarskap eller var personen var född.
           </p>
           <div className="rounded-lg p-3 border" style={{ background: 'var(--accent-soft)', borderColor: 'var(--border)' }}>
-            <p className="text-xs font-medium text-blue-900 mb-2">Hemvist betyder:</p>
-            <ul className="text-xs text-blue-900 space-y-1">
+            <p className="text-xs font-medium text-primary mb-2">Hemvist betyder:</p>
+            <ul className="text-xs text-primary space-y-1">
               <li>• Där personen faktiskt bodde längst tid (vanligtvis 183+ dagar/år)</li>
               <li>• Där personen hade sitt huvudsakliga hemål</li>
               <li>• Där de flesta av personens tillgångar var</li>
@@ -356,8 +356,8 @@ function StepGuide() {
       content: (
         <div className="space-y-4">
           <div className="rounded-lg p-3 border" style={{ background: 'var(--accent-soft)', borderColor: 'var(--border)' }}>
-            <p className="text-sm font-medium text-blue-900 mb-2">Rekommenderad handlingsplan:</p>
-            <ol className="text-xs text-blue-900 space-y-1.5">
+            <p className="text-sm font-medium mb-2" style={{ color: 'var(--text)' }}>Rekommenderad handlingsplan:</p>
+            <ol className="text-xs space-y-1.5" style={{ color: 'var(--text)' }}>
               <li>1. Samla in och inventera alla utländska tillgångar</li>
               <li>2. Identifiera vilka länder som är inblandade</li>
               <li>3. Kontakta svenska länsrätt för arkskifte</li>
@@ -389,12 +389,14 @@ function StepGuide() {
           <button
             key={step.number}
             onClick={() => setCurrentStep(step.number)}
-            className={`flex-1 py-2 px-2 rounded-lg text-xs font-medium transition-colors ${
+            className={`flex-1 py-2 px-2 rounded-lg text-xs font-medium transition-colors border ${
               currentStep === step.number
                 ? 'bg-accent text-white'
-                : 'bg-background text-primary/70 border"
-              style={{ borderColor: 'var(--border)' }}'
+                : 'text-primary/70'
             }`}
+            style={currentStep === step.number
+              ? { borderColor: 'var(--accent)' }
+              : { background: 'var(--bg-card)', borderColor: 'var(--border)' }}
           >
             Steg {step.number}
           </button>
@@ -409,12 +411,12 @@ function StepGuide() {
       </div>
 
       {/* Navigation */}
-      <div className="flex gap-2 pt-4 border-t border-[#E8E4DE]">
+      <div className="flex gap-2 pt-4 border-t" style={{ borderColor: 'var(--border)' }}>
         <button
           onClick={() => setCurrentStep(Math.max(1, currentStep - 1))}
           disabled={currentStep === 1}
-          className="flex-1 py-2 px-3 rounded-lg text-sm font-medium border"
-              style={{ borderColor: 'var(--border)' }} text-primary disabled:opacity-50 disabled:cursor-not-allowed hover:bg-background transition-colors"
+          className="flex-1 py-2 px-3 rounded-lg text-sm font-medium border text-primary disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+          style={{ borderColor: 'var(--border)', background: 'var(--bg-card)' }}
         >
           Föregående
         </button>
@@ -477,16 +479,16 @@ function ForeignAssetsInput() {
           placeholder="Land (t.ex. Tyskland)"
           value={newAsset.country}
           onChange={(e) => setNewAsset({ ...newAsset, country: e.target.value })}
-          className="w-full px-3 py-2 border"
-              style={{ borderColor: 'var(--border)' }} rounded-lg text-sm"
+          className="w-full px-3 py-2 border rounded-lg text-sm"
+          style={{ borderColor: 'var(--border)' }}
         />
         <input
           type="text"
           placeholder="Tillgångstyp (t.ex. Fastighet, Bankkonto)"
           value={newAsset.assetType}
           onChange={(e) => setNewAsset({ ...newAsset, assetType: e.target.value })}
-          className="w-full px-3 py-2 border"
-              style={{ borderColor: 'var(--border)' }} rounded-lg text-sm"
+          className="w-full px-3 py-2 border rounded-lg text-sm"
+          style={{ borderColor: 'var(--border)' }}
         />
         <div className="grid grid-cols-2 gap-2">
           <input
@@ -494,14 +496,14 @@ function ForeignAssetsInput() {
             placeholder="Värde"
             value={newAsset.estimatedValue}
             onChange={(e) => setNewAsset({ ...newAsset, estimatedValue: e.target.value })}
-            className="w-full px-3 py-2 border"
-              style={{ borderColor: 'var(--border)' }} rounded-lg text-sm"
+            className="w-full px-3 py-2 border rounded-lg text-sm"
+            style={{ borderColor: 'var(--border)' }}
           />
           <select
             value={newAsset.currency}
             onChange={(e) => setNewAsset({ ...newAsset, currency: e.target.value })}
-            className="w-full px-3 py-2 border"
-              style={{ borderColor: 'var(--border)' }} rounded-lg text-sm"
+            className="w-full px-3 py-2 border rounded-lg text-sm"
+            style={{ borderColor: 'var(--border)' }}
           >
             {Object.keys(CURRENCY_RATES).map((curr) => (
               <option key={curr} value={curr}>
@@ -520,7 +522,7 @@ function ForeignAssetsInput() {
       </div>
 
       {assets.length > 0 && (
-        <div className="space-y-2 pt-2 border-t border-[#E8E4DE]">
+        <div className="space-y-2 pt-2 border-t border-[color:var(--border)]">
           {assets.map((asset) => {
             const sek = (parseFloat(asset.estimatedValue) || 0) * (CURRENCY_RATES[asset.currency] || 1);
             return (
@@ -573,8 +575,8 @@ function CountryCards() {
             <button
               key={key}
               onClick={() => setExpandedCountry(isExpanded ? null : key)}
-              className="w-full text-left bg-background border"
-              style={{ borderColor: 'var(--border)' }} rounded-lg p-3 hover:border-accent transition-colors"
+              className="w-full text-left border rounded-lg p-3 hover:border-accent transition-colors"
+              style={{ borderColor: 'var(--border)', background: 'var(--bg-card)' }}
             >
               <div className="flex items-center justify-between gap-2">
                 <div className="flex-1">
@@ -591,7 +593,7 @@ function CountryCards() {
               </div>
 
               {isExpanded && (
-                <div className="mt-3 pt-3 border-t border-[#E8E4DE] space-y-2">
+                <div className="mt-3 pt-3 border-t border-[color:var(--border)] space-y-2">
                   <div>
                     <p className="font-medium text-sm text-primary">{country.law}</p>
                   </div>
@@ -612,7 +614,7 @@ function CountryCards() {
                     </ul>
                   </div>
                   <div className="rounded p-2 mt-2 border" style={{ background: 'var(--accent-soft)', borderColor: 'var(--border)' }}>
-                    <p className="text-xs text-blue-900">{country.notes}</p>
+                    <p className="text-xs text-primary">{country.notes}</p>
                   </div>
                 </div>
               )}
@@ -640,8 +642,8 @@ function CurrencyConverter() {
             type="number"
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
-            className="w-full px-3 py-2 border"
-              style={{ borderColor: 'var(--border)' }} rounded-lg text-sm"
+            className="w-full px-3 py-2 border rounded-lg text-sm"
+            style={{ borderColor: 'var(--border)' }}
           />
         </div>
         <div>
@@ -649,8 +651,8 @@ function CurrencyConverter() {
           <select
             value={fromCurrency}
             onChange={(e) => setFromCurrency(e.target.value)}
-            className="w-full px-3 py-2 border"
-              style={{ borderColor: 'var(--border)' }} rounded-lg text-sm"
+            className="w-full px-3 py-2 border rounded-lg text-sm"
+            style={{ borderColor: 'var(--border)' }}
           >
             {Object.keys(CURRENCY_RATES).filter((c) => c !== 'SEK').map((curr) => (
               <option key={curr} value={curr}>
@@ -689,8 +691,8 @@ function FAQSection() {
             <button
               key={index}
               onClick={() => setExpandedIndex(isExpanded ? null : index)}
-              className="w-full text-left bg-background border"
-              style={{ borderColor: 'var(--border)' }} rounded-lg p-3 hover:border-accent transition-colors"
+              className="w-full text-left border rounded-lg p-3 hover:border-accent transition-colors"
+              style={{ borderColor: 'var(--border)', background: 'var(--bg-card)' }}
             >
               <div className="flex items-center justify-between gap-2">
                 <p className="font-medium text-primary text-sm">{item.question}</p>
@@ -701,7 +703,7 @@ function FAQSection() {
                 )}
               </div>
               {isExpanded && (
-                <p className="text-sm text-primary/80 mt-3 pt-3 border-t border-[#E8E4DE] leading-relaxed">
+                <p className="text-sm text-primary/80 mt-3 pt-3 border-t border-[color:var(--border)] leading-relaxed">
                   {item.answer}
                 </p>
               )}
@@ -773,10 +775,10 @@ function InternationelltContent() {
           <div className="flex gap-2">
             <Globe className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
             <div>
-              <p className="text-sm font-medium text-blue-900 mb-1">
+              <p className="text-sm font-medium text-primary mb-1">
                 Utländskt medborgarskap upptäckt
               </p>
-              <p className="text-xs text-blue-900/70">
+              <p className="text-xs text-primary/70">
                 Den avlidne hade medborgarskap i {state.deceasedMedborgarskap}. Denna guide är särskilt relevant för er situation.
               </p>
             </div>
@@ -788,7 +790,7 @@ function InternationelltContent() {
       <div className="card border border-blue-200 bg-blue-50 mb-6">
         <div className="flex gap-2">
           <Info className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
-          <p className="text-sm text-blue-900/80">
+          <p className="text-sm text-primary/80">
             <strong>Hemvist</strong> är oftast avgörande för vilken arvslag som gäller — inte medborgarskap eller var personen var född.
           </p>
         </div>

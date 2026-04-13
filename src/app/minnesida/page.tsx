@@ -309,17 +309,15 @@ ${form.citat}
           <div className="flex gap-3 pt-6">
             <button
               onClick={() => setIsPreview(true)}
-              className="flex-1 px-4 py-3 bg-accent text-white rounded-xl font-semibold hover:bg-accent/90 transition-colors"
+              className="flex-1 px-4 py-3 rounded-xl font-semibold transition-colors text-white hover:opacity-90"
+              style={{ background: '#6B7F5E' }}
             >
               {t('Förhandsgranska', 'Preview')}
             </button>
             <button
               onClick={handleSave}
-              className={`flex-1 px-4 py-3 rounded-xl font-semibold transition-all ${
-                saved
-                  ? 'bg-green-100 text-green-700'
-                  : 'bg-primary text-white hover:bg-primary/90'
-              }`}
+              className="flex-1 px-4 py-3 rounded-xl font-semibold transition-all text-white hover:opacity-90"
+              style={{ background: saved ? '#4F6145' : '#2A2622' }}
             >
               {saved ? t('Sparad!', 'Saved!') : t('Spara minnesida', 'Save memorial')}
             </button>

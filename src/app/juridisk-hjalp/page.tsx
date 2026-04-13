@@ -462,7 +462,7 @@ function JuridiskHjalpContent() {
                   window.open('mailto:hej@sistaresan.se?subject=Gratis konsultation via Sista Resan', '_blank');
                 }}
                 className="w-full p-3 rounded-xl border flex items-center gap-3 text-left hover:shadow-sm transition-all"
-                style={{ borderColor: '#E8E4DE', background: '#FAFAF8' }}
+                style={{ borderColor: 'var(--border)', background: 'var(--bg-card)' }}
               >
                 <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: 'linear-gradient(135deg, #6B7F5E, #4F6145)' }}>
                   <Scale className="w-4 h-4 text-white" />
@@ -486,8 +486,8 @@ function JuridiskHjalpContent() {
             }`}
           >
             {msg.role === 'assistant' && (
-              <div className="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center flex-shrink-0 mt-1">
-                <Bot className="w-4 h-4 text-accent" />
+              <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 mt-1" style={{ background: 'linear-gradient(135deg, #6B7F5E, #4F6145)' }}>
+                <Bot className="w-4 h-4 text-white" />
               </div>
             )}
             <div
@@ -519,8 +519,8 @@ function JuridiskHjalpContent() {
         {/* Loading indicator — thinking animation */}
         {isLoading && (
           <div className="flex gap-3 mb-4">
-            <div className="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center flex-shrink-0">
-              <Bot className="w-4 h-4 text-accent" />
+            <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: 'linear-gradient(135deg, #6B7F5E, #4F6145)' }}>
+              <Bot className="w-4 h-4 text-white" />
             </div>
             <div className="px-4 py-3 rounded-2xl rounded-bl-sm" style={{ background: 'var(--bg-card)' }}>
               <div className="flex items-center gap-1.5">

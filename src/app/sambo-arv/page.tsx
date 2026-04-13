@@ -90,7 +90,7 @@ export default function SamboArvPage() {
         </div>
 
         {/* What Happens Without Will */}
-        <div className="bg-white border border-border rounded-2xl p-5 space-y-4">
+        <div className="border rounded-2xl p-5 space-y-4" style={{ background: 'var(--bg-card)', borderColor: 'var(--border)' }}>
           <h3 className="font-semibold text-primary flex items-center gap-2">
             <span>Utan testamente</span>
             <ChevronRight className="w-4 h-4 text-muted" />
@@ -117,7 +117,7 @@ export default function SamboArvPage() {
         </div>
 
         {/* What Happens With Will */}
-        <div className="bg-white border border-border rounded-2xl p-5 space-y-4">
+        <div className="border rounded-2xl p-5 space-y-4" style={{ background: 'var(--bg-card)', borderColor: 'var(--border)' }}>
           <h3 className="font-semibold text-primary flex items-center gap-2">
             <span>Med testamente</span>
             <ChevronRight className="w-4 h-4 text-muted" />
@@ -144,7 +144,7 @@ export default function SamboArvPage() {
         </div>
 
         {/* Bodelning Card */}
-        <div className="bg-white border border-border rounded-2xl p-5 space-y-4">
+        <div className="border rounded-2xl p-5 space-y-4" style={{ background: 'var(--bg-card)', borderColor: 'var(--border)' }}>
           <h3 className="font-semibold text-primary">Sambors rätt till bodelning</h3>
           <p className="text-sm text-muted">
             Även utan testamente har en sambo rätt att kräva bodelning av:
@@ -165,7 +165,7 @@ export default function SamboArvPage() {
         </div>
 
         {/* Difference from Married */}
-        <div className="bg-white border border-border rounded-2xl p-5 space-y-4">
+        <div className="border rounded-2xl p-5 space-y-4" style={{ background: 'var(--bg-card)', borderColor: 'var(--border)' }}>
           <h3 className="font-semibold text-primary">Sambo vs. Gift — skillnaden</h3>
           <div className="space-y-3 text-sm">
             <div className="grid grid-cols-2 gap-3">
