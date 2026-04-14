@@ -123,7 +123,7 @@ export function PaymentFlow({
 
         <div className="p-6">
           {/* Amount display */}
-          <div className="mb-6 p-4 rounded-xl" style={{ background: '#EEF2EA' }}>
+          <div className="mb-6 p-4 rounded-xl" style={{ background: '#E8F0E8' }}>
             <p className="text-xs text-muted font-medium mb-1">Belopp</p>
             <p className="text-2xl font-bold text-primary">{formatSEK(amount)}</p>
             <p className="text-xs text-muted mt-2">{description}</p>
@@ -138,8 +138,8 @@ export function PaymentFlow({
                 style={{ borderColor: '#E8E4DE' }}
               >
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: '#EEF2EA' }}>
-                    <Smartphone className="w-5 h-5" style={{ color: '#6B7F5E' }} />
+                  <div className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: '#E8F0E8' }}>
+                    <Smartphone className="w-5 h-5" style={{ color: '#7A9E7E' }} />
                   </div>
                   <div className="text-left flex-1">
                     <p className="font-semibold text-primary text-sm">Swish</p>
@@ -154,8 +154,8 @@ export function PaymentFlow({
                 style={{ borderColor: '#E8E4DE' }}
               >
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: '#EEF2EA' }}>
-                    <CreditCard className="w-5 h-5" style={{ color: '#6B7F5E' }} />
+                  <div className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: '#E8F0E8' }}>
+                    <CreditCard className="w-5 h-5" style={{ color: '#7A9E7E' }} />
                   </div>
                   <div className="text-left flex-1">
                     <p className="font-semibold text-primary text-sm">Kort</p>
@@ -183,7 +183,7 @@ export function PaymentFlow({
                     borderColor: swishPhone.trim() ? '#D4DBC9' : '#E8E4DE',
                   }}
                   onFocus={(e) => {
-                    e.currentTarget.style.borderColor = '#6B7F5E';
+                    e.currentTarget.style.borderColor = '#7A9E7E';
                   }}
                   onBlur={(e) => {
                     e.currentTarget.style.borderColor = swishPhone.trim() ? '#D4DBC9' : '#E8E4DE';
@@ -204,7 +204,7 @@ export function PaymentFlow({
                   onClick={handlePay}
                   disabled={!swishPhone.trim()}
                   className="flex-1 py-3 px-4 rounded-xl text-white font-medium transition-opacity disabled:opacity-50"
-                  style={{ background: swishPhone.trim() ? '#6B7F5E' : '#999' }}
+                  style={{ background: swishPhone.trim() ? '#7A9E7E' : '#999' }}
                 >
                   Öppna Swish
                 </button>
@@ -228,7 +228,7 @@ export function PaymentFlow({
                     className="w-full px-4 py-3 border-2 rounded-xl text-base focus:outline-none transition-colors pr-12"
                     style={{ borderColor: '#E8E4DE' }}
                     onFocus={(e) => {
-                      e.currentTarget.style.borderColor = '#6B7F5E';
+                      e.currentTarget.style.borderColor = '#7A9E7E';
                     }}
                     onBlur={(e) => {
                       e.currentTarget.style.borderColor = '#E8E4DE';
@@ -257,7 +257,7 @@ export function PaymentFlow({
                     className="w-full px-4 py-3 border-2 rounded-xl text-base focus:outline-none transition-colors"
                     style={{ borderColor: '#E8E4DE' }}
                     onFocus={(e) => {
-                      e.currentTarget.style.borderColor = '#6B7F5E';
+                      e.currentTarget.style.borderColor = '#7A9E7E';
                     }}
                     onBlur={(e) => {
                       e.currentTarget.style.borderColor = '#E8E4DE';
@@ -277,7 +277,7 @@ export function PaymentFlow({
                     className="w-full px-4 py-3 border-2 rounded-xl text-base focus:outline-none transition-colors"
                     style={{ borderColor: '#E8E4DE' }}
                     onFocus={(e) => {
-                      e.currentTarget.style.borderColor = '#6B7F5E';
+                      e.currentTarget.style.borderColor = '#7A9E7E';
                     }}
                     onBlur={(e) => {
                       e.currentTarget.style.borderColor = '#E8E4DE';
@@ -298,7 +298,7 @@ export function PaymentFlow({
                   onClick={handlePay}
                   disabled={!cardNumber.trim() || !cardExpiry.trim() || !cardCVC.trim()}
                   className="flex-1 py-3 px-4 rounded-xl text-white font-medium transition-opacity disabled:opacity-50"
-                  style={{ background: cardNumber.trim() && cardExpiry.trim() && cardCVC.trim() ? '#6B7F5E' : '#999' }}
+                  style={{ background: cardNumber.trim() && cardExpiry.trim() && cardCVC.trim() ? '#7A9E7E' : '#999' }}
                 >
                   Betala
                 </button>
@@ -311,7 +311,7 @@ export function PaymentFlow({
             <div className="text-center">
               <div
                 className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4"
-                style={{ background: '#EEF2EA' }}
+                style={{ background: '#E8F0E8' }}
               >
                 <div className="w-8 h-8 border-3 border-transparent border-t-accent rounded-full animate-spin" />
               </div>
@@ -325,7 +325,7 @@ export function PaymentFlow({
             <div className="text-center">
               <div
                 className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4"
-                style={{ background: '#EEF2EA' }}
+                style={{ background: '#E8F0E8' }}
               >
                 <CheckCircle2 className="w-8 h-8 text-success" />
               </div>

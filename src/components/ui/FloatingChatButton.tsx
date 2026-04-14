@@ -28,8 +28,8 @@ export function FloatingChatButton() {
           paddingLeft: '10px',
           paddingRight: '14px',
           borderRadius: '20px 0 0 20px',
-          background: 'linear-gradient(135deg, #6B7F5E, #4F6145)',
-          boxShadow: '-2px 2px 12px rgba(107,127,94,0.3)',
+          background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)',
+          boxShadow: '-2px 2px 12px rgba(122,158,126,0.25)',
         }}
       >
         <Bot className="w-4 h-4 text-white" strokeWidth={2} />
@@ -58,7 +58,7 @@ export function FloatingChatButton() {
         href="/juridisk-hjalp"
         className="flex items-center gap-2 px-4 py-2.5 rounded-full transition-all duration-200 active:scale-95"
         style={{
-          background: 'linear-gradient(135deg, #6B7F5E, #4F6145)',
+          background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)',
           boxShadow: '0 4px 20px rgba(107,127,94,0.35), 0 2px 8px rgba(0,0,0,0.1)',
         }}
       >

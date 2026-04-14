@@ -24,7 +24,7 @@ export default function BokaJuristPage() {
         <div className="flex flex-col items-center text-center mb-6">
           <div
             className="w-20 h-20 rounded-3xl flex items-center justify-center mb-4"
-            style={{ background: 'linear-gradient(135deg, #6B7F5E, #4F6145)' }}
+            style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}
           >
             <Scale className="w-10 h-10 text-white" strokeWidth={1.8} />
           </div>
@@ -38,7 +38,7 @@ export default function BokaJuristPage() {
             )}
           </p>
           <div className="mt-3 flex items-center gap-3 text-xs text-muted">
-            <span className="font-semibold" style={{ color: '#6B7F5E' }}>
+            <span className="font-semibold" style={{ color: '#7A9E7E' }}>
               {t('Gratis', 'Free')}
             </span>
             <span>·</span>
@@ -67,7 +67,7 @@ export default function BokaJuristPage() {
               t('Sammanfattning och nästa steg via mejl', 'Summary and next steps via email'),
             ].map((item, i) => (
               <li key={i} className="flex items-start gap-2 text-sm text-muted">
-                <CheckCircle2 className="w-4 h-4 flex-shrink-0 mt-0.5" style={{ color: '#6B7F5E' }} />
+                <CheckCircle2 className="w-4 h-4 flex-shrink-0 mt-0.5" style={{ color: '#7A9E7E' }} />
                 <span>{item}</span>
               </li>
             ))}

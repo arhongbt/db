@@ -3,7 +3,7 @@
 /** Decorative SVG blob — organic shape behind content */
 export function BlobDecoration({
   className = '',
-  color = '#EEF2EA',
+  color = '#E8F0E8',
   size = 200,
 }: {
   className?: string;
@@ -28,7 +28,7 @@ export function BlobDecoration({
 export function LeafDecoration({
   className = '',
   size = 24,
-  color = '#6B7F5E',
+  color = '#7A9E7E',
   opacity = 0.15,
 }: {
   className?: string;
@@ -65,7 +65,7 @@ export function LeafDecoration({
 export function SparkleDecoration({
   className = '',
   size = 16,
-  color = '#6B7F5E',
+  color = '#7A9E7E',
   opacity = 0.12,
 }: {
   className?: string;

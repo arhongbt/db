@@ -10,7 +10,7 @@ function MikeRossTip({ text }: { text: string }) {
   return (
     <div className="flex gap-3 p-4 rounded-2xl mb-5" style={{ background: 'var(--accent-soft)' }}>
       <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
-        style={{ background: 'linear-gradient(135deg, #6B7F5E, #4F6145)' }}>
+        style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}>
         <Bot className="w-4 h-4 text-white" />
       </div>
       <div>
@@ -23,7 +23,7 @@ function MikeRossTip({ text }: { text: string }) {
 
 const colorThemes = [
   { name: 'Ljus', value: '#F7F5F0', label: 'Light', labelSv: 'Ljus' },
-  { name: 'Natur', value: '#EEF2EA', label: 'Nature', labelSv: 'Natur' },
+  { name: 'Natur', value: '#E8F0E8', label: 'Nature', labelSv: 'Natur' },
   { name: 'Himmel', value: '#E8EFF5', label: 'Sky', labelSv: 'Himmel' },
   { name: 'Solnedgång', value: '#F5EDE8', label: 'Sunset', labelSv: 'Solnedgång' },
 ];
@@ -50,7 +50,7 @@ function MemorialContent() {
     minnesord: '',
     favoritminne: '',
     citat: '',
-    theme: '#EEF2EA',
+    theme: '#E8F0E8',
   });
 
   const handleInputChange = (field: string, value: string) => {
@@ -309,14 +309,14 @@ ${form.citat}
             <button
               onClick={() => setIsPreview(true)}
               className="flex-1 px-4 py-3 rounded-xl font-semibold transition-colors text-white hover:opacity-90"
-              style={{ background: '#6B7F5E' }}
+              style={{ background: '#7A9E7E' }}
             >
               {t('Förhandsgranska', 'Preview')}
             </button>
             <button
               onClick={handleSave}
               className="flex-1 px-4 py-3 rounded-xl font-semibold transition-all text-white hover:opacity-90"
-              style={{ background: saved ? '#4F6145' : '#2A2622' }}
+              style={{ background: saved ? '#6B8E6F' : '#2A2622' }}
             >
               {saved ? t('Sparad!', 'Saved!') : t('Spara minnesida', 'Save memorial')}
             </button>

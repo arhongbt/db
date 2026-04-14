@@ -271,7 +271,7 @@ function DashboardContent() {
       <Link
         href="/tidslinje"
         className="card mb-5 flex items-center gap-4"
-        style={{ background: 'linear-gradient(135deg, #EEF2EA, #F7F5F0)' }}
+        style={{ background: 'linear-gradient(135deg, #E8F0E8, #F7F5F0)' }}
         aria-label={`Aktuell fas: ${stepLabels[effectiveStep]} — ${progressPct}% klart`}
       >
         {/* SVG progress ring */}
@@ -280,7 +280,7 @@ function DashboardContent() {
             <circle cx="40" cy="40" r="38" fill="none" stroke="#E8E4DE" strokeWidth="5" />
             <circle
               cx="40" cy="40" r="38" fill="none"
-              stroke="#6B7F5E" strokeWidth="5"
+              stroke="#7A9E7E" strokeWidth="5"
               strokeLinecap="round"
               strokeDasharray={circumference}
               strokeDashoffset={strokeDashoffset}
@@ -332,14 +332,14 @@ function DashboardContent() {
       {/* Quick stats row */}
       <div className="grid grid-cols-2 gap-3 mb-5" role="group" aria-label={t('dashboard.statistics')}>
         <div className="card text-center" aria-label={`${t('dashboard.co_owners')}: ${state.delagare.length}`}>
-          <div className="w-10 h-10 rounded-2xl mx-auto mb-2 flex items-center justify-center" style={{ background: '#EEF2EA' }}>
+          <div className="w-10 h-10 rounded-2xl mx-auto mb-2 flex items-center justify-center" style={{ background: '#E8F0E8' }}>
             <User className="w-5 h-5 text-accent" aria-hidden="true" />
           </div>
           <p className="text-2xl font-bold text-primary">{state.delagare.length}</p>
           <p className="text-xs text-muted">{t('dashboard.co_owners')}</p>
         </div>
         <div className="card text-center" aria-label={`${t('dashboard.upcoming_deadlines')}: ${upcomingDeadlines.length}`}>
-          <div className="w-10 h-10 rounded-2xl mx-auto mb-2 flex items-center justify-center" style={{ background: '#EEF2EA' }}>
+          <div className="w-10 h-10 rounded-2xl mx-auto mb-2 flex items-center justify-center" style={{ background: '#E8F0E8' }}>
             <Calendar className="w-5 h-5 text-accent" aria-hidden="true" />
           </div>
           <p className="text-2xl font-bold text-primary">{upcomingDeadlines.length}</p>
@@ -472,11 +472,11 @@ function DashboardContent() {
       <Link
         href="/juridisk-hjalp"
         className="card mb-4 flex items-center gap-3"
-        style={{ background: 'linear-gradient(135deg, #EEF2EA, #F7F5F0)' }}
+        style={{ background: 'linear-gradient(135deg, #E8F0E8, #F7F5F0)' }}
         aria-label={t('dashboard.ask_mike_ross')}
       >
         <div className="w-11 h-11 rounded-full flex items-center justify-center flex-shrink-0"
-          style={{ background: 'linear-gradient(135deg, #6B7F5E, #4F6145)' }}>
+          style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}>
           <Bot className="w-5 h-5 text-white" strokeWidth={1.5} />
         </div>
         <div className="flex-1">
@@ -546,11 +546,11 @@ function DashboardContent() {
                   key={item.href}
                   href={item.href}
                   className="flex flex-col items-center gap-2 py-4 rounded-2xl transition-all hover:scale-[1.02] active:scale-[0.98]"
-                  style={{ background: 'linear-gradient(135deg, #EEF2EA, #F7F5F0)' }}
+                  style={{ background: 'linear-gradient(135deg, #E8F0E8, #F7F5F0)' }}
                   aria-label={`${item.label} — ${item.description}`}
                 >
                   <div className="w-12 h-12 rounded-2xl flex items-center justify-center"
-                    style={{ background: 'linear-gradient(135deg, #6B7F5E, #4F6145)' }}>
+                    style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}>
                     <item.Icon className="w-5 h-5 text-white" strokeWidth={1.5} />
                   </div>
                   <span className="text-xs font-semibold text-primary">{item.label}</span>
@@ -580,11 +580,11 @@ function DashboardContent() {
                 key={item.href}
                 href={item.href}
                 className="flex flex-col items-center gap-2 py-4 rounded-2xl transition-all hover:scale-[1.02] active:scale-[0.98]"
-                style={{ background: 'linear-gradient(135deg, #EEF2EA, #F7F5F0)' }}
+                style={{ background: 'linear-gradient(135deg, #E8F0E8, #F7F5F0)' }}
                 aria-label={`${item.label} — ${item.description}`}
               >
                 <div className="w-12 h-12 rounded-2xl flex items-center justify-center"
-                  style={{ background: 'linear-gradient(135deg, #6B7F5E, #4F6145)' }}>
+                  style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}>
                   <item.Icon className="w-5 h-5 text-white" strokeWidth={1.5} />
                 </div>
                 <span className="text-xs font-semibold text-primary">{item.label}</span>
@@ -610,11 +610,11 @@ function DashboardContent() {
               key={item.href}
               href={item.href}
               className="flex flex-col items-center gap-2 py-4 rounded-2xl transition-all hover:scale-[1.02] active:scale-[0.98]"
-              style={{ background: 'linear-gradient(135deg, #EEF2EA, #F7F5F0)' }}
+              style={{ background: 'linear-gradient(135deg, #E8F0E8, #F7F5F0)' }}
               aria-label={`${item.label} — ${item.description}`}
             >
               <div className="w-12 h-12 rounded-2xl flex items-center justify-center"
-                style={{ background: 'linear-gradient(135deg, #6B7F5E, #4F6145)' }}>
+                style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}>
                 <item.Icon className="w-5 h-5 text-white" strokeWidth={1.5} />
               </div>
               <span className="text-xs font-semibold text-primary">{item.label}</span>

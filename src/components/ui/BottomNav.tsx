@@ -178,7 +178,7 @@ export function BottomNav() {
                   minWidth: isActive ? '100px' : '56px',
                   height: '44px',
                   borderRadius: '22px',
-                  background: isActive ? 'var(--accent)' : 'transparent',
+                  background: isActive ? 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' : 'transparent',
                   color: isActive ? '#FFFFFF' : 'var(--text-secondary)',
                   gap: '6px',
                   padding: isActive ? '0 16px' : '0 8px',

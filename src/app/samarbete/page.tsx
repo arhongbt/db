@@ -10,9 +10,9 @@ import { getBeslut, addBeslut, updateBeslut, deleteBeslut, getAnteckningar, addA
 
 function MikeRossTip({ text }: { text: string }) {
   return (
-    <div className="flex gap-3 p-4 rounded-2xl mb-5" style={{ background: '#EEF2EA' }}>
+    <div className="flex gap-3 p-4 rounded-2xl mb-5" style={{ background: '#E8F0E8' }}>
       <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
-        style={{ background: 'linear-gradient(135deg, #6B7F5E, #4F6145)' }}>
+        style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}>
         <Bot className="w-4 h-4 text-white" />
       </div>
       <div>
@@ -552,7 +552,7 @@ function Content() {
               className={`flex-1 py-2.5 text-sm font-semibold rounded-xl transition-all ${
                 tab === 'beslut' ? 'text-white' : 'text-primary/60'
               }`}
-              style={tab === 'beslut' ? { background: 'linear-gradient(135deg, #6B7F5E, #4F6145)' } : undefined}
+              style={tab === 'beslut' ? { background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' } : undefined}
             >
               {t('Beslut', 'Decisions')}
             </button>
@@ -561,7 +561,7 @@ function Content() {
               className={`flex-1 py-2.5 text-sm font-semibold rounded-xl transition-all ${
                 tab === 'anteckningar' ? 'text-white' : 'text-primary/60'
               }`}
-              style={tab === 'anteckningar' ? { background: 'linear-gradient(135deg, #6B7F5E, #4F6145)' } : undefined}
+              style={tab === 'anteckningar' ? { background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' } : undefined}
             >
               {t('Anteckningar', 'Notes')}
             </button>
@@ -570,7 +570,7 @@ function Content() {
               className={`flex-1 py-2.5 text-sm font-semibold rounded-xl transition-all ${
                 tab === 'tidslinje' ? 'text-white' : 'text-primary/60'
               }`}
-              style={tab === 'tidslinje' ? { background: 'linear-gradient(135deg, #6B7F5E, #4F6145)' } : undefined}
+              style={tab === 'tidslinje' ? { background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' } : undefined}
             >
               {t('Tidslinje', 'Timeline')}
             </button>

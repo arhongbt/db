@@ -8,9 +8,9 @@ import Link from 'next/link';
 
 function MikeRossTip({ text }: { text: string }) {
   return (
-    <div className="flex gap-3 p-4 rounded-2xl mb-5" style={{ background: '#EEF2EA' }}>
+    <div className="flex gap-3 p-4 rounded-2xl mb-5" style={{ background: '#E8F0E8' }}>
       <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
-        style={{ background: 'linear-gradient(135deg, #6B7F5E, #4F6145)' }}>
+        style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}>
         <Bot className="w-4 h-4 text-white" />
       </div>
       <div>

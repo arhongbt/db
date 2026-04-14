@@ -203,7 +203,7 @@ export default function ChecklistorPage() {
                   <div className="flex items-center gap-3">
                     <div
                       className="w-10 h-10 rounded-xl flex items-center justify-center text-white"
-                      style={{ background: 'linear-gradient(135deg, #6B7F5E, #4F6145)' }}
+                      style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}
                     >
                       {cl.icon}
                     </div>
@@ -216,7 +216,7 @@ export default function ChecklistorPage() {
                       <div className="w-12 h-1.5 bg-background rounded-full mt-1">
                         <div
                           className="h-1.5 rounded-full"
-                          style={{ width: `${pct}%`, background: '#6B7F5E' }}
+                          style={{ width: `${pct}%`, background: '#7A9E7E' }}
                         />
                       </div>
                     </div>
@@ -285,7 +285,7 @@ export default function ChecklistorPage() {
                   className="h-2 rounded-full transition-all duration-300"
                   style={{
                     width: `${Math.round((selectedList.items.filter(i => i.done).length / selectedList.items.length) * 100)}%`,
-                    background: 'linear-gradient(135deg, #6B7F5E, #4F6145)',
+                    background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)',
                   }}
                 />
               </div>

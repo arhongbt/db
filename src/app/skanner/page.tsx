@@ -158,7 +158,7 @@ export default function SkannerPage() {
             <div className="w-full bg-background rounded-full h-2">
               <div
                 className="h-2 rounded-full transition-all duration-300"
-                style={{ width: `${ocrProgress}%`, background: 'linear-gradient(135deg, #6B7F5E, #4F6145)' }}
+                style={{ width: `${ocrProgress}%`, background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}
               />
             </div>
             <p className="text-xs text-muted mt-1">{ocrProgress}% {t('klart', 'done')}</p>

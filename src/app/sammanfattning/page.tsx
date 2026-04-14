@@ -22,9 +22,9 @@ import {
 
 function MikeRossTip({ text }: { text: string }) {
   return (
-    <div className="flex gap-3 p-4 rounded-2xl mb-5" style={{ background: '#EEF2EA' }}>
+    <div className="flex gap-3 p-4 rounded-2xl mb-5" style={{ background: '#E8F0E8' }}>
       <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
-        style={{ background: 'linear-gradient(135deg, #6B7F5E, #4F6145)' }}>
+        style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}>
         <Bot className="w-4 h-4 text-white" />
       </div>
       <div>
@@ -239,7 +239,7 @@ function SammanfattningContent() {
       </Link>
 
       <div className="flex items-center gap-3 mb-4">
-        <div className="w-10 h-10 rounded-2xl flex items-center justify-center" style={{ background: '#EEF2EA' }}>
+        <div className="w-10 h-10 rounded-2xl flex items-center justify-center" style={{ background: '#E8F0E8' }}>
           <FileDown className="w-5 h-5 text-accent" />
         </div>
         <div>
@@ -262,7 +262,7 @@ function SammanfattningContent() {
         <div className="h-3 bg-[#E8E4DE] rounded-full overflow-hidden">
           <div
             className="h-full rounded-full transition-all duration-700"
-            style={{ width: `${progressPct}%`, background: 'linear-gradient(135deg, #6B7F5E, #4F6145)' }}
+            style={{ width: `${progressPct}%`, background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}
           />
         </div>
         <p className="text-xs text-muted mt-2">{doneItems} {t('av', 'of')} {totalItems} {t('steg klara', 'steps completed')}</p>
@@ -290,7 +290,7 @@ function SammanfattningContent() {
           return (
             <div key={step.id} className="card">
               <div className="flex items-center gap-3 mb-3">
-                <div className="w-9 h-9 rounded-xl flex items-center justify-center" style={{ background: '#EEF2EA' }}>
+                <div className="w-9 h-9 rounded-xl flex items-center justify-center" style={{ background: '#E8F0E8' }}>
                   <step.icon className="w-4 h-4 text-accent" />
                 </div>
                 <div className="flex-1">

@@ -94,7 +94,7 @@ export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   maximumScale: 5,
-  themeColor: '#6B7F5E',
+  themeColor: '#7A9E7E',
 };
 
 // JSON-LD structured data for SEO

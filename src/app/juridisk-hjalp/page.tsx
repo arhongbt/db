@@ -378,7 +378,7 @@ function JuridiskHjalpContent() {
           <ArrowLeft className="w-5 h-5 text-primary" />
         </Link>
         <div className="flex items-center gap-3 flex-1">
-          <div className="w-10 h-10 rounded-full flex items-center justify-center shadow-sm" style={{ background: 'linear-gradient(135deg, #6B7F5E, #4F6145)' }}>
+          <div className="w-10 h-10 rounded-full flex items-center justify-center shadow-sm" style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}>
             <Bot className="w-5 h-5 text-white" />
           </div>
           <div>
@@ -460,7 +460,7 @@ function JuridiskHjalpContent() {
                 className="w-full p-3 rounded-xl border flex items-center gap-3 text-left hover:shadow-sm transition-all"
                 style={{ borderColor: 'var(--border)', background: 'var(--bg-card)' }}
               >
-                <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: 'linear-gradient(135deg, #6B7F5E, #4F6145)' }}>
+                <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}>
                   <Scale className="w-4 h-4 text-white" />
                 </div>
                 <div className="flex-1 min-w-0">
@@ -482,7 +482,7 @@ function JuridiskHjalpContent() {
             }`}
           >
             {msg.role === 'assistant' && (
-              <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 mt-1" style={{ background: 'linear-gradient(135deg, #6B7F5E, #4F6145)' }}>
+              <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 mt-1" style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}>
                 <Bot className="w-4 h-4 text-white" />
               </div>
             )}
@@ -515,7 +515,7 @@ function JuridiskHjalpContent() {
         {/* Loading indicator — thinking animation */}
         {isLoading && (
           <div className="flex gap-3 mb-4">
-            <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: 'linear-gradient(135deg, #6B7F5E, #4F6145)' }}>
+            <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}>
               <Bot className="w-4 h-4 text-white" />
             </div>
             <div className="px-4 py-3 rounded-2xl rounded-bl-sm" style={{ background: 'var(--bg-card)' }}>
@@ -584,7 +584,7 @@ function JuridiskHjalpContent() {
               <Link
                 href="/boka-jurist"
                 className="w-full py-3 text-sm font-semibold text-white rounded-xl flex items-center justify-center gap-2 transition-opacity hover:opacity-90"
-                style={{ background: 'linear-gradient(135deg, #6B7F5E, #4F6145)' }}
+                style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}
               >
                 {t('Boka gratis konsultation', 'Book free consultation')}
                 <ChevronRight className="w-4 h-4" />

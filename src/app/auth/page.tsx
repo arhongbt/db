@@ -121,7 +121,7 @@ export default function AuthPage() {
                 ? 'text-white'
                 : 'text-primary hover:bg-primary-lighter'
             }`}
-            style={tab === 'login' ? { background: 'linear-gradient(135deg, #6B7F5E, #4F6145)' } : undefined}
+            style={tab === 'login' ? { background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' } : undefined}
           >
             {t('Logga in', 'Sign in')}
           </button>
@@ -136,7 +136,7 @@ export default function AuthPage() {
                 ? 'text-white'
                 : 'text-primary hover:bg-primary-lighter'
             }`}
-            style={tab === 'register' ? { background: 'linear-gradient(135deg, #6B7F5E, #4F6145)' } : undefined}
+            style={tab === 'register' ? { background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' } : undefined}
           >
             {t('Skapa konto', 'Create account')}
           </button>

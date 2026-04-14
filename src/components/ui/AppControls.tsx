@@ -55,7 +55,7 @@ export function AppSettingsProvider({ children }: { children: React.ReactNode })
       ['rgb(255, 255, 255)', 'var(--bg-card)'],       // #FFFFFF
       ['rgb(240, 237, 230)', 'var(--border-light)'],   // #F0EDE6
       ['rgb(232, 228, 222)', 'var(--border)'],         // #E8E4DE
-      ['rgb(238, 242, 234)', 'var(--accent-soft)'],    // #EEF2EA
+      ['rgb(238, 242, 234)', 'var(--accent-soft)'],    // #E8F0E8
       ['rgb(237, 242, 246)', '#1E2A35'],               // #EDF2F6 info-light
       ['rgb(254, 243, 238)', '#352420'],               // #FEF3EE warn-light
     ];

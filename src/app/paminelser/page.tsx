@@ -238,7 +238,7 @@ function PaminelserContent() {
             <button
               onClick={togglePushNotifications}
               className={`relative w-12 h-7 rounded-full transition-colors ${
-                pushEnabled ? 'bg-[#6B7F5E]' : 'bg-[#E8E4DE]'
+                pushEnabled ? 'bg-[#7A9E7E]' : 'bg-[#E8E4DE]'
               }`}
             >
               <span className={`absolute top-0.5 w-6 h-6 bg-white rounded-full shadow transition-transform ${
@@ -288,7 +288,7 @@ function PaminelserContent() {
             <button
               onClick={toggleEmailReminders}
               className={`relative w-12 h-7 rounded-full transition-colors ${
-                emailEnabled ? 'bg-[#6B7F5E]' : 'bg-[#E8E4DE]'
+                emailEnabled ? 'bg-[#7A9E7E]' : 'bg-[#E8E4DE]'
               }`}
             >
               <span className={`absolute top-0.5 w-6 h-6 bg-white rounded-full shadow transition-transform ${
@@ -334,7 +334,7 @@ function PaminelserContent() {
                 <div
                   key={d.id}
                   className="bg-white rounded-2xl p-4"
-                  style={{ borderColor: '#E8E4DE', borderWidth: 1, borderLeftColor: d.status === 'urgent' ? '#E85C4D' : d.status === 'soon' ? '#D4A574' : '#6B7F5E', borderLeftWidth: 4 }}
+                  style={{ borderColor: '#E8E4DE', borderWidth: 1, borderLeftColor: d.status === 'urgent' ? '#E85C4D' : d.status === 'soon' ? '#D4A574' : '#7A9E7E', borderLeftWidth: 4 }}
                 >
                   <div className="flex items-start justify-between mb-1">
                     <div className="flex items-start gap-2 flex-1">

@@ -133,7 +133,7 @@ export default function LandingPage() {
             { label: t('Juridiskt granskad', 'Legally reviewed'), icon: Scale },
           ].map((badge, i) => (
             <div key={i} className="flex flex-col items-center gap-2 p-3 rounded-lg border" style={{ background: 'var(--bg-card)', borderColor: 'var(--border)' }}>
-              <badge.icon className="w-5 h-5 text-[#6B7F5E]" />
+              <badge.icon className="w-5 h-5 text-[#7A9E7E]" />
               <span className="text-xs font-medium text-primary text-center">{badge.label}</span>
             </div>
           ))}
@@ -215,7 +215,7 @@ export default function LandingPage() {
           ].map((feature) => (
             <div key={feature.title} className="rounded-2xl border p-4 hover:shadow-md transition-shadow" style={{ background: 'var(--bg-card)', borderColor: 'var(--border)' }}>
               <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-2" style={{ background: 'var(--accent-soft)' }}>
-                <feature.icon className="w-5 h-5 text-[#6B7F5E]" />
+                <feature.icon className="w-5 h-5 text-[#7A9E7E]" />
               </div>
               <h3 className="font-semibold text-primary text-sm mb-1">{feature.title}</h3>
               <p className="text-xs text-muted leading-relaxed">{feature.desc}</p>
@@ -248,7 +248,7 @@ export default function LandingPage() {
             },
           ].map((item) => (
             <div key={item.step} className="flex items-start gap-4">
-              <div className="w-9 h-9 rounded-full bg-[#6B7F5E] text-white flex items-center justify-center font-bold text-sm flex-shrink-0">
+              <div className="w-9 h-9 rounded-full bg-[#7A9E7E] text-white flex items-center justify-center font-bold text-sm flex-shrink-0">
                 {item.step}
               </div>
               <div>
@@ -316,14 +316,14 @@ export default function LandingPage() {
                 className="relative rounded-2xl border p-4 flex items-center gap-4"
                 style={{
                   background: 'var(--bg-card)',
-                  borderColor: isPopular ? '#6B7F5E' : isLifetime ? '#D4AF37' : 'var(--border)',
+                  borderColor: isPopular ? '#7A9E7E' : isLifetime ? '#D4AF37' : 'var(--border)',
                   borderWidth: isPopular || isLifetime ? '2px' : '1px',
                 }}
               >
                 {plan.badge && (
                   <div
                     className="absolute -top-2.5 left-4 px-2.5 py-0.5 rounded-full text-[10px] font-semibold text-white"
-                    style={{ background: isLifetime ? 'linear-gradient(90deg, #8B6914, #D4AF37)' : '#6B7F5E' }}
+                    style={{ background: isLifetime ? 'linear-gradient(90deg, #8B6914, #D4AF37)' : '#7A9E7E' }}
                   >
                     {plan.badge}
                   </div>
@@ -332,7 +332,7 @@ export default function LandingPage() {
                   <h3 className="font-semibold text-primary text-sm">{plan.name}</h3>
                   <p
                     className="text-xl font-bold"
-                    style={{ color: isLifetime ? '#8B6914' : '#6B7F5E' }}
+                    style={{ color: isLifetime ? '#8B6914' : '#7A9E7E' }}
                   >
                     {plan.price}
                   </p>
@@ -342,7 +342,7 @@ export default function LandingPage() {
                     <li key={i} className="flex items-start gap-1.5 text-xs text-muted">
                       <CheckCircle2
                         className="w-3.5 h-3.5 flex-shrink-0 mt-0.5"
-                        style={{ color: isLifetime ? '#8B6914' : '#6B7F5E' }}
+                        style={{ color: isLifetime ? '#8B6914' : '#7A9E7E' }}
                       />
                       <span>{feature}</span>
                     </li>
@@ -355,7 +355,7 @@ export default function LandingPage() {
         <div className="text-center">
           <Link
             href="/priser"
-            className="inline-flex items-center gap-1 text-[#6B7F5E] font-medium hover:underline"
+            className="inline-flex items-center gap-1 text-[#7A9E7E] font-medium hover:underline"
           >
             {t('Se alla planer och funktioner', 'See all plans and features')}
             <ArrowRight className="w-4 h-4" />
@@ -395,7 +395,7 @@ export default function LandingPage() {
             <div key={i} className="rounded-2xl border p-4" style={{ background: 'var(--bg-card)', borderColor: 'var(--border)' }}>
               <div className="flex gap-0.5 mb-2">
                 {[...Array(5)].map((_, j) => (
-                  <Star key={j} className="w-3.5 h-3.5 fill-[#6B7F5E] text-[#6B7F5E]" />
+                  <Star key={j} className="w-3.5 h-3.5 fill-[#7A9E7E] text-[#7A9E7E]" />
                 ))}
               </div>
               <p className="text-sm text-muted leading-relaxed mb-2 italic">&ldquo;{testimonial.quote}&rdquo;</p>
@@ -436,7 +436,7 @@ export default function LandingPage() {
               },
             ].map((item, i) => (
               <div key={i} className="flex items-start gap-3">
-                <item.icon className="w-5 h-5 text-[#6B7F5E] flex-shrink-0 mt-0.5" />
+                <item.icon className="w-5 h-5 text-[#7A9E7E] flex-shrink-0 mt-0.5" />
                 <p className="text-sm text-primary/80">{item.text}</p>
               </div>
             ))}
@@ -501,7 +501,7 @@ export default function LandingPage() {
         </div>
         <Link
           href="/faq"
-          className="flex items-center justify-center gap-1 text-sm text-[#6B7F5E] font-medium mt-5 hover:underline"
+          className="flex items-center justify-center gap-1 text-sm text-[#7A9E7E] font-medium mt-5 hover:underline"
         >
           {t('Se alla vanliga frågor', 'See all FAQs')}
           <ArrowRight className="w-4 h-4" />
@@ -533,19 +533,19 @@ export default function LandingPage() {
       {/* Footer */}
       <footer className="px-5 pb-8 pt-6 border-t border-[#E8E4DE]">
         <div className="flex flex-wrap justify-center gap-4 text-xs text-muted mb-4">
-          <Link href="/om" className="hover:text-[#6B7F5E] transition-colors">
+          <Link href="/om" className="hover:text-[#7A9E7E] transition-colors">
             {t('Om oss', 'About us')}
           </Link>
           <span className="text-[#E8E4DE]">•</span>
-          <Link href="/integritetspolicy" className="hover:text-[#6B7F5E] transition-colors">
+          <Link href="/integritetspolicy" className="hover:text-[#7A9E7E] transition-colors">
             {t('Integritetspolicy', 'Privacy policy')}
           </Link>
           <span className="text-[#E8E4DE]">•</span>
-          <Link href="/anvandarvillkor" className="hover:text-[#6B7F5E] transition-colors">
+          <Link href="/anvandarvillkor" className="hover:text-[#7A9E7E] transition-colors">
             {t('Användarvillkor', 'Terms of use')}
           </Link>
           <span className="text-[#E8E4DE]">•</span>
-          <Link href="/priser" className="hover:text-[#6B7F5E] transition-colors">
+          <Link href="/priser" className="hover:text-[#7A9E7E] transition-colors">
             {t('Priser', 'Pricing')}
           </Link>
         </div>

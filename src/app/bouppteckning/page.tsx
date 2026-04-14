@@ -506,7 +506,7 @@ function BouppteckningContent() {
               }
             }}
             className="btn-primary flex items-center justify-center gap-2"
-            style={{ background: isBankIDVerified ? '#6B7F5E' : '#999' }}
+            style={{ background: isBankIDVerified ? '#7A9E7E' : '#999' }}
           >
             <Send className="w-5 h-5" />
             {t('Skicka digitalt till Skatteverket', 'Send digitally to Swedish Tax Agency')}

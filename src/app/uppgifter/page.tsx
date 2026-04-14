@@ -208,7 +208,7 @@ function UppgifterContent() {
           aria-selected={filterAssignee === 'all'}
           className={`px-4 py-2 min-h-[44px] rounded-full text-sm font-medium whitespace-nowrap transition-colors ${
             filterAssignee === 'all'
-              ? 'bg-[#6B7F5E] text-white'
+              ? 'bg-[#7A9E7E] text-white'
               : 'bg-gray-100 text-primary/70 hover:bg-[#E8E4DE]'
           }`}
         >
@@ -223,7 +223,7 @@ function UppgifterContent() {
             aria-label={`Filtrera uppgifter tilldelade till ${d.name}`}
             className={`px-4 py-2 min-h-[44px] rounded-full text-sm font-medium whitespace-nowrap transition-colors ${
               filterAssignee === d.name
-                ? 'bg-[#6B7F5E] text-white'
+                ? 'bg-[#7A9E7E] text-white'
                 : 'bg-gray-100 text-primary/70 hover:bg-[#E8E4DE]'
             }`}
           >
@@ -325,7 +325,7 @@ function UppgifterContent() {
                       }}
                       className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-medium transition-colors flex-shrink-0 ${
                         task.assignedTo
-                          ? 'bg-[#6B7F5E] text-white'
+                          ? 'bg-[#7A9E7E] text-white'
                           : 'border border-[#E8E4DE] text-[#E8E4DE] hover:border-primary hover:text-primary'
                       }`}
                       aria-label={task.assignedTo ? t(`Ändra tilldelning från ${task.assignedTo}`, `Change assignment from ${task.assignedTo}`) : t('Tilldela uppgift till dödsbodelägare', 'Assign task to estate co-owner')}
@@ -360,7 +360,7 @@ function UppgifterContent() {
                             }}
                             className={`block w-full text-left px-3 py-2 text-sm transition-colors border-b last:border-b-0 ${
                               task.assignedTo === d.name
-                                ? 'bg-[#6B7F5E]/10 text-[#6B7F5E] font-medium'
+                                ? 'bg-[#7A9E7E]/10 text-[#7A9E7E] font-medium'
                                 : 'text-primary hover:opacity-70'
                             }`}
                             style={{ borderColor: 'var(--border)' }}

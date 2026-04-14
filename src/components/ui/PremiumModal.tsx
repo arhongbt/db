@@ -35,7 +35,7 @@ export function PremiumModal({ isOpen, onClose }: PremiumModalProps) {
       >
         <div className="flex items-start justify-between mb-4">
           <div className="w-10 h-10 rounded-2xl flex items-center justify-center"
-            style={{ background: 'linear-gradient(135deg, #6B7F5E, #4F6145)' }}>
+            style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}>
             <Sparkles className="w-5 h-5 text-white" />
           </div>
           <button onClick={onClose} className="text-muted-light hover:text-primary transition p-1">
@@ -66,7 +66,7 @@ export function PremiumModal({ isOpen, onClose }: PremiumModalProps) {
         {submitted ? (
           <div className="text-center py-4">
             <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3"
-              style={{ background: '#EEF2EA' }}>
+              style={{ background: '#E8F0E8' }}>
               <Check className="w-6 h-6 text-accent" />
             </div>
             <p className="font-semibold text-primary mb-1">Tack!</p>

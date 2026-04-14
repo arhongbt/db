@@ -59,7 +59,7 @@ export default function PriserPage() {
         'Basic tools to get you started'
       ),
       icon: Zap,
-      accent: '#6B7F5E',
+      accent: '#7A9E7E',
       users: t('1 anv\u00e4ndare', '1 user'),
       features: [
         { text: t('Checklista f\u00f6r d\u00f6dsbo', 'Estate checklist'), included: true },
@@ -83,7 +83,7 @@ export default function PriserPage() {
         'Perfect when you manage the estate yourself'
       ),
       icon: Shield,
-      accent: '#6B7F5E',
+      accent: '#7A9E7E',
       users: t('1 anv\u00e4ndare', '1 user'),
       features: [
         { text: t('Allt i Gratis', 'Everything in Free'), included: true },
@@ -107,7 +107,7 @@ export default function PriserPage() {
         'Everything you need to manage the estate together'
       ),
       icon: Users,
-      accent: '#6B7F5E',
+      accent: '#7A9E7E',
       popular: true,
       users: t('Upp till 3 anv\u00e4ndare', 'Up to 3 users'),
       savings: t('Spara 300 kr vs. Bas per person', 'Save 300 kr vs. Basic per person'),
@@ -262,7 +262,7 @@ export default function PriserPage() {
         >
           <div
             className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
-            style={{ background: 'linear-gradient(135deg, #6B7F5E, #4F6145)' }}
+            style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}
           >
             <Scale className="w-5 h-5 text-white" />
           </div>
@@ -293,7 +293,7 @@ export default function PriserPage() {
               style={{
                 background: 'var(--bg-card)',
                 border: isPopular
-                  ? '2px solid #6B7F5E'
+                  ? '2px solid #7A9E7E'
                   : isAnchor
                   ? '2px solid #D4AF37'
                   : '1px solid var(--border)',
@@ -304,7 +304,7 @@ export default function PriserPage() {
               {isPopular && (
                 <div
                   className="flex items-center justify-center gap-1.5 py-2.5 text-white text-xs font-semibold"
-                  style={{ background: '#6B7F5E' }}
+                  style={{ background: '#7A9E7E' }}
                 >
                   <Sparkles className="w-3.5 h-3.5" />
                   {t('Mest popul\u00e4r \u2014 91% v\u00e4ljer denna', 'Most popular \u2014 91% choose this')}
@@ -362,7 +362,7 @@ export default function PriserPage() {
                 {plan.savings && (
                   <div
                     className="inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-medium mb-4"
-                    style={{ background: 'rgba(107, 127, 94, 0.12)', color: '#4F6145' }}
+                    style={{ background: 'rgba(107, 127, 94, 0.12)', color: '#6B8E6F' }}
                   >
                     <InfinityIcon className="w-3 h-3" />
                     {plan.savings}
@@ -399,9 +399,9 @@ export default function PriserPage() {
                       ? 'transparent'
                       : isAnchor
                       ? 'linear-gradient(135deg, #8B6914, #D4AF37)'
-                      : '#6B7F5E',
-                    color: isFree ? '#6B7F5E' : '#FFFFFF',
-                    border: isFree ? '2px solid #6B7F5E' : 'none',
+                      : '#7A9E7E',
+                    color: isFree ? '#7A9E7E' : '#FFFFFF',
+                    border: isFree ? '2px solid #7A9E7E' : 'none',
                   }}
                 >
                   {plan.cta}
@@ -483,7 +483,7 @@ export default function PriserPage() {
           className="rounded-2xl border p-5 text-center"
           style={{ background: 'rgba(107, 127, 94, 0.06)', borderColor: 'rgba(107, 127, 94, 0.2)' }}
         >
-          <Shield className="w-8 h-8 mx-auto mb-2" style={{ color: '#6B7F5E' }} />
+          <Shield className="w-8 h-8 mx-auto mb-2" style={{ color: '#7A9E7E' }} />
           <h3 className="font-bold text-primary text-sm mb-1">
             {t('14 dagars \u00e5ngerr\u00e4tt', '14-day money-back guarantee')}
           </h3>
