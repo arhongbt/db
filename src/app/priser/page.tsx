@@ -77,16 +77,16 @@ export default function PriserPage() {
     },
     standard: {
       name: 'Standard',
-      price: 99,
-      period: t('kr/mån', 'kr/month'),
+      price: 699,
+      period: t('engångsbelopp', 'one-time'),
       tagline: t('Allt du behöver för att komma igång', 'Everything you need to get started'),
       description: t(
-        'Checklistor, tidslinjer, uppgiftshantering och grundläggande guider.',
-        'Checklists, timelines, task management and basic guides.'
+        'Checklistor, tidslinjer, uppgiftshantering och grundläggande guider — för hela familjen.',
+        'Checklists, timelines, task management and basic guides — for the whole family.'
       ),
       icon: Shield,
       accent: '#6B7F5E',
-      users: t('1 användare', '1 user'),
+      users: t('Upp till 3 användare', 'Up to 3 users'),
       features: [
         { text: t('Checklista för dödsbo', 'Estate checklist'), included: true },
         { text: t('Tidslinje & uppgiftshantering', 'Timeline & task management'), included: true },
@@ -94,25 +94,26 @@ export default function PriserPage() {
         { text: t('Grundläggande guider', 'Basic guides'), included: true },
         { text: t('Tidsfrister & påminnelser', 'Deadlines & reminders'), included: true },
         { text: t('Kostnadskalkylator', 'Cost calculator'), included: true },
+        { text: t('Samarbete med familjen (3 pers)', 'Family collaboration (3 people)'), included: true },
         { text: t('AI-jurist Mike Ross', 'AI lawyer Mike Ross'), included: false },
         { text: t('Bodelningswizard', 'Property division wizard'), included: false },
         { text: t('Dokumentgenerering', 'Document generation'), included: false },
       ],
-      cta: tier === 'standard' ? t('Din nuvarande plan', 'Your current plan') : t('Välj Standard', 'Choose Standard'),
+      cta: tier === 'standard' ? t('Din nuvarande plan', 'Your current plan') : t('Välj Standard — 699 kr', 'Choose Standard — 699 kr'),
     },
     pro: {
       name: 'Pro',
-      price: 249,
-      period: t('kr/mån', 'kr/month'),
+      price: 1199,
+      period: t('engångsbelopp', 'one-time'),
       tagline: t('Fullständig tillgång till allt', 'Full access to everything'),
       description: t(
-        'AI-jurist, dokumentgenerering, bodelningswizard, skanner och allt annat — obegränsat.',
-        'AI lawyer, document generation, property division wizard, scanner and everything else — unlimited.'
+        'AI-jurist, dokumentgenerering, bodelningswizard, skanner — obegränsat antal användare.',
+        'AI lawyer, document generation, property division wizard, scanner — unlimited users.'
       ),
       icon: Crown,
       accent: '#6B7F5E',
       popular: true,
-      users: t('Upp till 5 användare', 'Up to 5 users'),
+      users: t('Obegränsat antal användare', 'Unlimited users'),
       features: [
         { text: t('Allt i Standard', 'Everything in Standard'), included: true, highlight: true },
         { text: t('AI-jurist Mike Ross (obegränsad)', 'AI lawyer Mike Ross (unlimited)'), included: true },
@@ -121,11 +122,11 @@ export default function PriserPage() {
         { text: t('Arvskifteshandling', 'Inheritance settlement document'), included: true },
         { text: t('Dokumentskanner med OCR', 'Document scanner with OCR'), included: true },
         { text: t('Exportera alla dokument', 'Export all documents'), included: true },
-        { text: t('Samarbete med familjen', 'Family collaboration'), included: true },
+        { text: t('Obegränsat antal användare', 'Unlimited users'), included: true },
         { text: t('Avancerade guider (internationellt, krypto)', 'Advanced guides (international, crypto)'), included: true },
         { text: t('Prioriterad support', 'Priority support'), included: true },
       ],
-      cta: tier === 'pro' ? t('Din nuvarande plan', 'Your current plan') : t('Välj Pro', 'Choose Pro'),
+      cta: tier === 'pro' ? t('Din nuvarande plan', 'Your current plan') : t('Välj Pro — 1 199 kr', 'Choose Pro — 1 199 kr'),
     },
   };
 
@@ -147,15 +148,15 @@ export default function PriserPage() {
     {
       q: t('Kan jag uppgradera från Standard till Pro?', 'Can I upgrade from Standard to Pro?'),
       a: t(
-        'Ja, du kan uppgradera när som helst. Du betalar bara det nya priset från och med nästa period.',
-        'Yes, you can upgrade at any time. You just pay the new price starting from the next period.'
+        'Ja, du kan uppgradera när som helst. Du betalar bara mellanskillnaden mellan Standard och Pro.',
+        'Yes, you can upgrade at any time. You just pay the difference between Standard and Pro.'
       ),
     },
     {
-      q: t('Kan jag avbryta när jag vill?', 'Can I cancel anytime?'),
+      q: t('Är det en engångsbetalning?', 'Is it a one-time payment?'),
       a: t(
-        'Absolut. Du kan avbryta din prenumeration när som helst. Du behåller tillgång till slutet av den betalda perioden.',
-        'Absolutely. You can cancel your subscription anytime. You keep access until the end of the paid period.'
+        'Ja! Både Standard och Pro är engångsbelopp — du betalar en gång och har tillgång för alltid. Ingen prenumeration, inga dolda avgifter.',
+        'Yes! Both Standard and Pro are one-time payments — you pay once and have access forever. No subscription, no hidden fees.'
       ),
     },
     {
@@ -420,8 +421,8 @@ export default function PriserPage() {
               </h4>
               <p className="text-xs text-muted leading-relaxed">
                 {t(
-                  'En traditionell jurist kostar 2 000–5 000 kr/timme. Bouppteckning med jurist: 15 000–40 000 kr. Med Sista Resan Pro (249 kr/mån) sparar du tusenlappar.',
-                  'A traditional lawyer costs SEK 2,000–5,000/hour. Estate inventory with lawyer: SEK 15,000–40,000. With Sista Resan Pro (249 kr/month) you save thousands.'
+                  'En traditionell jurist kostar 2 000–5 000 kr/timme. Bouppteckning med jurist: 15 000–40 000 kr. Med Sista Resan Pro (1 199 kr engångsbelopp) sparar du tusenlappar.',
+                  'A traditional lawyer costs SEK 2,000–5,000/hour. Estate inventory with lawyer: SEK 15,000–40,000. With Sista Resan Pro (SEK 1,199 one-time) you save thousands.'
                 )}
               </p>
             </div>
