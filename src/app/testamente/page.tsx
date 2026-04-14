@@ -324,7 +324,7 @@ Skapat med Sista Resan — ${today}`;
               {data.arvingar.map((a) => (
                 <div key={a.id} className="card flex items-center justify-between">
                   <div>
-                    <p className="font-medium text-primary text-sm">{a.namn}</p>
+                    <p className="font-display text-primary text-sm">{a.namn}</p>
                     <p className="text-xs text-muted">{a.relation} — {a.andel || 'lika del'}</p>
                   </div>
                   <button onClick={() => removeArvinge(a.id)} className="text-warn text-xs font-medium">
@@ -336,7 +336,7 @@ Skapat med Sista Resan — ${today}`;
           )}
 
           <div className="card space-y-3">
-            <p className="text-sm font-semibold text-primary">Lägg till arvinge</p>
+            <p className="text-sm font-display text-primary">Lägg till arvinge</p>
             <input
               value={newArvinge.namn}
               onChange={(e) => setNewArvinge({ ...newArvinge, namn: e.target.value })}
@@ -379,7 +379,7 @@ Skapat med Sista Resan — ${today}`;
               {data.villkor.map((v) => (
                 <div key={v.id} className="card flex items-start justify-between gap-3">
                   <div>
-                    <p className="font-medium text-primary text-sm">{v.description}</p>
+                    <p className="font-display text-primary text-sm">{v.description}</p>
                     {v.targetArvinge && <p className="text-xs text-muted">Gäller: {v.targetArvinge}</p>}
                   </div>
                   <button onClick={() => removeVillkor(v.id)} className="text-warn text-xs font-medium flex-shrink-0">
@@ -391,7 +391,7 @@ Skapat med Sista Resan — ${today}`;
           )}
 
           <div className="card space-y-4">
-            <p className="text-sm font-semibold text-primary">Välj villkorstyp</p>
+            <p className="text-sm font-display text-primary">Välj villkorstyp</p>
 
             <div className="grid grid-cols-1 gap-2">
               {VILLKOR_TEMPLATES.map((template) => (
@@ -413,7 +413,7 @@ Skapat med Sista Resan — ${today}`;
 
             {selectedVillkorType && (
               <div className="space-y-3 pt-3 border-t border-[#E8E4DE]">
-                <p className="text-sm font-semibold text-primary">Beskriv villkoret</p>
+                <p className="text-sm font-display text-primary">Beskriv villkoret</p>
                 <textarea
                   value={newVillkor.description}
                   onChange={(e) => setNewVillkor({ ...newVillkor, description: e.target.value })}
@@ -492,13 +492,13 @@ Skapat med Sista Resan — ${today}`;
 
           {/* Summary */}
           <div className="card mb-4">
-            <p className="text-xs font-display text-muted mb-3">Sammanfattning</p>
+            <p className="text-xs font-display text-muted uppercase mb-3">Sammanfattning</p>
 
             <div className="space-y-3">
               <div className="flex items-start gap-2">
                 <Users className="w-4 h-4 text-accent mt-0.5" />
                 <div>
-                  <p className="text-sm font-medium text-primary">{data.namn || 'Ej ifyllt'}</p>
+                  <p className="text-sm font-display text-primary">{data.namn || 'Ej ifyllt'}</p>
                   <p className="text-xs text-muted">{data.personnummer} — {data.ort}</p>
                 </div>
               </div>
@@ -508,7 +508,7 @@ Skapat med Sista Resan — ${today}`;
               <div className="flex items-start gap-2">
                 <Heart className="w-4 h-4 text-accent mt-0.5" />
                 <div>
-                  <p className="text-sm font-medium text-primary">{data.arvingar.length} arvingar</p>
+                  <p className="text-sm font-display text-primary">{data.arvingar.length} arvingar</p>
                   {data.arvingar.map((a) => (
                     <p key={a.id} className="text-xs text-muted">{a.namn} ({a.relation}) — {a.andel || 'lika del'}</p>
                   ))}
@@ -522,7 +522,7 @@ Skapat med Sista Resan — ${today}`;
                   <div className="flex items-start gap-2">
                     <CheckCircle2 className="w-4 h-4 text-accent mt-0.5" />
                     <div>
-                      <p className="text-sm font-medium text-primary">{data.villkor.length} villkor</p>
+                      <p className="text-sm font-display text-primary">{data.villkor.length} villkor</p>
                       {data.villkor.map((v) => (
                         <p key={v.id} className="text-xs text-muted">{v.description.slice(0, 80)}{v.description.length > 80 ? '...' : ''}</p>
                       ))}
@@ -537,7 +537,7 @@ Skapat med Sista Resan — ${today}`;
                   <div className="flex items-start gap-2">
                     <Info className="w-4 h-4 text-accent mt-0.5" />
                     <div>
-                      <p className="text-sm font-medium text-primary">Särskilda önskemål</p>
+                      <p className="text-sm font-display text-primary">Särskilda önskemål</p>
                       <p className="text-xs text-muted">{data.specialOnske.slice(0, 100)}...</p>
                     </div>
                   </div>

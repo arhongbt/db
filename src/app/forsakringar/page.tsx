@@ -207,7 +207,7 @@ function ForsakringarContent() {
               <div key={f.id} className="card">
                 <div className="flex items-start justify-between">
                   <div>
-                    <p className="font-medium text-primary">{f.company}</p>
+                    <p className="font-display text-primary">{f.company}</p>
                     <p className="text-sm text-muted">
                       {FORSAKRING_TYPES.find((ft) => ft.value === f.type)?.label}
                     </p>

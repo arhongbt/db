@@ -208,7 +208,7 @@ export default function ChecklistorPage() {
                       {cl.icon}
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="font-semibold text-primary text-sm">{cl.title}</p>
+                      <p className="font-display text-primary text-sm">{cl.title}</p>
                       <p className="text-xs text-muted truncate">{cl.description}</p>
                     </div>
                     <div className="text-right">

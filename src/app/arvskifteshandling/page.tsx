@@ -266,7 +266,7 @@ Skapat med Sista Resan — ${today}`;
               {data.delagare.map((d) => (
                 <div key={d.id} className="card flex items-center justify-between">
                   <div>
-                    <p className="font-medium text-primary text-sm">{d.namn}</p>
+                    <p className="font-display text-primary text-sm">{d.namn}</p>
                     <p className="text-xs text-muted">{d.personnummer || 'Personnummer ej ifyllt'}{d.andel ? ` — ${d.andel}` : ''}</p>
                   </div>
                   <button onClick={() => setData((prev) => ({ ...prev, delagare: prev.delagare.filter((x) => x.id !== d.id) }))}
@@ -307,7 +307,7 @@ Skapat med Sista Resan — ${today}`;
               {data.tillgangar.map((t) => (
                 <div key={t.id} className="card flex items-center justify-between">
                   <div>
-                    <p className="font-medium text-primary text-sm">{t.beskrivning}</p>
+                    <p className="font-display text-primary text-sm">{t.beskrivning}</p>
                     <p className="text-xs text-muted">{t.varde ? `${t.varde} kr` : 'Värde ej angivet'}</p>
                   </div>
                   <button onClick={() => setData((prev) => ({ ...prev, tillgangar: prev.tillgangar.filter((x) => x.id !== t.id) }))}
@@ -380,7 +380,7 @@ Skapat med Sista Resan — ${today}`;
               <div className="flex items-start gap-2">
                 <FileText className="w-4 h-4 text-accent mt-0.5" />
                 <div>
-                  <p className="text-sm font-medium text-primary">Dödsboet efter {data.deceasedNamn || '(ej ifyllt)'}</p>
+                  <p className="text-sm font-display text-primary">Dödsboet efter {data.deceasedNamn || '(ej ifyllt)'}</p>
                   <p className="text-xs text-muted">Avliden {data.dodsdag || '(ej ifyllt)'}</p>
                 </div>
               </div>
@@ -388,7 +388,7 @@ Skapat med Sista Resan — ${today}`;
               <div className="flex items-start gap-2">
                 <Users className="w-4 h-4 text-accent mt-0.5" />
                 <div>
-                  <p className="text-sm font-medium text-primary">{data.delagare.length} dödsbodelägare</p>
+                  <p className="text-sm font-display text-primary">{data.delagare.length} dödsbodelägare</p>
                   {data.delagare.map((d) => (
                     <p key={d.id} className="text-xs text-muted">{d.namn}</p>
                   ))}
@@ -398,7 +398,7 @@ Skapat med Sista Resan — ${today}`;
               <div className="flex items-start gap-2">
                 <Coins className="w-4 h-4 text-accent mt-0.5" />
                 <div>
-                  <p className="text-sm font-medium text-primary">{data.tillgangar.length} tillgångar</p>
+                  <p className="text-sm font-display text-primary">{data.tillgangar.length} tillgångar</p>
                   <p className="text-xs text-muted">
                     Totalt: {data.tillgangar.reduce((s, t) => s + (parseFloat(t.varde.replace(/\s/g, '')) || 0), 0).toLocaleString('sv-SE')} kr
                   </p>

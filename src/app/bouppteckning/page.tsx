@@ -260,7 +260,7 @@ function BouppteckningContent() {
                 <Circle className="w-6 h-6 text-gray-300 flex-shrink-0" />
               )}
               <div className="flex-1">
-                <p className={`font-medium ${isComplete ? 'text-primary' : 'text-primary'}`}>
+                <p className={`font-display ${isComplete ? 'text-primary' : 'text-primary'}`}>
                   {step.title}
                 </p>
                 <p className="text-sm text-muted">{step.details}</p>
@@ -279,7 +279,7 @@ function BouppteckningContent() {
         <div className="flex items-center gap-3">
           <FileText className="w-5 h-5 text-accent" />
           <div>
-            <span className="font-medium text-primary">{t('Komplettera för Skatteverket', 'Complete for Swedish Tax Agency')}</span>
+            <span className="font-display text-primary">{t('Komplettera för Skatteverket', 'Complete for Swedish Tax Agency')}</span>
             <p className="text-xs text-muted">{t('Personnummer, adress, förrättningsmän', 'ID number, address, witnesses')}</p>
           </div>
         </div>

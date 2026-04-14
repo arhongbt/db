@@ -179,12 +179,13 @@ function UppgifterContent() {
       )}
 
       {/* Step filters */}
-      <div className="flex gap-2 mb-4 overflow-x-auto pb-1" role="tablist" aria-label={t('Filtrera efter steg', 'Filter by step')}>
+      <p className="text-xs font-medium text-muted mb-2">{t('Fas', 'Phase')}</p>
+      <div className="flex gap-2 mb-5 flex-wrap" role="tablist" aria-label={t('Filtrera efter steg', 'Filter by step')}>
         <button
           onClick={() => setFilterStep('all')}
           role="tab"
           aria-selected={filterStep === 'all'}
-          className={`px-4 py-2 min-h-[44px] rounded-full text-sm font-medium whitespace-nowrap transition-colors ${
+          className={`px-4 py-2 min-h-[44px] rounded-full text-sm font-medium transition-colors ${
             filterStep === 'all'
               ? 'text-white'
               : 'text-primary/70 hover:bg-[#E8E4DE]'
@@ -200,7 +201,7 @@ function UppgifterContent() {
             role="tab"
             aria-selected={filterStep === s}
             aria-label={`Filtrera efter ${STEP_LABELS[s]}`}
-            className={`px-4 py-2 min-h-[44px] rounded-full text-sm font-medium whitespace-nowrap transition-colors ${
+            className={`px-4 py-2 min-h-[44px] rounded-full text-sm font-medium transition-colors ${
               filterStep === s
                 ? 'text-white'
                 : 'text-primary/70 hover:bg-[#E8E4DE]'
@@ -213,38 +214,43 @@ function UppgifterContent() {
       </div>
 
       {/* Assignee filters */}
-      <div className="flex gap-2 mb-4 overflow-x-auto pb-1" role="tablist" aria-label={t('Filtrera efter tilldelning', 'Filter by assignee')}>
-        <button
-          onClick={() => setFilterAssignee('all')}
-          role="tab"
-          aria-selected={filterAssignee === 'all'}
-          className={`px-4 py-2 min-h-[44px] rounded-full text-sm font-medium whitespace-nowrap transition-colors ${
-            filterAssignee === 'all'
-              ? 'text-white'
-              : 'text-primary/70 hover:bg-[#E8E4DE]'
-          }`}
-          style={filterAssignee === 'all' ? { background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' } : { background: 'var(--border-light)' }}
-        >
-          {t('Alla', 'All')}
-        </button>
-        {state.delagare.filter((d) => d.isDelagare).map((d) => (
-          <button
-            key={d.id}
-            onClick={() => setFilterAssignee(d.name)}
-            role="tab"
-            aria-selected={filterAssignee === d.name}
-            aria-label={`Filtrera uppgifter tilldelade till ${d.name}`}
-            className={`px-4 py-2 min-h-[44px] rounded-full text-sm font-medium whitespace-nowrap transition-colors ${
-              filterAssignee === d.name
-                ? 'text-white'
-                : 'text-primary/70 hover:bg-[#E8E4DE]'
-            }`}
-            style={filterAssignee === d.name ? { background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' } : { background: 'var(--border-light)' }}
-          >
-            {d.name}
-          </button>
-        ))}
-      </div>
+      {state.delagare.filter((d) => d.isDelagare).length > 0 && (
+        <>
+          <p className="text-xs font-medium text-muted mb-2">{t('Tilldelad', 'Assigned')}</p>
+          <div className="flex gap-2 mb-5 flex-wrap" role="tablist" aria-label={t('Filtrera efter tilldelning', 'Filter by assignee')}>
+            <button
+              onClick={() => setFilterAssignee('all')}
+              role="tab"
+              aria-selected={filterAssignee === 'all'}
+              className={`px-4 py-2 min-h-[44px] rounded-full text-sm font-medium transition-colors ${
+                filterAssignee === 'all'
+                  ? 'text-white'
+                  : 'text-primary/70 hover:bg-[#E8E4DE]'
+              }`}
+              style={filterAssignee === 'all' ? { background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' } : { background: 'var(--border-light)' }}
+            >
+              {t('Alla', 'All')}
+            </button>
+            {state.delagare.filter((d) => d.isDelagare).map((d) => (
+              <button
+                key={d.id}
+                onClick={() => setFilterAssignee(d.name)}
+                role="tab"
+                aria-selected={filterAssignee === d.name}
+                aria-label={`Filtrera uppgifter tilldelade till ${d.name}`}
+                className={`px-4 py-2 min-h-[44px] rounded-full text-sm font-medium transition-colors ${
+                  filterAssignee === d.name
+                    ? 'text-white'
+                    : 'text-primary/70 hover:bg-[#E8E4DE]'
+                }`}
+                style={filterAssignee === d.name ? { background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' } : { background: 'var(--border-light)' }}
+              >
+                {d.name}
+              </button>
+            ))}
+          </div>
+        </>
+      )}
 
       <button
         onClick={() => setShowDone(!showDone)}
@@ -271,7 +277,7 @@ function UppgifterContent() {
               border: `1px solid ${STEP_COLORS[step as ProcessStep].border}`
             }}
           >
-            <h2 className="text-sm font-semibold text-primary">
+            <h2 className="text-sm font-display text-primary">
               {STEP_LABELS[step as ProcessStep]}
             </h2>
           </div>
@@ -333,10 +339,16 @@ function UppgifterContent() {
                         </p>
                       )}
                       {task.externalUrl && task.status !== 'klar' && (
-                        <span className="inline-flex items-center gap-1 text-xs text-accent mt-1">
+                        <a
+                          href={task.externalUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          className="inline-flex items-center gap-1 text-xs text-accent mt-1 underline underline-offset-2 hover:text-accent-dark"
+                        >
                           <ExternalLink className="w-3 h-3" />
-                          {t('Länk', 'Link')}
-                        </span>
+                          {t('Öppna länk', 'Open link')}
+                        </a>
                       )}
                     </div>
                   </button>

@@ -272,7 +272,7 @@ function TillgangarContent() {
                   <div key={t.id} className="card flex items-center gap-3" role="listitem" aria-label={`${t.description}, ${typeInfo?.label}${t.estimatedValue ? `, värde: ${formatSEK(t.estimatedValue)}` : ''}`}>
                     <Icon className="w-5 h-5 text-accent flex-shrink-0" />
                     <div className="flex-1">
-                      <p className="font-medium text-primary">{t.description}</p>
+                      <p className="font-display text-primary">{t.description}</p>
                       <p className="text-sm text-muted">{typeInfo?.label}</p>
                     </div>
                     {t.estimatedValue != null && (
@@ -312,7 +312,7 @@ function TillgangarContent() {
                 <div key={s.id} className="card flex items-center gap-3" role="listitem" aria-label={`${s.creditor}, ${SKULD_TYPES.find((st) => st.value === s.type)?.label}${s.amount ? `, belopp: ${formatSEK(s.amount)}` : ''}`}>
                   <CreditCard className="w-5 h-5 text-warn flex-shrink-0" />
                   <div className="flex-1 min-w-0">
-                    <p className="font-medium text-primary">{s.creditor}</p>
+                    <p className="font-display text-primary">{s.creditor}</p>
                     <p className="text-sm text-muted truncate">
                       {SKULD_TYPES.find((st) => st.value === s.type)?.label}
                     </p>
