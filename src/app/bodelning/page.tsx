@@ -542,7 +542,7 @@ function BodelningContent() {
               {/* List existing items */}
               {giftorattsgodsList.length > 0 && (
                 <div className="mb-5">
-                  <h3 className="text-sm font-semibold mb-3" style={{ color: '#2C3E3A' }}>
+                  <h3 className="text-sm font-display mb-3" style={{ color: '#2C3E3A' }}>
                     Registrerad giftorättsgods:
                   </h3>
                   <div className="space-y-2">
@@ -826,7 +826,7 @@ function BodelningContent() {
               {/* List existing items */}
               {aktenskapsForord.exists === true && enskildeEgendomList.length > 0 && (
                 <div className="mb-5">
-                  <h3 className="text-sm font-semibold mb-3" style={{ color: '#2C3E3A' }}>
+                  <h3 className="text-sm font-display mb-3" style={{ color: '#2C3E3A' }}>
                     Registrerad enskild egendom:
                   </h3>
                   <div className="space-y-2">
@@ -1052,7 +1052,7 @@ function BodelningContent() {
 
               {/* Giftorättsgods summary */}
               <div className="mb-5 pb-5 border-b" style={{ borderColor: '#E8E4DE' }}>
-                <h3 className="text-sm font-semibold mb-3" style={{ color: '#2C3E3A' }}>
+                <h3 className="text-sm font-display mb-3" style={{ color: '#2C3E3A' }}>
                   Giftorättsgods
                 </h3>
                 <div className="space-y-2 text-sm">
@@ -1134,7 +1134,7 @@ function BodelningContent() {
               {/* Enskild egendom summary */}
               {aktenskapsForord.exists === true && (
                 <div className="mb-5 pb-5 border-b" style={{ borderColor: '#E8E4DE' }}>
-                  <h3 className="text-sm font-semibold mb-3" style={{ color: '#2C3E3A' }}>
+                  <h3 className="text-sm font-display mb-3" style={{ color: '#2C3E3A' }}>
                     Enskild egendom
                   </h3>
                   <div className="space-y-2 text-sm">
@@ -1250,7 +1250,7 @@ function BodelningContent() {
               <div className="flex items-start gap-3 mb-4">
                 <FileText className="w-5 h-5 mt-0.5" style={{ color: '#6B7F5E' }} />
                 <div className="flex-1">
-                  <h2 className="font-semibold text-base" style={{ color: '#2C3E3A' }}>
+                  <h2 className="font-display text-base" style={{ color: '#2C3E3A' }}>
                     Sammanfattning
                   </h2>
                   <p className="text-sm mt-2" style={{ color: '#6B5D55' }}>
@@ -1414,7 +1414,7 @@ function BodelningContent() {
             <ArrowLeft className="w-5 h-5" style={{ color: '#6B7F5E' }} />
           </Link>
           <div>
-            <h1 className="text-2xl font-semibold" style={{ color: '#2C3E3A' }}>
+            <h1 className="text-2xl font-display" style={{ color: '#2C3E3A' }}>
               Bodelning
             </h1>
             <p className="text-sm" style={{ color: '#8B8680' }}>
@@ -1498,7 +1498,7 @@ function BodelningContent() {
           className="rounded-2xl p-5 mb-6"
           style={{ backgroundColor: 'white', borderColor: '#E8E4DE', borderWidth: '1px' }}
         >
-          <h2 className="text-sm font-semibold mb-4" style={{ color: '#8B8680' }}>
+          <h2 className="text-sm font-display mb-4" style={{ color: '#8B8680' }}>
             EFTERLEVANDE SAMBONS UPPGIFTER
           </h2>
           <label className="block mb-4">
@@ -1543,7 +1543,7 @@ function BodelningContent() {
           style={{ backgroundColor: 'white', borderColor: '#E8E4DE', borderWidth: '1px' }}
         >
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-sm font-semibold" style={{ color: '#8B8680' }}>
+            <h2 className="text-sm font-display" style={{ color: '#8B8680' }}>
               SAMBOEGENDOM
             </h2>
             <button
@@ -1713,7 +1713,7 @@ function BodelningContent() {
           >
             <div className="flex items-center gap-2 mb-4">
               <Scale className="w-5 h-5" style={{ color: '#6B7F5E' }} />
-              <h3 className="font-semibold" style={{ color: '#2C3E3A' }}>
+              <h3 className="font-display" style={{ color: '#2C3E3A' }}>
                 Bodelningsberäkning
               </h3>
             </div>
@@ -1821,7 +1821,7 @@ function BodelningContent() {
           <ArrowLeft className="w-5 h-5" style={{ color: '#6B7F5E' }} />
         </Link>
         <div>
-          <h1 className="text-2xl font-semibold" style={{ color: '#2C3E3A' }}>
+          <h1 className="text-2xl font-display" style={{ color: '#2C3E3A' }}>
             Bodelning
           </h1>
           <p className="text-sm" style={{ color: '#8B8680' }}>

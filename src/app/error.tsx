@@ -16,8 +16,8 @@ export default function Error({
   return (
     <div className="min-h-dvh bg-background flex items-center justify-center px-6">
       <div className="text-center max-w-md">
-        <p className="text-6xl font-bold text-accent mb-4">Fel</p>
-        <h1 className="text-2xl font-semibold text-primary mb-2">
+        <p className="text-6xl font-display text-accent mb-4">Fel</p>
+        <h1 className="text-2xl font-display text-primary mb-2">
           Något gick fel
         </h1>
         <p className="text-muted mb-8">

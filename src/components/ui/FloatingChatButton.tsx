@@ -33,7 +33,7 @@ export function FloatingChatButton() {
         }}
       >
         <Bot className="w-4 h-4 text-white" strokeWidth={2} />
-        <span className="text-xs font-semibold text-white/90">Mike</span>
+        <span className="text-xs font-display text-white/90">Mike</span>
       </button>
     );
   }
@@ -63,7 +63,7 @@ export function FloatingChatButton() {
         }}
       >
         <Bot className="w-5 h-5 text-white" strokeWidth={1.8} />
-        <span className="text-sm font-semibold text-white">Fråga Mike Ross</span>
+        <span className="text-sm font-display text-white">Fråga Mike Ross</span>
       </Link>
     </div>
   );

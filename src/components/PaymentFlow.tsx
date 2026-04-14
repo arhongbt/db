@@ -109,7 +109,7 @@ export function PaymentFlow({
       >
         {/* Header with close button */}
         <div className="flex items-center justify-between px-6 py-4 border-b" style={{ borderColor: '#E8E4DE' }}>
-          <h2 className="text-lg font-bold text-primary">Betalning</h2>
+          <h2 className="text-lg font-display text-primary">Betalning</h2>
           {stage === 'method' || stage === 'input' ? (
             <button
               onClick={onCancel}
@@ -315,7 +315,7 @@ export function PaymentFlow({
               >
                 <div className="w-8 h-8 border-3 border-transparent border-t-accent rounded-full animate-spin" />
               </div>
-              <h3 className="text-lg font-bold text-primary mb-2">Bearbetar betalning...</h3>
+              <h3 className="text-lg font-display text-primary mb-2">Bearbetar betalning...</h3>
               <p className="text-sm text-muted">Vänta medan vi verifierar din betalning</p>
             </div>
           )}
@@ -329,7 +329,7 @@ export function PaymentFlow({
               >
                 <CheckCircle2 className="w-8 h-8 text-success" />
               </div>
-              <h3 className="text-lg font-bold text-primary mb-2">Betalning genomförd!</h3>
+              <h3 className="text-lg font-display text-primary mb-2">Betalning genomförd!</h3>
               <p className="text-sm text-muted">
                 {formatSEK(amount)} har debiterats
               </p>

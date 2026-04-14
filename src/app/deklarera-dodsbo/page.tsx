@@ -86,7 +86,7 @@ export default function DeklararaDodsboPage() {
                   <span className="font-bold text-accent">1</span>
                 </div>
                 <div className="flex-1">
-                  <h3 className="font-semibold text-primary mb-2">Samla alla handlingar</h3>
+                  <h3 className="font-display text-primary mb-2">Samla alla handlingar</h3>
                   <p className="text-sm text-muted mb-3">
                     Samla all dokumentation om dödsboets inkomster och tillgångar:
                   </p>
@@ -108,7 +108,7 @@ export default function DeklararaDodsboPage() {
                   <span className="font-bold text-accent">2</span>
                 </div>
                 <div className="flex-1">
-                  <h3 className="font-semibold text-primary mb-2">Lägg fram en bodelning eller arvsdelning</h3>
+                  <h3 className="font-display text-primary mb-2">Lägg fram en bodelning eller arvsdelning</h3>
                   <p className="text-sm text-muted">
                     En behörig representative för dödsboet (ofte dödsbodelägare tillsammans eller en särskilt utsedd dödsboförrättare)
                     måste lämna in en bodelning eller arvsdelning till Skatteverket innan deklarationen lämnas in.
@@ -124,7 +124,7 @@ export default function DeklararaDodsboPage() {
                   <span className="font-bold text-accent">3</span>
                 </div>
                 <div className="flex-1">
-                  <h3 className="font-semibold text-primary mb-2">Fyll i inkomstdeklarationen</h3>
+                  <h3 className="font-display text-primary mb-2">Fyll i inkomstdeklarationen</h3>
                   <p className="text-sm text-muted mb-3">
                     Dödsboet fyller i en standard inkomstdeklaration (blankett K10 eller motsvarande) med:
                   </p>
@@ -144,7 +144,7 @@ export default function DeklararaDodsboPage() {
                   <span className="font-bold text-accent">4</span>
                 </div>
                 <div className="flex-1">
-                  <h3 className="font-semibold text-primary mb-2">Lämna in deklarationen</h3>
+                  <h3 className="font-display text-primary mb-2">Lämna in deklarationen</h3>
                   <p className="text-sm text-muted">
                     Deklarationen lämnas in via <span className="font-semibold">Skatteverkets webbtjänst</span> eller
                     på papper. Kom ihåg fristen: senast <span className="font-semibold">2 maj</span> året efter dödsåret.
@@ -160,7 +160,7 @@ export default function DeklararaDodsboPage() {
                   <span className="font-bold text-accent">5</span>
                 </div>
                 <div className="flex-1">
-                  <h3 className="font-semibold text-primary mb-2">Vänta på slutlig skatt</h3>
+                  <h3 className="font-display text-primary mb-2">Vänta på slutlig skatt</h3>
                   <p className="text-sm text-muted">
                     Skatteverket granskar deklarationen och skickar slutsed för dödsboet.
                     Om dödsboet har gjort förluster kan dessa ofta överföras till arvingarna.
@@ -259,7 +259,7 @@ export default function DeklararaDodsboPage() {
               <div className="flex gap-3 h-full flex-col">
                 <div className="flex gap-3">
                   <Calendar className="w-6 h-6 text-accent flex-shrink-0" />
-                  <h3 className="font-semibold text-primary">Viktiga datum</h3>
+                  <h3 className="font-display text-primary">Viktiga datum</h3>
                 </div>
                 <ul className="text-sm text-primary space-y-1">
                   <li><span className="font-semibold">2 maj:</span> Deklarationsfrist</li>
@@ -272,7 +272,7 @@ export default function DeklararaDodsboPage() {
               <div className="flex gap-3 h-full flex-col">
                 <div className="flex gap-3">
                   <FileText className="w-6 h-6 text-accent flex-shrink-0" />
-                  <h3 className="font-semibold text-primary">Dokument du behöver</h3>
+                  <h3 className="font-display text-primary">Dokument du behöver</h3>
                 </div>
                 <ul className="text-sm text-primary space-y-1">
                   <li>Dödsattest</li>
@@ -286,7 +286,7 @@ export default function DeklararaDodsboPage() {
               <div className="flex gap-3 h-full flex-col">
                 <div className="flex gap-3">
                   <FileText className="w-6 h-6 text-blue-600 flex-shrink-0" />
-                  <h3 className="font-semibold text-primary">Praktisk info från Skatteverket</h3>
+                  <h3 className="font-display text-primary">Praktisk info från Skatteverket</h3>
                 </div>
                 <div className="space-y-2">
                   <p className="text-sm text-primary">
@@ -305,7 +305,7 @@ export default function DeklararaDodsboPage() {
               <div className="flex gap-3 h-full flex-col">
                 <div className="flex gap-3">
                   <FileText className="w-6 h-6 text-green-600 flex-shrink-0" />
-                  <h3 className="font-semibold text-primary">Efterlevandepension</h3>
+                  <h3 className="font-display text-primary">Efterlevandepension</h3>
                 </div>
                 <div className="space-y-2">
                   <p className="text-sm text-primary">
@@ -323,7 +323,7 @@ export default function DeklararaDodsboPage() {
 
         {/* Call to action */}
         <section className="mb-8 p-6 bg-accent/5 rounded-lg border border-accent/20">
-          <h2 className="text-lg font-semibold text-primary mb-3">Behöver du juridisk hjälp?</h2>
+          <h2 className="text-lg font-display text-primary mb-3">Behöver du juridisk hjälp?</h2>
           <p className="text-muted mb-4">
             Deklarering av dödsbo kan vara komplicerat, särskilt om dödsboet äger fastigheter
             eller har avveckling av företag. En juridisk rådgivare kan hjälpa dig att fylla i

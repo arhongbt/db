@@ -404,7 +404,7 @@ function StepGuide() {
 
       {/* Content */}
       <div className="mb-4">
-        <h3 className="font-semibold text-primary mb-1">{currentStepData.title}</h3>
+        <h3 className="font-display text-primary mb-1">{currentStepData.title}</h3>
         <p className="text-xs text-primary/70 mb-3">{currentStepData.description}</p>
         {currentStepData.content}
       </div>
@@ -810,7 +810,7 @@ function InternationelltContent() {
 
       {/* Useful links */}
       <div className="card mb-6">
-        <h2 className="text-lg font-semibold text-primary mb-4">Användbara resurser</h2>
+        <h2 className="text-lg font-display text-primary mb-4">Användbara resurser</h2>
         <div className="space-y-2">
           <a
             href="https://ec.europa.eu/info/law/better-regulation/have-your-say/initiatives/12627-European-Succession-Certificate-ESC_en"

@@ -118,7 +118,7 @@ export function OnboardingFlow() {
         {/* ── Step 0: Vem har gått bort? ── */}
         {step === 0 && (
           <div className="flex-1 flex flex-col">
-            <h1 className="text-2xl font-semibold text-primary mb-2">
+            <h1 className="text-2xl font-display text-primary mb-2">
               {t('Vi finns här för dig', 'We are here for you')}
             </h1>
             <p className="text-muted mb-8">
@@ -176,7 +176,7 @@ export function OnboardingFlow() {
         {/* ── Step 1: Relation ── */}
         {step === 1 && (
           <div className="flex-1 flex flex-col">
-            <h1 className="text-2xl font-semibold text-primary mb-2">
+            <h1 className="text-2xl font-display text-primary mb-2">
               {t('Vilken är din relation?', 'What is your relationship?')}
             </h1>
             <p className="text-muted mb-6">
@@ -210,7 +210,7 @@ export function OnboardingFlow() {
         {/* ── Step 2: Familjesituation + Testamente + Bostad (combined) ── */}
         {step === 2 && (
           <div className="flex-1 flex flex-col">
-            <h1 className="text-2xl font-semibold text-primary mb-2">
+            <h1 className="text-2xl font-display text-primary mb-2">
               {t('Om situationen', 'About your situation')}
             </h1>
             <p className="text-muted mb-8">
@@ -292,7 +292,7 @@ export function OnboardingFlow() {
         {/* ── Step 3: Banker + Redan gjort (combined) ── */}
         {step === 3 && (
           <div className="flex-1 flex flex-col">
-            <h1 className="text-2xl font-semibold text-primary mb-2">
+            <h1 className="text-2xl font-display text-primary mb-2">
               {t('Sista steget', 'Final step')}
             </h1>
             <p className="text-muted mb-6">
@@ -300,7 +300,7 @@ export function OnboardingFlow() {
             </p>
 
             {/* Banks */}
-            <p className="text-sm font-semibold text-primary mb-3 uppercase tracking-wide">
+            <p className="text-sm font-display text-primary mb-3 uppercase tracking-wide">
               {t('Banker (valfritt)', 'Banks (optional)')}
             </p>
             <div className="flex flex-col gap-2 mb-6 stagger-children">
@@ -317,7 +317,7 @@ export function OnboardingFlow() {
             </div>
 
             {/* Already done */}
-            <p className="text-sm font-semibold text-primary mb-3 uppercase tracking-wide">
+            <p className="text-sm font-display text-primary mb-3 uppercase tracking-wide">
               {t('Redan gjort (valfritt)', 'Already done (optional)')}
             </p>
             <div className="flex flex-col gap-2 stagger-children">

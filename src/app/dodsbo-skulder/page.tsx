@@ -90,7 +90,7 @@ function DodsboSkulderContent() {
         <div className="flex gap-3">
           <CheckCircle2 className="w-6 h-6 text-accent flex-shrink-0 mt-0.5" />
           <div>
-            <p className="font-semibold text-primary mb-1">
+            <p className="font-display text-primary mb-1">
               Man ärver ALDRIG skulder i Sverige
             </p>
             <p className="text-sm text-primary">
@@ -160,7 +160,7 @@ function DodsboSkulderContent() {
 
       {/* Insolvent estate explanation */}
       <div className="card mb-6 border" style={{ background: 'var(--accent-soft)', borderColor: 'var(--border)' }}>
-        <h3 className="text-sm font-semibold text-primary mb-2 flex items-center gap-2">
+        <h3 className="text-sm font-display text-primary mb-2 flex items-center gap-2">
           <AlertTriangle className="w-5 h-5 text-warn" />
           Vad är ett insolvent dödsbo?
         </h3>

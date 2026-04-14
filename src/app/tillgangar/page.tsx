@@ -186,15 +186,15 @@ function TillgangarContent() {
       <div className="grid grid-cols-3 gap-3 mb-6" role="group" aria-label={t('Ekonomisk sammanfattning', 'Financial summary')}>
         <div className="card text-center py-3" aria-label={t(`Totala tillgångar: ${formatSEK(totalTillgangar)}`, `Total assets: ${formatSEK(totalTillgangar)}`)}>
           <p className="text-xs text-muted uppercase">{t('Tillgångar', 'Assets')}</p>
-          <p className="text-lg font-bold text-success">{formatSEK(totalTillgangar)}</p>
+          <p className="text-lg font-display text-success">{formatSEK(totalTillgangar)}</p>
         </div>
         <div className="card text-center py-3" aria-label={t(`Totala skulder: ${formatSEK(totalSkulder)}`, `Total debts: ${formatSEK(totalSkulder)}`)}>
           <p className="text-xs text-muted uppercase">{t('Skulder', 'Debts')}</p>
-          <p className="text-lg font-bold text-warn">{formatSEK(totalSkulder)}</p>
+          <p className="text-lg font-display text-warn">{formatSEK(totalSkulder)}</p>
         </div>
         <div className="card text-center py-3" aria-label={t(`Nettovärde: ${formatSEK(netto)}`, `Net value: ${formatSEK(netto)}`)}>
           <p className="text-xs text-muted uppercase">{t('Netto', 'Net')}</p>
-          <p className={`text-lg font-bold ${netto >= 0 ? 'text-success' : 'text-warn'}`}>
+          <p className={`text-lg font-display ${netto >= 0 ? 'text-success' : 'text-warn'}`}>
             {formatSEK(netto)}
           </p>
         </div>
@@ -206,7 +206,7 @@ function TillgangarContent() {
           <div className="flex gap-3">
             <CheckCircle2 className="w-6 h-6 text-success flex-shrink-0 mt-0.5" />
             <div className="flex-1">
-              <h3 className="font-semibold text-primary mb-3">{t('Du ärver INTE skulder', 'You do NOT inherit debts')}</h3>
+              <h3 className="font-display text-primary mb-3">{t('Du ärver INTE skulder', 'You do NOT inherit debts')}</h3>
               <p className="text-sm text-primary/80 mb-3">
                 {t('I Sverige ärver man aldrig skulder. Dödsboets skulder betalas med dödsboets tillgångar. Om skulderna överstiger tillgångarna försvinner resten — du behöver inte betala ur egen ficka.', 'In Sweden, you never inherit debts. The estate\'s debts are paid from the estate\'s assets. If the debts exceed the assets, the remainder disappears — you don\'t need to pay from your own pocket.')}
               </p>
@@ -276,7 +276,7 @@ function TillgangarContent() {
                       <p className="text-sm text-muted">{typeInfo?.label}</p>
                     </div>
                     {t.estimatedValue != null && (
-                      <p className="font-semibold text-success text-sm">{formatSEK(t.estimatedValue)}</p>
+                      <p className="font-display text-success text-sm">{formatSEK(t.estimatedValue)}</p>
                     )}
                     <button
                       onClick={() => dispatch({ type: 'REMOVE_TILLGANG', payload: t.id })}
@@ -318,7 +318,7 @@ function TillgangarContent() {
                     </p>
                   </div>
                   {s.amount != null && (
-                    <p className="font-semibold text-warn text-sm">{formatSEK(s.amount)}</p>
+                    <p className="font-display text-warn text-sm">{formatSEK(s.amount)}</p>
                   )}
                   <button
                     onClick={() => dispatch({ type: 'REMOVE_SKULD', payload: s.id })}

@@ -234,7 +234,7 @@ export default function SamboArvPage() {
           <div className="bg-gradient-to-r from-accent/10 to-accent/5 border border-accent/20 rounded-lg p-5 hover:border-accent/40 transition-colors">
             <div className="flex items-center justify-between">
               <div>
-                <h3 className="font-semibold text-primary mb-1">Behöver du juridisk hjälp?</h3>
+                <h3 className="font-display text-primary mb-1">Behöver du juridisk hjälp?</h3>
                 <p className="text-sm text-muted">Vi hjälper dig att göra testamente och planera för framtiden</p>
               </div>
               <ChevronRight className="w-5 h-5 text-accent flex-shrink-0" />

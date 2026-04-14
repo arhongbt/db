@@ -466,7 +466,7 @@ function BouppteckningContent() {
               </span>
             </div>
             <div className="flex justify-between pt-2 border-t border-[#E8E4DE]">
-              <span className="text-base font-semibold text-primary">
+              <span className="text-base font-display text-primary">
                 {t('Behållning', 'Net Estate')}
               </span>
               <span
@@ -532,7 +532,7 @@ function BouppteckningContent() {
           <div className="w-full max-w-lg mx-4 max-h-[90vh] rounded-t-2xl sm:rounded-2xl overflow-hidden flex flex-col" style={{ background: 'var(--bg)' }}>
             {/* Modal header */}
             <div className="flex items-center justify-between px-5 py-4 border-b" style={{ borderColor: 'var(--border)' }}>
-              <h2 className="text-lg font-semibold text-primary">
+              <h2 className="text-lg font-display text-primary">
                 {t('Förhandsgranskning', 'Preview')}
               </h2>
               <button

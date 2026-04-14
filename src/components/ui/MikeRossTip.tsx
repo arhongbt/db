@@ -26,7 +26,7 @@ export function MikeRossTip({ text, className = '' }: MikeRossTipProps) {
         <Bot className="w-4 h-4 text-white" />
       </div>
       <div>
-        <p className="text-xs font-semibold mb-0.5" style={{ color: 'var(--accent)' }}>Mike Ross</p>
+        <p className="text-xs font-display mb-0.5" style={{ color: 'var(--accent)' }}>Mike Ross</p>
         <p className="text-sm leading-relaxed" style={{ color: 'var(--text)' }}>{text}</p>
       </div>
     </div>

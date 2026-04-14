@@ -212,7 +212,7 @@ export default function ChecklistorPage() {
                       <p className="text-xs text-muted truncate">{cl.description}</p>
                     </div>
                     <div className="text-right">
-                      <p className="text-xs font-semibold text-accent">{done}/{total}</p>
+                      <p className="text-xs font-display text-accent">{done}/{total}</p>
                       <div className="w-12 h-1.5 bg-background rounded-full mt-1">
                         <div
                           className="h-1.5 rounded-full"
@@ -232,7 +232,7 @@ export default function ChecklistorPage() {
           <div className="print-checklist">
             {/* Print header (hidden on screen) */}
             <div className="hidden print:block mb-6">
-              <h1 className="text-2xl font-bold">{selectedList.title}</h1>
+              <h1 className="text-2xl font-display">{selectedList.title}</h1>
               <p className="text-gray-600">{selectedList.description}</p>
               <p className="text-sm text-gray-500 mt-1">{t('Sista Resan — utskrift', 'Sista Resan — print')} {new Date().toLocaleDateString('sv-SE')}</p>
               <hr className="mt-4" />
@@ -275,8 +275,8 @@ export default function ChecklistorPage() {
             {/* Progress summary */}
             <div className="mt-6 p-4 bg-white border rounded-2xl print:hidden" style={{ borderColor: '#E8E4DE' }}>
               <div className="flex items-center justify-between mb-2">
-                <p className="text-sm font-semibold text-primary">{t('Framsteg', 'Progress')}</p>
-                <p className="text-sm font-semibold text-accent">
+                <p className="text-sm font-display text-primary">{t('Framsteg', 'Progress')}</p>
+                <p className="text-sm font-display text-accent">
                   {selectedList.items.filter(i => i.done).length} / {selectedList.items.length}
                 </p>
               </div>

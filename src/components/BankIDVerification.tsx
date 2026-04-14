@@ -76,7 +76,7 @@ export function BankIDVerification({ onVerified, onCancel }: BankIDVerificationP
             >
               <Shield className="w-8 h-8" style={{ color: '#6B7F5E' }} />
             </div>
-            <h2 className="text-xl font-bold text-primary mb-2">BankID-verifiering</h2>
+            <h2 className="text-xl font-display text-primary mb-2">BankID-verifiering</h2>
             <p className="text-sm text-muted mb-6">
               Öppna BankID-appen på din enhet och godkänn verifieringen.
             </p>
@@ -93,7 +93,7 @@ export function BankIDVerification({ onVerified, onCancel }: BankIDVerificationP
             >
               <div className="w-8 h-8 border-3 border-transparent border-t-accent rounded-full animate-spin" />
             </div>
-            <h2 className="text-xl font-bold text-primary mb-2">Verifierar...</h2>
+            <h2 className="text-xl font-display text-primary mb-2">Verifierar...</h2>
             <p className="text-sm text-muted">
               Vänta medan vi godkänner din identitet
             </p>
@@ -109,7 +109,7 @@ export function BankIDVerification({ onVerified, onCancel }: BankIDVerificationP
             >
               <CheckCircle2 className="w-8 h-8 text-success" />
             </div>
-            <h2 className="text-xl font-bold text-primary mb-2">Verifiering lyckades!</h2>
+            <h2 className="text-xl font-display text-primary mb-2">Verifiering lyckades!</h2>
             <p className="text-sm text-muted">
               Du är nu verifierad och kan fortsätta.
             </p>

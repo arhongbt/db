@@ -125,7 +125,7 @@ export function BottomNav() {
           }}
         >
           <div className="px-5 pt-5 pb-2 flex items-center justify-between sticky top-0" style={{ background: 'var(--bg-card)', borderRadius: '28px 28px 0 0' }}>
-            <h3 className="font-semibold text-primary text-sm">{t('nav.all_tools')}</h3>
+            <h3 className="font-display text-primary text-sm">{t('nav.all_tools')}</h3>
             <button
               onClick={() => setMoreOpen(false)}
               className="w-8 h-8 rounded-full flex items-center justify-center transition-colors"
@@ -139,7 +139,7 @@ export function BottomNav() {
           <div className="px-3 pb-5">
             {MORE_CATEGORIES.map((category) => (
               <div key={category.title} className="mb-4 last:mb-0">
-                <p className="text-xs font-semibold text-muted uppercase tracking-wider px-2 mb-2">{category.title}</p>
+                <p className="text-xs font-display text-muted uppercase tracking-wider px-2 mb-2">{category.title}</p>
                 <div className="grid grid-cols-4 gap-1.5">
                   {category.items.map(({ href, label, icon: Icon }) => {
                     const isActive = pathname === href;
@@ -202,7 +202,7 @@ export function BottomNav() {
               >
                 <Icon className="w-5 h-5 flex-shrink-0" strokeWidth={isActive ? 2 : 1.5} />
                 {isActive && (
-                  <span className="text-xs font-semibold whitespace-nowrap">{label}</span>
+                  <span className="text-xs font-display whitespace-nowrap">{label}</span>
                 )}
               </Link>
             );
@@ -226,7 +226,7 @@ export function BottomNav() {
           >
             <MoreHorizontal className="w-5 h-5 flex-shrink-0" strokeWidth={(moreOpen || isMoreActive) ? 2 : 1.5} />
             {(moreOpen || isMoreActive) && (
-              <span className="text-xs font-semibold whitespace-nowrap">{t('nav.more')}</span>
+              <span className="text-xs font-display whitespace-nowrap">{t('nav.more')}</span>
             )}
           </button>
         </div>

@@ -182,7 +182,7 @@ export default function SearchModal({ isOpen, onClose }: { isOpen: boolean; onCl
 
           {Object.entries(grouped).map(([category, items]) => (
             <div key={category}>
-              <p className="px-4 pt-3 pb-1 text-[11px] font-medium text-gray-400 uppercase tracking-wider">{category}</p>
+              <p className="px-4 pt-3 pb-1 text-[11px] font-display text-gray-400 uppercase tracking-wider">{category}</p>
               {items.map(item => (
                 <button
                   key={item.href}

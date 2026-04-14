@@ -217,7 +217,7 @@ export default function LandingPage() {
               <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-2" style={{ background: 'var(--accent-soft)' }}>
                 <feature.icon className="w-5 h-5 text-[#6B7F5E]" />
               </div>
-              <h3 className="font-semibold text-primary text-sm mb-1">{feature.title}</h3>
+              <h3 className="font-display text-primary text-sm mb-1">{feature.title}</h3>
               <p className="text-xs text-muted leading-relaxed">{feature.desc}</p>
             </div>
           ))}
@@ -329,7 +329,7 @@ export default function LandingPage() {
                   </div>
                 )}
                 <div className="flex-shrink-0 min-w-[90px]">
-                  <h3 className="font-semibold text-primary text-sm">{plan.name}</h3>
+                  <h3 className="font-display text-primary text-sm">{plan.name}</h3>
                   <p
                     className="text-xl font-bold"
                     style={{ color: isLifetime ? '#8B6914' : '#6B7F5E' }}

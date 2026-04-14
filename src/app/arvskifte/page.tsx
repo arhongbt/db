@@ -109,8 +109,8 @@ function ArvskifteContent() {
             <span className="text-sm font-medium text-warn">{formatSEK(totalSkulder)}</span>
           </div>
           <div className="flex justify-between pt-2 border-t border-[#E8E4DE]">
-            <span className="font-semibold text-primary">{t('Att fördela', 'To Distribute')}</span>
-            <span className={`font-bold text-lg ${netto >= 0 ? 'text-success' : 'text-warn'}`}>
+            <span className="font-display text-primary">{t('Att fördela', 'To Distribute')}</span>
+            <span className={`font-display text-lg ${netto >= 0 ? 'text-success' : 'text-warn'}`}>
               {formatSEK(netto)}
             </span>
           </div>

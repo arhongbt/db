@@ -43,7 +43,7 @@ export function PremiumModal({ isOpen, onClose }: PremiumModalProps) {
           </button>
         </div>
 
-        <h2 className="text-xl font-bold text-primary mb-1">Mike Ross Premium</h2>
+        <h2 className="text-xl font-display text-primary mb-1">Mike Ross Premium</h2>
         <p className="text-sm text-muted mb-4 leading-relaxed">
           Obegränsade juridiska frågor, prioriterat stöd och avancerade dokumentmallar.
           Premium lanseras snart.
@@ -69,7 +69,7 @@ export function PremiumModal({ isOpen, onClose }: PremiumModalProps) {
               style={{ background: 'rgba(107,127,94,0.08)' }}>
               <Check className="w-6 h-6 text-accent" />
             </div>
-            <p className="font-semibold text-primary mb-1">Tack!</p>
+            <p className="font-display text-primary mb-1">Tack!</p>
             <p className="text-sm text-muted">Vi meddelar dig när Premium lanseras.</p>
           </div>
         ) : (

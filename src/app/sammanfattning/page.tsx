@@ -28,7 +28,7 @@ function MikeRossTip({ text }: { text: string }) {
         <Bot className="w-4 h-4 text-white" />
       </div>
       <div>
-        <p className="text-xs font-semibold text-accent mb-0.5">Mike Ross</p>
+        <p className="text-xs font-display text-accent mb-0.5">Mike Ross</p>
         <p className="text-sm text-primary/80 leading-relaxed">{text}</p>
       </div>
     </div>
@@ -256,8 +256,8 @@ function SammanfattningContent() {
       {/* Progress bar */}
       <div className="card mb-5 animate-fadeIn">
         <div className="flex items-center justify-between mb-2">
-          <p className="text-sm font-semibold text-primary">{t('Total framsteg', 'Total progress')}</p>
-          <p className="text-lg font-bold text-accent">{progressPct}%</p>
+          <p className="text-sm font-display text-primary">{t('Total framsteg', 'Total progress')}</p>
+          <p className="text-lg font-display text-accent">{progressPct}%</p>
         </div>
         <div className="h-3 bg-[#E8E4DE] rounded-full overflow-hidden">
           <div

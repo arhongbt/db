@@ -246,7 +246,7 @@ function KostnaderContent() {
       {/* Add form */}
       {showForm ? (
         <div className="card mb-6 space-y-3">
-          <h3 className="font-semibold text-primary text-sm">{t('Lägg till kostnad', 'Add expense')}</h3>
+          <h3 className="font-display text-primary text-sm">{t('Lägg till kostnad', 'Add expense')}</h3>
 
           <div>
             <label className="text-xs text-muted font-medium">{t('Kategori', 'Category')}</label>

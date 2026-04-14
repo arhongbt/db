@@ -434,7 +434,7 @@ export default function PriserPage() {
               <HelpCircle className="w-5 h-5" style={{ color: '#3B82F6' }} />
             </div>
             <div>
-              <h4 className="font-semibold text-primary text-sm mb-1">
+              <h4 className="font-display text-primary text-sm mb-1">
                 {t('J\u00e4mf\u00f6relse', 'Comparison')}
               </h4>
               <p className="text-xs text-muted leading-relaxed">
@@ -484,7 +484,7 @@ export default function PriserPage() {
           style={{ background: 'rgba(107, 127, 94, 0.06)', borderColor: 'rgba(107, 127, 94, 0.2)' }}
         >
           <Shield className="w-8 h-8 mx-auto mb-2" style={{ color: '#6B7F5E' }} />
-          <h3 className="font-bold text-primary text-sm mb-1">
+          <h3 className="font-display text-primary text-sm mb-1">
             {t('14 dagars \u00e5ngerr\u00e4tt', '14-day money-back guarantee')}
           </h3>
           <p className="text-xs text-muted">

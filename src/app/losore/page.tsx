@@ -491,7 +491,7 @@ function LosoreContent() {
             return (
               <div key={category}>
                 <div className="flex items-center justify-between mb-3">
-                  <h3 className="font-semibold text-primary">{CATEGORY_LABELS[category]}</h3>
+                  <h3 className="font-display text-primary">{CATEGORY_LABELS[category]}</h3>
                   <div className="text-right">
                     <p className="text-sm font-bold text-success">{formatSEK(categoryTotal)}</p>
                     <p className="text-xs text-muted">{categoryItems.length} st</p>
