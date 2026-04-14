@@ -6,20 +6,20 @@ import { ArrowLeft, Home, FileText, AlertTriangle, CheckCircle2, ChevronRight } 
 
 export default function DodsboFastighetPage() {
   return (
-    <div className="flex flex-col px-5 py-6 pb-24">
-      <Link href="/dashboard" className="inline-flex items-center gap-2 text-sm text-muted hover:text-primary mb-6">
+    <div className="flex flex-col px-6 py-8 pb-28">
+      <Link href="/dashboard" className="inline-flex items-center gap-2 text-sm text-muted hover:text-primary mb-6 rounded-full">
         <ArrowLeft className="w-4 h-4" />
         Tillbaka
       </Link>
 
       <div className="flex items-center gap-3 mb-2">
         <Home className="w-6 h-6 text-accent" />
-        <h1 className="text-2xl font-bold text-primary">Dödsbo och fastighet</h1>
+        <h1 className="text-2xl font-display text-primary">Dödsbo och fastighet</h1>
       </div>
       <p className="text-muted mb-8">Så hanterar du bostad, hus och fastigheter i dödsboet.</p>
 
       {/* Intro */}
-      <div className="card border-l-4 border-accent mb-6">
+      <div className="card mb-6" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02))', border: '1px solid rgba(122,158,126,0.15)' }}>
         <p className="text-sm text-primary/80 leading-relaxed">
           En fastighet är ofta dödsboets största tillgång. Att hantera den rätt
           är avgörande för att undvika onödiga kostnader och konflikter mellan delägare.
@@ -28,7 +28,7 @@ export default function DodsboFastighetPage() {
       </div>
 
       {/* Steg */}
-      <h2 className="text-lg font-semibold text-primary mb-4">Steg för steg</h2>
+      <h2 className="text-lg font-display text-primary mb-4">Steg för steg</h2>
       <div className="flex flex-col gap-3 mb-8">
         {[
           {
@@ -70,7 +70,7 @@ export default function DodsboFastighetPage() {
       </div>
 
       {/* Bostadsrätt */}
-      <h2 className="text-lg font-semibold text-primary mb-4">Sälja bostadsrätt i dödsboet</h2>
+      <h2 className="text-lg font-display text-primary mb-4">Sälja bostadsrätt i dödsboet</h2>
       <p className="text-sm text-muted mb-4 leading-relaxed">
         Bostadsrätt följer delvis samma regler som fastigheter, men kräver godkännande från föreningen.
       </p>
@@ -127,7 +127,7 @@ export default function DodsboFastighetPage() {
       </div>
 
       {/* Husdjur */}
-      <h2 className="text-lg font-semibold text-primary mb-4">Husdjur i dödsboet</h2>
+      <h2 className="text-lg font-display text-primary mb-4">Husdjur i dödsboet</h2>
       <p className="text-sm text-muted mb-4 leading-relaxed">
         Husdjur räknas juridiskt som lösöre (egendom). Så här hanterar du det:
       </p>
@@ -161,7 +161,7 @@ export default function DodsboFastighetPage() {
       </div>
 
       {/* Vanliga frågor */}
-      <h2 className="text-lg font-semibold text-primary mb-4">Vanliga frågor</h2>
+      <h2 className="text-lg font-display text-primary mb-4">Vanliga frågor</h2>
       <div className="flex flex-col gap-3 mb-8">
         {[
           {
@@ -205,7 +205,7 @@ export default function DodsboFastighetPage() {
         </div>
       </div>
 
-      <Link href="/juridisk-hjalp" className="card border-l-4 border-accent bg-info-light flex items-center justify-between">
+      <Link href="/juridisk-hjalp" className="card bg-info-light flex items-center justify-between" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(139,164,184,0.06), rgba(139,164,184,0.02))', border: '1px solid rgba(139,164,184,0.15)' }}>
         <div>
           <p className="font-semibold text-accent text-sm">Har du fler frågor?</p>
           <p className="text-xs text-muted">Fråga vår juridiska AI-assistent</p>

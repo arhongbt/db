@@ -69,17 +69,17 @@ function DodsboSkulderContent() {
   ];
 
   return (
-    <div className="flex flex-col min-h-dvh px-5 py-6 pb-24">
+    <div className="flex flex-col min-h-dvh px-6 py-8 pb-28">
       <Link
         href="/dashboard"
-        className="inline-flex items-center gap-2 text-sm text-muted hover:text-primary mb-4"
+        className="inline-flex items-center gap-2 text-sm text-muted hover:text-primary mb-4 rounded-full"
       >
         <ArrowLeft className="w-4 h-4" /> Dashboard
       </Link>
 
       <div className="flex items-center gap-3 mb-2">
         <Wallet className="w-7 h-7 text-accent" />
-        <h1 className="text-2xl font-semibold text-primary">Dödsbo och skulder</h1>
+        <h1 className="text-2xl font-display text-primary">Dödsbo och skulder</h1>
       </div>
       <p className="text-muted mb-6">
         Allt om hur skulder hanteras när någon dör. I Sverige ärver du aldrig personligt ansvar för skulder.
@@ -104,7 +104,7 @@ function DodsboSkulderContent() {
 
       {/* How debts are paid */}
       <div className="card mb-6">
-        <h2 className="text-sm font-semibold text-muted uppercase tracking-wide mb-3">
+        <h2 className="text-sm font-display text-muted mb-3">
           Så hanteras skulder från dödsboet
         </h2>
         <div className="space-y-3">
@@ -183,7 +183,7 @@ function DodsboSkulderContent() {
 
       {/* Prioritization of debts */}
       <div className="card mb-6">
-        <h2 className="text-sm font-semibold text-muted uppercase tracking-wide mb-3">
+        <h2 className="text-sm font-display text-muted mb-3">
           Prioritering av skuldbetalning
         </h2>
         <div className="space-y-2">
@@ -219,7 +219,7 @@ function DodsboSkulderContent() {
 
       {/* FAQ */}
       <div className="mb-6">
-        <h2 className="text-sm font-semibold text-muted uppercase tracking-wide mb-3">
+        <h2 className="text-sm font-display text-muted mb-3">
           Vanliga frågor
         </h2>
         <div className="space-y-2">
@@ -270,7 +270,7 @@ function DodsboSkulderContent() {
 
       {/* Related links */}
       <div className="space-y-2 mb-6">
-        <h2 className="text-sm font-semibold text-muted uppercase tracking-wide">
+        <h2 className="text-sm font-display text-muted">
           Läs mer
         </h2>
         <Link
@@ -299,7 +299,7 @@ function DodsboSkulderContent() {
       </div>
 
       {/* Legal disclaimer */}
-      <div className="rounded-card p-4 mb-6" style={{ background: 'var(--bg)' }}>
+      <div className="rounded-[20px] p-4 mb-6" style={{ background: 'var(--bg)' }}>
         <p className="text-xs text-muted leading-relaxed">
           Denna information är baserad på svensk lag (Ärvdabalken). Det är inte juridisk
           rådgivning. Vid komplicerade situationer eller osäkerhet rekommenderas juridisk

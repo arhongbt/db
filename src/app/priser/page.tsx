@@ -219,10 +219,10 @@ export default function PriserPage() {
           <ArrowLeft className="w-4 h-4" />
           {t('Tillbaka', 'Back')}
         </Link>
-        <h1 className="text-3xl font-bold text-primary leading-tight">
+        <h1 className="text-3xl font-display text-primary leading-tight">
           {t('V\u00e4lj din plan.', 'Choose your plan.')}
         </h1>
-        <h2 className="text-3xl font-bold leading-tight" style={{ color: 'var(--muted)' }}>
+        <h2 className="text-3xl font-display leading-tight" style={{ color: 'var(--muted)' }}>
           {t('Betala en g\u00e5ng. Anv\u00e4nd f\u00f6r alltid.', 'Pay once. Use forever.')}
         </h2>
         <p className="text-muted mt-3 text-sm leading-relaxed">
@@ -336,7 +336,7 @@ export default function PriserPage() {
                       />
                     </div>
                     <div>
-                      <h3 className="font-bold text-primary text-lg leading-tight">{plan.name}</h3>
+                      <h3 className="font-display text-primary text-lg leading-tight">{plan.name}</h3>
                       <p className="text-xs text-muted mt-0.5">{plan.users}</p>
                     </div>
                   </div>
@@ -450,7 +450,7 @@ export default function PriserPage() {
 
       {/* FAQ Section */}
       <div className="px-6 mt-8">
-        <h2 className="text-lg font-bold text-primary mb-4">
+        <h2 className="text-lg font-display text-primary mb-4">
           {t('Vanliga fr\u00e5gor om priser', 'Pricing FAQ')}
         </h2>
         <div className="space-y-2">

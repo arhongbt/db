@@ -59,7 +59,7 @@ function ArvskifteContent() {
   const sarkullebarn = state.onboarding.familySituation === 'gift_med_sarkullebarn';
 
   return (
-    <div className="flex flex-col px-5 py-6 pb-24">
+    <div className="flex flex-col px-6 py-8 pb-28">
       {/* Header */}
       <div className="flex items-center gap-3 mb-6">
         <Link
@@ -70,7 +70,7 @@ function ArvskifteContent() {
           <ArrowLeft className="w-5 h-5 text-primary" />
         </Link>
         <div>
-          <h1 className="text-2xl font-semibold text-primary">{t('Arvskifte', 'Estate Distribution')}</h1>
+          <h1 className="text-2xl font-display text-primary">{t('Arvskifte', 'Estate Distribution')}</h1>
           <p className="text-muted text-sm">{t('Fördelning av arvet', 'Distribution of the inheritance')}</p>
         </div>
       </div>
@@ -96,7 +96,7 @@ function ArvskifteContent() {
 
       {/* Net estate */}
       <div className="card mb-6">
-        <h2 className="text-sm font-semibold text-muted uppercase tracking-wide mb-3">
+        <h2 className="text-sm font-display text-muted uppercase tracking-wide mb-3">
           {t('Dödsboets behållning', 'Estate Net Value')}
         </h2>
         <div className="space-y-2">
@@ -118,13 +118,13 @@ function ArvskifteContent() {
       </div>
 
       {/* Arvsordning summary */}
-      <div className="card border-l-4 border-accent mb-6">
+      <div className="card mb-6" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02))', border: '1px solid rgba(122,158,126,0.15)' }}>
         <div className="flex items-center gap-2 mb-2">
           <Scale className="w-5 h-5 text-accent" />
-          <h2 className="font-semibold text-primary">{t('Arvsordning', 'Inheritance Order')}</h2>
+          <h2 className="font-display text-primary">{t('Arvsordning', 'Inheritance Order')}</h2>
         </div>
         <p className="text-sm text-primary/80 mb-3">{arvsinfo.summary}</p>
-        <div className="bg-primary-lighter/20 rounded-card p-3">
+        <div className="bg-primary-lighter/20 rounded-[20px] p-3">
           {arvsinfo.heirs.map((h, i) => (
             <div key={i} className="flex justify-between py-1.5 border-b border-[#E8E4DE]/50 last:border-0">
               <span className="text-sm font-medium text-primary">{h.relation}</span>
@@ -149,7 +149,7 @@ function ArvskifteContent() {
         <div className="card mb-6">
           <div className="flex items-center gap-2 mb-3">
             <PieChart className="w-5 h-5 text-accent" />
-            <h2 className="font-semibold text-primary">{t('Uppskattad fördelning', 'Estimated Distribution')}</h2>
+            <h2 className="font-display text-primary">{t('Uppskattad fördelning', 'Estimated Distribution')}</h2>
           </div>
 
           <p className="text-xs text-muted mb-4">
@@ -158,7 +158,7 @@ function ArvskifteContent() {
 
           {spouseTakesAll && spouse ? (
             <div className="space-y-3">
-              <div className="flex items-center justify-between p-3 bg-primary-lighter/20 rounded-card">
+              <div className="flex items-center justify-between p-3 bg-primary-lighter/20 rounded-[20px]">
                 <div>
                   <p className="font-medium text-primary">{spouse.name}</p>
                   <p className="text-xs text-muted">{t('Make/maka — fri förfoganderätt', 'Spouse — full right of disposal')}</p>
@@ -200,7 +200,7 @@ function ArvskifteContent() {
           ) : sarkullebarn && spouse ? (
             <div className="space-y-3">
               {children.map((child) => (
-                <div key={child.id} className="flex items-center justify-between p-3 bg-accent/5 rounded-card">
+                <div key={child.id} className="flex items-center justify-between p-3 bg-accent/5 rounded-[20px]">
                   <div>
                     <p className="font-medium text-primary">{child.name}</p>
                     <p className="text-xs text-muted">Särkullbarn — rätt att få ut direkt</p>
@@ -210,7 +210,7 @@ function ArvskifteContent() {
                   </p>
                 </div>
               ))}
-              <div className="flex items-center justify-between p-3 bg-primary-lighter/20 rounded-card">
+              <div className="flex items-center justify-between p-3 bg-primary-lighter/20 rounded-[20px]">
                 <div>
                   <p className="font-medium text-primary">{spouse.name}</p>
                   <p className="text-xs text-muted">{t('Make/maka — fri förfoganderätt', 'Spouse — full right of disposal')}</p>
@@ -240,7 +240,7 @@ function ArvskifteContent() {
           ) : (
             <div className="space-y-3">
               {state.delagare.filter((d) => d.isDelagare).map((d) => (
-                <div key={d.id} className="flex items-center justify-between p-3 bg-white rounded-card">
+                <div key={d.id} className="flex items-center justify-between p-3 bg-white rounded-[20px]">
                   <div>
                     <p className="font-medium text-primary">{d.name}</p>
                     <p className="text-xs text-muted">Lika del</p>
@@ -358,7 +358,7 @@ function ArvskifteContent() {
       </div>
 
       {/* Disclaimer */}
-      <div className="bg-primary-lighter/30 rounded-card p-4 mb-4">
+      <div className="bg-primary-lighter/30 rounded-[20px] p-4 mb-4">
         <p className="text-xs text-muted leading-relaxed">
           Beräkningen baseras på ärvdabalken och ger en uppskattning. Vid testamente,
           särkullbarn, samboförhållanden eller internationella förhållanden kan arvsordningen

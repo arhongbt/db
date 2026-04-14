@@ -274,7 +274,7 @@ function BodelningContent() {
 
   if (isMarried) {
     return (
-      <div className="flex flex-col px-5 py-6 pb-24" style={{ backgroundColor: '#F7F5F0' }}>
+      <div className="flex flex-col px-6 py-8 pb-28" style={{ backgroundColor: '#F7F5F0' }}>
         {/* Header */}
         <div className="flex items-center gap-3 mb-6">
           <Link
@@ -285,7 +285,7 @@ function BodelningContent() {
             <ArrowLeft className="w-5 h-5" style={{ color: '#7A9E7E' }} />
           </Link>
           <div>
-            <h1 className="text-2xl font-semibold" style={{ color: '#2C3E3A' }}>
+            <h1 className="text-2xl font-display" style={{ color: '#2C3E3A' }}>
               {t('Bodelning', 'Marital Property Division')}
             </h1>
             <p className="text-sm" style={{ color: '#8B8680' }}>
@@ -302,8 +302,8 @@ function BodelningContent() {
 
         {/* Warning: Must do before arvskifte */}
         <div
-          className="flex gap-3 rounded-2xl p-4 mb-6"
-          style={{ backgroundColor: '#FFF4E6', borderLeft: '4px solid #D97706' }}
+          className="flex gap-3 p-4 mb-6"
+          style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(196,149,106,0.06), rgba(196,149,106,0.02))', border: '1px solid rgba(196,149,106,0.15)' }}
         >
           <AlertTriangle className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#D97706' }} />
           <div>
@@ -374,7 +374,7 @@ function BodelningContent() {
               <div className="flex items-start gap-3 mb-4">
                 <HelpCircle className="w-5 h-5 mt-0.5" style={{ color: '#7A9E7E' }} />
                 <div className="flex-1">
-                  <h2 className="font-semibold text-base" style={{ color: '#2C3E3A' }}>
+                  <h2 className="font-display text-base" style={{ color: '#2C3E3A' }}>
                     {t('Fanns det ett äktenskapsförord?', 'Was there a prenuptial agreement?')}
                   </h2>
                   <p className="text-sm mt-2" style={{ color: '#6B5D55' }}>
@@ -385,7 +385,7 @@ function BodelningContent() {
 
               {/* Tooltip about äktenskapsförord */}
               <div
-                className="rounded-lg p-3 mb-5"
+                className="rounded-[20px] p-3 mb-5"
                 style={{ backgroundColor: '#F7F5F0' }}
               >
                 <p className="text-xs font-semibold mb-2" style={{ color: '#8B8680' }}>
@@ -410,7 +410,7 @@ function BodelningContent() {
                   onClick={() => {
                     setAktenskapsForord({ exists: false, summary: '' });
                   }}
-                  className={`flex-1 py-3 px-4 rounded-xl font-medium text-base transition-all ${
+                  className={`flex-1 py-3 px-4 rounded-[20px] font-medium text-base transition-all ${
                     aktenskapsForord.exists === false
                       ? 'text-white'
                       : 'border-2'
@@ -427,7 +427,7 @@ function BodelningContent() {
                   onClick={() => {
                     setAktenskapsForord({ ...aktenskapsForord, exists: true });
                   }}
-                  className={`flex-1 py-3 px-4 rounded-xl font-medium text-base transition-all ${
+                  className={`flex-1 py-3 px-4 rounded-[20px] font-medium text-base transition-all ${
                     aktenskapsForord.exists === true
                       ? 'text-white'
                       : 'border-2'
@@ -458,7 +458,7 @@ function BodelningContent() {
                         setAktenskapsForord({ ...aktenskapsForord, summary: e.target.value })
                       }
                       placeholder="T.ex. 'Sparande på 500 000 kr är enskild egendom' eller 'Fritidshus ärvt från släkt'"
-                      className="w-full px-3 py-2 text-sm border-2 rounded-lg mt-2 resize-none focus:outline-none"
+                      className="w-full px-3 py-2 text-sm border-2 rounded-[20px] mt-2 resize-none focus:outline-none"
                       style={{
                         borderColor: '#E8E4DE',
                         backgroundColor: 'white',
@@ -488,7 +488,7 @@ function BodelningContent() {
                   }
                 }}
                 disabled={!canProceedStep1()}
-                className={`flex-1 py-3 rounded-xl text-white font-medium flex items-center justify-center gap-2 transition-all ${
+                className={`flex-1 py-3 rounded-[20px] text-white font-medium flex items-center justify-center gap-2 transition-all ${
                   !canProceedStep1() ? 'opacity-50 cursor-not-allowed' : 'hover:shadow-lg'
                 }`}
                 style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}
@@ -503,13 +503,13 @@ function BodelningContent() {
         {currentStep === 2 && (
           <div className="space-y-6 mb-6">
             <div
-              className="rounded-2xl p-5"
+              className="rounded-[24px] p-5"
               style={{ backgroundColor: 'white', borderColor: '#E8E4DE', borderWidth: '1px' }}
             >
               <div className="flex items-start gap-3 mb-4">
                 <HelpCircle className="w-5 h-5 mt-0.5" style={{ color: '#7A9E7E' }} />
                 <div className="flex-1">
-                  <h2 className="font-semibold text-base" style={{ color: '#2C3E3A' }}>
+                  <h2 className="font-display text-base" style={{ color: '#2C3E3A' }}>
                     Giftorättsgods
                   </h2>
                   <p className="text-sm mt-2" style={{ color: '#6B5D55' }}>
@@ -520,10 +520,10 @@ function BodelningContent() {
 
               {/* Info tooltip */}
               <div
-                className="rounded-lg p-3 mb-5"
+                className="rounded-[20px] p-3 mb-5"
                 style={{ backgroundColor: '#F7F5F0' }}
               >
-                <p className="text-xs font-semibold mb-2" style={{ color: '#8B8680' }}>
+                <p className="text-xs font-display mb-2" style={{ color: '#8B8680' }}>
                   JURIDISK INFO: Giftorättsgods
                 </p>
                 <ul className="text-xs space-y-1" style={{ color: '#6B5D55' }}>
@@ -549,7 +549,7 @@ function BodelningContent() {
                     {giftorattsgodsList.map((item) => (
                       <div
                         key={item.id}
-                        className="flex items-center justify-between p-3 rounded-lg"
+                        className="flex items-center justify-between p-3 rounded-[20px]"
                         style={{ backgroundColor: '#F7F5F0' }}
                       >
                         <div className="flex-1">
@@ -562,7 +562,7 @@ function BodelningContent() {
                         </div>
                         <button
                           onClick={() => removeGiftorattsgods(item.id)}
-                          className="p-1.5 rounded-lg transition-colors"
+                          className="p-1.5 rounded-[20px] transition-colors"
                           style={{ color: '#8B8680' }}
                           onMouseEnter={(e) => {
                             (e.currentTarget as HTMLElement).style.backgroundColor = '#FFE8E8';
@@ -585,7 +585,7 @@ function BodelningContent() {
               {!showAddGiftorattsgods ? (
                 <button
                   onClick={() => setShowAddGiftorattsgods(true)}
-                  className="w-full py-3 px-4 rounded-xl font-medium text-base flex items-center justify-center gap-2 border-2 transition-all"
+                  className="w-full py-3 px-4 rounded-[20px] font-medium text-base flex items-center justify-center gap-2 border-2 transition-all"
                   style={{
                     borderColor: '#E8E4DE',
                     color: '#7A9E7E',
@@ -602,7 +602,7 @@ function BodelningContent() {
                 </button>
               ) : (
                 <div
-                  className="p-4 rounded-xl space-y-3 mb-4"
+                  className="p-4 rounded-[20px] space-y-3 mb-4"
                   style={{ backgroundColor: '#F7F5F0' }}
                 >
                   <label className="block">
@@ -616,7 +616,7 @@ function BodelningContent() {
                         setNewGiftorattsgods({ ...newGiftorattsgods, description: e.target.value })
                       }
                       placeholder="T.ex. Lägenhet på Storgatan, Sparkonto, Bolån"
-                      className="w-full px-3 py-2 text-sm border rounded-lg mt-1 focus:outline-none"
+                      className="w-full px-3 py-2 text-sm border rounded-[20px] mt-1 focus:outline-none"
                       style={{
                         borderColor: '#E8E4DE',
                         backgroundColor: 'white',
@@ -638,7 +638,7 @@ function BodelningContent() {
                             type: e.target.value as 'asset' | 'debt',
                           })
                         }
-                        className="w-full px-3 py-2 text-sm border rounded-lg mt-1 focus:outline-none"
+                        className="w-full px-3 py-2 text-sm border rounded-[20px] mt-1 focus:outline-none"
                         style={{
                           borderColor: '#E8E4DE',
                           backgroundColor: 'white',
@@ -666,7 +666,7 @@ function BodelningContent() {
                           })
                         }
                         placeholder="0"
-                        className="w-full px-3 py-2 text-sm border rounded-lg mt-1 focus:outline-none"
+                        className="w-full px-3 py-2 text-sm border rounded-[20px] mt-1 focus:outline-none"
                         style={{
                           borderColor: '#E8E4DE',
                           backgroundColor: 'white',
@@ -688,7 +688,7 @@ function BodelningContent() {
                           })
                         }
                         placeholder="0"
-                        className="w-full px-3 py-2 text-sm border rounded-lg mt-1 focus:outline-none"
+                        className="w-full px-3 py-2 text-sm border rounded-[20px] mt-1 focus:outline-none"
                         style={{
                           borderColor: '#E8E4DE',
                           backgroundColor: 'white',
@@ -709,7 +709,7 @@ function BodelningContent() {
                           type: 'asset',
                         });
                       }}
-                      className="flex-1 py-2 px-3 text-sm rounded-lg border transition-all"
+                      className="flex-1 py-2 px-3 text-sm rounded-[20px] border transition-all"
                       style={{
                         borderColor: '#E8E4DE',
                         color: '#2C3E3A',
@@ -720,7 +720,7 @@ function BodelningContent() {
                     <button
                       onClick={addGiftorattsgods}
                       disabled={!newGiftorattsgods.description}
-                      className={`flex-1 py-2 px-3 text-sm rounded-lg text-white font-medium transition-all ${
+                      className={`flex-1 py-2 px-3 text-sm rounded-[20px] text-white font-medium transition-all ${
                         !newGiftorattsgods.description ? 'opacity-50 cursor-not-allowed' : ''
                       }`}
                       style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}
@@ -738,7 +738,7 @@ function BodelningContent() {
                 onClick={() => {
                   setCurrentStep(1);
                 }}
-                className="flex-1 py-3 rounded-xl border-2 text-base font-medium transition-all"
+                className="flex-1 py-3 rounded-[20px] border-2 text-base font-medium transition-all"
                 style={{
                   borderColor: '#E8E4DE',
                   color: '#2C3E3A',
@@ -760,7 +760,7 @@ function BodelningContent() {
                   }
                 }}
                 disabled={!canProceedStep2()}
-                className={`flex-1 py-3 rounded-xl text-white font-medium flex items-center justify-center gap-2 transition-all ${
+                className={`flex-1 py-3 rounded-[20px] text-white font-medium flex items-center justify-center gap-2 transition-all ${
                   !canProceedStep2() ? 'opacity-50 cursor-not-allowed' : 'hover:shadow-lg'
                 }`}
                 style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}
@@ -775,13 +775,13 @@ function BodelningContent() {
         {currentStep === 3 && (
           <div className="space-y-6 mb-6">
             <div
-              className="rounded-2xl p-5"
+              className="rounded-[24px] p-5"
               style={{ backgroundColor: 'white', borderColor: '#E8E4DE', borderWidth: '1px' }}
             >
               <div className="flex items-start gap-3 mb-4">
                 <HelpCircle className="w-5 h-5 mt-0.5" style={{ color: '#7A9E7E' }} />
                 <div className="flex-1">
-                  <h2 className="font-semibold text-base" style={{ color: '#2C3E3A' }}>
+                  <h2 className="font-display text-base" style={{ color: '#2C3E3A' }}>
                     Enskild egendom
                   </h2>
                   <p className="text-sm mt-2" style={{ color: '#6B5D55' }}>
@@ -792,10 +792,10 @@ function BodelningContent() {
 
               {/* Info tooltip */}
               <div
-                className="rounded-lg p-3 mb-5"
+                className="rounded-[20px] p-3 mb-5"
                 style={{ backgroundColor: '#F7F5F0' }}
               >
-                <p className="text-xs font-semibold mb-2" style={{ color: '#8B8680' }}>
+                <p className="text-xs font-display mb-2" style={{ color: '#8B8680' }}>
                   JURIDISK INFO: Enskild egendom
                 </p>
                 <ul className="text-xs space-y-1" style={{ color: '#6B5D55' }}>
@@ -814,7 +814,7 @@ function BodelningContent() {
               {/* Show if no äktenskapsförord */}
               {aktenskapsForord.exists === false && (
                 <div
-                  className="rounded-lg p-3 mb-5"
+                  className="rounded-[20px] p-3 mb-5"
                   style={{ backgroundColor: '#E8F5E9' }}
                 >
                   <p className="text-sm" style={{ color: '#2E7D32' }}>
@@ -833,7 +833,7 @@ function BodelningContent() {
                     {enskildeEgendomList.map((item) => (
                       <div
                         key={item.id}
-                        className="flex items-center justify-between p-3 rounded-lg"
+                        className="flex items-center justify-between p-3 rounded-[20px]"
                         style={{ backgroundColor: '#F7F5F0' }}
                       >
                         <div className="flex-1">
@@ -846,7 +846,7 @@ function BodelningContent() {
                         </div>
                         <button
                           onClick={() => removeEnskildEgendom(item.id)}
-                          className="p-1.5 rounded-lg transition-colors"
+                          className="p-1.5 rounded-[20px] transition-colors"
                           style={{ color: '#8B8680' }}
                           onMouseEnter={(e) => {
                             (e.currentTarget as HTMLElement).style.backgroundColor = '#FFE8E8';
@@ -871,7 +871,7 @@ function BodelningContent() {
                   {!showAddEnskildEgendom ? (
                     <button
                       onClick={() => setShowAddEnskildEgendom(true)}
-                      className="w-full py-3 px-4 rounded-xl font-medium text-base flex items-center justify-center gap-2 border-2 transition-all"
+                      className="w-full py-3 px-4 rounded-[20px] font-medium text-base flex items-center justify-center gap-2 border-2 transition-all"
                       style={{
                         borderColor: '#E8E4DE',
                         color: '#7A9E7E',
@@ -888,7 +888,7 @@ function BodelningContent() {
                     </button>
                   ) : (
                     <div
-                      className="p-4 rounded-xl space-y-3 mb-4"
+                      className="p-4 rounded-[20px] space-y-3 mb-4"
                       style={{ backgroundColor: '#F7F5F0' }}
                     >
                       <label className="block">
@@ -902,7 +902,7 @@ function BodelningContent() {
                             setNewEnskildEgendom({ ...newEnskildEgendom, description: e.target.value })
                           }
                           placeholder="T.ex. Fritidshus på Öland, Arv från mormor"
-                          className="w-full px-3 py-2 text-sm border rounded-lg mt-1 focus:outline-none"
+                          className="w-full px-3 py-2 text-sm border rounded-[20px] mt-1 focus:outline-none"
                           style={{
                             borderColor: '#E8E4DE',
                             backgroundColor: 'white',
@@ -923,7 +923,7 @@ function BodelningContent() {
                               owner: e.target.value as 'spouse1' | 'spouse2',
                             })
                           }
-                          className="w-full px-3 py-2 text-sm border rounded-lg mt-1 focus:outline-none"
+                          className="w-full px-3 py-2 text-sm border rounded-[20px] mt-1 focus:outline-none"
                           style={{
                             borderColor: '#E8E4DE',
                             backgroundColor: 'white',
@@ -946,7 +946,7 @@ function BodelningContent() {
                             setNewEnskildEgendom({ ...newEnskildEgendom, value: e.target.value })
                           }
                           placeholder="0"
-                          className="w-full px-3 py-2 text-sm border rounded-lg mt-1 focus:outline-none"
+                          className="w-full px-3 py-2 text-sm border rounded-[20px] mt-1 focus:outline-none"
                           style={{
                             borderColor: '#E8E4DE',
                             backgroundColor: 'white',
@@ -965,7 +965,7 @@ function BodelningContent() {
                               value: '',
                             });
                           }}
-                          className="flex-1 py-2 px-3 text-sm rounded-lg border transition-all"
+                          className="flex-1 py-2 px-3 text-sm rounded-[20px] border transition-all"
                           style={{
                             borderColor: '#E8E4DE',
                             color: '#2C3E3A',
@@ -976,7 +976,7 @@ function BodelningContent() {
                         <button
                           onClick={addEnskildEgendom}
                           disabled={!newEnskildEgendom.description || !newEnskildEgendom.value}
-                          className={`flex-1 py-2 px-3 text-sm rounded-lg text-white font-medium transition-all ${
+                          className={`flex-1 py-2 px-3 text-sm rounded-[20px] text-white font-medium transition-all ${
                             !newEnskildEgendom.description || !newEnskildEgendom.value
                               ? 'opacity-50 cursor-not-allowed'
                               : ''
@@ -998,7 +998,7 @@ function BodelningContent() {
                 onClick={() => {
                   setCurrentStep(2);
                 }}
-                className="flex-1 py-3 rounded-xl border-2 text-base font-medium transition-all"
+                className="flex-1 py-3 rounded-[20px] border-2 text-base font-medium transition-all"
                 style={{
                   borderColor: '#E8E4DE',
                   color: '#2C3E3A',
@@ -1020,7 +1020,7 @@ function BodelningContent() {
                   }
                 }}
                 disabled={!canProceedStep3()}
-                className={`flex-1 py-3 rounded-xl text-white font-medium flex items-center justify-center gap-2 transition-all ${
+                className={`flex-1 py-3 rounded-[20px] text-white font-medium flex items-center justify-center gap-2 transition-all ${
                   !canProceedStep3() ? 'opacity-50 cursor-not-allowed' : 'hover:shadow-lg'
                 }`}
                 style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}
@@ -1035,13 +1035,13 @@ function BodelningContent() {
         {currentStep === 4 && (
           <div className="space-y-6 mb-6">
             <div
-              className="rounded-2xl p-5"
+              className="rounded-[24px] p-5"
               style={{ backgroundColor: 'white', borderColor: '#E8E4DE', borderWidth: '1px' }}
             >
               <div className="flex items-start gap-3 mb-4">
                 <Scale className="w-5 h-5 mt-0.5" style={{ color: '#7A9E7E' }} />
                 <div className="flex-1">
-                  <h2 className="font-semibold text-base" style={{ color: '#2C3E3A' }}>
+                  <h2 className="font-display text-base" style={{ color: '#2C3E3A' }}>
                     Bodelningsberäkning
                   </h2>
                   <p className="text-sm mt-2" style={{ color: '#6B5D55' }}>
@@ -1403,7 +1403,7 @@ function BodelningContent() {
     const dodsboAndel = totalSamboEgendom - samboAndel;
 
     return (
-      <div className="flex flex-col px-5 py-6 pb-24" style={{ backgroundColor: '#F7F5F0' }}>
+      <div className="flex flex-col px-6 py-8 pb-28" style={{ backgroundColor: '#F7F5F0' }}>
         {/* Header */}
         <div className="flex items-center gap-3 mb-6">
           <Link

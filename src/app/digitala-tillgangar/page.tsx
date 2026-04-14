@@ -38,7 +38,7 @@ function CollapsibleSection({
         onClick={onToggle}
         className="w-full flex items-center justify-between p-4 hover:opacity-70 transition-opacity"
       >
-        <h3 className="text-base font-semibold text-primary">{title}</h3>
+        <h3 className="text-base font-display text-primary">{title}</h3>
         <ChevronDown
           className="w-5 h-5 text-muted transition-transform"
           style={{ transform: expanded ? 'rotate(180deg)' : 'rotate(0deg)' }}
@@ -178,7 +178,7 @@ function Content() {
           </Link>
           <div className="flex items-center gap-2">
             <Smartphone className="w-6 h-6 text-accent" />
-            <h1 className="text-2xl font-bold text-primary">Digitala tillgångar & konton</h1>
+            <h1 className="text-2xl font-display text-primary">Digitala tillgångar & konton</h1>
           </div>
         </div>
 
@@ -216,7 +216,7 @@ function Content() {
               />
             </div>
 
-            <div className="p-3 rounded-lg" style={{ background: 'var(--accent-soft)', borderLeft: '4px solid var(--accent)' }}>
+            <div className="p-3 rounded-lg" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02))', border: '1px solid rgba(122,158,126,0.15)' }}>
               <p className="text-sm text-primary">
                 <strong>Viktigt:</strong> Utan lösenord eller seed phrase kan krypto vara oåtkomligt. Kontakta börsen med dödsbevis — vissa kan hjälpa.
               </p>
@@ -305,7 +305,7 @@ function Content() {
               />
             </div>
 
-            <div className="p-3 rounded-lg" style={{ background: 'var(--bg-card)', borderLeft: '4px solid var(--accent)' }}>
+            <div className="p-3 rounded-lg" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02))', border: '1px solid rgba(122,158,126,0.15)' }}>
               <p className="text-sm text-primary">
                 <strong>Tips:</strong> Skärmdumpa viktiga meddelanden och foton innan du stänger konton — de kan vara värdefulla minnen.
               </p>
@@ -359,7 +359,7 @@ function Content() {
               />
             </div>
 
-            <div className="p-3 rounded-lg" style={{ background: 'var(--bg-card)', borderLeft: '4px solid var(--accent)' }}>
+            <div className="p-3 rounded-lg" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02))', border: '1px solid rgba(122,158,126,0.15)' }}>
               <p className="text-sm text-primary">
                 <strong>Så gör du:</strong> Kontrollera bankutdrag för månatliga dragningar. Avsluta varje tjänst via deras support med dödsbevis.
               </p>
@@ -432,7 +432,7 @@ function Content() {
               />
             </div>
 
-            <div className="p-3 rounded-lg" style={{ background: 'var(--bg-card)', borderLeft: '4px solid var(--accent)' }}>
+            <div className="p-3 rounded-lg" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02))', border: '1px solid rgba(122,158,126,0.15)' }}>
               <p className="text-sm text-primary">
                 <strong>Viktigt:</strong> Kontrollera domänregistratören för förnyelsedatum. Utan förnyelse kan domänen försvinna eller tas över av andra.
               </p>

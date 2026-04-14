@@ -135,11 +135,11 @@ function Content() {
       <div className="bg-background border-b" style={{ borderColor: '#E8E4DE' }}>
         <div className="max-w-2xl mx-auto px-4 py-6">
           <div className="flex items-center gap-3 mb-4">
-            <Link href="/dashboard" className="text-primary hover:text-accent transition">
-              <ArrowLeft className="w-5 h-5" />
+            <Link href="/dashboard" className="p-2 hover:bg-gray-100 rounded-full transition-colors inline-flex">
+              <ArrowLeft className="w-5 h-5 text-primary" />
             </Link>
             <Newspaper className="w-6 h-6 text-accent" />
-            <h1 className="text-2xl font-bold text-primary">{t('Dödsannons', 'Obituary')}</h1>
+            <h1 className="text-2xl font-display text-primary">{t('Dödsannons', 'Obituary')}</h1>
           </div>
           {/* Progress indicator */}
           <div className="flex gap-2">
@@ -149,11 +149,12 @@ function Content() {
                 onClick={() => i <= step && setStep(i)}
                 className={`text-xs font-medium px-3 py-1 rounded-full transition ${
                   i === step
-                    ? 'bg-accent text-white'
+                    ? 'text-white'
                     : i < step
                     ? 'bg-accent/20 text-accent'
                     : 'bg-gray-100 text-gray-500'
                 }`}
+                style={i === step ? { background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' } : {}}
               >
                 {i + 1}
               </button>
@@ -167,7 +168,7 @@ function Content() {
         {/* Step 0: Uppgifter om den avlidne */}
         {step === 0 && (
           <div className="card space-y-4">
-            <h2 className="text-xl font-bold text-primary">{t('Uppgifter om den avlidne', 'Information about deceased')}</h2>
+            <h2 className="text-xl font-display text-primary">{t('Uppgifter om den avlidne', 'Information about deceased')}</h2>
             <MikeRossTip text={t('En dödsannons publiceras i tidningen för att informera om dödsfallet. Det finns inga krav på att publicera en, men det är vanligt och uppskattas av vänner och bekanta som kanske inte fått reda på det direkt.', 'An obituary is published in the newspaper to announce the death. There is no requirement to publish one, but it is common and appreciated by friends and acquaintances who may not have heard the news directly.')} />
 
             <div>
@@ -177,7 +178,7 @@ function Content() {
                 value={data.namn}
                 onChange={e => handleInputChange('namn', e.target.value)}
                 placeholder={t('Förnamn och efternamn', 'First and last name')}
-                className="w-full px-4 py-3 border border-gray-200 rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
+                className="w-full px-4 py-3 border border-gray-200 rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
               />
             </div>
 
@@ -188,7 +189,7 @@ function Content() {
                 value={data.fdd}
                 onChange={e => handleInputChange('fdd', e.target.value)}
                 placeholder={t('t.ex. 15 januari 1940', 'e.g. January 15, 1940')}
-                className="w-full px-4 py-3 border border-gray-200 rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
+                className="w-full px-4 py-3 border border-gray-200 rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
               />
             </div>
 
@@ -199,7 +200,7 @@ function Content() {
                 value={data.avliden}
                 onChange={e => handleInputChange('avliden', e.target.value)}
                 placeholder={t('t.ex. 8 april 2024', 'e.g. April 8, 2024')}
-                className="w-full px-4 py-3 border border-gray-200 rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
+                className="w-full px-4 py-3 border border-gray-200 rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
               />
             </div>
 
@@ -210,7 +211,7 @@ function Content() {
                 value={data.ort}
                 onChange={e => handleInputChange('ort', e.target.value)}
                 placeholder={t('Där de bodde', 'Where they lived')}
-                className="w-full px-4 py-3 border border-gray-200 rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
+                className="w-full px-4 py-3 border border-gray-200 rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
               />
             </div>
           </div>
@@ -219,7 +220,7 @@ function Content() {
         {/* Step 1: Välj mall */}
         {step === 1 && (
           <div className="card space-y-4">
-            <h2 className="text-xl font-bold text-primary">{t('Välj mall', 'Choose template')}</h2>
+            <h2 className="text-xl font-display text-primary">{t('Välj mall', 'Choose template')}</h2>
             <MikeRossTip text={t('Den klassiska mallen passar de flesta. Om du väljer \'Personlig\' kan du skriva helt fritt. Kors (✝) är valfritt — det är vanligt men inte obligatoriskt.', 'The classic template works for most people. If you choose \'Personal\' you can write freely. Cross (✝) is optional — it\'s common but not required.')} />
 
             <div className="grid gap-3">
@@ -229,11 +230,12 @@ function Content() {
                   onClick={() => handleInputChange('template', key)}
                   className={`p-4 rounded-xl border-2 text-left transition ${
                     data.template === key
-                      ? 'border-accent bg-accent/5'
+                      ? 'bg-accent/5'
                       : 'border-gray-200 bg-white hover:border-accent/50'
                   }`}
+                  style={data.template === key ? { borderColor: '#7A9E7E', background: 'rgba(122,158,126,0.05)' } : {}}
                 >
-                  <h3 className="font-bold text-primary mb-2">{template.label}</h3>
+                  <h3 className="font-display text-primary mb-2">{template.label}</h3>
                   <p className="text-sm text-muted-light mb-2">{template.description}</p>
                   <p className="text-sm text-primary/70 whitespace-pre-line font-serif italic">{template.preview}</p>
                 </button>
@@ -245,7 +247,7 @@ function Content() {
         {/* Step 2: Anpassa text */}
         {step === 2 && (
           <div className="card space-y-4">
-            <h2 className="text-xl font-bold text-primary">{t('Anpassa text', 'Customize text')}</h2>
+            <h2 className="text-xl font-display text-primary">{t('Anpassa text', 'Customize text')}</h2>
             <MikeRossTip text={t('Sörjande listas vanligtvis i ordningen: make/maka, barn, barnbarn. Du behöver inte använda efternamn. Det är vanligt att skriva \'Begravningen har ägt rum\' eller ange datum och plats.', 'Mourners are usually listed in order: spouse, children, grandchildren. You don\'t need to use surnames. It\'s common to write \'The funeral has taken place\' or specify date and location.')} />
 
             {data.template === 'klassisk' && (
@@ -276,7 +278,7 @@ function Content() {
                 onChange={e => handleInputChange('sorjande', e.target.value)}
                 placeholder={t('Make/Maka, barn, barnbarn&#10;t.ex. Anna&#10;Erik och Eva med familjer&#10;Barnbarnen', 'Spouse, children, grandchildren&#10;e.g. Anna&#10;Erik and Eva with families&#10;The grandchildren')}
                 rows={4}
-                className="w-full px-4 py-3 border border-gray-200 rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
+                className="w-full px-4 py-3 border border-gray-200 rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
               />
             </div>
 
@@ -287,7 +289,7 @@ function Content() {
                 value={data.begravning}
                 onChange={e => handleInputChange('begravning', e.target.value)}
                 placeholder={t('t.ex. Begravningen äger rum den 15 maj i Hedvig Eleonora kyrka', 'e.g. The funeral takes place on May 15 at Hedvig Eleonora Church')}
-                className="w-full px-4 py-3 border border-gray-200 rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
+                className="w-full px-4 py-3 border border-gray-200 rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
               />
             </div>
 
@@ -307,7 +309,7 @@ function Content() {
                   value={data.valgörenhet}
                   onChange={e => handleInputChange('valgörenhet', e.target.value)}
                   placeholder={t('t.ex. Röda Korset eller Cancerfonden', 'e.g. Red Cross or Cancer Foundation')}
-                  className="w-full px-4 py-3 border border-gray-200 rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
+                  className="w-full px-4 py-3 border border-gray-200 rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
                 />
               )}
             </div>
@@ -317,7 +319,7 @@ function Content() {
         {/* Step 3: Granska & kopiera */}
         {step === 3 && (
           <div className="card space-y-4">
-            <h2 className="text-xl font-bold text-primary">{t('Granska & kopiera', 'Review & copy')}</h2>
+            <h2 className="text-xl font-display text-primary">{t('Granska & kopiera', 'Review & copy')}</h2>
             <MikeRossTip text={t('En dödsannons i DN eller SvD kostar ca 3 000–8 000 kr beroende på storlek. Lokaltidningar är ofta billigare. Ring tidningens annonsavdelning — de hjälper dig med allt.', 'An obituary in DN or SvD costs approximately 3,000–8,000 SEK depending on size. Local newspapers are often cheaper. Call the newspaper\'s advertisement department — they help with everything.')} />
 
             {/* Preview */}
@@ -337,7 +339,8 @@ function Content() {
             <div className="space-y-3 pt-4">
               <button
                 onClick={handleCopyText}
-                className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-accent text-white rounded-xl font-medium hover:bg-accent/90 transition"
+                className="w-full flex items-center justify-center gap-2 px-4 py-3 text-white rounded-xl font-medium hover:opacity-90 transition"
+                style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}
               >
                 {copied ? (
                   <>
@@ -363,7 +366,7 @@ function Content() {
       </div>
 
       {/* Navigation */}
-      <div className="flex gap-3 mt-6 mb-4">
+      <div className="max-w-2xl mx-auto px-4 flex gap-3 mt-6 mb-4">
         {step > 0 && (
           <button
             onClick={() => setStep(step - 1)}

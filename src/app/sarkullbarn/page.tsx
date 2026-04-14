@@ -60,7 +60,7 @@ export default function SarkullbarnPage() {
   const [expandedFAQ, setExpandedFAQ] = useState<number | null>(0);
 
   return (
-    <div className="flex flex-col px-5 py-6 pb-24">
+    <div className="flex flex-col px-6 py-8 pb-28">
       {/* Header */}
       <div className="flex items-center gap-3 mb-6">
         <Link
@@ -71,7 +71,7 @@ export default function SarkullbarnPage() {
           <ArrowLeft className="w-5 h-5 text-primary" />
         </Link>
         <div>
-          <h1 className="text-2xl font-semibold text-primary">{t('Särkullbarn och arv', 'Non-mutual Children and Inheritance')}</h1>
+          <h1 className="text-2xl font-display text-primary">{t('Särkullbarn och arv', 'Non-mutual Children and Inheritance')}</h1>
           <p className="text-muted text-sm">{t('Speciella rättigheter i arvskiftet', 'Special rights in estate distribution')}</p>
         </div>
       </div>
@@ -92,10 +92,10 @@ export default function SarkullbarnPage() {
       </div>
 
       {/* Key rights section */}
-      <div className="card border-l-4 border-accent mb-6">
+      <div className="card mb-6" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02))', border: '1px solid rgba(122,158,126,0.15)' }}>
         <div className="flex items-center gap-2 mb-4">
           <Baby className="w-5 h-5 text-accent" />
-          <h2 className="font-semibold text-primary">Särkullbarns speciella rättigheter</h2>
+          <h2 className="font-display text-primary">Särkullbarns speciella rättigheter</h2>
         </div>
 
         <div className="space-y-4">
@@ -139,7 +139,7 @@ export default function SarkullbarnPage() {
 
       {/* Step-by-step guide */}
       <div className="mb-6">
-        <h2 className="font-semibold text-primary mb-3 text-sm">Praktiska steg för särkullbarn</h2>
+        <h2 className="font-display text-primary mb-3 text-sm">Praktiska steg för särkullbarn</h2>
         <div className="space-y-3">
           <div className="card">
             <div className="flex gap-3">
@@ -215,7 +215,7 @@ export default function SarkullbarnPage() {
 
       {/* Tips section */}
       <div className="card mb-6">
-        <h3 className="font-semibold text-primary mb-3 text-sm">Tips för särkullbarn</h3>
+        <h3 className="font-display text-primary mb-3 text-sm">Tips för särkullbarn</h3>
         <ul className="space-y-2">
           <li className="flex gap-2 text-sm text-primary/70">
             <span className="text-accent font-bold mt-0.5">•</span>
@@ -242,7 +242,7 @@ export default function SarkullbarnPage() {
 
       {/* FAQ Section */}
       <div className="mb-6">
-        <h2 className="font-semibold text-primary mb-3 text-sm">Vanliga frågor</h2>
+        <h2 className="font-display text-primary mb-3 text-sm">Vanliga frågor</h2>
         <div className="space-y-2">
           {FAQ_ITEMS.map((item, index) => (
             <button
@@ -275,7 +275,7 @@ export default function SarkullbarnPage() {
       </Link>
 
       {/* Legal disclaimer */}
-      <div className="bg-primary-lighter/30 rounded-card p-4 mb-4">
+      <div className="bg-primary-lighter/30 rounded-[20px] p-4 mb-4">
         <p className="text-xs text-muted leading-relaxed">
           Denna information är allmän vägledning baserad på ärvdabalken. Särkullbarns rättigheter kan vara komplexa
           och varierar beroende på testamente, familjesituation och andra faktorer. För bindande juridisk rådgivning

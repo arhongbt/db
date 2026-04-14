@@ -68,7 +68,7 @@ export default function InviteAcceptPage() {
         {status === 'found' && (
           <>
             <Users className="w-16 h-16 text-accent mx-auto mb-4" />
-            <h1 className="text-2xl font-semibold text-primary mb-2">
+            <h1 className="text-2xl font-display text-primary mb-2">
               Du har blivit inbjuden
             </h1>
             <p className="text-muted mb-6">
@@ -96,7 +96,7 @@ export default function InviteAcceptPage() {
         {status === 'accepted' && (
           <>
             <CheckCircle2 className="w-16 h-16 text-success mx-auto mb-4" />
-            <h1 className="text-2xl font-semibold text-primary mb-2">
+            <h1 className="text-2xl font-display text-primary mb-2">
               Välkommen!
             </h1>
             <p className="text-muted mb-6">
@@ -111,7 +111,7 @@ export default function InviteAcceptPage() {
         {status === 'error' && (
           <>
             <AlertTriangle className="w-16 h-16 text-warn mx-auto mb-4" />
-            <h1 className="text-2xl font-semibold text-primary mb-2">
+            <h1 className="text-2xl font-display text-primary mb-2">
               Något gick fel
             </h1>
             <p className="text-muted mb-6">{errorMsg}</p>

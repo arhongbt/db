@@ -77,10 +77,10 @@ function ForsakringarContent() {
   };
 
   return (
-    <div className="flex flex-col px-5 py-6 pb-24">
+    <div className="flex flex-col px-6 py-8 pb-28">
       <div className="flex items-center justify-between mb-4">
         <div>
-          <h1 className="text-2xl font-semibold text-primary">{t('Försäkringar', 'Insurances')}</h1>
+          <h1 className="text-2xl font-display text-primary">{t('Försäkringar', 'Insurances')}</h1>
           <p className="text-muted text-sm mt-1">
             {state.forsakringar.length > 0
               ? t(`${contacted}/${state.forsakringar.length} kontaktade`, `${contacted}/${state.forsakringar.length} contacted`)
@@ -89,7 +89,8 @@ function ForsakringarContent() {
         </div>
         <button
           onClick={() => setShowForm(true)}
-          className="w-12 h-12 bg-accent text-white rounded-full flex items-center justify-center shadow-md"
+          className="w-12 h-12 text-white rounded-full flex items-center justify-center shadow-md"
+          style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}
           aria-label={t('Lägg till försäkring', 'Add insurance')}
         >
           <Plus className="w-6 h-6" />
@@ -110,7 +111,7 @@ function ForsakringarContent() {
       </div>
 
       {/* Important tip about employer */}
-      <div className="info-box mb-6 border-l-4 border-accent">
+      <div className="info-box mb-6" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02))', border: '1px solid rgba(122,158,126,0.15)' }}>
         <div className="flex gap-2">
           <Shield className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
           <div>
@@ -124,20 +125,20 @@ function ForsakringarContent() {
 
       {/* Insurance categories */}
       <div className="mb-6">
-        <h2 className="text-sm font-semibold text-muted uppercase tracking-wide mb-3">
+        <h2 className="text-sm font-display text-muted uppercase tracking-wide mb-3">
           {t('Vilka försäkringar ingår i dödsboet?', 'Which insurances are part of the estate?')}
         </h2>
         <div className="space-y-3">
-          <div className="card bg-success/5 border-l-4 border-success">
-            <p className="text-sm font-semibold text-primary mb-2">✓ {t('Försäkringar som ingår i dödsboet', 'Insurances that are part of the estate')}</p>
+          <div className="card bg-success/5" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(34,197,94,0.06), rgba(34,197,94,0.02))', border: '1px solid rgba(34,197,94,0.15)' }}>
+            <p className="text-sm font-display text-primary mb-2">✓ {t('Försäkringar som ingår i dödsboet', 'Insurances that are part of the estate')}</p>
             <ul className="text-sm text-primary/80 space-y-1">
               <li>• <strong>Hemförsäkring</strong> — täcker sakskador på huset/lägenheten</li>
               <li>• <strong>Bilförsäkring</strong> — för fordon i dödsboet</li>
               <li>• <strong>Kapitalförsäkring utan förmånstagare</strong> — blir en del av dödsboet</li>
             </ul>
           </div>
-          <div className="card bg-warn/5 border-l-4 border-warn">
-            <p className="text-sm font-semibold text-primary mb-2">✗ {t('Försäkringar som INTE ingår i dödsboet', 'Insurances that do NOT belong to the estate')}</p>
+          <div className="card bg-warn/5" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(196,149,106,0.06), rgba(196,149,106,0.02))', border: '1px solid rgba(196,149,106,0.15)' }}>
+            <p className="text-sm font-display text-primary mb-2">✗ {t('Försäkringar som INTE ingår i dödsboet', 'Insurances that do NOT belong to the estate')}</p>
             <ul className="text-sm text-primary/80 space-y-1">
               <li>• <strong>Livförsäkring med förmånstagare</strong> — går direkt till förmånstagaren</li>
               <li>• <strong>Grupplivförsäkring (GFL)</strong> — från arbetsgivare, till förmånstagare</li>
@@ -150,7 +151,7 @@ function ForsakringarContent() {
       {/* Types checklist */}
       {!showForm && (
         <div className="mb-6">
-          <h2 className="text-sm font-semibold text-muted uppercase tracking-wide mb-3">
+          <h2 className="text-sm font-display text-muted uppercase tracking-wide mb-3">
             {t('Checklista: Försäkringar att kolla', 'Checklist: Insurances to check')}
           </h2>
           <div className="flex flex-col gap-2">
@@ -198,7 +199,7 @@ function ForsakringarContent() {
       {/* Added försäkringar */}
       {state.forsakringar.length > 0 && !showForm && (
         <div className="mb-6">
-          <h2 className="text-sm font-semibold text-muted uppercase tracking-wide mb-3">
+          <h2 className="text-sm font-display text-muted uppercase tracking-wide mb-3">
             {t('Tillagda försäkringar', 'Added insurances')}
           </h2>
           <div className="flex flex-col gap-3">
@@ -254,8 +255,8 @@ function ForsakringarContent() {
 
       {/* Add form */}
       {showForm && (
-        <div className="card border-2 border-accent">
-          <h3 className="text-lg font-semibold text-primary mb-4">{t('Ny försäkring', 'New insurance')}</h3>
+        <div className="card" style={{ borderRadius: '28px' }}>
+          <h3 className="text-lg font-display text-primary mb-4">{t('Ny försäkring', 'New insurance')}</h3>
 
           <div className="mb-4">
             <span className="text-sm font-medium text-primary mb-2 block">{t('Typ', 'Type')}</span>
@@ -264,7 +265,7 @@ function ForsakringarContent() {
                 <button
                   key={ft.value}
                   onClick={() => setFType(ft.value)}
-                  className={`py-2 px-3 rounded-card text-sm font-medium border-2 transition-colors ${
+                  className={`py-2 px-3 rounded-full text-sm font-medium border-2 transition-colors ${
                     fType === ft.value
                       ? 'border-accent bg-primary-lighter/30 text-primary'
                       : 'border-[#E8E4DE] text-muted'
@@ -283,7 +284,7 @@ function ForsakringarContent() {
               value={company}
               onChange={(e) => { setCompany(e.target.value); setFormErrors((p) => ({ ...p, company: '' })); }}
               placeholder={t('T.ex. Folksam, If, Trygg-Hansa', 'E.g. Folksam, If, Trygg-Hansa')}
-              className={`w-full min-h-touch px-4 py-3 text-base border-2 rounded-card focus:outline-none bg-white ${formErrors.company ? 'border-warn' : 'border-[#E8E4DE] focus:border-accent'}`}
+              className={`w-full min-h-touch px-4 py-3 text-base border-2 rounded-[20px] focus:outline-none bg-white ${formErrors.company ? 'border-warn' : 'border-[#E8E4DE] focus:border-accent'}`}
               autoFocus
             />
             {formErrors.company && <span className="text-xs text-warn mt-1 block">{formErrors.company}</span>}
@@ -296,7 +297,7 @@ function ForsakringarContent() {
               value={policyNr}
               onChange={(e) => setPolicyNr(e.target.value)}
               placeholder="Valfritt"
-              className="w-full min-h-touch px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-card focus:border-accent focus:outline-none"
+              className="w-full min-h-touch px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-[20px] focus:border-accent focus:outline-none"
             />
           </label>
 
@@ -307,7 +308,7 @@ function ForsakringarContent() {
               value={beneficiary}
               onChange={(e) => setBeneficiary(e.target.value)}
               placeholder={t('Dödsboet, make/maka, barn...', 'The estate, spouse, children...')}
-              className="w-full min-h-touch px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-card focus:border-accent focus:outline-none"
+              className="w-full min-h-touch px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-[20px] focus:border-accent focus:outline-none"
             />
           </label>
 
@@ -318,7 +319,7 @@ function ForsakringarContent() {
               value={value}
               onChange={(e) => { setValue(e.target.value); setFormErrors((p) => ({ ...p, value: '' })); }}
               placeholder="0"
-              className={`w-full min-h-touch px-4 py-3 text-base border-2 rounded-card focus:outline-none bg-white ${formErrors.value ? 'border-warn' : 'border-[#E8E4DE] focus:border-accent'}`}
+              className={`w-full min-h-touch px-4 py-3 text-base border-2 rounded-[20px] focus:outline-none bg-white ${formErrors.value ? 'border-warn' : 'border-[#E8E4DE] focus:border-accent'}`}
             />
             {formErrors.value && <span className="text-xs text-warn mt-1 block">{formErrors.value}</span>}
           </label>

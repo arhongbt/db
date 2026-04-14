@@ -112,7 +112,7 @@ export default function LandingPage() {
       {/* Hero — empathetic, calm */}
       <section className="flex flex-col justify-center px-5 pt-10 pb-8">
         <DoveLogo size={48} className="mb-6" />
-        <h1 className="text-2xl sm:text-4xl font-bold text-primary leading-tight mb-3">
+        <h1 className="text-2xl sm:text-4xl font-display text-primary leading-tight mb-3">
           {t('Hantera dödsboet tryggt och enkelt', 'Manage the estate safely and simply')}
         </h1>
         <p className="text-base text-muted leading-relaxed mb-5">
@@ -177,7 +177,7 @@ export default function LandingPage() {
 
       {/* Features Grid — 6 cards */}
       <section className="px-5 pb-6">
-        <h2 className="text-xl font-bold text-primary mb-4">
+        <h2 className="text-xl font-display text-primary mb-4">
           {t('Det här appen gör för dig', 'What this app does for you')}
         </h2>
         <div className="grid grid-cols-2 gap-3 sm:gap-4">
@@ -226,7 +226,7 @@ export default function LandingPage() {
 
       {/* How it works */}
       <section className="px-5 pb-6">
-        <h2 className="text-xl font-bold text-primary mb-4">
+        <h2 className="text-xl font-display text-primary mb-4">
           {t('Så fungerar det', 'How it works')}
         </h2>
         <div className="flex flex-col gap-4">
@@ -262,7 +262,7 @@ export default function LandingPage() {
 
       {/* Pricing Preview */}
       <section className="px-5 pb-6">
-        <h2 className="text-xl font-bold text-primary mb-4">
+        <h2 className="text-xl font-display text-primary mb-4">
           {t('Enkla priser', 'Simple pricing')}
         </h2>
         <div className="grid grid-cols-1 gap-3 mb-4">
@@ -365,7 +365,7 @@ export default function LandingPage() {
 
       {/* Testimonials */}
       <section className="px-5 pb-6">
-        <h2 className="text-xl font-bold text-primary mb-4">
+        <h2 className="text-xl font-display text-primary mb-4">
           {t('Familjer som använder appen', 'Families using the app')}
         </h2>
         <div className="grid grid-cols-1 gap-4">
@@ -408,7 +408,7 @@ export default function LandingPage() {
       {/* Trust signals */}
       <section className="px-5 pb-6">
         <div className="rounded-2xl border p-5" style={{ background: 'var(--bg-card)', borderColor: 'var(--border)' }}>
-          <h3 className="font-semibold text-primary mb-4">
+          <h3 className="font-display text-primary mb-4">
             {t('Du är i trygga händer', 'You are in safe hands')}
           </h3>
           <div className="flex flex-col gap-3">
@@ -456,7 +456,7 @@ export default function LandingPage() {
 
       {/* FAQ — SEO rich */}
       <section className="px-5 pb-6">
-        <h2 className="text-2xl font-bold text-primary mb-4">
+        <h2 className="text-2xl font-display text-primary mb-4">
           {t('Vanliga frågor', 'Frequently asked questions')}
         </h2>
         <div className="flex flex-col gap-3">
@@ -511,7 +511,7 @@ export default function LandingPage() {
       {/* Final CTA — soft */}
       <section className="px-5 pb-6">
         <div className="text-center mb-6">
-          <h2 className="text-2xl font-bold text-primary mb-2">
+          <h2 className="text-2xl font-display text-primary mb-2">
             {t('Börja idag — det är gratis', 'Start today — it\'s free')}
           </h2>
           <p className="text-muted text-sm">

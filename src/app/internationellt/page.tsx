@@ -281,19 +281,19 @@ function StepGuide() {
       content: (
         <div className="space-y-3">
           <div className="space-y-2">
-            <div className="border-l-4 border-accent pl-3">
+            <div className="pl-3" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(139,164,184,0.06), rgba(139,164,184,0.02))', border: '1px solid rgba(139,164,184,0.15)' }}>
               <p className="font-medium text-primary text-sm">EU-arvsförordningen (650/2012)</p>
               <p className="text-xs text-primary/70 mt-1">
                 Tillämpas mellan EU-medlemsstater. Enkelt: hemvistlandet lag gäller normalt.
               </p>
             </div>
-            <div className="border-l-4 border-accent pl-3">
+            <div className="pl-3" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(139,164,184,0.06), rgba(139,164,184,0.02))', border: '1px solid rgba(139,164,184,0.15)' }}>
               <p className="font-medium text-primary text-sm">Nordiska konventionen</p>
               <p className="text-xs text-primary/70 mt-1">
                 Mellan Sverige, Norge, Danmark, Finland och Island. Ofta mer flexibel än EU-regler.
               </p>
             </div>
-            <div className="border-l-4 border-accent pl-3">
+            <div className="pl-3" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(139,164,184,0.06), rgba(139,164,184,0.02))', border: '1px solid rgba(139,164,184,0.15)' }}>
               <p className="font-medium text-primary text-sm">Länder utan överenskommelse</p>
               <p className="text-xs text-primary/70 mt-1">
                 USA, Kina, Turkiet, Irak etc. Kräver ofta lokal advokat och lokal domstol.
@@ -380,7 +380,7 @@ function StepGuide() {
 
   return (
     <div className="card mb-6">
-      <h2 className="text-lg font-semibold text-primary mb-4">Steg-för-steg guide</h2>
+      <h2 className="text-lg font-display text-primary mb-4">Steg-för-steg guide</h2>
 
       {/* Step indicator */}
       <div className="flex gap-2 mb-4">
@@ -478,16 +478,16 @@ function ForeignAssetsInput() {
           placeholder="Land (t.ex. Tyskland)"
           value={newAsset.country}
           onChange={(e) => setNewAsset({ ...newAsset, country: e.target.value })}
-          className="w-full px-3 py-2 border rounded-lg text-sm"
-          style={{ borderColor: 'var(--border)' }}
+          className="w-full px-3 py-2 border text-sm"
+          style={{ borderRadius: '20px', borderColor: 'var(--border)' }}
         />
         <input
           type="text"
           placeholder="Tillgångstyp (t.ex. Fastighet, Bankkonto)"
           value={newAsset.assetType}
           onChange={(e) => setNewAsset({ ...newAsset, assetType: e.target.value })}
-          className="w-full px-3 py-2 border rounded-lg text-sm"
-          style={{ borderColor: 'var(--border)' }}
+          className="w-full px-3 py-2 border text-sm"
+          style={{ borderRadius: '20px', borderColor: 'var(--border)' }}
         />
         <div className="grid grid-cols-2 gap-2">
           <input
@@ -495,14 +495,14 @@ function ForeignAssetsInput() {
             placeholder="Värde"
             value={newAsset.estimatedValue}
             onChange={(e) => setNewAsset({ ...newAsset, estimatedValue: e.target.value })}
-            className="w-full px-3 py-2 border rounded-lg text-sm"
-            style={{ borderColor: 'var(--border)' }}
+            className="w-full px-3 py-2 border text-sm"
+            style={{ borderRadius: '20px', borderColor: 'var(--border)' }}
           />
           <select
             value={newAsset.currency}
             onChange={(e) => setNewAsset({ ...newAsset, currency: e.target.value })}
-            className="w-full px-3 py-2 border rounded-lg text-sm"
-            style={{ borderColor: 'var(--border)' }}
+            className="w-full px-3 py-2 border text-sm"
+            style={{ borderRadius: '20px', borderColor: 'var(--border)' }}
           >
             {Object.keys(CURRENCY_RATES).map((curr) => (
               <option key={curr} value={curr}>
@@ -513,7 +513,8 @@ function ForeignAssetsInput() {
         </div>
         <button
           onClick={addAsset}
-          className="w-full flex items-center justify-center gap-2 bg-accent text-white py-2 rounded-lg text-sm font-medium hover:opacity-90 transition-opacity"
+          className="w-full flex items-center justify-center gap-2 text-white py-2 text-sm font-medium hover:opacity-90 transition-opacity rounded-full"
+          style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}
         >
           <Plus className="w-4 h-4" />
           Lägg till tillgång
@@ -563,7 +564,7 @@ function CountryCards() {
 
   return (
     <div className="card mb-6">
-      <h2 className="text-lg font-semibold text-primary mb-4 flex items-center gap-2">
+      <h2 className="text-lg font-display text-primary mb-4 flex items-center gap-2">
         <Flag className="w-5 h-5" />
         Länderinfo för vanliga destinationer
       </h2>
@@ -633,7 +634,7 @@ function CurrencyConverter() {
 
   return (
     <div className="card mb-6">
-      <h2 className="text-lg font-semibold text-primary mb-4">Valutakonverterare till SEK</h2>
+      <h2 className="text-lg font-display text-primary mb-4">Valutakonverterare till SEK</h2>
       <div className="grid grid-cols-1 gap-3">
         <div>
           <label className="text-xs font-medium text-primary/70 block mb-1">Belopp</label>
@@ -641,8 +642,8 @@ function CurrencyConverter() {
             type="number"
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
-            className="w-full px-3 py-2 border rounded-lg text-sm"
-            style={{ borderColor: 'var(--border)' }}
+            className="w-full px-3 py-2 border text-sm"
+            style={{ borderRadius: '20px', borderColor: 'var(--border)' }}
           />
         </div>
         <div>
@@ -650,8 +651,8 @@ function CurrencyConverter() {
           <select
             value={fromCurrency}
             onChange={(e) => setFromCurrency(e.target.value)}
-            className="w-full px-3 py-2 border rounded-lg text-sm"
-            style={{ borderColor: 'var(--border)' }}
+            className="w-full px-3 py-2 border text-sm"
+            style={{ borderRadius: '20px', borderColor: 'var(--border)' }}
           >
             {Object.keys(CURRENCY_RATES).filter((c) => c !== 'SEK').map((curr) => (
               <option key={curr} value={curr}>
@@ -660,7 +661,7 @@ function CurrencyConverter() {
             ))}
           </select>
         </div>
-        <div className="bg-accent/10 border border-accent/20 rounded-lg p-3 mt-2">
+        <div className="p-3 mt-2" style={{ borderRadius: '20px', background: 'linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02))', border: '1px solid rgba(122,158,126,0.15)' }}>
           <p className="text-xs font-medium text-primary/70 mb-1">Ungefärligt värde i SEK:</p>
           <p className="text-2xl font-semibold text-accent">
             {toSEK.toLocaleString('sv-SE', { maximumFractionDigits: 0 })} SEK
@@ -679,7 +680,7 @@ function FAQSection() {
 
   return (
     <div className="card mb-6">
-      <h2 className="text-lg font-semibold text-primary mb-4 flex items-center gap-2">
+      <h2 className="text-lg font-display text-primary mb-4 flex items-center gap-2">
         <HelpCircle className="w-5 h-5" />
         Vanliga frågor
       </h2>
@@ -724,7 +725,7 @@ function InternationelltContent() {
     state.deceasedMedborgarskap !== 'Sverige';
 
   return (
-    <div className="flex flex-col px-5 py-6 pb-24">
+    <div className="flex flex-col px-6 py-8 pb-28">
       {/* Header */}
       <div className="flex items-center gap-3 mb-4">
         <Link
@@ -735,7 +736,7 @@ function InternationelltContent() {
           <ArrowLeft className="w-5 h-5 text-primary" />
         </Link>
         <div>
-          <h1 className="text-2xl font-semibold text-primary">Internationella arv</h1>
+          <h1 className="text-2xl font-display text-primary">Internationella arv</h1>
           <p className="text-muted text-sm">Utländsk hemvist, tillgångar &amp; medborgarskap</p>
         </div>
       </div>

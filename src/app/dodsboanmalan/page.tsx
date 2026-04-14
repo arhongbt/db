@@ -48,7 +48,7 @@ function MikeRossTip({ text }: { text: string }) {
   );
 }
 
-const inputCls = "w-full px-4 py-3 border border-[#E8E4DE] rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white";
+const inputCls = "w-full px-4 py-3 border border-[#E8E4DE] rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white";
 
 function DodsboanmalanContent() {
   const { state } = useDodsbo();
@@ -76,8 +76,8 @@ function DodsboanmalanContent() {
   };
 
   return (
-    <div className="flex flex-col min-h-dvh px-5 py-6 pb-24">
-      <Link href="/dashboard" className="inline-flex items-center gap-2 text-sm text-muted hover:text-primary mb-4">
+    <div className="flex flex-col min-h-dvh px-6 py-8 pb-28">
+      <Link href="/dashboard" className="inline-flex items-center gap-2 text-sm text-muted hover:text-primary mb-4 rounded-full">
         <ArrowLeft className="w-4 h-4" /> Dashboard
       </Link>
       <div className="flex items-center gap-3 mb-2">
@@ -85,7 +85,7 @@ function DodsboanmalanContent() {
           <FileText className="w-5 h-5 text-accent" />
         </div>
         <div>
-          <h1 className="text-xl font-bold text-primary">Dödsboanmälan</h1>
+          <h1 className="text-xl font-display text-primary">Dödsboanmälan</h1>
           <p className="text-xs text-muted">Steg {step + 1} av {STEPS.length} — {STEPS[step].desc}</p>
         </div>
       </div>
@@ -99,8 +99,8 @@ function DodsboanmalanContent() {
       {step === 0 && (
         <div className="animate-fadeIn">
           <MikeRossTip text="En dödsboanmälan används istället för bouppteckning när den avlidne hade så lite tillgångar att de inte ens räcker till begravningen. Låt oss kolla om det passar din situation." />
-          <div className="card mb-4">
-            <p className="font-semibold text-primary mb-3">Dödsboanmälan passar om:</p>
+          <div className="card mb-4" style={{ borderRadius: '28px' }}>
+            <p className="font-display text-primary mb-3">Dödsboanmälan passar om:</p>
             <div className="space-y-2">
               {['Den avlidne hade inga eller mycket små tillgångar','Tillgångarna räcker inte till begravningskostnaderna','Det finns ingen fastighet eller bostadsrätt','Det finns inga värdefulla föremål att fördela'].map((item, i) => (
                 <div key={i} className="flex items-start gap-2">
@@ -112,13 +112,11 @@ function DodsboanmalanContent() {
               ))}
             </div>
           </div>
-          <div className="warning-box">
-            <div className="flex items-start gap-2">
-              <AlertTriangle className="w-4 h-4 text-warn flex-shrink-0 mt-0.5" />
-              <p className="text-xs text-primary/80 leading-relaxed">
-                <strong>Gör istället en bouppteckning om:</strong> den avlidne ägde fastighet, bostadsrätt, bil av värde, eller om tillgångarna överstiger begravningskostnaderna.
-              </p>
-            </div>
+          <div className="flex items-start gap-3 p-4 rounded-2xl mb-5" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(196,149,106,0.06), rgba(196,149,106,0.02))', border: '1px solid rgba(196,149,106,0.15)' }}>
+            <AlertTriangle className="w-4 h-4 text-warn flex-shrink-0 mt-0.5" />
+            <p className="text-xs text-primary/80 leading-relaxed">
+              <strong>Gör istället en bouppteckning om:</strong> den avlidne ägde fastighet, bostadsrätt, bil av värde, eller om tillgångarna överstiger begravningskostnaderna.
+            </p>
           </div>
         </div>
       )}
@@ -126,7 +124,7 @@ function DodsboanmalanContent() {
       {step === 1 && (
         <div className="animate-fadeIn">
           <MikeRossTip text="Fyll i den avlidnes uppgifter. Kommunen behöver veta var personen var folkbokförd." />
-          <div className="card space-y-4">
+          <div className="card space-y-4" style={{ borderRadius: '28px' }}>
             <div><label className="block text-sm font-medium text-primary mb-1.5">Den avlidnes namn</label>
               <input value={data.deceasedNamn} onChange={(e) => setData({...data, deceasedNamn: e.target.value})} placeholder="Förnamn Efternamn" className={inputCls} /></div>
             <div><label className="block text-sm font-medium text-primary mb-1.5">Personnummer</label>
@@ -142,7 +140,7 @@ function DodsboanmalanContent() {
       {step === 2 && (
         <div className="animate-fadeIn">
           <MikeRossTip text="Vem som helst med koppling till dödsboet kan göra en dödsboanmälan — det brukar vara närmaste anhörig." />
-          <div className="card space-y-4">
+          <div className="card space-y-4" style={{ borderRadius: '28px' }}>
             <div><label className="block text-sm font-medium text-primary mb-1.5">Ditt namn</label>
               <input value={data.anmalarNamn} onChange={(e) => setData({...data, anmalarNamn: e.target.value})} placeholder="Förnamn Efternamn" className={inputCls} /></div>
             <div><label className="block text-sm font-medium text-primary mb-1.5">Relation till den avlidne</label>
@@ -158,7 +156,7 @@ function DodsboanmalanContent() {
       {step === 3 && (
         <div className="animate-fadeIn">
           <MikeRossTip text="Beskriv den avlidnes ekonomi. Poängen är att visa att tillgångarna inte räcker till begravningen. Socialnämnden kan hjälpa till med begravningskostnaderna." />
-          <div className="card space-y-4 mb-4">
+          <div className="card space-y-4 mb-4" style={{ borderRadius: '28px' }}>
             <div><label className="block text-sm font-medium text-primary mb-1.5">Tillgångar vid dödsfallet</label>
               <textarea value={data.tillgangar} onChange={(e) => setData({...data, tillgangar: e.target.value})} placeholder="T.ex. 'Bankmedel: 3 200 kr. Inga övriga tillgångar.'" rows={3} className={inputCls + ' resize-none text-sm'} /></div>
             <div><label className="block text-sm font-medium text-primary mb-1.5">Uppskattad begravningskostnad</label>
@@ -166,12 +164,13 @@ function DodsboanmalanContent() {
             <div><label className="block text-sm font-medium text-primary mb-1.5">Skulder</label>
               <textarea value={data.skulder} onChange={(e) => setData({...data, skulder: e.target.value})} placeholder="T.ex. 'Hyresskuld: 5 000 kr'" rows={2} className={inputCls + ' resize-none text-sm'} /></div>
           </div>
-          <div className="card space-y-4">
+          <div className="card space-y-4" style={{ borderRadius: '28px' }}>
             <div><label className="block text-sm font-medium text-primary mb-1.5">Boendeform</label>
               <div className="grid grid-cols-2 gap-2">
                 {([['hyresratt','Hyresrätt'],['bostadsratt','Bostadsrätt'],['villa','Villa/hus'],['annat','Annat']] as const).map(([val,label]) => (
                   <button key={val} onClick={() => setData({...data, boendeform: val})}
-                    className={`py-3 rounded-xl text-sm font-medium transition-colors ${data.boendeform === val ? 'bg-accent text-white' : 'bg-white text-primary border border-[#E8E4DE]'}`}>{label}</button>
+                    className={`py-3 rounded-full text-sm font-medium transition-colors ${data.boendeform === val ? 'text-white' : 'bg-white text-primary border border-[#E8E4DE]'}`}
+                    style={data.boendeform === val ? { background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' } : {}}>{label}</button>
                 ))}
               </div>
             </div>
@@ -196,8 +195,8 @@ function DodsboanmalanContent() {
       {step === 4 && (
         <div className="animate-fadeIn">
           <MikeRossTip text="Granska och ladda ner. Lämna dokumentet till socialnämnden i kommunen. Bifoga dödsbevis och kontoutdrag." />
-          <div className="card mb-4">
-            <p className="text-xs font-semibold text-muted uppercase tracking-wide mb-3">Sammanfattning</p>
+          <div className="card mb-4" style={{ borderRadius: '28px' }}>
+            <p className="text-xs font-display text-muted mb-3">Sammanfattning</p>
             <div className="space-y-2 text-sm">
               <p><strong className="text-primary">Den avlidne:</strong> <span className="text-muted">{data.deceasedNamn || '(ej ifyllt)'}</span></p>
               <p><strong className="text-primary">Kommun:</strong> <span className="text-muted">{data.senasteFolkbokforing || '(ej ifyllt)'}</span></p>
@@ -205,17 +204,15 @@ function DodsboanmalanContent() {
               <p><strong className="text-primary">Begravningskostnad:</strong> <span className="text-muted">{data.begravningskostnad ? `${data.begravningskostnad} kr` : '(ej ifyllt)'}</span></p>
             </div>
           </div>
-          <div className="info-box mb-4">
-            <div className="flex items-start gap-2">
-              <Info className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" />
-              <p className="text-xs text-primary/80 leading-relaxed"><strong>Bifoga:</strong> dödsbevis, kontoutdrag, begravningsfaktura.</p>
-            </div>
+          <div className="flex items-start gap-3 p-4 rounded-2xl mb-4" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02))', border: '1px solid rgba(122,158,126,0.15)' }}>
+            <Info className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" />
+            <p className="text-xs text-primary/80 leading-relaxed"><strong>Bifoga:</strong> dödsbevis, kontoutdrag, begravningsfaktura.</p>
           </div>
           <div className="flex flex-col gap-2">
             <button onClick={handleDownloadPDF} className="btn-primary flex items-center justify-center gap-2">
               <Download className="w-4 h-4" /> Ladda ner som PDF
             </button>
-            <button onClick={handleDownloadDocx} className="w-full py-3 rounded-xl text-sm font-semibold border-2 border-accent text-accent hover:bg-accent/5 transition-colors flex items-center justify-center gap-2">
+            <button onClick={handleDownloadDocx} className="w-full py-3 rounded-[20px] text-sm font-semibold border-2 border-accent text-accent hover:bg-accent/5 transition-colors flex items-center justify-center gap-2">
               <Download className="w-4 h-4" /> Ladda ner som Word
             </button>
           </div>
@@ -225,7 +222,7 @@ function DodsboanmalanContent() {
 
       <div className="flex gap-3 mt-6">
         {step > 0 && (
-          <button onClick={prev} className="flex-1 py-3 rounded-xl text-sm font-semibold border-2 border-[#E8E4DE] text-primary hover:bg-background transition-colors flex items-center justify-center gap-1">
+          <button onClick={prev} className="flex-1 py-3 rounded-full text-sm font-semibold border-2 border-[#E8E4DE] text-primary hover:bg-background transition-colors flex items-center justify-center gap-1">
             <ChevronLeft className="w-4 h-4" /> Tillbaka
           </button>
         )}

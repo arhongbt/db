@@ -17,12 +17,12 @@ export default function KryptoGuidePage() {
   const { t } = useLanguage();
 
   return (
-    <div className="flex flex-col px-5 py-6 pb-24">
+    <div className="flex flex-col px-6 py-8 pb-28">
       {/* Header */}
       <div className="mb-6">
         <div className="flex items-center gap-3 mb-4">
           <Bitcoin className="w-8 h-8 text-accent" />
-          <h1 className="text-2xl font-semibold text-primary">{t('Kryptoguide', 'Cryptocurrency Guide')}</h1>
+          <h1 className="text-2xl font-display text-primary">{t('Kryptoguide', 'Cryptocurrency Guide')}</h1>
         </div>
         <p className="text-sm text-primary/70">
           {t('Steg-för-steg hjälp för att hantera kryptovalutor i dödsboet.', 'Step-by-step help to manage cryptocurrency in the estate.')}
@@ -30,7 +30,7 @@ export default function KryptoGuidePage() {
       </div>
 
       {/* Warning Box */}
-      <div className="card border-l-4 border-warn mb-6 bg-warn/5">
+      <div className="card mb-6 bg-warn/5" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(196,149,106,0.06), rgba(196,149,106,0.02))', border: '1px solid rgba(196,149,106,0.15)' }}>
         <div className="flex gap-3">
           <AlertTriangle className="w-5 h-5 text-warn flex-shrink-0 mt-0.5" />
           <div>
@@ -49,7 +49,7 @@ export default function KryptoGuidePage() {
       <div className="card mb-6">
         <div className="flex items-center gap-2 mb-4">
           <Search className="w-5 h-5 text-accent" />
-          <h2 className="text-lg font-semibold text-primary">{t('1. Hitta den avlidnes kryptovalutor', '1. Find the deceased\'s cryptocurrency')}</h2>
+          <h2 className="text-lg font-display text-primary">{t('1. Hitta den avlidnes kryptovalutor', '1. Find the deceased\'s cryptocurrency')}</h2>
         </div>
         <div className="space-y-3 text-sm text-primary/80">
           <div>
@@ -94,7 +94,7 @@ export default function KryptoGuidePage() {
       <div className="card mb-6">
         <div className="flex items-center gap-2 mb-4">
           <Lock className="w-5 h-5 text-accent" />
-          <h2 className="text-lg font-semibold text-primary">{t('2. Seed phrases & privata nycklar', '2. Seed phrases & private keys')}</h2>
+          <h2 className="text-lg font-display text-primary">{t('2. Seed phrases & privata nycklar', '2. Seed phrases & private keys')}</h2>
         </div>
         <div className="space-y-3 text-sm text-primary/80">
           <div>
@@ -129,7 +129,7 @@ export default function KryptoGuidePage() {
       <div className="card mb-6">
         <div className="flex items-center gap-2 mb-4">
           <DollarSign className="w-5 h-5 text-accent" />
-          <h2 className="text-lg font-semibold text-primary">{t('3. Värdering för dödsboet', '3. Valuation for the estate')}</h2>
+          <h2 className="text-lg font-display text-primary">{t('3. Värdering för dödsboet', '3. Valuation for the estate')}</h2>
         </div>
         <div className="space-y-3 text-sm text-primary/80">
           <div>
@@ -160,7 +160,7 @@ export default function KryptoGuidePage() {
       <div className="card mb-6">
         <div className="flex items-center gap-2 mb-4">
           <FileText className="w-5 h-5 text-accent" />
-          <h2 className="text-lg font-semibold text-primary">{t('4. Skatt & Skatteverket', '4. Taxes & Swedish Tax Agency')}</h2>
+          <h2 className="text-lg font-display text-primary">{t('4. Skatt & Skatteverket', '4. Taxes & Swedish Tax Agency')}</h2>
         </div>
         <div className="space-y-3 text-sm text-primary/80">
           <div>
@@ -194,7 +194,7 @@ export default function KryptoGuidePage() {
       <div className="card mb-6">
         <div className="flex items-center gap-2 mb-4">
           <FileText className="w-5 h-5 text-accent" />
-          <h2 className="text-lg font-semibold text-primary">{t('5. Bouppteckning', '5. Estate Inventory')}</h2>
+          <h2 className="text-lg font-display text-primary">{t('5. Bouppteckning', '5. Estate Inventory')}</h2>
         </div>
         <div className="space-y-3 text-sm text-primary/80">
           <p>{t('Kryptovalutor ska listas i bouppteckningen tillsammans med övriga tillgångar:', 'Cryptocurrencies must be listed in the inventory along with other assets:')}</p>
@@ -213,7 +213,7 @@ export default function KryptoGuidePage() {
       <div className="card mb-6">
         <div className="flex items-center gap-2 mb-4">
           <Bitcoin className="w-5 h-5 text-accent" />
-          <h2 className="text-lg font-semibold text-primary">{t('6. Vanliga kryptovalutor', '6. Common Cryptocurrencies')}</h2>
+          <h2 className="text-lg font-display text-primary">{t('6. Vanliga kryptovalutor', '6. Common Cryptocurrencies')}</h2>
         </div>
         <div className="space-y-2 text-sm text-primary/80">
           <div className="flex items-start gap-2 p-2 bg-background rounded">
@@ -248,7 +248,7 @@ export default function KryptoGuidePage() {
       </div>
 
       {/* Section 7: Safety */}
-      <div className="card border-l-4 border-accent mb-6">
+      <div className="card mb-6" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02))', border: '1px solid rgba(122,158,126,0.15)' }}>
         <div className="flex gap-3">
           <Shield className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
           <div>
@@ -290,7 +290,7 @@ export default function KryptoGuidePage() {
         </p>
         <a
           href="/juridisk-hjalp"
-          className="inline-flex items-center gap-2 px-4 py-2.5 rounded-card bg-accent text-white font-medium text-sm hover:opacity-90 transition-opacity"
+          className="inline-flex items-center gap-2 px-4 py-2.5 rounded-[24px] bg-accent text-white font-medium text-sm hover:opacity-90 transition-opacity"
         >
           {t('Juridisk hjälp', 'Legal Help')} <ArrowRight className="w-4 h-4" />
         </a>

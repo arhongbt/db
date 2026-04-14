@@ -134,14 +134,14 @@ function KostnaderContent() {
   }, {});
 
   return (
-    <div className="flex flex-col min-h-dvh px-5 py-6 pb-24">
+    <div className="flex flex-col min-h-dvh px-6 py-8 pb-28">
       <Link href="/dashboard" className="inline-flex items-center gap-2 text-sm text-muted hover:text-primary mb-4">
         <ArrowLeft className="w-4 h-4" /> {t('Dashboard', 'Dashboard')}
       </Link>
 
       <div className="flex items-center gap-3 mb-2">
         <Receipt className="w-7 h-7 text-accent" />
-        <h1 className="text-2xl font-semibold text-primary">{t('Dödsbokostnader', 'Estate costs')}</h1>
+        <h1 className="text-2xl font-display text-primary">{t('Dödsbokostnader', 'Estate costs')}</h1>
       </div>
       <p className="text-muted mb-6">
         {t('Håll koll på alla utgifter som dödsboet har. Dessa dras av före arvskiftet.', 'Keep track of all estate expenses. These are deducted before the distribution of the estate.')}
@@ -177,7 +177,7 @@ function KostnaderContent() {
       {totalKostnad > 0 && (
         <button
           onClick={() => setShowPaymentFlow(true)}
-          className="card border-l-4 border-accent bg-accent/5 mb-6 flex items-center justify-between hover:bg-accent/10 transition-colors"
+          className="card bg-accent/5 mb-6 flex items-center justify-between hover:bg-accent/10 transition-colors" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02))', border: '1px solid rgba(122,158,126,0.15)' }}
         >
           <div>
             <p className="font-medium text-accent text-sm">{t('Betala dödsbo kostnader', 'Pay estate costs')}</p>
@@ -190,7 +190,7 @@ function KostnaderContent() {
       {/* Who paid breakdown */}
       {Object.keys(payers).length > 1 && (
         <div className="card mb-6">
-          <p className="text-xs text-muted uppercase tracking-wide font-semibold mb-2">{t('Vem har betalat', 'Who has paid')}</p>
+          <p className="text-xs text-muted uppercase tracking-wide font-display mb-2">{t('Vem har betalat', 'Who has paid')}</p>
           {Object.entries(payers).map(([name, amount]) => (
             <div key={name} className="flex justify-between py-1 border-b border-[#E8E4DE] last:border-0">
               <span className="text-sm text-primary">{name}</span>
@@ -253,7 +253,7 @@ function KostnaderContent() {
             <select
               value={formCategory}
               onChange={(e) => setFormCategory(e.target.value as KostnadCategory)}
-              className="w-full px-3 py-2 border border-[#E8E4DE] rounded-card text-sm mt-1 focus:outline-none focus:ring-2 focus:ring-accent"
+              className="w-full px-3 py-2 border border-[#E8E4DE] rounded-[20px] text-sm mt-1 focus:outline-none focus:ring-2 focus:ring-accent"
             >
               {CATEGORY_ORDER.map((cat) => (
                 <option key={cat} value={cat}>{CATEGORY_LABELS[cat]}</option>
@@ -268,7 +268,7 @@ function KostnaderContent() {
               value={formDescription}
               onChange={(e) => setFormDescription(e.target.value)}
               placeholder={t('T.ex. Begravningsbyrå Fonus', 'E.g. Funeral home Fonus')}
-              className="w-full px-3 py-2 border border-[#E8E4DE] rounded-card text-sm mt-1 placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-accent"
+              className="w-full px-3 py-2 border border-[#E8E4DE] rounded-[20px] text-sm mt-1 placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-accent"
             />
           </div>
 
@@ -280,7 +280,7 @@ function KostnaderContent() {
                 value={formAmount}
                 onChange={(e) => setFormAmount(e.target.value)}
                 placeholder="0"
-                className="w-full px-3 py-2 border border-[#E8E4DE] rounded-card text-sm mt-1 placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-accent"
+                className="w-full px-3 py-2 border border-[#E8E4DE] rounded-[20px] text-sm mt-1 placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-accent"
               />
             </div>
             <div>
@@ -289,7 +289,7 @@ function KostnaderContent() {
                 type="date"
                 value={formDate}
                 onChange={(e) => setFormDate(e.target.value)}
-                className="w-full px-3 py-2 border border-[#E8E4DE] rounded-card text-sm mt-1 focus:outline-none focus:ring-2 focus:ring-accent"
+                className="w-full px-3 py-2 border border-[#E8E4DE] rounded-[20px] text-sm mt-1 focus:outline-none focus:ring-2 focus:ring-accent"
               />
             </div>
           </div>
@@ -301,7 +301,7 @@ function KostnaderContent() {
               value={formPaidBy}
               onChange={(e) => setFormPaidBy(e.target.value)}
               placeholder={t('T.ex. Anna Svensson', 'E.g. Anna Svensson')}
-              className="w-full px-3 py-2 border border-[#E8E4DE] rounded-card text-sm mt-1 placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-accent"
+              className="w-full px-3 py-2 border border-[#E8E4DE] rounded-[20px] text-sm mt-1 placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-accent"
             />
             <p className="text-xs text-muted mt-1">{t('Om en delägare har lagt ut — ska ersättas av dödsboet', 'If a co-owner has advanced money — it should be reimbursed by the estate')}</p>
           </div>
@@ -325,7 +325,7 @@ function KostnaderContent() {
         </button>
       )}
 
-      <div className="bg-primary-lighter/30 rounded-card p-4">
+      <div className="bg-primary-lighter/30 rounded-[20px] p-4">
         <p className="text-xs text-muted leading-relaxed">
           {t('Dödsbokostnader dras av från behållningen innan arvet fördelas (ÄB 18 kap.). Begravningskostnader har företräde framför andra skulder. Spara alla kvitton för redovisning i bouppteckningen och arvskiftet.', 'Estate costs are deducted from the assets before the inheritance is distributed (AB Chapter 18). Funeral expenses take precedence over other debts. Keep all receipts for reporting in the estate inventory and distribution.')}
         </p>

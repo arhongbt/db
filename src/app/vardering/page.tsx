@@ -352,9 +352,9 @@ function VarderingContent() {
 
   if (showForm) {
     return (
-      <div className="flex flex-col px-5 py-6 pb-24">
+      <div className="flex flex-col px-6 py-8 pb-28">
         <div className="flex items-center justify-between mb-6">
-          <h1 className="text-2xl font-semibold text-primary">Ny värdering</h1>
+          <h1 className="text-2xl font-display text-primary">Ny värdering</h1>
           <button
             onClick={() => setShowForm(false)}
             className="p-2 text-muted hover:text-primary transition-colors"
@@ -364,7 +364,7 @@ function VarderingContent() {
           </button>
         </div>
 
-        <div className="card border-2 border-accent mb-6">
+        <div className="card border-2 border-accent mb-6" style={{ borderRadius: '28px' }}>
           <label className="block mb-4">
             <span className="text-sm font-medium text-primary mb-1 block">
               Beskrivning *
@@ -377,7 +377,7 @@ function VarderingContent() {
                 setFormErrors((p) => ({ ...p, description: '' }));
               }}
               placeholder="T.ex. Sofabord i teak från 1970-tal"
-              className={`w-full min-h-touch px-4 py-3 text-base border-2 rounded-card focus:outline-none bg-white ${
+              className={`w-full min-h-touch px-4 py-3 text-base border-2 rounded-[20px] focus:outline-none bg-white ${
                 formErrors.description ? 'border-warn' : 'border-[#E8E4DE] focus:border-accent'
               }`}
             />
@@ -395,7 +395,7 @@ function VarderingContent() {
               onChange={(e) =>
                 setFormData({ ...formData, category: e.target.value as VarderingCategory })
               }
-              className="w-full min-h-touch px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-card focus:outline-none focus:border-accent bg-white"
+              className="w-full min-h-touch px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-[20px] focus:outline-none focus:border-accent bg-white"
             >
               {Object.entries(CATEGORY_INFO).map(([key, info]) => (
                 <option key={key} value={key}>
@@ -414,7 +414,7 @@ function VarderingContent() {
                 <button
                   key={level}
                   onClick={() => setFormData({ ...formData, condition: level })}
-                  className={`py-2 px-3 rounded-card text-sm font-medium border-2 transition-colors ${
+                  className={`py-2 px-3 rounded-[20px] text-sm font-medium border-2 transition-colors ${
                     formData.condition === level
                       ? 'border-accent bg-primary-lighter/30 text-primary'
                       : 'border-[#E8E4DE] text-muted'
@@ -438,7 +438,7 @@ function VarderingContent() {
                 setFormErrors((p) => ({ ...p, purchasePrice: '' }));
               }}
               placeholder="T.ex. 2500"
-              className={`w-full min-h-touch px-4 py-3 text-base border-2 rounded-card focus:outline-none bg-white ${
+              className={`w-full min-h-touch px-4 py-3 text-base border-2 rounded-[20px] focus:outline-none bg-white ${
                 formErrors.purchasePrice ? 'border-warn' : 'border-[#E8E4DE] focus:border-accent'
               }`}
             />
@@ -459,7 +459,7 @@ function VarderingContent() {
                 setFormErrors((p) => ({ ...p, purchaseYear: '' }));
               }}
               placeholder={new Date().getFullYear().toString()}
-              className={`w-full min-h-touch px-4 py-3 text-base border-2 rounded-card focus:outline-none bg-white ${
+              className={`w-full min-h-touch px-4 py-3 text-base border-2 rounded-[20px] focus:outline-none bg-white ${
                 formErrors.purchaseYear ? 'border-warn' : 'border-[#E8E4DE] focus:border-accent'
               }`}
             />
@@ -477,7 +477,7 @@ function VarderingContent() {
               value={formData.photoReference}
               onChange={(e) => setFormData({ ...formData, photoReference: e.target.value })}
               placeholder="T.ex. foto_sofabord_DSC1234.jpg"
-              className="w-full min-h-touch px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-card focus:outline-none focus:border-accent bg-white"
+              className="w-full min-h-touch px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-[20px] focus:outline-none focus:border-accent bg-white"
             />
             <p className="text-xs text-muted mt-1">
               Lagra foto separat och referera med filnamn
@@ -493,7 +493,7 @@ function VarderingContent() {
               onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
               placeholder="T.ex. Litet repor på baksida, dock i gott skick"
               rows={3}
-              className="w-full px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-card focus:outline-none focus:border-accent bg-white"
+              className="w-full px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-[20px] focus:outline-none focus:border-accent bg-white"
             />
           </label>
 
@@ -518,13 +518,14 @@ function VarderingContent() {
   }
 
   return (
-    <div className="flex flex-col px-5 py-6 pb-24">
+    <div className="flex flex-col px-6 py-8 pb-28">
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
-        <h1 className="text-2xl font-semibold text-primary">Värdering av lösöre</h1>
+        <h1 className="text-2xl font-display text-primary">Värdering av lösöre</h1>
         <button
           onClick={() => setShowForm(true)}
-          className="w-12 h-12 bg-accent text-white rounded-full flex items-center justify-center shadow-md hover:bg-primary-light transition-colors"
+          className="w-12 h-12 text-white rounded-full flex items-center justify-center shadow-md hover:opacity-90 transition-opacity"
+          style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}
           aria-label="Lägg till värdering"
         >
           <Plus className="w-6 h-6" />
@@ -560,7 +561,7 @@ function VarderingContent() {
           </div>
 
           {grandTotal > 50000 && (
-            <div className="card border-l-4 border-warn mb-6 bg-warn/5">
+            <div className="card mb-6" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(196,149,106,0.06), rgba(196,149,106,0.02))', border: '1px solid rgba(196,149,106,0.15)' }}>
               <div className="flex gap-3">
                 <AlertCircle className="w-5 h-5 text-warn flex-shrink-0 mt-0.5" />
                 <div className="flex-1">
@@ -607,7 +608,7 @@ function VarderingContent() {
                   className="w-full flex items-center justify-between py-3"
                 >
                   <div className="text-left flex-1">
-                    <h3 className="font-semibold text-primary">{catInfo.label}</h3>
+                    <h3 className="font-display text-primary">{catInfo.label}</h3>
                     <p className="text-xs text-muted mt-0.5">{catItems.length} objekt</p>
                   </div>
                   <div className="text-right flex items-center gap-2">
@@ -641,7 +642,7 @@ function VarderingContent() {
                         return (
                           <div
                             key={item.id}
-                            className="bg-background p-3 rounded-card border border-[#E8E4DE]"
+                            className="bg-background p-3 rounded-[20px] border border-[#E8E4DE]"
                           >
                             <div className="flex items-start justify-between gap-3 mb-2">
                               <div className="flex-1 min-w-0">
@@ -667,7 +668,7 @@ function VarderingContent() {
                               </button>
                             </div>
 
-                            <div className="flex items-center gap-2 bg-white p-2 rounded-card border border-[#E8E4DE]">
+                            <div className="flex items-center gap-2 bg-white p-2 rounded-[20px] border border-[#E8E4DE]">
                               <input
                                 type="number"
                                 value={itemValue}

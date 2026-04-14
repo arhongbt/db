@@ -146,11 +146,11 @@ function DelagareContent() {
   };
 
   return (
-    <div className="flex flex-col px-5 py-6 pb-24">
+    <div className="flex flex-col px-6 py-8 pb-28">
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="text-2xl font-semibold text-primary">
+          <h1 className="text-2xl font-display text-primary">
             Dödsbodelägare
           </h1>
           <p className="text-muted text-sm mt-1">
@@ -159,7 +159,8 @@ function DelagareContent() {
         </div>
         <button
           onClick={() => setShowForm(true)}
-          className="w-12 h-12 bg-accent text-white rounded-full flex items-center justify-center shadow-md hover:bg-primary-light transition-colors"
+          className="w-12 h-12 text-white rounded-full flex items-center justify-center shadow-md hover:opacity-90 transition-opacity"
+          style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}
           aria-label="Lägg till dödsbodelägare"
         >
           <Plus className="w-6 h-6" />
@@ -183,7 +184,7 @@ function DelagareContent() {
       </button>
 
       {showArvsinfo && (
-        <div className="card mb-4 border-l-4 border-accent">
+        <div className="card mb-4" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02))', border: '1px solid rgba(122,158,126,0.15)' }}>
           <p className="font-medium text-primary mb-3">{arvsinfo.summary}</p>
 
           <div className="space-y-2 mb-4">
@@ -193,8 +194,8 @@ function DelagareContent() {
           </div>
 
           {/* Heirs table */}
-          <div className="bg-primary-lighter/30 rounded-card p-3 mb-3">
-            <p className="text-xs font-semibold text-muted uppercase tracking-wide mb-2">
+          <div className="bg-primary-lighter/30 rounded-[20px] p-3 mb-3">
+            <p className="text-sm font-display text-muted mb-2">
               Vem ärver?
             </p>
             {arvsinfo.heirs.map((h, i) => (
@@ -223,7 +224,7 @@ function DelagareContent() {
       {state.delagare.length === 0 && !showForm ? (
         <div className="flex-1 flex flex-col items-center justify-center text-center py-12">
           <Users className="w-16 h-16 text-gray-300 mb-4" />
-          <h2 className="text-lg font-medium text-primary mb-2">
+          <h2 className="text-lg font-display text-primary mb-2">
             Inga delägare tillagda ännu
           </h2>
           <p className="text-muted text-sm max-w-xs">
@@ -319,8 +320,8 @@ function DelagareContent() {
 
       {/* Add form */}
       {showForm && (
-        <div className="card border-2 border-accent mb-4">
-          <h3 className="text-lg font-semibold text-primary mb-4">
+        <div className="card border-2 border-accent mb-4" style={{ borderRadius: '28px' }}>
+          <h3 className="text-lg font-display text-primary mb-4">
             Lägg till dödsbodelägare
           </h3>
 
@@ -331,7 +332,7 @@ function DelagareContent() {
               value={name}
               onChange={(e) => { setName(e.target.value); setErrors((p) => ({ ...p, name: '' })); }}
               placeholder="Förnamn Efternamn"
-              className={`w-full min-h-touch px-4 py-3 text-base border-2 rounded-card focus:outline-none ${errors.name ? 'border-warn' : 'border-[#E8E4DE] focus:border-accent'}`}
+              className={`w-full min-h-touch px-4 py-3 text-base border-2 rounded-[20px] focus:outline-none ${errors.name ? 'border-warn' : 'border-[#E8E4DE] focus:border-accent'}`}
               autoFocus
             />
             {errors.name && <span className="text-xs text-warn mt-1 block">{errors.name}</span>}
@@ -347,7 +348,7 @@ function DelagareContent() {
                   key={r}
                   type="button"
                   onClick={() => { setRelation(r); setErrors((p) => ({ ...p, relation: '' })); }}
-                  className={`py-2.5 px-3 rounded-card text-sm font-medium border-2 transition-colors ${
+                  className={`py-2.5 px-3 rounded-full text-sm font-medium border-2 transition-colors ${
                     relation === r
                       ? 'border-accent bg-primary-lighter/30 text-primary'
                       : errors.relation
@@ -369,7 +370,7 @@ function DelagareContent() {
               value={phone}
               onChange={(e) => { setPhone(e.target.value); setErrors((p) => ({ ...p, phone: '' })); }}
               placeholder="070-123 45 67"
-              className={`w-full min-h-touch px-4 py-3 text-base border-2 rounded-card focus:outline-none ${errors.phone ? 'border-warn' : 'border-[#E8E4DE] focus:border-accent'}`}
+              className={`w-full min-h-touch px-4 py-3 text-base border-2 rounded-[20px] focus:outline-none ${errors.phone ? 'border-warn' : 'border-[#E8E4DE] focus:border-accent'}`}
             />
             {errors.phone && <span className="text-xs text-warn mt-1 block">{errors.phone}</span>}
           </label>
@@ -381,7 +382,7 @@ function DelagareContent() {
               value={email}
               onChange={(e) => { setEmail(e.target.value); setErrors((p) => ({ ...p, email: '' })); }}
               placeholder="namn@exempel.se"
-              className={`w-full min-h-touch px-4 py-3 text-base border-2 rounded-card focus:outline-none ${errors.email ? 'border-warn' : 'border-[#E8E4DE] focus:border-accent'}`}
+              className={`w-full min-h-touch px-4 py-3 text-base border-2 rounded-[20px] focus:outline-none ${errors.email ? 'border-warn' : 'border-[#E8E4DE] focus:border-accent'}`}
             />
             {errors.email && <span className="text-xs text-warn mt-1 block">{errors.email}</span>}
           </label>

@@ -116,8 +116,8 @@ function BegravningsplaneringContent() {
   };
 
   return (
-    <div className="flex flex-col min-h-dvh px-5 py-6 pb-24">
-      <Link href="/dashboard" className="inline-flex items-center gap-2 text-sm text-muted hover:text-primary mb-4">
+    <div className="flex flex-col min-h-dvh px-6 py-8 pb-28">
+      <Link href="/dashboard" className="inline-flex items-center gap-2 text-sm text-muted hover:text-primary mb-4 rounded-full">
         <ArrowLeft className="w-4 h-4" /> {t('Dashboard', 'Dashboard')}
       </Link>
 
@@ -127,7 +127,7 @@ function BegravningsplaneringContent() {
           <Flower2 className="w-5 h-5 text-accent" />
         </div>
         <div>
-          <h1 className="text-xl font-bold text-primary">{t('Begravningsplanering', 'Funeral Planning')}</h1>
+          <h1 className="text-xl font-display text-primary">{t('Begravningsplanering', 'Funeral Planning')}</h1>
           <p className="text-xs text-muted">{t('Steg', 'Step')} {step + 1} {t('av', 'of')} {STEPS.length} — {t(STEPS[step].desc, STEPS[step].descEn)}</p>
         </div>
       </div>
@@ -161,7 +161,7 @@ function BegravningsplaneringContent() {
                   { id: 'islamisk', label: t('Islamisk begravning', 'Islamic funeral') },
                   { id: 'annan', label: t('Annan (naturlig begravning, etc.)', 'Other (natural burial, etc.)') },
                 ].map((option) => (
-                  <label key={option.id} className="flex items-center gap-3 cursor-pointer p-3 rounded-xl hover:bg-background transition-colors border-2"
+                  <label key={option.id} className="flex items-center gap-3 cursor-pointer p-3 rounded-full hover:bg-background transition-colors border-2"
                     style={{ borderColor: data.begravningstyp === option.id ? '#7A9E7E' : '#E8E4DE' }}>
                     <input
                       type="radio"
@@ -188,7 +188,7 @@ function BegravningsplaneringContent() {
                   { id: 'borgerlig', label: t('Borgerlig', 'Civil') },
                   { id: 'islamisk_utan_kyrka', label: t('Islamisk (utan ceremoni i kyrka)', 'Islamic (without church ceremony)') },
                 ].map((option) => (
-                  <label key={option.id} className="flex items-center gap-3 cursor-pointer p-2 rounded-lg hover:bg-background transition-colors">
+                  <label key={option.id} className="flex items-center gap-3 cursor-pointer p-2 rounded-full hover:bg-background transition-colors">
                     <input
                       type="radio"
                       name="ceremoniTyp"
@@ -218,7 +218,7 @@ function BegravningsplaneringContent() {
                 value={data.begravningsbyra}
                 onChange={(e) => setData({ ...data, begravningsbyra: e.target.value })}
                 placeholder={t('T.ex. Nordstöms begravningsbyrå', 'E.g. Smith\'s funeral home')}
-                className="w-full px-4 py-3 border border-[#E8E4DE] rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
+                className="w-full px-4 py-3 border border-[#E8E4DE] rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
               />
             </div>
             <div>
@@ -227,7 +227,7 @@ function BegravningsplaneringContent() {
                 value={data.telefon}
                 onChange={(e) => setData({ ...data, telefon: e.target.value })}
                 placeholder="08-XXX XX XX"
-                className="w-full px-4 py-3 border border-[#E8E4DE] rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
+                className="w-full px-4 py-3 border border-[#E8E4DE] rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
               />
             </div>
             <div>
@@ -237,7 +237,7 @@ function BegravningsplaneringContent() {
                 onChange={(e) => setData({ ...data, offert: e.target.value })}
                 placeholder={t('T.ex. 35000', 'E.g. 35000')}
                 type="number"
-                className="w-full px-4 py-3 border border-[#E8E4DE] rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
+                className="w-full px-4 py-3 border border-[#E8E4DE] rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
               />
             </div>
           </div>
@@ -276,7 +276,7 @@ function BegravningsplaneringContent() {
                 value={data.plats}
                 onChange={(e) => setData({ ...data, plats: e.target.value })}
                 placeholder={t('T.ex. Storkyrkan, Stockholm', 'E.g. Stockholm Cathedral, Stockholm')}
-                className="w-full px-4 py-3 border border-[#E8E4DE] rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
+                className="w-full px-4 py-3 border border-[#E8E4DE] rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
               />
             </div>
             <div>
@@ -285,7 +285,7 @@ function BegravningsplaneringContent() {
                 value={data.officiant}
                 onChange={(e) => setData({ ...data, officiant: e.target.value })}
                 placeholder={t('T.ex. Präst Maria Svensson', 'E.g. Rev. Mary Smith')}
-                className="w-full px-4 py-3 border border-[#E8E4DE] rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
+                className="w-full px-4 py-3 border border-[#E8E4DE] rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
               />
             </div>
             <div>
@@ -295,7 +295,7 @@ function BegravningsplaneringContent() {
                 onChange={(e) => setData({ ...data, musik: e.target.value })}
                 placeholder={t('T.ex. \'Psalm 23, musikstycke från Grieg\'', 'E.g. \'Psalm 23, piece by Grieg\'')}
                 rows={3}
-                className="w-full px-4 py-3 border border-[#E8E4DE] rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background resize-none text-sm"
+                className="w-full px-4 py-3 border border-[#E8E4DE] rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background resize-none text-sm"
               />
             </div>
             <div>
@@ -305,7 +305,7 @@ function BegravningsplaneringContent() {
                 onChange={(e) => setData({ ...data, blommor: e.target.value })}
                 placeholder={t('T.ex. \'Vita rosor och liljor. En minneskrans från familjen.\'', 'E.g. \'White roses and lilies. A memorial wreath from the family.\'')}
                 rows={3}
-                className="w-full px-4 py-3 border border-[#E8E4DE] rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background resize-none text-sm"
+                className="w-full px-4 py-3 border border-[#E8E4DE] rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background resize-none text-sm"
               />
             </div>
           </div>
@@ -325,7 +325,7 @@ function BegravningsplaneringContent() {
                 onChange={(e) => setData({ ...data, dodsannonsText: e.target.value })}
                 placeholder={t('T.ex. \'Anna Andersson, 1940–2026, född i Värmland...\'', 'E.g. \'Anna Andersson, 1940–2026, born in Värmland...\'')}
                 rows={4}
-                className="w-full px-4 py-3 border border-[#E8E4DE] rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background resize-none text-sm"
+                className="w-full px-4 py-3 border border-[#E8E4DE] rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background resize-none text-sm"
               />
             </div>
             <div>
@@ -334,13 +334,13 @@ function BegravningsplaneringContent() {
                 value={data.tidningar}
                 onChange={(e) => setData({ ...data, tidningar: e.target.value })}
                 placeholder={t('T.ex. \'Dagens Nyheter, Stockholms-Tidningen\'', 'E.g. \'Dagens Nyheter, Stockholm Times\'')}
-                className="w-full px-4 py-3 border border-[#E8E4DE] rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
+                className="w-full px-4 py-3 border border-[#E8E4DE] rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
               />
             </div>
 
             <div className="h-px bg-gray-100" />
 
-            <label className="flex items-center gap-3 p-3 rounded-xl hover:bg-background transition-colors cursor-pointer">
+            <label className="flex items-center gap-3 p-3 rounded-full hover:bg-background transition-colors cursor-pointer">
               <input
                 type="checkbox"
                 checked={data.minnesStund}
@@ -358,7 +358,7 @@ function BegravningsplaneringContent() {
                     value={data.minnesStundPlats}
                     onChange={(e) => setData({ ...data, minnesStundPlats: e.target.value })}
                     placeholder={t('T.ex. Närby församlingshem', 'E.g. Local parish hall')}
-                    className="w-full px-4 py-3 border border-[#E8E4DE] rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
+                    className="w-full px-4 py-3 border border-[#E8E4DE] rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
                   />
                 </div>
                 <div>
@@ -367,7 +367,7 @@ function BegravningsplaneringContent() {
                     value={data.minnesStundGaster}
                     onChange={(e) => setData({ ...data, minnesStundGaster: e.target.value })}
                     placeholder={t('T.ex. 40–50 personer', 'E.g. 40–50 people')}
-                    className="w-full px-4 py-3 border border-[#E8E4DE] rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
+                    className="w-full px-4 py-3 border border-[#E8E4DE] rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
                   />
                 </div>
                 <div>
@@ -376,7 +376,7 @@ function BegravningsplaneringContent() {
                     value={data.minnesStundMat}
                     onChange={(e) => setData({ ...data, minnesStundMat: e.target.value })}
                     placeholder={t('T.ex. \'Enkla smörgåsar, kaffe och tårta\'', 'E.g. \'Simple sandwiches, coffee and cake\'')}
-                    className="w-full px-4 py-3 border border-[#E8E4DE] rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
+                    className="w-full px-4 py-3 border border-[#E8E4DE] rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
                   />
                 </div>
               </div>
@@ -392,7 +392,7 @@ function BegravningsplaneringContent() {
 
           {/* Summary */}
           <div className="card mb-4">
-            <p className="text-xs font-semibold text-muted uppercase tracking-wide mb-4">{t('Sammanfattning av din plan', 'Summary of your plan')}</p>
+            <p className="text-xs font-display text-muted mb-4">{t('Sammanfattning av din plan', 'Summary of your plan')}</p>
 
             <div className="space-y-4">
               <div>
@@ -458,7 +458,7 @@ function BegravningsplaneringContent() {
 
           {/* Checklist */}
           <div className="card mb-4">
-            <p className="text-xs font-semibold text-muted uppercase tracking-wide mb-4">{t('Checklista', 'Checklist')}</p>
+            <p className="text-xs font-display text-muted mb-4">{t('Checklista', 'Checklist')}</p>
             <div className="space-y-3">
               {[
                 { key: 'dodsbevisBegruning', label: t('Dödsbevis till begravningsbyrå', 'Death certificate to funeral home') },
@@ -467,7 +467,7 @@ function BegravningsplaneringContent() {
                 { key: 'minnesstund2', label: t('Minnesstund planerad', 'Memorial gathering planned') },
                 { key: 'dodsannons2', label: t('Dödsannons publicerad', 'Death notice published') },
               ].map((item) => (
-                <label key={item.key} className="flex items-center gap-3 cursor-pointer p-2 rounded-lg hover:bg-background transition-colors">
+                <label key={item.key} className="flex items-center gap-3 cursor-pointer p-2 rounded-full hover:bg-background transition-colors">
                   <input
                     type="checkbox"
                     checked={data.checklista[item.key as keyof typeof data.checklista]}
@@ -497,7 +497,7 @@ function BegravningsplaneringContent() {
           ) : (
             <button
               disabled
-              className="w-full py-3 rounded-xl text-sm font-semibold bg-green-100 text-green-700 flex items-center justify-center gap-2"
+              className="w-full py-3 rounded-full text-sm font-semibold bg-green-100 text-green-700 flex items-center justify-center gap-2"
             >
               <CheckCircle2 className="w-4 h-4" /> {t('Plan sparad!', 'Plan saved!')}
             </button>
@@ -512,7 +512,7 @@ function BegravningsplaneringContent() {
       {/* Navigation buttons */}
       <div className="flex gap-3 mt-6">
         {step > 0 && (
-          <button onClick={prev} className="flex-1 py-3 rounded-xl text-sm font-semibold border-2 border-[#E8E4DE] text-primary hover:bg-background transition-colors flex items-center justify-center gap-1">
+          <button onClick={prev} className="flex-1 py-3 rounded-full text-sm font-semibold border-2 border-[#E8E4DE] text-primary hover:bg-background transition-colors flex items-center justify-center gap-1">
             <ChevronLeft className="w-4 h-4" /> {t('Tillbaka', 'Back')}
           </button>
         )}

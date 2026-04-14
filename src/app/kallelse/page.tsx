@@ -142,14 +142,14 @@ som inte förväntas ärva.`;
   };
 
   return (
-    <div className="flex flex-col min-h-dvh px-5 py-6 pb-24">
-      <Link href="/dashboard" className="inline-flex items-center gap-2 text-sm text-muted hover:text-primary mb-4">
+    <div className="flex flex-col min-h-dvh px-6 py-8 pb-28">
+      <Link href="/dashboard" className="inline-flex items-center gap-2 text-sm text-muted hover:text-primary mb-4 rounded-full">
         <ArrowLeft className="w-4 h-4" /> Dashboard
       </Link>
 
       <div className="flex items-center gap-3 mb-2">
         <Mail className="w-7 h-7 text-accent" />
-        <h1 className="text-2xl font-semibold text-primary">{t('Kallelse', 'Summons')}</h1>
+        <h1 className="text-2xl font-display text-primary">{t('Kallelse', 'Summons')}</h1>
       </div>
       <p className="text-muted mb-6">
         {t('Skapa kallelse till bouppteckningsförrättningen som ska skickas till alla dödsbodelägare.', 'Create a summons to the estate inventory procedure that should be sent to all estate heirs.')}
@@ -181,7 +181,7 @@ som inte förväntas ärva.`;
 
       {/* Settings */}
       <div className="card mb-6 space-y-4">
-        <h2 className="font-semibold text-primary text-sm">{t('Förrättningsuppgifter', 'Procedure Details')}</h2>
+        <h2 className="font-display text-primary text-sm">{t('Förrättningsuppgifter', 'Procedure Details')}</h2>
 
         <div>
           <label className="flex items-center gap-2 text-sm font-medium text-primary mb-1">
@@ -191,7 +191,7 @@ som inte förväntas ärva.`;
             type="date"
             value={forrattningsDatum}
             onChange={(e) => setForrattningsDatum(e.target.value)}
-            className="w-full px-3 py-2 border border-[#E8E4DE] rounded-card text-sm focus:outline-none focus:ring-2 focus:ring-accent"
+            className="w-full px-3 py-2 border border-[#E8E4DE] rounded-[20px] text-sm focus:outline-none focus:ring-2 focus:ring-accent"
           />
         </div>
 
@@ -203,7 +203,7 @@ som inte förväntas ärva.`;
             type="time"
             value={forrattningsTid}
             onChange={(e) => setForrattningsTid(e.target.value)}
-            className="w-full px-3 py-2 border border-[#E8E4DE] rounded-card text-sm focus:outline-none focus:ring-2 focus:ring-accent"
+            className="w-full px-3 py-2 border border-[#E8E4DE] rounded-[20px] text-sm focus:outline-none focus:ring-2 focus:ring-accent"
           />
         </div>
 
@@ -216,14 +216,14 @@ som inte förväntas ärva.`;
             value={forrattningsPlats}
             onChange={(e) => setForrattningsPlats(e.target.value)}
             placeholder={t('T.ex. hemma hos efterlevande, juristbyrån...', 'E.g. at the surviving spouse\'s home, law firm...')}
-            className="w-full px-3 py-2 border border-[#E8E4DE] rounded-card text-sm placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-accent"
+            className="w-full px-3 py-2 border border-[#E8E4DE] rounded-[20px] text-sm placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-accent"
           />
         </div>
       </div>
 
       {/* Preview */}
-      <h2 className="font-semibold text-primary mb-2">{t('Förhandsvisning', 'Preview')}</h2>
-      <pre className="bg-white rounded-card p-4 text-xs text-primary/80 whitespace-pre-wrap font-mono leading-relaxed overflow-x-auto max-h-80 overflow-y-auto mb-4">
+      <h2 className="font-display text-primary mb-2">{t('Förhandsvisning', 'Preview')}</h2>
+      <pre className="bg-white rounded-[20px] p-4 text-xs text-primary/80 whitespace-pre-wrap font-mono leading-relaxed overflow-x-auto max-h-80 overflow-y-auto mb-4">
         {kallelseText}
       </pre>
 

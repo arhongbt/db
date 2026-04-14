@@ -211,7 +211,7 @@ function CalendarContent() {
     : [];
 
   return (
-    <div className="flex flex-col px-5 py-6 pb-24 animate-fadeIn">
+    <div className="flex flex-col px-6 py-8 pb-28 animate-fadeIn">
       {/* Header */}
       <div className="flex items-center gap-3 mb-6">
         <Link
@@ -222,7 +222,7 @@ function CalendarContent() {
           <ArrowLeft className="w-5 h-5 text-primary" />
         </Link>
         <div>
-          <h1 className="text-2xl font-semibold text-primary flex items-center gap-2">
+          <h1 className="text-2xl font-display text-primary flex items-center gap-2">
             <Calendar className="w-6 h-6 text-[#7A9E7E]" />
             {t('Kalender', 'Calendar')}
           </h1>
@@ -242,7 +242,7 @@ function CalendarContent() {
       />
 
       {/* Share hint card */}
-      <div className="card border-l-4 border-[#7A9E7E] bg-green-50 mb-5 flex items-start gap-3">
+      <div className="card mb-5 flex items-start gap-3" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02))', border: '1px solid rgba(122,158,126,0.15)' }}>
         <Share2 className="w-5 h-5 text-[#7A9E7E] flex-shrink-0 mt-0.5" />
         <div>
           <p className="text-sm font-medium text-primary">{t('Framtida funktion', 'Coming soon')}</p>
@@ -264,7 +264,7 @@ function CalendarContent() {
             >
               <ChevronLeft className="w-5 h-5 text-primary" />
             </button>
-            <h2 className="text-lg font-semibold text-primary capitalize">{monthName}</h2>
+            <h2 className="text-lg font-display text-primary capitalize">{monthName}</h2>
             <button
               onClick={() => setCurrentDate(new Date(currentDate.setMonth(currentDate.getMonth() + 1)))}
               className="p-2 hover:bg-background rounded-full transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center"
@@ -339,7 +339,8 @@ function CalendarContent() {
               setShowAddEvent(!showAddEvent);
               setSelectedDate(null);
             }}
-            className="w-full card bg-[#7A9E7E] text-white py-3 rounded-2xl font-medium flex items-center justify-center gap-2 hover:bg-[#5a6d50] transition-colors"
+            className="w-full card text-white py-3 rounded-2xl font-medium flex items-center justify-center gap-2 hover:opacity-90 transition-opacity"
+            style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}
             aria-label={t('Lägg till händelse', 'Add event')}
           >
             <Plus className="w-5 h-5" />
@@ -357,7 +358,7 @@ function CalendarContent() {
             >
               <ChevronLeft className="w-5 h-5 text-primary" />
             </button>
-            <h2 className="text-lg font-semibold text-primary">
+            <h2 className="text-lg font-display text-primary">
               {selectedDateObj?.toLocaleDateString('sv-SE', {
                 weekday: 'long',
                 day: 'numeric',
@@ -380,7 +381,7 @@ function CalendarContent() {
               {selectedDayEvents.map((event) => {
                 const colors = CATEGORY_COLORS[event.category];
                 return (
-                  <div key={event.id} className={`card border-l-4 ${colors.bg} ${colors.text}`}>
+                  <div key={event.id} className={`card ${colors.bg} ${colors.text}`} style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02))', border: '1px solid rgba(122,158,126,0.15)' }}>
                     <div className="flex items-start justify-between gap-3">
                       <div className="flex-1">
                         <p className="font-semibold">{event.title}</p>
@@ -431,7 +432,8 @@ function CalendarContent() {
               setShowAddEvent(!showAddEvent);
               setFormDate(selectedDate || '');
             }}
-            className="w-full card bg-[#7A9E7E] text-white py-3 rounded-2xl font-medium flex items-center justify-center gap-2 hover:bg-[#5a6d50] transition-colors"
+            className="w-full card text-white py-3 rounded-2xl font-medium flex items-center justify-center gap-2 hover:opacity-90 transition-opacity"
+            style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}
             aria-label={t('Lägg till händelse denna dag', 'Add event this day')}
           >
             <Plus className="w-5 h-5" />
@@ -442,9 +444,9 @@ function CalendarContent() {
 
       {/* Add event form modal */}
       {showAddEvent && (
-        <div className="card border-2 border-[#7A9E7E] mb-6 p-4 space-y-4">
+        <div className="card mb-6 p-4 space-y-4" style={{ borderRadius: '28px' }}>
           <div className="flex items-center justify-between mb-2">
-            <h3 className="text-lg font-semibold text-primary">{t('Ny händelse', 'New event')}</h3>
+            <h3 className="text-lg font-display text-primary">{t('Ny händelse', 'New event')}</h3>
             <button
               onClick={() => {
                 setShowAddEvent(false);
@@ -467,7 +469,7 @@ function CalendarContent() {
               value={formTitle}
               onChange={(e) => setFormTitle(e.target.value)}
               placeholder={t('T.ex. Möte med advokat', 'E.g. Meeting with lawyer')}
-              className="w-full px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-card focus:border-[#7A9E7E] focus:outline-none"
+              className="w-full px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-[20px] focus:border-[#7A9E7E] focus:outline-none"
             />
           </label>
 
@@ -477,7 +479,7 @@ function CalendarContent() {
               type="date"
               value={formDate}
               onChange={(e) => setFormDate(e.target.value)}
-              className="w-full px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-card focus:border-[#7A9E7E] focus:outline-none"
+              className="w-full px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-[20px] focus:border-[#7A9E7E] focus:outline-none"
             />
           </label>
 
@@ -487,7 +489,7 @@ function CalendarContent() {
               type="time"
               value={formTime}
               onChange={(e) => setFormTime(e.target.value)}
-              className="w-full px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-card focus:border-[#7A9E7E] focus:outline-none"
+              className="w-full px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-[20px] focus:border-[#7A9E7E] focus:outline-none"
             />
           </label>
 
@@ -498,7 +500,7 @@ function CalendarContent() {
                 <button
                   key={cat}
                   onClick={() => setFormCategory(cat)}
-                  className={`py-2 px-3 rounded-card text-sm font-medium border-2 transition-colors ${
+                  className={`py-2 px-3 rounded-full text-sm font-medium border-2 transition-colors ${
                     formCategory === cat
                       ? `border-[#7A9E7E] ${CATEGORY_COLORS[cat].bg} text-primary`
                       : 'border-[#E8E4DE] text-muted hover:border-[#7A9E7E]/50'

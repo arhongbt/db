@@ -171,14 +171,14 @@ export default function BankGuidePage() {
 
   return (
     <div className="min-h-dvh bg-background">
-      <div className="px-5 py-6">
-        <Link href="/dashboard" className="inline-flex items-center gap-2 text-sm text-muted hover:text-primary mb-6">
+      <div className="px-6 py-8">
+        <Link href="/dashboard" className="inline-flex items-center gap-2 text-sm text-muted hover:text-primary mb-6 rounded-full p-2 -ml-2">
           <ArrowLeft className="w-4 h-4" /> Dashboard
         </Link>
 
         <div className="flex items-center gap-3 mb-2">
           <Building2 className="w-6 h-6 text-accent" />
-          <h1 className="text-2xl font-semibold text-primary">{t('Bank-guide', 'Bank Guide')}</h1>
+          <h1 className="text-2xl font-display text-primary">{t('Bank-guide', 'Bank Guide')}</h1>
         </div>
         <p className="text-muted text-sm mb-6">
           {t('Steg-för-steg instruktioner för varje storbank. Vad du ska säga, vilka dokument du behöver, och tips.', 'Step-by-step instructions for each major bank. What to say, what documents you need, and tips.')}
@@ -221,13 +221,14 @@ export default function BankGuidePage() {
                   <div className="flex gap-2">
                     <a
                       href={`tel:${bank.phone.replace(/[- ]/g, '')}`}
-                      className="flex-1 flex items-center justify-center gap-2 py-2.5 bg-accent text-white rounded-lg text-sm font-medium"
+                      className="flex-1 flex items-center justify-center gap-2 py-2.5 bg-accent text-white rounded-full text-sm font-medium"
+                      style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}
                     >
                       <Phone className="w-4 h-4" /> {bank.phone}
                     </a>
                     <button
                       onClick={() => copyPhone(bank.phone, bank.id)}
-                      className="px-3 py-2.5 border border-border rounded-lg"
+                      className="px-3 py-2.5 border border-border rounded-full"
                     >
                       {copied === bank.id ? <Check className="w-4 h-4 text-success" /> : <Copy className="w-4 h-4 text-muted" />}
                     </button>
@@ -275,8 +276,8 @@ export default function BankGuidePage() {
         </div>
 
         {/* General tips */}
-        <div className="card mt-6 border-l-4 border-accent">
-          <p className="font-semibold text-primary text-sm mb-2">{t('Generella tips', 'General tips')}</p>
+        <div className="card mt-6" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02))', border: '1px solid rgba(122,158,126,0.15)' }}>
+          <p className="font-display text-primary text-sm mb-2">{t('Generella tips', 'General tips')}</p>
           <div className="space-y-2 text-xs text-muted">
             <p>• {t('Säg alltid: &ldquo;Jag ringer angående ett dödsfall&rdquo; — du kopplas direkt till rätt avdelning.', 'Always say: "I\'m calling about a death" — you\'ll be transferred directly to the right department.')}</p>
             <p>• {t('Ha dödsbevis och ditt eget leg redo vid varje samtal.', 'Have the death certificate and your own ID ready for every call.')}</p>

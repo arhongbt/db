@@ -74,15 +74,15 @@ function ExporteraContent() {
   };
 
   return (
-    <div className="min-h-dvh bg-background pb-24">
-      <div className="px-5 py-6">
+    <div className="min-h-dvh bg-background pb-28">
+      <div className="px-6 py-8">
         <Link href="/dashboard" className="inline-flex items-center gap-2 text-sm text-muted hover:text-primary mb-6">
           <ArrowLeft className="w-4 h-4" /> Dashboard
         </Link>
 
         <div className="flex items-center gap-3 mb-2">
           <Package className="w-6 h-6 text-accent" />
-          <h1 className="text-2xl font-semibold text-primary">Exportera allt</h1>
+          <h1 className="text-2xl font-display text-primary">Exportera allt</h1>
         </div>
         <p className="text-muted text-sm mb-6">
           Ladda ner allt som ett komplett ZIP-paket.
@@ -90,7 +90,7 @@ function ExporteraContent() {
 
         {/* Contents preview */}
         <div className="card mb-4">
-          <p className="font-semibold text-primary text-sm mb-3">Paketet innehåller:</p>
+          <p className="font-display text-primary text-sm mb-3">Paketet innehåller:</p>
           <div className="space-y-2">
             {[
               { icon: FileText, label: 'Sammanfattning', desc: 'Textöversikt av hela dödsboet' },

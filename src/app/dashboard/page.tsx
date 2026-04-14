@@ -432,7 +432,7 @@ function DashboardContent() {
         aria-label={t('dashboard.ask_mike_ross')}
       >
         <div className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0"
-          style={{ background: 'var(--accent)' }}>
+          style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}>
           <Bot className="w-5 h-5 text-white" strokeWidth={1.5} />
         </div>
         <div className="flex-1">

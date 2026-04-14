@@ -169,7 +169,7 @@ function NodbromsContent() {
   };
 
   return (
-    <div className="flex flex-col px-5 py-6 pb-24">
+    <div className="flex flex-col px-6 py-8 pb-28">
       {/* Header */}
       <div className="flex items-center gap-3 mb-2">
         <Link
@@ -180,7 +180,7 @@ function NodbromsContent() {
           <ArrowLeft className="w-5 h-5 text-primary" />
         </Link>
         <div>
-          <h1 className="text-2xl font-semibold text-primary">{t('Nödbroms', 'Emergency Brakes')}</h1>
+          <h1 className="text-2xl font-display text-primary">{t('Nödbroms', 'Emergency Brakes')}</h1>
           <p className="text-muted text-sm">{t('De första 7 dagarna', 'The first 7 days')}</p>
         </div>
       </div>
@@ -268,7 +268,7 @@ function NodbromsContent() {
                   </ul>
 
                   {step.urgentAccessInfo && (
-                    <div className="bg-orange-50 border border-orange-200 rounded-card p-4 text-sm mb-3">
+                    <div className="bg-orange-50 border border-orange-200 rounded-[20px] p-4 text-sm mb-3">
                       <div className="flex gap-2">
                         <AlertTriangle className="w-5 h-5 text-orange-600 flex-shrink-0 mt-0.5" />
                         <div className="flex-1">
@@ -286,7 +286,7 @@ function NodbromsContent() {
                   )}
 
                   {step.tips && (
-                    <div className="bg-primary-lighter/30 rounded-card p-3 text-sm">
+                    <div className="bg-primary-lighter/30 rounded-[20px] p-3 text-sm">
                       <strong className="text-primary">{t('Tips:', 'Tips:')}</strong>{' '}
                       <span className="text-primary/80">{t(step.tips, step.tips).split(/(\d[\d\s-]{6,})/).map((part: string, j: number) => {
                         const digits = part.replace(/[^0-9]/g, '');
@@ -313,7 +313,7 @@ function NodbromsContent() {
       </div>
 
       {/* Disclaimer with acute hardship info */}
-      <div className="mt-12 mb-6 p-4 bg-white rounded-card border border-[#E8E4DE] text-xs text-muted space-y-2">
+      <div className="mt-12 mb-6 p-4 bg-white rounded-[20px] border border-[#E8E4DE] text-xs text-muted space-y-2">
         <p>
           <strong className="text-primary">{t('Denna sida är allmän vägledning,', 'This page is general guidance,')} </strong>{t('inte juridisk rådgivning. Situationer varierar.', 'not legal advice. Situations vary.')}
         </p>

@@ -382,7 +382,7 @@ function JuridiskHjalpContent() {
             <Bot className="w-5 h-5 text-white" />
           </div>
           <div>
-            <h1 className="text-base font-semibold text-primary">Mike Ross</h1>
+            <h1 className="text-base font-display text-primary">Mike Ross</h1>
             <div className="flex items-center gap-1.5">
               <span className="w-2 h-2 rounded-full bg-green-400" />
               <p className="text-xs text-muted">{t('Online — juridisk AI-assistent', 'Online — legal AI assistant')}</p>
@@ -403,7 +403,8 @@ function JuridiskHjalpContent() {
               </p>
               <button
                 onClick={() => setShowBankIDModal(true)}
-                className="mt-2 px-4 py-2.5 bg-accent text-white text-xs font-medium rounded-lg hover:bg-accent/90 transition-colors"
+                className="mt-2 px-4 py-2.5 bg-accent text-white text-xs font-medium rounded-full hover:bg-accent/90 transition-colors"
+                style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}
               >
                 {t('Verifiera nu', 'Verify now')}
               </button>
@@ -420,7 +421,7 @@ function JuridiskHjalpContent() {
             <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mb-4">
               <Sparkles className="w-8 h-8 text-accent" />
             </div>
-            <h2 className="text-xl font-semibold text-primary mb-2">
+            <h2 className="text-xl font-display text-primary mb-2">
               {t('Hej, jag är Mike Ross', 'Hi, I\'m Mike Ross')}
             </h2>
             <p className="text-muted text-sm max-w-xs mb-6">
@@ -429,7 +430,7 @@ function JuridiskHjalpContent() {
 
             {/* AI-frågor — primär CTA */}
             <div className="flex flex-col gap-2 w-full max-w-sm">
-              <p className="text-xs font-medium text-muted uppercase tracking-wide mb-1">
+              <p className="text-xs font-display text-muted mb-1">
                 {t('Förslag på frågor', 'Suggested questions')}
               </p>
               {SUGGESTED_QUESTIONS.map((q) => (
@@ -444,7 +445,7 @@ function JuridiskHjalpContent() {
               ))}
             </div>
 
-            <div className="mt-6 p-3 rounded-xl max-w-sm border" style={{ background: 'var(--accent-soft)', borderColor: 'var(--border)' }}>
+            <div className="mt-6 p-3 rounded-[20px] max-w-sm border" style={{ background: 'linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02))', borderColor: 'rgba(122,158,126,0.15)' }}>
               <div className="flex gap-2">
                 <AlertTriangle className="w-4 h-4 text-warn flex-shrink-0 mt-0.5" />
                 <p className="text-xs text-primary">
@@ -457,7 +458,7 @@ function JuridiskHjalpContent() {
             <div className="mt-4 w-full max-w-sm">
               <Link
                 href="/boka-jurist"
-                className="w-full p-3 rounded-xl border flex items-center gap-3 text-left hover:shadow-sm transition-all"
+                className="w-full p-3 rounded-[20px] border flex items-center gap-3 text-left hover:shadow-sm transition-all"
                 style={{ borderColor: 'var(--border)', background: 'var(--bg-card)' }}
               >
                 <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}>
@@ -531,7 +532,7 @@ function JuridiskHjalpContent() {
         {/* Error */}
         {error && (
           <div className="flex justify-center mb-4">
-            <div className="border px-4 py-3 rounded-xl max-w-sm" style={{ background: 'var(--accent-soft)', borderColor: 'var(--border)' }}>
+            <div className="border px-4 py-3 rounded-[20px] max-w-sm" style={{ background: 'linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02))', borderColor: 'rgba(122,158,126,0.15)' }}>
               <div className="flex gap-2">
                 <AlertTriangle className="w-4 h-4 text-warn flex-shrink-0 mt-0.5" />
                 <p className="text-sm text-warn">{error}</p>
@@ -556,8 +557,8 @@ function JuridiskHjalpContent() {
 
         {/* Limit reached — prominent jurist CTA */}
         {isLimitReached && (
-          <div className="mb-4 rounded-2xl overflow-hidden border" style={{ borderColor: 'var(--border)' }}>
-            <div className="p-4" style={{ background: 'var(--accent-soft)' }}>
+          <div className="mb-4 rounded-[28px] overflow-hidden border" style={{ borderColor: 'var(--border)' }}>
+            <div className="p-4" style={{ background: 'linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02))' }}>
               <div className="flex items-center gap-2 mb-2">
                 <Scale className="w-4 h-4 text-accent" />
                 <p className="text-sm font-bold text-primary">
@@ -583,7 +584,7 @@ function JuridiskHjalpContent() {
               </div>
               <Link
                 href="/boka-jurist"
-                className="w-full py-3 text-sm font-semibold text-white rounded-xl flex items-center justify-center gap-2 transition-opacity hover:opacity-90"
+                className="w-full py-3 text-sm font-semibold text-white rounded-[20px] flex items-center justify-center gap-2 transition-opacity hover:opacity-90"
                 style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}
               >
                 {t('Boka gratis konsultation', 'Book free consultation')}
@@ -612,7 +613,7 @@ function JuridiskHjalpContent() {
                   onClick={() => sendMessage(t(chip.sv, chip.en))}
                   disabled={isLoading}
                   className="flex-shrink-0 px-4 py-2.5 border text-xs font-medium text-accent rounded-full hover:opacity-80 transition-opacity disabled:opacity-50"
-                  style={{ background: 'var(--accent-soft)', borderColor: 'var(--border)' }}
+                  style={{ background: 'linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02))', borderColor: 'rgba(122,158,126,0.15)' }}
                 >
                   {t(chip.sv, chip.en)}
                 </button>
@@ -627,7 +628,7 @@ function JuridiskHjalpContent() {
               onKeyDown={handleKeyDown}
               placeholder={t('Ställ en fråga om arvsrätt...', 'Ask a question about inheritance rights...')}
               rows={1}
-              className="flex-1 px-4 py-3 rounded-2xl resize-none
+              className="flex-1 px-4 py-3 rounded-[20px] resize-none
                          focus:outline-none focus:ring-2 focus:ring-accent/30 transition-all
                          text-sm text-primary placeholder:text-gray-400 border-2"
               style={{ borderColor: 'var(--border)', background: 'var(--bg-card)' }}
@@ -636,9 +637,10 @@ function JuridiskHjalpContent() {
             <button
               onClick={() => sendMessage()}
               disabled={!input.trim() || isLoading}
-              className="p-3 bg-accent text-white rounded-2xl hover:bg-accent/90
+              className="p-3 bg-accent text-white rounded-[20px] hover:bg-accent/90
                          transition-all shadow-sm disabled:opacity-40 disabled:cursor-not-allowed
                          flex-shrink-0"
+              style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}
               aria-label={t('Skicka meddelande', 'Send message')}
             >
               <Send className="w-5 h-5" />

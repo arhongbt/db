@@ -174,7 +174,7 @@ function BouppteckningContent() {
     }).format(amount);
 
   return (
-    <div className="flex flex-col px-5 py-6 pb-24">
+    <div className="flex flex-col px-6 py-8 pb-28">
       {/* Header */}
       <div className="flex items-center gap-3 mb-6">
         <Link
@@ -185,7 +185,7 @@ function BouppteckningContent() {
           <ArrowLeft className="w-5 h-5 text-primary" />
         </Link>
         <div>
-          <h1 className="text-2xl font-semibold text-primary">{t('Bouppteckning', 'Estate Inventory')}</h1>
+          <h1 className="text-2xl font-display text-primary">{t('Bouppteckning', 'Estate Inventory')}</h1>
           <p className="text-muted text-sm">
             {t('Samla underlag steg för steg', 'Gather documentation step by step')}
           </p>
@@ -193,7 +193,7 @@ function BouppteckningContent() {
       </div>
 
       {/* Info box */}
-      <div className="mb-6 rounded-xl p-4 flex gap-2" style={{ background: 'var(--accent-soft)' }}>
+      <div className="mb-6 p-4 flex gap-2" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02))', border: '1px solid rgba(122,158,126,0.15)' }}>
         <Info className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
         <div>
           <p className="text-sm font-medium text-primary">{t('Vad är en bouppteckning?', 'What is an estate inventory?')}</p>
@@ -287,8 +287,8 @@ function BouppteckningContent() {
       </button>
 
       {showExtraFields && (
-        <div className="card border-2 border-accent/30 mb-6 space-y-4">
-          <h3 className="text-base font-semibold text-primary">{t('Den avlidnes uppgifter', 'Deceased Information')}</h3>
+        <div className="card mb-6 space-y-4" style={{ borderRadius: '28px' }}>
+          <h3 className="text-base font-display text-primary">{t('Den avlidnes uppgifter', 'Deceased Information')}</h3>
 
           <label className="block">
             <span className="text-sm font-medium text-primary mb-1 block">{t('Personnummer', 'ID Number')}</span>
@@ -300,7 +300,7 @@ function BouppteckningContent() {
               onBlur={handlePersonnummerBlur}
               placeholder={t('ÅÅÅÅMMDD-XXXX', 'YYYYMMDD-XXXX')}
               autoComplete="off"
-              className={`w-full px-4 py-3 text-base border-2 rounded-card focus:outline-none ${
+              className={`w-full px-4 py-3 text-base border-2 rounded-[20px] focus:outline-none ${
                 pnrError
                   ? 'border-warn focus:border-warn'
                   : personnummer.trim() && !pnrError
@@ -321,7 +321,7 @@ function BouppteckningContent() {
               onChange={(e) => setAddress(e.target.value)}
               onBlur={saveBouppteckningInfo}
               placeholder={t('Gatuadress, postnummer ort', 'Street address, postal code city')}
-              className="w-full px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-card focus:border-accent focus:outline-none"
+              className="w-full px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-[20px] focus:border-accent focus:outline-none"
             />
           </label>
 
@@ -333,7 +333,7 @@ function BouppteckningContent() {
               onChange={(e) => setFolkbokforingsort(e.target.value)}
               onBlur={saveBouppteckningInfo}
               placeholder={t('T.ex. Stockholms kommun', 'E.g. Stockholm Municipality')}
-              className="w-full px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-card focus:border-accent focus:outline-none"
+              className="w-full px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-[20px] focus:border-accent focus:outline-none"
             />
           </label>
 
@@ -350,7 +350,7 @@ function BouppteckningContent() {
                   key={opt.value}
                   type="button"
                   onClick={() => { setCivilstand(opt.value); setTimeout(saveBouppteckningInfo, 0); }}
-                  className={`py-2.5 px-3 rounded-card text-sm font-medium border-2 transition-colors ${
+                  className={`py-2.5 px-3 rounded-full text-sm font-medium border-2 transition-colors ${
                     civilstand === opt.value
                       ? 'border-accent bg-primary-lighter/30 text-primary'
                       : 'border-[#E8E4DE] text-muted hover:border-gray-300'
@@ -363,7 +363,7 @@ function BouppteckningContent() {
           </div>
 
           <hr className="border-[#E8E4DE]" />
-          <h3 className="text-base font-semibold text-primary">{t('Förrättning', 'Estate Proceeding')}</h3>
+          <h3 className="text-base font-display text-primary">{t('Förrättning', 'Estate Proceeding')}</h3>
 
           <label className="block">
             <span className="text-sm font-medium text-primary mb-1 block">{t('Förrättningsdatum', 'Date of Proceeding')}</span>
@@ -372,7 +372,7 @@ function BouppteckningContent() {
               value={forrattningsdatum}
               onChange={(e) => setForrattningsdatum(e.target.value)}
               onBlur={saveBouppteckningInfo}
-              className="w-full px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-card focus:border-accent focus:outline-none"
+              className="w-full px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-[20px] focus:border-accent focus:outline-none"
             />
           </label>
 
@@ -384,7 +384,7 @@ function BouppteckningContent() {
               onChange={(e) => setBouppgivareName(e.target.value)}
               onBlur={saveBouppteckningInfo}
               placeholder={t('Den som lämnar uppgifterna', 'Person providing information')}
-              className="w-full px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-card focus:border-accent focus:outline-none"
+              className="w-full px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-[20px] focus:border-accent focus:outline-none"
             />
             <span className="text-xs text-muted mt-1 block">{t('Oftast en nära anhörig som känner till dödsboet', 'Usually a close relative familiar with the estate')}</span>
           </label>
@@ -397,7 +397,7 @@ function BouppteckningContent() {
               onChange={(e) => setFm1Name(e.target.value)}
               onBlur={saveBouppteckningInfo}
               placeholder={t('Namn', 'Name')}
-              className="w-full px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-card focus:border-accent focus:outline-none"
+              className="w-full px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-[20px] focus:border-accent focus:outline-none"
             />
           </label>
 
@@ -409,7 +409,7 @@ function BouppteckningContent() {
               onChange={(e) => setFm2Name(e.target.value)}
               onBlur={saveBouppteckningInfo}
               placeholder={t('Namn', 'Name')}
-              className="w-full px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-card focus:border-accent focus:outline-none"
+              className="w-full px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-[20px] focus:border-accent focus:outline-none"
             />
             <span className="text-xs text-muted mt-1 block">{t('Två oberoende personer som intygar att uppgifterna stämmer', 'Two independent people confirming the accuracy of the information')}</span>
           </label>
@@ -418,8 +418,8 @@ function BouppteckningContent() {
 
       {/* Summary preview */}
       {(state.tillgangar.length > 0 || state.skulder.length > 0) && (
-        <div className="card border-2 border-primary-lighter mb-6">
-          <h2 className="text-lg font-semibold text-primary mb-4">
+        <div className="card mb-6">
+          <h2 className="text-lg font-display text-primary mb-4">
             {t('Sammanfattning', 'Summary')}
           </h2>
 
@@ -559,7 +559,7 @@ function BouppteckningContent() {
               <div className="space-y-6">
                 {previewDoc.sections.map((section, i) => (
                   <div key={i}>
-                    <h3 className="text-xs font-bold text-accent uppercase tracking-wider bg-primary-lighter/20 px-3 py-1.5 rounded-card mb-3">
+                    <h3 className="text-xs font-display text-accent uppercase tracking-wider bg-primary-lighter/20 px-3 py-1.5 rounded-[20px] mb-3">
                       {section.heading}
                     </h3>
 

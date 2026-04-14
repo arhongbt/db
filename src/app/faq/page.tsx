@@ -112,7 +112,7 @@ export default function FaqPage() {
   });
 
   return (
-    <div className="flex flex-col px-5 py-6 pb-24">
+    <div className="flex flex-col px-6 py-8 pb-28">
       <div className="flex items-center gap-3 mb-4">
         <Link
           href="/dashboard"
@@ -122,7 +122,7 @@ export default function FaqPage() {
           <ArrowLeft className="w-5 h-5 text-primary" />
         </Link>
         <div>
-          <h1 className="text-2xl font-semibold text-primary">{t('Vanliga frågor', 'FAQ')}</h1>
+          <h1 className="text-2xl font-display text-primary">{t('Vanliga frågor', 'FAQ')}</h1>
           <p className="text-muted text-sm">{FAQ_ITEMS.length} {t('frågor & svar', 'questions & answers')}</p>
         </div>
       </div>
@@ -135,7 +135,7 @@ export default function FaqPage() {
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           placeholder={t('Sök frågor...', 'Search questions...')}
-          className="w-full min-h-touch pl-10 pr-4 py-3 text-base border-2 rounded-card focus:border-accent focus:outline-none"
+          className="w-full min-h-touch pl-10 pr-4 py-3 text-base border-2 rounded-[20px] focus:border-accent focus:outline-none"
           style={{ borderColor: 'var(--border)', background: 'var(--bg-card)' }}
         />
       </div>
@@ -151,7 +151,7 @@ export default function FaqPage() {
                 ? 'bg-primary text-white'
                 : 'text-muted'
               }`}
-              style={activeCategory !== cat ? { background: 'var(--bg-card)' } : {}}
+              style={activeCategory === cat ? { background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' } : { background: 'var(--bg-card)' }}
           >
             {cat}
           </button>
@@ -171,7 +171,7 @@ export default function FaqPage() {
             >
               <div className="flex items-start justify-between gap-2">
                 <div className="flex-1">
-                  <p className="font-medium text-primary">{faq.question}</p>
+                  <p className="font-display text-primary">{faq.question}</p>
                   {!isExpanded && (
                     <p className="text-xs text-accent mt-1">{faq.category}</p>
                   )}

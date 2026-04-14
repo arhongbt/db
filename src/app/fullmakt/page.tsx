@@ -388,21 +388,21 @@ function FullmaktContent() {
   const categories = ['dina_banker', 'fullmakt', 'brev', 'mall'] as const;
 
   return (
-    <div className="flex flex-col min-h-dvh px-5 py-6 pb-24">
-      <Link href="/dashboard" className="inline-flex items-center gap-2 text-sm text-muted hover:text-primary mb-4">
+    <div className="flex flex-col min-h-dvh px-6 py-8 pb-28">
+      <Link href="/dashboard" className="inline-flex items-center gap-2 p-2 text-sm text-muted hover:text-primary hover:bg-gray-100 rounded-full mb-4 transition-colors">
         <ArrowLeft className="w-4 h-4" /> Dashboard
       </Link>
 
       <div className="flex items-center gap-3 mb-2">
         <FileSignature className="w-7 h-7 text-accent" />
-        <h1 className="text-2xl font-semibold text-primary">Fullmakter & mallar</h1>
+        <h1 className="text-2xl font-display text-primary">Fullmakter & mallar</h1>
       </div>
       <p className="text-muted mb-6">
         Färdiga dokument att kopiera, anpassa och skriva ut. Fyll i uppgifter om den avlidne på andra sidor så fylls mallarna i automatiskt.
       </p>
 
       {bankLetters.length > 0 && (
-        <div className="card border-l-4 border-success mb-6">
+        <div className="card mb-6" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02))', border: '1px solid rgba(122,158,126,0.15)' }}>
           <div className="flex items-start gap-2">
             <CheckCircle2 className="w-5 h-5 text-success flex-shrink-0 mt-0.5" />
             <p className="text-sm text-primary/80">
@@ -430,7 +430,7 @@ function FullmaktContent() {
         if (items.length === 0) return null;
         return (
           <section key={cat} className="mb-6">
-            <h2 className="text-sm font-semibold text-muted uppercase tracking-wide mb-3">
+            <h2 className="text-sm font-display text-muted uppercase tracking-wide mb-3">
               {CATEGORY_LABELS[cat]}
             </h2>
             <div className="space-y-3">
@@ -447,7 +447,7 @@ function FullmaktContent() {
                     >
                       <Icon className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
                       <div className="flex-1">
-                        <p className="font-medium text-primary">{template.title}</p>
+                        <p className="font-display text-primary">{template.title}</p>
                         <p className="text-xs text-muted mt-0.5">{template.description}</p>
                       </div>
                       {isExpanded
@@ -457,13 +457,13 @@ function FullmaktContent() {
 
                     {isExpanded && (
                       <div className="mt-4">
-                        <pre className="bg-white rounded-card p-4 text-xs text-primary/80 whitespace-pre-wrap font-mono leading-relaxed overflow-x-auto max-h-96 overflow-y-auto">
+                        <pre className="bg-white rounded-[20px] p-4 text-xs text-primary/80 whitespace-pre-wrap font-mono leading-relaxed overflow-x-auto max-h-96 overflow-y-auto">
                           {generatedText}
                         </pre>
                         <div className="flex gap-2 mt-3">
                           <button
                             onClick={() => handleCopy(template.id, generatedText)}
-                            className="flex-1 btn-secondary flex items-center justify-center gap-2 text-sm"
+                            className="flex-1 px-3 py-2 rounded-xl bg-gray-100 text-primary font-medium hover:bg-gray-200 transition-colors flex items-center justify-center gap-2 text-sm"
                           >
                             {copied === template.id ? (
                               <>
@@ -479,7 +479,7 @@ function FullmaktContent() {
                           </button>
                           <button
                             onClick={() => downloadDocumentPDF(template.title, generatedText, template.title)}
-                            className="flex-1 btn-secondary flex items-center justify-center gap-2 text-sm"
+                            className="flex-1 px-3 py-2 rounded-xl bg-gray-100 text-primary font-medium hover:bg-gray-200 transition-colors flex items-center justify-center gap-2 text-sm"
                           >
                             <Download className="w-4 h-4" />
                             PDF
@@ -489,7 +489,8 @@ function FullmaktContent() {
                               const { downloadDocumentDocx } = await import('@/lib/generate-document-docx');
                               downloadDocumentDocx(template.title, generatedText, template.title);
                             }}
-                            className="flex-1 py-2 px-3 rounded-xl bg-accent/10 text-accent font-medium hover:bg-accent/20 transition-colors flex items-center justify-center gap-2 text-sm"
+                            className="flex-1 py-2 px-3 rounded-xl text-white font-medium hover:opacity-90 transition-colors flex items-center justify-center gap-2 text-sm"
+                            style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}
                           >
                             <FileSignature className="w-4 h-4" />
                             Word
@@ -505,7 +506,7 @@ function FullmaktContent() {
         );
       })}
 
-      <div className="bg-primary-lighter/30 rounded-card p-4">
+      <div className="bg-primary-lighter/30 rounded-[24px] p-4">
         <p className="text-xs text-muted leading-relaxed">
           Mallarna ger en utgångspunkt och kan behöva anpassas efter din specifika situation.
           Banker kan ha egna blanketter — kontakta dem i förväg. Fullmakter ska undertecknas

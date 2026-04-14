@@ -134,15 +134,15 @@ export default function SkannerPage() {
   };
 
   return (
-    <div className="min-h-dvh bg-background pb-24">
-      <div className="px-5 py-6">
+    <div className="min-h-dvh bg-background pb-28">
+      <div className="px-6 py-8">
         <Link href="/dashboard" className="inline-flex items-center gap-2 text-sm text-muted hover:text-primary mb-6">
           <ArrowLeft className="w-4 h-4" /> {t('Dashboard', 'Dashboard')}
         </Link>
 
         <div className="flex items-center gap-3 mb-2">
           <Camera className="w-6 h-6 text-accent" />
-          <h1 className="text-2xl font-semibold text-primary">{t('Dokumentskanner', 'Document scanner')}</h1>
+          <h1 className="text-2xl font-display text-primary">{t('Dokumentskanner', 'Document scanner')}</h1>
         </div>
         <p className="text-muted text-sm mb-6">
           {t('Fota kvitton, brev och dokument direkt med kameran, eller ladda upp från telefonen.', 'Take photos of receipts, letters and documents directly with the camera, or upload from your phone.')}
@@ -186,9 +186,10 @@ export default function SkannerPage() {
                   onClick={() => setSelectedCategory(cat.id)}
                   className={`text-xs px-3 py-1.5 rounded-full border transition-colors ${
                     selectedCategory === cat.id
-                      ? 'bg-accent text-white border-accent'
+                      ? 'text-white border-accent'
                       : 'bg-white text-primary border-border hover:border-accent'
                   }`}
+                  style={selectedCategory === cat.id ? { background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' } : {}}
                 >
                   {cat.icon} {cat.label}
                 </button>
@@ -203,7 +204,7 @@ export default function SkannerPage() {
                   value={extractedText}
                   onChange={e => setExtractedText(e.target.value)}
                   rows={6}
-                  className="w-full px-3 py-2 border border-border rounded-lg text-xs font-mono"
+                  className="w-full px-3 py-2 border border-border rounded-[20px] text-xs font-mono"
                 />
               </div>
             )}
@@ -257,7 +258,7 @@ export default function SkannerPage() {
         {/* Saved documents */}
         {docs.length > 0 && (
           <>
-            <h2 className="font-semibold text-primary text-sm mb-3">
+            <h2 className="font-display text-primary text-sm mb-3">
               {t('Sparade dokument', 'Saved documents')} ({docs.length})
             </h2>
             <div className="space-y-3">

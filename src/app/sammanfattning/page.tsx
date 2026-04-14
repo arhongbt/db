@@ -233,8 +233,8 @@ function SammanfattningContent() {
   };
 
   return (
-    <div className="flex flex-col min-h-dvh px-5 py-6 pb-24">
-      <Link href="/dashboard" className="inline-flex items-center gap-2 text-sm text-muted hover:text-primary mb-4">
+    <div className="flex flex-col min-h-dvh px-6 py-8 pb-28">
+      <Link href="/dashboard" className="inline-flex items-center gap-2 text-sm text-muted hover:text-primary mb-4 rounded-full">
         <ArrowLeft className="w-4 h-4" /> Dashboard
       </Link>
 
@@ -243,7 +243,7 @@ function SammanfattningContent() {
           <FileDown className="w-5 h-5 text-accent" />
         </div>
         <div>
-          <h1 className="text-xl font-bold text-primary">{t('Sammanfattning', 'Summary')}</h1>
+          <h1 className="text-xl font-display text-primary">{t('Sammanfattning', 'Summary')}</h1>
           <p className="text-xs text-muted">{t('Översikt och PDF-export', 'Overview and PDF export')}</p>
         </div>
       </div>
@@ -272,7 +272,8 @@ function SammanfattningContent() {
       <button
         onClick={handleGeneratePDF}
         disabled={generating}
-        className="btn-primary flex items-center justify-center gap-2 mb-6 press-effect"
+        className="flex items-center justify-center gap-2 mb-6 press-effect text-white rounded-lg px-4 py-2 hover:opacity-90 transition-opacity"
+        style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}
       >
         <FileDown className="w-5 h-5" />
         {generating
@@ -294,7 +295,7 @@ function SammanfattningContent() {
                   <step.icon className="w-4 h-4 text-accent" />
                 </div>
                 <div className="flex-1">
-                  <p className="text-sm font-semibold text-primary">{t(step.title, step.titleEn)}</p>
+                  <p className="text-sm font-display text-primary">{t(step.title, step.titleEn)}</p>
                   <p className="text-[11px] text-muted">{stepDone}/{stepTotal} — {stepPct}%</p>
                 </div>
               </div>

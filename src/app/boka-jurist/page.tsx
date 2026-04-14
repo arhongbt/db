@@ -14,7 +14,7 @@ export default function BokaJuristPage() {
       <div className="px-6 pt-6 pb-4">
         <Link
           href="/juridisk-hjalp"
-          className="inline-flex items-center gap-1 text-muted mb-6 text-sm"
+          className="inline-flex items-center gap-1 text-muted mb-6 text-sm rounded-full"
         >
           <ArrowLeft className="w-4 h-4" />
           {t('Tillbaka', 'Back')}
@@ -28,7 +28,7 @@ export default function BokaJuristPage() {
           >
             <Scale className="w-10 h-10 text-white" strokeWidth={1.8} />
           </div>
-          <h1 className="text-2xl font-bold text-primary leading-tight">
+          <h1 className="text-2xl font-display text-primary leading-tight">
             {t('Boka juristkonsultation', 'Book a lawyer consultation')}
           </h1>
           <p className="text-sm text-muted mt-2 leading-relaxed max-w-md">
@@ -53,9 +53,9 @@ export default function BokaJuristPage() {
       <div className="px-6 mb-6">
         <div
           className="rounded-2xl border p-4"
-          style={{ background: 'var(--bg-card)', borderColor: 'var(--border)' }}
+          style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02))', border: '1px solid rgba(122,158,126,0.15)' }}
         >
-          <h3 className="font-semibold text-primary text-sm mb-3">
+          <h3 className="font-display text-primary text-sm mb-3">
             {t('Vad ingår i mötet?', 'What\u2019s included?')}
           </h3>
           <ul className="space-y-2">
@@ -77,13 +77,13 @@ export default function BokaJuristPage() {
 
       {/* Elfsight widget — visar juristens riktiga kalender */}
       <div className="px-6">
-        <h2 className="text-lg font-bold text-primary mb-3">
+        <h2 className="text-lg font-display text-primary mb-3">
           {t('Välj en tid nedan', 'Pick a time below')}
         </h2>
 
         <div
           className="rounded-2xl border overflow-hidden p-2"
-          style={{ background: 'var(--bg-card)', borderColor: 'var(--border)' }}
+          style={{ borderRadius: '28px', background: 'var(--bg-card)', borderColor: 'var(--border)' }}
         >
           <Script
             src="https://static.elfsight.com/platform/platform.js"

@@ -314,7 +314,7 @@ function ArvskalkylatorContent() {
 
         <div className="flex items-center gap-3 mb-2">
           <Calculator className="w-6 h-6 text-accent" />
-          <h1 className="text-2xl font-semibold text-primary">{t('Arvskalkylator', 'Inheritance calculator')}</h1>
+          <h1 className="text-2xl font-display text-primary">{t('Arvskalkylator', 'Inheritance calculator')}</h1>
         </div>
         <p className="text-muted text-sm mb-6">
           {t('Beräkna hur arvet fördelas baserat på familjesituation och tillgångar.', 'Calculate how the inheritance is distributed based on family situation and assets.')}
@@ -355,7 +355,7 @@ function ArvskalkylatorContent() {
                   type="number"
                   value={manualTillgangar || ''}
                   onChange={e => setManualTillgangar(Number(e.target.value) || 0)}
-                  className="w-full mt-1 px-3 py-2 border border-border rounded-lg text-sm"
+                  className="w-full mt-1 px-3 py-2 border border-border rounded-[20px] text-sm"
                   placeholder="0"
                 />
               </div>
@@ -365,7 +365,7 @@ function ArvskalkylatorContent() {
                   type="number"
                   value={manualSkulder || ''}
                   onChange={e => setManualSkulder(Number(e.target.value) || 0)}
-                  className="w-full mt-1 px-3 py-2 border border-border rounded-lg text-sm"
+                  className="w-full mt-1 px-3 py-2 border border-border rounded-[20px] text-sm"
                   placeholder="0"
                 />
               </div>
@@ -375,7 +375,7 @@ function ArvskalkylatorContent() {
                   type="number"
                   value={manualKostnader || ''}
                   onChange={e => setManualKostnader(Number(e.target.value) || 0)}
-                  className="w-full mt-1 px-3 py-2 border border-border rounded-lg text-sm"
+                  className="w-full mt-1 px-3 py-2 border border-border rounded-[20px] text-sm"
                   placeholder="0"
                 />
               </div>
@@ -406,8 +406,8 @@ function ArvskalkylatorContent() {
 
         {/* Bodelning */}
         {result.bodelning && (
-          <div className="card mb-4 border-l-4 border-accent">
-            <p className="font-semibold text-primary text-sm mb-2">{t('Bodelning (ÄktB 9-13 kap.)', 'Division of property (Marriage Code 9-13 ch.)')}</p>
+          <div className="card mb-4" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02))', border: '1px solid rgba(122,158,126,0.15)' }}>
+            <p className="font-display text-primary text-sm mb-2">{t('Bodelning (ÄktB 9-13 kap.)', 'Division of property (Marriage Code 9-13 ch.)')}</p>
             <p className="text-xs text-muted mb-3">
               {t('Giftorättsgods delas 50/50 mellan makarna innan arvet fördelas.', 'Community property is divided 50/50 between spouses before inheritance is distributed.')}
             </p>
@@ -428,7 +428,7 @@ function ArvskalkylatorContent() {
         <div className="card mb-4">
           <div className="flex items-center gap-2 mb-3">
             <Users className="w-4 h-4 text-accent" />
-            <p className="font-semibold text-primary text-sm">{t('Arvsfördelning', 'Inheritance distribution')}</p>
+            <p className="font-display text-primary text-sm">{t('Arvsfördelning', 'Inheritance distribution')}</p>
           </div>
 
           <div className="space-y-3">

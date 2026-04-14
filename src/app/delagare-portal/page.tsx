@@ -63,15 +63,15 @@ function DelagarePortalContent() {
 
   return (
     <div className="min-h-dvh bg-background">
-      <div className="px-5 py-6">
-        <Link href="/dashboard" className="inline-flex items-center gap-2 text-sm text-muted hover:text-primary mb-6">
+      <div className="px-6 py-8">
+        <Link href="/dashboard" className="inline-flex items-center gap-2 text-sm text-muted hover:text-primary mb-6 rounded-full">
           <ArrowLeft className="w-4 h-4" /> {t('Dashboard', 'Dashboard')}
         </Link>
 
         <div className="flex items-center justify-between mb-2">
           <div className="flex items-center gap-3">
             <Users className="w-6 h-6 text-accent" />
-            <h1 className="text-2xl font-semibold text-primary">{t('Delägare & Status', 'Co-owners & Status')}</h1>
+            <h1 className="text-2xl font-display text-primary">{t('Delägare & Status', 'Co-owners & Status')}</h1>
           </div>
           <button
             onClick={shareLink}
@@ -90,7 +90,7 @@ function DelagarePortalContent() {
           <div className="flex items-center justify-between mb-2">
             <div>
               <p className="text-xs text-muted">{t('Nuvarande fas', 'Current phase')}</p>
-              <p className="font-semibold text-primary">{phaseLabels[state.currentStep]}</p>
+              <p className="font-display text-primary">{phaseLabels[state.currentStep]}</p>
             </div>
             <div className="text-right">
               <p className="text-2xl font-bold text-accent">{progressPercent}%</p>
@@ -107,7 +107,7 @@ function DelagarePortalContent() {
 
         {/* Milestones */}
         <div className="card mb-4">
-          <p className="font-semibold text-primary text-sm mb-3">{t('Milstolpar', 'Milestones')}</p>
+          <p className="font-display text-primary text-sm mb-3">{t('Milstolpar', 'Milestones')}</p>
           <div className="space-y-2">
             {milestones.map((m, i) => (
               <div key={i} className="flex items-center gap-3">
@@ -126,7 +126,7 @@ function DelagarePortalContent() {
 
         {/* Economic summary */}
         <div className="card mb-4">
-          <p className="font-semibold text-primary text-sm mb-3">{t('Ekonomisk sammanfattning', 'Financial summary')}</p>
+          <p className="font-display text-primary text-sm mb-3">{t('Ekonomisk sammanfattning', 'Financial summary')}</p>
           <div className="space-y-2">
             <div className="flex justify-between text-sm">
               <span className="text-muted">{t('Tillgångar', 'Assets')} ({state.tillgangar.length} {t('st', 'pcs')})</span>
@@ -151,7 +151,7 @@ function DelagarePortalContent() {
 
         {/* Delägare list */}
         <div className="mb-4">
-          <p className="font-semibold text-primary text-sm mb-3">
+          <p className="font-display text-primary text-sm mb-3">
             {t('Dödsbodelägare', 'Co-owners')} ({state.delagare.length})
           </p>
           {state.delagare.length === 0 ? (
@@ -214,7 +214,7 @@ function DelagarePortalContent() {
         {/* Invite section */}
         <div className="card mb-4">
           <div className="flex items-center justify-between mb-3">
-            <p className="font-semibold text-primary text-sm">{t('Bjud in delägare', 'Invite co-owners')}</p>
+            <p className="font-display text-primary text-sm">{t('Bjud in delägare', 'Invite co-owners')}</p>
             <button
               onClick={() => { setShowInvite(!showInvite); setInviteLink(null); setInviteError(null); }}
               className="flex items-center gap-1 text-xs text-accent"
@@ -239,7 +239,7 @@ function DelagarePortalContent() {
                   value={inviteEmail}
                   onChange={e => setInviteEmail(e.target.value)}
                   placeholder={t('namn@exempel.se', 'name@example.com')}
-                  className="w-full px-3 py-2 border-2 border-[#E8E4DE] rounded-xl text-sm
+                  className="w-full px-3 py-2 border-2 border-[#E8E4DE] rounded-[20px] text-sm
                              focus:border-accent focus:outline-none transition-colors"
                 />
               </div>
@@ -281,13 +281,13 @@ function DelagarePortalContent() {
               )}
 
               {inviteLink && (
-                <div className="bg-accent/5 border border-accent/20 rounded-xl p-3">
+                <div className="bg-accent/5 border border-accent/20 rounded-[20px] p-3">
                   <p className="text-xs text-muted mb-2">{t('Länk skapad! Dela med delägaren:', 'Link created! Share with the co-owner:')}</p>
                   <div className="flex items-center gap-2">
                     <input
                       readOnly
                       value={inviteLink}
-                      className="flex-1 text-xs bg-white border border-[#E8E4DE] rounded-lg px-2 py-1.5 text-primary"
+                      className="flex-1 text-xs bg-white border border-[#E8E4DE] rounded-[20px] px-2 py-1.5 text-primary"
                     />
                     <button
                       onClick={() => {
@@ -295,7 +295,7 @@ function DelagarePortalContent() {
                         setLinkCopied(true);
                         setTimeout(() => setLinkCopied(false), 2000);
                       }}
-                      className="p-2 bg-accent text-white rounded-lg shrink-0"
+                      className="p-2 bg-accent text-white rounded-[20px] shrink-0"
                     >
                       {linkCopied ? <Check className="w-4 h-4" /> : <Link2 className="w-4 h-4" />}
                     </button>
@@ -310,7 +310,7 @@ function DelagarePortalContent() {
         {/* Upcoming deadlines */}
         {state.deathDate && (
           <div className="card mb-4">
-            <p className="font-semibold text-primary text-sm mb-3">{t('Kommande tidsfrister', 'Upcoming deadlines')}</p>
+            <p className="font-display text-primary text-sm mb-3">{t('Kommande tidsfrister', 'Upcoming deadlines')}</p>
             {(() => {
               const deathDate = new Date(state.deathDate);
               const now = new Date();

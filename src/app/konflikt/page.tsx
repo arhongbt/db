@@ -119,7 +119,7 @@ function KonfliktContent() {
   };
 
   return (
-    <div className="flex flex-col px-5 py-6 pb-24">
+    <div className="flex flex-col px-6 py-8 pb-28">
       {/* Header */}
       <div className="flex items-center gap-3 mb-4">
         <Link
@@ -130,7 +130,7 @@ function KonfliktContent() {
           <ArrowLeft className="w-5 h-5 text-primary" />
         </Link>
         <div>
-          <h1 className="text-2xl font-semibold text-primary">
+          <h1 className="text-2xl font-display text-primary">
             {t('Oenighet i dödsboet', 'Disputes in the estate')}
           </h1>
           <p className="text-muted text-sm">{t('Vad du kan göra', 'What you can do')}</p>
@@ -148,7 +148,7 @@ function KonfliktContent() {
 
       {/* Escalation levels */}
       <div className="mb-6">
-        <h2 className="text-lg font-semibold text-primary mb-4">
+        <h2 className="text-lg font-display text-primary mb-4">
           {t('Eskaleringsmöjligheter', 'Escalation options')}
         </h2>
         <div className="flex flex-col gap-3">
@@ -200,7 +200,7 @@ function KonfliktContent() {
                     )}
 
                     {level.costs && (
-                      <div className="bg-accent/10 rounded-card px-3 py-2">
+                      <div className="px-3 py-2" style={{ borderRadius: '20px', background: 'linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02))', border: '1px solid rgba(122,158,126,0.15)' }}>
                         <p className="text-xs text-primary/80">
                           <strong>Kostnad:</strong> {level.costs}
                         </p>
@@ -216,7 +216,7 @@ function KonfliktContent() {
 
       {/* Common scenarios */}
       <div className="mb-6">
-        <h2 className="text-lg font-semibold text-primary mb-4">
+        <h2 className="text-lg font-display text-primary mb-4">
           Vanliga tvister
         </h2>
         <div className="flex flex-col gap-3">
@@ -231,7 +231,7 @@ function KonfliktContent() {
 
       {/* How to apply */}
       <div className="mb-6">
-        <h2 className="text-lg font-semibold text-primary mb-4">
+        <h2 className="text-lg font-display text-primary mb-4">
           Att ansöka till tingsrätten
         </h2>
         <div className="card">
@@ -271,7 +271,7 @@ function KonfliktContent() {
 
       {/* Medical malpractice section */}
       <div className="mb-6">
-        <h2 className="text-lg font-semibold text-primary mb-4">
+        <h2 className="text-lg font-display text-primary mb-4">
           Vid misstanke om vårdskada
         </h2>
         <div className="card">
@@ -315,7 +315,7 @@ function KonfliktContent() {
               </span>
             </li>
           </ul>
-          <div className="bg-accent/10 rounded-card px-3 py-2 mt-4">
+          <div className="px-3 py-2 mt-4" style={{ borderRadius: '20px', background: 'linear-gradient(135deg, rgba(139,164,184,0.06), rgba(139,164,184,0.02))', border: '1px solid rgba(139,164,184,0.15)' }}>
             <p className="text-xs text-primary/80">
               <strong>Tidsgränser:</strong> Det finns ingen tidsgräns för IVO-anmälan, men Löf-anmälan bör göras inom 3 år.
             </p>
@@ -325,7 +325,7 @@ function KonfliktContent() {
 
       {/* Grief support section */}
       <div className="mb-6">
-        <h2 className="text-lg font-semibold text-primary mb-4">
+        <h2 className="text-lg font-display text-primary mb-4">
           Stöd i sorgen
         </h2>
         <div className="card">
@@ -408,7 +408,7 @@ function KonfliktContent() {
       </div>
 
       {/* Legal disclaimer */}
-      <div className="bg-white rounded-card px-4 py-3 mb-6">
+      <div className="bg-white px-4 py-3 mb-6" style={{ borderRadius: '28px' }}>
         <p className="text-xs text-muted leading-relaxed">
           <strong>Juridisk varning:</strong> Denna sida ger endast allmän
           information om möjligheter vid konflikter i dödsbo. Det är inte

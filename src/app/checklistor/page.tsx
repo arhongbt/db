@@ -147,8 +147,8 @@ export default function ChecklistorPage() {
   const selectedList = checklists.find(c => c.id === selected);
 
   return (
-    <div className="min-h-dvh bg-background pb-24">
-      <div className="px-5 py-6">
+    <div className="min-h-dvh bg-background pb-28">
+      <div className="px-6 py-8">
         {/* Header */}
         <div className="flex items-center gap-3 mb-6">
           {selected ? (
@@ -167,17 +167,14 @@ export default function ChecklistorPage() {
             </Link>
           )}
           <div className="flex-1">
-            <h1 className="text-2xl font-semibold text-primary">
+            <h1 className="text-2xl font-display text-primary">
               {selected ? selectedList?.title : t('Checklistor', 'Checklists')}
             </h1>
-            <p className="text-muted text-sm">
-              {selected ? selectedList?.description : t('Utskriftsvänliga checklistor för varje steg', 'Printable checklists for each step')}
-            </p>
           </div>
           {selected && (
             <button
               onClick={handlePrint}
-              className="p-2.5 rounded-xl hover:bg-white transition-colors print:hidden"
+              className="p-2.5 rounded-full hover:bg-white transition-colors print:hidden"
               style={{ border: '1px solid #E8E4DE' }}
               aria-label={t('Skriv ut', 'Print')}
             >
@@ -185,6 +182,9 @@ export default function ChecklistorPage() {
             </button>
           )}
         </div>
+        <p className="text-muted text-sm">
+              {selected ? selectedList?.description : t('Utskriftsvänliga checklistor för varje steg', 'Printable checklists for each step')}
+            </p>
 
         {/* List of checklists */}
         {!selected && (
@@ -243,7 +243,7 @@ export default function ChecklistorPage() {
                 <button
                   key={i}
                   onClick={() => toggleItem(selectedList.id, i)}
-                  className={`w-full flex items-center gap-3 p-3 rounded-xl border transition-all text-left ${
+                  className={`w-full flex items-center gap-3 p-3 rounded-[20px] border transition-all text-left ${
                     item.done
                       ? 'bg-accent/10 border-accent/30'
                       : 'bg-white border-[#E8E4DE] hover:border-accent/40'

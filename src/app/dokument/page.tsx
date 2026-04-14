@@ -160,12 +160,12 @@ function DokumentContent() {
   }, {});
 
   return (
-    <div className="flex flex-col px-5 py-6 pb-24">
+    <div className="flex flex-col px-6 py-8 pb-28">
 
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
         <div>
-          <h1 className="text-2xl font-semibold text-primary">{t('Dokument', 'Documents')}</h1>
+          <h1 className="text-2xl font-display text-primary">{t('Dokument', 'Documents')}</h1>
           <p className="text-muted text-sm mt-1">
             {dokuments.length > 0
               ? t(`${dokuments.length} fil(er) uppladdade`, `${dokuments.length} file(s) uploaded`)
@@ -177,7 +177,8 @@ function DokumentContent() {
             setShowUpload(true);
             setSelectedFile(null);
           }}
-          className="w-12 h-12 bg-accent text-white rounded-full flex items-center justify-center shadow-md"
+          className="w-12 h-12 text-white rounded-full flex items-center justify-center shadow-md"
+          style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}
           aria-label={t('Ladda upp dokument', 'Upload document')}
         >
           <Plus className="w-6 h-6" />
@@ -207,7 +208,7 @@ function DokumentContent() {
           onDragLeave={handleDragLeave}
           onDrop={handleDrop}
           onClick={() => fileInputRef.current?.click()}
-          className={`border-2 border-dashed rounded-2xl p-8 mb-6 flex flex-col items-center justify-center cursor-pointer transition-colors ${
+          className={`border-2 border-dashed rounded-[24px] p-8 mb-6 flex flex-col items-center justify-center cursor-pointer transition-colors ${
             dragOver
               ? 'border-accent bg-accent/5'
               : 'border-[#E8E4DE] hover:border-accent/50'
@@ -236,9 +237,9 @@ function DokumentContent() {
 
       {/* Upload form (shown after file selected) */}
       {showUpload && (
-        <div className="card border-2 border-accent mb-6">
+        <div className="card border-2 border-accent mb-6" style={{ borderRadius: '28px' }}>
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-lg font-semibold text-primary">
+            <h3 className="text-lg font-display text-primary">
               {t('Ladda upp dokument', 'Upload document')}
             </h3>
             <button
@@ -274,7 +275,7 @@ function DokumentContent() {
               />
             </button>
           ) : (
-            <div className="flex items-center gap-3 bg-primary-lighter/20 rounded-xl px-4 py-3 mb-4">
+            <div className="flex items-center gap-3 bg-primary-lighter/20 rounded-[20px] px-4 py-3 mb-4">
               <File className="w-5 h-5 text-accent flex-shrink-0" />
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-medium text-primary truncate">
@@ -303,7 +304,7 @@ function DokumentContent() {
                 <button
                   key={cat.value}
                   onClick={() => setCategory(cat.value)}
-                  className={`py-2 px-3 rounded-card text-sm font-medium border-2 transition-colors ${
+                  className={`py-2 px-3 rounded-full text-sm font-medium border-2 transition-colors ${
                     category === cat.value
                       ? 'border-accent bg-primary-lighter/30 text-primary'
                       : 'border-[#E8E4DE] text-muted'
@@ -325,7 +326,7 @@ function DokumentContent() {
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
               placeholder={t('T.ex. Från Swedbank, saldo per 2024-01-15', 'E.g. From Swedbank, balance as of 2024-01-15')}
-              className="w-full px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-card focus:border-accent focus:outline-none bg-white"
+              className="w-full px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-[20px] focus:border-accent focus:outline-none bg-white"
             />
           </label>
 
@@ -382,7 +383,7 @@ function DokumentContent() {
       ) : dokuments.length === 0 ? (
         <div className="flex-1 flex flex-col items-center justify-center text-center py-12">
           <FileText className="w-16 h-16 text-gray-300 mb-4" />
-          <h2 className="text-lg font-medium text-primary mb-2">
+          <h2 className="text-lg font-display text-primary mb-2">
             {t('Inga dokument ännu', 'No documents yet')}
           </h2>
           <p className="text-muted text-sm max-w-xs">
@@ -393,7 +394,7 @@ function DokumentContent() {
         <div className="space-y-6">
           {Object.entries(grouped).map(([cat, docs]) => (
             <div key={cat}>
-              <h2 className="text-xs font-semibold text-muted uppercase tracking-wide mb-2">
+              <h2 className="text-sm font-display text-muted mb-2">
                 {t(getCategoryLabel(cat), getCategoryLabel(cat))} ({docs.length})
               </h2>
               <div className="flex flex-col gap-2">

@@ -183,10 +183,10 @@ function TabBeslut() {
 
       <div className="space-y-4 mb-6">
         {decisions.map((decision) => (
-          <div key={decision.id} className="bg-white border rounded-2xl p-4">
+          <div key={decision.id} className="bg-white border rounded-2xl p-4" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02))', border: '1px solid rgba(122,158,126,0.15)' }}>
             <div className="flex items-start justify-between mb-3">
               <div className="flex-1">
-                <h3 className="font-semibold text-primary mb-2">{decision.title}</h3>
+                <h3 className="font-display text-primary mb-2">{decision.title}</h3>
                 <div className="flex items-center gap-2 mb-3">
                   <div
                     className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-white text-xs font-semibold"
@@ -233,21 +233,21 @@ function TabBeslut() {
       {!showAddForm ? (
         <button
           onClick={() => setShowAddForm(true)}
-          className="w-full py-3 border-2 border-dashed border-accent text-accent font-semibold rounded-xl hover:bg-accent/5 transition flex items-center justify-center gap-2"
+          className="w-full py-3 border-2 border-dashed border-accent text-accent font-semibold rounded-[20px] hover:bg-accent/5 transition flex items-center justify-center gap-2"
         >
           <Plus className="w-4 h-4" />
           {t('Lägg till beslut', 'Add decision')}
         </button>
       ) : (
-        <div className="bg-white border rounded-2xl p-4 mb-6">
-          <h3 className="font-semibold text-primary mb-3">{t('Lägg till nytt beslut', 'Add new decision')}</h3>
+        <div className="bg-white border rounded-2xl p-4 mb-6" style={{ borderRadius: '28px' }}>
+          <h3 className="font-display text-primary mb-3">{t('Lägg till nytt beslut', 'Add new decision')}</h3>
 
           <div className="mb-3">
             <label className="block text-xs font-semibold text-primary mb-2">{t('Välj fördefinierat beslut', 'Choose predefined decision')}</label>
             <select
               value={selectedPredefined}
               onChange={(e) => setSelectedPredefined(e.target.value)}
-              className="w-full px-4 py-3 border border-[#E8E4DE] rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white"
+              className="w-full px-4 py-3 border border-[#E8E4DE] rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white"
             >
               <option value="">-- {t('Välj', 'Choose')} --</option>
               {PREDEFINED_DECISIONS.map((item) => (
@@ -265,14 +265,15 @@ function TabBeslut() {
               value={newDecisionTitle}
               onChange={(e) => setNewDecisionTitle(e.target.value)}
               placeholder={t('Skriva här...', 'Write here...')}
-              className="w-full px-4 py-3 border border-[#E8E4DE] rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white"
+              className="w-full px-4 py-3 border border-[#E8E4DE] rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white"
             />
           </div>
 
           <div className="flex gap-2">
             <button
               onClick={addDecision}
-              className="flex-1 py-2.5 bg-accent text-white font-semibold rounded-xl hover:opacity-90 transition"
+              className="flex-1 py-2.5 bg-accent text-white font-semibold rounded-[20px] hover:opacity-90 transition"
+              style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}
             >
               {t('Lägg till', 'Add')}
             </button>
@@ -282,7 +283,7 @@ function TabBeslut() {
                 setNewDecisionTitle('');
                 setSelectedPredefined('');
               }}
-              className="flex-1 py-2.5 border border-[#E8E4DE] text-primary font-semibold rounded-xl hover:bg-background transition"
+              className="flex-1 py-2.5 border border-[#E8E4DE] text-primary font-semibold rounded-[20px] hover:bg-background transition"
             >
               {t('Avbryt', 'Cancel')}
             </button>
@@ -350,15 +351,15 @@ function TabAnteckningar() {
     <div>
       <MikeRossTip text={t('Skriv anteckningar som alla delägare kan se. Perfekt för att dokumentera telefonsamtal, överenskommelser eller viktiga detaljer.', 'Write notes that all co-owners can see. Perfect for documenting phone calls, agreements or important details.')} />
 
-      <div className="bg-white border rounded-2xl p-4 mb-6">
-        <h3 className="font-semibold text-primary mb-3">{t('Ny anteckning', 'New note')}</h3>
+      <div className="bg-white border rounded-2xl p-4 mb-6" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02))', border: '1px solid rgba(122,158,126,0.15)' }}>
+        <h3 className="font-display text-primary mb-3">{t('Ny anteckning', 'New note')}</h3>
 
         <div className="mb-3">
           <label className="block text-xs font-semibold text-primary mb-2">{t('Författare', 'Author')}</label>
           <select
             value={author}
             onChange={(e) => setAuthor(e.target.value)}
-            className="w-full px-4 py-3 border border-[#E8E4DE] rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white"
+            className="w-full px-4 py-3 border border-[#E8E4DE] rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white"
           >
             <option value="">-- {t('Välj namn', 'Choose name')} --</option>
             {state.delagare.map((del) => (
@@ -375,14 +376,15 @@ function TabAnteckningar() {
             value={content}
             onChange={(e) => setContent(e.target.value)}
             placeholder={t('Skriv här...', 'Write here...')}
-            className="w-full px-4 py-3 border border-[#E8E4DE] rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white resize-none"
+            className="w-full px-4 py-3 border border-[#E8E4DE] rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white resize-none"
             rows={4}
           />
         </div>
 
         <button
           onClick={addNote}
-          className="w-full py-2.5 bg-accent text-white font-semibold rounded-xl hover:opacity-90 transition"
+          className="w-full py-2.5 bg-accent text-white font-semibold rounded-[20px] hover:opacity-90 transition"
+          style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}
         >
           {t('Lägg till anteckning', 'Add note')}
         </button>
@@ -390,7 +392,7 @@ function TabAnteckningar() {
 
       <div className="space-y-3">
         {notes.map((note) => (
-          <div key={note.id} className="bg-white border rounded-2xl p-4">
+          <div key={note.id} className="bg-white border rounded-2xl p-4" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02))', border: '1px solid rgba(122,158,126,0.15)' }}>
             <div className="flex items-start justify-between mb-2">
               <div>
                 <p className="font-semibold text-primary text-sm">{note.author}</p>
@@ -542,14 +544,14 @@ function Content() {
               <ArrowLeft className="w-5 h-5" />
             </Link>
             <Handshake className="w-6 h-6 text-accent" />
-            <h1 className="text-2xl font-bold text-primary">{t('Samarbete', 'Collaboration')}</h1>
+            <h1 className="text-2xl font-display text-primary">{t('Samarbete', 'Collaboration')}</h1>
           </div>
 
           {/* Tabs */}
           <div className="flex gap-2">
             <button
               onClick={() => setTab('beslut')}
-              className={`flex-1 py-2.5 text-sm font-semibold rounded-xl transition-all ${
+              className={`flex-1 py-2.5 text-sm font-semibold rounded-full transition-all ${
                 tab === 'beslut' ? 'text-white' : 'text-primary/60'
               }`}
               style={tab === 'beslut' ? { background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' } : undefined}
@@ -558,7 +560,7 @@ function Content() {
             </button>
             <button
               onClick={() => setTab('anteckningar')}
-              className={`flex-1 py-2.5 text-sm font-semibold rounded-xl transition-all ${
+              className={`flex-1 py-2.5 text-sm font-semibold rounded-full transition-all ${
                 tab === 'anteckningar' ? 'text-white' : 'text-primary/60'
               }`}
               style={tab === 'anteckningar' ? { background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' } : undefined}
@@ -567,7 +569,7 @@ function Content() {
             </button>
             <button
               onClick={() => setTab('tidslinje')}
-              className={`flex-1 py-2.5 text-sm font-semibold rounded-xl transition-all ${
+              className={`flex-1 py-2.5 text-sm font-semibold rounded-full transition-all ${
                 tab === 'tidslinje' ? 'text-white' : 'text-primary/60'
               }`}
               style={tab === 'tidslinje' ? { background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' } : undefined}
@@ -579,7 +581,7 @@ function Content() {
       </div>
 
       {/* Content */}
-      <div className="max-w-2xl mx-auto px-4 py-6">
+      <div className="max-w-2xl mx-auto px-6 py-8 pb-28">
         {tab === 'beslut' && <TabBeslut />}
         {tab === 'anteckningar' && <TabAnteckningar />}
         {tab === 'tidslinje' && <TabTidslinje />}

@@ -165,14 +165,14 @@ function AvslutaKontonContent() {
   const doneCount = checkedItems.size;
 
   return (
-    <div className="flex flex-col min-h-dvh px-5 py-6 pb-24">
-      <Link href="/dashboard" className="inline-flex items-center gap-2 text-sm text-muted hover:text-primary mb-4">
+    <div className="flex flex-col min-h-dvh px-6 py-8 pb-28">
+      <Link href="/dashboard" className="inline-flex items-center gap-2 text-sm text-muted hover:text-primary mb-4 rounded-full">
         <ArrowLeft className="w-4 h-4" /> Dashboard
       </Link>
 
       <div className="flex items-center gap-3 mb-2">
         <XCircle className="w-7 h-7 text-accent" />
-        <h1 className="text-2xl font-semibold text-primary">{t('Avsluta konton', 'Close accounts')}</h1>
+        <h1 className="text-2xl font-display text-primary">{t('Avsluta konton', 'Close accounts')}</h1>
       </div>
       <p className="text-muted mb-4">
         {t('Checklista för att avsluta den avlidnes konton, abonnemang och tjänster.', 'Checklist for closing deceased\'s accounts, subscriptions and services.')}

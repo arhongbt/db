@@ -202,8 +202,8 @@ Skapat med Sista Resan — ${today}`;
   };
 
   return (
-    <div className="flex flex-col min-h-dvh px-5 py-6 pb-24">
-      <Link href="/dashboard" className="inline-flex items-center gap-2 text-sm text-muted hover:text-primary mb-4">
+    <div className="flex flex-col min-h-dvh px-6 py-8 pb-28">
+      <Link href="/dashboard" className="inline-flex items-center gap-2 text-sm text-muted hover:text-primary mb-4 rounded-full hover:bg-gray-50 px-3 py-2">
         <ArrowLeft className="w-4 h-4" /> Dashboard
       </Link>
 
@@ -212,7 +212,7 @@ Skapat med Sista Resan — ${today}`;
           <FileText className="w-5 h-5 text-accent" />
         </div>
         <div>
-          <h1 className="text-xl font-bold text-primary">Arvskifteshandling</h1>
+          <h1 className="text-xl font-display text-primary">Arvskifteshandling</h1>
           <p className="text-xs text-muted">Steg {step + 1} av {STEPS.length} — {STEPS[step].desc}</p>
         </div>
       </div>
@@ -234,23 +234,23 @@ Skapat med Sista Resan — ${today}`;
               <label className="block text-sm font-medium text-primary mb-1.5">Den avlidnes namn</label>
               <input value={data.deceasedNamn} onChange={(e) => setData({ ...data, deceasedNamn: e.target.value })}
                 placeholder="Förnamn Efternamn"
-                className="w-full px-4 py-3 border border-[#E8E4DE] rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background" />
+                className="w-full px-4 py-3 border border-[#E8E4DE] rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background" />
             </div>
             <div>
               <label className="block text-sm font-medium text-primary mb-1.5">Personnummer</label>
               <input value={data.deceasedPnr} onChange={(e) => setData({ ...data, deceasedPnr: e.target.value })}
                 placeholder="XXXXXX-XXXX"
-                className="w-full px-4 py-3 border border-[#E8E4DE] rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background" />
+                className="w-full px-4 py-3 border border-[#E8E4DE] rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background" />
             </div>
             <div>
               <label className="block text-sm font-medium text-primary mb-1.5">Dödsdag</label>
               <input type="date" value={data.dodsdag} onChange={(e) => setData({ ...data, dodsdag: e.target.value })}
-                className="w-full px-4 py-3 border border-[#E8E4DE] rounded-xl text-primary focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background" />
+                className="w-full px-4 py-3 border border-[#E8E4DE] rounded-[20px] text-primary focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background" />
             </div>
             <div>
               <label className="block text-sm font-medium text-primary mb-1.5">Bouppteckning registrerad <span className="text-muted font-normal">(datum)</span></label>
               <input type="date" value={data.bouppteckningDatum} onChange={(e) => setData({ ...data, bouppteckningDatum: e.target.value })}
-                className="w-full px-4 py-3 border border-[#E8E4DE] rounded-xl text-primary focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background" />
+                className="w-full px-4 py-3 border border-[#E8E4DE] rounded-[20px] text-primary focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background" />
             </div>
           </div>
         </div>
@@ -277,20 +277,20 @@ Skapat med Sista Resan — ${today}`;
           )}
 
           <div className="card space-y-3">
-            <p className="text-sm font-semibold text-primary">Lägg till dödsbodelägare</p>
+            <p className="text-sm font-display text-primary">Lägg till dödsbodelägare</p>
             <input value={newDelagare.namn} onChange={(e) => setNewDelagare({ ...newDelagare, namn: e.target.value })}
               placeholder="Namn"
-              className="w-full px-4 py-3 border border-[#E8E4DE] rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background" />
+              className="w-full px-4 py-3 border border-[#E8E4DE] rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background" />
             <div className="grid grid-cols-2 gap-3">
               <input value={newDelagare.personnummer} onChange={(e) => setNewDelagare({ ...newDelagare, personnummer: e.target.value })}
                 placeholder="Personnummer"
-                className="w-full px-4 py-3 border border-[#E8E4DE] rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background text-sm" />
+                className="w-full px-4 py-3 border border-[#E8E4DE] rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background text-sm" />
               <input value={newDelagare.andel} onChange={(e) => setNewDelagare({ ...newDelagare, andel: e.target.value })}
                 placeholder="Andel (t.ex. 1/3)"
-                className="w-full px-4 py-3 border border-[#E8E4DE] rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background text-sm" />
+                className="w-full px-4 py-3 border border-[#E8E4DE] rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background text-sm" />
             </div>
             <button onClick={addDelagare} disabled={!newDelagare.namn.trim()}
-              className="w-full py-3 rounded-xl text-sm font-semibold transition-colors bg-accent/10 text-accent hover:bg-accent/20 disabled:opacity-40">
+              className="w-full py-3 rounded-[20px] text-sm font-semibold transition-colors bg-accent/10 text-accent hover:bg-accent/20 disabled:opacity-40">
               + Lägg till
             </button>
           </div>
@@ -318,15 +318,15 @@ Skapat med Sista Resan — ${today}`;
           )}
 
           <div className="card space-y-3 mb-4">
-            <p className="text-sm font-semibold text-primary">Lägg till tillgång</p>
+            <p className="text-sm font-display text-primary">Lägg till tillgång</p>
             <input value={newTillgang.beskrivning} onChange={(e) => setNewTillgang({ ...newTillgang, beskrivning: e.target.value })}
               placeholder="T.ex. Bankkonto Swedbank"
-              className="w-full px-4 py-3 border border-[#E8E4DE] rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background" />
+              className="w-full px-4 py-3 border border-[#E8E4DE] rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background" />
             <input value={newTillgang.varde} onChange={(e) => setNewTillgang({ ...newTillgang, varde: e.target.value })}
               placeholder="Värde i kronor"
-              className="w-full px-4 py-3 border border-[#E8E4DE] rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background" />
+              className="w-full px-4 py-3 border border-[#E8E4DE] rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background" />
             <button onClick={addTillgang} disabled={!newTillgang.beskrivning.trim()}
-              className="w-full py-3 rounded-xl text-sm font-semibold transition-colors bg-accent/10 text-accent hover:bg-accent/20 disabled:opacity-40">
+              className="w-full py-3 rounded-[20px] text-sm font-semibold transition-colors bg-accent/10 text-accent hover:bg-accent/20 disabled:opacity-40">
               + Lägg till
             </button>
           </div>
@@ -336,7 +336,7 @@ Skapat med Sista Resan — ${today}`;
             <textarea value={data.skulder} onChange={(e) => setData({ ...data, skulder: e.target.value })}
               placeholder="T.ex. Bolån Nordea: 500 000 kr, Begravningskostnader: 25 000 kr"
               rows={3}
-              className="w-full px-4 py-3 border border-[#E8E4DE] rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background resize-none text-sm" />
+              className="w-full px-4 py-3 border border-[#E8E4DE] rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background resize-none text-sm" />
           </div>
         </div>
       )}
@@ -354,10 +354,10 @@ Skapat med Sista Resan — ${today}`;
               <textarea value={data.fordelning} onChange={(e) => setData({ ...data, fordelning: e.target.value })}
                 placeholder="Lämna tomt för lika fördelning, eller beskriv hur varje delägare ska få sin del. T.ex. 'Erik erhåller fastigheten. Maria erhåller bankmedel motsvarande fastighetens värde.'"
                 rows={5}
-                className="w-full px-4 py-3 border border-[#E8E4DE] rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background resize-none text-sm" />
+                className="w-full px-4 py-3 border border-[#E8E4DE] rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background resize-none text-sm" />
             </div>
 
-            <div className="flex gap-3 p-3 rounded-xl bg-background">
+            <div className="flex gap-3 p-3 rounded-[20px] bg-background">
               <Info className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" />
               <p className="text-xs text-muted leading-relaxed">
                 Om en delägare ska ta över en fastighet eller bostad behöver värdet
@@ -375,7 +375,7 @@ Skapat med Sista Resan — ${today}`;
           <MikeRossTip text="Granska allt innan du laddar ner. Alla dödsbodelägare måste signera handlingen. Om ni inte kan komma överens kan tingsrätten utse en skiftesman som hjälper till." />
 
           <div className="card mb-4">
-            <p className="text-xs font-semibold text-muted uppercase tracking-wide mb-3">Sammanfattning</p>
+            <p className="text-xs font-display text-muted uppercase tracking-wide mb-3">Sammanfattning</p>
             <div className="space-y-3">
               <div className="flex items-start gap-2">
                 <FileText className="w-4 h-4 text-accent mt-0.5" />
@@ -411,7 +411,7 @@ Skapat med Sista Resan — ${today}`;
             <button onClick={handleDownloadPDF} className="btn-primary flex items-center justify-center gap-2">
               <Download className="w-4 h-4" /> Ladda ner som PDF
             </button>
-            <button onClick={handleDownloadDocx} className="w-full py-3 rounded-xl text-sm font-semibold border-2 border-accent text-accent hover:bg-accent/5 transition-colors flex items-center justify-center gap-2">
+            <button onClick={handleDownloadDocx} className="w-full py-3 rounded-[20px] text-sm font-semibold border-2 border-accent text-accent hover:bg-accent/5 transition-colors flex items-center justify-center gap-2">
               <Download className="w-4 h-4" /> Ladda ner som Word
             </button>
           </div>
@@ -425,7 +425,7 @@ Skapat med Sista Resan — ${today}`;
       {/* Navigation */}
       <div className="flex gap-3 mt-6">
         {step > 0 && (
-          <button onClick={prev} className="flex-1 py-3 rounded-xl text-sm font-semibold border-2 border-[#E8E4DE] text-primary hover:bg-gray-50 transition-colors flex items-center justify-center gap-1">
+          <button onClick={prev} className="flex-1 py-3 rounded-[20px] text-sm font-semibold border-2 border-[#E8E4DE] text-primary hover:bg-gray-50 transition-colors flex items-center justify-center gap-1">
             <ChevronLeft className="w-4 h-4" /> Tillbaka
           </button>
         )}

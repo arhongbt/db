@@ -143,7 +143,7 @@ function InstallningarContent() {
   };
 
   return (
-    <div className="flex flex-col px-5 py-6 pb-24">
+    <div className="flex flex-col px-6 py-8 pb-28">
       <div className="flex items-center gap-3 mb-6">
         <Link
           href="/dashboard"
@@ -152,12 +152,12 @@ function InstallningarContent() {
         >
           <ArrowLeft className="w-5 h-5 text-primary" />
         </Link>
-        <h1 className="text-2xl font-semibold text-primary">{t('Inställningar', 'Settings')}</h1>
+        <h1 className="text-2xl font-display text-primary">{t('Inställningar', 'Settings')}</h1>
       </div>
 
       {/* Edit onboarding section */}
       <div className="card mb-6">
-        <h2 className="text-sm font-semibold text-muted uppercase tracking-wide mb-4">
+        <h2 className="text-sm font-display text-muted uppercase tracking-wide mb-4">
           {t('Redigera uppgifter', 'Edit Information')}
         </h2>
         {!editingOnboarding ? (
@@ -192,7 +192,7 @@ function InstallningarContent() {
                 onChange={(e) =>
                   setFormData({ ...formData, deceasedName: e.target.value })
                 }
-                className="w-full px-4 py-3 border-2 border-[#E8E4DE] rounded-xl focus:border-accent focus:outline-none transition-colors"
+                className="w-full px-4 py-3 border-2 border-[#E8E4DE] rounded-[20px] focus:border-accent focus:outline-none transition-colors"
               />
             </div>
             <div>
@@ -205,7 +205,7 @@ function InstallningarContent() {
                 onChange={(e) =>
                   setFormData({ ...formData, deathDate: e.target.value })
                 }
-                className="w-full px-4 py-3 border-2 border-[#E8E4DE] rounded-xl focus:border-accent focus:outline-none transition-colors"
+                className="w-full px-4 py-3 border-2 border-[#E8E4DE] rounded-[20px] focus:border-accent focus:outline-none transition-colors"
               />
             </div>
             <div>
@@ -217,7 +217,7 @@ function InstallningarContent() {
                 onChange={(e) =>
                   setFormData({ ...formData, familySituation: e.target.value as any })
                 }
-                className="w-full px-4 py-3 border-2 border-[#E8E4DE] rounded-xl focus:border-accent focus:outline-none transition-colors"
+                className="w-full px-4 py-3 border-2 border-[#E8E4DE] rounded-[20px] focus:border-accent focus:outline-none transition-colors"
               >
                 <option value="gift_med_gemensamma_barn">{t('Gift med gemensamma barn', 'Married with shared children')}</option>
                 <option value="gift_med_sarkullebarn">{t('Gift med särskilda barn', 'Married with separate children')}</option>
@@ -237,7 +237,7 @@ function InstallningarContent() {
                 onChange={(e) =>
                   setFormData({ ...formData, housingType: e.target.value as any })
                 }
-                className="w-full px-4 py-3 border-2 border-[#E8E4DE] rounded-xl focus:border-accent focus:outline-none transition-colors"
+                className="w-full px-4 py-3 border-2 border-[#E8E4DE] rounded-[20px] focus:border-accent focus:outline-none transition-colors"
               >
                 <option value="hyresratt">{t('Hyresrätt', 'Rental apartment')}</option>
                 <option value="bostadsratt">{t('Bostadsrätt', 'Tenant-owned apartment')}</option>
@@ -246,7 +246,7 @@ function InstallningarContent() {
                 <option value="ingen_bostad">{t('Ingen bostad', 'No property')}</option>
               </select>
             </div>
-            <div className="flex items-center justify-between p-3 border border-[#E8E4DE] rounded-xl">
+            <div className="flex items-center justify-between p-3 border border-[#E8E4DE] rounded-[20px]">
               <label className="text-sm font-medium text-primary">
                 {t('Finns testamente?', 'Is there a will?')}
               </label>
@@ -306,7 +306,7 @@ function InstallningarContent() {
 
       {/* Accessibility section */}
       <div className="card mb-6">
-        <h2 className="text-sm font-semibold text-muted uppercase tracking-wide mb-4">
+        <h2 className="text-sm font-display text-muted uppercase tracking-wide mb-4">
           {t('Tillgänglighet', 'Accessibility')}
         </h2>
         <div className="space-y-4">
@@ -324,7 +324,7 @@ function InstallningarContent() {
                   onClick={() =>
                     handleTextSizeChange(size as 'normal' | 'large' | 'xlarge')
                   }
-                  className={`flex-1 px-3 py-2 rounded-lg font-medium text-sm transition-colors ${
+                  className={`flex-1 px-3 py-2 rounded-full font-medium text-sm transition-colors ${
                     textSize === size
                       ? 'bg-accent text-white'
                       : 'bg-white text-primary hover:bg-white'
@@ -337,7 +337,7 @@ function InstallningarContent() {
               ))}
             </div>
           </div>
-          <div className="flex items-center justify-between p-3 border border-[#E8E4DE] rounded-xl">
+          <div className="flex items-center justify-between p-3 border border-[#E8E4DE] rounded-[20px]">
             <label className="text-sm font-medium text-primary flex items-center gap-2">
               <Contrast className="w-4 h-4" />
               {t('Högt kontrast', 'High contrast')}
@@ -364,7 +364,7 @@ function InstallningarContent() {
             <div className="flex gap-2">
               <button
                 onClick={() => setLanguage('sv')}
-                className={`flex-1 px-3 py-2 rounded-lg font-medium text-sm transition-colors flex items-center justify-center gap-2 ${
+                className={`flex-1 px-3 py-2 rounded-full font-medium text-sm transition-colors flex items-center justify-center gap-2 ${
                   language === 'sv'
                     ? 'bg-accent text-white'
                     : 'bg-white text-primary hover:bg-white border border-[#E8E4DE]'
@@ -375,7 +375,7 @@ function InstallningarContent() {
               </button>
               <button
                 onClick={() => setLanguage('en')}
-                className={`flex-1 px-3 py-2 rounded-lg font-medium text-sm transition-colors flex items-center justify-center gap-2 ${
+                className={`flex-1 px-3 py-2 rounded-full font-medium text-sm transition-colors flex items-center justify-center gap-2 ${
                   language === 'en'
                     ? 'bg-accent text-white'
                     : 'bg-white text-primary hover:bg-white border border-[#E8E4DE]'
@@ -391,10 +391,10 @@ function InstallningarContent() {
 
       {/* Notification settings */}
       <div className="card mb-6">
-        <h2 className="text-sm font-semibold text-muted uppercase tracking-wide mb-4">
+        <h2 className="text-sm font-display text-muted uppercase tracking-wide mb-4">
           {t('Påminnelser', 'Reminders')}
         </h2>
-        <div className="flex items-center justify-between p-3 border border-[#E8E4DE] rounded-xl">
+        <div className="flex items-center justify-between p-3 border border-[#E8E4DE] rounded-[20px]">
           <label className="text-sm font-medium text-primary flex items-center gap-2">
             <Bell className="w-4 h-4" />
             {t('Push-notiser för tidsfrister', 'Push notifications for deadlines')}
@@ -437,7 +437,7 @@ function InstallningarContent() {
 
       {/* Data export */}
       <div className="card mb-6">
-        <h2 className="text-sm font-semibold text-muted uppercase tracking-wide mb-4">
+        <h2 className="text-sm font-display text-muted uppercase tracking-wide mb-4">
           {t('Exportera data', 'Export data')}
         </h2>
         <p className="text-xs text-muted mb-3">
@@ -446,14 +446,14 @@ function InstallningarContent() {
         <div className="flex gap-3">
           <button
             onClick={() => exportAsCSV(state)}
-            className="flex-1 flex items-center justify-center gap-2 py-3 px-4 border-2 border-[#E8E4DE] rounded-xl text-sm font-medium text-primary hover:bg-white transition-colors"
+            className="flex-1 flex items-center justify-center gap-2 py-3 px-4 border-2 border-[#E8E4DE] rounded-[20px] text-sm font-medium text-primary hover:bg-white transition-colors"
           >
             <Download className="w-4 h-4" />
             {t('CSV (Excel)', 'CSV (Excel)')}
           </button>
           <button
             onClick={() => exportAsJSON(state)}
-            className="flex-1 flex items-center justify-center gap-2 py-3 px-4 border-2 border-[#E8E4DE] rounded-xl text-sm font-medium text-primary hover:bg-white transition-colors"
+            className="flex-1 flex items-center justify-center gap-2 py-3 px-4 border-2 border-[#E8E4DE] rounded-[20px] text-sm font-medium text-primary hover:bg-white transition-colors"
           >
             <FileText className="w-4 h-4" />
             {t('JSON (backup)', 'JSON (backup)')}
@@ -463,7 +463,7 @@ function InstallningarContent() {
 
       {/* Navigation links */}
       <div className="flex flex-col gap-2 mb-6">
-        <h2 className="text-sm font-semibold text-muted uppercase tracking-wide mb-1">
+        <h2 className="text-sm font-display text-muted uppercase tracking-wide mb-1">
           {t('Hjälp & information', 'Help & information')}
         </h2>
         {[
@@ -487,7 +487,7 @@ function InstallningarContent() {
 
       {/* Useful contacts */}
       <div className="flex flex-col gap-2 mb-6">
-        <h2 className="text-sm font-semibold text-muted uppercase tracking-wide mb-1">
+        <h2 className="text-sm font-display text-muted uppercase tracking-wide mb-1">
           {t('Viktiga kontakter', 'Important contacts')}
         </h2>
         <div className="card space-y-3">
@@ -523,7 +523,7 @@ function InstallningarContent() {
 
       {/* Account actions */}
       <div className="flex flex-col gap-3 mb-6">
-        <h2 className="text-sm font-semibold text-muted uppercase tracking-wide mb-1">
+        <h2 className="text-sm font-display text-muted uppercase tracking-wide mb-1">
           {t('Konto', 'Account')}
         </h2>
         <button
@@ -541,7 +541,7 @@ function InstallningarContent() {
         {!showConfirmReset ? (
           <button
             onClick={() => setShowConfirmReset(true)}
-            className="w-full py-3 text-warn text-sm font-medium hover:bg-red-50 rounded-card transition-colors"
+            className="w-full py-3 text-warn text-sm font-medium hover:bg-red-50 rounded-[24px] transition-colors"
           >
             <span className="flex items-center justify-center gap-2">
               <Trash2 className="w-4 h-4" />
@@ -563,7 +563,7 @@ function InstallningarContent() {
               </button>
               <button
                 onClick={handleReset}
-                className="flex-1 min-h-touch px-6 py-3 bg-warn text-white font-semibold rounded-card"
+                className="flex-1 min-h-touch px-6 py-3 bg-warn text-white font-semibold rounded-[24px]"
               >
                 {t('Radera allt', 'Delete all')}
               </button>
@@ -574,7 +574,7 @@ function InstallningarContent() {
 
       {/* Legal links */}
       <div className="flex flex-col gap-2 mb-6">
-        <h2 className="text-sm font-semibold text-muted uppercase tracking-wide mb-1">
+        <h2 className="text-sm font-display text-muted uppercase tracking-wide mb-1">
           {t('Juridik', 'Legal')}
         </h2>
         <div className="card space-y-3">

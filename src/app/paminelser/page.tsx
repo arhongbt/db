@@ -177,15 +177,15 @@ function PaminelserContent() {
   }, [upcoming, customReminders]);
 
   return (
-    <div className="min-h-dvh bg-background pb-24">
-      <div className="px-5 py-6">
-        <Link href="/dashboard" className="inline-flex items-center gap-2 text-sm text-muted hover:text-primary mb-6">
+    <div className="min-h-dvh bg-background pb-28">
+      <div className="px-6 py-8">
+        <Link href="/dashboard" className="inline-flex items-center gap-2 text-sm text-muted hover:text-primary mb-6 rounded-full">
           <ArrowLeft className="w-4 h-4" /> {t('Dashboard', 'Dashboard')}
         </Link>
 
         <div className="flex items-center gap-3 mb-2">
           <Bell className="w-6 h-6 text-accent" />
-          <h1 className="text-2xl font-semibold text-primary">{t('Påminnelser & Tidsfrister', 'Reminders & Deadlines')}</h1>
+          <h1 className="text-2xl font-display text-primary">{t('Påminnelser & Tidsfrister', 'Reminders & Deadlines')}</h1>
         </div>
         <p className="text-muted text-sm mb-6">
           {t('Få notifieringar innan viktiga tidsfrister löper ut.', 'Get notifications before important deadlines expire.')}
@@ -196,7 +196,7 @@ function PaminelserContent() {
           <div className="mb-6 bg-white rounded-2xl p-4" style={{ borderColor: '#E8E4DE', borderWidth: 1 }}>
             <div className="flex items-center gap-2 mb-4">
               <Zap className="w-5 h-5 text-accent" />
-              <h3 className="font-semibold text-primary text-sm">{t('Tidslinje kommande', 'Timeline upcoming')}</h3>
+              <h3 className="font-display text-primary text-sm">{t('Tidslinje kommande', 'Timeline upcoming')}</h3>
             </div>
             <div className="space-y-2">
               {allUpcoming.slice(0, 4).map((item, idx) => (
@@ -257,9 +257,10 @@ function PaminelserContent() {
                     onClick={() => toggleReminderDay(day)}
                     className={`text-xs px-3 py-1.5 rounded-full border transition-colors ${
                       prefs.reminderDays.includes(day)
-                        ? 'bg-accent text-white border-accent'
+                        ? 'text-white border-accent'
                         : 'bg-white text-primary border-border hover:border-accent'
                     }`}
+                    style={prefs.reminderDays.includes(day) ? { background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' } : {}}
                   >
                     {day} {day === 1 ? t('dag', 'day') : t('dagar', 'days')} {t('före', 'before')}
                   </button>
@@ -305,7 +306,7 @@ function PaminelserContent() {
                 onChange={(e) => setEmailAddress(e.target.value)}
                 onBlur={saveEmailAddress}
                 placeholder="din@email.com"
-                className="w-full text-sm px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-accent"
+                className="w-full text-sm px-3 py-2 border rounded-[20px] focus:outline-none focus:ring-2 focus:ring-accent"
                 style={{ borderColor: '#E8E4DE' }}
               />
               <p className="text-xs text-muted mt-2">{t('Vi skickar påminnelser till denna adress.', 'We send reminders to this address.')}</p>
@@ -326,7 +327,7 @@ function PaminelserContent() {
         {/* Upcoming deadlines (legal defaults) */}
         {upcoming.length > 0 && (
           <>
-            <h2 className="font-semibold text-primary text-sm mb-3">
+            <h2 className="font-display text-primary text-sm mb-3">
               {t('Svenska juridiska tidsfrister', 'Swedish legal deadlines')} ({upcoming.length})
             </h2>
             <div className="space-y-3 mb-6">
@@ -334,7 +335,11 @@ function PaminelserContent() {
                 <div
                   key={d.id}
                   className="bg-white rounded-2xl p-4"
-                  style={{ borderColor: '#E8E4DE', borderWidth: 1, borderLeftColor: d.status === 'urgent' ? '#E85C4D' : d.status === 'soon' ? '#D4A574' : '#7A9E7E', borderLeftWidth: 4 }}
+                  style={{
+                    borderRadius: '24px',
+                    background: d.status === 'urgent' ? 'linear-gradient(135deg, rgba(196,149,106,0.06), rgba(196,149,106,0.02))' : 'linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02))',
+                    border: d.status === 'urgent' ? '1px solid rgba(196,149,106,0.15)' : '1px solid rgba(122,158,126,0.15)'
+                  }}
                 >
                   <div className="flex items-start justify-between mb-1">
                     <div className="flex items-start gap-2 flex-1">
@@ -376,7 +381,7 @@ function PaminelserContent() {
         {/* Custom Reminders */}
         <div className="mb-6">
           <div className="flex items-center justify-between mb-3">
-            <h2 className="font-semibold text-primary text-sm">
+            <h2 className="font-display text-primary text-sm">
               {t('Egna påminnelser', 'Custom reminders')} ({customReminders.filter(r => r.enabled).length})
             </h2>
             <button
@@ -394,19 +399,20 @@ function PaminelserContent() {
                 value={newReminderTitle}
                 onChange={(e) => setNewReminderTitle(e.target.value)}
                 placeholder={t('T.ex. Kontakta banken', 'E.g. Contact the bank')}
-                className="w-full text-sm px-3 py-2 border rounded-lg mb-3 focus:outline-none focus:ring-2 focus:ring-accent"
+                className="w-full text-sm px-3 py-2 border rounded-[20px] mb-3 focus:outline-none focus:ring-2 focus:ring-accent"
                 style={{ borderColor: '#E8E4DE' }}
               />
               <input
                 type="date"
                 value={newReminderDate}
                 onChange={(e) => setNewReminderDate(e.target.value)}
-                className="w-full text-sm px-3 py-2 border rounded-lg mb-3 focus:outline-none focus:ring-2 focus:ring-accent"
+                className="w-full text-sm px-3 py-2 border rounded-[20px] mb-3 focus:outline-none focus:ring-2 focus:ring-accent"
                 style={{ borderColor: '#E8E4DE' }}
               />
               <button
                 onClick={addCustomReminder}
-                className="w-full bg-accent text-white text-sm px-3 py-2 rounded-lg hover:opacity-90 transition-opacity"
+                className="w-full text-white text-sm px-3 py-2 rounded-lg hover:opacity-90 transition-opacity"
+                style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}
               >
                 {t('Spara påminnelse', 'Save reminder')}
               </button>
@@ -465,7 +471,7 @@ function PaminelserContent() {
         {/* Passed deadlines */}
         {passed.length > 0 && (
           <>
-            <h2 className="font-semibold text-muted text-sm mb-3">
+            <h2 className="font-display text-muted text-sm mb-3">
               {t('Passerade', 'Passed')} ({passed.length})
             </h2>
             <div className="space-y-2 mb-6">

@@ -267,7 +267,7 @@ function OrdlistaContent() {
   }, [groupedTerms]);
 
   return (
-    <div className="flex flex-col px-5 py-6 pb-24">
+    <div className="flex flex-col px-6 py-8 pb-28">
       {/* Header */}
       <div className="flex items-center gap-3 mb-4">
         <Link
@@ -278,7 +278,7 @@ function OrdlistaContent() {
           <ArrowLeft className="w-5 h-5 text-primary" />
         </Link>
         <div>
-          <h1 className="text-2xl font-semibold text-primary">
+          <h1 className="text-2xl font-display text-primary">
             {t('Juridisk ordlista', 'Legal Glossary')}
           </h1>
           <p className="text-muted text-sm">
@@ -297,7 +297,7 @@ function OrdlistaContent() {
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           placeholder={t('Sök i ordlistan...', 'Search the glossary...')}
-          className="w-full min-h-touch pl-10 pr-4 py-3 text-base border-2 border-[#E8E4DE] rounded-card focus:border-accent focus:outline-none bg-white"
+          className="w-full min-h-touch pl-10 pr-4 py-3 text-base border-2 border-[#E8E4DE] rounded-[20px] focus:border-accent focus:outline-none bg-white"
         />
       </div>
 
@@ -314,7 +314,7 @@ function OrdlistaContent() {
         <div className="flex flex-col gap-6">
           {sortedLetters.map((letter) => (
             <div key={letter}>
-              <h2 className="text-xs font-semibold text-muted uppercase tracking-wider mb-3 sticky top-0 bg-background py-2">
+              <h2 className="text-xs font-display text-muted uppercase tracking-wider mb-3 sticky top-0 bg-background py-2">
                 {letter}
               </h2>
               <div className="flex flex-col gap-2">

@@ -109,14 +109,14 @@ export default function AuthPage() {
         </div>
 
         {/* Tab navigation */}
-        <div className="flex gap-1 mb-6 bg-white rounded-2xl p-1 shadow-sm">
+        <div className="flex gap-1 mb-6 bg-white rounded-full p-1 shadow-sm">
           <button
             onClick={() => {
               setTab('login');
               setError('');
               setSuccess('');
             }}
-            className={`flex-1 py-2.5 px-3 rounded-xl transition-all font-semibold text-sm ${
+            className={`flex-1 py-2.5 px-3 rounded-full transition-all font-semibold text-sm ${
               tab === 'login'
                 ? 'text-white'
                 : 'text-primary hover:bg-primary-lighter'
@@ -131,7 +131,7 @@ export default function AuthPage() {
               setError('');
               setSuccess('');
             }}
-            className={`flex-1 py-2.5 px-3 rounded-xl transition-all font-semibold text-sm ${
+            className={`flex-1 py-2.5 px-3 rounded-full transition-all font-semibold text-sm ${
               tab === 'register'
                 ? 'text-white'
                 : 'text-primary hover:bg-primary-lighter'
@@ -144,14 +144,14 @@ export default function AuthPage() {
 
         {/* Error message */}
         {error && (
-          <div role="alert" className="mb-4 p-4 bg-[#FEF3EE] border-l-4 border-warn rounded-r-card text-warn text-sm animate-slideUp">
+          <div role="alert" className="mb-4 p-4 text-warn text-sm animate-slideUp" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(196,149,106,0.06), rgba(196,149,106,0.02))', border: '1px solid rgba(196,149,106,0.15)' }}>
             {error}
           </div>
         )}
 
         {/* Success message */}
         {success && (
-          <div role="status" className="mb-4 p-4 bg-accent/5 border-l-4 border-success rounded-r-card text-success text-sm animate-slideUp">
+          <div role="status" className="mb-4 p-4 text-success text-sm animate-slideUp" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02))', border: '1px solid rgba(122,158,126,0.15)' }}>
             {success}
           </div>
         )}
@@ -273,7 +273,7 @@ export default function AuthPage() {
         {/* Password reset form */}
         {tab === 'reset' && (
           <form onSubmit={handleResetPassword} className="animate-fadeIn">
-            <div className="info-box mb-4">
+            <div className="mb-4 p-4 text-accent text-sm" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02))', border: '1px solid rgba(122,158,126,0.15)' }}>
               {t('Vi skickar en säker länk till din e-postadress där du kan återställa ditt lösenord.', 'We will send a secure link to your email where you can reset your password.')}
             </div>
 

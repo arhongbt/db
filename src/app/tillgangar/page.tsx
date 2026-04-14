@@ -134,14 +134,15 @@ function TillgangarContent() {
     new Intl.NumberFormat('sv-SE', { style: 'currency', currency: 'SEK', maximumFractionDigits: 0 }).format(amount);
 
   return (
-    <div className="flex flex-col px-5 py-6 pb-24">
+    <div className="flex flex-col px-6 py-8 pb-28">
 
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
-        <h1 className="text-2xl font-semibold text-primary">{t('Ekonomi', 'Finances')}</h1>
+        <h1 className="text-2xl font-display text-primary">{t('Ekonomi', 'Finances')}</h1>
         <button
           onClick={() => { setShowForm(true); }}
-          className="w-12 h-12 bg-accent text-white rounded-full flex items-center justify-center shadow-md hover:bg-primary-light transition-colors"
+          className="w-12 h-12 text-white rounded-full flex items-center justify-center shadow-md transition-colors"
+          style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}
           aria-label={t('Lägg till', 'Add')}
         >
           <Plus className="w-6 h-6" />
@@ -160,7 +161,7 @@ function TillgangarContent() {
 
       {/* Crypto guide link if crypto assets present */}
       {state.tillgangar.some((t) => t.type === 'kryptovalutor') && (
-        <div className="card border-l-4 border-accent mb-6 bg-accent/5">
+        <div className="card mb-6" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02))', border: '1px solid rgba(122,158,126,0.15)' }}>
           <div className="flex gap-3">
             <Bitcoin className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
             <div className="flex-1">
@@ -201,7 +202,7 @@ function TillgangarContent() {
 
       {/* Reassurance banner when netto < 0 */}
       {netto < 0 && (
-        <div className="card border-l-4 border-success mb-6 bg-success/5">
+        <div className="mb-6" style={{ borderRadius: '24px', padding: '20px', background: 'linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02))', border: '1px solid rgba(122,158,126,0.15)' }}>
           <div className="flex gap-3">
             <CheckCircle2 className="w-6 h-6 text-success flex-shrink-0 mt-0.5" />
             <div className="flex-1">
@@ -230,10 +231,10 @@ function TillgangarContent() {
       )}
 
       {/* Tabs */}
-      <div className="flex bg-background rounded-card p-1 mb-4">
+      <div className="flex bg-background rounded-full p-1 mb-4">
         <button
           onClick={() => { setTab('tillgangar'); setShowForm(false); }}
-          className={`flex-1 py-2.5 rounded-card text-sm font-medium transition-colors ${
+          className={`flex-1 py-2.5 rounded-full text-sm font-medium transition-colors ${
             tab === 'tillgangar' ? 'bg-white text-primary shadow-sm' : 'text-muted'
           }`}
         >
@@ -241,7 +242,7 @@ function TillgangarContent() {
         </button>
         <button
           onClick={() => { setTab('skulder'); setShowForm(false); }}
-          className={`flex-1 py-2.5 rounded-card text-sm font-medium transition-colors ${
+          className={`flex-1 py-2.5 rounded-full text-sm font-medium transition-colors ${
             tab === 'skulder' ? 'bg-white text-primary shadow-sm' : 'text-muted'
           }`}
         >
@@ -255,7 +256,7 @@ function TillgangarContent() {
           {state.tillgangar.length === 0 ? (
             <div className="flex-1 flex flex-col items-center justify-center text-center py-12">
               <Wallet className="w-16 h-16 text-gray-300 mb-4" />
-              <h2 className="text-lg font-medium text-primary mb-2">
+              <h2 className="text-lg font-display text-primary mb-2">
                 {t('Inga tillgångar ännu', 'No assets yet')}
               </h2>
               <p className="text-muted text-sm max-w-xs">
@@ -298,7 +299,7 @@ function TillgangarContent() {
           {state.skulder.length === 0 ? (
             <div className="flex-1 flex flex-col items-center justify-center text-center py-12">
               <CreditCard className="w-16 h-16 text-gray-300 mb-4" />
-              <h2 className="text-lg font-medium text-primary mb-2">
+              <h2 className="text-lg font-display text-primary mb-2">
                 {t('Inga skulder registrerade', 'No debts registered')}
               </h2>
               <p className="text-muted text-sm max-w-xs">
@@ -335,8 +336,8 @@ function TillgangarContent() {
 
       {/* Add forms */}
       {showForm && tab === 'tillgangar' && (
-        <div className="card border-2 border-accent">
-          <h3 className="text-lg font-semibold text-primary mb-4">{t('Ny tillgång', 'New asset')}</h3>
+        <div className="card" style={{ borderRadius: '28px', border: '2px solid var(--accent)' }}>
+          <h3 className="text-lg font-display text-primary mb-4">{t('Ny tillgång', 'New asset')}</h3>
 
           <div className="mb-4">
             <span className="text-sm font-medium text-primary mb-2 block">{t('Typ', 'Type')}</span>
@@ -345,11 +346,12 @@ function TillgangarContent() {
                 <button
                   key={tt.value}
                   onClick={() => setTType(tt.value)}
-                  className={`py-2 px-3 rounded-card text-sm font-medium border-2 transition-colors ${
+                  className={`py-2 px-3 rounded-full text-sm font-medium border-2 transition-colors ${
                     tType === tt.value
-                      ? 'border-accent bg-primary-lighter/30 text-primary'
+                      ? 'text-primary'
                       : 'border-[#E8E4DE] text-muted'
                   }`}
+                  style={tType === tt.value ? { background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)', border: 'none', color: 'white' } : {}}
                 >
                   {tt.label}
                 </button>
@@ -369,7 +371,7 @@ function TillgangarContent() {
               value={tDesc}
               onChange={(e) => { setTDesc(e.target.value); setFormErrors((p) => ({ ...p, tDesc: '' })); }}
               placeholder={t('T.ex. Sparkonto Swedbank', 'E.g. Savings account Swedbank')}
-              className={`w-full min-h-touch px-4 py-3 text-base border-2 rounded-card focus:outline-none bg-white ${formErrors.tDesc ? 'border-warn' : 'border-[#E8E4DE] focus:border-accent'}`}
+              className={`w-full min-h-touch px-4 py-3 text-base border-2 rounded-[20px] focus:outline-none bg-white ${formErrors.tDesc ? 'border-warn' : 'border-[#E8E4DE] focus:border-accent'}`}
             />
             {formErrors.tDesc && <span className="text-xs text-warn mt-1 block">{formErrors.tDesc}</span>}
           </label>
@@ -381,7 +383,7 @@ function TillgangarContent() {
               value={tValue}
               onChange={(e) => { setTValue(e.target.value); setFormErrors((p) => ({ ...p, tValue: '' })); }}
               placeholder="0"
-              className={`w-full min-h-touch px-4 py-3 text-base border-2 rounded-card focus:outline-none bg-white ${formErrors.tValue ? 'border-warn' : 'border-[#E8E4DE] focus:border-accent'}`}
+              className={`w-full min-h-touch px-4 py-3 text-base border-2 rounded-[20px] focus:outline-none bg-white ${formErrors.tValue ? 'border-warn' : 'border-[#E8E4DE] focus:border-accent'}`}
             />
             {formErrors.tValue && <span className="text-xs text-warn mt-1 block">{formErrors.tValue}</span>}
           </label>
@@ -394,7 +396,7 @@ function TillgangarContent() {
                 value={tTaxeringsvarde}
                 onChange={(e) => { setTTaxeringsvarde(e.target.value); }}
                 placeholder="0"
-                className="w-full min-h-touch px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-card focus:outline-none focus:border-accent"
+                className="w-full min-h-touch px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-[20px] focus:outline-none focus:border-accent"
               />
               <p className="text-xs text-muted mt-1">{t('Taxeringsvärdet finns på Skatteverket.se eller senaste fastighetstaxeringen.', 'The assessed value is found on Skatteverket.se or the latest property valuation.')}</p>
             </label>
@@ -408,8 +410,8 @@ function TillgangarContent() {
       )}
 
       {showForm && tab === 'skulder' && (
-        <div className="card border-2 border-accent">
-          <h3 className="text-lg font-semibold text-primary mb-4">{t('Ny skuld', 'New debt')}</h3>
+        <div className="card" style={{ borderRadius: '28px', border: '2px solid var(--accent)' }}>
+          <h3 className="text-lg font-display text-primary mb-4">{t('Ny skuld', 'New debt')}</h3>
 
           <div className="mb-4">
             <span className="text-sm font-medium text-primary mb-2 block">{t('Typ', 'Type')}</span>
@@ -418,11 +420,12 @@ function TillgangarContent() {
                 <button
                   key={st.value}
                   onClick={() => setSType(st.value)}
-                  className={`py-2 px-3 rounded-card text-sm font-medium border-2 transition-colors ${
+                  className={`py-2 px-3 rounded-full text-sm font-medium border-2 transition-colors ${
                     sType === st.value
-                      ? 'border-accent bg-primary-lighter/30 text-primary'
+                      ? 'text-primary'
                       : 'border-[#E8E4DE] text-muted'
                   }`}
+                  style={sType === st.value ? { background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)', border: 'none', color: 'white' } : {}}
                 >
                   {st.label}
                 </button>
@@ -437,7 +440,7 @@ function TillgangarContent() {
               value={sCreditor}
               onChange={(e) => { setSCreditor(e.target.value); setFormErrors((p) => ({ ...p, sCreditor: '' })); }}
               placeholder={t('T.ex. Nordea (bolån)', 'E.g. Nordea (mortgage)')}
-              className={`w-full min-h-touch px-4 py-3 text-base border-2 rounded-card focus:outline-none bg-white ${formErrors.sCreditor ? 'border-warn' : 'border-[#E8E4DE] focus:border-accent'}`}
+              className={`w-full min-h-touch px-4 py-3 text-base border-2 rounded-[20px] focus:outline-none bg-white ${formErrors.sCreditor ? 'border-warn' : 'border-[#E8E4DE] focus:border-accent'}`}
             />
             {formErrors.sCreditor && <span className="text-xs text-warn mt-1 block">{formErrors.sCreditor}</span>}
           </label>
@@ -449,7 +452,7 @@ function TillgangarContent() {
               value={sAmount}
               onChange={(e) => { setSAmount(e.target.value); setFormErrors((p) => ({ ...p, sAmount: '' })); }}
               placeholder="0"
-              className={`w-full min-h-touch px-4 py-3 text-base border-2 rounded-card focus:outline-none bg-white ${formErrors.sAmount ? 'border-warn' : 'border-[#E8E4DE] focus:border-accent'}`}
+              className={`w-full min-h-touch px-4 py-3 text-base border-2 rounded-[20px] focus:outline-none bg-white ${formErrors.sAmount ? 'border-warn' : 'border-[#E8E4DE] focus:border-accent'}`}
             />
             {formErrors.sAmount && <span className="text-xs text-warn mt-1 block">{formErrors.sAmount}</span>}
           </label>

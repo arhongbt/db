@@ -521,7 +521,7 @@ function ForetagContent() {
   };
 
   return (
-    <div className="flex flex-col px-5 py-6 pb-24">
+    <div className="flex flex-col px-6 py-8 pb-28">
       {/* Header */}
       <div className="flex items-center gap-3 mb-6">
         <Link
@@ -532,7 +532,7 @@ function ForetagContent() {
           <ArrowLeft className="w-5 h-5 text-primary" />
         </Link>
         <div>
-          <h1 className="text-2xl font-semibold text-primary">Företag i dödsbo</h1>
+          <h1 className="text-2xl font-display text-primary">Företag i dödsbo</h1>
           <p className="text-muted text-sm">Vägledning för alla företagstyper</p>
         </div>
       </div>
@@ -560,7 +560,7 @@ function ForetagContent() {
         <>
           {/* Step 1: Select company type */}
           <div className="mb-8">
-            <h2 className="text-lg font-semibold text-primary mb-4">
+            <h2 className="text-lg font-display text-primary mb-4">
               Steg 1: Välj företagstyp
             </h2>
             <p className="text-sm text-primary/70 mb-4">
@@ -622,7 +622,7 @@ function ForetagContent() {
                     return <Icon className="w-6 h-6 text-accent flex-shrink-0 mt-0.5" />;
                   })()}
                   <div className="flex-1">
-                    <h2 className="text-2xl font-semibold text-primary">
+                    <h2 className="text-2xl font-display text-primary">
                       {currentSection.title}
                     </h2>
                     <p className="text-sm text-primary/70 mt-1">
@@ -659,7 +659,7 @@ function ForetagContent() {
                       className="card w-full text-left hover:border-accent/50 transition-all"
                     >
                       <div className="flex items-center justify-between gap-3">
-                        <h3 className="font-semibold text-primary text-sm flex-1">
+                        <h3 className="font-display text-primary text-sm flex-1">
                           {sec.title}
                         </h3>
                         {isExpanded ? (
@@ -689,8 +689,8 @@ function ForetagContent() {
               </div>
 
               {/* Brådskande åtgärder */}
-              <div className="card border-l-4 border-warn mb-6">
-                <h3 className="font-semibold text-primary text-sm mb-3 flex items-center gap-2">
+              <div className="card mb-6" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(196,149,106,0.06), rgba(196,149,106,0.02))', border: '1px solid rgba(196,149,106,0.15)' }}>
+                <h3 className="font-display text-primary text-sm mb-3 flex items-center gap-2">
                   <AlertTriangle className="w-5 h-5 text-warn" />
                   Brådskande åtgärder (gör först)
                 </h3>
@@ -723,7 +723,7 @@ function ForetagContent() {
 
               {/* Interactive checklist */}
               <div className="card mb-6">
-                <h3 className="font-semibold text-primary text-sm mb-3">
+                <h3 className="font-display text-primary text-sm mb-3">
                   Interaktiv checklista
                 </h3>
                 <div className="space-y-2">
@@ -759,7 +759,7 @@ function ForetagContent() {
 
               {/* Legal references */}
               <div className="card mb-6">
-                <h3 className="font-semibold text-primary text-sm mb-3 flex items-center gap-2">
+                <h3 className="font-display text-primary text-sm mb-3 flex items-center gap-2">
                   <Scale className="w-5 h-5 text-primary/60" />
                   Juridiska referenser
                 </h3>
@@ -778,7 +778,7 @@ function ForetagContent() {
 
       {/* Contact section - always visible */}
       <div className="card mb-6">
-        <h3 className="font-semibold text-primary text-sm mb-4 flex items-center gap-2">
+        <h3 className="font-display text-primary text-sm mb-4 flex items-center gap-2">
           <Phone className="w-5 h-5 text-accent" />
           Kontakta myndigheter
         </h3>
@@ -836,7 +836,7 @@ function ForetagContent() {
 
       {/* Resources */}
       <div className="card mb-6">
-        <h3 className="font-semibold text-primary text-sm mb-4">Användbara resurser</h3>
+        <h3 className="font-display text-primary text-sm mb-4">Användbara resurser</h3>
         <div className="space-y-2">
           <a
             href="https://www.bolagsverket.se"

@@ -19,13 +19,13 @@ export default function OmPage() {
       <div className="max-w-2xl mx-auto px-5 py-8">
         <Link
           href="/"
-          className="inline-flex items-center gap-2 text-sm text-muted hover:text-primary mb-6"
+          className="inline-flex items-center gap-2 text-sm text-muted hover:text-primary mb-6 rounded-full"
         >
           <ArrowLeft className="w-4 h-4" />
           {t('Tillbaka', 'Back')}
         </Link>
 
-        <h1 className="text-2xl font-semibold text-primary mb-2">
+        <h1 className="text-2xl font-display text-primary mb-2">
           {t('Om Sista Resan', 'About Sista Resan')}
         </h1>
         <p className="text-muted mb-8">
@@ -33,11 +33,11 @@ export default function OmPage() {
         </p>
 
         {/* Mission */}
-        <div className="card mb-6 border-l-4 border-accent">
+        <div className="card mb-6" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02))', border: '1px solid rgba(122,158,126,0.15)' }}>
           <div className="flex items-start gap-3">
             <Heart className="w-6 h-6 text-accent mt-0.5 shrink-0" />
             <div>
-              <h2 className="font-semibold text-primary mb-2">{t('Varför vi finns', 'Why we exist')}</h2>
+              <h2 className="font-display text-primary mb-2">{t('Varför vi finns', 'Why we exist')}</h2>
               <p className="text-sm text-primary/80">
                 {t('Att förlora en närstående är svårt nog. Att dessutom behöva navigera juridik, bankkontakter, försäkringsärenden och Skatteverket gör sorgen ännu tyngre. Sista Resan skapades för att ge dig en tydlig väg genom processen — steg för steg, i din egen takt.', 'Losing a loved one is hard enough. Having to navigate law, banks, insurance matters, and the tax agency makes grief even heavier. Sista Resan was created to give you a clear path through the process — step by step, at your own pace.')}
               </p>
@@ -46,7 +46,7 @@ export default function OmPage() {
         </div>
 
         {/* Trust signals */}
-        <h2 className="text-lg font-semibold text-primary mb-4">
+        <h2 className="text-lg font-display text-primary mb-4">
           {t('Så skyddar vi dig och dina uppgifter', 'How we protect you and your data')}
         </h2>
 
@@ -93,7 +93,7 @@ export default function OmPage() {
         </div>
 
         {/* What's included */}
-        <h2 className="text-lg font-semibold text-primary mb-4">
+        <h2 className="text-lg font-display text-primary mb-4">
           {t('Det här ingår', "What's included")}
         </h2>
 
@@ -117,7 +117,7 @@ export default function OmPage() {
         </div>
 
         {/* Disclaimer */}
-        <div className="bg-primary-lighter/30 rounded-card p-4 mb-6">
+        <div className="p-4 mb-6" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02))', border: '1px solid rgba(122,158,126,0.15)' }}>
           <p className="text-xs text-muted leading-relaxed">
             {t('Sista Resan ger allmän vägledning baserad på svensk lag och ersätter inte juridisk rådgivning. Vid komplexa ärenden — t.ex. testamentstvister, internationella arv eller företagsinnehav — rekommenderar vi att du kontaktar en jurist eller boutredningsman.', 'Sista Resan provides general guidance based on Swedish law and does not replace legal advice. For complex matters — such as will disputes, international inheritance, or business assets — we recommend contacting a lawyer or estate administrator.')}
           </p>

@@ -180,24 +180,24 @@ Adress: ${data.adress}`;
         <div className="max-w-2xl mx-auto px-4 py-4 flex items-center gap-3">
           <button
             onClick={() => (currentStep > 0 ? setCurrentStep(currentStep - 1) : window.history.back())}
-            className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+            className="p-2 hover:bg-gray-100 rounded-full transition-colors"
           >
             <ArrowLeft className="w-5 h-5 text-primary" />
           </button>
           <div className="flex items-center gap-2">
             <Landmark className="w-6 h-6 text-accent" />
-            <h1 className="text-xl font-bold text-primary">{t('Bankbrev', 'Bank Letter')}</h1>
+            <h1 className="text-xl font-display text-primary">{t('Bankbrev', 'Bank Letter')}</h1>
           </div>
         </div>
       </div>
 
       {/* Content */}
-      <div className="max-w-2xl mx-auto px-4 py-6 pb-32">
+      <div className="max-w-2xl mx-auto px-6 py-8 pb-28">
         {/* Step 0: Uppgifter om den avlidne */}
         {currentStep === 0 && (
           <div>
             <div className="mb-6">
-              <h2 className="text-2xl font-bold text-primary mb-2">{t('Uppgifter om den avlidne', 'Information about the deceased')}</h2>
+              <h2 className="text-2xl font-display text-primary mb-2">{t('Uppgifter om den avlidne', 'Information about the deceased')}</h2>
               <p className="text-sm text-muted">{t('Steg 1 av 4', 'Step 1 of 4')}</p>
             </div>
 
@@ -211,7 +211,7 @@ Adress: ${data.adress}`;
                   value={data.avlidenNamn}
                   onChange={(e) => setData({ ...data, avlidenNamn: e.target.value })}
                   placeholder={t('Förnamn Efternamn', 'First name Last name')}
-                  className="w-full px-4 py-3 border rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white" style={{ borderColor: '#E8E4DE' }}
+                  className="w-full px-4 py-3 border rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white" style={{ borderColor: '#E8E4DE' }}
                 />
               </div>
 
@@ -224,7 +224,7 @@ Adress: ${data.adress}`;
                   value={data.avlidenPersonnummer}
                   onChange={(e) => setData({ ...data, avlidenPersonnummer: e.target.value })}
                   placeholder="YYMMDDNNNN"
-                  className="w-full px-4 py-3 border rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white" style={{ borderColor: '#E8E4DE' }}
+                  className="w-full px-4 py-3 border rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white" style={{ borderColor: '#E8E4DE' }}
                 />
               </div>
 
@@ -234,7 +234,7 @@ Adress: ${data.adress}`;
                   type="date"
                   value={data.dödsdatum}
                   onChange={(e) => setData({ ...data, dödsdatum: e.target.value })}
-                  className="w-full px-4 py-3 border rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white" style={{ borderColor: '#E8E4DE' }}
+                  className="w-full px-4 py-3 border rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white" style={{ borderColor: '#E8E4DE' }}
                 />
               </div>
             </div>
@@ -245,7 +245,7 @@ Adress: ${data.adress}`;
         {currentStep === 1 && (
           <div>
             <div className="mb-6">
-              <h2 className="text-2xl font-bold text-primary mb-2">Dina uppgifter (anmälare)</h2>
+              <h2 className="text-2xl font-display text-primary mb-2">Dina uppgifter (anmälare)</h2>
               <p className="text-sm text-muted">Steg 2 av 4</p>
             </div>
 
@@ -259,7 +259,7 @@ Adress: ${data.adress}`;
                   value={data.anmälarNamn}
                   onChange={(e) => setData({ ...data, anmälarNamn: e.target.value })}
                   placeholder="Förnamn Efternamn"
-                  className="w-full px-4 py-3 border rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white" style={{ borderColor: '#E8E4DE' }}
+                  className="w-full px-4 py-3 border rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white" style={{ borderColor: '#E8E4DE' }}
                 />
               </div>
 
@@ -272,7 +272,7 @@ Adress: ${data.adress}`;
                   value={data.anmälarPersonnummer}
                   onChange={(e) => setData({ ...data, anmälarPersonnummer: e.target.value })}
                   placeholder="YYMMDDNNNN"
-                  className="w-full px-4 py-3 border rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white" style={{ borderColor: '#E8E4DE' }}
+                  className="w-full px-4 py-3 border rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white" style={{ borderColor: '#E8E4DE' }}
                 />
               </div>
 
@@ -285,7 +285,7 @@ Adress: ${data.adress}`;
                   value={data.relation}
                   onChange={(e) => setData({ ...data, relation: e.target.value })}
                   placeholder="t.ex. Son/dotter, Make/Maka"
-                  className="w-full px-4 py-3 border rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white" style={{ borderColor: '#E8E4DE' }}
+                  className="w-full px-4 py-3 border rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white" style={{ borderColor: '#E8E4DE' }}
                 />
               </div>
 
@@ -298,7 +298,7 @@ Adress: ${data.adress}`;
                   value={data.telefon}
                   onChange={(e) => setData({ ...data, telefon: e.target.value })}
                   placeholder="070-1234567"
-                  className="w-full px-4 py-3 border rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white" style={{ borderColor: '#E8E4DE' }}
+                  className="w-full px-4 py-3 border rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white" style={{ borderColor: '#E8E4DE' }}
                 />
               </div>
 
@@ -309,7 +309,7 @@ Adress: ${data.adress}`;
                   value={data.adress}
                   onChange={(e) => setData({ ...data, adress: e.target.value })}
                   placeholder="Gatunamn och husnummer, Postnummer, Stad"
-                  className="w-full px-4 py-3 border rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white" style={{ borderColor: '#E8E4DE' }}
+                  className="w-full px-4 py-3 border rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white" style={{ borderColor: '#E8E4DE' }}
                 />
               </div>
             </div>
@@ -320,7 +320,7 @@ Adress: ${data.adress}`;
         {currentStep === 2 && (
           <div>
             <div className="mb-6">
-              <h2 className="text-2xl font-bold text-primary mb-2">Välj banker</h2>
+              <h2 className="text-2xl font-display text-primary mb-2">Välj banker</h2>
               <p className="text-sm text-muted">Steg 3 av 4</p>
             </div>
 
@@ -347,7 +347,7 @@ Adress: ${data.adress}`;
             </div>
 
             <div className="border-t pt-4">
-              <h3 className="font-semibold text-primary mb-3 text-sm">Lägg till egen bank</h3>
+              <h3 className="font-display text-primary mb-3 text-sm">Lägg till egen bank</h3>
               <div className="flex gap-2 mb-3">
                 <input
                   type="text"
@@ -361,7 +361,8 @@ Adress: ${data.adress}`;
                 />
                 <button
                   onClick={handleAddCustomBank}
-                  className="px-4 py-3 bg-accent text-white rounded-xl font-semibold transition-colors hover:bg-accent/90"
+                  className="px-4 py-3 text-white rounded-xl font-semibold transition-colors hover:opacity-90"
+                  style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}
                 >
                   Lägg till
                 </button>
@@ -393,7 +394,7 @@ Adress: ${data.adress}`;
         {currentStep === 3 && (
           <div>
             <div className="mb-6">
-              <h2 className="text-2xl font-bold text-primary mb-2">Granska & ladda ner</h2>
+              <h2 className="text-2xl font-display text-primary mb-2">Granska & ladda ner</h2>
               <p className="text-sm text-muted">Steg 4 av 4</p>
             </div>
 
@@ -406,7 +407,7 @@ Adress: ${data.adress}`;
                   key={idx}
                   className="border rounded-2xl p-4 bg-white" style={{ borderColor: '#E8E4DE' }}
                 >
-                  <h3 className="font-bold text-primary mb-3 text-sm">{letter.bankName}</h3>
+                  <h3 className="font-display text-primary mb-3 text-sm">{letter.bankName}</h3>
                   <pre className="text-xs text-primary/70 whitespace-pre-wrap font-mono overflow-auto max-h-64 p-3 bg-background rounded-xl">
                     {letter.content}
                   </pre>
@@ -418,7 +419,8 @@ Adress: ${data.adress}`;
             <div className="space-y-3">
               <button
                 onClick={handleDownloadPDF}
-                className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-accent text-white rounded-xl font-semibold transition-colors hover:bg-accent/90"
+                className="w-full flex items-center justify-center gap-2 px-4 py-3 text-white rounded-xl font-semibold transition-colors hover:opacity-90"
+                style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}
               >
                 <Download className="w-5 h-5" />
                 Ladda ner alla som PDF

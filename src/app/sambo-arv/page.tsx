@@ -7,19 +7,19 @@ import { useLanguage } from '@/lib/i18n';
 export default function SamboArvPage() {
   const { t } = useLanguage();
   return (
-    <div className="min-h-screen bg-background pb-24">
+    <div className="min-h-screen bg-background pb-28">
       {/* Header */}
       <div className="sticky top-0 z-40 bg-background border-b border-border">
-        <div className="max-w-2xl mx-auto px-4 py-4 flex items-center gap-3">
-          <Link href="/dashboard" className="p-2 hover:bg-secondary rounded-lg transition-colors">
+        <div className="max-w-2xl mx-auto px-6 py-8 flex items-center gap-3">
+          <Link href="/dashboard" className="p-2 hover:bg-secondary rounded-full transition-colors">
             <ArrowLeft className="w-5 h-5 text-primary" />
           </Link>
-          <h1 className="text-xl font-semibold text-primary">{t('Sambo och arv', 'Cohabiting Partner and Inheritance')}</h1>
+          <h1 className="text-xl font-display text-primary">{t('Sambo och arv', 'Cohabiting Partner and Inheritance')}</h1>
         </div>
       </div>
 
       {/* Content */}
-      <div className="max-w-2xl mx-auto px-4 py-6 space-y-6">
+      <div className="max-w-2xl mx-auto px-6 py-8 space-y-6">
         {/* Warning Box */}
         <div className="border rounded-lg p-4 flex gap-3" style={{ background: 'var(--accent-soft)', borderColor: 'var(--border)' }}>
           <AlertTriangle className="w-5 h-5 text-warn flex-shrink-0 mt-0.5" />
@@ -32,11 +32,11 @@ export default function SamboArvPage() {
         </div>
 
         {/* Introduction Card */}
-        <div className="border border-border rounded-2xl p-5 space-y-3" style={{ background: 'var(--bg-card)' }}>
+        <div className="border border-border rounded-[28px] p-5 space-y-3" style={{ background: 'var(--bg-card)' }}>
           <div className="flex items-start gap-3">
             <Users className="w-6 h-6 text-accent flex-shrink-0 mt-1" />
             <div>
-              <h2 className="font-semibold text-primary mb-2">Sambo är inte gift</h2>
+              <h2 className="font-display text-primary mb-2">Sambo är inte gift</h2>
               <p className="text-sm text-muted mb-3">
                 Sambolagen reglerar inte arv mellan sambor. Till skillnad från gifta par, som automatiskt ärver varandra enligt ärvdabalken, måste sambor genomföra särskilda åtgärder för att den överlevande ska få något från dödsboet.
               </p>
@@ -45,9 +45,9 @@ export default function SamboArvPage() {
         </div>
 
         {/* Key Points Card */}
-        <div className="border border-border rounded-2xl overflow-hidden" style={{ background: 'var(--bg-card)' }}>
+        <div className="border border-border rounded-[28px] overflow-hidden" style={{ background: 'var(--bg-card)' }}>
           <div className="bg-secondary px-5 py-3 border-b border-border">
-            <h3 className="font-semibold text-primary">De viktigaste reglerna</h3>
+            <h3 className="font-display text-primary">De viktigaste reglerna</h3>
           </div>
           <div className="p-5 space-y-4">
             <div className="flex gap-3">
@@ -89,8 +89,8 @@ export default function SamboArvPage() {
         </div>
 
         {/* What Happens Without Will */}
-        <div className="border rounded-2xl p-5 space-y-4" style={{ background: 'var(--bg-card)', borderColor: 'var(--border)' }}>
-          <h3 className="font-semibold text-primary flex items-center gap-2">
+        <div className="border rounded-[28px] p-5 space-y-4" style={{ background: 'var(--bg-card)', borderColor: 'var(--border)' }}>
+          <h3 className="font-display text-primary flex items-center gap-2">
             <span>Utan testamente</span>
             <ChevronRight className="w-4 h-4 text-muted" />
           </h3>
@@ -116,8 +116,8 @@ export default function SamboArvPage() {
         </div>
 
         {/* What Happens With Will */}
-        <div className="border rounded-2xl p-5 space-y-4" style={{ background: 'var(--bg-card)', borderColor: 'var(--border)' }}>
-          <h3 className="font-semibold text-primary flex items-center gap-2">
+        <div className="border rounded-[28px] p-5 space-y-4" style={{ background: 'var(--bg-card)', borderColor: 'var(--border)' }}>
+          <h3 className="font-display text-primary flex items-center gap-2">
             <span>Med testamente</span>
             <ChevronRight className="w-4 h-4 text-muted" />
           </h3>
@@ -143,8 +143,8 @@ export default function SamboArvPage() {
         </div>
 
         {/* Bodelning Card */}
-        <div className="border rounded-2xl p-5 space-y-4" style={{ background: 'var(--bg-card)', borderColor: 'var(--border)' }}>
-          <h3 className="font-semibold text-primary">Sambors rätt till bodelning</h3>
+        <div className="border rounded-[28px] p-5 space-y-4" style={{ background: 'var(--bg-card)', borderColor: 'var(--border)' }}>
+          <h3 className="font-display text-primary">Sambors rätt till bodelning</h3>
           <p className="text-sm text-muted">
             Även utan testamente har en sambo rätt att kräva bodelning av:
           </p>
@@ -164,8 +164,8 @@ export default function SamboArvPage() {
         </div>
 
         {/* Difference from Married */}
-        <div className="border rounded-2xl p-5 space-y-4" style={{ background: 'var(--bg-card)', borderColor: 'var(--border)' }}>
-          <h3 className="font-semibold text-primary">Sambo vs. Gift — skillnaden</h3>
+        <div className="border rounded-[28px] p-5 space-y-4" style={{ background: 'var(--bg-card)', borderColor: 'var(--border)' }}>
+          <h3 className="font-display text-primary">Sambo vs. Gift — skillnaden</h3>
           <div className="space-y-3 text-sm">
             <div className="grid grid-cols-2 gap-3">
               <div className="rounded p-3" style={{ background: 'var(--bg)' }}>
@@ -191,9 +191,9 @@ export default function SamboArvPage() {
         </div>
 
         {/* FAQ */}
-        <div className="border border-border rounded-2xl overflow-hidden" style={{ background: 'var(--bg-card)' }}>
+        <div className="border border-border rounded-[28px] overflow-hidden" style={{ background: 'var(--bg-card)' }}>
           <div className="bg-secondary px-5 py-3 border-b border-border">
-            <h3 className="font-semibold text-primary">Vanliga frågor</h3>
+            <h3 className="font-display text-primary">Vanliga frågor</h3>
           </div>
           <div className="divide-y divide-border">
             <div className="p-5 space-y-2">
@@ -243,7 +243,7 @@ export default function SamboArvPage() {
         </Link>
 
         {/* Legal Disclaimer */}
-        <div className="text-xs text-muted rounded p-4 border" style={{ background: 'var(--bg)', borderColor: 'var(--border)' }}>
+        <div className="text-xs text-muted rounded-[20px] p-4 border" style={{ background: 'var(--bg)', borderColor: 'var(--border)' }}>
           <p className="font-medium mb-1">Juridisk ansvarsfriskrivning</p>
           <p>
             Denna information är endast för allmän vägledning och utgör inte juridisk rådgivning. Reglerna kring samboarv kan vara komplexa och individuell situation spelar stor roll. Vi rekommenderar att du kontaktar en jurist för personlig rådgivning angående ditt specifika fall.

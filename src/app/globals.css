@@ -43,14 +43,13 @@
            active:scale-[0.97]
            focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent
            disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100;
-    background: var(--accent);
+    background: linear-gradient(135deg, #7A9E7E, #6B8E6F);
     border-radius: 9999px;
-    box-shadow: 0 2px 12px rgba(122,158,126,0.12);
+    box-shadow: 0 2px 12px rgba(122,158,126,0.15);
   }
   .btn-primary:hover {
     transform: translateY(-1px);
-    box-shadow: 0 6px 20px rgba(122,158,126,0.2);
-    filter: brightness(1.05);
+    box-shadow: 0 6px 20px rgba(122,158,126,0.25);
   }
 
   .btn-secondary {

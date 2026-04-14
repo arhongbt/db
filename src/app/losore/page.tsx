@@ -215,11 +215,11 @@ function LosoreContent() {
   });
 
   return (
-    <div className="flex flex-col px-5 py-6 pb-24">
+    <div className="flex flex-col px-6 py-8 pb-28">
       {/* Back button */}
       <Link
         href="/dashboard"
-        className="inline-flex items-center gap-2 text-accent mb-4 hover:text-primary transition-colors w-fit"
+        className="inline-flex items-center gap-2 text-accent mb-4 hover:text-primary transition-colors w-fit rounded-full"
       >
         <ArrowLeft className="w-4 h-4" />
         <span className="text-sm font-medium">{t('Tillbaka', 'Back')}</span>
@@ -227,10 +227,11 @@ function LosoreContent() {
 
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
-        <h1 className="text-2xl font-semibold text-primary">{t('Lösöre', 'Personal property')}</h1>
+        <h1 className="text-2xl font-display text-primary">{t('Lösöre', 'Personal property')}</h1>
         <button
           onClick={() => setShowForm(true)}
-          className="w-12 h-12 bg-accent text-white rounded-full flex items-center justify-center shadow-md hover:bg-primary-light transition-colors"
+          className="w-12 h-12 text-white rounded-full flex items-center justify-center shadow-md hover:bg-primary-light transition-colors"
+          style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}
           aria-label={t('Lägg till', 'Add')}
         >
           <Plus className="w-6 h-6" />
@@ -253,21 +254,21 @@ function LosoreContent() {
           <div className="grid grid-cols-3 gap-3 mb-4">
             <div className="text-center">
               <p className="text-xs text-muted uppercase mb-1">{t('Föremål', 'Items')}</p>
-              <p className="text-lg font-bold text-primary">{items.length}</p>
+              <p className="text-lg font-display text-primary">{items.length}</p>
             </div>
             <div className="text-center">
               <p className="text-xs text-muted uppercase mb-1">{t('Totalt värde', 'Total value')}</p>
-              <p className="text-lg font-bold text-success">{formatSEK(totalValue)}</p>
+              <p className="text-lg font-display text-success">{formatSEK(totalValue)}</p>
             </div>
             <div className="text-center">
               <p className="text-xs text-muted uppercase mb-1">{t('Tilldelad', 'Assigned')}</p>
-              <p className="text-lg font-bold text-primary">{assignedCount}/{items.length}</p>
+              <p className="text-lg font-display text-primary">{assignedCount}/{items.length}</p>
             </div>
           </div>
 
           {/* Fairness indicator */}
           {assignedCount > 0 && delagareNames.length > 1 && (
-            <div className={`flex items-center gap-2 p-3 rounded-card ${
+            <div className={`flex items-center gap-2 p-3 rounded-[20px] ${
               isFair ? 'bg-success/10' : 'bg-yellow-50'
             }`}>
               <AlertCircle className={`w-4 h-4 flex-shrink-0 ${
@@ -288,13 +289,13 @@ function LosoreContent() {
       {/* Per-delägare breakdown */}
       {delagareBreakdown.size > 0 && (
         <div className="card mb-6">
-          <h3 className="text-sm font-semibold text-primary mb-3">{t('Tilldelning per delägare', 'Distribution per co-owner')}</h3>
+          <h3 className="text-sm font-display text-primary mb-3">{t('Tilldelning per delägare', 'Distribution per co-owner')}</h3>
           <div className="space-y-2">
             {delagareNames.map(name => {
               const value = delagareBreakdown.get(name) ?? 0;
               const itemCount = items.filter(i => i.assignedTo === name).length;
               return (
-                <div key={name} className="flex items-center justify-between p-2 bg-white rounded-card">
+                <div key={name} className="flex items-center justify-between p-2 bg-white rounded-[20px]">
                   <span className="text-sm text-primary font-medium">{name}</span>
                   <div className="text-right">
                     <p className="text-sm font-semibold text-primary">{formatSEK(value)}</p>
@@ -309,8 +310,8 @@ function LosoreContent() {
 
       {/* Add form */}
       {showForm && (
-        <div className="card border-2 border-accent mb-6">
-          <h3 className="text-lg font-semibold text-primary mb-4">{t('Lägg till föremål', 'Add item')}</h3>
+        <div className="card mb-6" style={{ borderRadius: '28px' }}>
+          <h3 className="text-lg font-display text-primary mb-4">{t('Lägg till föremål', 'Add item')}</h3>
 
           {/* Photo upload section */}
           <div className="mb-4">
@@ -322,7 +323,7 @@ function LosoreContent() {
                   alt="Preview"
                   width={400}
                   height={160}
-                  className="w-full h-40 object-cover rounded-2xl border-2 border-[#E8E4DE]"
+                  className="w-full h-40 object-cover rounded-[20px] border-2 border-[#E8E4DE]"
                   unoptimized
                 />
                 <button
@@ -345,7 +346,7 @@ function LosoreContent() {
                 />
                 <label
                   htmlFor="photo-input"
-                  className="flex items-center justify-center gap-2 w-full px-4 py-3 border-2 border-[#E8E4DE] rounded-2xl cursor-pointer hover:border-accent hover:bg-gray-50 transition-colors bg-white"
+                  className="flex items-center justify-center gap-2 w-full px-4 py-3 border-2 border-[#E8E4DE] rounded-[20px] cursor-pointer hover:border-accent hover:bg-gray-50 transition-colors bg-white"
                 >
                   <Camera className="w-5 h-5 text-accent" />
                   <span className="text-sm font-medium text-primary">{t('Ta foto eller ladda upp', 'Take photo or upload')}</span>
@@ -365,7 +366,7 @@ function LosoreContent() {
                 setFormErrors(p => ({ ...p, formName: '' }));
               }}
               placeholder={t('T.ex. Soffa, Guldring, Tavla', 'E.g. Sofa, Gold ring, Painting')}
-              className={`w-full px-4 py-3 border-2 rounded-xl focus:outline-none transition-colors bg-white ${
+              className={`w-full px-4 py-3 border-2 rounded-[20px] focus:outline-none transition-colors bg-white ${
                 formErrors.formName ? 'border-warn' : 'border-[#E8E4DE] focus:border-accent'
               }`}
             />
@@ -377,7 +378,7 @@ function LosoreContent() {
             <select
               value={formCategory}
               onChange={(e) => setFormCategory(e.target.value as LosoreItem['category'])}
-              className="w-full px-4 py-3 border-2 border-[#E8E4DE] rounded-xl focus:border-accent focus:outline-none transition-colors"
+              className="w-full px-4 py-3 border-2 border-[#E8E4DE] rounded-[20px] focus:border-accent focus:outline-none transition-colors"
             >
               {CATEGORY_ORDER.map(cat => (
                 <option key={cat} value={cat}>
@@ -397,7 +398,7 @@ function LosoreContent() {
                 setFormErrors(p => ({ ...p, formValue: '' }));
               }}
               placeholder="0"
-              className={`w-full px-4 py-3 border-2 rounded-xl focus:outline-none transition-colors bg-white ${
+              className={`w-full px-4 py-3 border-2 rounded-[20px] focus:outline-none transition-colors bg-white ${
                 formErrors.formValue ? 'border-warn' : 'border-[#E8E4DE] focus:border-accent'
               }`}
             />
@@ -411,7 +412,7 @@ function LosoreContent() {
                 <select
                   value={formAssignedTo}
                   onChange={(e) => setFormAssignedTo(e.target.value)}
-                  className="w-full px-4 py-3 border-2 border-[#E8E4DE] rounded-xl focus:border-accent focus:outline-none transition-colors"
+                  className="w-full px-4 py-3 border-2 border-[#E8E4DE] rounded-[20px] focus:border-accent focus:outline-none transition-colors"
                 >
                   <option value="">— Ej tilldelad —</option>
                   {delagareNames.map(name => (
@@ -425,7 +426,7 @@ function LosoreContent() {
                 <select
                   value={formTilldeladTill}
                   onChange={(e) => setFormTilldeladTill(e.target.value)}
-                  className="w-full px-4 py-3 border-2 border-[#E8E4DE] rounded-xl focus:border-accent focus:outline-none transition-colors"
+                  className="w-full px-4 py-3 border-2 border-[#E8E4DE] rounded-[20px] focus:border-accent focus:outline-none transition-colors"
                 >
                   <option value="">— Välj arving —</option>
                   {delagareNames.map(name => (
@@ -442,7 +443,7 @@ function LosoreContent() {
               value={formNotes}
               onChange={(e) => setFormNotes(e.target.value)}
               placeholder={t('T.ex. Märkning, skick, särskilda instruktioner...', 'E.g. Markings, condition, special instructions...')}
-              className="w-full px-4 py-3 border-2 border-[#E8E4DE] rounded-xl focus:border-accent focus:outline-none transition-colors min-h-[80px]"
+              className="w-full px-4 py-3 border-2 border-[#E8E4DE] rounded-[20px] focus:border-accent focus:outline-none transition-colors min-h-[80px]"
             />
           </label>
 
@@ -509,7 +510,7 @@ function LosoreContent() {
                                 alt={item.name}
                                 width={48}
                                 height={48}
-                                className="w-12 h-12 object-cover rounded-lg flex-shrink-0 border border-[#E8E4DE]"
+                                className="w-12 h-12 object-cover rounded-[12px] flex-shrink-0 border border-[#E8E4DE]"
                                 unoptimized
                               />
                             )}
@@ -531,7 +532,7 @@ function LosoreContent() {
                       <div className="flex items-center justify-between gap-2 mb-3">
                         <p className="text-sm font-semibold text-success">{formatSEK(item.estimatedValue)}</p>
                         {item.tilldeladTill && (
-                          <span className="inline-block px-2 py-1 bg-accent/10 text-accent text-xs font-medium rounded-lg">
+                          <span className="inline-block px-2 py-1 bg-accent/10 text-accent text-xs font-medium rounded-full">
                             {item.tilldeladTill}
                           </span>
                         )}
@@ -541,7 +542,7 @@ function LosoreContent() {
                         <select
                           value={item.assignedTo || ''}
                           onChange={(e) => handleUpdateAssignment(item.id, e.target.value)}
-                          className="w-full px-3 py-2 border border-[#E8E4DE] rounded-lg text-sm focus:border-accent focus:outline-none transition-colors mb-2"
+                          className="w-full px-3 py-2 border border-[#E8E4DE] rounded-[20px] text-sm focus:border-accent focus:outline-none transition-colors mb-2"
                         >
                           <option value="">{t('— Ej tilldelad —', '— Not assigned —')}</option>
                           {delagareNames.map(name => (

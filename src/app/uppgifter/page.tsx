@@ -24,12 +24,12 @@ const STEP_LABELS: Record<ProcessStep, string> = {
   avslutat: 'Avslutat',
 };
 
-const STEP_COLORS: Record<ProcessStep, string> = {
-  akut: 'border-warn bg-[#FEF3EE]',
-  kartlaggning: 'border-accent bg-info-light',
-  bouppteckning: 'border-primary bg-primary-lighter/30',
-  arvskifte: 'border-success bg-green-50',
-  avslutat: 'border-gray-400 bg-gray-50',
+const STEP_COLORS: Record<ProcessStep, { bg: string; border: string }> = {
+  akut: { bg: 'rgba(196,149,106,0.06)', border: 'rgba(196,149,106,0.15)' },
+  kartlaggning: { bg: 'rgba(122,158,126,0.06)', border: 'rgba(122,158,126,0.15)' },
+  bouppteckning: { bg: 'rgba(139,164,184,0.06)', border: 'rgba(139,164,184,0.15)' },
+  arvskifte: { bg: 'rgba(122,158,126,0.08)', border: 'rgba(122,158,126,0.18)' },
+  avslutat: { bg: 'rgba(123,123,142,0.06)', border: 'rgba(123,123,142,0.12)' },
 };
 
 const PRIORITY_ICON: Record<string, { icon: typeof AlertTriangle; color: string }> = {
@@ -139,10 +139,10 @@ function UppgifterContent() {
   const totalDone = tasks.filter((t) => t.status === 'klar').length;
 
   return (
-    <div className="flex flex-col px-5 py-6 pb-24">
+    <div className="flex flex-col px-6 py-8 pb-28">
 
       <div className="mb-4">
-        <h1 className="text-2xl font-semibold text-primary">{t('Att göra', 'To do')}</h1>
+        <h1 className="text-2xl font-display text-primary">{t('Att göra', 'To do')}</h1>
         <p className="text-muted text-sm mt-1">
           {totalDone}/{tasks.length} {t('uppgifter klara', 'tasks completed')}
         </p>
@@ -151,14 +151,24 @@ function UppgifterContent() {
       {/* Progress bar */}
       <div className="w-full h-2 bg-[#E8E4DE] rounded-full mb-6">
         <div
-          className="h-2 bg-success rounded-full transition-all duration-500"
-          style={{ width: `${tasks.length > 0 ? (totalDone / tasks.length) * 100 : 0}%` }}
+          className="h-2 rounded-full transition-all duration-500"
+          style={{
+            width: `${tasks.length > 0 ? (totalDone / tasks.length) * 100 : 0}%`,
+            background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)'
+          }}
         />
       </div>
 
       {/* Auto-advance celebration */}
       {advancedTo && (
-        <div className="card border-l-4 border-success bg-green-50 mb-4 animate-slideUp">
+        <div
+          className="card mb-4 animate-slideUp"
+          style={{
+            borderRadius: '24px',
+            background: 'linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02))',
+            border: '1px solid rgba(122,158,126,0.15)'
+          }}
+        >
           <div className="flex items-center gap-2">
             <CheckCircle2 className="w-5 h-5 text-success" />
             <p className="font-medium text-primary text-sm">
@@ -176,9 +186,10 @@ function UppgifterContent() {
           aria-selected={filterStep === 'all'}
           className={`px-4 py-2 min-h-[44px] rounded-full text-sm font-medium whitespace-nowrap transition-colors ${
             filterStep === 'all'
-              ? 'bg-primary text-white'
-              : 'bg-gray-100 text-primary/70 hover:bg-[#E8E4DE]'
+              ? 'text-white'
+              : 'text-primary/70 hover:bg-[#E8E4DE]'
           }`}
+          style={filterStep === 'all' ? { background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' } : { background: 'var(--border-light)' }}
         >
           {t('Alla', 'All')}
         </button>
@@ -191,9 +202,10 @@ function UppgifterContent() {
             aria-label={`Filtrera efter ${STEP_LABELS[s]}`}
             className={`px-4 py-2 min-h-[44px] rounded-full text-sm font-medium whitespace-nowrap transition-colors ${
               filterStep === s
-                ? 'bg-primary text-white'
-                : 'bg-gray-100 text-primary/70 hover:bg-[#E8E4DE]'
+                ? 'text-white'
+                : 'text-primary/70 hover:bg-[#E8E4DE]'
             }`}
+            style={filterStep === s ? { background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' } : { background: 'var(--border-light)' }}
           >
             {STEP_LABELS[s].split(' (')[0]}
           </button>
@@ -208,9 +220,10 @@ function UppgifterContent() {
           aria-selected={filterAssignee === 'all'}
           className={`px-4 py-2 min-h-[44px] rounded-full text-sm font-medium whitespace-nowrap transition-colors ${
             filterAssignee === 'all'
-              ? 'bg-[#7A9E7E] text-white'
-              : 'bg-gray-100 text-primary/70 hover:bg-[#E8E4DE]'
+              ? 'text-white'
+              : 'text-primary/70 hover:bg-[#E8E4DE]'
           }`}
+          style={filterAssignee === 'all' ? { background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' } : { background: 'var(--border-light)' }}
         >
           {t('Alla', 'All')}
         </button>
@@ -223,9 +236,10 @@ function UppgifterContent() {
             aria-label={`Filtrera uppgifter tilldelade till ${d.name}`}
             className={`px-4 py-2 min-h-[44px] rounded-full text-sm font-medium whitespace-nowrap transition-colors ${
               filterAssignee === d.name
-                ? 'bg-[#7A9E7E] text-white'
-                : 'bg-gray-100 text-primary/70 hover:bg-[#E8E4DE]'
+                ? 'text-white'
+                : 'text-primary/70 hover:bg-[#E8E4DE]'
             }`}
+            style={filterAssignee === d.name ? { background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' } : { background: 'var(--border-light)' }}
           >
             {d.name}
           </button>
@@ -236,7 +250,7 @@ function UppgifterContent() {
         onClick={() => setShowDone(!showDone)}
         aria-pressed={showDone}
         aria-label={showDone ? t('Dölj klara uppgifter', 'Hide completed tasks') : t('Visa klara uppgifter', 'Show completed tasks')}
-        className={`flex items-center gap-2 mb-4 px-3 py-2 min-h-[44px] rounded-lg text-sm font-medium transition-colors ${
+        className={`flex items-center gap-2 mb-4 px-3 py-2 min-h-[44px] rounded-full text-sm font-medium transition-colors ${
           showDone
             ? 'bg-success/10 text-success'
             : 'text-primary/60 hover:bg-gray-100'
@@ -249,7 +263,14 @@ function UppgifterContent() {
       {/* Task list grouped by step */}
       {Object.entries(grouped).map(([step, stepTasks]) => (
         <div key={step} className="mb-6">
-          <div className={`border-l-4 rounded-r-card px-3 py-2 mb-3 ${STEP_COLORS[step as ProcessStep]}`}>
+          <div
+            className="px-4 py-2.5 mb-3"
+            style={{
+              borderRadius: '20px',
+              background: STEP_COLORS[step as ProcessStep].bg,
+              border: `1px solid ${STEP_COLORS[step as ProcessStep].border}`
+            }}
+          >
             <h2 className="text-sm font-semibold text-primary">
               {STEP_LABELS[step as ProcessStep]}
             </h2>
@@ -273,7 +294,11 @@ function UppgifterContent() {
                       : task.status === 'klar'
                       ? 'opacity-60'
                       : ''
-                  } ${isOverdue ? 'border-l-4 border-warn' : ''}`}
+                  }`}
+                  style={{
+                    borderLeft: isOverdue ? '3px solid var(--warn)' : 'none',
+                    borderRadius: '24px'
+                  }}
                   role="listitem"
                   aria-label={`${task.title}, ${task.status === 'klar' ? 'slutförd' : 'väntande'}`}
                 >

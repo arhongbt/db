@@ -92,7 +92,7 @@ ${form.citat}
           <div className="mb-8">
             <button
               onClick={() => setIsPreview(false)}
-              className="flex items-center gap-2 text-primary/70 hover:text-primary mb-6"
+              className="flex items-center gap-2 text-primary/70 hover:text-primary mb-6 rounded-full"
             >
               <ArrowLeft className="w-5 h-5" />
               <span className="text-sm">{t('Tillbaka till redigering', 'Back to edit')}</span>
@@ -100,13 +100,13 @@ ${form.citat}
           </div>
 
           {/* Memorial Card */}
-          <div className="rounded-2xl p-8 text-center space-y-6 border" style={{ background: 'var(--bg-card)', borderColor: 'var(--border)' }}>
+          <div className="p-8 text-center space-y-6 border" style={{ borderRadius: '24px', background: 'var(--bg-card)', borderColor: 'var(--border)' }}>
             <Flame className="w-8 h-8 text-primary/60 mx-auto" />
 
             <div className="h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
 
             <div>
-              <h1 className="text-3xl font-serif font-bold text-primary mb-2">
+              <h1 className="text-3xl font-serif font-display text-primary mb-2">
                 {form.namn}
               </h1>
               <p className="text-sm text-primary/70">
@@ -129,7 +129,7 @@ ${form.citat}
             )}
 
             {form.citat && (
-              <div className="rounded-2xl p-4 border" style={{ background: 'var(--bg)', borderColor: 'var(--border)' }}>
+              <div className="p-4 border" style={{ borderRadius: '24px', background: 'var(--bg)', borderColor: 'var(--border)' }}>
                 <p className="text-sm text-primary/80 font-light">
                   {form.citat}
                 </p>
@@ -141,7 +141,7 @@ ${form.citat}
             <div className="flex gap-3 pt-4">
               <button
                 onClick={handleShare}
-                className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-primary text-white rounded-xl hover:bg-primary/90 transition-colors"
+                className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-primary text-white rounded-full hover:bg-primary/90 transition-colors"
               >
                 {copied ? (
                   <>
@@ -166,10 +166,10 @@ ${form.citat}
     <div className="min-h-screen bg-background pb-24">
       <div className="sticky top-0 bg-background border-b z-10" style={{ borderColor: 'var(--border)' }}>
         <div className="max-w-2xl mx-auto px-4 py-4 flex items-center justify-between">
-          <Link href="/dashboard" className="flex items-center gap-2 text-primary/60 hover:text-primary">
+          <Link href="/dashboard" className="flex items-center gap-2 text-primary/60 hover:text-primary rounded-full">
             <ArrowLeft className="w-5 h-5" />
           </Link>
-          <h1 className="flex items-center gap-2 text-xl font-bold text-primary">
+          <h1 className="flex items-center gap-2 text-xl font-display text-primary">
             <Heart className="w-5 h-5 fill-primary" />
             {t('Minnesida', 'Memorial page')}
           </h1>
@@ -199,7 +199,7 @@ ${form.citat}
               value={form.namn}
               onChange={(e) => handleInputChange('namn', e.target.value)}
               placeholder={t('Namn på den du saknar', 'Name of the person you miss')}
-              className="w-full px-4 py-3 border rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
+              className="w-full px-4 py-3 border rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
               style={{ borderColor: 'var(--border)', background: 'var(--bg-card)' }}
             />
           </div>
@@ -214,7 +214,7 @@ ${form.citat}
               value={form.född}
               onChange={(e) => handleInputChange('född', e.target.value)}
               placeholder={t('t.ex. 12 mars 1945', 'e.g. March 12, 1945')}
-              className="w-full px-4 py-3 border rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
+              className="w-full px-4 py-3 border rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
               style={{ borderColor: 'var(--border)', background: 'var(--bg-card)' }}
             />
           </div>
@@ -229,7 +229,7 @@ ${form.citat}
               value={form.avliden}
               onChange={(e) => handleInputChange('avliden', e.target.value)}
               placeholder={t('Datum för bortgången', 'Date of passing')}
-              className="w-full px-4 py-3 border rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
+              className="w-full px-4 py-3 border rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
               style={{ borderColor: 'var(--border)', background: 'var(--bg-card)' }}
             />
           </div>
@@ -244,7 +244,7 @@ ${form.citat}
               onChange={(e) => handleInputChange('minnesord', e.target.value)}
               placeholder={t('Skriv några ord om den du saknar...', 'Write a few words about the person you miss...')}
               rows={4}
-              className="w-full px-4 py-3 border border-[#E8E4DE] rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white resize-none"
+              className="w-full px-4 py-3 border border-[#E8E4DE] rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white resize-none"
             />
           </div>
 
@@ -258,7 +258,7 @@ ${form.citat}
               onChange={(e) => handleInputChange('favoritminne', e.target.value)}
               placeholder={t('Dela ett kärt minne...', 'Share a cherished memory...')}
               rows={3}
-              className="w-full px-4 py-3 border border-[#E8E4DE] rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white resize-none"
+              className="w-full px-4 py-3 border border-[#E8E4DE] rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white resize-none"
             />
           </div>
 
@@ -272,7 +272,7 @@ ${form.citat}
               value={form.citat}
               onChange={(e) => handleInputChange('citat', e.target.value)}
               placeholder={t('Ett citat som speglar personen...', 'A quote that reflects the person...')}
-              className="w-full px-4 py-3 border rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
+              className="w-full px-4 py-3 border rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
               style={{ borderColor: 'var(--border)', background: 'var(--bg-card)' }}
             />
           </div>
@@ -308,14 +308,14 @@ ${form.citat}
           <div className="flex gap-3 pt-6">
             <button
               onClick={() => setIsPreview(true)}
-              className="flex-1 px-4 py-3 rounded-xl font-semibold transition-colors text-white hover:opacity-90"
+              className="flex-1 px-4 py-3 rounded-full font-semibold transition-colors text-white hover:opacity-90"
               style={{ background: '#7A9E7E' }}
             >
               {t('Förhandsgranska', 'Preview')}
             </button>
             <button
               onClick={handleSave}
-              className="flex-1 px-4 py-3 rounded-xl font-semibold transition-all text-white hover:opacity-90"
+              className="flex-1 px-4 py-3 rounded-full font-semibold transition-all text-white hover:opacity-90"
               style={{ background: saved ? '#6B8E6F' : '#2A2622' }}
             >
               {saved ? t('Sparad!', 'Saved!') : t('Spara minnesida', 'Save memorial')}

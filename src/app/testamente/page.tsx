@@ -241,8 +241,8 @@ Skapat med Sista Resan — ${today}`;
   };
 
   return (
-    <div className="flex flex-col min-h-dvh px-5 py-6 pb-24">
-      <Link href="/dashboard" className="inline-flex items-center gap-2 text-sm text-muted hover:text-primary mb-4">
+    <div className="flex flex-col min-h-dvh px-6 py-8 pb-28">
+      <Link href="/dashboard" className="inline-flex items-center gap-2 text-sm text-muted hover:text-primary mb-4 rounded-full">
         <ArrowLeft className="w-4 h-4" /> Dashboard
       </Link>
 
@@ -252,7 +252,7 @@ Skapat med Sista Resan — ${today}`;
           <FileText className="w-5 h-5 text-accent" />
         </div>
         <div>
-          <h1 className="text-xl font-bold text-primary">Skriv testamente</h1>
+          <h1 className="text-xl font-display text-primary">Skriv testamente</h1>
           <p className="text-xs text-muted">Steg {step + 1} av {STEPS.length} — {STEPS[step].desc}</p>
         </div>
       </div>
@@ -280,7 +280,7 @@ Skapat med Sista Resan — ${today}`;
                 value={data.namn}
                 onChange={(e) => setData({ ...data, namn: e.target.value })}
                 placeholder="Anna Andersson"
-                className="w-full px-4 py-3 border border-[#E8E4DE] rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
+                className="w-full px-4 py-3 border border-[#E8E4DE] rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
               />
             </div>
             <div>
@@ -289,7 +289,7 @@ Skapat med Sista Resan — ${today}`;
                 value={data.personnummer}
                 onChange={(e) => setData({ ...data, personnummer: e.target.value })}
                 placeholder="XXXXXX-XXXX"
-                className="w-full px-4 py-3 border border-[#E8E4DE] rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
+                className="w-full px-4 py-3 border border-[#E8E4DE] rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
               />
             </div>
             <div>
@@ -298,7 +298,7 @@ Skapat med Sista Resan — ${today}`;
                 value={data.adress}
                 onChange={(e) => setData({ ...data, adress: e.target.value })}
                 placeholder="Storgatan 1"
-                className="w-full px-4 py-3 border border-[#E8E4DE] rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
+                className="w-full px-4 py-3 border border-[#E8E4DE] rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
               />
             </div>
             <div>
@@ -307,7 +307,7 @@ Skapat med Sista Resan — ${today}`;
                 value={data.ort}
                 onChange={(e) => setData({ ...data, ort: e.target.value })}
                 placeholder="Stockholm"
-                className="w-full px-4 py-3 border border-[#E8E4DE] rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
+                className="w-full px-4 py-3 border border-[#E8E4DE] rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
               />
             </div>
           </div>
@@ -341,26 +341,27 @@ Skapat med Sista Resan — ${today}`;
               value={newArvinge.namn}
               onChange={(e) => setNewArvinge({ ...newArvinge, namn: e.target.value })}
               placeholder="Namn"
-              className="w-full px-4 py-3 border border-[#E8E4DE] rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
+              className="w-full px-4 py-3 border border-[#E8E4DE] rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
             />
             <div className="grid grid-cols-2 gap-3">
               <input
                 value={newArvinge.relation}
                 onChange={(e) => setNewArvinge({ ...newArvinge, relation: e.target.value })}
                 placeholder="Relation (t.ex. dotter)"
-                className="w-full px-4 py-3 border border-[#E8E4DE] rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background text-sm"
+                className="w-full px-4 py-3 border border-[#E8E4DE] rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background text-sm"
               />
               <input
                 value={newArvinge.andel}
                 onChange={(e) => setNewArvinge({ ...newArvinge, andel: e.target.value })}
                 placeholder="Andel (t.ex. 50%)"
-                className="w-full px-4 py-3 border border-[#E8E4DE] rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background text-sm"
+                className="w-full px-4 py-3 border border-[#E8E4DE] rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background text-sm"
               />
             </div>
             <button
               onClick={addArvinge}
               disabled={!newArvinge.namn.trim()}
-              className="w-full py-3 rounded-xl text-sm font-semibold transition-colors bg-accent/10 text-accent hover:bg-accent/20 disabled:opacity-40"
+              className="w-full py-3 rounded-[20px] text-sm font-semibold transition-colors"
+              style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}
             >
               + Lägg till
             </button>
@@ -397,11 +398,12 @@ Skapat med Sista Resan — ${today}`;
                 <button
                   key={template.type}
                   onClick={() => selectVillkorTemplate(template)}
-                  className={`p-3 rounded-xl text-left border-2 transition-all ${
+                  className={`p-3 rounded-[20px] text-left border transition-all ${
                     selectedVillkorType === template.type
-                      ? 'border-accent bg-accent/5'
-                      : 'border-[#E8E4DE] hover:border-accent/30'
+                      ? 'border-none'
+                      : 'border border-[#E8E4DE] hover:border-accent/30'
                   }`}
+                  style={selectedVillkorType === template.type ? { background: 'linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02))', border: '1px solid rgba(122,158,126,0.15)' } : {}}
                 >
                   <p className="font-medium text-sm text-primary">{template.label}</p>
                   <p className="text-xs text-muted mt-0.5">{template.description}</p>
@@ -417,7 +419,7 @@ Skapat med Sista Resan — ${today}`;
                   onChange={(e) => setNewVillkor({ ...newVillkor, description: e.target.value })}
                   placeholder={VILLKOR_TEMPLATES.find(t => t.type === selectedVillkorType)?.placeholder}
                   rows={3}
-                  className="w-full px-4 py-3 border border-[#E8E4DE] rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background resize-none text-sm"
+                  className="w-full px-4 py-3 border border-[#E8E4DE] rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background resize-none text-sm"
                 />
 
                 {data.arvingar.length > 0 && (
@@ -428,7 +430,7 @@ Skapat med Sista Resan — ${today}`;
                     <select
                       value={newVillkor.targetArvinge}
                       onChange={(e) => setNewVillkor({ ...newVillkor, targetArvinge: e.target.value })}
-                      className="w-full px-4 py-3 border border-[#E8E4DE] rounded-xl text-primary focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background text-sm"
+                      className="w-full px-4 py-3 border border-[#E8E4DE] rounded-[20px] text-primary focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background text-sm"
                     >
                       <option value="">— Alla arvingar</option>
                       {data.arvingar.map((a) => (
@@ -441,7 +443,8 @@ Skapat med Sista Resan — ${today}`;
                 <button
                   onClick={addVillkor}
                   disabled={!newVillkor.description.trim()}
-                  className="w-full py-3 rounded-xl text-sm font-semibold transition-colors bg-accent/10 text-accent hover:bg-accent/20 disabled:opacity-40"
+                  className="w-full py-3 rounded-[20px] text-sm font-semibold transition-colors disabled:opacity-40"
+                  style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}
                 >
                   + Lägg till villkor
                 </button>
@@ -466,11 +469,11 @@ Skapat med Sista Resan — ${today}`;
                 onChange={(e) => setData({ ...data, specialOnske: e.target.value })}
                 placeholder="T.ex. 'Min samling tavlor ska tillfalla min dotter Eva. Arvet ska vara enskild egendom.'"
                 rows={5}
-                className="w-full px-4 py-3 border border-[#E8E4DE] rounded-xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background resize-none text-sm"
+                className="w-full px-4 py-3 border border-[#E8E4DE] rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background resize-none text-sm"
               />
             </div>
 
-            <div className="flex gap-3 p-3 rounded-xl bg-background">
+            <div className="flex gap-3 p-3 rounded-[20px]" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02))', border: '1px solid rgba(122,158,126,0.15)' }}>
               <Info className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" />
               <p className="text-xs text-muted leading-relaxed">
                 Vanliga önskemål: enskild egendom (arvet skyddas vid skilsmässa),
@@ -489,7 +492,7 @@ Skapat med Sista Resan — ${today}`;
 
           {/* Summary */}
           <div className="card mb-4">
-            <p className="text-xs font-semibold text-muted uppercase tracking-wide mb-3">Sammanfattning</p>
+            <p className="text-xs font-display text-muted mb-3">Sammanfattning</p>
 
             <div className="space-y-3">
               <div className="flex items-start gap-2">
@@ -544,8 +547,8 @@ Skapat med Sista Resan — ${today}`;
           </div>
 
           {/* Important note */}
-          <div className="warning-box mb-4">
-            <div className="flex items-start gap-2">
+          <div className="mb-4" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(196,149,106,0.06), rgba(196,149,106,0.02))', border: '1px solid rgba(196,149,106,0.15)' }}>
+            <div className="flex items-start gap-2 p-3">
               <Info className="w-4 h-4 text-warn flex-shrink-0 mt-0.5" />
               <p className="text-xs text-primary/80 leading-relaxed">
                 <strong>Viktigt:</strong> Testamentet måste skrivas ut och signeras
@@ -556,10 +559,10 @@ Skapat med Sista Resan — ${today}`;
 
           {/* Download buttons */}
           <div className="flex flex-col gap-2">
-            <button onClick={handleDownloadPDF} className="btn-primary flex items-center justify-center gap-2">
+            <button onClick={handleDownloadPDF} className="w-full py-3 rounded-[20px] text-sm font-semibold text-white flex items-center justify-center gap-2 transition-colors" style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}>
               <Download className="w-4 h-4" /> Ladda ner som PDF
             </button>
-            <button onClick={handleDownloadDocx} className="w-full py-3 rounded-xl text-sm font-semibold border-2 border-accent text-accent hover:bg-accent/5 transition-colors flex items-center justify-center gap-2">
+            <button onClick={handleDownloadDocx} className="w-full py-3 rounded-[20px] text-sm font-semibold border-2 border-accent text-accent hover:bg-accent/5 transition-colors flex items-center justify-center gap-2">
               <Download className="w-4 h-4" /> Ladda ner som Word
             </button>
           </div>
@@ -574,12 +577,12 @@ Skapat med Sista Resan — ${today}`;
       {/* Navigation buttons */}
       <div className="flex gap-3 mt-6">
         {step > 0 && (
-          <button onClick={prev} className="flex-1 py-3 rounded-xl text-sm font-semibold border-2 border-[#E8E4DE] text-primary hover:bg-gray-50 transition-colors flex items-center justify-center gap-1">
+          <button onClick={prev} className="flex-1 py-3 rounded-[20px] text-sm font-semibold border-2 border-[#E8E4DE] text-primary hover:bg-gray-50 transition-colors flex items-center justify-center gap-1">
             <ChevronLeft className="w-4 h-4" /> Tillbaka
           </button>
         )}
         {step < STEPS.length - 1 && (
-          <button onClick={next} className="flex-1 btn-primary flex items-center justify-center gap-1">
+          <button onClick={next} className="flex-1 py-3 rounded-[20px] text-sm font-semibold text-white flex items-center justify-center gap-1" style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}>
             Nästa <ChevronRight className="w-4 h-4" />
           </button>
         )}
