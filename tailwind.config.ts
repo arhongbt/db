@@ -34,8 +34,8 @@ const config: Config = {
         'muted-light': 'var(--text-secondary)',
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
-        display: ['Playfair Display', 'Georgia', 'serif'],
+        sans: ['-apple-system', 'system-ui', 'Segoe UI', 'Helvetica', 'Arial', 'sans-serif'],
+        display: ['Libre Baskerville', 'Georgia', 'Cambria', 'serif'],
       },
       fontSize: {
         // WCAG 2.1 AA — 16pt minimum body text

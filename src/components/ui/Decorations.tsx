@@ -3,7 +3,7 @@
 /** Decorative SVG blob — organic shape behind content */
 export function BlobDecoration({
   className = '',
-  color = '#E8F0E8',
+  color = 'rgba(107,127,94,0.08)',
   size = 200,
 }: {
   className?: string;

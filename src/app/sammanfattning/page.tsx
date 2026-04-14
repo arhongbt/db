@@ -22,7 +22,7 @@ import {
 
 function MikeRossTip({ text }: { text: string }) {
   return (
-    <div className="flex gap-3 p-4 rounded-2xl mb-5" style={{ background: '#E8F0E8' }}>
+    <div className="flex gap-3 p-4 rounded-2xl mb-5" style={{ background: 'rgba(107,127,94,0.08)' }}>
       <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
         style={{ background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' }}>
         <Bot className="w-4 h-4 text-white" />
@@ -239,7 +239,7 @@ function SammanfattningContent() {
       </Link>
 
       <div className="flex items-center gap-3 mb-4">
-        <div className="w-10 h-10 rounded-2xl flex items-center justify-center" style={{ background: '#E8F0E8' }}>
+        <div className="w-10 h-10 rounded-2xl flex items-center justify-center" style={{ background: 'rgba(107,127,94,0.08)' }}>
           <FileDown className="w-5 h-5 text-accent" />
         </div>
         <div>
@@ -291,7 +291,7 @@ function SammanfattningContent() {
           return (
             <div key={step.id} className="card">
               <div className="flex items-center gap-3 mb-3">
-                <div className="w-9 h-9 rounded-xl flex items-center justify-center" style={{ background: '#E8F0E8' }}>
+                <div className="w-9 h-9 rounded-xl flex items-center justify-center" style={{ background: 'rgba(107,127,94,0.08)' }}>
                   <step.icon className="w-4 h-4 text-accent" />
                 </div>
                 <div className="flex-1">

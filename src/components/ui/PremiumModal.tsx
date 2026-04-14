@@ -66,7 +66,7 @@ export function PremiumModal({ isOpen, onClose }: PremiumModalProps) {
         {submitted ? (
           <div className="text-center py-4">
             <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3"
-              style={{ background: '#E8F0E8' }}>
+              style={{ background: 'rgba(107,127,94,0.08)' }}>
               <Check className="w-6 h-6 text-accent" />
             </div>
             <p className="font-semibold text-primary mb-1">Tack!</p>

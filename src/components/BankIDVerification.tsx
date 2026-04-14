@@ -72,7 +72,7 @@ export function BankIDVerification({ onVerified, onCancel }: BankIDVerificationP
           <div className="text-center">
             <div
               className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4"
-              style={{ background: '#E8F0E8' }}
+              style={{ background: 'rgba(107,127,94,0.08)' }}
             >
               <Shield className="w-8 h-8" style={{ color: '#6B7F5E' }} />
             </div>
@@ -89,7 +89,7 @@ export function BankIDVerification({ onVerified, onCancel }: BankIDVerificationP
           <div className="text-center">
             <div
               className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4"
-              style={{ background: '#E8F0E8' }}
+              style={{ background: 'rgba(107,127,94,0.08)' }}
             >
               <div className="w-8 h-8 border-3 border-transparent border-t-accent rounded-full animate-spin" />
             </div>
@@ -105,7 +105,7 @@ export function BankIDVerification({ onVerified, onCancel }: BankIDVerificationP
           <div className="text-center">
             <div
               className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4"
-              style={{ background: '#E8F0E8' }}
+              style={{ background: 'rgba(107,127,94,0.08)' }}
             >
               <CheckCircle2 className="w-8 h-8 text-success" />
             </div>
