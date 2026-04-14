@@ -251,7 +251,7 @@ function DashboardContent() {
             <AlertTriangle className="w-5 h-5" style={{ color: 'var(--kohaku)' }} strokeWidth={1.5} />
           </div>
           <div className="flex-1">
-            <p className="font-semibold text-sm" style={{ color: 'var(--kohaku)' }}>{t('dashboard.emergency_brake')}</p>
+            <p className="font-display text-sm" style={{ color: 'var(--kohaku)' }}>{t('dashboard.emergency_brake')}</p>
             <p className="text-xs mt-0.5" style={{ color: 'var(--text-secondary)' }}>{t('dashboard.emergency_brake_desc')}</p>
           </div>
           <ChevronRight className="w-4 h-4 flex-shrink-0" style={{ color: 'var(--kohaku)' }} />
@@ -290,7 +290,7 @@ function DashboardContent() {
             <AlertTriangle className="w-5 h-5" style={{ color: 'var(--sakura)' }} strokeWidth={1.5} />
           </div>
           <div>
-            <p className="font-semibold text-sm" style={{ color: 'var(--sakura)' }}>{t('dashboard.debts_info')}</p>
+            <p className="font-display text-sm" style={{ color: 'var(--sakura)' }}>{t('dashboard.debts_info')}</p>
             <p className="text-xs mt-1" style={{ color: 'var(--text-secondary)' }}>{t('dashboard.debts_desc')}</p>
           </div>
         </div>
@@ -342,7 +342,7 @@ function DashboardContent() {
                 >
                   <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: a.accent }} />
                   <div className="flex-1">
-                    <p className="font-medium text-sm" style={{ color: 'var(--text)' }}>{a.label}</p>
+                    <p className="font-display text-sm" style={{ color: 'var(--text)' }}>{a.label}</p>
                     <p className="text-xs mt-0.5" style={{ color: 'var(--text-secondary)' }}>{a.reason}</p>
                   </div>
                   <ChevronRight className="w-4 h-4 flex-shrink-0" style={{ color: 'var(--text-secondary)' }} />
@@ -383,7 +383,7 @@ function DashboardContent() {
                     )}
                   </div>
                   <div className="flex-1">
-                    <p className="font-medium text-sm" style={{ color: 'var(--text)' }}>{deadline.title}</p>
+                    <p className="font-display text-sm" style={{ color: 'var(--text)' }}>{deadline.title}</p>
                     <p className="text-xs mt-0.5" style={{ color: 'var(--text-secondary)' }}>{deadline.description}</p>
                   </div>
                   <span className="text-xs font-semibold px-3 py-1.5 rounded-full flex-shrink-0" style={{
@@ -410,7 +410,7 @@ function DashboardContent() {
             <AlertTriangle className="w-4 h-4" style={{ color: 'var(--sakura)' }} strokeWidth={1.5} />
           </div>
           <div>
-            <p className="font-medium text-sm" style={{ color: 'var(--sakura)' }}>
+            <p className="font-display text-sm" style={{ color: 'var(--sakura)' }}>
               {passedDeadlines.length} {t('dashboard.missed_deadlines')}
             </p>
             <p className="text-xs mt-1" style={{ color: 'var(--text-secondary)' }}>
@@ -436,7 +436,7 @@ function DashboardContent() {
           <Bot className="w-5 h-5 text-white" strokeWidth={1.5} />
         </div>
         <div className="flex-1">
-          <p className="font-semibold text-sm" style={{ color: 'var(--text)' }}>{t('dashboard.ask_mike_ross')}</p>
+          <p className="font-display text-sm" style={{ color: 'var(--text)' }}>{t('dashboard.ask_mike_ross')}</p>
           <p className="text-xs mt-0.5" style={{ color: 'var(--text-secondary)' }}>{t('dashboard.mike_ross_desc')}</p>
         </div>
         <ChevronRight className="w-4 h-4 flex-shrink-0" style={{ color: 'var(--text-secondary)' }} />
@@ -463,7 +463,7 @@ function DashboardContent() {
           }}
         >
           <div>
-            <p className="font-medium text-sm" style={{ color: 'var(--text)' }}>{t('dashboard.enable_notifications')}</p>
+            <p className="font-display text-sm" style={{ color: 'var(--text)' }}>{t('dashboard.enable_notifications')}</p>
             <p className="text-xs mt-0.5" style={{ color: 'var(--text-secondary)' }}>{t('dashboard.enable_notifications_desc')}</p>
           </div>
           <span className="text-xs font-semibold px-4 py-2 rounded-full" style={{ background: 'var(--sora)', color: '#FFFFFF' }}>
@@ -492,14 +492,14 @@ function DashboardContent() {
             <Link
               key={item.href}
               href={item.href}
-              className="p-4 flex items-center gap-3 active:scale-[0.97] transition-all duration-300"
+              className="p-4 flex items-center gap-3 active:scale-[0.97] transition-all duration-300 overflow-hidden"
               style={{ background: 'var(--bg-card)', borderRadius: '22px', border: '1px solid var(--border)' }}
             >
               <div className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
                 style={{ background: `color-mix(in srgb, ${item.color} 10%, transparent)` }}>
                 <item.Icon className="w-4.5 h-4.5" style={{ color: item.color }} strokeWidth={1.5} />
               </div>
-              <span className="text-sm font-medium" style={{ color: 'var(--text)' }}>{item.label}</span>
+              <span className="font-display text-[13px] leading-tight truncate" style={{ color: 'var(--text)' }}>{item.label}</span>
             </Link>
           ))}
         </div>
@@ -522,14 +522,14 @@ function DashboardContent() {
             <Link
               key={item.href}
               href={item.href}
-              className="p-4 flex items-center gap-3 active:scale-[0.97] transition-all duration-300"
+              className="p-4 flex items-center gap-3 active:scale-[0.97] transition-all duration-300 overflow-hidden"
               style={{ background: 'var(--bg-card)', borderRadius: '22px', border: '1px solid var(--border)' }}
             >
               <div className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
                 style={{ background: `color-mix(in srgb, ${item.color} 10%, transparent)` }}>
                 <item.Icon className="w-4.5 h-4.5" style={{ color: item.color }} strokeWidth={1.5} />
               </div>
-              <span className="text-sm font-medium" style={{ color: 'var(--text)' }}>{item.label}</span>
+              <span className="font-display text-[13px] leading-tight truncate" style={{ color: 'var(--text)' }}>{item.label}</span>
             </Link>
           ))}
         </div>
