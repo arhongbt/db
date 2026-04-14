@@ -268,62 +268,54 @@ export default function LandingPage() {
         <div className="grid grid-cols-1 gap-3 mb-4">
           {[
             {
-              name: t('Gratis', 'Free'),
-              price: '0 kr',
+              name: t('Provperiod', 'Trial'),
+              price: t('Gratis', 'Free'),
+              period: t('7 dagar', '7 days'),
               badge: null as string | null,
               features: [
-                t('Checklista & tidslinje', 'Checklist & timeline'),
-                t('Ordlista & grundguider', 'Glossary & basic guides'),
+                t('Alla funktioner i 7 dagar', 'All features for 7 days'),
+                t('Inget betalkort krävs', 'No credit card required'),
                 t('1 användare', '1 user'),
               ],
             },
             {
-              name: t('Bas', 'Basic'),
-              price: '499 kr',
+              name: 'Standard',
+              price: '699 kr',
+              period: t('engångsbelopp', 'one-time'),
               badge: null,
               features: [
-                t('Allt från Gratis', 'Everything from Free'),
-                t('Bouppteckning & OCR-skanner', 'Estate inventory & OCR scanner'),
-                t('PDF/Word-export', 'PDF/Word export'),
+                t('Checklistor & tidslinjer', 'Checklists & timelines'),
+                t('Guider & ordlista', 'Guides & glossary'),
+                t('Upp till 3 användare', 'Up to 3 users'),
               ],
             },
             {
-              name: t('Familj', 'Family'),
-              price: '899 kr',
+              name: 'Pro',
+              price: '1 199 kr',
+              period: t('engångsbelopp', 'one-time'),
               badge: t('Mest populär', 'Most popular'),
               features: [
-                t('Allt från Bas', 'Everything from Basic'),
-                t('Upp till 3 användare', 'Up to 3 users'),
-                t('AI-jurist Mike Ross (obegränsad)', 'AI lawyer Mike Ross (unlimited)'),
-              ],
-            },
-            {
-              name: t('Lifetime Familj', 'Lifetime Family'),
-              price: '2 499 kr',
-              badge: t('Komplett', 'Complete'),
-              features: [
+                t('Allt i Standard', 'Everything in Standard'),
+                t('AI-jurist Mike Ross', 'AI lawyer Mike Ross'),
                 t('Obegränsat antal användare', 'Unlimited users'),
-                t('Internationella & företagsdödsbon', 'International & business estates'),
-                t('Personlig jurist + alla uppdateringar', 'Personal lawyer + all updates'),
               ],
             },
           ].map((plan) => {
             const isPopular = plan.badge === t('Mest populär', 'Most popular');
-            const isLifetime = plan.name === t('Lifetime Familj', 'Lifetime Family');
             return (
               <div
                 key={plan.name}
                 className="relative rounded-2xl border p-4 flex items-center gap-4"
                 style={{
                   background: 'var(--bg-card)',
-                  borderColor: isPopular ? '#6B7F5E' : isLifetime ? '#D4AF37' : 'var(--border)',
-                  borderWidth: isPopular || isLifetime ? '2px' : '1px',
+                  borderColor: isPopular ? '#6B7F5E' : 'var(--border)',
+                  borderWidth: isPopular ? '2px' : '1px',
                 }}
               >
                 {plan.badge && (
                   <div
                     className="absolute -top-2.5 left-4 px-2.5 py-0.5 rounded-full text-[10px] font-semibold text-white"
-                    style={{ background: isLifetime ? 'linear-gradient(90deg, #8B6914, #D4AF37)' : '#6B7F5E' }}
+                    style={{ background: '#6B7F5E' }}
                   >
                     {plan.badge}
                   </div>
@@ -332,17 +324,18 @@ export default function LandingPage() {
                   <h3 className="font-display text-primary text-sm">{plan.name}</h3>
                   <p
                     className="text-xl font-bold"
-                    style={{ color: isLifetime ? '#8B6914' : '#6B7F5E' }}
+                    style={{ color: '#6B7F5E' }}
                   >
                     {plan.price}
                   </p>
+                  <p className="text-[10px] text-muted">{plan.period}</p>
                 </div>
                 <ul className="space-y-1 flex-1">
                   {plan.features.map((feature, i) => (
                     <li key={i} className="flex items-start gap-1.5 text-xs text-muted">
                       <CheckCircle2
                         className="w-3.5 h-3.5 flex-shrink-0 mt-0.5"
-                        style={{ color: isLifetime ? '#8B6914' : '#6B7F5E' }}
+                        style={{ color: '#6B7F5E' }}
                       />
                       <span>{feature}</span>
                     </li>

@@ -155,8 +155,8 @@ export default function PriserPage() {
     {
       q: t('Är det en engångsbetalning?', 'Is it a one-time payment?'),
       a: t(
-        'Ja! Både Standard och Pro är engångsbelopp — du betalar en gång och har tillgång för alltid. Ingen prenumeration, inga dolda avgifter.',
-        'Yes! Both Standard and Pro are one-time payments — you pay once and have access forever. No subscription, no hidden fees.'
+        'Ja! Både Standard och Pro är engångsbelopp per dödsbo — du betalar en gång och har full tillgång tills dödsboet är avslutat. Ingen prenumeration, inga dolda avgifter.',
+        'Yes! Both Standard and Pro are one-time payments per estate — you pay once and have full access until the estate is settled. No subscription, no hidden fees.'
       ),
     },
     {

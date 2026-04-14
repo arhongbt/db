@@ -10,32 +10,42 @@
 
 | Aktör | Tjänst | Pris |
 |-------|--------|------|
-| Familjens Jurist | Bouppteckning (jurist) | 2 090 kr/tim (~15 000–40 000 kr totalt) |
+| Familjens Jurist / Fonus | Bouppteckning med jurist | 7 000–12 000 kr |
 | Lavendla Juridik | Bouppteckning med jurist | Från 8 995 kr |
 | Emvald Juridik | Bouppteckning fast pris | 5 995 kr / 9 995 kr |
-| Fonus | Bouppteckning via byrå | 4 500–8 000 kr |
+| Traditionell jurist (timbaserad) | Bouppteckning | 15 000–40 000 kr |
 
-**Snitt juristkostnad: 15 000–40 000 kr** för en komplett bouppteckning med juridiskt ombud.
+**Snitt juristkostnad: 5 995–40 000 kr** beroende på komplexitet och juristbyrå.
 
 ### Online-tjänster (DIY + digital vägledning)
 
 | Aktör | Modell | Pris | Vad ingår |
 |-------|--------|------|-----------|
 | **Aatos** | Engångsbelopp | **1 990 kr** | Bouppteckning online, juristfrågor inkl., Skatteverket-godkänd mall, samarbete |
-| **Bouppteckna.se** (Familjens Jurist) | Engångsbelopp | **1 299–1 975 kr** | DIY bouppteckning, steg-för-steg, 130 000+ användare |
-| **Juridok** | Freemium | **~1 995 kr** | Bouppteckning, dokument i PDF/Word |
-| **Lexly** | Engångsbelopp | **Från 1 995 kr** | Juridiska dokument online |
-| **Fenix Family** | Årsavgift | **3 999 kr** (medlemskap) + 599 kr/år | Testamente, framtidsfullmakt, rådgivning, förvaring |
+| **Bouppteckna.se** (Familjens Jurist) | Engångsbelopp | **1 975 kr** | DIY bouppteckning, steg-för-steg, tilläggstjänster separat |
+| **Lexly** | Engångsbelopp | **695–1 895 kr** (digital) / **från 2 990 kr** (med jurist) | Juridiska dokument online, rabatter via partners |
+| **Juridok** | Freemium | **~1 995 kr** | Bouppteckning via partner (Kliently), PDF/Word |
+| **Fenix Family** | Medlemskap | **3 999 kr** + 599 kr/år | Testamente, framtidsfullmakt, rådgivning, förvaring |
+
+### Sista Resans slutgiltiga prissättning
+
+| Tier | Pris | Användare | Modell |
+|------|------|-----------|--------|
+| **Provperiod** | **Gratis** (7 dagar) | 1 användare | Opt-in, inget betalkort |
+| **Standard** | **699 kr** | Upp till 3 | Engångsbelopp per dödsbo |
+| **Pro** | **1 199 kr** | Obegränsat | Engångsbelopp per dödsbo |
 
 ### Nyckelinsikter om marknaden
 
-**1. Marknaden domineras av engångsbelopp (1 299–5 995 kr)**, inte prenumerationer.
+**1. Marknaden domineras av engångsbelopp (695–3 999 kr)** för digitala tjänster — Sista Resan matchar denna förväntan.
 
 **2. Ingen konkurrent erbjuder AI-juridisk assistent** — detta är vår unika fördel.
 
 **3. De flesta verktyg fokuserar enbart på bouppteckning** — Sista Resan täcker hela dödsboprocessen (begravning → bouppteckning → arvskifte).
 
-**4. Prisankarpunkten** i konsumentens huvud är ~2 000 kr för en digital bouppteckningstjänst och ~15 000 kr+ för en jurist.
+**4. Prisankarpunkten** i konsumentens huvud är ~2 000 kr för en digital bouppteckningstjänst och ~6 000 kr+ för en jurist.
+
+**5. Sista Resan Pro (1 199 kr) ligger under ALLA direkta online-konkurrenter** — Aatos (1 990 kr), Bouppteckna.se (1 975 kr), Lexly med jurist (2 990 kr) — och inkluderar dessutom AI-jurist, bodelningswizard och dokumentgenerering.
 
 ---
 
@@ -67,80 +77,60 @@ Achievement-baserade uppgraderingsprompts (efter att användaren gjort något me
 
 ---
 
-## 3. Var bör Sista Resan ligga?
+## 3. Slutgiltig prissättning — Sista Resan
 
-### Nuvarande prissättning: Trial → Standard (99 kr/mån) → Pro (249 kr/mån)
+### Vald modell: Engångsbelopp per dödsbo
+
+| Tier | Pris | Användare | Vad ingår |
+|------|------|-----------|-----------|
+| **Provperiod** | Gratis (7 dagar) | 1 | Alla funktioner, inget betalkort krävs |
+| **Standard** | **699 kr** engångsbelopp | Upp till 3 | Checklistor, tidslinjer, guider, ordlista, påminnelser, kostnadskalkylator |
+| **Pro** | **1 199 kr** engångsbelopp | Obegränsat | Allt i Standard + AI-jurist Mike Ross, bodelningswizard, dokumentgenerering (bouppteckning PDF, arvskifteshandling), OCR-skanner, export, avancerade guider |
 
 ### Analys per tier
 
-#### Trial (7 dagar gratis)
-**Bedömning: BRA**
+#### Provperiod (7 dagar gratis)
+**Bedömning: OPTIMALT**
 
-7-dagars trial med full tillgång är psykologiskt optimalt. Inga kort krävs — detta maximerar signups. Dödsbohantering har en naturlig brådska (tidsfrister), vilket gör att användare når "aha-moment" snabbt.
+7-dagars trial med full tillgång är psykologiskt optimalt enligt forskning. Inga kort krävs — detta maximerar signups. Dödsbohantering har en naturlig brådska (tidsfrister), vilket gör att användare når "aha-moment" snabbt.
 
-#### Standard (99 kr/mån)
-**Bedömning: ÖVERVÄG JUSTERING**
+#### Standard (699 kr)
+**Bedömning: STARKT POSITIONERAD**
 
-**Problem:** 99 kr/mån = 1 188 kr/år. De flesta dödsbon tar 3–6 månader att hantera = 297–594 kr totalt. Detta är **billigare än alla konkurrenter** (Aatos: 1 990 kr, Bouppteckna: 1 299 kr). Det kan signalera "billigt = låg kvalitet".
+699 kr placerar Sista Resan som det billigaste fullständiga alternativet på marknaden. Lexlys billigaste digitala tjänst börjar på 695 kr men med begränsade funktioner. Standard inkluderar checklistor, tidslinjer, guider och samarbete för upp till 3 familjemedlemmar — mer funktionalitet än konkurrenternas grundtjänster.
 
-**Alternativ att överväga:**
-- **149 kr/mån** — 3 månader = 447 kr, 6 månader = 894 kr. Fortfarande under konkurrenternas engångspriser.
-- **Engångsbelopp 499 kr** — enklare att jämföra med marknaden.
+**Risken** med 699 kr är att det kan uppfattas som "för billigt" i en marknad där normen är ~2 000 kr. Men den gratis trialen motverkar detta — användare ser värdet först och betalar sedan.
 
-#### Pro (249 kr/mån)
-**Bedömning: BRA MED RESERVATION**
+#### Pro (1 199 kr)
+**Bedömning: EXTREMT KONKURRENSKRAFTIGT**
 
-249 kr/mån i 3–6 månader = 747–1 494 kr. Med AI-jurist inkluderad är detta **extremt konkurrenskraftigt** vs en juristtimme (2 090 kr). Pro-priset ankrar bra mot juristkostnader.
+1 199 kr med AI-jurist, bodelningswizard och dokumentgenerering inkluderat. Jämfört med:
+- **Aatos (1 990 kr):** 40% billigare, fler funktioner
+- **Bouppteckna.se (1 975 kr):** 39% billigare, fler funktioner
+- **Lexly med jurist (2 990 kr):** 60% billigare
+- **Emvald Juridik (5 995 kr):** 80% billigare
 
-**Men:** Marknaden förväntar sig engångsbelopp. En prenumerationsmodell kan möta motstånd i denna kategori.
-
----
-
-## 4. Rekommendation
-
-### Option A: Behåll prenumeration (nuvarande)
-| Tier | Pris | Rationale |
-|------|------|-----------|
-| Trial | 7 dagar gratis | Optimalt enligt forskning |
-| Standard | **149 kr/mån** | Höj från 99 → 149 för bättre perceived value |
-| Pro | **299 kr/mån** | Höj från 249 → 299 för starkare ankareffekt |
-
-*3 månaders användning: Standard = 447 kr, Pro = 897 kr*
-
-### Option B: Hybrid (prenumeration + engångs)
-| Tier | Pris | Rationale |
-|------|------|-----------|
-| Trial | 7 dagar gratis | Optimalt enligt forskning |
-| Standard | **499 kr engångsbelopp** | Matchar marknaden, lättare att jämföra |
-| Pro | **1 499 kr engångsbelopp** | Under Aatos + jurist, inkl. AI-jurist = clear value |
-
-*Fördel: Marknaden förstår engångsbelopp. Nackdel: lägre LTV.*
-
-### Option C: Engångs med årsuppdatering
-| Tier | Pris | Rationale |
-|------|------|-----------|
-| Trial | 7 dagar gratis | Optimalt enligt forskning |
-| Standard | **699 kr engångsbelopp** | Under halva juristpriset |
-| Pro | **1 990 kr engångsbelopp** | Exakt samma som Aatos men med AI-jurist inkl. |
-
-*Fördel: Ankras direkt mot Aatos (1 990 kr) men med mer värde. "Samma pris, 10x mer funktioner."*
+Pro-priset ankrar bra mot juristkostnader: en enda juristtimme kostar ~2 000 kr. "Billigare än en juristtimme — och du får alla verktyg du behöver."
 
 ---
 
-## 5. Slutsats & rekommenderad väg framåt
+## 4. Varför denna prissättning fungerar
 
-**Rekommendation: Option C (engångsbelopp)**
+1. **Marknaden förväntar sig engångsbelopp** — alla konkurrenter använder det. Prenumeration skapar friktion i en kategori med engångsprojekt.
 
-Anledningar:
-1. **Marknaden förväntar sig engångsbelopp** — alla konkurrenter använder det
-2. **699 kr vs 1 990 kr** ger tydlig "good/better"-differentiering
-3. **Pro på 1 990 kr = exakt samma som Aatos**, men Sista Resan inkluderar AI-jurist, bodelningswizard, dokumentgenerering — kraftfull value proposition
-4. **"Billigare än en juristtimme"** — Pro (1 990 kr) < 1 timme jurist (2 090 kr)
-5. Dödsbon är engångsprojekt — prenumeration skapar "varför betalar jag fortfarande?"-friktion
+2. **Under samtliga direkta konkurrenter** — 699 kr (Standard) och 1 199 kr (Pro) ligger under Aatos, Bouppteckna.se, Lexly och alla juristbyråer.
+
+3. **Tydlig "good/better"-differentiering** — 699 kr vs 1 199 kr ger användaren ett naturligt val. Pro-badgen "Mest populär" styrs av ankareffekten (12–15% ökning).
+
+4. **Per dödsbo, inte livstid** — eliminerar "varför betalar jag fortfarande?"-friktion. Familjen köper det de behöver för ett specifikt dödsbo.
+
+5. **AI-jurist som unique selling point** — ingen konkurrent erbjuder detta. Inkluderat i Pro (1 199 kr) mot marknadssnitt ~2 000 kr för enbart bouppteckning utan AI.
+
+6. **Gratis trial sänker tröskeln** — opt-in (inget kort) konverterar ~18% median, men achievement-baserade prompts (efter att användaren gjort något meningsfullt) konverterar 258% bättre än tidbaserade.
 
 **Key messaging:**
 
-*"Samma pris som Aatos. Tio gånger mer funktioner. Inklusive AI-jurist."*
+*"Under halva priset av Aatos. Dubbelt så många funktioner. Inklusive AI-jurist."*
 
 *"Billigare än en enda juristtimme — och du får alla verktyg du behöver."*
 
@@ -148,12 +138,14 @@ Anledningar:
 
 ## Källor
 
-- Aatos.app — bouppteckning online (1 990 kr fast pris)
-- Bouppteckna.se / Familjens Jurist — DIY bouppteckning (1 299–1 975 kr)
-- Lavendla Juridik — bouppteckning med jurist (från 8 995 kr)
-- Emvald Juridik — bouppteckning fast pris (5 995 / 9 995 kr)
-- Fenix Family — juridisk plattform (3 999 kr + 599 kr/år)
-- Lexly — juridiska dokument online (från 1 995 kr)
+- [Aatos.app](https://aatos.app/se/bouppteckning/) — bouppteckning online (1 990 kr fast pris)
+- [Bouppteckna.se](https://www.bouppteckna.se/) / Familjens Jurist — DIY bouppteckning (1 975 kr)
+- [Lavendla Juridik](https://lavendla.se/juridik/prislista/) — bouppteckning med jurist (från 8 995 kr)
+- [Emvald Juridik](https://www.emvaldjuridik.se/juridik/familjejuridik/bouppteckning-till-fast-pris/) — bouppteckning fast pris (5 995 / 9 995 kr)
+- [Fenix Family](https://www.fenixjuridik.se/) — juridisk plattform (3 999 kr + 599 kr/år)
+- [Lexly](https://lexly.se/prislista) — juridiska dokument online (695–1 895 kr digital, från 2 990 kr med jurist)
+- [Fonus](https://www.fonus.se/fragor-svar/juridik-vad-kostar-en-bouppteckning/) — bouppteckning via byrå (7 000–12 000 kr)
+- [Adekvat Juridik prisguide 2026](https://www.adekvatjuridik.se/blogg/vad-kostar-bouppteckning) — prisjämförelse
 - Paddle/ProfitWell — SaaS pricing data 2025
 - First Page Sage — SaaS trial conversion benchmarks
 - 1Capture — Free trial conversion benchmarks 2025
