@@ -83,8 +83,6 @@ export function BottomNav() {
   const [moreOpen, setMoreOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
-  if (HIDDEN_PATHS.includes(pathname)) return null;
-
   useEffect(() => { setMoreOpen(false); }, [pathname]);
 
   useEffect(() => {
@@ -104,6 +102,8 @@ export function BottomNav() {
   }));
 
   const isMoreActive = ALL_MORE_ITEMS.some((item) => pathname === item.href);
+
+  if (HIDDEN_PATHS.includes(pathname)) return null;
 
   return (
     <>
