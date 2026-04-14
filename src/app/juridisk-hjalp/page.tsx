@@ -403,7 +403,7 @@ function JuridiskHjalpContent() {
               </p>
               <button
                 onClick={() => setShowBankIDModal(true)}
-                className="mt-2 px-3 py-1.5 bg-accent text-white text-xs font-medium rounded-lg hover:bg-accent/90 transition-colors"
+                className="mt-2 px-4 py-2.5 bg-accent text-white text-xs font-medium rounded-lg hover:bg-accent/90 transition-colors"
               >
                 {t('Verifiera nu', 'Verify now')}
               </button>
@@ -465,7 +465,7 @@ function JuridiskHjalpContent() {
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="text-xs font-semibold text-primary">{t('Behöver du personlig rådgivning?', 'Need personal legal advice?')}</p>
-                  <p className="text-[11px] text-muted">{t('Boka digital konsultation med vår jurist', 'Book a digital consultation with our lawyer')}</p>
+                  <p className="text-xs text-muted">{t('Boka digital konsultation med vår jurist', 'Book a digital consultation with our lawyer')}</p>
                 </div>
                 <ChevronRight className="w-4 h-4 text-muted flex-shrink-0" />
               </Link>
@@ -570,15 +570,15 @@ function JuridiskHjalpContent() {
               <div className="flex items-center gap-3 mb-3">
                 <div className="flex items-center gap-1.5">
                   <Gift className="w-3 h-3 text-accent" />
-                  <span className="text-[11px] text-primary/60">{t('1h gratis', '1h free')}</span>
+                  <span className="text-xs text-primary/60">{t('1h gratis', '1h free')}</span>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <Phone className="w-3 h-3 text-accent" />
-                  <span className="text-[11px] text-primary/60">{t('Telefon/video', 'Phone/video')}</span>
+                  <span className="text-xs text-primary/60">{t('Telefon/video', 'Phone/video')}</span>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <Clock className="w-3 h-3 text-accent" />
-                  <span className="text-[11px] text-primary/60">{t('Svar inom 24h', 'Response within 24h')}</span>
+                  <span className="text-xs text-primary/60">{t('Svar inom 24h', 'Response within 24h')}</span>
                 </div>
               </div>
               <Link
@@ -589,7 +589,7 @@ function JuridiskHjalpContent() {
                 {t('Boka gratis konsultation', 'Book free consultation')}
                 <ChevronRight className="w-4 h-4" />
               </Link>
-              <p className="text-[10px] text-primary/40 text-center mt-2">
+              <p className="text-xs text-primary/40 text-center mt-2">
                 {t('Ingen förpliktelse — extra tid efter överenskommelse', 'No obligation — extra time by agreement')}
               </p>
             </div>
@@ -611,7 +611,7 @@ function JuridiskHjalpContent() {
                   key={chip.sv}
                   onClick={() => sendMessage(t(chip.sv, chip.en))}
                   disabled={isLoading}
-                  className="flex-shrink-0 px-3 py-1.5 border text-xs font-medium text-accent rounded-full hover:opacity-80 transition-opacity disabled:opacity-50"
+                  className="flex-shrink-0 px-4 py-2.5 border text-xs font-medium text-accent rounded-full hover:opacity-80 transition-opacity disabled:opacity-50"
                   style={{ background: 'var(--accent-soft)', borderColor: 'var(--border)' }}
                 >
                   {t(chip.sv, chip.en)}

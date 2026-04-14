@@ -275,7 +275,7 @@ function DashboardContent() {
         aria-label={`Aktuell fas: ${stepLabels[effectiveStep]} — ${progressPct}% klart`}
       >
         {/* SVG progress ring */}
-        <div className="relative flex-shrink-0" style={{ width: 80, height: 80 }}>
+        <div className="relative flex-shrink-0" style={{ width: 64, height: 64 }}>
           <svg width="80" height="80" viewBox="0 0 80 80" className="transform -rotate-90">
             <circle cx="40" cy="40" r="38" fill="none" stroke="#E8E4DE" strokeWidth="5" />
             <circle

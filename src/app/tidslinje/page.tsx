@@ -128,7 +128,7 @@ function TidslinjeContent() {
             PHASES.findIndex((p) => p.id === currentPhase) < i;
 
           return (
-            <div key={phase.id} className="relative pl-14 pb-8 last:pb-0">
+            <div key={phase.id} className="relative pl-10 pb-8 last:pb-0">
               {/* Timeline dot */}
               <div
                 className={`absolute left-3 w-5 h-5 rounded-full border-2 flex items-center justify-center z-10 ${
@@ -228,7 +228,7 @@ function TidslinjeContent() {
         })}
 
         {/* End marker */}
-        <div className="relative pl-14 pt-2">
+        <div className="relative pl-10 pt-2">
           <div className="absolute left-3 w-5 h-5 rounded-full border-2 border-gray-300 bg-white flex items-center justify-center z-10">
             <Flag className="w-3 h-3 text-gray-400" />
           </div>

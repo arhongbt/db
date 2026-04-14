@@ -3,6 +3,7 @@
 import { useState, useRef, useCallback } from 'react';
 import { useLanguage } from '@/lib/i18n';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowLeft, Camera, Upload, FileText, Check, X, Loader2, Eye } from 'lucide-react';
 import Tesseract from 'tesseract.js';
 
@@ -167,10 +168,13 @@ export default function SkannerPage() {
         {/* Result view */}
         {showResult && previewUrl && (
           <div className="card mb-6">
-            <img
+            <Image
               src={previewUrl}
               alt="Skannat dokument"
+              width={600}
+              height={256}
               className="w-full rounded-lg mb-4 max-h-64 object-contain bg-background"
+              unoptimized
             />
 
             {/* Category picker */}
@@ -261,10 +265,13 @@ export default function SkannerPage() {
                 const cat = CATEGORIES.find(c => c.id === doc.category);
                 return (
                   <div key={doc.id} className="card flex items-start gap-3">
-                    <img
+                    <Image
                       src={doc.imageUrl}
                       alt={doc.fileName}
+                      width={64}
+                      height={64}
                       className="w-16 h-16 rounded object-cover bg-background shrink-0"
+                      unoptimized
                     />
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-1">

@@ -55,10 +55,10 @@ describe('dodsboReducer', () => {
       const state = makeState();
       const next = dodsboReducer(state, {
         type: 'ADD_TILLGANG',
-        payload: { id: 't1', typ: 'bankkonto', beskrivning: 'Sparkonto SEB', varde: 150000 },
+        payload: { id: 't1', type: 'bankkonto', description: 'Sparkonto SEB', estimatedValue: 150000 },
       });
       expect(next.tillgangar).toHaveLength(1);
-      expect(next.tillgangar[0].varde).toBe(150000);
+      expect(next.tillgangar[0].estimatedValue).toBe(150000);
     });
   });
 

@@ -529,7 +529,7 @@ function BouppteckningContent() {
       {/* Preview modal */}
       {showPreview && previewDoc && (
         <div className="fixed inset-0 bg-black/50 z-50 flex items-end sm:items-center justify-center">
-          <div className="w-full max-w-lg max-h-[90vh] rounded-t-2xl sm:rounded-2xl overflow-hidden flex flex-col" style={{ background: 'var(--bg)' }}>
+          <div className="w-full max-w-lg mx-4 max-h-[90vh] rounded-t-2xl sm:rounded-2xl overflow-hidden flex flex-col" style={{ background: 'var(--bg)' }}>
             {/* Modal header */}
             <div className="flex items-center justify-between px-5 py-4 border-b" style={{ borderColor: 'var(--border)' }}>
               <h2 className="text-lg font-semibold text-primary">

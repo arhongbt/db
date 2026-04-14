@@ -46,6 +46,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/samarbete',
     '/dodsannons',
     '/digitala-tillgangar',
+    '/krypto-guide',
+    '/checklistor',
+    '/vardering',
+    '/priser',
   ].map((route) => ({
     route,
     priority: 0.8,
@@ -63,6 +67,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/skanner',
     '/exportera',
     '/paminelser',
+    '/kalender',
+    '/sammanfattning',
+    '/boka-jurist',
   ].map((route) => ({
     route,
     priority: 0.5,

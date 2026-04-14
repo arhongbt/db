@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useLanguage } from '@/lib/i18n';
 import { DodsboProvider, useDodsbo } from '@/lib/context';
 import Link from 'next/link';
+import NextImage from 'next/image';
 import {
   Plus,
   Trash2,
@@ -316,10 +317,13 @@ function LosoreContent() {
             <span className="text-sm font-medium text-primary mb-2 block">{t('Foto (valfritt)', 'Photo (optional)')}</span>
             {formImageUrl ? (
               <div className="relative w-full mb-3">
-                <img
+                <NextImage
                   src={formImageUrl}
                   alt="Preview"
+                  width={400}
+                  height={160}
                   className="w-full h-40 object-cover rounded-2xl border-2 border-[#E8E4DE]"
+                  unoptimized
                 />
                 <button
                   onClick={() => setFormImageUrl(null)}
@@ -500,10 +504,13 @@ function LosoreContent() {
                         <div className="flex-1 min-w-0">
                           <div className="flex items-start gap-3">
                             {item.imageUrl && (
-                              <img
+                              <NextImage
                                 src={item.imageUrl}
                                 alt={item.name}
+                                width={48}
+                                height={48}
                                 className="w-12 h-12 object-cover rounded-lg flex-shrink-0 border border-[#E8E4DE]"
+                                unoptimized
                               />
                             )}
                             <div className="flex-1 min-w-0">
