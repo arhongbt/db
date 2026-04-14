@@ -84,8 +84,8 @@ Achievement-baserade uppgraderingsprompts (efter att användaren gjort något me
 | Tier | Pris | Användare | Vad ingår |
 |------|------|-----------|-----------|
 | **Provperiod** | Gratis (7 dagar) | 1 | Alla funktioner, inget betalkort krävs |
-| **Standard** | **699 kr** engångsbelopp | Upp till 3 | Checklistor, tidslinjer, guider, ordlista, påminnelser, kostnadskalkylator |
-| **Pro** | **1 199 kr** engångsbelopp | Obegränsat | Allt i Standard + AI-jurist Mike Ross, bodelningswizard, dokumentgenerering (bouppteckning PDF, arvskifteshandling), OCR-skanner, export, avancerade guider |
+| **Standard** | **699 kr** engångsbelopp | Upp till 3 | AI-jurist Mike Ross, checklistor, tidslinjer, guider, ordlista, påminnelser, kostnadskalkylator |
+| **Pro** | **1 199 kr** engångsbelopp | Obegränsat | Allt i Standard + 1 timme kostnadsfri juristkonsultation, bodelningswizard, dokumentgenerering (bouppteckning PDF, arvskifteshandling), OCR-skanner, export, avancerade guider |
 
 ### Analys per tier
 
@@ -97,20 +97,20 @@ Achievement-baserade uppgraderingsprompts (efter att användaren gjort något me
 #### Standard (699 kr)
 **Bedömning: STARKT POSITIONERAD**
 
-699 kr placerar Sista Resan som det billigaste fullständiga alternativet på marknaden. Lexlys billigaste digitala tjänst börjar på 695 kr men med begränsade funktioner. Standard inkluderar checklistor, tidslinjer, guider och samarbete för upp till 3 familjemedlemmar — mer funktionalitet än konkurrenternas grundtjänster.
+699 kr inkluderar nu AI-juristen Mike Ross — en unik funktion som ingen konkurrent erbjuder. Lexlys billigaste digitala tjänst börjar på 695 kr men utan AI-assistent. Standard inkluderar checklistor, tidslinjer, guider, AI-jurist och samarbete för upp till 3 familjemedlemmar.
 
-**Risken** med 699 kr är att det kan uppfattas som "för billigt" i en marknad där normen är ~2 000 kr. Men den gratis trialen motverkar detta — användare ser värdet först och betalar sedan.
+Att AI-juristen ingår redan i Standard-priset gör erbjudandet extremt attraktivt: för 699 kr får du en AI som kan svara på juridiska frågor — konkurrenternas användare får inte ens det för 1 990 kr.
 
 #### Pro (1 199 kr)
 **Bedömning: EXTREMT KONKURRENSKRAFTIGT**
 
-1 199 kr med AI-jurist, bodelningswizard och dokumentgenerering inkluderat. Jämfört med:
-- **Aatos (1 990 kr):** 40% billigare, fler funktioner
+1 199 kr inkluderar allt i Standard plus **1 timme kostnadsfri konsultation med en riktig jurist**, bodelningswizard, dokumentgenerering och obegränsat antal användare. Jämfört med:
+- **Aatos (1 990 kr):** 40% billigare, fler funktioner, plus riktig juristtimme inkluderad
 - **Bouppteckna.se (1 975 kr):** 39% billigare, fler funktioner
 - **Lexly med jurist (2 990 kr):** 60% billigare
 - **Emvald Juridik (5 995 kr):** 80% billigare
 
-Pro-priset ankrar bra mot juristkostnader: en enda juristtimme kostar ~2 000 kr. "Billigare än en juristtimme — och du får alla verktyg du behöver."
+1 timme juristkonsultation kostar normalt ~2 000 kr. Pro-användare får det inkluderat i priset (1 199 kr) — alltså billigare än bara juristtimmen hos en traditionell byrå.
 
 ---
 
@@ -124,15 +124,17 @@ Pro-priset ankrar bra mot juristkostnader: en enda juristtimme kostar ~2 000 kr.
 
 4. **Per dödsbo, inte livstid** — eliminerar "varför betalar jag fortfarande?"-friktion. Familjen köper det de behöver för ett specifikt dödsbo.
 
-5. **AI-jurist som unique selling point** — ingen konkurrent erbjuder detta. Inkluderat i Pro (1 199 kr) mot marknadssnitt ~2 000 kr för enbart bouppteckning utan AI.
+5. **AI-jurist redan i Standard** — ingen konkurrent erbjuder AI-juridisk assistent, och hos Sista Resan ingår det redan från 699 kr.
 
-6. **Gratis trial sänker tröskeln** — opt-in (inget kort) konverterar ~18% median, men achievement-baserade prompts (efter att användaren gjort något meningsfullt) konverterar 258% bättre än tidbaserade.
+6. **1 timme riktig jurist i Pro** — normalt kostar en juristtimme ~2 000 kr. Pro (1 199 kr) inkluderar det — användaren får alltså mer än en juristtimme värd av service för under halva priset.
+
+7. **Gratis trial sänker tröskeln** — opt-in (inget kort) konverterar ~18% median, men achievement-baserade prompts (efter att användaren gjort något meningsfullt) konverterar 258% bättre än tidbaserade.
 
 **Key messaging:**
 
-*"Under halva priset av Aatos. Dubbelt så många funktioner. Inklusive AI-jurist."*
+*"AI-jurist ingår redan från 699 kr. Ingen konkurrent erbjuder det."*
 
-*"Billigare än en enda juristtimme — och du får alla verktyg du behöver."*
+*"Pro: alla verktyg + 1 timme riktig jurist — för mindre än vad en juristtimme kostar."*
 
 ---
 

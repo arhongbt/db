@@ -79,15 +79,16 @@ export default function PriserPage() {
       name: 'Standard',
       price: 699,
       period: t('engångsbelopp', 'one-time'),
-      tagline: t('Allt du behöver för att komma igång', 'Everything you need to get started'),
+      tagline: t('Allt du behöver — inklusive AI-jurist', 'Everything you need — including AI lawyer'),
       description: t(
-        'Checklistor, tidslinjer, uppgiftshantering och grundläggande guider — för hela familjen.',
-        'Checklists, timelines, task management and basic guides — for the whole family.'
+        'Checklistor, tidslinjer, AI-jurist Mike Ross och grundläggande guider — för hela familjen.',
+        'Checklists, timelines, AI lawyer Mike Ross and basic guides — for the whole family.'
       ),
       icon: Shield,
       accent: '#6B7F5E',
       users: t('Upp till 3 användare', 'Up to 3 users'),
       features: [
+        { text: t('AI-jurist Mike Ross', 'AI lawyer Mike Ross'), included: true, highlight: true },
         { text: t('Checklista för dödsbo', 'Estate checklist'), included: true },
         { text: t('Tidslinje & uppgiftshantering', 'Timeline & task management'), included: true },
         { text: t('Ordlista & FAQ', 'Glossary & FAQ'), included: true },
@@ -95,7 +96,6 @@ export default function PriserPage() {
         { text: t('Tidsfrister & påminnelser', 'Deadlines & reminders'), included: true },
         { text: t('Kostnadskalkylator', 'Cost calculator'), included: true },
         { text: t('Samarbete med familjen (3 pers)', 'Family collaboration (3 people)'), included: true },
-        { text: t('AI-jurist Mike Ross', 'AI lawyer Mike Ross'), included: false },
         { text: t('Bodelningswizard', 'Property division wizard'), included: false },
         { text: t('Dokumentgenerering', 'Document generation'), included: false },
       ],
@@ -105,10 +105,10 @@ export default function PriserPage() {
       name: 'Pro',
       price: 1199,
       period: t('engångsbelopp', 'one-time'),
-      tagline: t('Fullständig tillgång till allt', 'Full access to everything'),
+      tagline: t('Allt + 1 timme kostnadsfri jurist', 'Everything + 1 hour free lawyer consultation'),
       description: t(
-        'AI-jurist, dokumentgenerering, bodelningswizard, skanner — obegränsat antal användare.',
-        'AI lawyer, document generation, property division wizard, scanner — unlimited users.'
+        'Alla funktioner, obegränsat antal användare och 1 timme kostnadsfri konsultation med en riktig jurist.',
+        'All features, unlimited users and 1 hour free consultation with a real lawyer.'
       ),
       icon: Crown,
       accent: '#6B7F5E',
@@ -116,7 +116,7 @@ export default function PriserPage() {
       users: t('Obegränsat antal användare', 'Unlimited users'),
       features: [
         { text: t('Allt i Standard', 'Everything in Standard'), included: true, highlight: true },
-        { text: t('AI-jurist Mike Ross (obegränsad)', 'AI lawyer Mike Ross (unlimited)'), included: true },
+        { text: t('1 timme kostnadsfri juristkonsultation', '1 hour free lawyer consultation'), included: true, highlight: true },
         { text: t('Bodelningswizard', 'Property division wizard'), included: true },
         { text: t('Generera bouppteckning (PDF)', 'Generate estate inventory (PDF)'), included: true },
         { text: t('Arvskifteshandling', 'Inheritance settlement document'), included: true },
@@ -141,8 +141,8 @@ export default function PriserPage() {
     {
       q: t('Vad är skillnaden mellan Standard och Pro?', 'What\'s the difference between Standard and Pro?'),
       a: t(
-        'Standard ger dig alla grundläggande verktyg: checklistor, tidslinjer och guider. Pro lägger till AI-juristen Mike Ross, dokumentgenerering (bouppteckning, arvskifte), bodelningswizard, skanner och avancerade guider.',
-        'Standard gives you all basic tools: checklists, timelines and guides. Pro adds AI lawyer Mike Ross, document generation (estate inventory, inheritance settlement), property division wizard, scanner and advanced guides.'
+        'Standard inkluderar AI-juristen Mike Ross, checklistor, tidslinjer och guider. Pro lägger till 1 timme kostnadsfri juristkonsultation, dokumentgenerering (bouppteckning, arvskifte), bodelningswizard, skanner, obegränsat antal användare och avancerade guider.',
+        'Standard includes AI lawyer Mike Ross, checklists, timelines and guides. Pro adds 1 hour free lawyer consultation, document generation (estate inventory, inheritance settlement), property division wizard, scanner, unlimited users and advanced guides.'
       ),
     },
     {

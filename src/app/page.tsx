@@ -284,8 +284,8 @@ export default function LandingPage() {
               period: t('engångsbelopp', 'one-time'),
               badge: null,
               features: [
+                t('AI-jurist Mike Ross', 'AI lawyer Mike Ross'),
                 t('Checklistor & tidslinjer', 'Checklists & timelines'),
-                t('Guider & ordlista', 'Guides & glossary'),
                 t('Upp till 3 användare', 'Up to 3 users'),
               ],
             },
@@ -296,7 +296,7 @@ export default function LandingPage() {
               badge: t('Mest populär', 'Most popular'),
               features: [
                 t('Allt i Standard', 'Everything in Standard'),
-                t('AI-jurist Mike Ross', 'AI lawyer Mike Ross'),
+                t('1 timme kostnadsfri jurist', '1 hour free lawyer'),
                 t('Obegränsat antal användare', 'Unlimited users'),
               ],
             },

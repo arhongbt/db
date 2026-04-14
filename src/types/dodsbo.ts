@@ -36,7 +36,7 @@ export const TIER_ACCESS: Record<SubscriptionTier, Record<PremiumFeature, boolea
     advancedGuides: true,
   },
   standard: {
-    mikeRoss: false,
+    mikeRoss: true,
     bodelning: false,
     documentGeneration: false,
     scanner: false,

@@ -147,7 +147,7 @@ export function PaywallGate({ feature, children, inline = false }: PaywallGatePr
             </p>
             <ul className="space-y-2">
               {[
-                t('AI-juristen Mike Ross (obegränsat)', 'AI Lawyer Mike Ross (unlimited)'),
+                t('1 timme kostnadsfri juristkonsultation', '1 hour free lawyer consultation'),
                 t('Bodelningsguiden', 'Property Division Wizard'),
                 t('Generera bouppteckning som PDF', 'Generate estate inventory as PDF'),
                 t('Dokumentskanner med OCR', 'Document scanner with OCR'),
