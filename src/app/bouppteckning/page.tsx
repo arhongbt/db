@@ -3,7 +3,6 @@
 import { useEffect, useState } from 'react';
 import { useLanguage } from '@/lib/i18n';
 import { DodsboProvider, useDodsbo } from '@/lib/context';
-import { BottomNav } from '@/components/ui/BottomNav';
 import { JuridiskTooltip } from '@/components/ui/JuridiskTooltip';
 import { BankIDVerification } from '@/components/BankIDVerification';
 import Link from 'next/link';
@@ -658,7 +657,6 @@ function BouppteckningContent() {
         </div>
       )}
 
-      <BottomNav />
 
       {/* BankID Modal */}
       {showBankIDModal && (

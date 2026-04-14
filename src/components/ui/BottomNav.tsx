@@ -75,11 +75,15 @@ const MORE_CATEGORIES = [
 
 const ALL_MORE_ITEMS = MORE_CATEGORIES.flatMap((c) => c.items);
 
+const HIDDEN_PATHS = ['/', '/priser', '/om', '/faq', '/anvandarvillkor', '/integritetspolicy'];
+
 export function BottomNav() {
   const pathname = usePathname();
   const { t } = useLanguage();
   const [moreOpen, setMoreOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+
+  if (HIDDEN_PATHS.includes(pathname)) return null;
 
   useEffect(() => { setMoreOpen(false); }, [pathname]);
 

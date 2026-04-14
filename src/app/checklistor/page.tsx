@@ -4,7 +4,6 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { useLanguage } from '@/lib/i18n';
 import { ArrowLeft, Printer, CheckSquare, Landmark, FileText, Heart, Scale, Shield, Phone } from 'lucide-react';
-import { BottomNav } from '@/components/ui/BottomNav';
 
 interface ChecklistItem {
   text: string;
@@ -294,7 +293,6 @@ export default function ChecklistorPage() {
           </div>
         )}
       </div>
-      <BottomNav />
     </div>
   );
 }

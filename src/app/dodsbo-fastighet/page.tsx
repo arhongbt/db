@@ -3,7 +3,6 @@
 import { useLanguage } from '@/lib/i18n';
 import Link from 'next/link';
 import { ArrowLeft, Home, FileText, AlertTriangle, CheckCircle2, ChevronRight } from 'lucide-react';
-import { BottomNav } from '@/components/ui/BottomNav';
 
 export default function DodsboFastighetPage() {
   return (
@@ -218,7 +217,6 @@ export default function DodsboFastighetPage() {
         Denna information ger allmän vägledning och ersätter inte juridisk rådgivning.
       </p>
 
-      <BottomNav />
     </div>
   );
 }

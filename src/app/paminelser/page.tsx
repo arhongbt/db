@@ -7,7 +7,6 @@ import {
   ArrowLeft, Bell, BellOff, Clock, AlertTriangle, CheckCircle2, ChevronRight,
   Mail, Trash2, Plus, Zap, Calendar
 } from 'lucide-react';
-import { BottomNav } from '@/components/ui/BottomNav';
 import { DodsboProvider, useDodsbo } from '@/lib/context';
 import {
   getNotificationPrefs,
@@ -485,7 +484,6 @@ function PaminelserContent() {
           </>
         )}
       </div>
-      <BottomNav />
     </div>
   );
 }

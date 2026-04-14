@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { useLanguage } from '@/lib/i18n';
 import Link from 'next/link';
 import { ArrowLeft, Download, Package, FileText, FileSpreadsheet, Loader2, Check } from 'lucide-react';
-import { BottomNav } from '@/components/ui/BottomNav';
 import { DodsboProvider, useDodsbo } from '@/lib/context';
 
 function ExporteraContent() {
@@ -136,7 +135,6 @@ function ExporteraContent() {
           </p>
         </div>
       </div>
-      <BottomNav />
     </div>
   );
 }

@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import { useLanguage } from '@/lib/i18n';
 import { DodsboProvider, useDodsbo } from '@/lib/context';
-import { BottomNav } from '@/components/ui/BottomNav';
 import { SWEDISH_BANKS } from '@/types';
 import {
   ArrowLeft,
@@ -466,7 +465,6 @@ Adress: ${data.adress}`;
         </div>
       </div>
 
-      <BottomNav />
     </div>
   );
 }

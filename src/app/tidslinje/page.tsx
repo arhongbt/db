@@ -3,7 +3,6 @@
 import { useEffect, useState } from 'react';
 import { useLanguage } from '@/lib/i18n';
 import { DodsboProvider, useDodsbo } from '@/lib/context';
-import { BottomNav } from '@/components/ui/BottomNav';
 import {
   CheckCircle2,
   Circle,
@@ -237,7 +236,6 @@ function TidslinjeContent() {
         </div>
       </div>
 
-      <BottomNav />
     </div>
   );
 }

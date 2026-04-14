@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { useLanguage } from '@/lib/i18n';
 import Link from 'next/link';
 import { DodsboProvider } from '@/lib/context';
-import { BottomNav } from '@/components/ui/BottomNav';
 import { ArrowLeft, Smartphone, ChevronDown, Bot, CheckCircle2, Circle } from 'lucide-react';
 
 function MikeRossTip({ text }: { text: string }) {
@@ -442,7 +441,6 @@ function Content() {
         </CollapsibleSection>
       </div>
 
-      <BottomNav />
     </div>
   );
 }

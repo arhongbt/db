@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { useLanguage } from '@/lib/i18n';
-import { BottomNav } from '@/components/ui/BottomNav';
 import { PaymentFlow } from '@/components/PaymentFlow';
 import Link from 'next/link';
 import {
@@ -513,7 +512,6 @@ export default function PriserPage() {
         />
       )}
 
-      <BottomNav />
     </main>
   );
 }

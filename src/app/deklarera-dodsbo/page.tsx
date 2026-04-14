@@ -3,7 +3,6 @@
 import { useLanguage } from '@/lib/i18n';
 import Link from 'next/link';
 import { ArrowLeft, FileText, ChevronRight, AlertTriangle, Calendar } from 'lucide-react';
-import { BottomNav } from '@/components/ui/BottomNav';
 
 export default function DeklararaDodsboPage() {
   const { t } = useLanguage();
@@ -353,7 +352,6 @@ export default function DeklararaDodsboPage() {
       </main>
 
       {/* Bottom navigation */}
-      <BottomNav />
     </div>
   );
 }

@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import { useLanguage } from '@/lib/i18n';
 import { DodsboProvider, useDodsbo } from '@/lib/context';
-import { BottomNav } from '@/components/ui/BottomNav';
 import { ArrowLeft, CheckCircle2, Circle, Bot, FileCheck, AlertCircle, Info, Copy } from 'lucide-react';
 import Link from 'next/link';
 
@@ -474,7 +473,6 @@ function Content() {
         </div>
       </div>
 
-      <BottomNav />
     </div>
   );
 }

@@ -4,7 +4,6 @@ import { useState, useRef, useCallback } from 'react';
 import { useLanguage } from '@/lib/i18n';
 import Link from 'next/link';
 import { ArrowLeft, Camera, Upload, FileText, Check, X, Loader2, Eye } from 'lucide-react';
-import { BottomNav } from '@/components/ui/BottomNav';
 import Tesseract from 'tesseract.js';
 
 type DocCategory = 'saldobesked' | 'dodsbevis' | 'testamente' | 'forsakringsbrev' | 'kvitto' | 'ovrigt';
@@ -298,7 +297,6 @@ export default function SkannerPage() {
           </div>
         )}
       </div>
-      <BottomNav />
     </div>
   );
 }

@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import { useLanguage } from '@/lib/i18n';
 import Link from 'next/link';
-import { BottomNav } from '@/components/ui/BottomNav';
 import {
   ArrowLeft,
   Wallet,
@@ -309,7 +308,6 @@ function DodsboSkulderContent() {
         </p>
       </div>
 
-      <BottomNav />
     </div>
   );
 }

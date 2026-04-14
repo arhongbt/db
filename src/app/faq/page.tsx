@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { useLanguage } from '@/lib/i18n';
-import { BottomNav } from '@/components/ui/BottomNav';
 import Link from 'next/link';
 import { ArrowLeft, ChevronDown, ChevronUp, Search, BookOpen } from 'lucide-react';
 
@@ -201,7 +200,6 @@ export default function FaqPage() {
         </div>
       )}
 
-      <BottomNav />
     </div>
   );
 }

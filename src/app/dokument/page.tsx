@@ -3,7 +3,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useLanguage } from '@/lib/i18n';
 import { DodsboProvider, useDodsbo } from '@/lib/context';
-import { BottomNav } from '@/components/ui/BottomNav';
 // Decorations removed — caused z-index/visibility bugs on mobile
 import {
   Upload,
@@ -438,7 +437,6 @@ function DokumentContent() {
         </div>
       )}
 
-      <BottomNav />
     </div>
   );
 }

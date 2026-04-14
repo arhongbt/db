@@ -5,7 +5,6 @@ import { useLanguage } from '@/lib/i18n';
 import Link from 'next/link';
 import { ArrowLeft, Bot, Newspaper, Copy, CheckCircle2, Info } from 'lucide-react';
 import { DodsboProvider, useDodsbo } from '@/lib/context';
-import { BottomNav } from '@/components/ui/BottomNav';
 
 function MikeRossTip({ text }: { text: string }) {
   const { t } = useLanguage();
@@ -385,7 +384,6 @@ function Content() {
         </button>
       </div>
 
-      <BottomNav />
     </div>
   );
 }

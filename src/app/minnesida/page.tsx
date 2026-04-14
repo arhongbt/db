@@ -5,7 +5,6 @@ import { useLanguage } from '@/lib/i18n';
 import { Heart, ArrowLeft, Bot, Flame, Copy, Check } from 'lucide-react';
 import Link from 'next/link';
 import { DodsboProvider, useDodsbo } from '@/lib/context';
-import { BottomNav } from '@/components/ui/BottomNav';
 
 function MikeRossTip({ text }: { text: string }) {
   return (
@@ -325,7 +324,6 @@ ${form.citat}
         </div>
       </div>
 
-      <BottomNav />
     </div>
   );
 }

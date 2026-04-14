@@ -5,6 +5,7 @@ import { LanguageProvider } from '@/lib/i18n';
 import { ServiceWorkerRegistration } from '@/components/ServiceWorkerRegistration';
 import { CookieBanner } from '@/components/CookieBanner';
 import { FloatingChatButton } from '@/components/ui/FloatingChatButton';
+import { BottomNav } from '@/components/ui/BottomNav';
 import { TextScaleLoader } from '@/components/TextScaleLoader';
 import { AppSettingsProvider, AppControlBar } from '@/components/ui/AppControls';
 import { Analytics } from '@vercel/analytics/react';
@@ -205,6 +206,7 @@ export default function RootLayout({
                 </div>
                 <FloatingChatButton />
               </main>
+              <BottomNav />
             </AppSettingsProvider>
           </LanguageProvider>
         </AuthProvider>

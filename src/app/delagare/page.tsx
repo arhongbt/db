@@ -3,7 +3,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useLanguage } from '@/lib/i18n';
 import { DodsboProvider, useDodsbo } from '@/lib/context';
-import { BottomNav } from '@/components/ui/BottomNav';
 import { OptionCard } from '@/components/ui/OptionCard';
 import { getArvsordning } from '@/lib/arvsordning';
 import {
@@ -402,7 +401,6 @@ function DelagareContent() {
         </div>
       )}
 
-      <BottomNav />
     </div>
   );
 }

@@ -31,7 +31,6 @@ import {
   Handshake,
   Shield,
 } from 'lucide-react';
-import { BottomNav } from '@/components/ui/BottomNav';
 import { BankIDVerification } from '@/components/BankIDVerification';
 import type { DodsboTask, ProcessStep, TaskStatus } from '@/types';
 import { DEFAULT_TIDSFRISTER } from '@/types';
@@ -189,7 +188,6 @@ function DashboardContent() {
             <ChevronRight className="w-5 h-5" />
           </Link>
         </div>
-        <BottomNav />
       </div>
     );
   }
@@ -630,7 +628,6 @@ function DashboardContent() {
         {t('dashboard.legal_disclaimer')}
       </p>
 
-      <BottomNav />
 
       {/* BankID Modal */}
       {showBankIDModal && (

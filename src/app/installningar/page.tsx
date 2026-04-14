@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { DodsboProvider, useDodsbo } from '@/lib/context';
 import { useAuth } from '@/lib/auth/context';
 import { useLanguage } from '@/lib/i18n';
-import { BottomNav } from '@/components/ui/BottomNav';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import {
@@ -596,7 +595,6 @@ function InstallningarContent() {
         </div>
       </div>
 
-      <BottomNav />
     </div>
   );
 }

@@ -3,7 +3,6 @@
 import Script from 'next/script';
 import Link from 'next/link';
 import { useLanguage } from '@/lib/i18n';
-import { BottomNav } from '@/components/ui/BottomNav';
 import { ArrowLeft, Scale, CheckCircle2 } from 'lucide-react';
 
 export default function BokaJuristPage() {
@@ -43,7 +42,7 @@ export default function BokaJuristPage() {
               {t('Gratis', 'Free')}
             </span>
             <span>·</span>
-            <span>{t('30 minuter', '30 minutes')}</span>
+            <span>{t('1 timme', '1 hour')}</span>
             <span>·</span>
             <span>{t('Digitalt', 'Online')}</span>
           </div>
@@ -104,7 +103,6 @@ export default function BokaJuristPage() {
         </p>
       </div>
 
-      <BottomNav />
     </main>
   );
 }

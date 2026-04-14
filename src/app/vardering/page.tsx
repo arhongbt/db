@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import { useLanguage } from '@/lib/i18n';
 import { DodsboProvider, useDodsbo } from '@/lib/context';
-import { BottomNav } from '@/components/ui/BottomNav';
 import {
   Plus,
   X,
@@ -713,7 +712,6 @@ function VarderingContent() {
         </div>
       )}
 
-      <BottomNav />
     </div>
   );
 }

@@ -3,7 +3,6 @@
 import Link from 'next/link';
 import { ArrowLeft, Users, ChevronRight, AlertTriangle } from 'lucide-react';
 import { useLanguage } from '@/lib/i18n';
-import { BottomNav } from '@/components/ui/BottomNav';
 
 export default function SamboArvPage() {
   const { t } = useLanguage();
@@ -253,7 +252,6 @@ export default function SamboArvPage() {
       </div>
 
       {/* Bottom Navigation */}
-      <BottomNav />
     </div>
   );
 }

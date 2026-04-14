@@ -1,40 +1,69 @@
 'use client';
 
+import { useState } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
-import { Bot } from 'lucide-react';
+import { Bot, X } from 'lucide-react';
 
-/** Mike Ross floating button — visible on every page except juridisk-hjalp itself */
+/** Mike Ross floating button — peeks from edge, expands on tap */
 export function FloatingChatButton() {
   const pathname = usePathname();
+  const [expanded, setExpanded] = useState(false);
 
   const hiddenPaths = ['/juridisk-hjalp', '/auth', '/onboarding', '/'];
   if (hiddenPaths.some(p => pathname === p || pathname.startsWith('/onboarding'))) {
     return null;
   }
 
+  if (!expanded) {
+    return (
+      <button
+        onClick={() => setExpanded(true)}
+        aria-label="Öppna Mike Ross"
+        className="fixed z-40 flex items-center gap-1.5 pointer-events-auto transition-all duration-300 active:scale-95"
+        style={{
+          bottom: 'calc(7.5rem + env(safe-area-inset-bottom, 0px))',
+          right: '-6px',
+          height: '40px',
+          paddingLeft: '10px',
+          paddingRight: '14px',
+          borderRadius: '20px 0 0 20px',
+          background: 'linear-gradient(135deg, #6B7F5E, #4F6145)',
+          boxShadow: '-2px 2px 12px rgba(107,127,94,0.3)',
+        }}
+      >
+        <Bot className="w-4 h-4 text-white" strokeWidth={2} />
+        <span className="text-xs font-semibold text-white/90">Mike</span>
+      </button>
+    );
+  }
+
   return (
-    <div className="fixed z-40 bottom-0 left-0 right-0 mx-auto max-w-none pointer-events-none">
+    <div
+      className="fixed z-40 flex items-center gap-2 pointer-events-auto animate-in slide-in-from-right duration-200"
+      style={{
+        bottom: 'calc(7.5rem + env(safe-area-inset-bottom, 0px))',
+        right: '12px',
+      }}
+    >
+      <button
+        onClick={() => setExpanded(false)}
+        aria-label="Stäng"
+        className="w-8 h-8 flex items-center justify-center rounded-full transition-colors"
+        style={{ background: 'rgba(0,0,0,0.15)' }}
+      >
+        <X className="w-3.5 h-3.5 text-white" strokeWidth={2} />
+      </button>
       <Link
         href="/juridisk-hjalp"
-        aria-label="Fråga Mike Ross"
-        className="absolute flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95 group pointer-events-auto"
+        className="flex items-center gap-2 px-4 py-2.5 rounded-full transition-all duration-200 active:scale-95"
         style={{
-          bottom: 'calc(5rem + env(safe-area-inset-bottom, 0px))',
-          right: '16px',
-          width: '54px',
-          height: '54px',
-          borderRadius: '50%',
           background: 'linear-gradient(135deg, #6B7F5E, #4F6145)',
           boxShadow: '0 4px 20px rgba(107,127,94,0.35), 0 2px 8px rgba(0,0,0,0.1)',
         }}
       >
         <Bot className="w-5 h-5 text-white" strokeWidth={1.8} />
-        {/* Tooltip */}
-        <span className="absolute right-full mr-3 px-3 py-1.5 text-xs font-semibold text-white rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"
-          style={{ background: '#2A2622' }}>
-          Fråga Mike Ross
-        </span>
+        <span className="text-sm font-semibold text-white">Fråga Mike Ross</span>
       </Link>
     </div>
   );

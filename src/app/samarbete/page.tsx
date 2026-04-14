@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import { useLanguage } from '@/lib/i18n';
 import Link from 'next/link';
 import { DodsboProvider, useDodsbo } from '@/lib/context';
-import { BottomNav } from '@/components/ui/BottomNav';
 import { ArrowLeft, Handshake, Bot, Check, Clock, AlertCircle, Plus, Trash2, Calendar } from 'lucide-react';
 import { createClient } from '@/lib/supabase/client';
 import { getBeslut, addBeslut, updateBeslut, deleteBeslut, getAnteckningar, addAnteckning, deleteAnteckning } from '@/lib/supabase/services/samarbete-service';
@@ -587,7 +586,6 @@ function Content() {
       </div>
 
       {/* Bottom Nav */}
-      <BottomNav />
     </div>
   );
 }

@@ -3,7 +3,6 @@
 import { useEffect, useState } from 'react';
 import { useLanguage } from '@/lib/i18n';
 import { DodsboProvider, useDodsbo } from '@/lib/context';
-import { BottomNav } from '@/components/ui/BottomNav';
 import { JuridiskTooltip } from '@/components/ui/JuridiskTooltip';
 import Link from 'next/link';
 import {
@@ -1390,7 +1389,6 @@ function BodelningContent() {
           </div>
         )}
 
-        <BottomNav />
       </div>
     );
   }
@@ -1803,7 +1801,6 @@ function BodelningContent() {
           </p>
         </div>
 
-        <BottomNav />
       </div>
     );
   }
@@ -1862,7 +1859,6 @@ function BodelningContent() {
         </div>
       </div>
 
-      <BottomNav />
     </div>
   );
 }

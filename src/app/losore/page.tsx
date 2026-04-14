@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react';
 import { useLanguage } from '@/lib/i18n';
 import { DodsboProvider, useDodsbo } from '@/lib/context';
-import { BottomNav } from '@/components/ui/BottomNav';
 import Link from 'next/link';
 import {
   Plus,
@@ -568,7 +567,6 @@ function LosoreContent() {
         </div>
       </div>
 
-      <BottomNav />
     </div>
   );
 }

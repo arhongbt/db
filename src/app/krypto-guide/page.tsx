@@ -1,7 +1,6 @@
 'use client';
 
 import { useLanguage } from '@/lib/i18n';
-import { BottomNav } from '@/components/ui/BottomNav';
 import {
   AlertTriangle,
   Bitcoin,
@@ -297,7 +296,6 @@ export default function KryptoGuidePage() {
         </a>
       </div>
 
-      <BottomNav />
     </div>
   );
 }
