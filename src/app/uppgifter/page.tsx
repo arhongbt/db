@@ -171,7 +171,7 @@ function UppgifterContent() {
         >
           <div className="flex items-center gap-2">
             <CheckCircle2 className="w-5 h-5 text-success" />
-            <p className="font-medium text-primary text-sm">
+            <p className="font-display text-primary text-sm">
               {t('Alla uppgifter klara! Du har gått vidare till:', 'All tasks completed! You have advanced to:')} {STEP_LABELS[advancedTo]}
             </p>
           </div>
@@ -316,7 +316,7 @@ function UppgifterContent() {
                     {statusIcon(task.status)}
                     <div className="flex-1 min-w-0">
                       <p
-                        className={`font-medium ${
+                        className={`font-display text-[15px] ${
                           task.status === 'klar'
                             ? 'line-through text-muted'
                             : 'text-primary'
@@ -418,7 +418,7 @@ function UppgifterContent() {
       {filtered.length === 0 && (
         <div className="flex-1 flex flex-col items-center justify-center text-center py-12">
           <CheckCircle2 className="w-16 h-16 text-success mb-4" />
-          <h2 className="text-lg font-medium text-primary">
+          <h2 className="text-lg font-display text-primary">
             {showDone ? t('Inga uppgifter i denna kategori', 'No tasks in this category') : t('Alla uppgifter klara!', 'All tasks completed!')}
           </h2>
         </div>

@@ -34,7 +34,7 @@ export function generateTasks(onboarding: OnboardingData): DodsboTask[] {
     priority: 'akut',
     deadlineDays: 3,
     helpText: 'Dödsbeviset behövs för allt — bank, försäkring, begravning.',
-    externalUrl: 'https://www.skatteverket.se/privat/folkbokforing/dodsfall',
+    externalUrl: 'https://www.skatteverket.se/privat/folkbokforing/narenanhorigdor',
   });
 
   tasks.push({
@@ -196,7 +196,7 @@ export function generateTasks(onboarding: OnboardingData): DodsboTask[] {
     status: 'ej_paborjad',
     priority: 'normal',
     deadlineDays: 365,
-    externalUrl: 'https://www.skatteverket.se/privat/folkbokforing/dodsfall',
+    externalUrl: 'https://www.skatteverket.se/privat/folkbokforing/narenanhorigdor',
   });
 
   return tasks;
