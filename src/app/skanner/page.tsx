@@ -2,6 +2,7 @@
 
 import { useState, useRef, useCallback } from 'react';
 import { useLanguage } from '@/lib/i18n';
+import { PaywallGate } from '@/components/PaywallGate';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowLeft, Camera, Upload, FileText, Check, X, Loader2, Eye } from 'lucide-react';
@@ -134,6 +135,7 @@ export default function SkannerPage() {
   };
 
   return (
+    <PaywallGate feature="scanner">
     <div className="min-h-dvh bg-background pb-28">
       <div className="flex flex-col min-h-[calc(100dvh-5rem)] px-6 py-8">
         <Link href="/dashboard" className="inline-flex items-center gap-2 text-sm text-muted hover:text-primary mb-6">
@@ -306,5 +308,6 @@ export default function SkannerPage() {
         )}
       </div>
     </div>
+    </PaywallGate>
   );
 }

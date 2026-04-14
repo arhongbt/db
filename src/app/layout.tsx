@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import { AuthProvider } from '@/lib/auth/context';
+import { SubscriptionProvider } from '@/lib/subscription/context';
 import { LanguageProvider } from '@/lib/i18n';
 import { ServiceWorkerRegistration } from '@/components/ServiceWorkerRegistration';
 import { CookieBanner } from '@/components/CookieBanner';
@@ -196,6 +197,7 @@ export default function RootLayout({
           Hoppa till innehål
         </a>
         <AuthProvider>
+          <SubscriptionProvider>
           <LanguageProvider>
             <AppSettingsProvider>
               <ServiceWorkerRegistration />
@@ -209,6 +211,7 @@ export default function RootLayout({
               <BottomNav />
             </AppSettingsProvider>
           </LanguageProvider>
+          </SubscriptionProvider>
         </AuthProvider>
         <CookieBanner />
         <Analytics />

@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useLanguage } from '@/lib/i18n';
 import { DodsboProvider, useDodsbo } from '@/lib/context';
+import { PaywallGate } from '@/components/PaywallGate';
 import { JuridiskTooltip } from '@/components/ui/JuridiskTooltip';
 import Link from 'next/link';
 import {
@@ -1865,8 +1866,10 @@ function BodelningContent() {
 
 export default function BodelningPage() {
   return (
-    <DodsboProvider>
-      <BodelningContent />
-    </DodsboProvider>
+    <PaywallGate feature="bodelning">
+      <DodsboProvider>
+        <BodelningContent />
+      </DodsboProvider>
+    </PaywallGate>
   );
 }

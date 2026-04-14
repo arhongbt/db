@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useLanguage } from '@/lib/i18n';
 import { DodsboProvider, useDodsbo } from '@/lib/context';
+import { PaywallGate } from '@/components/PaywallGate';
 import Link from 'next/link';
 import {
   ArrowLeft,
@@ -442,8 +443,10 @@ Skapat med Sista Resan — ${today}`;
 
 export default function ArvskifteshandlingPage() {
   return (
-    <DodsboProvider>
-      <ArvskifteContent />
-    </DodsboProvider>
+    <PaywallGate feature="arvskifteshandling">
+      <DodsboProvider>
+        <ArvskifteContent />
+      </DodsboProvider>
+    </PaywallGate>
   );
 }

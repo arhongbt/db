@@ -5,6 +5,7 @@ import { useLanguage } from '@/lib/i18n';
 import Link from 'next/link';
 import { ArrowLeft, Download, Package, FileText, FileSpreadsheet, Loader2, Check } from 'lucide-react';
 import { DodsboProvider, useDodsbo } from '@/lib/context';
+import { PaywallGate } from '@/components/PaywallGate';
 
 function ExporteraContent() {
   const { state } = useDodsbo();
@@ -244,8 +245,10 @@ function generateTasksTxt(state: any): string {
 
 export default function ExporteraPage() {
   return (
-    <DodsboProvider>
-      <ExporteraContent />
-    </DodsboProvider>
+    <PaywallGate feature="exportera">
+      <DodsboProvider>
+        <ExporteraContent />
+      </DodsboProvider>
+    </PaywallGate>
   );
 }

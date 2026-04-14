@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { DodsboProvider, useDodsbo } from '@/lib/context';
 import { useLanguage } from '@/lib/i18n';
+import { TrialBanner } from '@/components/ui/TrialBanner';
 import {
   AlertTriangle,
   CheckCircle2,
@@ -175,6 +176,9 @@ function DashboardContent() {
 
   return (
     <div className="flex flex-col min-h-[calc(100dvh-5rem)] px-6 py-8 pb-28">
+
+      {/* ── Trial Banner ── */}
+      <TrialBanner />
 
       {/* ── Greeting — Tiimo-inspired display font ── */}
       <div className="flex items-start justify-between mb-8">

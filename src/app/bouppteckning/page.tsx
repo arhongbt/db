@@ -3,6 +3,8 @@
 import { useEffect, useState } from 'react';
 import { useLanguage } from '@/lib/i18n';
 import { DodsboProvider, useDodsbo } from '@/lib/context';
+import { useSubscription } from '@/lib/subscription/context';
+import { PaywallGate } from '@/components/PaywallGate';
 import { JuridiskTooltip } from '@/components/ui/JuridiskTooltip';
 import { BankIDVerification } from '@/components/BankIDVerification';
 import Link from 'next/link';
@@ -482,6 +484,7 @@ function BouppteckningContent() {
       )}
 
       {/* Generate / Preview buttons */}
+      <PaywallGate feature="bouppteckningPDF" inline>
       <div className="flex flex-col gap-3">
         <button
           onClick={() => {
@@ -519,6 +522,7 @@ function BouppteckningContent() {
           </p>
         )}
       </div>
+      </PaywallGate>
 
       {!allDone && (
         <p className="text-center text-xs text-muted mt-2">

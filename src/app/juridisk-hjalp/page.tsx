@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { useLanguage } from '@/lib/i18n';
 import { DodsboProvider, useDodsbo } from '@/lib/context';
+import { PaywallGate } from '@/components/PaywallGate';
 import { BankIDVerification } from '@/components/BankIDVerification';
 import Link from 'next/link';
 import {
@@ -671,8 +672,10 @@ function JuridiskHjalpContent() {
 
 export default function JuridiskHjalpPage() {
   return (
-    <DodsboProvider>
-      <JuridiskHjalpContent />
-    </DodsboProvider>
+    <PaywallGate feature="mikeRoss">
+      <DodsboProvider>
+        <JuridiskHjalpContent />
+      </DodsboProvider>
+    </PaywallGate>
   );
 }

@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useLanguage } from '@/lib/i18n';
+import { useSubscription } from '@/lib/subscription/context';
 import { PaymentFlow } from '@/components/PaymentFlow';
 import Link from 'next/link';
 import {
@@ -17,10 +18,10 @@ import {
   ArrowRight,
   HelpCircle,
   Scale,
-  Infinity as InfinityIcon,
+  Clock,
 } from 'lucide-react';
 
-type PlanKey = 'free' | 'bas' | 'familj' | 'lifetime';
+type PlanKey = 'trial' | 'standard' | 'pro';
 
 interface PlanFeature {
   text: string;
@@ -30,6 +31,7 @@ interface PlanFeature {
 
 export default function PriserPage() {
   const { t } = useLanguage();
+  const { tier, trialDaysLeft, isTrialActive, isTrialExpired, isPaid, upgradeTo } = useSubscription();
   const [selectedPlan, setSelectedPlan] = useState<PlanKey | null>(null);
   const [showPayment, setShowPayment] = useState(false);
   const [showFAQ, setShowFAQ] = useState<number | null>(null);
@@ -43,172 +45,148 @@ export default function PriserPage() {
     icon: typeof Zap;
     accent: string;
     popular?: boolean;
-    anchor?: boolean;
     users: string;
     features: PlanFeature[];
     cta: string;
-    savings?: string;
   }> = {
-    free: {
-      name: t('Gratis', 'Free'),
+    trial: {
+      name: t('Provperiod', 'Trial'),
       price: 0,
-      period: t('f\u00f6r alltid', 'forever'),
-      tagline: t('Kom ig\u00e5ng utan kostnad', 'Get started for free'),
+      period: t('7 dagar', '7 days'),
+      tagline: t('Testa allt utan kostnad', 'Try everything for free'),
       description: t(
-        'Grundl\u00e4ggande verktyg f\u00f6r att komma ig\u00e5ng',
-        'Basic tools to get you started'
+        'Full tillgång till alla funktioner i 7 dagar. Inget betalkort krävs.',
+        'Full access to all features for 7 days. No credit card required.'
       ),
-      icon: Zap,
+      icon: Clock,
       accent: '#6B7F5E',
-      users: t('1 anv\u00e4ndare', '1 user'),
+      users: t('1 användare', '1 user'),
       features: [
-        { text: t('Checklista f\u00f6r d\u00f6dsbo', 'Estate checklist'), included: true },
-        { text: t('Ordlista & FAQ', 'Glossary & FAQ'), included: true },
-        { text: t('Grundl\u00e4ggande guider', 'Basic guides'), included: true },
-        { text: t('Tidsfrister & p\u00e5minnelser', 'Deadlines & reminders'), included: true },
-        { text: t('Kostnadskalkylator', 'Cost calculator'), included: true },
-        { text: t('Arvskalkylator (begr\u00e4nsad)', 'Inheritance calculator (limited)'), included: true },
-        { text: t('Dokumentskanner', 'Document scanner'), included: false },
-        { text: t('AI-jurist Mike Ross', 'AI lawyer Mike Ross'), included: false },
+        { text: t('Alla funktioner i 7 dagar', 'All features for 7 days'), included: true, highlight: true },
+        { text: t('AI-jurist Mike Ross', 'AI lawyer Mike Ross'), included: true },
+        { text: t('Bouppteckning & bodelning', 'Estate inventory & property division'), included: true },
+        { text: t('Dokumentgenerering & export', 'Document generation & export'), included: true },
+        { text: t('Dokumentskanner med OCR', 'Document scanner with OCR'), included: true },
+        { text: t('Checklistor & tidsfrister', 'Checklists & deadlines'), included: true },
       ],
-      cta: t('Kom ig\u00e5ng gratis', 'Get started free'),
+      cta: isTrialActive
+        ? t(`${trialDaysLeft} dagar kvar`, `${trialDaysLeft} days left`)
+        : isTrialExpired
+          ? t('Provperioden har gått ut', 'Trial has expired')
+          : t('Starta gratis provperiod', 'Start free trial'),
     },
-    bas: {
-      name: t('Bas', 'Basic'),
-      price: 499,
-      period: t('eng\u00e5ngsbelopp', 'one-time'),
-      tagline: t('F\u00f6r enklare d\u00f6dsbon', 'For simpler estates'),
+    standard: {
+      name: 'Standard',
+      price: 99,
+      period: t('kr/mån', 'kr/month'),
+      tagline: t('Allt du behöver för att komma igång', 'Everything you need to get started'),
       description: t(
-        'Perfekt n\u00e4r du sk\u00f6ter d\u00f6dsboet sj\u00e4lv',
-        'Perfect when you manage the estate yourself'
+        'Checklistor, tidslinjer, uppgiftshantering och grundläggande guider.',
+        'Checklists, timelines, task management and basic guides.'
       ),
       icon: Shield,
       accent: '#6B7F5E',
-      users: t('1 anv\u00e4ndare', '1 user'),
+      users: t('1 användare', '1 user'),
       features: [
-        { text: t('Allt i Gratis', 'Everything in Free'), included: true },
-        { text: t('Bouppteckning steg-f\u00f6r-steg', 'Estate inventory step-by-step'), included: true },
-        { text: t('Arvskalkylator (full)', 'Inheritance calculator (full)'), included: true },
-        { text: t('Dokumentskanner med OCR', 'Document scanner with OCR'), included: true },
-        { text: t('Exportera dokument (PDF/Word)', 'Export documents (PDF/Word)'), included: true },
-        { text: t('AI-jurist Mike Ross (begr\u00e4nsad)', 'AI lawyer Mike Ross (limited)'), included: true },
-        { text: t('Samarbete med familjen', 'Family collaboration'), included: false },
+        { text: t('Checklista för dödsbo', 'Estate checklist'), included: true },
+        { text: t('Tidslinje & uppgiftshantering', 'Timeline & task management'), included: true },
+        { text: t('Ordlista & FAQ', 'Glossary & FAQ'), included: true },
+        { text: t('Grundläggande guider', 'Basic guides'), included: true },
+        { text: t('Tidsfrister & påminnelser', 'Deadlines & reminders'), included: true },
+        { text: t('Kostnadskalkylator', 'Cost calculator'), included: true },
+        { text: t('AI-jurist Mike Ross', 'AI lawyer Mike Ross'), included: false },
         { text: t('Bodelningswizard', 'Property division wizard'), included: false },
+        { text: t('Dokumentgenerering', 'Document generation'), included: false },
       ],
-      cta: t('V\u00e4lj Bas', 'Choose Basic'),
+      cta: tier === 'standard' ? t('Din nuvarande plan', 'Your current plan') : t('Välj Standard', 'Choose Standard'),
     },
-    familj: {
-      name: t('Familj', 'Family'),
-      price: 899,
-      period: t('eng\u00e5ngsbelopp', 'one-time'),
-      tagline: t('B\u00e4st f\u00f6r de flesta familjer', 'Best for most families'),
+    pro: {
+      name: 'Pro',
+      price: 249,
+      period: t('kr/mån', 'kr/month'),
+      tagline: t('Fullständig tillgång till allt', 'Full access to everything'),
       description: t(
-        'Allt du beh\u00f6ver f\u00f6r att sk\u00f6ta hela d\u00f6dsboet tillsammans',
-        'Everything you need to manage the estate together'
-      ),
-      icon: Users,
-      accent: '#6B7F5E',
-      popular: true,
-      users: t('Upp till 3 anv\u00e4ndare', 'Up to 3 users'),
-      savings: t('Spara 300 kr vs. Bas per person', 'Save 300 kr vs. Basic per person'),
-      features: [
-        { text: t('Allt i Bas', 'Everything in Basic'), included: true, highlight: true },
-        { text: t('Samarbete med familjen', 'Family collaboration'), included: true },
-        { text: t('Bodelningswizard', 'Property division wizard'), included: true },
-        { text: t('AI-jurist Mike Ross (obegr\u00e4nsad)', 'AI lawyer Mike Ross (unlimited)'), included: true },
-        { text: t('Avancerad bodelning', 'Advanced property division'), included: true },
-        { text: t('Digitala tillg\u00e5ngar', 'Digital assets'), included: true },
-        { text: t('Fullmaktsgenerator', 'Power of attorney generator'), included: true },
-        { text: t('Skatteoptimering', 'Tax optimization'), included: true },
-        { text: t('Internationella d\u00f6dsbon', 'International estates'), included: false },
-        { text: t('Obegr\u00e4nsat antal anv\u00e4ndare', 'Unlimited users'), included: false },
-      ],
-      cta: t('V\u00e4lj Familj', 'Choose Family'),
-    },
-    lifetime: {
-      name: t('Lifetime Familj', 'Lifetime Family'),
-      price: 2499,
-      period: t('en g\u00e5ng \u2014 f\u00f6r alltid', 'one-time \u2014 forever'),
-      tagline: t('V\u00e5r kompletta upplevelse', 'Our complete experience'),
-      description: t(
-        'Obegr\u00e4nsade anv\u00e4ndare, alla framtida uppdateringar, personlig jurist',
-        'Unlimited users, all future updates, personal lawyer'
+        'AI-jurist, dokumentgenerering, bodelningswizard, skanner och allt annat — obegränsat.',
+        'AI lawyer, document generation, property division wizard, scanner and everything else — unlimited.'
       ),
       icon: Crown,
-      accent: '#8B6914',
-      anchor: true,
-      users: t('Obegr\u00e4nsat antal anv\u00e4ndare', 'Unlimited users'),
+      accent: '#6B7F5E',
+      popular: true,
+      users: t('Upp till 5 användare', 'Up to 5 users'),
       features: [
-        { text: t('Allt i Familj', 'Everything in Family'), included: true, highlight: true },
-        { text: t('Obegr\u00e4nsat antal familjemedlemmar', 'Unlimited family members'), included: true, highlight: true },
-        { text: t('Alla framtida uppdateringar', 'All future updates'), included: true },
-        { text: t('Internationella d\u00f6dsbon', 'International estates'), included: true },
-        { text: t('F\u00f6retag i d\u00f6dsbo (AB, HB, enskild firma)', 'Business in estate (Ltd, partnerships, sole trader)'), included: true },
-        { text: t('Kryptovaluta-guide', 'Cryptocurrency guide'), included: true },
-        { text: t('Personlig jurist (60 min konsultation)', 'Personal lawyer (60 min consultation)'), included: true },
-        { text: t('Prioriterad support 24/7', 'Priority support 24/7'), included: true },
-        { text: t('Dedikerad kundansvarig', 'Dedicated account manager'), included: true },
+        { text: t('Allt i Standard', 'Everything in Standard'), included: true, highlight: true },
+        { text: t('AI-jurist Mike Ross (obegränsad)', 'AI lawyer Mike Ross (unlimited)'), included: true },
+        { text: t('Bodelningswizard', 'Property division wizard'), included: true },
+        { text: t('Generera bouppteckning (PDF)', 'Generate estate inventory (PDF)'), included: true },
+        { text: t('Arvskifteshandling', 'Inheritance settlement document'), included: true },
+        { text: t('Dokumentskanner med OCR', 'Document scanner with OCR'), included: true },
+        { text: t('Exportera alla dokument', 'Export all documents'), included: true },
+        { text: t('Samarbete med familjen', 'Family collaboration'), included: true },
+        { text: t('Avancerade guider (internationellt, krypto)', 'Advanced guides (international, crypto)'), included: true },
+        { text: t('Prioriterad support', 'Priority support'), included: true },
       ],
-      cta: t('V\u00e4lj Lifetime', 'Choose Lifetime'),
+      cta: tier === 'pro' ? t('Din nuvarande plan', 'Your current plan') : t('Välj Pro', 'Choose Pro'),
     },
   };
 
   const faqs = [
     {
-      q: t('Vad \u00e4r skillnaden mellan Familj och Lifetime?', 'What\u2019s the difference between Family and Lifetime?'),
+      q: t('Hur fungerar provperioden?', 'How does the trial work?'),
       a: t(
-        'Familj passar de flesta: upp till 3 anv\u00e4ndare och alla kritiska verktyg. Lifetime \u00e4r f\u00f6r st\u00f6rre eller mer komplexa d\u00f6dsbon \u2014 obegr\u00e4nsat antal familjemedlemmar, internationella arv, f\u00f6retag i d\u00f6dsbo, krypto, personlig jurist och alla framtida uppdateringar.',
-        'Family suits most: up to 3 users and all critical tools. Lifetime is for larger or more complex estates \u2014 unlimited family members, international estates, business in estate, crypto, personal lawyer and all future updates.'
+        'Du får 7 dagars full tillgång till alla funktioner direkt — inget betalkort krävs. När provperioden tar slut väljer du Standard eller Pro.',
+        'You get 7 days of full access to all features immediately — no credit card required. When the trial ends, you choose Standard or Pro.'
       ),
     },
     {
-      q: t('\u00c4r det verkligen eng\u00e5ngsbelopp?', 'Is it really a one-time fee?'),
+      q: t('Vad är skillnaden mellan Standard och Pro?', 'What\'s the difference between Standard and Pro?'),
       a: t(
-        'Ja! Alla v\u00e5ra planer \u00e4r eng\u00e5ngsbetalningar. Du betalar en g\u00e5ng och har tillg\u00e5ng till alla funktioner s\u00e5 l\u00e4nge du beh\u00f6ver. Inga dolda avgifter eller prenumerationer.',
-        'Yes! All our plans are one-time payments. You pay once and have access to all features for as long as you need. No hidden fees or subscriptions.'
+        'Standard ger dig alla grundläggande verktyg: checklistor, tidslinjer och guider. Pro lägger till AI-juristen Mike Ross, dokumentgenerering (bouppteckning, arvskifte), bodelningswizard, skanner och avancerade guider.',
+        'Standard gives you all basic tools: checklists, timelines and guides. Pro adds AI lawyer Mike Ross, document generation (estate inventory, inheritance settlement), property division wizard, scanner and advanced guides.'
       ),
     },
     {
-      q: t('Kan jag uppgradera senare?', 'Can I upgrade later?'),
+      q: t('Kan jag uppgradera från Standard till Pro?', 'Can I upgrade from Standard to Pro?'),
       a: t(
-        'Absolut. Du betalar bara mellanskillnaden om du vill uppgradera \u2014 t.ex. fr\u00e5n Bas till Familj eller fr\u00e5n Familj till Lifetime.',
-        'Absolutely. You only pay the difference if you want to upgrade \u2014 e.g. from Basic to Family or from Family to Lifetime.'
+        'Ja, du kan uppgradera när som helst. Du betalar bara det nya priset från och med nästa period.',
+        'Yes, you can upgrade at any time. You just pay the new price starting from the next period.'
       ),
     },
     {
-      q: t('Vilken plan v\u00e4ljer de flesta?', 'Which plan do most people choose?'),
+      q: t('Kan jag avbryta när jag vill?', 'Can I cancel anytime?'),
       a: t(
-        '91% av v\u00e5ra kunder v\u00e4ljer Familj. Den t\u00e4cker alla vanliga behov, ger upp till 3 anv\u00e4ndare och h\u00e5ller l\u00e4nge f\u00f6r de allra flesta d\u00f6dsbon.',
-        '91% of our customers choose Family. It covers all common needs, allows up to 3 users and is enough for the vast majority of estates.'
+        'Absolut. Du kan avbryta din prenumeration när som helst. Du behåller tillgång till slutet av den betalda perioden.',
+        'Absolutely. You can cancel your subscription anytime. You keep access until the end of the paid period.'
       ),
     },
     {
-      q: t('Vad inneb\u00e4r "alla framtida uppdateringar" i Lifetime?', 'What does \u201call future updates\u201d mean in Lifetime?'),
+      q: t('Ersätter appen en jurist?', 'Does the app replace a lawyer?'),
       a: t(
-        'Nya funktioner, mallar och guider som vi utvecklar fram\u00f6ver ing\u00e5r automatiskt \u2014 du beh\u00f6ver aldrig betala f\u00f6r uppdateringar igen.',
-        'New features, templates and guides we develop in the future are automatically included \u2014 you never pay for updates again.'
+        'Nej, appen ger dig verktyg och vägledning för att hantera dödsboet effektivt. AI-juristen Mike Ross hjälper med juridiska frågor men ersätter inte en auktoriserad jurist.',
+        'No, the app provides tools and guidance to manage the estate efficiently. AI lawyer Mike Ross helps with legal questions but does not replace a licensed attorney.'
       ),
     },
     {
-      q: t('Kan jag f\u00e5 pengarna tillbaka?', 'Can I get a refund?'),
+      q: t('Kan jag få pengarna tillbaka?', 'Can I get a refund?'),
       a: t(
-        'Du har 14 dagars \u00e5ngerr\u00e4tt enligt svensk konsumentlag p\u00e5 alla planer. Kontakta oss s\u00e5 l\u00f6ser vi det.',
-        'You have a 14-day right of withdrawal under Swedish consumer law on all plans. Contact us and we\u2019ll sort it out.'
-      ),
-    },
-    {
-      q: t('Ers\u00e4tter appen en jurist?', 'Does the app replace a lawyer?'),
-      a: t(
-        'Nej, appen ger dig verktyg och v\u00e4gledning f\u00f6r att hantera d\u00f6dsboet effektivt. Lifetime inkluderar dock en personlig juristkonsultation f\u00f6r komplexa fr\u00e5gor.',
-        'No, the app provides tools and guidance to manage the estate efficiently. However, Lifetime does include a personal lawyer consultation for complex questions.'
+        'Du har 14 dagars ångerrätt enligt svensk konsumentlag. Kontakta oss så löser vi det.',
+        'You have a 14-day right of withdrawal under Swedish consumer law. Contact us and we\'ll sort it out.'
       ),
     },
   ];
 
   const handleChoosePlan = (plan: PlanKey) => {
-    if (plan === 'free') return;
+    if (plan === 'trial') return;
+    if ((plan === 'standard' && tier === 'standard') || (plan === 'pro' && tier === 'pro')) return;
     setSelectedPlan(plan);
     setShowPayment(true);
+  };
+
+  const handlePaymentComplete = () => {
+    if (selectedPlan === 'standard' || selectedPlan === 'pro') {
+      upgradeTo(selectedPlan);
+    }
+    setShowPayment(false);
+    setSelectedPlan(null);
   };
 
   return (
@@ -220,24 +198,46 @@ export default function PriserPage() {
           {t('Tillbaka', 'Back')}
         </Link>
         <h1 className="text-3xl font-display text-primary leading-tight">
-          {t('V\u00e4lj din plan.', 'Choose your plan.')}
+          {t('Välj din plan.', 'Choose your plan.')}
         </h1>
         <h2 className="text-3xl font-display leading-tight" style={{ color: 'var(--muted)' }}>
-          {t('Betala en g\u00e5ng. Anv\u00e4nd f\u00f6r alltid.', 'Pay once. Use forever.')}
+          {t('Börja med 7 dagars gratis.', 'Start with 7 days free.')}
         </h2>
         <p className="text-muted mt-3 text-sm leading-relaxed">
           {t(
-            'Fyra planer att v\u00e4lja mellan \u2014 fr\u00e5n gratis till v\u00e5r kompletta Lifetime-upplevelse.',
-            'Four plans to choose from \u2014 from free to our complete Lifetime experience.'
+            'Testa alla funktioner gratis i 7 dagar. Välj sedan den plan som passar dig bäst.',
+            'Try all features free for 7 days. Then choose the plan that suits you best.'
           )}
         </p>
       </div>
+
+      {/* Trial status banner */}
+      {(isTrialActive || isTrialExpired) && !isPaid && (
+        <div className="px-6 mb-4">
+          <div
+            className="rounded-2xl p-4 flex items-center gap-3"
+            style={{
+              background: isTrialExpired
+                ? 'rgba(217,119,87,0.08)'
+                : 'rgba(107,127,94,0.08)',
+              border: `1px solid ${isTrialExpired ? 'rgba(217,119,87,0.2)' : 'rgba(107,127,94,0.15)'}`,
+            }}
+          >
+            <Clock className="w-5 h-5 flex-shrink-0" style={{ color: isTrialExpired ? '#D97757' : '#6B7F5E' }} />
+            <p className="text-sm text-primary">
+              {isTrialExpired
+                ? t('Din provperiod har gått ut. Välj en plan för att fortsätta.', 'Your trial has expired. Choose a plan to continue.')
+                : t(`${trialDaysLeft} dagar kvar av din provperiod.`, `${trialDaysLeft} days left of your trial.`)}
+            </p>
+          </div>
+        </div>
+      )}
 
       {/* Trust badges */}
       <div className="px-6 mb-4">
         <div className="flex flex-wrap gap-2">
           {[
-            { icon: Shield, text: t('GDPR-s\u00e4krad', 'GDPR-secured') },
+            { icon: Shield, text: t('GDPR-säkrad', 'GDPR-secured') },
             { icon: Users, text: t('2 000+ familjer', '2,000+ families') },
             { icon: Star, text: t('4.8/5 betyg', '4.8/5 rating') },
           ].map(({ icon: Icon, text }) => (
@@ -267,11 +267,11 @@ export default function PriserPage() {
             <Scale className="w-5 h-5 text-white" />
           </div>
           <div className="flex-1 min-w-0">
-            <p className="text-sm font-semibold text-primary">
+            <p className="text-sm font-display text-primary">
               {t('Boka digital juristkonsultation', 'Book a digital lawyer consultation')}
             </p>
             <p className="text-xs text-muted">
-              {t('Gratis f\u00f6rsta timme \u2014 v\u00e4lj tid direkt', 'Free first hour \u2014 pick a time directly')}
+              {t('Gratis första timme — välj tid direkt', 'Free first hour — pick a time directly')}
             </p>
           </div>
           <ArrowRight className="w-4 h-4 text-muted flex-shrink-0" />
@@ -280,11 +280,11 @@ export default function PriserPage() {
 
       {/* Plan cards */}
       <div className="px-6 space-y-4">
-        {(Object.keys(plans) as PlanKey[]).map((key) => {
+        {(['trial', 'standard', 'pro'] as PlanKey[]).map((key) => {
           const plan = plans[key];
           const isPopular = plan.popular;
-          const isAnchor = plan.anchor;
-          const isFree = key === 'free';
+          const isTrial = key === 'trial';
+          const isCurrentPlan = (key === 'standard' && tier === 'standard') || (key === 'pro' && tier === 'pro');
 
           return (
             <div
@@ -294,29 +294,30 @@ export default function PriserPage() {
                 background: 'var(--bg-card)',
                 border: isPopular
                   ? '2px solid #6B7F5E'
-                  : isAnchor
-                  ? '2px solid #D4AF37'
-                  : '1px solid var(--border)',
+                  : isCurrentPlan
+                    ? '2px solid #6B7F5E'
+                    : '1px solid var(--border)',
                 boxShadow: isPopular ? '0 8px 24px rgba(107, 127, 94, 0.15)' : 'none',
+                opacity: (isTrial && isTrialExpired) ? 0.6 : 1,
               }}
             >
-              {/* Popular / Anchor badge */}
-              {isPopular && (
+              {/* Popular badge */}
+              {isPopular && !isCurrentPlan && (
                 <div
-                  className="flex items-center justify-center gap-1.5 py-2.5 text-white text-xs font-semibold"
+                  className="flex items-center justify-center gap-1.5 py-2.5 text-white text-xs font-display"
                   style={{ background: '#6B7F5E' }}
                 >
                   <Sparkles className="w-3.5 h-3.5" />
-                  {t('Mest popul\u00e4r \u2014 91% v\u00e4ljer denna', 'Most popular \u2014 91% choose this')}
+                  {t('Mest populär', 'Most popular')}
                 </div>
               )}
-              {isAnchor && (
+              {isCurrentPlan && (
                 <div
-                  className="flex items-center justify-center gap-1.5 py-2.5 text-white text-xs font-semibold"
-                  style={{ background: 'linear-gradient(90deg, #8B6914, #D4AF37)' }}
+                  className="flex items-center justify-center gap-1.5 py-2.5 text-white text-xs font-display"
+                  style={{ background: '#6B7F5E' }}
                 >
-                  <Crown className="w-3.5 h-3.5" />
-                  {t('V\u00e5rt mest omfattande paket', 'Our most comprehensive package')}
+                  <Check className="w-3.5 h-3.5" />
+                  {t('Din nuvarande plan', 'Your current plan')}
                 </div>
               )}
 
@@ -326,14 +327,9 @@ export default function PriserPage() {
                   <div className="flex items-center gap-3">
                     <div
                       className="w-11 h-11 rounded-2xl flex items-center justify-center"
-                      style={{
-                        background: isAnchor ? 'rgba(139, 105, 20, 0.12)' : 'rgba(107, 127, 94, 0.12)',
-                      }}
+                      style={{ background: 'rgba(107, 127, 94, 0.12)' }}
                     >
-                      <plan.icon
-                        className="w-5 h-5"
-                        style={{ color: plan.accent }}
-                      />
+                      <plan.icon className="w-5 h-5" style={{ color: plan.accent }} />
                     </div>
                     <div>
                       <h3 className="font-display text-primary text-lg leading-tight">{plan.name}</h3>
@@ -341,12 +337,14 @@ export default function PriserPage() {
                     </div>
                   </div>
                   <div className="text-right">
-                    {isFree ? (
-                      <div className="text-3xl font-bold" style={{ color: plan.accent }}>0 kr</div>
+                    {isTrial ? (
+                      <div className="text-3xl font-display" style={{ color: plan.accent }}>
+                        {t('Gratis', 'Free')}
+                      </div>
                     ) : (
                       <>
-                        <div className="text-3xl font-bold text-primary leading-none">
-                          {plan.price.toLocaleString('sv-SE')} kr
+                        <div className="text-3xl font-display text-primary leading-none">
+                          {plan.price}
                         </div>
                         <div className="text-xs text-muted mt-1">{plan.period}</div>
                       </>
@@ -357,17 +355,6 @@ export default function PriserPage() {
                 {/* Tagline */}
                 <p className="text-sm font-medium text-primary mb-1">{plan.tagline}</p>
                 <p className="text-sm text-muted mb-4 leading-relaxed">{plan.description}</p>
-
-                {/* Savings tag for popular */}
-                {plan.savings && (
-                  <div
-                    className="inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-medium mb-4"
-                    style={{ background: 'rgba(107, 127, 94, 0.12)', color: '#5A6E4E' }}
-                  >
-                    <InfinityIcon className="w-3 h-3" />
-                    {plan.savings}
-                  </div>
-                )}
 
                 {/* Features */}
                 <div className="space-y-2.5 mb-6">
@@ -382,7 +369,7 @@ export default function PriserPage() {
                         <X className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: 'var(--border)' }} />
                       )}
                       <span
-                        className={`text-sm leading-snug ${feature.highlight ? 'font-semibold text-primary' : feature.included ? 'text-primary' : 'text-muted'}`}
+                        className={`text-sm leading-snug ${feature.highlight ? 'font-display text-primary' : feature.included ? 'text-primary' : 'text-muted'}`}
                       >
                         {feature.text}
                       </span>
@@ -393,27 +380,21 @@ export default function PriserPage() {
                 {/* CTA Button */}
                 <button
                   onClick={() => handleChoosePlan(key)}
-                  className="w-full py-3.5 rounded-2xl font-semibold text-sm transition-all flex items-center justify-center gap-2 hover:opacity-90 active:scale-[0.98]"
+                  disabled={isTrial || isCurrentPlan}
+                  className="w-full py-3.5 rounded-2xl font-display text-sm transition-all flex items-center justify-center gap-2 hover:opacity-90 active:scale-[0.98] disabled:opacity-50 disabled:cursor-default"
                   style={{
-                    background: isFree
+                    background: isTrial || isCurrentPlan
                       ? 'transparent'
-                      : isAnchor
-                      ? 'linear-gradient(135deg, #8B6914, #D4AF37)'
-                      : '#6B7F5E',
-                    color: isFree ? '#6B7F5E' : '#FFFFFF',
-                    border: isFree ? '2px solid #6B7F5E' : 'none',
+                      : isPopular
+                        ? 'linear-gradient(135deg, #6B7F5E, #5A6E4E)'
+                        : '#6B7F5E',
+                    color: isTrial || isCurrentPlan ? '#6B7F5E' : '#FFFFFF',
+                    border: isTrial || isCurrentPlan ? '2px solid var(--border)' : 'none',
                   }}
                 >
                   {plan.cta}
-                  {!isFree && <ArrowRight className="w-4 h-4" />}
+                  {!isTrial && !isCurrentPlan && <ArrowRight className="w-4 h-4" />}
                 </button>
-
-                {/* Lifetime note */}
-                {isAnchor && (
-                  <p className="text-xs text-center text-muted mt-3">
-                    {t('En g\u00e5ng. Ingen prenumeration. F\u00f6r alltid.', 'Once. No subscription. Forever.')}
-                  </p>
-                )}
               </div>
             </div>
           );
@@ -435,12 +416,12 @@ export default function PriserPage() {
             </div>
             <div>
               <h4 className="font-display text-primary text-sm mb-1">
-                {t('J\u00e4mf\u00f6relse', 'Comparison')}
+                {t('Jämförelse', 'Comparison')}
               </h4>
               <p className="text-xs text-muted leading-relaxed">
                 {t(
-                  'En traditionell jurist kostar 2 000\u20135 000 kr/timme. Bouppteckning med jurist: 15 000\u201340 000 kr. Med Sista Resan Familj (899 kr) sparar de flesta minst 14 000 kr.',
-                  'A traditional lawyer costs SEK 2,000\u20135,000/hour. Estate inventory with lawyer: SEK 15,000\u201340,000. With Sista Resan Family (899 kr) most people save at least 14,000 kr.'
+                  'En traditionell jurist kostar 2 000–5 000 kr/timme. Bouppteckning med jurist: 15 000–40 000 kr. Med Sista Resan Pro (249 kr/mån) sparar du tusenlappar.',
+                  'A traditional lawyer costs SEK 2,000–5,000/hour. Estate inventory with lawyer: SEK 15,000–40,000. With Sista Resan Pro (249 kr/month) you save thousands.'
                 )}
               </p>
             </div>
@@ -451,7 +432,7 @@ export default function PriserPage() {
       {/* FAQ Section */}
       <div className="px-6 mt-8">
         <h2 className="text-lg font-display text-primary mb-4">
-          {t('Vanliga fr\u00e5gor om priser', 'Pricing FAQ')}
+          {t('Vanliga frågor om priser', 'Pricing FAQ')}
         </h2>
         <div className="space-y-2">
           {faqs.map((faq, i) => (
@@ -485,33 +466,29 @@ export default function PriserPage() {
         >
           <Shield className="w-8 h-8 mx-auto mb-2" style={{ color: '#6B7F5E' }} />
           <h3 className="font-display text-primary text-sm mb-1">
-            {t('14 dagars \u00e5ngerr\u00e4tt', '14-day money-back guarantee')}
+            {t('14 dagars ångerrätt', '14-day money-back guarantee')}
           </h3>
           <p className="text-xs text-muted">
             {t(
-              'Inte n\u00f6jd? Du f\u00e5r pengarna tillbaka \u2014 inga fr\u00e5gor.',
-              'Not satisfied? Get your money back \u2014 no questions asked.'
+              'Inte nöjd? Du får pengarna tillbaka — inga frågor.',
+              'Not satisfied? Get your money back — no questions asked.'
             )}
           </p>
         </div>
       </div>
 
       {/* Payment Flow Modal */}
-      {showPayment && selectedPlan && (
+      {showPayment && selectedPlan && selectedPlan !== 'trial' && (
         <PaymentFlow
           amount={plans[selectedPlan].price}
           description={`Sista Resan ${plans[selectedPlan].name}`}
-          onComplete={() => {
-            setShowPayment(false);
-            setSelectedPlan(null);
-          }}
+          onComplete={handlePaymentComplete}
           onCancel={() => {
             setShowPayment(false);
             setSelectedPlan(null);
           }}
         />
       )}
-
     </main>
   );
 }
