@@ -146,7 +146,7 @@ function DelagareContent() {
   };
 
   return (
-    <div className="flex flex-col px-6 py-8 pb-28">
+    <div className="flex flex-col min-h-[calc(100dvh-5rem)] px-6 py-8 pb-28">
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <div>
@@ -160,7 +160,7 @@ function DelagareContent() {
         <button
           onClick={() => setShowForm(true)}
           className="w-12 h-12 text-white rounded-full flex items-center justify-center shadow-md hover:opacity-90 transition-opacity"
-          style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}
+          style={{ background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' }}
           aria-label="Lägg till dödsbodelägare"
         >
           <Plus className="w-6 h-6" />
@@ -184,7 +184,7 @@ function DelagareContent() {
       </button>
 
       {showArvsinfo && (
-        <div className="card mb-4" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02))', border: '1px solid rgba(122,158,126,0.15)' }}>
+        <div className="card mb-4" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}>
           <p className="font-medium text-primary mb-3">{arvsinfo.summary}</p>
 
           <div className="space-y-2 mb-4">

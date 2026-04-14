@@ -367,7 +367,7 @@ function JuridiskHjalpContent() {
   };
 
   return (
-    <div className="flex flex-col h-dvh bg-background">
+    <div className="flex flex-col min-h-[calc(100dvh-5rem)] bg-background">
       {/* Header */}
       <div className="flex items-center gap-3 px-5 py-3 border-b bg-background" style={{ borderColor: 'var(--border)' }}>
         <Link
@@ -378,7 +378,7 @@ function JuridiskHjalpContent() {
           <ArrowLeft className="w-5 h-5 text-primary" />
         </Link>
         <div className="flex items-center gap-3 flex-1">
-          <div className="w-10 h-10 rounded-full flex items-center justify-center shadow-sm" style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}>
+          <div className="w-10 h-10 rounded-full flex items-center justify-center shadow-sm" style={{ background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' }}>
             <Bot className="w-5 h-5 text-white" />
           </div>
           <div>
@@ -404,7 +404,7 @@ function JuridiskHjalpContent() {
               <button
                 onClick={() => setShowBankIDModal(true)}
                 className="mt-2 px-4 py-2.5 bg-accent text-white text-xs font-medium rounded-full hover:bg-accent/90 transition-colors"
-                style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}
+                style={{ background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' }}
               >
                 {t('Verifiera nu', 'Verify now')}
               </button>
@@ -445,7 +445,7 @@ function JuridiskHjalpContent() {
               ))}
             </div>
 
-            <div className="mt-6 p-3 rounded-[20px] max-w-sm border" style={{ background: 'linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02))', borderColor: 'rgba(122,158,126,0.15)' }}>
+            <div className="mt-6 p-3 rounded-[20px] max-w-sm border" style={{ background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', borderColor: 'rgba(107,127,94,0.15)' }}>
               <div className="flex gap-2">
                 <AlertTriangle className="w-4 h-4 text-warn flex-shrink-0 mt-0.5" />
                 <p className="text-xs text-primary">
@@ -461,7 +461,7 @@ function JuridiskHjalpContent() {
                 className="w-full p-3 rounded-[20px] border flex items-center gap-3 text-left hover:shadow-sm transition-all"
                 style={{ borderColor: 'var(--border)', background: 'var(--bg-card)' }}
               >
-                <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}>
+                <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' }}>
                   <Scale className="w-4 h-4 text-white" />
                 </div>
                 <div className="flex-1 min-w-0">
@@ -483,7 +483,7 @@ function JuridiskHjalpContent() {
             }`}
           >
             {msg.role === 'assistant' && (
-              <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 mt-1" style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}>
+              <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 mt-1" style={{ background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' }}>
                 <Bot className="w-4 h-4 text-white" />
               </div>
             )}
@@ -516,7 +516,7 @@ function JuridiskHjalpContent() {
         {/* Loading indicator — thinking animation */}
         {isLoading && (
           <div className="flex gap-3 mb-4">
-            <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}>
+            <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' }}>
               <Bot className="w-4 h-4 text-white" />
             </div>
             <div className="px-4 py-3 rounded-2xl rounded-bl-sm" style={{ background: 'var(--bg-card)' }}>
@@ -532,7 +532,7 @@ function JuridiskHjalpContent() {
         {/* Error */}
         {error && (
           <div className="flex justify-center mb-4">
-            <div className="border px-4 py-3 rounded-[20px] max-w-sm" style={{ background: 'linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02))', borderColor: 'rgba(122,158,126,0.15)' }}>
+            <div className="border px-4 py-3 rounded-[20px] max-w-sm" style={{ background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', borderColor: 'rgba(107,127,94,0.15)' }}>
               <div className="flex gap-2">
                 <AlertTriangle className="w-4 h-4 text-warn flex-shrink-0 mt-0.5" />
                 <p className="text-sm text-warn">{error}</p>
@@ -558,7 +558,7 @@ function JuridiskHjalpContent() {
         {/* Limit reached — prominent jurist CTA */}
         {isLimitReached && (
           <div className="mb-4 rounded-[28px] overflow-hidden border" style={{ borderColor: 'var(--border)' }}>
-            <div className="p-4" style={{ background: 'linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02))' }}>
+            <div className="p-4" style={{ background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))' }}>
               <div className="flex items-center gap-2 mb-2">
                 <Scale className="w-4 h-4 text-accent" />
                 <p className="text-sm font-bold text-primary">
@@ -585,7 +585,7 @@ function JuridiskHjalpContent() {
               <Link
                 href="/boka-jurist"
                 className="w-full py-3 text-sm font-semibold text-white rounded-[20px] flex items-center justify-center gap-2 transition-opacity hover:opacity-90"
-                style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}
+                style={{ background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' }}
               >
                 {t('Boka gratis konsultation', 'Book free consultation')}
                 <ChevronRight className="w-4 h-4" />
@@ -613,7 +613,7 @@ function JuridiskHjalpContent() {
                   onClick={() => sendMessage(t(chip.sv, chip.en))}
                   disabled={isLoading}
                   className="flex-shrink-0 px-4 py-2.5 border text-xs font-medium text-accent rounded-full hover:opacity-80 transition-opacity disabled:opacity-50"
-                  style={{ background: 'linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02))', borderColor: 'rgba(122,158,126,0.15)' }}
+                  style={{ background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', borderColor: 'rgba(107,127,94,0.15)' }}
                 >
                   {t(chip.sv, chip.en)}
                 </button>
@@ -640,7 +640,7 @@ function JuridiskHjalpContent() {
               className="p-3 bg-accent text-white rounded-[20px] hover:bg-accent/90
                          transition-all shadow-sm disabled:opacity-40 disabled:cursor-not-allowed
                          flex-shrink-0"
-              style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}
+              style={{ background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' }}
               aria-label={t('Skicka meddelande', 'Send message')}
             >
               <Send className="w-5 h-5" />

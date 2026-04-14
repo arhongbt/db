@@ -402,7 +402,7 @@ function FullmaktContent() {
       </p>
 
       {bankLetters.length > 0 && (
-        <div className="card mb-6" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02))', border: '1px solid rgba(122,158,126,0.15)' }}>
+        <div className="card mb-6" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}>
           <div className="flex items-start gap-2">
             <CheckCircle2 className="w-5 h-5 text-success flex-shrink-0 mt-0.5" />
             <p className="text-sm text-primary/80">
@@ -490,7 +490,7 @@ function FullmaktContent() {
                               downloadDocumentDocx(template.title, generatedText, template.title);
                             }}
                             className="flex-1 py-2 px-3 rounded-xl text-white font-medium hover:opacity-90 transition-colors flex items-center justify-center gap-2 text-sm"
-                            style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}
+                            style={{ background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' }}
                           >
                             <FileSignature className="w-4 h-4" />
                             Word

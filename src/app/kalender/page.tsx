@@ -211,7 +211,7 @@ function CalendarContent() {
     : [];
 
   return (
-    <div className="flex flex-col px-6 py-8 pb-28 animate-fadeIn">
+    <div className="flex flex-col min-h-[calc(100dvh-5rem)] px-6 py-8 pb-28 animate-fadeIn">
       {/* Header */}
       <div className="flex items-center gap-3 mb-6">
         <Link
@@ -223,7 +223,7 @@ function CalendarContent() {
         </Link>
         <div>
           <h1 className="text-2xl font-display text-primary flex items-center gap-2">
-            <Calendar className="w-6 h-6 text-[#7A9E7E]" />
+            <Calendar className="w-6 h-6 text-[#6B7F5E]" />
             {t('Kalender', 'Calendar')}
           </h1>
           <p className="text-muted text-sm mt-1">
@@ -242,8 +242,8 @@ function CalendarContent() {
       />
 
       {/* Share hint card */}
-      <div className="card mb-5 flex items-start gap-3" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02))', border: '1px solid rgba(122,158,126,0.15)' }}>
-        <Share2 className="w-5 h-5 text-[#7A9E7E] flex-shrink-0 mt-0.5" />
+      <div className="card mb-5 flex items-start gap-3" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}>
+        <Share2 className="w-5 h-5 text-[#6B7F5E] flex-shrink-0 mt-0.5" />
         <div>
           <p className="text-sm font-medium text-primary">{t('Framtida funktion', 'Coming soon')}</p>
           <p className="text-xs text-primary/70 mt-1">
@@ -305,7 +305,7 @@ function CalendarContent() {
                     !day
                       ? 'text-transparent'
                       : isToday
-                      ? 'bg-[#7A9E7E] text-white'
+                      ? 'bg-[#6B7F5E] text-white'
                       : dayEvents.length > 0
                       ? 'bg-primary/5 text-primary hover:bg-primary/10'
                       : 'text-primary hover:bg-[#E8E4DE]'
@@ -340,7 +340,7 @@ function CalendarContent() {
               setSelectedDate(null);
             }}
             className="w-full card text-white py-3 rounded-2xl font-medium flex items-center justify-center gap-2 hover:opacity-90 transition-opacity"
-            style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}
+            style={{ background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' }}
             aria-label={t('Lägg till händelse', 'Add event')}
           >
             <Plus className="w-5 h-5" />
@@ -381,7 +381,7 @@ function CalendarContent() {
               {selectedDayEvents.map((event) => {
                 const colors = CATEGORY_COLORS[event.category];
                 return (
-                  <div key={event.id} className={`card ${colors.bg} ${colors.text}`} style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02))', border: '1px solid rgba(122,158,126,0.15)' }}>
+                  <div key={event.id} className={`card ${colors.bg} ${colors.text}`} style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}>
                     <div className="flex items-start justify-between gap-3">
                       <div className="flex-1">
                         <p className="font-semibold">{event.title}</p>
@@ -433,7 +433,7 @@ function CalendarContent() {
               setFormDate(selectedDate || '');
             }}
             className="w-full card text-white py-3 rounded-2xl font-medium flex items-center justify-center gap-2 hover:opacity-90 transition-opacity"
-            style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}
+            style={{ background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' }}
             aria-label={t('Lägg till händelse denna dag', 'Add event this day')}
           >
             <Plus className="w-5 h-5" />
@@ -469,7 +469,7 @@ function CalendarContent() {
               value={formTitle}
               onChange={(e) => setFormTitle(e.target.value)}
               placeholder={t('T.ex. Möte med advokat', 'E.g. Meeting with lawyer')}
-              className="w-full px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-[20px] focus:border-[#7A9E7E] focus:outline-none"
+              className="w-full px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-[20px] focus:border-[#6B7F5E] focus:outline-none"
             />
           </label>
 
@@ -479,7 +479,7 @@ function CalendarContent() {
               type="date"
               value={formDate}
               onChange={(e) => setFormDate(e.target.value)}
-              className="w-full px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-[20px] focus:border-[#7A9E7E] focus:outline-none"
+              className="w-full px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-[20px] focus:border-[#6B7F5E] focus:outline-none"
             />
           </label>
 
@@ -489,7 +489,7 @@ function CalendarContent() {
               type="time"
               value={formTime}
               onChange={(e) => setFormTime(e.target.value)}
-              className="w-full px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-[20px] focus:border-[#7A9E7E] focus:outline-none"
+              className="w-full px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-[20px] focus:border-[#6B7F5E] focus:outline-none"
             />
           </label>
 
@@ -502,8 +502,8 @@ function CalendarContent() {
                   onClick={() => setFormCategory(cat)}
                   className={`py-2 px-3 rounded-full text-sm font-medium border-2 transition-colors ${
                     formCategory === cat
-                      ? `border-[#7A9E7E] ${CATEGORY_COLORS[cat].bg} text-primary`
-                      : 'border-[#E8E4DE] text-muted hover:border-[#7A9E7E]/50'
+                      ? `border-[#6B7F5E] ${CATEGORY_COLORS[cat].bg} text-primary`
+                      : 'border-[#E8E4DE] text-muted hover:border-[#6B7F5E]/50'
                   }`}
                 >
                   {t(CATEGORY_LABELS[cat].sv, CATEGORY_LABELS[cat].en)}
@@ -519,7 +519,7 @@ function CalendarContent() {
               onChange={(e) => setFormNotes(e.target.value)}
               placeholder={t('Mer information om denna händelse...', 'More information about this event...')}
               rows={2}
-              className="w-full px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-card focus:border-[#7A9E7E] focus:outline-none resize-none"
+              className="w-full px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-card focus:border-[#6B7F5E] focus:outline-none resize-none"
             />
           </label>
 

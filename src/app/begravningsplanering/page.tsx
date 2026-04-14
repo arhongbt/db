@@ -90,7 +90,7 @@ function MikeRossTip({ text }: { text: string }) {
   return (
     <div className="flex gap-3 p-4 rounded-2xl mb-5" style={{ background: '#E8F0E8' }}>
       <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
-        style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}>
+        style={{ background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' }}>
         <Bot className="w-4 h-4 text-white" />
       </div>
       <div>
@@ -116,7 +116,7 @@ function BegravningsplaneringContent() {
   };
 
   return (
-    <div className="flex flex-col min-h-dvh px-6 py-8 pb-28">
+    <div className="flex flex-col min-h-[calc(100dvh-5rem)] px-6 py-8 pb-28">
       <Link href="/dashboard" className="inline-flex items-center gap-2 text-sm text-muted hover:text-primary mb-4 rounded-full">
         <ArrowLeft className="w-4 h-4" /> {t('Dashboard', 'Dashboard')}
       </Link>
@@ -138,7 +138,7 @@ function BegravningsplaneringContent() {
           <div
             key={i}
             className="h-1.5 flex-1 rounded-full transition-all duration-300"
-            style={{ background: i <= step ? '#7A9E7E' : '#E8E4DE' }}
+            style={{ background: i <= step ? '#6B7F5E' : '#E8E4DE' }}
           />
         ))}
       </div>
@@ -162,7 +162,7 @@ function BegravningsplaneringContent() {
                   { id: 'annan', label: t('Annan (naturlig begravning, etc.)', 'Other (natural burial, etc.)') },
                 ].map((option) => (
                   <label key={option.id} className="flex items-center gap-3 cursor-pointer p-3 rounded-full hover:bg-background transition-colors border-2"
-                    style={{ borderColor: data.begravningstyp === option.id ? '#7A9E7E' : '#E8E4DE' }}>
+                    style={{ borderColor: data.begravningstyp === option.id ? '#6B7F5E' : '#E8E4DE' }}>
                     <input
                       type="radio"
                       name="begravningstyp"

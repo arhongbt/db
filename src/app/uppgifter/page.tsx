@@ -26,9 +26,9 @@ const STEP_LABELS: Record<ProcessStep, string> = {
 
 const STEP_COLORS: Record<ProcessStep, { bg: string; border: string }> = {
   akut: { bg: 'rgba(196,149,106,0.06)', border: 'rgba(196,149,106,0.15)' },
-  kartlaggning: { bg: 'rgba(122,158,126,0.06)', border: 'rgba(122,158,126,0.15)' },
+  kartlaggning: { bg: 'rgba(107,127,94,0.06)', border: 'rgba(107,127,94,0.15)' },
   bouppteckning: { bg: 'rgba(139,164,184,0.06)', border: 'rgba(139,164,184,0.15)' },
-  arvskifte: { bg: 'rgba(122,158,126,0.08)', border: 'rgba(122,158,126,0.18)' },
+  arvskifte: { bg: 'rgba(107,127,94,0.08)', border: 'rgba(107,127,94,0.18)' },
   avslutat: { bg: 'rgba(123,123,142,0.06)', border: 'rgba(123,123,142,0.12)' },
 };
 
@@ -139,7 +139,7 @@ function UppgifterContent() {
   const totalDone = tasks.filter((t) => t.status === 'klar').length;
 
   return (
-    <div className="flex flex-col px-6 py-8 pb-28">
+    <div className="flex flex-col min-h-[calc(100dvh-5rem)] px-6 py-8 pb-28">
 
       <div className="mb-4">
         <h1 className="text-2xl font-display text-primary">{t('Att göra', 'To do')}</h1>
@@ -154,7 +154,7 @@ function UppgifterContent() {
           className="h-2 rounded-full transition-all duration-500"
           style={{
             width: `${tasks.length > 0 ? (totalDone / tasks.length) * 100 : 0}%`,
-            background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)'
+            background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)'
           }}
         />
       </div>
@@ -165,8 +165,8 @@ function UppgifterContent() {
           className="card mb-4 animate-slideUp"
           style={{
             borderRadius: '24px',
-            background: 'linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02))',
-            border: '1px solid rgba(122,158,126,0.15)'
+            background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))',
+            border: '1px solid rgba(107,127,94,0.15)'
           }}
         >
           <div className="flex items-center gap-2">
@@ -189,7 +189,7 @@ function UppgifterContent() {
               ? 'text-white'
               : 'text-primary/70 hover:bg-[#E8E4DE]'
           }`}
-          style={filterStep === 'all' ? { background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' } : { background: 'var(--border-light)' }}
+          style={filterStep === 'all' ? { background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' } : { background: 'var(--border-light)' }}
         >
           {t('Alla', 'All')}
         </button>
@@ -205,7 +205,7 @@ function UppgifterContent() {
                 ? 'text-white'
                 : 'text-primary/70 hover:bg-[#E8E4DE]'
             }`}
-            style={filterStep === s ? { background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' } : { background: 'var(--border-light)' }}
+            style={filterStep === s ? { background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' } : { background: 'var(--border-light)' }}
           >
             {STEP_LABELS[s].split(' (')[0]}
           </button>
@@ -223,7 +223,7 @@ function UppgifterContent() {
               ? 'text-white'
               : 'text-primary/70 hover:bg-[#E8E4DE]'
           }`}
-          style={filterAssignee === 'all' ? { background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' } : { background: 'var(--border-light)' }}
+          style={filterAssignee === 'all' ? { background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' } : { background: 'var(--border-light)' }}
         >
           {t('Alla', 'All')}
         </button>
@@ -239,7 +239,7 @@ function UppgifterContent() {
                 ? 'text-white'
                 : 'text-primary/70 hover:bg-[#E8E4DE]'
             }`}
-            style={filterAssignee === d.name ? { background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' } : { background: 'var(--border-light)' }}
+            style={filterAssignee === d.name ? { background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' } : { background: 'var(--border-light)' }}
           >
             {d.name}
           </button>
@@ -350,7 +350,7 @@ function UppgifterContent() {
                       }}
                       className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-medium transition-colors flex-shrink-0 ${
                         task.assignedTo
-                          ? 'bg-[#7A9E7E] text-white'
+                          ? 'bg-[#6B7F5E] text-white'
                           : 'border border-[#E8E4DE] text-[#E8E4DE] hover:border-primary hover:text-primary'
                       }`}
                       aria-label={task.assignedTo ? t(`Ändra tilldelning från ${task.assignedTo}`, `Change assignment from ${task.assignedTo}`) : t('Tilldela uppgift till dödsbodelägare', 'Assign task to estate co-owner')}
@@ -385,7 +385,7 @@ function UppgifterContent() {
                             }}
                             className={`block w-full text-left px-3 py-2 text-sm transition-colors border-b last:border-b-0 ${
                               task.assignedTo === d.name
-                                ? 'bg-[#7A9E7E]/10 text-[#7A9E7E] font-medium'
+                                ? 'bg-[#6B7F5E]/10 text-[#6B7F5E] font-medium'
                                 : 'text-primary hover:opacity-70'
                             }`}
                             style={{ borderColor: 'var(--border)' }}

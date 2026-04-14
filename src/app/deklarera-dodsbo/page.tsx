@@ -7,7 +7,7 @@ import { ArrowLeft, FileText, ChevronRight, AlertTriangle, Calendar } from 'luci
 export default function DeklararaDodsboPage() {
   const { t } = useLanguage();
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-[calc(100dvh-5rem)] bg-background">
       {/* Header with back link */}
       <div className="sticky top-0 z-40 bg-white border-b border-[#E8E4DE]">
         <div className="max-w-2xl mx-auto px-4 py-4">
@@ -332,7 +332,7 @@ export default function DeklararaDodsboPage() {
           <Link
             href="/juridisk-hjalp"
             className="inline-flex items-center gap-2 px-4 py-2 text-white rounded-full hover:opacity-90 transition-opacity font-semibold"
-            style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}
+            style={{ background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' }}
           >
             Hitta juridisk hjälp
             <ChevronRight className="w-4 h-4" />

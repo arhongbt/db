@@ -6,7 +6,7 @@ import { ArrowLeft, Home, FileText, AlertTriangle, CheckCircle2, ChevronRight } 
 
 export default function DodsboFastighetPage() {
   return (
-    <div className="flex flex-col px-6 py-8 pb-28">
+    <div className="flex flex-col min-h-[calc(100dvh-5rem)] px-6 py-8 pb-28">
       <Link href="/dashboard" className="inline-flex items-center gap-2 text-sm text-muted hover:text-primary mb-6 rounded-full">
         <ArrowLeft className="w-4 h-4" />
         Tillbaka
@@ -19,7 +19,7 @@ export default function DodsboFastighetPage() {
       <p className="text-muted mb-8">Så hanterar du bostad, hus och fastigheter i dödsboet.</p>
 
       {/* Intro */}
-      <div className="card mb-6" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02))', border: '1px solid rgba(122,158,126,0.15)' }}>
+      <div className="card mb-6" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}>
         <p className="text-sm text-primary/80 leading-relaxed">
           En fastighet är ofta dödsboets största tillgång. Att hantera den rätt
           är avgörande för att undvika onödiga kostnader och konflikter mellan delägare.

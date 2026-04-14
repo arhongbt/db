@@ -193,7 +193,7 @@ function BouppteckningContent() {
       </div>
 
       {/* Info box */}
-      <div className="mb-6 p-4 flex gap-2" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02))', border: '1px solid rgba(122,158,126,0.15)' }}>
+      <div className="mb-6 p-4 flex gap-2" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}>
         <Info className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
         <div>
           <p className="text-sm font-medium text-primary">{t('Vad är en bouppteckning?', 'What is an estate inventory?')}</p>
@@ -506,7 +506,7 @@ function BouppteckningContent() {
               }
             }}
             className="btn-primary flex items-center justify-center gap-2"
-            style={{ background: isBankIDVerified ? '#7A9E7E' : '#999' }}
+            style={{ background: isBankIDVerified ? '#6B7F5E' : '#999' }}
           >
             <Send className="w-5 h-5" />
             {t('Skicka digitalt till Skatteverket', 'Send digitally to Swedish Tax Agency')}

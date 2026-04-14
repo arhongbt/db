@@ -37,7 +37,7 @@ function MikeRossTip({ text }: { text: string }) {
   return (
     <div className="flex gap-3 p-4 rounded-2xl mb-5" style={{ background: '#E8F0E8' }}>
       <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
-        style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}>
+        style={{ background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' }}>
         <Bot className="w-4 h-4 text-white" />
       </div>
       <div>
@@ -92,7 +92,7 @@ function DodsboanmalanContent() {
       <div className="flex gap-1.5 my-4">
         {STEPS.map((_, i) => (
           <div key={i} className="h-1.5 flex-1 rounded-full transition-all duration-300"
-            style={{ background: i <= step ? '#7A9E7E' : '#E8E4DE' }} />
+            style={{ background: i <= step ? '#6B7F5E' : '#E8E4DE' }} />
         ))}
       </div>
 
@@ -170,7 +170,7 @@ function DodsboanmalanContent() {
                 {([['hyresratt','Hyresrätt'],['bostadsratt','Bostadsrätt'],['villa','Villa/hus'],['annat','Annat']] as const).map(([val,label]) => (
                   <button key={val} onClick={() => setData({...data, boendeform: val})}
                     className={`py-3 rounded-full text-sm font-medium transition-colors ${data.boendeform === val ? 'text-white' : 'bg-white text-primary border border-[#E8E4DE]'}`}
-                    style={data.boendeform === val ? { background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' } : {}}>{label}</button>
+                    style={data.boendeform === val ? { background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' } : {}}>{label}</button>
                 ))}
               </div>
             </div>
@@ -204,7 +204,7 @@ function DodsboanmalanContent() {
               <p><strong className="text-primary">Begravningskostnad:</strong> <span className="text-muted">{data.begravningskostnad ? `${data.begravningskostnad} kr` : '(ej ifyllt)'}</span></p>
             </div>
           </div>
-          <div className="flex items-start gap-3 p-4 rounded-2xl mb-4" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02))', border: '1px solid rgba(122,158,126,0.15)' }}>
+          <div className="flex items-start gap-3 p-4 rounded-2xl mb-4" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}>
             <Info className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" />
             <p className="text-xs text-primary/80 leading-relaxed"><strong>Bifoga:</strong> dödsbevis, kontoutdrag, begravningsfaktura.</p>
           </div>

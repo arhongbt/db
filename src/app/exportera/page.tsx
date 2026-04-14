@@ -75,7 +75,7 @@ function ExporteraContent() {
 
   return (
     <div className="min-h-dvh bg-background pb-28">
-      <div className="px-6 py-8">
+      <div className="flex flex-col min-h-[calc(100dvh-5rem)] px-6 py-8">
         <Link href="/dashboard" className="inline-flex items-center gap-2 text-sm text-muted hover:text-primary mb-6">
           <ArrowLeft className="w-4 h-4" /> Dashboard
         </Link>

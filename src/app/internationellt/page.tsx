@@ -514,7 +514,7 @@ function ForeignAssetsInput() {
         <button
           onClick={addAsset}
           className="w-full flex items-center justify-center gap-2 text-white py-2 text-sm font-medium hover:opacity-90 transition-opacity rounded-full"
-          style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}
+          style={{ background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' }}
         >
           <Plus className="w-4 h-4" />
           Lägg till tillgång
@@ -661,7 +661,7 @@ function CurrencyConverter() {
             ))}
           </select>
         </div>
-        <div className="p-3 mt-2" style={{ borderRadius: '20px', background: 'linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02))', border: '1px solid rgba(122,158,126,0.15)' }}>
+        <div className="p-3 mt-2" style={{ borderRadius: '20px', background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}>
           <p className="text-xs font-medium text-primary/70 mb-1">Ungefärligt värde i SEK:</p>
           <p className="text-2xl font-semibold text-accent">
             {toSEK.toLocaleString('sv-SE', { maximumFractionDigits: 0 })} SEK

@@ -17,7 +17,7 @@ export default function KryptoGuidePage() {
   const { t } = useLanguage();
 
   return (
-    <div className="flex flex-col px-6 py-8 pb-28">
+    <div className="flex flex-col min-h-[calc(100dvh-5rem)] px-6 py-8 pb-28">
       {/* Header */}
       <div className="mb-6">
         <div className="flex items-center gap-3 mb-4">
@@ -248,7 +248,7 @@ export default function KryptoGuidePage() {
       </div>
 
       {/* Section 7: Safety */}
-      <div className="card mb-6" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02))', border: '1px solid rgba(122,158,126,0.15)' }}>
+      <div className="card mb-6" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}>
         <div className="flex gap-3">
           <Shield className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
           <div>

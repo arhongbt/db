@@ -60,7 +60,7 @@ export default function SarkullbarnPage() {
   const [expandedFAQ, setExpandedFAQ] = useState<number | null>(0);
 
   return (
-    <div className="flex flex-col px-6 py-8 pb-28">
+    <div className="flex flex-col min-h-[calc(100dvh-5rem)] px-6 py-8 pb-28">
       {/* Header */}
       <div className="flex items-center gap-3 mb-6">
         <Link
@@ -92,7 +92,7 @@ export default function SarkullbarnPage() {
       </div>
 
       {/* Key rights section */}
-      <div className="card mb-6" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02))', border: '1px solid rgba(122,158,126,0.15)' }}>
+      <div className="card mb-6" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}>
         <div className="flex items-center gap-2 mb-4">
           <Baby className="w-5 h-5 text-accent" />
           <h2 className="font-display text-primary">Särkullbarns speciella rättigheter</h2>

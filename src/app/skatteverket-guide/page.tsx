@@ -9,12 +9,12 @@ import Link from 'next/link';
 function MikeRossTip({ text }: { text: string }) {
   return (
     <div className="flex gap-4 p-5 mb-6" style={{
-      background: 'linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02))',
+      background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))',
       borderRadius: '24px',
-      border: '1.5px solid rgba(122,158,126,0.10)',
+      border: '1.5px solid rgba(107,127,94,0.10)',
     }}>
       <div className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
-        style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}>
+        style={{ background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' }}>
         <Bot className="w-4 h-4 text-white" />
       </div>
       <div>
@@ -41,7 +41,7 @@ function ChecklistItem({
       style={{
         borderRadius: '20px',
         border: checked ? '1.5px solid var(--accent)' : '1.5px solid var(--border)',
-        background: checked ? 'linear-gradient(135deg, rgba(122,158,126,0.04), transparent)' : 'var(--bg-card)',
+        background: checked ? 'linear-gradient(135deg, rgba(107,127,94,0.04), transparent)' : 'var(--bg-card)',
       }}
     >
       {checked ? (
@@ -70,7 +70,7 @@ function ProgressCounter({ completed, total }: { completed: number; total: numbe
         <span className="text-sm font-semibold" style={{ color: 'var(--accent)' }}>{pct}%</span>
       </div>
       <div className="h-2 rounded-full overflow-hidden" style={{ background: 'var(--border)' }}>
-        <div className="h-full rounded-full transition-all duration-500" style={{ width: `${pct}%`, background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }} />
+        <div className="h-full rounded-full transition-all duration-500" style={{ width: `${pct}%`, background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' }} />
       </div>
     </div>
   );
@@ -123,7 +123,7 @@ function Step0Overview() {
               title: t('Dödsdatum', 'Date of death'),
               sub: deathDate?.toLocaleDateString('sv-SE') || '',
               color: 'var(--accent)',
-              bg: 'rgba(122,158,126,0.10)',
+              bg: 'rgba(107,127,94,0.10)',
             },
             {
               num: 2,
@@ -384,7 +384,7 @@ Telefon: [TELEFONNUMMER]`;
         onClick={handleCopy}
         className="w-full flex items-center justify-center gap-2 px-6 py-3.5 text-white font-semibold transition-all duration-300 active:scale-[0.97]"
         style={{
-          background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)',
+          background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)',
           borderRadius: '9999px',
         }}
       >
@@ -458,7 +458,7 @@ function Content() {
         {/* Header — Tiimo display font */}
         <div className="flex items-center gap-4 mb-8">
           <div className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0"
-            style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}>
+            style={{ background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' }}>
             <FileCheck className="w-5 h-5 text-white" />
           </div>
           <h1 className="font-display text-3xl" style={{ color: 'var(--text)' }}>Bouppteckningsguide</h1>
@@ -473,7 +473,7 @@ function Content() {
               className="px-5 py-2.5 font-semibold text-sm whitespace-nowrap transition-all duration-300 flex-shrink-0 active:scale-[0.97]"
               style={{
                 borderRadius: '9999px',
-                background: currentStep === idx ? 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' : 'var(--bg-card)',
+                background: currentStep === idx ? 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' : 'var(--bg-card)',
                 color: currentStep === idx ? '#FFFFFF' : 'var(--text-secondary)',
                 border: currentStep === idx ? 'none' : '1px solid var(--border)',
               }}
@@ -514,7 +514,7 @@ function Content() {
             className="flex-1 flex items-center justify-center gap-2 px-6 py-3.5 text-white font-semibold transition-all duration-300 active:scale-[0.97] disabled:opacity-40 disabled:cursor-not-allowed"
             style={{
               borderRadius: '9999px',
-              background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)',
+              background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)',
             }}
           >
             Nästa

@@ -406,7 +406,7 @@ function ArvskalkylatorContent() {
 
         {/* Bodelning */}
         {result.bodelning && (
-          <div className="card mb-4" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02))', border: '1px solid rgba(122,158,126,0.15)' }}>
+          <div className="card mb-4" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}>
             <p className="font-display text-primary text-sm mb-2">{t('Bodelning (ÄktB 9-13 kap.)', 'Division of property (Marriage Code 9-13 ch.)')}</p>
             <p className="text-xs text-muted mb-3">
               {t('Giftorättsgods delas 50/50 mellan makarna innan arvet fördelas.', 'Community property is divided 50/50 between spouses before inheritance is distributed.')}

@@ -24,7 +24,7 @@ function MikeRossTip({ text }: { text: string }) {
   return (
     <div className="flex gap-3 p-4 rounded-2xl mb-5" style={{ background: '#E8F0E8' }}>
       <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
-        style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}>
+        style={{ background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' }}>
         <Bot className="w-4 h-4 text-white" />
       </div>
       <div>
@@ -233,7 +233,7 @@ function SammanfattningContent() {
   };
 
   return (
-    <div className="flex flex-col min-h-dvh px-6 py-8 pb-28">
+    <div className="flex flex-col min-h-[calc(100dvh-5rem)] px-6 py-8 pb-28">
       <Link href="/dashboard" className="inline-flex items-center gap-2 text-sm text-muted hover:text-primary mb-4 rounded-full">
         <ArrowLeft className="w-4 h-4" /> Dashboard
       </Link>
@@ -262,7 +262,7 @@ function SammanfattningContent() {
         <div className="h-3 bg-[#E8E4DE] rounded-full overflow-hidden">
           <div
             className="h-full rounded-full transition-all duration-700"
-            style={{ width: `${progressPct}%`, background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}
+            style={{ width: `${progressPct}%`, background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' }}
           />
         </div>
         <p className="text-xs text-muted mt-2">{doneItems} {t('av', 'of')} {totalItems} {t('steg klara', 'steps completed')}</p>
@@ -273,7 +273,7 @@ function SammanfattningContent() {
         onClick={handleGeneratePDF}
         disabled={generating}
         className="flex items-center justify-center gap-2 mb-6 press-effect text-white rounded-lg px-4 py-2 hover:opacity-90 transition-opacity"
-        style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}
+        style={{ background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' }}
       >
         <FileDown className="w-5 h-5" />
         {generating

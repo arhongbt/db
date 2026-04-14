@@ -352,7 +352,7 @@ function VarderingContent() {
 
   if (showForm) {
     return (
-      <div className="flex flex-col px-6 py-8 pb-28">
+      <div className="flex flex-col min-h-[calc(100dvh-5rem)] px-6 py-8 pb-28">
         <div className="flex items-center justify-between mb-6">
           <h1 className="text-2xl font-display text-primary">Ny värdering</h1>
           <button
@@ -518,14 +518,14 @@ function VarderingContent() {
   }
 
   return (
-    <div className="flex flex-col px-6 py-8 pb-28">
+    <div className="flex flex-col min-h-[calc(100dvh-5rem)] px-6 py-8 pb-28">
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
         <h1 className="text-2xl font-display text-primary">Värdering av lösöre</h1>
         <button
           onClick={() => setShowForm(true)}
           className="w-12 h-12 text-white rounded-full flex items-center justify-center shadow-md hover:opacity-90 transition-opacity"
-          style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}
+          style={{ background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' }}
           aria-label="Lägg till värdering"
         >
           <Plus className="w-6 h-6" />

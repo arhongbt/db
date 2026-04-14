@@ -90,7 +90,7 @@ function ForsakringarContent() {
         <button
           onClick={() => setShowForm(true)}
           className="w-12 h-12 text-white rounded-full flex items-center justify-center shadow-md"
-          style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}
+          style={{ background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' }}
           aria-label={t('Lägg till försäkring', 'Add insurance')}
         >
           <Plus className="w-6 h-6" />
@@ -111,7 +111,7 @@ function ForsakringarContent() {
       </div>
 
       {/* Important tip about employer */}
-      <div className="info-box mb-6" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02))', border: '1px solid rgba(122,158,126,0.15)' }}>
+      <div className="info-box mb-6" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}>
         <div className="flex gap-2">
           <Shield className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
           <div>

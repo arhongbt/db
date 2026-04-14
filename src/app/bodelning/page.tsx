@@ -282,7 +282,7 @@ function BodelningContent() {
             className="p-2 -ml-2 min-h-[44px] min-w-[44px] flex items-center justify-center rounded-full hover:bg-white transition-colors"
             aria-label={t('Tillbaka', 'Back')}
           >
-            <ArrowLeft className="w-5 h-5" style={{ color: '#7A9E7E' }} />
+            <ArrowLeft className="w-5 h-5" style={{ color: '#6B7F5E' }} />
           </Link>
           <div>
             <h1 className="text-2xl font-display" style={{ color: '#2C3E3A' }}>
@@ -340,9 +340,9 @@ function BodelningContent() {
                   style={{
                     backgroundColor:
                       currentStep === step
-                        ? '#7A9E7E'
+                        ? '#6B7F5E'
                         : completedSteps.includes(step as WizardStep)
-                        ? '#7A9E7E'
+                        ? '#6B7F5E'
                         : '#E8E4DE',
                     color:
                       currentStep === step || completedSteps.includes(step as WizardStep)
@@ -372,7 +372,7 @@ function BodelningContent() {
               style={{ backgroundColor: 'white', borderColor: '#E8E4DE', borderWidth: '1px' }}
             >
               <div className="flex items-start gap-3 mb-4">
-                <HelpCircle className="w-5 h-5 mt-0.5" style={{ color: '#7A9E7E' }} />
+                <HelpCircle className="w-5 h-5 mt-0.5" style={{ color: '#6B7F5E' }} />
                 <div className="flex-1">
                   <h2 className="font-display text-base" style={{ color: '#2C3E3A' }}>
                     {t('Fanns det ett äktenskapsförord?', 'Was there a prenuptial agreement?')}
@@ -416,8 +416,8 @@ function BodelningContent() {
                       : 'border-2'
                   }`}
                   style={{
-                    backgroundColor: aktenskapsForord.exists === false ? '#7A9E7E' : 'white',
-                    borderColor: aktenskapsForord.exists === false ? '#7A9E7E' : '#E8E4DE',
+                    backgroundColor: aktenskapsForord.exists === false ? '#6B7F5E' : 'white',
+                    borderColor: aktenskapsForord.exists === false ? '#6B7F5E' : '#E8E4DE',
                     color: aktenskapsForord.exists === false ? 'white' : '#2C3E3A',
                   }}
                 >
@@ -433,8 +433,8 @@ function BodelningContent() {
                       : 'border-2'
                   }`}
                   style={{
-                    backgroundColor: aktenskapsForord.exists === true ? '#7A9E7E' : 'white',
-                    borderColor: aktenskapsForord.exists === true ? '#7A9E7E' : '#E8E4DE',
+                    backgroundColor: aktenskapsForord.exists === true ? '#6B7F5E' : 'white',
+                    borderColor: aktenskapsForord.exists === true ? '#6B7F5E' : '#E8E4DE',
                     color: aktenskapsForord.exists === true ? 'white' : '#2C3E3A',
                   }}
                 >
@@ -476,7 +476,7 @@ function BodelningContent() {
               <button
                 disabled
                 className="flex-1 py-3 rounded-xl text-white font-medium opacity-50 cursor-not-allowed"
-                style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}
+                style={{ background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' }}
               >
                 Tillbaka
               </button>
@@ -491,7 +491,7 @@ function BodelningContent() {
                 className={`flex-1 py-3 rounded-[20px] text-white font-medium flex items-center justify-center gap-2 transition-all ${
                   !canProceedStep1() ? 'opacity-50 cursor-not-allowed' : 'hover:shadow-lg'
                 }`}
-                style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}
+                style={{ background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' }}
               >
                 Nästa <ArrowRight className="w-4 h-4" />
               </button>
@@ -507,7 +507,7 @@ function BodelningContent() {
               style={{ backgroundColor: 'white', borderColor: '#E8E4DE', borderWidth: '1px' }}
             >
               <div className="flex items-start gap-3 mb-4">
-                <HelpCircle className="w-5 h-5 mt-0.5" style={{ color: '#7A9E7E' }} />
+                <HelpCircle className="w-5 h-5 mt-0.5" style={{ color: '#6B7F5E' }} />
                 <div className="flex-1">
                   <h2 className="font-display text-base" style={{ color: '#2C3E3A' }}>
                     Giftorättsgods
@@ -588,7 +588,7 @@ function BodelningContent() {
                   className="w-full py-3 px-4 rounded-[20px] font-medium text-base flex items-center justify-center gap-2 border-2 transition-all"
                   style={{
                     borderColor: '#E8E4DE',
-                    color: '#7A9E7E',
+                    color: '#6B7F5E',
                   }}
                   onMouseEnter={(e) => {
                     (e.currentTarget as HTMLElement).style.backgroundColor = '#F7F5F0';
@@ -723,7 +723,7 @@ function BodelningContent() {
                       className={`flex-1 py-2 px-3 text-sm rounded-[20px] text-white font-medium transition-all ${
                         !newGiftorattsgods.description ? 'opacity-50 cursor-not-allowed' : ''
                       }`}
-                      style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}
+                      style={{ background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' }}
                     >
                       Lägg till
                     </button>
@@ -763,7 +763,7 @@ function BodelningContent() {
                 className={`flex-1 py-3 rounded-[20px] text-white font-medium flex items-center justify-center gap-2 transition-all ${
                   !canProceedStep2() ? 'opacity-50 cursor-not-allowed' : 'hover:shadow-lg'
                 }`}
-                style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}
+                style={{ background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' }}
               >
                 Nästa <ArrowRight className="w-4 h-4" />
               </button>
@@ -779,7 +779,7 @@ function BodelningContent() {
               style={{ backgroundColor: 'white', borderColor: '#E8E4DE', borderWidth: '1px' }}
             >
               <div className="flex items-start gap-3 mb-4">
-                <HelpCircle className="w-5 h-5 mt-0.5" style={{ color: '#7A9E7E' }} />
+                <HelpCircle className="w-5 h-5 mt-0.5" style={{ color: '#6B7F5E' }} />
                 <div className="flex-1">
                   <h2 className="font-display text-base" style={{ color: '#2C3E3A' }}>
                     Enskild egendom
@@ -874,7 +874,7 @@ function BodelningContent() {
                       className="w-full py-3 px-4 rounded-[20px] font-medium text-base flex items-center justify-center gap-2 border-2 transition-all"
                       style={{
                         borderColor: '#E8E4DE',
-                        color: '#7A9E7E',
+                        color: '#6B7F5E',
                       }}
                       onMouseEnter={(e) => {
                         (e.currentTarget as HTMLElement).style.backgroundColor = '#F7F5F0';
@@ -981,7 +981,7 @@ function BodelningContent() {
                               ? 'opacity-50 cursor-not-allowed'
                               : ''
                           }`}
-                          style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}
+                          style={{ background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' }}
                         >
                           Lägg till
                         </button>
@@ -1023,7 +1023,7 @@ function BodelningContent() {
                 className={`flex-1 py-3 rounded-[20px] text-white font-medium flex items-center justify-center gap-2 transition-all ${
                   !canProceedStep3() ? 'opacity-50 cursor-not-allowed' : 'hover:shadow-lg'
                 }`}
-                style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}
+                style={{ background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' }}
               >
                 Nästa <ArrowRight className="w-4 h-4" />
               </button>
@@ -1039,7 +1039,7 @@ function BodelningContent() {
               style={{ backgroundColor: 'white', borderColor: '#E8E4DE', borderWidth: '1px' }}
             >
               <div className="flex items-start gap-3 mb-4">
-                <Scale className="w-5 h-5 mt-0.5" style={{ color: '#7A9E7E' }} />
+                <Scale className="w-5 h-5 mt-0.5" style={{ color: '#6B7F5E' }} />
                 <div className="flex-1">
                   <h2 className="font-display text-base" style={{ color: '#2C3E3A' }}>
                     Bodelningsberäkning
@@ -1232,7 +1232,7 @@ function BodelningContent() {
                   setCurrentStep(5);
                 }}
                 className="flex-1 py-3 rounded-xl text-white font-medium flex items-center justify-center gap-2 transition-all hover:shadow-lg"
-                style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}
+                style={{ background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' }}
               >
                 Nästa <ArrowRight className="w-4 h-4" />
               </button>
@@ -1248,7 +1248,7 @@ function BodelningContent() {
               style={{ backgroundColor: 'white', borderColor: '#E8E4DE', borderWidth: '1px' }}
             >
               <div className="flex items-start gap-3 mb-4">
-                <FileText className="w-5 h-5 mt-0.5" style={{ color: '#7A9E7E' }} />
+                <FileText className="w-5 h-5 mt-0.5" style={{ color: '#6B7F5E' }} />
                 <div className="flex-1">
                   <h2 className="font-semibold text-base" style={{ color: '#2C3E3A' }}>
                     Sammanfattning
@@ -1381,7 +1381,7 @@ function BodelningContent() {
               <Link
                 href="/arvskifte"
                 className="flex-1 py-3 rounded-xl text-white font-medium flex items-center justify-center gap-2 transition-all hover:shadow-lg"
-                style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}
+                style={{ background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' }}
               >
                 Gå till arvskifte <ArrowRight className="w-4 h-4" />
               </Link>
@@ -1411,7 +1411,7 @@ function BodelningContent() {
             className="p-2 -ml-2 min-h-[44px] min-w-[44px] flex items-center justify-center rounded-full hover:bg-white transition-colors"
             aria-label={t('Tillbaka', 'Back')}
           >
-            <ArrowLeft className="w-5 h-5" style={{ color: '#7A9E7E' }} />
+            <ArrowLeft className="w-5 h-5" style={{ color: '#6B7F5E' }} />
           </Link>
           <div>
             <h1 className="text-2xl font-semibold" style={{ color: '#2C3E3A' }}>
@@ -1549,7 +1549,7 @@ function BodelningContent() {
             <button
               onClick={() => setShowAddForm(!showAddForm)}
               className="flex items-center gap-1 text-sm font-medium transition-colors"
-              style={{ color: '#7A9E7E' }}
+              style={{ color: '#6B7F5E' }}
             >
               <Plus className="w-4 h-4" />
               Lägg till
@@ -1571,9 +1571,9 @@ function BodelningContent() {
             >
               <div className="flex items-center gap-3">
                 {item.typ === 'bostad' ? (
-                  <Home className="w-4 h-4 flex-shrink-0" style={{ color: '#7A9E7E' }} />
+                  <Home className="w-4 h-4 flex-shrink-0" style={{ color: '#6B7F5E' }} />
                 ) : (
-                  <Sofa className="w-4 h-4 flex-shrink-0" style={{ color: '#7A9E7E' }} />
+                  <Sofa className="w-4 h-4 flex-shrink-0" style={{ color: '#6B7F5E' }} />
                 )}
                 <div>
                   <p className="text-sm font-medium" style={{ color: '#2C3E3A' }}>
@@ -1696,7 +1696,7 @@ function BodelningContent() {
                   className={`flex-1 py-2 px-3 text-sm rounded-lg text-white font-medium transition-colors ${
                     !newItem.beskrivning || !newItem.varde ? 'opacity-50 cursor-not-allowed' : ''
                   }`}
-                  style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}
+                  style={{ background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' }}
                 >
                   Lägg till
                 </button>
@@ -1712,7 +1712,7 @@ function BodelningContent() {
             style={{ backgroundColor: 'white', borderColor: '#E8E4DE', borderWidth: '1px' }}
           >
             <div className="flex items-center gap-2 mb-4">
-              <Scale className="w-5 h-5" style={{ color: '#7A9E7E' }} />
+              <Scale className="w-5 h-5" style={{ color: '#6B7F5E' }} />
               <h3 className="font-semibold" style={{ color: '#2C3E3A' }}>
                 Bodelningsberäkning
               </h3>
@@ -1773,7 +1773,7 @@ function BodelningContent() {
             <button
               onClick={handleDownloadAvtal}
               className="w-full py-3 px-4 rounded-xl text-white font-medium flex items-center justify-center gap-2 transition-all hover:shadow-lg"
-              style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}
+              style={{ background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' }}
             >
               <Download className="w-4 h-4" />
               Ladda ner bodelningsavtal (.docx)
@@ -1786,7 +1786,7 @@ function BodelningContent() {
           <Link
             href="/arvskifte"
             className="w-full py-3 px-4 rounded-xl text-white font-medium flex items-center justify-center gap-2 transition-all hover:shadow-lg"
-            style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}
+            style={{ background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' }}
           >
             Gå till arvskifte <ArrowRight className="w-4 h-4" />
           </Link>
@@ -1818,7 +1818,7 @@ function BodelningContent() {
           className="p-2 -ml-2 min-h-[44px] min-w-[44px] flex items-center justify-center rounded-full hover:bg-white transition-colors"
           aria-label="Tillbaka"
         >
-          <ArrowLeft className="w-5 h-5" style={{ color: '#7A9E7E' }} />
+          <ArrowLeft className="w-5 h-5" style={{ color: '#6B7F5E' }} />
         </Link>
         <div>
           <h1 className="text-2xl font-semibold" style={{ color: '#2C3E3A' }}>
@@ -1852,7 +1852,7 @@ function BodelningContent() {
           <Link
             href="/arvskifte"
             className="inline-block mt-2 text-sm font-medium transition-colors"
-            style={{ color: '#7A9E7E' }}
+            style={{ color: '#6B7F5E' }}
           >
             Gå till arvskifte →
           </Link>

@@ -9,7 +9,7 @@ export default function BokaJuristPage() {
   const { t } = useLanguage();
 
   return (
-    <main className="min-h-dvh pb-28" style={{ background: 'var(--bg)' }}>
+    <main className="min-h-[calc(100dvh-5rem)] pb-28" style={{ background: 'var(--bg)' }}>
       {/* Header */}
       <div className="px-6 pt-6 pb-4">
         <Link
@@ -24,7 +24,7 @@ export default function BokaJuristPage() {
         <div className="flex flex-col items-center text-center mb-6">
           <div
             className="w-20 h-20 rounded-3xl flex items-center justify-center mb-4"
-            style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}
+            style={{ background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' }}
           >
             <Scale className="w-10 h-10 text-white" strokeWidth={1.8} />
           </div>
@@ -38,7 +38,7 @@ export default function BokaJuristPage() {
             )}
           </p>
           <div className="mt-3 flex items-center gap-3 text-xs text-muted">
-            <span className="font-semibold" style={{ color: '#7A9E7E' }}>
+            <span className="font-semibold" style={{ color: '#6B7F5E' }}>
               {t('Gratis', 'Free')}
             </span>
             <span>·</span>
@@ -53,7 +53,7 @@ export default function BokaJuristPage() {
       <div className="px-6 mb-6">
         <div
           className="rounded-2xl border p-4"
-          style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02))', border: '1px solid rgba(122,158,126,0.15)' }}
+          style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}
         >
           <h3 className="font-display text-primary text-sm mb-3">
             {t('Vad ingår i mötet?', 'What\u2019s included?')}
@@ -67,7 +67,7 @@ export default function BokaJuristPage() {
               t('Sammanfattning och nästa steg via mejl', 'Summary and next steps via email'),
             ].map((item, i) => (
               <li key={i} className="flex items-start gap-2 text-sm text-muted">
-                <CheckCircle2 className="w-4 h-4 flex-shrink-0 mt-0.5" style={{ color: '#7A9E7E' }} />
+                <CheckCircle2 className="w-4 h-4 flex-shrink-0 mt-0.5" style={{ color: '#6B7F5E' }} />
                 <span>{item}</span>
               </li>
             ))}

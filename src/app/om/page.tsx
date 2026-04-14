@@ -33,7 +33,7 @@ export default function OmPage() {
         </p>
 
         {/* Mission */}
-        <div className="card mb-6" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02))', border: '1px solid rgba(122,158,126,0.15)' }}>
+        <div className="card mb-6" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}>
           <div className="flex items-start gap-3">
             <Heart className="w-6 h-6 text-accent mt-0.5 shrink-0" />
             <div>
@@ -117,7 +117,7 @@ export default function OmPage() {
         </div>
 
         {/* Disclaimer */}
-        <div className="p-4 mb-6" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02))', border: '1px solid rgba(122,158,126,0.15)' }}>
+        <div className="p-4 mb-6" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}>
           <p className="text-xs text-muted leading-relaxed">
             {t('Sista Resan ger allmän vägledning baserad på svensk lag och ersätter inte juridisk rådgivning. Vid komplexa ärenden — t.ex. testamentstvister, internationella arv eller företagsinnehav — rekommenderar vi att du kontaktar en jurist eller boutredningsman.', 'Sista Resan provides general guidance based on Swedish law and does not replace legal advice. For complex matters — such as will disputes, international inheritance, or business assets — we recommend contacting a lawyer or estate administrator.')}
           </p>

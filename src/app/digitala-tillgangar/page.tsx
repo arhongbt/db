@@ -10,7 +10,7 @@ function MikeRossTip({ text }: { text: string }) {
   return (
     <div className="flex gap-3 p-4 rounded-2xl mb-5" style={{ background: 'var(--accent-soft)' }}>
       <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
-        style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}>
+        style={{ background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' }}>
         <Bot className="w-4 h-4 text-white" />
       </div>
       <div>
@@ -167,7 +167,7 @@ function Content() {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="max-w-2xl mx-auto px-4 py-6 pb-32">
+      <div className="max-w-2xl mx-auto flex flex-col min-h-[calc(100dvh-5rem)] px-4 py-6 pb-32">
         {/* Header */}
         <div className="flex items-center gap-3 mb-6">
           <Link
@@ -216,7 +216,7 @@ function Content() {
               />
             </div>
 
-            <div className="p-3 rounded-lg" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02))', border: '1px solid rgba(122,158,126,0.15)' }}>
+            <div className="p-3 rounded-lg" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}>
               <p className="text-sm text-primary">
                 <strong>Viktigt:</strong> Utan lösenord eller seed phrase kan krypto vara oåtkomligt. Kontakta börsen med dödsbevis — vissa kan hjälpa.
               </p>
@@ -305,7 +305,7 @@ function Content() {
               />
             </div>
 
-            <div className="p-3 rounded-lg" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02))', border: '1px solid rgba(122,158,126,0.15)' }}>
+            <div className="p-3 rounded-lg" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}>
               <p className="text-sm text-primary">
                 <strong>Tips:</strong> Skärmdumpa viktiga meddelanden och foton innan du stänger konton — de kan vara värdefulla minnen.
               </p>
@@ -359,7 +359,7 @@ function Content() {
               />
             </div>
 
-            <div className="p-3 rounded-lg" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02))', border: '1px solid rgba(122,158,126,0.15)' }}>
+            <div className="p-3 rounded-lg" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}>
               <p className="text-sm text-primary">
                 <strong>Så gör du:</strong> Kontrollera bankutdrag för månatliga dragningar. Avsluta varje tjänst via deras support med dödsbevis.
               </p>
@@ -432,7 +432,7 @@ function Content() {
               />
             </div>
 
-            <div className="p-3 rounded-lg" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02))', border: '1px solid rgba(122,158,126,0.15)' }}>
+            <div className="p-3 rounded-lg" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}>
               <p className="text-sm text-primary">
                 <strong>Viktigt:</strong> Kontrollera domänregistratören för förnyelsedatum. Utan förnyelse kan domänen försvinna eller tas över av andra.
               </p>

@@ -151,7 +151,7 @@ function DashboardContent() {
   // If no onboarding done
   if (!state.deceasedName && mounted) {
     return (
-      <div className="flex flex-col px-6 py-8 pb-28">
+      <div className="flex flex-col min-h-[calc(100dvh-5rem)] px-6 py-8 pb-28">
         <div className="flex-1 flex flex-col items-center justify-center min-h-[60dvh] text-center">
           <DoveLogo size={56} className="mb-8 opacity-40" />
           <h1 className="font-display text-3xl mb-3" style={{ color: 'var(--text)', letterSpacing: '-0.01em' }}>Välkommen</h1>
@@ -174,7 +174,7 @@ function DashboardContent() {
   const progressPct = stepProgress[effectiveStep];
 
   return (
-    <div className="flex flex-col px-6 py-8 pb-28">
+    <div className="flex flex-col min-h-[calc(100dvh-5rem)] px-6 py-8 pb-28">
 
       {/* ── Greeting — Tiimo-inspired display font ── */}
       <div className="flex items-start justify-between mb-8">
@@ -203,9 +203,9 @@ function DashboardContent() {
         href="/tidslinje"
         className="relative overflow-hidden mb-7 p-6 transition-all duration-300 active:scale-[0.98]"
         style={{
-          background: 'linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02))',
+          background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))',
           borderRadius: '28px',
-          border: '1.5px solid rgba(122,158,126,0.10)',
+          border: '1.5px solid rgba(107,127,94,0.10)',
         }}
         aria-label={`Fas: ${stepLabels[effectiveStep]} — ${progressPct}%`}
       >
@@ -223,7 +223,7 @@ function DashboardContent() {
           </div>
         </div>
         {/* Progress bar — rounded pill */}
-        <div className="h-2 rounded-full overflow-hidden" style={{ background: 'rgba(122,158,126,0.10)' }}>
+        <div className="h-2 rounded-full overflow-hidden" style={{ background: 'rgba(107,127,94,0.10)' }}>
           <div
             className="h-full rounded-full transition-all duration-700 ease-out"
             style={{ width: `${progressPct}%`, background: 'var(--accent)' }}
@@ -261,7 +261,7 @@ function DashboardContent() {
       {/* ── Quick stats — 3 columns, Tiimo bubbly ── */}
       <div className="grid grid-cols-3 gap-3 mb-7">
         {[
-          { value: state.delagare.length, label: 'Delägare', icon: User, color: 'var(--accent)', bg: 'rgba(122,158,126,0.08)' },
+          { value: state.delagare.length, label: 'Delägare', icon: User, color: 'var(--accent)', bg: 'rgba(107,127,94,0.08)' },
           { value: upcomingDeadlines.length, label: 'Deadlines', icon: Calendar, color: 'var(--sora)', bg: 'rgba(139,164,184,0.08)' },
           { value: state.tillgangar.length, label: 'Tillgångar', icon: Coins, color: 'var(--kohaku)', bg: 'rgba(196,149,106,0.08)' },
         ].map((stat) => (
@@ -432,7 +432,7 @@ function DashboardContent() {
         aria-label={t('dashboard.ask_mike_ross')}
       >
         <div className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0"
-          style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}>
+          style={{ background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' }}>
           <Bot className="w-5 h-5 text-white" strokeWidth={1.5} />
         </div>
         <div className="flex-1">

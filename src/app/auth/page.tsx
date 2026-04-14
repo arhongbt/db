@@ -121,7 +121,7 @@ export default function AuthPage() {
                 ? 'text-white'
                 : 'text-primary hover:bg-primary-lighter'
             }`}
-            style={tab === 'login' ? { background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' } : undefined}
+            style={tab === 'login' ? { background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' } : undefined}
           >
             {t('Logga in', 'Sign in')}
           </button>
@@ -136,7 +136,7 @@ export default function AuthPage() {
                 ? 'text-white'
                 : 'text-primary hover:bg-primary-lighter'
             }`}
-            style={tab === 'register' ? { background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' } : undefined}
+            style={tab === 'register' ? { background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' } : undefined}
           >
             {t('Skapa konto', 'Create account')}
           </button>
@@ -151,7 +151,7 @@ export default function AuthPage() {
 
         {/* Success message */}
         {success && (
-          <div role="status" className="mb-4 p-4 text-success text-sm animate-slideUp" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02))', border: '1px solid rgba(122,158,126,0.15)' }}>
+          <div role="status" className="mb-4 p-4 text-success text-sm animate-slideUp" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}>
             {success}
           </div>
         )}
@@ -273,7 +273,7 @@ export default function AuthPage() {
         {/* Password reset form */}
         {tab === 'reset' && (
           <form onSubmit={handleResetPassword} className="animate-fadeIn">
-            <div className="mb-4 p-4 text-accent text-sm" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02))', border: '1px solid rgba(122,158,126,0.15)' }}>
+            <div className="mb-4 p-4 text-accent text-sm" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}>
               {t('Vi skickar en säker länk till din e-postadress där du kan återställa ditt lösenord.', 'We will send a secure link to your email where you can reset your password.')}
             </div>
 

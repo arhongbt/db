@@ -21,7 +21,7 @@ export function MikeRossTip({ text, className = '' }: MikeRossTipProps) {
     >
       <div
         className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
-        style={{ background: 'linear-gradient(135deg, var(--accent), #6B8E6F)' }}
+        style={{ background: 'linear-gradient(135deg, var(--accent), #5A6E4E)' }}
       >
         <Bot className="w-4 h-4 text-white" />
       </div>

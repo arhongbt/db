@@ -119,7 +119,7 @@ function KonfliktContent() {
   };
 
   return (
-    <div className="flex flex-col px-6 py-8 pb-28">
+    <div className="flex flex-col min-h-[calc(100dvh-5rem)] px-6 py-8 pb-28">
       {/* Header */}
       <div className="flex items-center gap-3 mb-4">
         <Link
@@ -200,7 +200,7 @@ function KonfliktContent() {
                     )}
 
                     {level.costs && (
-                      <div className="px-3 py-2" style={{ borderRadius: '20px', background: 'linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02))', border: '1px solid rgba(122,158,126,0.15)' }}>
+                      <div className="px-3 py-2" style={{ borderRadius: '20px', background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}>
                         <p className="text-xs text-primary/80">
                           <strong>Kostnad:</strong> {level.costs}
                         </p>

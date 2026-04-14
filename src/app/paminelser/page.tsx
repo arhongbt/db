@@ -178,7 +178,7 @@ function PaminelserContent() {
 
   return (
     <div className="min-h-dvh bg-background pb-28">
-      <div className="px-6 py-8">
+      <div className="flex flex-col min-h-[calc(100dvh-5rem)] px-6 py-8">
         <Link href="/dashboard" className="inline-flex items-center gap-2 text-sm text-muted hover:text-primary mb-6 rounded-full">
           <ArrowLeft className="w-4 h-4" /> {t('Dashboard', 'Dashboard')}
         </Link>
@@ -238,7 +238,7 @@ function PaminelserContent() {
             <button
               onClick={togglePushNotifications}
               className={`relative w-12 h-7 rounded-full transition-colors ${
-                pushEnabled ? 'bg-[#7A9E7E]' : 'bg-[#E8E4DE]'
+                pushEnabled ? 'bg-[#6B7F5E]' : 'bg-[#E8E4DE]'
               }`}
             >
               <span className={`absolute top-0.5 w-6 h-6 bg-white rounded-full shadow transition-transform ${
@@ -260,7 +260,7 @@ function PaminelserContent() {
                         ? 'text-white border-accent'
                         : 'bg-white text-primary border-border hover:border-accent'
                     }`}
-                    style={prefs.reminderDays.includes(day) ? { background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' } : {}}
+                    style={prefs.reminderDays.includes(day) ? { background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' } : {}}
                   >
                     {day} {day === 1 ? t('dag', 'day') : t('dagar', 'days')} {t('före', 'before')}
                   </button>
@@ -289,7 +289,7 @@ function PaminelserContent() {
             <button
               onClick={toggleEmailReminders}
               className={`relative w-12 h-7 rounded-full transition-colors ${
-                emailEnabled ? 'bg-[#7A9E7E]' : 'bg-[#E8E4DE]'
+                emailEnabled ? 'bg-[#6B7F5E]' : 'bg-[#E8E4DE]'
               }`}
             >
               <span className={`absolute top-0.5 w-6 h-6 bg-white rounded-full shadow transition-transform ${
@@ -337,8 +337,8 @@ function PaminelserContent() {
                   className="bg-white rounded-2xl p-4"
                   style={{
                     borderRadius: '24px',
-                    background: d.status === 'urgent' ? 'linear-gradient(135deg, rgba(196,149,106,0.06), rgba(196,149,106,0.02))' : 'linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02))',
-                    border: d.status === 'urgent' ? '1px solid rgba(196,149,106,0.15)' : '1px solid rgba(122,158,126,0.15)'
+                    background: d.status === 'urgent' ? 'linear-gradient(135deg, rgba(196,149,106,0.06), rgba(196,149,106,0.02))' : 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))',
+                    border: d.status === 'urgent' ? '1px solid rgba(196,149,106,0.15)' : '1px solid rgba(107,127,94,0.15)'
                   }}
                 >
                   <div className="flex items-start justify-between mb-1">
@@ -412,7 +412,7 @@ function PaminelserContent() {
               <button
                 onClick={addCustomReminder}
                 className="w-full text-white text-sm px-3 py-2 rounded-lg hover:opacity-90 transition-opacity"
-                style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}
+                style={{ background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' }}
               >
                 {t('Spara påminnelse', 'Save reminder')}
               </button>

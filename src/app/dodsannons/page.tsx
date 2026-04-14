@@ -11,7 +11,7 @@ function MikeRossTip({ text }: { text: string }) {
   return (
     <div className="flex gap-3 p-4 rounded-2xl mb-5" style={{ background: '#E8F0E8' }}>
       <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
-        style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}>
+        style={{ background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' }}>
         <Bot className="w-4 h-4 text-white" />
       </div>
       <div>
@@ -154,7 +154,7 @@ function Content() {
                     ? 'bg-accent/20 text-accent'
                     : 'bg-gray-100 text-gray-500'
                 }`}
-                style={i === step ? { background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' } : {}}
+                style={i === step ? { background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' } : {}}
               >
                 {i + 1}
               </button>
@@ -233,7 +233,7 @@ function Content() {
                       ? 'bg-accent/5'
                       : 'border-gray-200 bg-white hover:border-accent/50'
                   }`}
-                  style={data.template === key ? { borderColor: '#7A9E7E', background: 'rgba(122,158,126,0.05)' } : {}}
+                  style={data.template === key ? { borderColor: '#6B7F5E', background: 'rgba(107,127,94,0.05)' } : {}}
                 >
                   <h3 className="font-display text-primary mb-2">{template.label}</h3>
                   <p className="text-sm text-muted-light mb-2">{template.description}</p>
@@ -340,7 +340,7 @@ function Content() {
               <button
                 onClick={handleCopyText}
                 className="w-full flex items-center justify-center gap-2 px-4 py-3 text-white rounded-xl font-medium hover:opacity-90 transition"
-                style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}
+                style={{ background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' }}
               >
                 {copied ? (
                   <>

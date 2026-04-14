@@ -10,7 +10,7 @@ function MikeRossTip({ text }: { text: string }) {
   return (
     <div className="flex gap-3 p-4 rounded-2xl mb-5" style={{ background: 'var(--accent-soft)' }}>
       <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
-        style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}>
+        style={{ background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' }}>
         <Bot className="w-4 h-4 text-white" />
       </div>
       <div>
@@ -163,7 +163,7 @@ ${form.citat}
   }
 
   return (
-    <div className="min-h-screen bg-background pb-24">
+    <div className="min-h-[calc(100dvh-5rem)] bg-background pb-24">
       <div className="sticky top-0 bg-background border-b z-10" style={{ borderColor: 'var(--border)' }}>
         <div className="max-w-2xl mx-auto px-4 py-4 flex items-center justify-between">
           <Link href="/dashboard" className="flex items-center gap-2 text-primary/60 hover:text-primary rounded-full">
@@ -309,14 +309,14 @@ ${form.citat}
             <button
               onClick={() => setIsPreview(true)}
               className="flex-1 px-4 py-3 rounded-full font-semibold transition-colors text-white hover:opacity-90"
-              style={{ background: '#7A9E7E' }}
+              style={{ background: '#6B7F5E' }}
             >
               {t('Förhandsgranska', 'Preview')}
             </button>
             <button
               onClick={handleSave}
               className="flex-1 px-4 py-3 rounded-full font-semibold transition-all text-white hover:opacity-90"
-              style={{ background: saved ? '#6B8E6F' : '#2A2622' }}
+              style={{ background: saved ? '#5A6E4E' : '#2A2622' }}
             >
               {saved ? t('Sparad!', 'Saved!') : t('Spara minnesida', 'Save memorial')}
             </button>

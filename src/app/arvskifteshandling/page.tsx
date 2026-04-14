@@ -66,7 +66,7 @@ function MikeRossTip({ text }: { text: string }) {
   return (
     <div className="flex gap-3 p-4 rounded-2xl mb-5" style={{ background: '#E8F0E8' }}>
       <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
-        style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}>
+        style={{ background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' }}>
         <Bot className="w-4 h-4 text-white" />
       </div>
       <div>
@@ -220,7 +220,7 @@ Skapat med Sista Resan — ${today}`;
       <div className="flex gap-1.5 my-4">
         {STEPS.map((_, i) => (
           <div key={i} className="h-1.5 flex-1 rounded-full transition-all duration-300"
-            style={{ background: i <= step ? '#7A9E7E' : '#E8E4DE' }} />
+            style={{ background: i <= step ? '#6B7F5E' : '#E8E4DE' }} />
         ))}
       </div>
 

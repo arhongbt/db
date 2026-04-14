@@ -135,7 +135,7 @@ export default function SkannerPage() {
 
   return (
     <div className="min-h-dvh bg-background pb-28">
-      <div className="px-6 py-8">
+      <div className="flex flex-col min-h-[calc(100dvh-5rem)] px-6 py-8">
         <Link href="/dashboard" className="inline-flex items-center gap-2 text-sm text-muted hover:text-primary mb-6">
           <ArrowLeft className="w-4 h-4" /> {t('Dashboard', 'Dashboard')}
         </Link>
@@ -158,7 +158,7 @@ export default function SkannerPage() {
             <div className="w-full bg-background rounded-full h-2">
               <div
                 className="h-2 rounded-full transition-all duration-300"
-                style={{ width: `${ocrProgress}%`, background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}
+                style={{ width: `${ocrProgress}%`, background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' }}
               />
             </div>
             <p className="text-xs text-muted mt-1">{ocrProgress}% {t('klart', 'done')}</p>
@@ -189,7 +189,7 @@ export default function SkannerPage() {
                       ? 'text-white border-accent'
                       : 'bg-white text-primary border-border hover:border-accent'
                   }`}
-                  style={selectedCategory === cat.id ? { background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' } : {}}
+                  style={selectedCategory === cat.id ? { background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' } : {}}
                 >
                   {cat.icon} {cat.label}
                 </button>

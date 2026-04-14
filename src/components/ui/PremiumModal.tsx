@@ -35,7 +35,7 @@ export function PremiumModal({ isOpen, onClose }: PremiumModalProps) {
       >
         <div className="flex items-start justify-between mb-4">
           <div className="w-10 h-10 rounded-2xl flex items-center justify-center"
-            style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}>
+            style={{ background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' }}>
             <Sparkles className="w-5 h-5 text-white" />
           </div>
           <button onClick={onClose} className="text-muted-light hover:text-primary transition p-1">

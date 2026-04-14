@@ -231,7 +231,7 @@ function LosoreContent() {
         <button
           onClick={() => setShowForm(true)}
           className="w-12 h-12 text-white rounded-full flex items-center justify-center shadow-md hover:bg-primary-light transition-colors"
-          style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}
+          style={{ background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' }}
           aria-label={t('Lägg till', 'Add')}
         >
           <Plus className="w-6 h-6" />

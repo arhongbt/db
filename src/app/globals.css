@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=DM+Serif+Display:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -43,13 +43,13 @@
            active:scale-[0.97]
            focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent
            disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100;
-    background: linear-gradient(135deg, #7A9E7E, #6B8E6F);
+    background: linear-gradient(135deg, #6B7F5E, #5A6E4E);
     border-radius: 9999px;
-    box-shadow: 0 2px 12px rgba(122,158,126,0.15);
+    box-shadow: 0 2px 12px rgba(107,127,94,0.2);
   }
   .btn-primary:hover {
     transform: translateY(-1px);
-    box-shadow: 0 6px 20px rgba(122,158,126,0.25);
+    box-shadow: 0 6px 20px rgba(107,127,94,0.3);
   }
 
   .btn-secondary {
@@ -81,8 +81,8 @@
 
   /* Color-tinted cards — Tiimo-style full background tint */
   .card-sage {
-    background: linear-gradient(135deg, rgba(122,158,126,0.08), rgba(122,158,126,0.03));
-    border: 1.5px solid rgba(122,158,126,0.12);
+    background: linear-gradient(135deg, rgba(107,127,94,0.08), rgba(107,127,94,0.03));
+    border: 1.5px solid rgba(107,127,94,0.12);
   }
   .card-blue {
     background: linear-gradient(135deg, rgba(139,164,184,0.08), rgba(139,164,184,0.03));
@@ -125,8 +125,8 @@
   /* Info box — sage accent, bubbly */
   .info-box {
     @apply p-6 text-base;
-    background: linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02));
-    border: 1.5px solid rgba(122,158,126,0.10);
+    background: linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02));
+    border: 1.5px solid rgba(107,127,94,0.10);
     border-radius: 24px;
   }
 
@@ -155,8 +155,8 @@
   }
   .icon-bubble-sage {
     @apply icon-bubble;
-    background: rgba(122,158,126,0.12);
-    color: #7A9E7E;
+    background: rgba(107,127,94,0.12);
+    color: #6B7F5E;
   }
   .icon-bubble-blue {
     @apply icon-bubble;
@@ -279,8 +279,8 @@
   --text-secondary: #7B7B8E;
   --border: #EDECEA;
   --border-light: #F5F5F3;
-  --accent: #7A9E7E;
-  --accent-soft: #EEF4EF;
+  --accent: #6B7F5E;
+  --accent-soft: #EEF2EA;
   --sakura: #D4A0A7;
   --sora: #8BA4B8;
   --kohaku: #C4956A;
@@ -295,7 +295,7 @@
   --text-secondary: #9090A0;
   --border: #333350;
   --border-light: #2A2A42;
-  --accent: #8FB89A;
+  --accent: #8FAA82;
   --accent-soft: #2A3340;
   --sakura: #D4A0A7;
   --sora: #8BA4B8;
@@ -519,7 +519,7 @@
 [data-theme="dark"] .hover\:bg-\[\#E8E4DE\]:hover {
   background-color: var(--border) !important;
 }
-[data-theme="dark"] .bg-\[\#7A9E7E\]\/10 {
+[data-theme="dark"] .bg-\[\#6B7F5E\]\/10 {
   background-color: var(--accent-soft) !important;
 }
 

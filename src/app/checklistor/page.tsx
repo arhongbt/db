@@ -148,7 +148,7 @@ export default function ChecklistorPage() {
 
   return (
     <div className="min-h-dvh bg-background pb-28">
-      <div className="px-6 py-8">
+      <div className="flex flex-col min-h-[calc(100dvh-5rem)] px-6 py-8">
         {/* Header */}
         <div className="flex items-center gap-3 mb-6">
           {selected ? (
@@ -203,7 +203,7 @@ export default function ChecklistorPage() {
                   <div className="flex items-center gap-3">
                     <div
                       className="w-10 h-10 rounded-xl flex items-center justify-center text-white"
-                      style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}
+                      style={{ background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' }}
                     >
                       {cl.icon}
                     </div>
@@ -216,7 +216,7 @@ export default function ChecklistorPage() {
                       <div className="w-12 h-1.5 bg-background rounded-full mt-1">
                         <div
                           className="h-1.5 rounded-full"
-                          style={{ width: `${pct}%`, background: '#7A9E7E' }}
+                          style={{ width: `${pct}%`, background: '#6B7F5E' }}
                         />
                       </div>
                     </div>
@@ -285,7 +285,7 @@ export default function ChecklistorPage() {
                   className="h-2 rounded-full transition-all duration-300"
                   style={{
                     width: `${Math.round((selectedList.items.filter(i => i.done).length / selectedList.items.length) * 100)}%`,
-                    background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)',
+                    background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)',
                   }}
                 />
               </div>

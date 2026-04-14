@@ -18,8 +18,8 @@ const config: Config = {
         },
         accent: {
           DEFAULT: 'var(--accent)',
-          dark: '#4F6145',
-          light: '#8FA882',
+          dark: '#5A6E4E',
+          light: '#8FAA82',
         },
         info: {
           DEFAULT: '#6E8BA4',
@@ -35,7 +35,7 @@ const config: Config = {
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
-        display: ['DM Serif Display', 'Georgia', 'serif'],
+        display: ['Playfair Display', 'Georgia', 'serif'],
       },
       fontSize: {
         // WCAG 2.1 AA — 16pt minimum body text

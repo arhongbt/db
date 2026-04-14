@@ -139,7 +139,7 @@ export function PaymentFlow({
               >
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: '#E8F0E8' }}>
-                    <Smartphone className="w-5 h-5" style={{ color: '#7A9E7E' }} />
+                    <Smartphone className="w-5 h-5" style={{ color: '#6B7F5E' }} />
                   </div>
                   <div className="text-left flex-1">
                     <p className="font-semibold text-primary text-sm">Swish</p>
@@ -155,7 +155,7 @@ export function PaymentFlow({
               >
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: '#E8F0E8' }}>
-                    <CreditCard className="w-5 h-5" style={{ color: '#7A9E7E' }} />
+                    <CreditCard className="w-5 h-5" style={{ color: '#6B7F5E' }} />
                   </div>
                   <div className="text-left flex-1">
                     <p className="font-semibold text-primary text-sm">Kort</p>
@@ -183,7 +183,7 @@ export function PaymentFlow({
                     borderColor: swishPhone.trim() ? '#D4DBC9' : '#E8E4DE',
                   }}
                   onFocus={(e) => {
-                    e.currentTarget.style.borderColor = '#7A9E7E';
+                    e.currentTarget.style.borderColor = '#6B7F5E';
                   }}
                   onBlur={(e) => {
                     e.currentTarget.style.borderColor = swishPhone.trim() ? '#D4DBC9' : '#E8E4DE';
@@ -204,7 +204,7 @@ export function PaymentFlow({
                   onClick={handlePay}
                   disabled={!swishPhone.trim()}
                   className="flex-1 py-3 px-4 rounded-xl text-white font-medium transition-opacity disabled:opacity-50"
-                  style={{ background: swishPhone.trim() ? '#7A9E7E' : '#999' }}
+                  style={{ background: swishPhone.trim() ? '#6B7F5E' : '#999' }}
                 >
                   Öppna Swish
                 </button>
@@ -228,7 +228,7 @@ export function PaymentFlow({
                     className="w-full px-4 py-3 border-2 rounded-xl text-base focus:outline-none transition-colors pr-12"
                     style={{ borderColor: '#E8E4DE' }}
                     onFocus={(e) => {
-                      e.currentTarget.style.borderColor = '#7A9E7E';
+                      e.currentTarget.style.borderColor = '#6B7F5E';
                     }}
                     onBlur={(e) => {
                       e.currentTarget.style.borderColor = '#E8E4DE';
@@ -257,7 +257,7 @@ export function PaymentFlow({
                     className="w-full px-4 py-3 border-2 rounded-xl text-base focus:outline-none transition-colors"
                     style={{ borderColor: '#E8E4DE' }}
                     onFocus={(e) => {
-                      e.currentTarget.style.borderColor = '#7A9E7E';
+                      e.currentTarget.style.borderColor = '#6B7F5E';
                     }}
                     onBlur={(e) => {
                       e.currentTarget.style.borderColor = '#E8E4DE';
@@ -277,7 +277,7 @@ export function PaymentFlow({
                     className="w-full px-4 py-3 border-2 rounded-xl text-base focus:outline-none transition-colors"
                     style={{ borderColor: '#E8E4DE' }}
                     onFocus={(e) => {
-                      e.currentTarget.style.borderColor = '#7A9E7E';
+                      e.currentTarget.style.borderColor = '#6B7F5E';
                     }}
                     onBlur={(e) => {
                       e.currentTarget.style.borderColor = '#E8E4DE';
@@ -298,7 +298,7 @@ export function PaymentFlow({
                   onClick={handlePay}
                   disabled={!cardNumber.trim() || !cardExpiry.trim() || !cardCVC.trim()}
                   className="flex-1 py-3 px-4 rounded-xl text-white font-medium transition-opacity disabled:opacity-50"
-                  style={{ background: cardNumber.trim() && cardExpiry.trim() && cardCVC.trim() ? '#7A9E7E' : '#999' }}
+                  style={{ background: cardNumber.trim() && cardExpiry.trim() && cardCVC.trim() ? '#6B7F5E' : '#999' }}
                 >
                   Betala
                 </button>

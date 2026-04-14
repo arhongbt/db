@@ -74,7 +74,7 @@ export function BankIDVerification({ onVerified, onCancel }: BankIDVerificationP
               className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4"
               style={{ background: '#E8F0E8' }}
             >
-              <Shield className="w-8 h-8" style={{ color: '#7A9E7E' }} />
+              <Shield className="w-8 h-8" style={{ color: '#6B7F5E' }} />
             </div>
             <h2 className="text-xl font-bold text-primary mb-2">BankID-verifiering</h2>
             <p className="text-sm text-muted mb-6">

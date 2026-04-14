@@ -143,7 +143,7 @@ function InstallningarContent() {
   };
 
   return (
-    <div className="flex flex-col px-6 py-8 pb-28">
+    <div className="flex flex-col min-h-[calc(100dvh-5rem)] px-6 py-8 pb-28">
       <div className="flex items-center gap-3 mb-6">
         <Link
           href="/dashboard"

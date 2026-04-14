@@ -102,7 +102,7 @@ function TidslinjeContent() {
     state.tasks.filter((t) => t.step === phase && t.status === 'klar');
 
   return (
-    <div className="flex flex-col px-6 py-8 pb-28">
+    <div className="flex flex-col min-h-[calc(100dvh-5rem)] px-6 py-8 pb-28">
       <h1 className="text-2xl font-display text-primary mb-2">{t('Tidslinje', 'Timeline')}</h1>
 
       <MikeRossTip text={t('Tidsfrister i dödsbo är lag, inte rekommendationer. Bouppteckning ska lämnas till Skatteverket inom 4 månader — missar ni det riskerar ni böter. Hyresrätt måste sägas upp inom 1 månad, annars fortsätter hyran löpa. Börja tidigt.', 'Deadlines in estate settlements are law, not recommendations. Estate inventories must be submitted to the Swedish Tax Agency within 4 months — if you miss it you risk fines. Rental apartments must be terminated within 1 month or rent will continue. Start early.')} />
@@ -152,7 +152,7 @@ function TidslinjeContent() {
                 className={`card ${
                   isActive ? 'ring-2 ring-accent/20' : ''
                 } ${isFuture ? 'opacity-60' : ''}`}
-                style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02))', border: '1px solid rgba(122,158,126,0.15)' }}
+                style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}
               >
                 <div className="flex items-center justify-between mb-2">
                   <div>

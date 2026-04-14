@@ -151,7 +151,7 @@ export default function FaqPage() {
                 ? 'bg-primary text-white'
                 : 'text-muted'
               }`}
-              style={activeCategory === cat ? { background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' } : { background: 'var(--bg-card)' }}
+              style={activeCategory === cat ? { background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' } : { background: 'var(--bg-card)' }}
           >
             {cat}
           </button>

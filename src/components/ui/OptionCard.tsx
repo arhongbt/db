@@ -31,7 +31,7 @@ export function OptionCard({
         borderRadius: '24px',
         border: selected ? '2px solid var(--accent)' : '2px solid var(--border)',
         background: selected
-          ? 'linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02))'
+          ? 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))'
           : 'var(--bg-card)',
       }}
       aria-pressed={selected}

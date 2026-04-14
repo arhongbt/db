@@ -177,7 +177,7 @@ function KostnaderContent() {
       {totalKostnad > 0 && (
         <button
           onClick={() => setShowPaymentFlow(true)}
-          className="card bg-accent/5 mb-6 flex items-center justify-between hover:bg-accent/10 transition-colors" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02))', border: '1px solid rgba(122,158,126,0.15)' }}
+          className="card bg-accent/5 mb-6 flex items-center justify-between hover:bg-accent/10 transition-colors" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}
         >
           <div>
             <p className="font-medium text-accent text-sm">{t('Betala dödsbo kostnader', 'Pay estate costs')}</p>

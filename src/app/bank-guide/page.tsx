@@ -170,7 +170,7 @@ export default function BankGuidePage() {
   };
 
   return (
-    <div className="min-h-dvh bg-background">
+    <div className="min-h-[calc(100dvh-5rem)] bg-background">
       <div className="px-6 py-8">
         <Link href="/dashboard" className="inline-flex items-center gap-2 text-sm text-muted hover:text-primary mb-6 rounded-full p-2 -ml-2">
           <ArrowLeft className="w-4 h-4" /> Dashboard
@@ -222,7 +222,7 @@ export default function BankGuidePage() {
                     <a
                       href={`tel:${bank.phone.replace(/[- ]/g, '')}`}
                       className="flex-1 flex items-center justify-center gap-2 py-2.5 bg-accent text-white rounded-full text-sm font-medium"
-                      style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}
+                      style={{ background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' }}
                     >
                       <Phone className="w-4 h-4" /> {bank.phone}
                     </a>
@@ -276,7 +276,7 @@ export default function BankGuidePage() {
         </div>
 
         {/* General tips */}
-        <div className="card mt-6" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02))', border: '1px solid rgba(122,158,126,0.15)' }}>
+        <div className="card mt-6" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}>
           <p className="font-display text-primary text-sm mb-2">{t('Generella tips', 'General tips')}</p>
           <div className="space-y-2 text-xs text-muted">
             <p>• {t('Säg alltid: &ldquo;Jag ringer angående ett dödsfall&rdquo; — du kopplas direkt till rätt avdelning.', 'Always say: "I\'m calling about a death" — you\'ll be transferred directly to the right department.')}</p>

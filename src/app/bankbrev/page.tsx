@@ -20,7 +20,7 @@ function MikeRossTip({ text }: { text: string }) {
     <div className="flex gap-3 p-4 rounded-2xl mb-5" style={{ background: '#E8F0E8' }}>
       <div
         className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
-        style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}
+        style={{ background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' }}
       >
         <Bot className="w-4 h-4 text-white" />
       </div>
@@ -362,7 +362,7 @@ Adress: ${data.adress}`;
                 <button
                   onClick={handleAddCustomBank}
                   className="px-4 py-3 text-white rounded-xl font-semibold transition-colors hover:opacity-90"
-                  style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}
+                  style={{ background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' }}
                 >
                   Lägg till
                 </button>
@@ -420,7 +420,7 @@ Adress: ${data.adress}`;
               <button
                 onClick={handleDownloadPDF}
                 className="w-full flex items-center justify-center gap-2 px-4 py-3 text-white rounded-xl font-semibold transition-colors hover:opacity-90"
-                style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}
+                style={{ background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' }}
               >
                 <Download className="w-5 h-5" />
                 Ladda ner alla som PDF

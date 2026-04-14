@@ -7,7 +7,7 @@ import { useLanguage } from '@/lib/i18n';
 export default function SamboArvPage() {
   const { t } = useLanguage();
   return (
-    <div className="min-h-screen bg-background pb-28">
+    <div className="min-h-[calc(100dvh-5rem)] bg-background pb-28">
       {/* Header */}
       <div className="sticky top-0 z-40 bg-background border-b border-border">
         <div className="max-w-2xl mx-auto px-6 py-8 flex items-center gap-3">

@@ -134,7 +134,7 @@ function TillgangarContent() {
     new Intl.NumberFormat('sv-SE', { style: 'currency', currency: 'SEK', maximumFractionDigits: 0 }).format(amount);
 
   return (
-    <div className="flex flex-col px-6 py-8 pb-28">
+    <div className="flex flex-col min-h-[calc(100dvh-5rem)] px-6 py-8 pb-28">
 
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
@@ -142,7 +142,7 @@ function TillgangarContent() {
         <button
           onClick={() => { setShowForm(true); }}
           className="w-12 h-12 text-white rounded-full flex items-center justify-center shadow-md transition-colors"
-          style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}
+          style={{ background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' }}
           aria-label={t('Lägg till', 'Add')}
         >
           <Plus className="w-6 h-6" />
@@ -161,7 +161,7 @@ function TillgangarContent() {
 
       {/* Crypto guide link if crypto assets present */}
       {state.tillgangar.some((t) => t.type === 'kryptovalutor') && (
-        <div className="card mb-6" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02))', border: '1px solid rgba(122,158,126,0.15)' }}>
+        <div className="card mb-6" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}>
           <div className="flex gap-3">
             <Bitcoin className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
             <div className="flex-1">
@@ -202,7 +202,7 @@ function TillgangarContent() {
 
       {/* Reassurance banner when netto < 0 */}
       {netto < 0 && (
-        <div className="mb-6" style={{ borderRadius: '24px', padding: '20px', background: 'linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02))', border: '1px solid rgba(122,158,126,0.15)' }}>
+        <div className="mb-6" style={{ borderRadius: '24px', padding: '20px', background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}>
           <div className="flex gap-3">
             <CheckCircle2 className="w-6 h-6 text-success flex-shrink-0 mt-0.5" />
             <div className="flex-1">
@@ -351,7 +351,7 @@ function TillgangarContent() {
                       ? 'text-primary'
                       : 'border-[#E8E4DE] text-muted'
                   }`}
-                  style={tType === tt.value ? { background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)', border: 'none', color: 'white' } : {}}
+                  style={tType === tt.value ? { background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)', border: 'none', color: 'white' } : {}}
                 >
                   {tt.label}
                 </button>
@@ -425,7 +425,7 @@ function TillgangarContent() {
                       ? 'text-primary'
                       : 'border-[#E8E4DE] text-muted'
                   }`}
-                  style={sType === st.value ? { background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)', border: 'none', color: 'white' } : {}}
+                  style={sType === st.value ? { background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)', border: 'none', color: 'white' } : {}}
                 >
                   {st.label}
                 </button>

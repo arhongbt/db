@@ -12,7 +12,7 @@ function MikeRossTip({ text }: { text: string }) {
   return (
     <div className="flex gap-3 p-4 rounded-2xl mb-5" style={{ background: '#E8F0E8' }}>
       <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
-        style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}>
+        style={{ background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' }}>
         <Bot className="w-4 h-4 text-white" />
       </div>
       <div>
@@ -183,7 +183,7 @@ function TabBeslut() {
 
       <div className="space-y-4 mb-6">
         {decisions.map((decision) => (
-          <div key={decision.id} className="bg-white border rounded-2xl p-4" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02))', border: '1px solid rgba(122,158,126,0.15)' }}>
+          <div key={decision.id} className="bg-white border rounded-2xl p-4" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}>
             <div className="flex items-start justify-between mb-3">
               <div className="flex-1">
                 <h3 className="font-display text-primary mb-2">{decision.title}</h3>
@@ -273,7 +273,7 @@ function TabBeslut() {
             <button
               onClick={addDecision}
               className="flex-1 py-2.5 bg-accent text-white font-semibold rounded-[20px] hover:opacity-90 transition"
-              style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}
+              style={{ background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' }}
             >
               {t('Lägg till', 'Add')}
             </button>
@@ -351,7 +351,7 @@ function TabAnteckningar() {
     <div>
       <MikeRossTip text={t('Skriv anteckningar som alla delägare kan se. Perfekt för att dokumentera telefonsamtal, överenskommelser eller viktiga detaljer.', 'Write notes that all co-owners can see. Perfect for documenting phone calls, agreements or important details.')} />
 
-      <div className="bg-white border rounded-2xl p-4 mb-6" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02))', border: '1px solid rgba(122,158,126,0.15)' }}>
+      <div className="bg-white border rounded-2xl p-4 mb-6" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}>
         <h3 className="font-display text-primary mb-3">{t('Ny anteckning', 'New note')}</h3>
 
         <div className="mb-3">
@@ -384,7 +384,7 @@ function TabAnteckningar() {
         <button
           onClick={addNote}
           className="w-full py-2.5 bg-accent text-white font-semibold rounded-[20px] hover:opacity-90 transition"
-          style={{ background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' }}
+          style={{ background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' }}
         >
           {t('Lägg till anteckning', 'Add note')}
         </button>
@@ -392,7 +392,7 @@ function TabAnteckningar() {
 
       <div className="space-y-3">
         {notes.map((note) => (
-          <div key={note.id} className="bg-white border rounded-2xl p-4" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02))', border: '1px solid rgba(122,158,126,0.15)' }}>
+          <div key={note.id} className="bg-white border rounded-2xl p-4" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}>
             <div className="flex items-start justify-between mb-2">
               <div>
                 <p className="font-semibold text-primary text-sm">{note.author}</p>
@@ -554,7 +554,7 @@ function Content() {
               className={`flex-1 py-2.5 text-sm font-semibold rounded-full transition-all ${
                 tab === 'beslut' ? 'text-white' : 'text-primary/60'
               }`}
-              style={tab === 'beslut' ? { background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' } : undefined}
+              style={tab === 'beslut' ? { background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' } : undefined}
             >
               {t('Beslut', 'Decisions')}
             </button>
@@ -563,7 +563,7 @@ function Content() {
               className={`flex-1 py-2.5 text-sm font-semibold rounded-full transition-all ${
                 tab === 'anteckningar' ? 'text-white' : 'text-primary/60'
               }`}
-              style={tab === 'anteckningar' ? { background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' } : undefined}
+              style={tab === 'anteckningar' ? { background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' } : undefined}
             >
               {t('Anteckningar', 'Notes')}
             </button>
@@ -572,7 +572,7 @@ function Content() {
               className={`flex-1 py-2.5 text-sm font-semibold rounded-full transition-all ${
                 tab === 'tidslinje' ? 'text-white' : 'text-primary/60'
               }`}
-              style={tab === 'tidslinje' ? { background: 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' } : undefined}
+              style={tab === 'tidslinje' ? { background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' } : undefined}
             >
               {t('Tidslinje', 'Timeline')}
             </button>
@@ -581,7 +581,7 @@ function Content() {
       </div>
 
       {/* Content */}
-      <div className="max-w-2xl mx-auto px-6 py-8 pb-28">
+      <div className="max-w-2xl mx-auto flex flex-col min-h-[calc(100dvh-5rem)] px-6 py-8 pb-28">
         {tab === 'beslut' && <TabBeslut />}
         {tab === 'anteckningar' && <TabAnteckningar />}
         {tab === 'tidslinje' && <TabTidslinje />}
