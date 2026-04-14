@@ -112,48 +112,56 @@ export function BottomNav() {
         <div className="fixed inset-0 bg-black/30 z-40 transition-opacity" onClick={() => setMoreOpen(false)} />
       )}
 
-      {/* Slide-up menu */}
+      {/* Slide-up menu — Tiimo-inspired rounded panel */}
       {moreOpen && (
         <div
           ref={menuRef}
-          className="fixed bottom-[calc(4rem+env(safe-area-inset-bottom))] left-0 right-0 z-50 rounded-t-3xl shadow-2xl border-t max-h-[70vh] overflow-y-auto"
-          style={{ borderColor: 'var(--border)', background: 'var(--bg-card)' }}
+          className="fixed bottom-[calc(5rem+env(safe-area-inset-bottom))] left-2 right-2 z-50 max-h-[70vh] overflow-y-auto"
+          style={{
+            borderRadius: '28px',
+            background: 'var(--bg-card)',
+            boxShadow: '0 8px 40px rgba(26,26,46,0.12), 0 2px 8px rgba(26,26,46,0.04)',
+            border: '1px solid var(--border)',
+          }}
         >
-          <div className="px-5 pt-4 pb-2 flex items-center justify-between sticky top-0 rounded-t-3xl" style={{ background: 'var(--bg-card)' }}>
+          <div className="px-5 pt-5 pb-2 flex items-center justify-between sticky top-0" style={{ background: 'var(--bg-card)', borderRadius: '28px 28px 0 0' }}>
             <h3 className="font-semibold text-primary text-sm">{t('nav.all_tools')}</h3>
             <button
               onClick={() => setMoreOpen(false)}
-              className="p-2.5 -mr-1 rounded-full hover:bg-gray-100 transition-colors"
+              className="w-8 h-8 rounded-full flex items-center justify-center transition-colors"
+              style={{ background: 'var(--border-light)' }}
               aria-label="Stäng menyn"
             >
-              <X className="w-5 h-5 text-muted" />
+              <X className="w-4 h-4 text-muted" />
             </button>
           </div>
           <p className="sr-only">{t('ui.close')}</p>
-          <div className="px-3 pb-4">
+          <div className="px-3 pb-5">
             {MORE_CATEGORIES.map((category) => (
-              <div key={category.title} className="mb-3 last:mb-0">
-                <p className="text-xs font-semibold text-muted uppercase tracking-wider px-2 mb-1.5">{category.title}</p>
-                <div className="grid grid-cols-4 gap-1">
+              <div key={category.title} className="mb-4 last:mb-0">
+                <p className="text-xs font-semibold text-muted uppercase tracking-wider px-2 mb-2">{category.title}</p>
+                <div className="grid grid-cols-4 gap-1.5">
                   {category.items.map(({ href, label, icon: Icon }) => {
                     const isActive = pathname === href;
                     return (
                       <Link
                         key={href}
                         href={href}
-                        className={`flex flex-col items-center gap-1.5 py-3 px-1 rounded-2xl transition-colors ${
+                        className={`flex flex-col items-center gap-1.5 py-3 px-1 transition-all duration-200 ${
                           isActive
-                            ? 'bg-accent/10 text-accent'
-                            : 'text-primary hover:bg-primary-lighter/50'
+                            ? 'text-accent'
+                            : 'text-primary'
                         }`}
+                        style={{ borderRadius: '20px', background: isActive ? 'rgba(122,158,126,0.08)' : 'transparent' }}
                         aria-label={label}
                       >
-                        <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${
-                          isActive ? 'bg-accent/15' : 'bg-primary-lighter/50'
-                        }`}>
+                        <div
+                          className="w-11 h-11 rounded-full flex items-center justify-center"
+                          style={{ background: isActive ? 'rgba(122,158,126,0.12)' : 'var(--border-light)' }}
+                        >
                           <Icon className="w-5 h-5" strokeWidth={1.5} />
                         </div>
-                        <span className="text-xs font-medium text-center leading-tight">{label}</span>
+                        <span className="text-[11px] font-medium text-center leading-tight">{label}</span>
                       </Link>
                     );
                   })}
@@ -164,21 +172,29 @@ export function BottomNav() {
         </div>
       )}
 
-      {/* Bottom nav bar */}
-      <nav className="fixed bottom-0 left-0 right-0 z-50 border-t" style={{ background: 'var(--bg)', borderColor: 'var(--border)' }}>
-        <div className="flex items-center justify-around px-2 py-1.5">
+      {/* Bottom nav bar — Tiimo-inspired floating pill */}
+      <nav className="fixed bottom-0 left-0 right-0 z-50" style={{ background: 'transparent' }}>
+        <div
+          className="mx-auto max-w-[400px] flex items-center justify-around px-3 py-2 mb-2 mx-3"
+          style={{
+            background: 'var(--bg-card)',
+            borderRadius: '9999px',
+            boxShadow: '0 4px 20px rgba(26,26,46,0.08), 0 1px 3px rgba(26,26,46,0.04)',
+            border: '1px solid var(--border)',
+          }}
+        >
           {NAV_ITEMS.map(({ href, label, icon: Icon }) => {
             const isActive = pathname === href;
             return (
               <Link
                 key={href}
                 href={href}
-                className="relative flex items-center justify-center transition-all duration-200"
+                className="relative flex items-center justify-center transition-all duration-300"
                 style={{
-                  minWidth: isActive ? '100px' : '56px',
-                  height: '44px',
-                  borderRadius: '22px',
-                  background: isActive ? 'linear-gradient(135deg, #7A9E7E, #6B8E6F)' : 'transparent',
+                  minWidth: isActive ? '100px' : '48px',
+                  height: '42px',
+                  borderRadius: '9999px',
+                  background: isActive ? 'var(--accent)' : 'transparent',
                   color: isActive ? '#FFFFFF' : 'var(--text-secondary)',
                   gap: '6px',
                   padding: isActive ? '0 16px' : '0 8px',
@@ -197,11 +213,11 @@ export function BottomNav() {
             onClick={() => setMoreOpen(!moreOpen)}
             aria-label={t('nav.more')}
             aria-expanded={moreOpen}
-            className="relative flex items-center justify-center transition-all duration-200"
+            className="relative flex items-center justify-center transition-all duration-300"
             style={{
-              minWidth: (moreOpen || isMoreActive) ? '90px' : '56px',
-              height: '44px',
-              borderRadius: '22px',
+              minWidth: (moreOpen || isMoreActive) ? '90px' : '48px',
+              height: '42px',
+              borderRadius: '9999px',
               background: (moreOpen || isMoreActive) ? 'var(--accent)' : 'transparent',
               color: (moreOpen || isMoreActive) ? '#FFFFFF' : 'var(--text-secondary)',
               gap: '6px',
@@ -215,7 +231,7 @@ export function BottomNav() {
           </button>
         </div>
         {/* Safe area for iOS */}
-        <div className="h-[env(safe-area-inset-bottom)]" style={{ background: 'var(--bg)' }} />
+        <div className="h-[env(safe-area-inset-bottom)]" style={{ background: 'transparent' }} />
       </nav>
     </>
   );

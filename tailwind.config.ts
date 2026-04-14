@@ -35,22 +35,25 @@ const config: Config = {
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+        display: ['DM Serif Display', 'Georgia', 'serif'],
       },
       fontSize: {
         // WCAG 2.1 AA — 16pt minimum body text
-        base: ['1rem', { lineHeight: '1.6' }],
-        lg: ['1.125rem', { lineHeight: '1.6' }],
+        base: ['1rem', { lineHeight: '1.7' }],
+        lg: ['1.125rem', { lineHeight: '1.65' }],
         xl: ['1.25rem', { lineHeight: '1.5' }],
-        '2xl': ['1.5rem', { lineHeight: '1.4' }],
-        '3xl': ['1.875rem', { lineHeight: '1.3' }],
+        '2xl': ['1.625rem', { lineHeight: '1.35' }],
+        '3xl': ['2.125rem', { lineHeight: '1.2' }],
+        '4xl': ['2.75rem', { lineHeight: '1.1' }],
       },
       spacing: {
         // 48px touch targets (WCAG)
         'touch': '3rem',
       },
       borderRadius: {
-        'card': '1.5rem',    // 24px — mjukare, mer organiskt
-        'card-sm': '0.875rem', // 14px
+        'card': '1.75rem',    // 28px — Tiimo bubbly
+        'card-sm': '1.125rem', // 18px
+        'pill': '9999px',
       },
     },
   },

@@ -22,23 +22,28 @@ export function OptionCard({
     <button
       type="button"
       onClick={onClick}
-      className={`w-full min-h-touch text-left p-4 rounded-card border-2 transition-all duration-200 ${
+      className={`w-full min-h-touch text-left px-5 py-4 transition-all duration-300 active:scale-[0.98] ${
         selected
-          ? 'border-accent bg-primary-lighter/30'
-          : 'border-gray-200 bg-white hover:border-gray-300'
+          ? 'shadow-sm'
+          : 'hover:shadow-sm'
       }`}
+      style={{
+        borderRadius: '24px',
+        border: selected ? '2px solid var(--accent)' : '2px solid var(--border)',
+        background: selected
+          ? 'linear-gradient(135deg, rgba(122,158,126,0.06), rgba(122,158,126,0.02))'
+          : 'var(--bg-card)',
+      }}
       aria-pressed={selected}
     >
-      <div className="flex items-center gap-3">
-        {/* Indicator */}
+      <div className="flex items-center gap-4">
+        {/* Indicator — circular always for Tiimo feel */}
         <div
-          className={`flex-shrink-0 w-6 h-6 rounded-${
-            multi ? 'md' : 'full'
-          } border-2 flex items-center justify-center transition-colors ${
-            selected
-              ? 'border-accent bg-accent'
-              : 'border-gray-300 bg-white'
-          }`}
+          className="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center transition-all duration-300"
+          style={{
+            border: selected ? 'none' : '2px solid var(--border)',
+            background: selected ? 'var(--accent)' : 'transparent',
+          }}
         >
           {selected && <Check className="w-4 h-4 text-white" strokeWidth={3} />}
         </div>
