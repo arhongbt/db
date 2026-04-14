@@ -175,8 +175,8 @@ export function AppControlBar() {
   return (
     <>
       {/* Top bar with search + settings */}
-      <div className="fixed top-0 left-0 right-0 z-50 px-4 pt-3 pb-4 pointer-events-none"
-        style={{ background: "linear-gradient(to bottom, var(--bg) 70%, var(--bg) 85%, transparent)" }}
+      <div className="fixed top-0 left-0 right-0 z-50 px-4 pt-3 pb-6 pointer-events-none"
+        style={{ background: "linear-gradient(to bottom, var(--bg) 0%, var(--bg) 75%, transparent 100%)", backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)" }}
       >
         <div className="flex items-center gap-2 max-w-lg mx-auto pointer-events-auto">
           {/* Search button */}

@@ -492,14 +492,14 @@ function DashboardContent() {
             <Link
               key={item.href}
               href={item.href}
-              className="p-4 flex items-center gap-3 active:scale-[0.97] transition-all duration-300 overflow-hidden"
+              className="py-5 px-3 flex flex-col items-center gap-2.5 active:scale-[0.97] transition-all duration-300"
               style={{ background: 'var(--bg-card)', borderRadius: '22px', border: '1px solid var(--border)' }}
             >
-              <div className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
+              <div className="w-11 h-11 rounded-full flex items-center justify-center"
                 style={{ background: `color-mix(in srgb, ${item.color} 10%, transparent)` }}>
-                <item.Icon className="w-4.5 h-4.5" style={{ color: item.color }} strokeWidth={1.5} />
+                <item.Icon className="w-5 h-5" style={{ color: item.color }} strokeWidth={1.5} />
               </div>
-              <span className="font-display text-[13px] leading-tight truncate" style={{ color: 'var(--text)' }}>{item.label}</span>
+              <span className="font-display text-[13px] text-center leading-snug" style={{ color: 'var(--text)' }}>{item.label}</span>
             </Link>
           ))}
         </div>
@@ -510,7 +510,7 @@ function DashboardContent() {
         <h2 className="font-display text-lg mb-4" style={{ color: 'var(--text)' }}>
           {t('dashboard.tools_guides')}
         </h2>
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-3 gap-3">
           {[
             { label: 'Begravning', href: '/begravningsplanering', Icon: Flower2, color: 'var(--sakura)' },
             { label: 'Skatteverket', href: '/skatteverket-guide', Icon: FileCheck, color: 'var(--accent)' },
@@ -522,14 +522,14 @@ function DashboardContent() {
             <Link
               key={item.href}
               href={item.href}
-              className="p-4 flex items-center gap-3 active:scale-[0.97] transition-all duration-300 overflow-hidden"
+              className="py-5 px-3 flex flex-col items-center gap-2.5 active:scale-[0.97] transition-all duration-300"
               style={{ background: 'var(--bg-card)', borderRadius: '22px', border: '1px solid var(--border)' }}
             >
-              <div className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
+              <div className="w-11 h-11 rounded-full flex items-center justify-center"
                 style={{ background: `color-mix(in srgb, ${item.color} 10%, transparent)` }}>
-                <item.Icon className="w-4.5 h-4.5" style={{ color: item.color }} strokeWidth={1.5} />
+                <item.Icon className="w-5 h-5" style={{ color: item.color }} strokeWidth={1.5} />
               </div>
-              <span className="font-display text-[13px] leading-tight truncate" style={{ color: 'var(--text)' }}>{item.label}</span>
+              <span className="font-display text-[13px] text-center leading-snug" style={{ color: 'var(--text)' }}>{item.label}</span>
             </Link>
           ))}
         </div>
