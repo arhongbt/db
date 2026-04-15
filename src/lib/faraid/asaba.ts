@@ -350,22 +350,30 @@ function calculateMuqasama(
   // Option 2: 1/3 of remainder
   const thirdOfRemainder = multiply(remainder, THIRD);
 
-  // Option 3: 1/6 of total (already covered by fard minimum)
-  // We compare muqasama vs 1/3 of remainder — pick the best
-  const grandfatherShare = isGreaterThan(muqasamaShare, thirdOfRemainder) ? muqasamaShare : thirdOfRemainder;
-  const usedMuqasama = isGreaterThan(muqasamaShare, thirdOfRemainder);
+  // Option 3: 1/6 of total estate (minimum guarantee)
+  const sixthOfTotal: Fraction = SIXTH;
+
+  // Pick the BEST of all three options
+  const bestOfFirst2 = isGreaterThan(muqasamaShare, thirdOfRemainder) ? muqasamaShare : thirdOfRemainder;
+  const grandfatherShare = isGreaterThan(bestOfFirst2, sixthOfTotal) ? bestOfFirst2 : sixthOfTotal;
+  const usedMuqasama = grandfatherShare === muqasamaShare;
+  const usedThird = grandfatherShare === thirdOfRemainder;
+  const usedSixth = grandfatherShare === sixthOfTotal;
 
   // Add grandfather
+  const noteText = usedMuqasama
+    ? { sv: 'Muqasama — farfar delar med syskon (bäst av muqasama/⅓/⅙)', en: 'Muqasama — grandfather shares with siblings (best of muqasama/⅓/⅙)' }
+    : usedThird
+    ? { sv: '1/3 av återstoden (bättre än muqasama och 1/6)', en: '1/3 of remainder (better than muqasama and 1/6)' }
+    : { sv: '1/6 av hela kvarlåtenskapen (minimigaranti)', en: '1/6 of total estate (minimum guarantee)' };
+
   assignments.push({
     id: 'grandfather',
     count: 1,
     share: grandfatherShare,
     perPerson: grandfatherShare,
     type: 'muqasama',
-    notes: [{
-      sv: usedMuqasama ? 'Muqasama — farfar delar med syskon (bäst av muqasama/1/3)' : '1/3 av återstoden (bättre än muqasama)',
-      en: usedMuqasama ? 'Muqasama — grandfather shares with siblings (best of muqasama/1/3)' : '1/3 of remainder (better than muqasama)',
-    }],
+    notes: [noteText],
   });
 
   // Distribute remaining to siblings

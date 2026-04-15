@@ -55,8 +55,8 @@ const cases: TestCase[] = [
       waspiqa: 0,
     },
     expected: {
-      radd: false, // Husband 1/4, daughter 1/2 = 3/4 → radd to daughter
-      shares: { husband: '1/4', daughter: '1/2' },
+      radd: true, // Husband 1/4, daughter 1/2 = 3/4 → radd surplus to daughter
+      shares: { husband: '1/4', daughter: '3/4' },
     },
   },
 
@@ -174,9 +174,9 @@ const cases: TestCase[] = [
     },
     expected: {
       radd: true,
-      // Mother 1/6, daughter 1/2 = 2/3 total → 1/3 surplus → radd
-      // Proportional: mother gets 1/6 of 1/3 surplus... etc.
-      shares: {}, // Complex — verify totals add to 100%
+      // Mother 1/6, daughter 1/2 = 4/6 total → 2/6 surplus → radd proportional (1:3)
+      // Mother: 1/6 + 1/4*2/6 = 1/4, Daughter: 1/2 + 3/4*2/6 = 3/4
+      shares: { mother: '1/4', daughter: '3/4' },
     },
   },
 

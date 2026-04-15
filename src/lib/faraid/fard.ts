@@ -182,16 +182,9 @@ export function calculateFard(
       });
     } else if (hasActiveSiblings) {
       // MUQASAMA — grandfather shares with siblings
-      // This is complex and handled in asaba.ts
-      // Grandfather gets minimum 1/6 guaranteed
-      assignments.push({
-        id: 'grandfather',
-        count: 1,
-        share: SIXTH, // Minimum guarantee, may get more via muqasama
-        perPerson: SIXTH,
-        isAsaba: true, // Participates in muqasama
-        notes: [{ sv: '1/6 (minimum) + muqasama med syskon', en: '1/6 (minimum) + muqasama with siblings' }],
-      });
+      // Entirely handled in asaba.ts — no fard assigned here.
+      // asaba.ts will compare: muqasama vs 1/3 remainder vs 1/6 total
+      // and ensure grandfather gets at least 1/6 (minimum guarantee).
     }
     // If no children and no siblings → pure asaba (handled in asaba.ts)
   }
