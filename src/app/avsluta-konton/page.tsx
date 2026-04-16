@@ -28,6 +28,7 @@ interface AccountItem {
   id: string;
   name: string;
   phone?: string;
+  url?: string;
   info: string;
 }
 
