@@ -268,12 +268,34 @@ export function saveState(state: Dodsbo): void {
   }
 }
 
+// Fix stale external URLs from older versions
+const URL_MIGRATIONS: Record<string, string> = {
+  'https://www.skatteverket.se/privat/folkbokforing/dodsfall/bouppteckning': 'https://www.skatteverket.se/privat/folkbokforing/narenanhorigdor/bouppteckning',
+  'https://www.skatteverket.se/privat/folkbokforing/dodsfall': 'https://www.skatteverket.se/privat/folkbokforing/narenanhorigdor',
+  'https://support.apple.com/deceased': 'https://support.apple.com/en-us/HT208510',
+  'https://facebook.com/help/contact/305593649477238': 'https://www.facebook.com/help/1506822589577997',
+};
+
+function migrateUrls(state: Dodsbo): Dodsbo {
+  if (!state.tasks || state.tasks.length === 0) return state;
+  let changed = false;
+  const tasks = state.tasks.map((t) => {
+    if (t.externalUrl && URL_MIGRATIONS[t.externalUrl]) {
+      changed = true;
+      return { ...t, externalUrl: URL_MIGRATIONS[t.externalUrl] };
+    }
+    return t;
+  });
+  return changed ? { ...state, tasks } : state;
+}
+
 export function loadState(): Dodsbo | null {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (raw) {
       const parsed = JSON.parse(raw) as Dodsbo;
-      return { ...parsed, losore: parsed.losore || [], kostnader: parsed.kostnader || [] };
+      const state = { ...parsed, losore: parsed.losore || [], kostnader: parsed.kostnader || [] };
+      return migrateUrls(state);
     }
   } catch {
     // Corrupted state — start fresh
