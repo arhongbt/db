@@ -16,7 +16,6 @@ import {
   ChevronDown,
   ChevronUp,
   ArrowLeft,
-  ExternalLink,
   AlertTriangle,
 } from 'lucide-react';
 
@@ -30,7 +29,6 @@ interface NodbromsStep {
   details: string[];
   tips?: string;
   phone?: string;
-  url?: string;
   urgentAccessInfo?: {
     title: string;
     content: string[];
@@ -108,7 +106,6 @@ const NODBROMS_STEPS: NodbromsStep[] = [
       'Anmälningsfrist varierar: oftast 6 månader, ibland kortare.',
     ],
     tips: 'Kolla minpension.se för att se alla pensioner. Ring försäkringsbolagen — de guidar dig.',
-    url: 'https://www.minpension.se',
   },
   {
     id: 'bostad',
@@ -137,7 +134,7 @@ const NODBROMS_STEPS: NodbromsStep[] = [
       'Kostar ca 200 kr för 3 månader.',
       'Kan göras online på postnord.se eller via telefon.',
     ],
-    tips: 'Gör detta tidigt — brev med frister kan annars missas.',
+    tips: 'Gör detta tidigt — brev med frister kan annars missas. Besök postnord.se för att anmäla.',
   },
 ];
 
@@ -217,16 +214,11 @@ function NodbromsContent() {
               className={`card transition-all ${isDone ? 'opacity-60' : ''}`}
             >
               {/* Header */}
-              <button
-                onClick={() => setExpandedId(isExpanded ? null : step.id)}
-                className="w-full flex items-start gap-3 text-left"
-              >
+              <div className="w-full flex items-start gap-3">
                 <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    toggleDone(step.id);
-                  }}
-                  className="mt-0.5 flex-shrink-0"
+                  onClick={() => toggleDone(step.id)}
+                  className="mt-0.5 flex-shrink-0 min-h-[44px] min-w-[44px] flex items-center justify-center"
+                  aria-label={isDone ? t('Markera som ej klar', 'Mark as not done') : t('Markera som klar', 'Mark as done')}
                 >
                   {isDone ? (
                     <CheckCircle2 className="w-6 h-6 text-success" />
@@ -235,22 +227,29 @@ function NodbromsContent() {
                   )}
                 </button>
 
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2 mb-0.5">
-                    <span className="text-xs font-semibold text-accent">{t(step.day, step.day === 'Dag 1' ? 'Day 1' : step.day === 'Dag 1–3' ? 'Days 1–3' : step.day === 'Dag 2–5' ? 'Days 2–5' : step.day === 'Dag 3–7' ? 'Days 3–7' : step.day === 'Dag 5–7' ? 'Days 5–7' : step.day)}</span>
-                    {urgencyBadge(step.urgency)}
+                <button
+                  onClick={() => setExpandedId(isExpanded ? null : step.id)}
+                  className="flex-1 min-w-0 text-left flex items-start gap-2"
+                  aria-expanded={isExpanded}
+                  aria-label={t(step.title, step.title)}
+                >
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2 mb-0.5">
+                      <span className="text-xs font-semibold text-accent">{t(step.day, step.day === 'Dag 1' ? 'Day 1' : step.day === 'Dag 1–3' ? 'Days 1–3' : step.day === 'Dag 2–5' ? 'Days 2–5' : step.day === 'Dag 3–7' ? 'Days 3–7' : step.day === 'Dag 5–7' ? 'Days 5–7' : step.day)}</span>
+                      {urgencyBadge(step.urgency)}
+                    </div>
+                    <p className={`font-medium ${isDone ? 'line-through text-muted' : 'text-primary'}`}>
+                      {t(step.title, step.title)}
+                    </p>
                   </div>
-                  <p className={`font-medium ${isDone ? 'line-through text-muted' : 'text-primary'}`}>
-                    {t(step.title, step.title)}
-                  </p>
-                </div>
 
-                {isExpanded ? (
-                  <ChevronUp className="w-5 h-5 text-muted flex-shrink-0" />
-                ) : (
-                  <ChevronDown className="w-5 h-5 text-muted flex-shrink-0" />
-                )}
-              </button>
+                  {isExpanded ? (
+                    <ChevronUp className="w-5 h-5 text-muted flex-shrink-0" />
+                  ) : (
+                    <ChevronDown className="w-5 h-5 text-muted flex-shrink-0" />
+                  )}
+                </button>
+              </div>
 
               {/* Expanded content */}
               {isExpanded && (
@@ -296,19 +295,6 @@ function NodbromsContent() {
                     </div>
                   )}
 
-                  {step.url && (
-                    <div className="mt-3">
-                      <a
-                        href={step.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-sm text-accent font-medium underline underline-offset-2 hover:text-accent-dark"
-                      >
-                        <ExternalLink className="w-4 h-4" />
-                        {step.url.replace('https://', '').replace('www.', '')}
-                      </a>
-                    </div>
-                  )}
                 </div>
               )}
             </div>

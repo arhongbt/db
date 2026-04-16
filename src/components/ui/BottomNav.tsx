@@ -173,7 +173,7 @@ export function BottomNav() {
       )}
 
       {/* Bottom nav bar — Tiimo-inspired floating pill */}
-      <nav className="fixed bottom-0 left-0 right-0 z-50 px-4 pb-2" style={{ background: 'transparent' }}>
+      <nav className="fixed bottom-0 left-0 right-0 z-50 px-4 pb-2" style={{ background: 'transparent' }} aria-label={t('Huvudnavigation', 'Main navigation')}>
         <div
           className="mx-auto max-w-[420px] flex items-center justify-around px-4 py-2.5"
           style={{
@@ -181,7 +181,7 @@ export function BottomNav() {
             backdropFilter: 'blur(20px)',
             WebkitBackdropFilter: 'blur(20px)',
             borderRadius: '9999px',
-            boxShadow: '0 4px 24px rgba(26,26,46,0.10), 0 1px 4px rgba(26,26,46,0.06)',
+            boxShadow: '0 4px 20px rgba(26,26,46,0.08), 0 1px 3px rgba(26,26,46,0.04)',
             border: '1px solid rgba(232,228,222,0.6)',
           }}
         >
@@ -191,6 +191,7 @@ export function BottomNav() {
               <Link
                 key={href}
                 href={href}
+                aria-label={label}
                 className="relative flex items-center justify-center transition-all duration-300"
                 style={{
                   minWidth: isActive ? '100px' : '48px',
