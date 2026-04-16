@@ -295,7 +295,12 @@ export function loadState(): Dodsbo | null {
     if (raw) {
       const parsed = JSON.parse(raw) as Dodsbo;
       const state = { ...parsed, losore: parsed.losore || [], kostnader: parsed.kostnader || [] };
-      return migrateUrls(state);
+      const migrated = migrateUrls(state);
+      // Persist migrated URLs back so they don't need fixing again
+      if (migrated !== state) {
+        saveState(migrated);
+      }
+      return migrated;
     }
   } catch {
     // Corrupted state — start fresh
