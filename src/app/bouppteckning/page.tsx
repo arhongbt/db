@@ -7,9 +7,10 @@ import { useSubscription } from '@/lib/subscription/context';
 import { PaywallGate } from '@/components/PaywallGate';
 import { JuridiskTooltip } from '@/components/ui/JuridiskTooltip';
 import { BankIDVerification } from '@/components/BankIDVerification';
+import { PageHeader } from '@/components/ui/PageHeader';
+import { Breadcrumb } from '@/components/ui/Breadcrumb';
 import Link from 'next/link';
 import {
-  ArrowLeft,
   CheckCircle2,
   Circle,
   Users,
@@ -176,24 +177,14 @@ function BouppteckningContent() {
     }).format(amount);
 
   return (
-    <div className="flex flex-col px-4 py-5 pb-24">
-      {/* Header */}
-      <div className="flex items-center gap-3 mb-6">
-        <Link
-          href="/dashboard"
-          className="p-2 -ml-2 min-h-[44px] min-w-[44px] flex items-center justify-center rounded-full hover:bg-background transition-colors"
-          aria-label={t('Tillbaka', 'Back')}
-        >
-          <ArrowLeft className="w-5 h-5 text-primary" />
-        </Link>
-        <div>
-          <h1 className="text-xl font-display text-primary">{t('Bouppteckning', 'Estate Inventory')}</h1>
-          <p className="text-muted text-xs">
-            {t('Samla underlag steg för steg', 'Gather documentation step by step')}
-          </p>
-        </div>
-      </div>
+    <div className="flex flex-col pb-24">
+      <Breadcrumb />
+      <PageHeader
+        title={t('Bouppteckning', 'Estate Inventory')}
+        subtitle={t('Samla underlag steg för steg', 'Gather documentation step by step')}
+      />
 
+      <div className="px-4">
       {/* Info box */}
       <div className="mb-6 p-4 flex gap-2 rounded-3xl" style={{ background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}>
         <Info className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
@@ -677,6 +668,7 @@ function BouppteckningContent() {
           onCancel={() => setShowBankIDModal(false)}
         />
       )}
+      </div>
     </div>
   );
 }

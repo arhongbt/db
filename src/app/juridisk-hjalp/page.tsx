@@ -21,6 +21,7 @@ import {
   CheckCircle2,
 } from 'lucide-react';
 import { PremiumModal } from '@/components/ui/PremiumModal';
+import { Breadcrumb } from '@/components/ui/Breadcrumb';
 
 interface Message {
   role: 'user' | 'assistant';
@@ -369,6 +370,7 @@ function JuridiskHjalpContent() {
 
   return (
     <div className="flex flex-col min-h-[calc(100dvh-5rem)] bg-background">
+      <Breadcrumb />
       {/* Header */}
       <div className="flex items-center gap-3 px-5 py-3 border-b bg-background" style={{ borderColor: 'var(--border)' }}>
         <Link

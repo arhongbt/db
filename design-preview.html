@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sista Resan — UX Forbattringar</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #FAFBF9;
+    --bg-card: #FFFFFF;
+    --text: #1A1A2E;
+    --text-secondary: #7B7B8E;
+    --text-tertiary: #B0B0BA;
+    --border: #EDECEA;
+    --border-light: #F5F5F3;
+    --accent: #6B7F5E;
+    --accent-soft: #EEF2EA;
+    --sakura: #D4A0A7;
+    --kohaku: #C4956A;
+    --sora: #8BA4B8;
+  }
+
+  body {
+    font-family: 'Libre Baskerville', Georgia, serif;
+    background: #1A1A2E;
+    color: var(--text);
+    display: flex;
+    justify-content: center;
+    padding: 30px 20px;
+    gap: 50px;
+    flex-wrap: wrap;
+  }
+
+  .phone {
+    width: 390px;
+    min-height: 844px;
+    background: var(--bg);
+    border-radius: 44px;
+    overflow: hidden;
+    box-shadow: 0 40px 100px rgba(0,0,0,0.4);
+    position: relative;
+  }
+
+  .label {
+    text-align: center;
+    color: #7B7B8E;
+    font-size: 12px;
+    margin-bottom: 14px;
+    letter-spacing: 0.06em;
+  }
+  .sublabel {
+    text-align: center;
+    color: #5A5A6E;
+    font-size: 10px;
+    margin-top: -8px;
+    margin-bottom: 14px;
+    font-style: italic;
+  }
+
+  /* ---- Change badge ---- */
+  .change-badge {
+    display: inline-block;
+    font-family: system-ui, sans-serif;
+    font-size: 9px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 9999px;
+    background: rgba(107,127,94,0.15);
+    color: var(--accent);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  /* ---- Overlay / Backdrop ---- */
+  .backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    backdrop-filter: blur(4px);
+    z-index: 10;
+  }
+
+  /* ==================== SEARCH MODAL ==================== */
+  .search-modal {
+    position: absolute;
+    top: 14vh;
+    left: 5%;
+    right: 5%;
+    background: var(--bg-card);
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+    z-index: 20;
+    overflow: hidden;
+  }
+
+  .search-input-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .search-icon { color: var(--text-secondary); font-size: 16px; }
+  .search-input {
+    flex: 1;
+    font-family: 'Libre Baskerville', serif;
+    font-size: 15px;
+    color: var(--text);
+    border: none;
+    background: transparent;
+    outline: none;
+  }
+  .search-close {
+    width: 28px; height: 28px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: background 150ms;
+    font-size: 14px;
+  }
+  .search-close:hover { background: var(--border-light); }
+
+  .search-results { max-height: 50vh; overflow-y: auto; }
+
+  .search-category-label {
+    padding: 10px 16px 4px;
+    font-size: 10px;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-family: 'Libre Baskerville', serif;
+  }
+
+  .search-result-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 16px;
+    cursor: pointer;
+    transition: background 150ms;
+  }
+  .search-result-item:hover { background: var(--border-light); }
+  .search-result-item.kb-active { background: var(--accent-soft); }
+
+  .search-result-icon {
+    width: 32px; height: 32px;
+    border-radius: 10px;
+    background: var(--border-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background 150ms, color 150ms;
+    color: var(--text-secondary);
+    font-size: 14px;
+  }
+  .search-result-item:hover .search-result-icon,
+  .search-result-item.kb-active .search-result-icon {
+    background: var(--accent-soft);
+    color: var(--accent);
+  }
+
+  .search-result-text { flex: 1; min-width: 0; }
+  .search-result-title {
+    font-size: 13px;
+    color: var(--text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .search-result-desc {
+    font-size: 11px;
+    color: var(--text-secondary);
+    font-style: italic;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .search-result-arrow {
+    color: var(--border);
+    font-size: 14px;
+    flex-shrink: 0;
+    transition: color 150ms;
+  }
+  .search-result-item:hover .search-result-arrow,
+  .search-result-item.kb-active .search-result-arrow { color: var(--accent); }
+
+  .search-footer {
+    padding: 8px 16px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 10px;
+    color: var(--text-tertiary);
+  }
+  .search-footer kbd {
+    font-family: system-ui, sans-serif;
+    font-size: 9px;
+    padding: 2px 5px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: var(--border-light);
+    color: var(--text-secondary);
+  }
+
+  .search-pills {
+    padding: 12px 16px;
+  }
+  .search-pills-label {
+    font-size: 10px;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+  }
+  .search-pills-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .search-pill {
+    padding: 6px 12px;
+    border-radius: 9999px;
+    background: var(--border-light);
+    color: var(--text-secondary);
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 150ms;
+    border: none;
+    font-family: 'Libre Baskerville', serif;
+  }
+  .search-pill:hover {
+    background: var(--accent-soft);
+    color: var(--accent);
+  }
+
+  /* Loading skeleton */
+  .skeleton {
+    height: 12px;
+    border-radius: 6px;
+    background: linear-gradient(90deg, var(--border-light) 25%, var(--border) 50%, var(--border-light) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+  @keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+
+  /* ==================== MER-MENYN ==================== */
+  .more-menu {
+    position: absolute;
+    bottom: calc(5rem + 8px);
+    left: 8px; right: 8px;
+    background: var(--bg-card);
+    border-radius: 28px;
+    box-shadow: 0 8px 40px rgba(26,26,46,0.12), 0 2px 8px rgba(26,26,46,0.04);
+    border: 1px solid var(--border);
+    z-index: 20;
+    max-height: 70vh;
+    overflow-y: auto;
+  }
+
+  .more-header {
+    padding: 16px 20px 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    background: var(--bg-card);
+    border-radius: 28px 28px 0 0;
+    z-index: 2;
+  }
+  .more-title {
+    font-size: 13px;
+    color: var(--accent);
+    font-family: 'Libre Baskerville', serif;
+  }
+  .more-close {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: var(--border-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    font-size: 12px;
+    cursor: pointer;
+  }
+
+  /* Search in more menu (NEW) */
+  .more-search {
+    margin: 4px 16px 12px;
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    font-family: 'Libre Baskerville', serif;
+    font-size: 12px;
+    color: var(--text-tertiary);
+    font-style: italic;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: text;
+  }
+
+  /* Recently used (NEW) */
+  .more-recent {
+    margin: 0 16px 16px;
+    padding: 12px 14px;
+    background: var(--accent-soft);
+    border-radius: 16px;
+  }
+  .more-recent-label {
+    font-size: 9px;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 10px;
+  }
+  .more-recent-items {
+    display: flex;
+    gap: 8px;
+  }
+  .more-recent-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 8px 6px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background 150ms;
+    flex: 1;
+  }
+  .more-recent-item:hover { background: rgba(107,127,94,0.08); }
+  .more-recent-icon {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: rgba(107,127,94,0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: var(--accent);
+  }
+  .more-recent-text {
+    font-size: 10px;
+    color: var(--text);
+    text-align: center;
+  }
+
+  .more-category-label {
+    font-size: 10px;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 0 20px;
+    margin-bottom: 8px;
+    font-family: 'Libre Baskerville', serif;
+  }
+
+  .more-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4px;
+    padding: 0 12px 16px;
+  }
+  .more-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 10px 4px;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: background 150ms;
+  }
+  .more-item:hover { background: var(--border-light); }
+  .more-item.active { background: rgba(107,127,94,0.08); }
+  .more-item-icon {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: var(--border-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    color: var(--text-secondary);
+  }
+  .more-item.active .more-item-icon {
+    background: rgba(107,127,94,0.12);
+    color: var(--accent);
+  }
+  .more-item-text {
+    font-size: 10px;
+    color: var(--text);
+    text-align: center;
+    line-height: 1.2;
+  }
+
+  /* Category divider */
+  .more-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+    margin: 4px 20px 12px;
+  }
+
+  /* ==================== BREADCRUMB ==================== */
+  .breadcrumb {
+    padding: 0 20px;
+    font-size: 11px;
+    color: var(--text-tertiary);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .breadcrumb a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 150ms;
+  }
+  .breadcrumb a:hover { color: var(--accent); }
+  .breadcrumb .bc-sep { color: var(--border); }
+  .breadcrumb .bc-current { color: var(--text); }
+
+  /* ==================== PAGE HEADER ==================== */
+  .page-header {
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .page-header-back {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--text-secondary);
+    font-size: 16px;
+    flex-shrink: 0;
+    transition: all 150ms;
+    background: var(--bg-card);
+  }
+  .page-header-back:hover {
+    border-color: var(--text-secondary);
+    color: var(--text);
+  }
+  .page-header-title {
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--text);
+  }
+
+  /* ==================== BOTTOM NAV (same as current app) ==================== */
+  .bottom-nav {
+    position: absolute;
+    bottom: 0;
+    left: 0; right: 0;
+    padding: 0 16px 8px;
+  }
+  .nav-pill {
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 9999px;
+    padding: 6px 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    box-shadow: 0 4px 20px rgba(26,26,46,0.08);
+    border: 1px solid rgba(232,228,222,0.6);
+  }
+  .nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 6px 10px;
+    cursor: pointer;
+  }
+  .nav-item-dot {
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--accent);
+    opacity: 0;
+  }
+  .nav-item.active .nav-item-dot { opacity: 1; }
+  .nav-item-label {
+    font-size: 9px;
+    color: var(--text-tertiary);
+  }
+  .nav-item.active .nav-item-label { color: var(--accent); font-weight: 600; }
+
+  /* ==================== ANNOTATION ==================== */
+  .annotation {
+    position: absolute;
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--accent);
+    background: rgba(107,127,94,0.08);
+    border: 1px dashed rgba(107,127,94,0.3);
+    border-radius: 8px;
+    padding: 4px 8px;
+    pointer-events: none;
+    z-index: 30;
+    white-space: nowrap;
+  }
+
+  /* ==================== SPACERS ==================== */
+  .sp-xs { height: 6px; }
+  .sp-sm { height: 12px; }
+  .sp-md { height: 20px; }
+  .sp-lg { height: 32px; }
+</style>
+</head>
+<body>
+
+<!-- ==================== SCREEN 1: SEARCH MODAL (forbattrad) ==================== -->
+<div>
+  <p class="label">SearchModal — forbattrad</p>
+  <p class="sublabel">CSS-variabler, dark mode, keyboard nav, loading</p>
+  <div class="phone">
+
+    <!-- App content behind (blurred) -->
+    <div style="padding: 56px 20px 0; opacity: 0.3;">
+      <p style="font-size: 14px; color: var(--text-secondary); font-style: italic;">God morgon, Hong</p>
+      <h1 style="font-size: 24px; font-weight: 400; margin-top: 8px;">Svens dodsbo</h1>
+    </div>
+
+    <!-- Backdrop -->
+    <div class="backdrop"></div>
+
+    <!-- Search modal -->
+    <div class="search-modal">
+
+      <!-- Annotation -->
+      <div class="annotation" style="top: -28px; left: 12px;">var(--bg-card) istallet for bg-white</div>
+
+      <!-- Input row -->
+      <div class="search-input-row">
+        <span class="search-icon">&#8981;</span>
+        <input class="search-input" type="text" value="bank" readonly placeholder="Sok i appen...">
+        <div class="search-close">&times;</div>
+      </div>
+
+      <!-- Results with keyboard highlight -->
+      <div class="search-results">
+        <p class="search-category-label">Guide</p>
+
+        <div class="search-result-item kb-active">
+          <div class="search-result-icon">&#9782;</div>
+          <div class="search-result-text">
+            <p class="search-result-title">Bankguide</p>
+            <p class="search-result-desc">Guide per bank vid dodsfall</p>
+          </div>
+          <span class="search-result-arrow">&rarr;</span>
+        </div>
+
+        <div class="search-result-item">
+          <div class="search-result-icon">&#9782;</div>
+          <div class="search-result-text">
+            <p class="search-result-title">Avsluta konton</p>
+            <p class="search-result-desc">Stang konton och abonnemang</p>
+          </div>
+          <span class="search-result-arrow">&rarr;</span>
+        </div>
+
+        <p class="search-category-label">Dokument</p>
+
+        <div class="search-result-item">
+          <div class="search-result-icon">&#9776;</div>
+          <div class="search-result-text">
+            <p class="search-result-title">Bankbrev</p>
+            <p class="search-result-desc">Skicka dodsfallsanmalan till banker</p>
+          </div>
+          <span class="search-result-arrow">&rarr;</span>
+        </div>
+      </div>
+
+      <!-- Footer with keyboard hints -->
+      <div class="search-footer">
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <span><kbd>&uarr;</kbd> <kbd>&darr;</kbd> navigera</span>
+          <span><kbd>&crarr;</kbd> oppna</span>
+        </div>
+        <span><kbd>ESC</kbd> stang</span>
+      </div>
+
+      <!-- Annotation: keyboard nav -->
+      <div class="annotation" style="bottom: -28px; right: 12px;">NY: Keyboard navigation</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ==================== SCREEN 2: SEARCH MODAL (tom + loading) ==================== -->
+<div>
+  <p class="label">SearchModal — tomstate & loading</p>
+  <p class="sublabel">Populara sokningar + skeleton loading</p>
+  <div class="phone">
+
+    <!-- App content behind -->
+    <div style="padding: 56px 20px 0; opacity: 0.3;">
+      <p style="font-size: 14px; color: var(--text-secondary); font-style: italic;">God morgon, Hong</p>
+      <h1 style="font-size: 24px; font-weight: 400; margin-top: 8px;">Svens dodsbo</h1>
+    </div>
+
+    <div class="backdrop"></div>
+
+    <!-- Search modal: empty state -->
+    <div class="search-modal">
+      <div class="search-input-row">
+        <span class="search-icon">&#8981;</span>
+        <input class="search-input" type="text" value="" readonly placeholder="Sok i appen...">
+        <div class="search-close">&times;</div>
+      </div>
+
+      <div class="search-pills">
+        <p class="search-pills-label">Populara sokningar</p>
+        <div class="search-pills-row">
+          <button class="search-pill">Bouppteckning</button>
+          <button class="search-pill">Arvskalkylator</button>
+          <button class="search-pill">Bankguide</button>
+          <button class="search-pill">Fullmakt</button>
+          <button class="search-pill">Nodbroms</button>
+          <button class="search-pill">Tidslinje</button>
+        </div>
+      </div>
+
+      <div style="padding: 0 16px 4px;">
+        <div class="annotation" style="position: static; margin-bottom: 4px;">NY: Pill-tags med var(--border-light) / var(--accent-soft) hover</div>
+      </div>
+
+      <div class="search-footer">
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <span><kbd>&uarr;</kbd> <kbd>&darr;</kbd> navigera</span>
+          <span><kbd>&crarr;</kbd> oppna</span>
+        </div>
+        <span><kbd>ESC</kbd> stang</span>
+      </div>
+    </div>
+
+    <!-- Second modal below: loading state -->
+    <div class="search-modal" style="top: auto; bottom: 60px; border-radius: 16px;">
+      <div style="padding: 12px 16px 4px;">
+        <div class="annotation" style="position: static; margin-bottom: 8px;">NY: Loading skeleton medan sokning pagår</div>
+      </div>
+      <div style="padding: 8px 16px 16px; display: flex; flex-direction: column; gap: 14px;">
+        <div style="display: flex; gap: 12px; align-items: center;">
+          <div style="width: 32px; height: 32px; border-radius: 10px;" class="skeleton"></div>
+          <div style="flex: 1; display: flex; flex-direction: column; gap: 6px;">
+            <div class="skeleton" style="width: 60%;"></div>
+            <div class="skeleton" style="width: 40%; height: 9px;"></div>
+          </div>
+        </div>
+        <div style="display: flex; gap: 12px; align-items: center;">
+          <div style="width: 32px; height: 32px; border-radius: 10px;" class="skeleton"></div>
+          <div style="flex: 1; display: flex; flex-direction: column; gap: 6px;">
+            <div class="skeleton" style="width: 50%;"></div>
+            <div class="skeleton" style="width: 70%; height: 9px;"></div>
+          </div>
+        </div>
+        <div style="display: flex; gap: 12px; align-items: center;">
+          <div style="width: 32px; height: 32px; border-radius: 10px;" class="skeleton"></div>
+          <div style="flex: 1; display: flex; flex-direction: column; gap: 6px;">
+            <div class="skeleton" style="width: 45%;"></div>
+            <div class="skeleton" style="width: 55%; height: 9px;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ==================== SCREEN 3: MER-MENYN (forbattrad) ==================== -->
+<div>
+  <p class="label">Mer-menyn — forbattrad</p>
+  <p class="sublabel">Sok + senast anvanda + gradient dividers</p>
+  <div class="phone">
+
+    <!-- App behind -->
+    <div style="padding: 56px 20px 0; opacity: 0.3;">
+      <h1 style="font-size: 24px; font-weight: 400;">Svens dodsbo</h1>
+    </div>
+
+    <!-- Overlay -->
+    <div class="backdrop" style="background: rgba(0,0,0,0.3);"></div>
+
+    <!-- More menu -->
+    <div class="more-menu">
+      <div class="more-header">
+        <span class="more-title">Alla verktyg</span>
+        <div class="more-close">&times;</div>
+      </div>
+
+      <!-- NEW: Search in more menu -->
+      <div class="more-search">
+        <span style="font-size: 12px;">&#8981;</span>
+        <span>Filtrera verktyg...</span>
+      </div>
+      <div class="annotation" style="position: relative; margin: -8px 16px 8px; z-index: 25;">NY: Sokfalt — filtrera items i realtid</div>
+
+      <!-- NEW: Recently used -->
+      <div class="more-recent">
+        <p class="more-recent-label">Senast anvanda</p>
+        <div class="more-recent-items">
+          <div class="more-recent-item">
+            <div class="more-recent-icon">B</div>
+            <span class="more-recent-text">Boupp.</span>
+          </div>
+          <div class="more-recent-item">
+            <div class="more-recent-icon">K</div>
+            <span class="more-recent-text">Kalender</span>
+          </div>
+          <div class="more-recent-item">
+            <div class="more-recent-icon">M</div>
+            <span class="more-recent-text">Mike Ross</span>
+          </div>
+          <div class="more-recent-item">
+            <div class="more-recent-icon">S</div>
+            <span class="more-recent-text">Skanner</span>
+          </div>
+        </div>
+      </div>
+      <div class="annotation" style="position: relative; margin: -8px 16px 8px; z-index: 25;">NY: Senast anvanda (3-4 items, sparas i state)</div>
+
+      <!-- Category: Skapa dokument -->
+      <div class="more-divider"></div>
+      <p class="more-category-label">Skapa dokument</p>
+      <div class="more-grid">
+        <div class="more-item">
+          <div class="more-item-icon">T</div>
+          <span class="more-item-text">Testamente</span>
+        </div>
+        <div class="more-item">
+          <div class="more-item-icon">A</div>
+          <span class="more-item-text">Arvskifte</span>
+        </div>
+        <div class="more-item">
+          <div class="more-item-icon">D</div>
+          <span class="more-item-text">Dodsbo&shy;anmalan</span>
+        </div>
+        <div class="more-item">
+          <div class="more-item-icon">B</div>
+          <span class="more-item-text">Bankbrev</span>
+        </div>
+      </div>
+
+      <!-- Gradient divider (NEW) -->
+      <div class="more-divider"></div>
+      <div class="annotation" style="position: relative; margin: -8px 16px 8px; z-index: 25;">NY: Gradient divider mellan kategorier</div>
+
+      <!-- Category: Verktyg -->
+      <p class="more-category-label">Verktyg & planering</p>
+      <div class="more-grid">
+        <div class="more-item">
+          <div class="more-item-icon">K</div>
+          <span class="more-item-text">Kalender</span>
+        </div>
+        <div class="more-item">
+          <div class="more-item-icon">B</div>
+          <span class="more-item-text">Begrav&shy;ning</span>
+        </div>
+        <div class="more-item">
+          <div class="more-item-icon">M</div>
+          <span class="more-item-text">Mike Ross</span>
+        </div>
+        <div class="more-item">
+          <div class="more-item-icon">S</div>
+          <span class="more-item-text">Skanner</span>
+        </div>
+      </div>
+      <div style="height: 20px;"></div>
+    </div>
+
+    <!-- Bottom nav -->
+    <div class="bottom-nav">
+      <div class="nav-pill">
+        <div class="nav-item">
+          <div class="nav-item-dot"></div>
+          <span class="nav-item-label">Hem</span>
+        </div>
+        <div class="nav-item">
+          <div class="nav-item-dot"></div>
+          <span class="nav-item-label">Uppgifter</span>
+        </div>
+        <div class="nav-item">
+          <div class="nav-item-dot"></div>
+          <span class="nav-item-label">Ekonomi</span>
+        </div>
+        <div class="nav-item">
+          <div class="nav-item-dot"></div>
+          <span class="nav-item-label">Dokument</span>
+        </div>
+        <div class="nav-item active">
+          <div class="nav-item-dot"></div>
+          <span class="nav-item-label">Mer</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ==================== SCREEN 4: BREADCRUMB + PAGEHEADER ==================== -->
+<div>
+  <p class="label">Breadcrumb + PageHeader</p>
+  <p class="sublabel">Konsekvent back-nav och kontext pa alla sidor</p>
+  <div class="phone">
+
+    <!-- Sticky header area -->
+    <div style="padding-top: 56px;"></div>
+
+    <!-- PageHeader (NEW component) -->
+    <div style="padding: 0 0 12px;">
+      <div class="page-header">
+        <div class="page-header-back">&larr;</div>
+        <span class="page-header-title">Bouppteckning</span>
+      </div>
+    </div>
+    <div class="annotation" style="position: relative; margin: -4px 20px 8px; z-index: 5;">NY: PageHeader — konsekvent tillbaka-knapp + titel</div>
+
+    <!-- Breadcrumb (NEW component) -->
+    <div style="padding: 4px 0 16px;">
+      <div class="breadcrumb">
+        <a href="#">Hem</a>
+        <span class="bc-sep">&#8250;</span>
+        <a href="#">Dokument</a>
+        <span class="bc-sep">&#8250;</span>
+        <span class="bc-current">Bouppteckning</span>
+      </div>
+    </div>
+    <div class="annotation" style="position: relative; margin: -8px 20px 16px; z-index: 5;">NY: Breadcrumb — Hem &#8250; Kategori &#8250; Sida</div>
+
+    <div style="height: 1px; background: var(--border); margin: 0 20px;"></div>
+    <div class="sp-lg"></div>
+
+    <!-- Page content (example) -->
+    <div style="padding: 0 20px;">
+      <p style="font-size: 12px; color: var(--text-secondary); font-style: italic; line-height: 1.6; margin-bottom: 24px;">Sammanstallning av den avlidnes tillgangar, skulder och arvingar</p>
+
+      <div style="margin-bottom: 24px;">
+        <label style="display: block; font-size: 11px; color: var(--text-tertiary); margin-bottom: 8px;">Namn pa avliden</label>
+        <div style="padding: 12px 0; border-bottom: 1px solid var(--border); font-size: 15px;">Sven Eriksson</div>
+      </div>
+
+      <div style="margin-bottom: 24px;">
+        <label style="display: block; font-size: 11px; color: var(--text-tertiary); margin-bottom: 8px;">Dodsdatum</label>
+        <div style="padding: 12px 0; border-bottom: 1px solid var(--border); font-size: 15px;">2026-03-15</div>
+      </div>
+
+      <div style="margin-bottom: 24px;">
+        <label style="display: block; font-size: 11px; color: var(--text-tertiary); margin-bottom: 8px;">Senaste adress</label>
+        <div style="padding: 12px 0; border-bottom: 1px solid var(--border); font-size: 15px;">Storgatan 12, Malmo</div>
+      </div>
+    </div>
+
+    <div class="sp-lg"></div>
+
+    <!-- Another page example below -->
+    <div style="height: 1px; background: var(--border); margin: 0 20px;"></div>
+    <div class="sp-lg"></div>
+
+    <div style="padding: 0 20px;">
+      <p style="font-size: 10px; color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 12px;">Exempel: annan sida</p>
+    </div>
+
+    <div style="padding: 0 0 12px;">
+      <div class="page-header">
+        <div class="page-header-back">&larr;</div>
+        <span class="page-header-title">Bankguide</span>
+      </div>
+    </div>
+
+    <div style="padding: 4px 0 16px;">
+      <div class="breadcrumb">
+        <a href="#">Hem</a>
+        <span class="bc-sep">&#8250;</span>
+        <a href="#">Guider</a>
+        <span class="bc-sep">&#8250;</span>
+        <span class="bc-current">Bankguide vid dodsfall</span>
+      </div>
+    </div>
+
+    <div style="height: 1px; background: var(--border); margin: 0 20px;"></div>
+    <div class="sp-lg"></div>
+
+    <div style="padding: 0 20px;">
+      <p style="font-size: 12px; color: var(--text-secondary); font-style: italic; line-height: 1.6;">Guide per bank — vad du behover gora hos Swedbank, SEB, Handelsbanken, Nordea m.fl.</p>
+    </div>
+
+    <div class="sp-lg"></div>
+
+    <!-- Smart back logic explanation -->
+    <div style="margin: 0 20px; background: var(--accent-soft); border-radius: 16px; padding: 16px;">
+      <p style="font-size: 10px; color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px;">Smart back-logik</p>
+      <p style="font-size: 11px; color: var(--text-secondary); line-height: 1.6;">
+        Om anvandaren kom fran appen &rarr; <strong style="color: var(--text);">router.back()</strong><br>
+        Om anvandaren kom utifran &rarr; <strong style="color: var(--text);">/dashboard</strong>
+      </p>
+    </div>
+
+    <div style="flex: 1;"></div>
+
+    <!-- Bottom nav -->
+    <div class="bottom-nav">
+      <div class="nav-pill">
+        <div class="nav-item">
+          <div class="nav-item-dot"></div>
+          <span class="nav-item-label">Hem</span>
+        </div>
+        <div class="nav-item">
+          <div class="nav-item-dot"></div>
+          <span class="nav-item-label">Uppgifter</span>
+        </div>
+        <div class="nav-item">
+          <div class="nav-item-dot"></div>
+          <span class="nav-item-label">Ekonomi</span>
+        </div>
+        <div class="nav-item active">
+          <div class="nav-item-dot"></div>
+          <span class="nav-item-label">Dokument</span>
+        </div>
+        <div class="nav-item">
+          <div class="nav-item-dot"></div>
+          <span class="nav-item-label">Mer</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

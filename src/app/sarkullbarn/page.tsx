@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { useLanguage } from '@/lib/i18n';
 import Link from 'next/link';
 import {
-  ArrowLeft,
   Baby,
   ChevronRight,
   AlertTriangle,
@@ -12,6 +11,8 @@ import {
   ChevronUp,
   Info,
 } from 'lucide-react';
+import { PageHeader } from '@/components/ui/PageHeader';
+import { Breadcrumb } from '@/components/ui/Breadcrumb';
 import { MikeRossTip } from '@/components/ui/MikeRossTip';
 
 interface FAQItem {
@@ -60,21 +61,13 @@ export default function SarkullbarnPage() {
   const [expandedFAQ, setExpandedFAQ] = useState<number | null>(0);
 
   return (
-    <div className="flex flex-col min-h-[calc(100dvh-5rem)] px-4 py-5 pb-24">
-      {/* Header */}
-      <div className="flex items-center gap-3 mb-6">
-        <Link
-          href="/dashboard"
-          className="p-2 -ml-2 min-h-[44px] min-w-[44px] flex items-center justify-center rounded-full hover:bg-background transition-colors"
-          aria-label={t('Tillbaka', 'Back')}
-        >
-          <ArrowLeft className="w-5 h-5 text-primary" />
-        </Link>
-        <div>
-          <h1 className="text-xl font-display text-primary">{t('Särkullbarn och arv', 'Non-mutual Children and Inheritance')}</h1>
-          <p className="text-muted text-sm">{t('Speciella rättigheter i arvskiftet', 'Special rights in estate distribution')}</p>
-        </div>
-      </div>
+    <div className="flex flex-col min-h-[calc(100dvh-5rem)] pb-24">
+      <Breadcrumb />
+      <PageHeader
+        title={t('Särkullbarn och arv', 'Non-mutual Children and Inheritance')}
+        subtitle={t('Speciella rättigheter i arvskiftet', 'Special rights in estate distribution')}
+      />
+      <div className="px-4">
 
       <MikeRossTip text={t('Särkullbarn är juridiskt skyddade — de kan kräva sin laglott (halva arvslotten) direkt vid dödsfallet, utan att vänta på att styvföräldern också dör. Det kan skapa ekonomisk press om bostad eller kapital är bundet. Planera detta tidigt.', 'Non-mutual children are legally protected—they can claim their legal portion (half the inheritance share) immediately upon death, without waiting for the step-parent to pass. This can create financial pressure if housing or capital is tied up. Plan ahead.')} />
 
@@ -283,6 +276,7 @@ export default function SarkullbarnPage() {
         </p>
       </div>
 
+      </div>
     </div>
   );
 }

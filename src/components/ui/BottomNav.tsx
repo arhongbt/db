@@ -2,10 +2,10 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 import { useLanguage } from '@/lib/i18n';
 import {
-  Home, Users, Wallet, FileText, FolderOpen, MoreHorizontal, X,
+  Home, Users, Wallet, FileText, FolderOpen, MoreHorizontal, X, Search,
   Calculator, Building2, Camera, Download, Bell, Scale, BookOpen,
   HelpCircle, Globe, Briefcase, AlertTriangle, Bot, PenTool, ScrollText, FileX,
   HomeIcon, Heart, CreditCard, FileCheck, Landmark, Newspaper, Flower2, Flame, Smartphone, Handshake, Baby, Calendar, FileDown, Gem,
@@ -81,20 +81,70 @@ export function BottomNav() {
   const pathname = usePathname();
   const { t } = useLanguage();
   const [moreOpen, setMoreOpen] = useState(false);
+  const [menuFilter, setMenuFilter] = useState('');
+  const [recentlyUsed, setRecentlyUsed] = useState<string[]>([]);
   const menuRef = useRef<HTMLDivElement>(null);
+  const filterInputRef = useRef<HTMLInputElement>(null);
 
-  useEffect(() => { setMoreOpen(false); }, [pathname]);
+  // Track recently used items from More menu
+  useEffect(() => {
+    const moreHref = ALL_MORE_ITEMS.find((item) => pathname === item.href);
+    if (moreHref) {
+      setRecentlyUsed((prev) => {
+        const updated = [moreHref.href, ...prev.filter((h) => h !== moreHref.href)].slice(0, 4);
+        return updated;
+      });
+    }
+  }, [pathname]);
+
+  useEffect(() => {
+    setMoreOpen(false);
+    setMenuFilter('');
+  }, [pathname]);
 
   useEffect(() => {
     if (!moreOpen) return;
-    const handler = (e: MouseEvent) => {
+    const handleClick = (e: MouseEvent) => {
       if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
         setMoreOpen(false);
       }
     };
-    document.addEventListener('mousedown', handler);
-    return () => document.removeEventListener('mousedown', handler);
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setMoreOpen(false);
+    };
+    document.addEventListener('mousedown', handleClick);
+    document.addEventListener('keydown', handleKey);
+    return () => {
+      document.removeEventListener('mousedown', handleClick);
+      document.removeEventListener('keydown', handleKey);
+    };
   }, [moreOpen]);
+
+  // Focus filter input when menu opens
+  useEffect(() => {
+    if (moreOpen) {
+      setTimeout(() => filterInputRef.current?.focus(), 200);
+    }
+  }, [moreOpen]);
+
+  // Filter categories based on search
+  const filteredCategories = useMemo(() => {
+    if (!menuFilter.trim()) return MORE_CATEGORIES;
+    const q = menuFilter.toLowerCase();
+    return MORE_CATEGORIES
+      .map((cat) => ({
+        ...cat,
+        items: cat.items.filter((item) => item.label.toLowerCase().includes(q)),
+      }))
+      .filter((cat) => cat.items.length > 0);
+  }, [menuFilter]);
+
+  // Get recently used items with their full data
+  const recentItems = useMemo(() => {
+    return recentlyUsed
+      .map((href) => ALL_MORE_ITEMS.find((item) => item.href === href))
+      .filter(Boolean) as typeof ALL_MORE_ITEMS;
+  }, [recentlyUsed]);
 
   const NAV_ITEMS = NAV_ITEMS_KEYS.map(item => ({
     ...item,
@@ -124,7 +174,7 @@ export function BottomNav() {
             border: '1px solid var(--border)',
           }}
         >
-          <div className="px-5 pt-5 pb-2 flex items-center justify-between sticky top-0" style={{ background: 'var(--bg-card)', borderRadius: '28px 28px 0 0' }}>
+          <div className="px-5 pt-5 pb-2 flex items-center justify-between sticky top-0 z-10" style={{ background: 'var(--bg-card)', borderRadius: '28px 28px 0 0' }}>
             <h3 className="font-display text-primary text-sm">{t('nav.all_tools')}</h3>
             <button
               onClick={() => setMoreOpen(false)}
@@ -136,9 +186,65 @@ export function BottomNav() {
             </button>
           </div>
           <p className="sr-only">{t('ui.close')}</p>
+
+          {/* Search filter */}
+          <div className="px-4 pb-3">
+            <div className="flex items-center gap-2 px-3 py-2.5 rounded-xl" style={{ background: 'var(--border-light)', border: '1px solid var(--border)' }}>
+              <Search className="w-4 h-4" style={{ color: 'var(--text-secondary)' }} />
+              <input
+                ref={filterInputRef}
+                type="text"
+                value={menuFilter}
+                onChange={(e) => setMenuFilter(e.target.value)}
+                placeholder={t('Filtrera verktyg...', 'Filter tools...')}
+                className="flex-1 text-sm bg-transparent outline-none"
+                style={{ color: 'var(--text)' }}
+              />
+              {menuFilter && (
+                <button onClick={() => setMenuFilter('')} className="p-0.5" style={{ color: 'var(--text-secondary)' }}>
+                  <X className="w-3.5 h-3.5" />
+                </button>
+              )}
+            </div>
+          </div>
+
+          {/* Recently used */}
+          {recentItems.length > 0 && !menuFilter.trim() && (
+            <div className="px-4 pb-3">
+              <div className="rounded-2xl p-3" style={{ background: 'var(--accent-soft, rgba(107,127,94,0.06))' }}>
+                <p className="text-[10px] uppercase tracking-wider mb-2.5 px-1" style={{ color: 'var(--accent)' }}>
+                  {t('Senast använda', 'Recently used')}
+                </p>
+                <div className="flex gap-2">
+                  {recentItems.map(({ href, label, icon: Icon }) => (
+                    <Link
+                      key={href}
+                      href={href}
+                      className="flex flex-col items-center gap-1.5 py-2 px-2 flex-1 rounded-xl transition-all duration-200"
+                      style={{ background: 'transparent' }}
+                      aria-label={label}
+                    >
+                      <div
+                        className="w-9 h-9 rounded-full flex items-center justify-center"
+                        style={{ background: 'rgba(107,127,94,0.12)' }}
+                      >
+                        <Icon className="w-4 h-4 text-accent" strokeWidth={1.5} />
+                      </div>
+                      <span className="text-[10px] font-medium text-center leading-tight" style={{ color: 'var(--text)' }}>{label}</span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+
           <div className="px-3 pb-5">
-            {MORE_CATEGORIES.map((category) => (
+            {filteredCategories.map((category, catIdx) => (
               <div key={category.title} className="mb-4 last:mb-0">
+                {/* Gradient divider between categories */}
+                {catIdx > 0 && (
+                  <div className="h-px mx-2 mb-3" style={{ background: 'linear-gradient(90deg, transparent, var(--border), transparent)' }} />
+                )}
                 <p className="text-xs font-display text-muted uppercase tracking-wider px-2 mb-2">{category.title}</p>
                 <div className="grid grid-cols-4 gap-1.5">
                   {category.items.map(({ href, label, icon: Icon }) => {
@@ -168,6 +274,11 @@ export function BottomNav() {
                 </div>
               </div>
             ))}
+            {filteredCategories.length === 0 && menuFilter.trim() && (
+              <p className="text-sm text-center py-6" style={{ color: 'var(--text-secondary)' }}>
+                {t('Inga träffar', 'No matches')}
+              </p>
+            )}
           </div>
         </div>
       )}

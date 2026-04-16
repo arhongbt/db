@@ -5,7 +5,6 @@ import { useLanguage } from '@/lib/i18n';
 import { DodsboProvider } from '@/lib/context';
 import Link from 'next/link';
 import {
-  ArrowLeft,
   ChevronRight,
   ChevronLeft,
   Bot,
@@ -14,6 +13,8 @@ import {
   CheckCircle2,
   Radio,
 } from 'lucide-react';
+import { PageHeader } from '@/components/ui/PageHeader';
+import { Breadcrumb } from '@/components/ui/Breadcrumb';
 
 // ── Types ──
 interface BegravningsplanerData {
@@ -116,21 +117,13 @@ function BegravningsplaneringContent() {
   };
 
   return (
-    <div className="flex flex-col min-h-[calc(100dvh-5rem)] px-4 py-5 pb-24">
-      <Link href="/dashboard" className="inline-flex items-center gap-2 text-sm text-muted hover:text-primary mb-4 rounded-full">
-        <ArrowLeft className="w-4 h-4" /> {t('Dashboard', 'Dashboard')}
-      </Link>
-
-      {/* Header */}
-      <div className="flex items-center gap-3 mb-2">
-        <div className="w-10 h-10 rounded-2xl flex items-center justify-center" style={{ background: 'rgba(107,127,94,0.08)' }}>
-          <Flower2 className="w-5 h-5 text-accent" />
-        </div>
-        <div>
-          <h1 className="text-xl font-display text-primary">{t('Begravningsplanering', 'Funeral Planning')}</h1>
-          <p className="text-xs text-muted">{t('Steg', 'Step')} {step + 1} {t('av', 'of')} {STEPS.length} — {t(STEPS[step].desc, STEPS[step].descEn)}</p>
-        </div>
-      </div>
+    <div className="flex flex-col min-h-[calc(100dvh-5rem)] pb-24">
+      <Breadcrumb />
+      <PageHeader
+        title={t('Begravningsplanering', 'Funeral Planning')}
+        subtitle={`${t('Steg', 'Step')} ${step + 1} ${t('av', 'of')} ${STEPS.length} — ${t(STEPS[step].desc, STEPS[step].descEn)}`}
+      />
+      <div className="px-4">
 
       {/* Step progress bar */}
       <div className="flex gap-1.5 my-4">
@@ -523,6 +516,7 @@ function BegravningsplaneringContent() {
         )}
       </div>
 
+      </div>
     </div>
   );
 }

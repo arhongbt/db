@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef, useMemo } from "react";
+import { useState, useEffect, useRef, useMemo, useCallback } from "react";
 import { Search, X, ArrowRight, FileText, Calculator, BookOpen, Users, Shield, Clock, Heart } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useLanguage } from "@/lib/i18n";
@@ -75,20 +75,114 @@ const SEARCH_INDEX: SearchItem[] = [
   { title: "Inställningar", titleEn: "Settings", description: "Konto och inställningar", descriptionEn: "Account and settings", href: "/installningar", icon: Shield, category: "Övrigt", keywords: ["inställningar","konto","settings","profil"] },
 ];
 
+// Skeleton loading component
+function SearchSkeleton() {
+  return (
+    <div className="px-4 py-3 space-y-4">
+      {[1, 2, 3].map((i) => (
+        <div key={i} className="flex items-center gap-3 animate-pulse">
+          <div className="w-8 h-8 rounded-xl" style={{ background: 'var(--border-light)' }} />
+          <div className="flex-1 space-y-2">
+            <div className="h-3 rounded-full w-3/5" style={{ background: 'var(--border-light)' }} />
+            <div className="h-2.5 rounded-full w-2/5" style={{ background: 'var(--border-light)' }} />
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 export default function SearchModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
   const [query, setQuery] = useState("");
+  const [activeIndex, setActiveIndex] = useState(-1);
+  const [isSearching, setIsSearching] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
+  const resultsRef = useRef<HTMLDivElement>(null);
+  const debounceRef = useRef<ReturnType<typeof setTimeout>>();
   const router = useRouter();
   const { t } = useLanguage();
 
   useEffect(() => {
     if (isOpen) {
       setQuery("");
+      setActiveIndex(-1);
       setTimeout(() => inputRef.current?.focus(), 100);
     }
   }, [isOpen]);
 
-  // Keyboard shortcut: Cmd+K / Ctrl+K
+  // Debounced search with loading state
+  const [debouncedQuery, setDebouncedQuery] = useState("");
+  useEffect(() => {
+    if (query.trim()) {
+      setIsSearching(true);
+      if (debounceRef.current) clearTimeout(debounceRef.current);
+      debounceRef.current = setTimeout(() => {
+        setDebouncedQuery(query);
+        setIsSearching(false);
+      }, 150);
+    } else {
+      setDebouncedQuery("");
+      setIsSearching(false);
+    }
+    return () => { if (debounceRef.current) clearTimeout(debounceRef.current); };
+  }, [query]);
+
+  const results = useMemo(() => {
+    if (!debouncedQuery.trim()) return [];
+    const q = debouncedQuery.toLowerCase();
+    return SEARCH_INDEX
+      .filter(item => {
+        const searchText = `${item.title} ${item.titleEn} ${item.description} ${item.descriptionEn} ${item.keywords.join(" ")}`.toLowerCase();
+        return q.split(" ").every(word => searchText.includes(word));
+      })
+      .slice(0, 8);
+  }, [debouncedQuery]);
+
+  // Flat list of results for keyboard navigation
+  const flatResults = useMemo(() => results, [results]);
+
+  const grouped = useMemo(() => {
+    const groups: Record<string, SearchItem[]> = {};
+    results.forEach(r => {
+      if (!groups[r.category]) groups[r.category] = [];
+      groups[r.category].push(r);
+    });
+    return groups;
+  }, [results]);
+
+  const handleSelect = useCallback((href: string) => {
+    router.push(href);
+    onClose();
+  }, [router, onClose]);
+
+  // Keyboard navigation
+  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      setActiveIndex(prev => (prev < flatResults.length - 1 ? prev + 1 : 0));
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      setActiveIndex(prev => (prev > 0 ? prev - 1 : flatResults.length - 1));
+    } else if (e.key === "Enter" && activeIndex >= 0 && flatResults[activeIndex]) {
+      e.preventDefault();
+      handleSelect(flatResults[activeIndex].href);
+    }
+  }, [activeIndex, flatResults, handleSelect]);
+
+  // Reset active index when results change
+  useEffect(() => {
+    setActiveIndex(-1);
+  }, [debouncedQuery]);
+
+  // Scroll active item into view
+  useEffect(() => {
+    if (activeIndex >= 0 && resultsRef.current) {
+      const activeEl = resultsRef.current.querySelector(`[data-index="${activeIndex}"]`);
+      activeEl?.scrollIntoView({ block: 'nearest' });
+    }
+  }, [activeIndex]);
+
+  // Global keyboard shortcut: Cmd+K / Ctrl+K
   useEffect(() => {
     function handleKey(e: KeyboardEvent) {
       if ((e.metaKey || e.ctrlKey) && e.key === "k") {
@@ -102,32 +196,9 @@ export default function SearchModal({ isOpen, onClose }: { isOpen: boolean; onCl
     return () => window.removeEventListener("keydown", handleKey);
   }, [isOpen, onClose]);
 
-  const results = useMemo(() => {
-    if (!query.trim()) return [];
-    const q = query.toLowerCase();
-    return SEARCH_INDEX
-      .filter(item => {
-        const searchText = `${item.title} ${item.titleEn} ${item.description} ${item.descriptionEn} ${item.keywords.join(" ")}`.toLowerCase();
-        return q.split(" ").every(word => searchText.includes(word));
-      })
-      .slice(0, 8);
-  }, [query]);
-
-  const grouped = useMemo(() => {
-    const groups: Record<string, SearchItem[]> = {};
-    results.forEach(r => {
-      if (!groups[r.category]) groups[r.category] = [];
-      groups[r.category].push(r);
-    });
-    return groups;
-  }, [results]);
-
-  function handleSelect(href: string) {
-    router.push(href);
-    onClose();
-  }
-
   if (!isOpen) return null;
+
+  let resultIndex = 0;
 
   return (
     <div className="fixed inset-0 z-[100] flex items-start justify-center pt-[15vh]" onClick={onClose}>
@@ -136,42 +207,77 @@ export default function SearchModal({ isOpen, onClose }: { isOpen: boolean; onCl
 
       {/* Modal */}
       <div
-        className="relative w-[90%] max-w-lg bg-white rounded-2xl shadow-2xl overflow-hidden animate-slideUp"
+        className="relative w-[90%] max-w-lg rounded-2xl shadow-2xl overflow-hidden animate-slideUp"
+        style={{ background: 'var(--bg-card)' }}
         onClick={(e) => e.stopPropagation()}
+        onKeyDown={handleKeyDown}
+        role="dialog"
+        aria-label={t("Sökruta", "Search")}
       >
         {/* Search input */}
-        <div className="flex items-center gap-3 px-4 py-3 border-b border-gray-100">
-          <Search className="w-5 h-5 text-gray-400 shrink-0" />
+        <div className="flex items-center gap-3 px-4 py-3 border-b" style={{ borderColor: 'var(--border)' }}>
+          <Search className="w-5 h-5 shrink-0" style={{ color: 'var(--text-secondary)' }} />
           <input
             ref={inputRef}
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder={t("Sök i appen...", "Search the app...")}
-            className="flex-1 text-base outline-none bg-transparent text-gray-900 placeholder:text-gray-400"
+            className="flex-1 text-base outline-none bg-transparent"
+            style={{ color: 'var(--text)' }}
+            role="combobox"
+            aria-expanded={results.length > 0}
+            aria-activedescendant={activeIndex >= 0 ? `search-result-${activeIndex}` : undefined}
           />
-          <button onClick={onClose} className="p-1 rounded-lg hover:bg-gray-100 transition-colors">
-            <X className="w-4 h-4 text-gray-400" />
+          <button
+            onClick={onClose}
+            className="p-1 rounded-lg transition-colors"
+            style={{ color: 'var(--text-secondary)' }}
+            aria-label={t("Stäng sökning", "Close search")}
+          >
+            <X className="w-4 h-4" />
           </button>
         </div>
 
         {/* Results */}
-        <div className="max-h-[50vh] overflow-y-auto">
-          {query.trim() && results.length === 0 && (
-            <div className="px-4 py-8 text-center text-gray-400">
+        <div className="max-h-[50vh] overflow-y-auto" ref={resultsRef} role="listbox">
+          {/* Loading skeleton */}
+          {isSearching && query.trim() && <SearchSkeleton />}
+
+          {/* No results */}
+          {!isSearching && debouncedQuery.trim() && results.length === 0 && (
+            <div className="px-4 py-8 text-center" style={{ color: 'var(--text-secondary)' }}>
               <p className="text-sm">{t("Inga resultat", "No results")}</p>
+              <p className="text-xs mt-2" style={{ color: 'var(--text-secondary)', opacity: 0.7 }}>
+                {t("Prova ett annat sökord eller bläddra bland kategorierna", "Try a different term or browse categories")}
+              </p>
             </div>
           )}
 
+          {/* Popular searches (empty state) */}
           {!query.trim() && (
             <div className="px-4 py-4">
-              <p className="text-xs text-gray-400 mb-3">{t("Populära sökningar", "Popular searches")}</p>
+              <p className="text-xs mb-3" style={{ color: 'var(--text-secondary)' }}>
+                {t("Populära sökningar", "Popular searches")}
+              </p>
               <div className="flex flex-wrap gap-2">
                 {["Bouppteckning", "Arvskalkylator", "Bankguide", "Fullmakt", "Nödbroms", "Tidslinje"].map(term => (
                   <button
                     key={term}
                     onClick={() => setQuery(term)}
-                    className="px-3 py-1.5 rounded-full bg-gray-100 text-sm text-gray-600 hover:bg-accent/10 hover:text-accent transition-colors"
+                    className="px-3 py-1.5 rounded-full text-sm transition-all duration-200 active:scale-[0.97]"
+                    style={{
+                      background: 'var(--border-light)',
+                      color: 'var(--text-secondary)',
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.background = 'var(--accent-soft, rgba(107,127,94,0.1))';
+                      e.currentTarget.style.color = 'var(--accent)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.background = 'var(--border-light)';
+                      e.currentTarget.style.color = 'var(--text-secondary)';
+                    }}
                   >
                     {term}
                   </button>
@@ -180,32 +286,83 @@ export default function SearchModal({ isOpen, onClose }: { isOpen: boolean; onCl
             </div>
           )}
 
-          {Object.entries(grouped).map(([category, items]) => (
+          {/* Grouped results */}
+          {!isSearching && Object.entries(grouped).map(([category, items]) => (
             <div key={category}>
-              <p className="px-4 pt-3 pb-1 text-[11px] font-display text-gray-400 uppercase tracking-wider">{category}</p>
-              {items.map(item => (
-                <button
-                  key={item.href}
-                  onClick={() => handleSelect(item.href)}
-                  className="w-full flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors text-left group"
-                >
-                  <div className="w-8 h-8 rounded-xl bg-gray-100 group-hover:bg-accent/10 flex items-center justify-center transition-colors shrink-0">
-                    <item.icon className="w-4 h-4 text-gray-500 group-hover:text-accent transition-colors" />
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <p className="text-sm font-medium text-gray-900 truncate">{item.title}</p>
-                    <p className="text-xs text-gray-400 truncate">{item.description}</p>
-                  </div>
-                  <ArrowRight className="w-4 h-4 text-gray-300 group-hover:text-accent shrink-0 transition-colors" />
-                </button>
-              ))}
+              <p
+                className="px-4 pt-3 pb-1 text-[11px] font-display uppercase tracking-wider"
+                style={{ color: 'var(--text-secondary)' }}
+              >
+                {category}
+              </p>
+              {items.map(item => {
+                const idx = resultIndex++;
+                const isActive = idx === activeIndex;
+                return (
+                  <button
+                    key={item.href}
+                    id={`search-result-${idx}`}
+                    data-index={idx}
+                    onClick={() => handleSelect(item.href)}
+                    className="w-full flex items-center gap-3 px-4 py-3 transition-colors text-left group"
+                    style={{
+                      background: isActive ? 'var(--accent-soft, rgba(107,127,94,0.08))' : 'transparent',
+                    }}
+                    onMouseEnter={() => setActiveIndex(idx)}
+                    role="option"
+                    aria-selected={isActive}
+                  >
+                    <div
+                      className="w-8 h-8 rounded-xl flex items-center justify-center transition-colors shrink-0"
+                      style={{
+                        background: isActive ? 'var(--accent-soft, rgba(107,127,94,0.12))' : 'var(--border-light)',
+                      }}
+                    >
+                      <item.icon
+                        className="w-4 h-4 transition-colors"
+                        style={{ color: isActive ? 'var(--accent)' : 'var(--text-secondary)' }}
+                      />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <p className="text-sm font-medium truncate" style={{ color: 'var(--text)' }}>
+                        {item.title}
+                      </p>
+                      <p className="text-xs truncate" style={{ color: 'var(--text-secondary)' }}>
+                        {item.description}
+                      </p>
+                    </div>
+                    <ArrowRight
+                      className="w-4 h-4 shrink-0 transition-colors"
+                      style={{ color: isActive ? 'var(--accent)' : 'var(--border)' }}
+                    />
+                  </button>
+                );
+              })}
             </div>
           ))}
         </div>
 
-        {/* Footer */}
-        <div className="px-4 py-2 border-t border-gray-100 flex items-center justify-end">
-          <p className="text-[10px] text-gray-300">ESC {t("för att stänga", "to close")}</p>
+        {/* Footer with keyboard hints */}
+        <div
+          className="px-4 py-2 border-t flex items-center justify-between"
+          style={{ borderColor: 'var(--border)' }}
+        >
+          <div className="flex items-center gap-3 text-[10px]" style={{ color: 'var(--text-secondary)', opacity: 0.6 }}>
+            <span>
+              <kbd className="px-1 py-0.5 rounded text-[9px] border" style={{ borderColor: 'var(--border)', background: 'var(--border-light)' }}>&uarr;</kbd>
+              {' '}
+              <kbd className="px-1 py-0.5 rounded text-[9px] border" style={{ borderColor: 'var(--border)', background: 'var(--border-light)' }}>&darr;</kbd>
+              {' '}{t("navigera", "navigate")}
+            </span>
+            <span>
+              <kbd className="px-1 py-0.5 rounded text-[9px] border" style={{ borderColor: 'var(--border)', background: 'var(--border-light)' }}>&crarr;</kbd>
+              {' '}{t("öppna", "open")}
+            </span>
+          </div>
+          <span className="text-[10px]" style={{ color: 'var(--text-secondary)', opacity: 0.5 }}>
+            <kbd className="px-1 py-0.5 rounded text-[9px] border" style={{ borderColor: 'var(--border)', background: 'var(--border-light)' }}>ESC</kbd>
+            {' '}{t("stäng", "close")}
+          </span>
         </div>
       </div>
     </div>
