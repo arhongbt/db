@@ -160,7 +160,7 @@ export function generateTasks(onboarding: OnboardingData): DodsboTask[] {
     status: 'ej_paborjad',
     priority: 'viktig',
     deadlineDays: 120,
-    externalUrl: 'https://www.skatteverket.se/privat/folkbokforing/dodsfall/bouppteckning',
+    externalUrl: 'https://www.skatteverket.se/privat/folkbokforing/narenanhorigdor/bouppteckning',
   });
 
   // ── ARVSKIFTE (Månad 3-6) ───────────────────────────────
