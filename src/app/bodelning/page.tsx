@@ -303,8 +303,8 @@ function BodelningContent() {
 
         {/* Warning: Must do before arvskifte */}
         <div
-          className="flex gap-3 p-4 mb-6"
-          style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(196,149,106,0.06), rgba(196,149,106,0.02))', border: '1px solid rgba(196,149,106,0.15)' }}
+          className="flex gap-3 p-4 mb-6 rounded-2xl"
+          style={{ background: 'linear-gradient(135deg, rgba(196,149,106,0.06), rgba(196,149,106,0.02))', border: '1px solid rgba(196,149,106,0.15)' }}
         >
           <AlertTriangle className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#D97706' }} />
           <div>

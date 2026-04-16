@@ -144,14 +144,14 @@ export default function AuthPage() {
 
         {/* Error message */}
         {error && (
-          <div role="alert" className="mb-4 p-4 text-warn text-sm animate-slideUp" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(196,149,106,0.06), rgba(196,149,106,0.02))', border: '1px solid rgba(196,149,106,0.15)' }}>
+          <div role="alert" className="mb-4 p-4 text-warn text-sm animate-slideUp rounded-2xl" style={{ background: 'linear-gradient(135deg, rgba(196,149,106,0.06), rgba(196,149,106,0.02))', border: '1px solid rgba(196,149,106,0.15)' }}>
             {error}
           </div>
         )}
 
         {/* Success message */}
         {success && (
-          <div role="status" className="mb-4 p-4 text-success text-sm animate-slideUp" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}>
+          <div role="status" className="mb-4 p-4 text-success text-sm animate-slideUp rounded-2xl" style={{ background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}>
             {success}
           </div>
         )}
@@ -273,7 +273,7 @@ export default function AuthPage() {
         {/* Password reset form */}
         {tab === 'reset' && (
           <form onSubmit={handleResetPassword} className="animate-fadeIn">
-            <div className="mb-4 p-4 text-accent text-sm" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}>
+            <div className="mb-4 p-4 text-accent text-sm rounded-2xl" style={{ background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}>
               {t('Vi skickar en säker länk till din e-postadress där du kan återställa ditt lösenord.', 'We will send a secure link to your email where you can reset your password.')}
             </div>
 

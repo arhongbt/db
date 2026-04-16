@@ -100,7 +100,7 @@ ${form.citat}
           </div>
 
           {/* Memorial Card */}
-          <div className="p-8 text-center space-y-6 border" style={{ borderRadius: '24px', background: 'var(--bg-card)', borderColor: 'var(--border)' }}>
+          <div className="p-8 text-center space-y-6 border rounded-2xl" style={{ background: 'var(--bg-card)', borderColor: 'var(--border)' }}>
             <Flame className="w-8 h-8 text-primary/60 mx-auto" />
 
             <div className="h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
@@ -129,7 +129,7 @@ ${form.citat}
             )}
 
             {form.citat && (
-              <div className="p-4 border" style={{ borderRadius: '24px', background: 'var(--bg)', borderColor: 'var(--border)' }}>
+              <div className="p-4 border rounded-2xl" style={{ background: 'var(--bg)', borderColor: 'var(--border)' }}>
                 <p className="text-sm text-primary/80 font-light">
                   {form.citat}
                 </p>

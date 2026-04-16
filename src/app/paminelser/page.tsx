@@ -336,7 +336,6 @@ function PaminelserContent() {
                   key={d.id}
                   className="bg-white rounded-2xl p-4"
                   style={{
-                    borderRadius: '24px',
                     background: d.status === 'urgent' ? 'linear-gradient(135deg, rgba(196,149,106,0.06), rgba(196,149,106,0.02))' : 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))',
                     border: d.status === 'urgent' ? '1px solid rgba(196,149,106,0.15)' : '1px solid rgba(107,127,94,0.15)'
                   }}

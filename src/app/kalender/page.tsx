@@ -242,7 +242,7 @@ function CalendarContent() {
       />
 
       {/* Share hint card */}
-      <div className="card mb-5 flex items-start gap-3" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}>
+      <div className="card mb-5 flex items-start gap-3 rounded-2xl" style={{ background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}>
         <Share2 className="w-5 h-5 text-[#6B7F5E] flex-shrink-0 mt-0.5" />
         <div>
           <p className="text-sm font-medium text-primary">{t('Framtida funktion', 'Coming soon')}</p>
@@ -381,7 +381,7 @@ function CalendarContent() {
               {selectedDayEvents.map((event) => {
                 const colors = CATEGORY_COLORS[event.category];
                 return (
-                  <div key={event.id} className={`card ${colors.bg} ${colors.text}`} style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}>
+                  <div key={event.id} className={`card ${colors.bg} ${colors.text} rounded-2xl`} style={{ background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}>
                     <div className="flex items-start justify-between gap-3">
                       <div className="flex-1">
                         <p className="font-semibold">{event.title}</p>
@@ -444,7 +444,7 @@ function CalendarContent() {
 
       {/* Add event form modal */}
       {showAddEvent && (
-        <div className="card mb-6 p-4 space-y-4" style={{ borderRadius: '28px' }}>
+        <div className="card mb-6 p-4 space-y-4 rounded-3xl">
           <div className="flex items-center justify-between mb-2">
             <h3 className="text-lg font-display text-primary">{t('Ny händelse', 'New event')}</h3>
             <button

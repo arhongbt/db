@@ -99,7 +99,7 @@ function DodsboanmalanContent() {
       {step === 0 && (
         <div className="animate-fadeIn">
           <MikeRossTip text="En dödsboanmälan används istället för bouppteckning när den avlidne hade så lite tillgångar att de inte ens räcker till begravningen. Låt oss kolla om det passar din situation." />
-          <div className="card mb-4" style={{ borderRadius: '28px' }}>
+          <div className="card mb-4 rounded-3xl">
             <p className="font-display text-primary mb-3">Dödsboanmälan passar om:</p>
             <div className="space-y-2">
               {['Den avlidne hade inga eller mycket små tillgångar','Tillgångarna räcker inte till begravningskostnaderna','Det finns ingen fastighet eller bostadsrätt','Det finns inga värdefulla föremål att fördela'].map((item, i) => (
@@ -112,7 +112,7 @@ function DodsboanmalanContent() {
               ))}
             </div>
           </div>
-          <div className="flex items-start gap-3 p-4 rounded-2xl mb-5" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(196,149,106,0.06), rgba(196,149,106,0.02))', border: '1px solid rgba(196,149,106,0.15)' }}>
+          <div className="flex items-start gap-3 p-4 rounded-2xl mb-5" style={{ background: 'linear-gradient(135deg, rgba(196,149,106,0.06), rgba(196,149,106,0.02))', border: '1px solid rgba(196,149,106,0.15)' }}>
             <AlertTriangle className="w-4 h-4 text-warn flex-shrink-0 mt-0.5" />
             <p className="text-xs text-primary/80 leading-relaxed">
               <strong>Gör istället en bouppteckning om:</strong> den avlidne ägde fastighet, bostadsrätt, bil av värde, eller om tillgångarna överstiger begravningskostnaderna.
@@ -124,7 +124,7 @@ function DodsboanmalanContent() {
       {step === 1 && (
         <div className="animate-fadeIn">
           <MikeRossTip text="Fyll i den avlidnes uppgifter. Kommunen behöver veta var personen var folkbokförd." />
-          <div className="card space-y-4" style={{ borderRadius: '28px' }}>
+          <div className="card space-y-4 rounded-3xl">
             <div><label className="block text-sm font-medium text-primary mb-1.5">Den avlidnes namn</label>
               <input value={data.deceasedNamn} onChange={(e) => setData({...data, deceasedNamn: e.target.value})} placeholder="Förnamn Efternamn" className={inputCls} /></div>
             <div><label className="block text-sm font-medium text-primary mb-1.5">Personnummer</label>
@@ -140,7 +140,7 @@ function DodsboanmalanContent() {
       {step === 2 && (
         <div className="animate-fadeIn">
           <MikeRossTip text="Vem som helst med koppling till dödsboet kan göra en dödsboanmälan — det brukar vara närmaste anhörig." />
-          <div className="card space-y-4" style={{ borderRadius: '28px' }}>
+          <div className="card space-y-4 rounded-3xl">
             <div><label className="block text-sm font-medium text-primary mb-1.5">Ditt namn</label>
               <input value={data.anmalarNamn} onChange={(e) => setData({...data, anmalarNamn: e.target.value})} placeholder="Förnamn Efternamn" className={inputCls} /></div>
             <div><label className="block text-sm font-medium text-primary mb-1.5">Relation till den avlidne</label>
@@ -156,7 +156,7 @@ function DodsboanmalanContent() {
       {step === 3 && (
         <div className="animate-fadeIn">
           <MikeRossTip text="Beskriv den avlidnes ekonomi. Poängen är att visa att tillgångarna inte räcker till begravningen. Socialnämnden kan hjälpa till med begravningskostnaderna." />
-          <div className="card space-y-4 mb-4" style={{ borderRadius: '28px' }}>
+          <div className="card space-y-4 mb-4 rounded-3xl">
             <div><label className="block text-sm font-medium text-primary mb-1.5">Tillgångar vid dödsfallet</label>
               <textarea value={data.tillgangar} onChange={(e) => setData({...data, tillgangar: e.target.value})} placeholder="T.ex. 'Bankmedel: 3 200 kr. Inga övriga tillgångar.'" rows={3} className={inputCls + ' resize-none text-sm'} /></div>
             <div><label className="block text-sm font-medium text-primary mb-1.5">Uppskattad begravningskostnad</label>
@@ -164,7 +164,7 @@ function DodsboanmalanContent() {
             <div><label className="block text-sm font-medium text-primary mb-1.5">Skulder</label>
               <textarea value={data.skulder} onChange={(e) => setData({...data, skulder: e.target.value})} placeholder="T.ex. 'Hyresskuld: 5 000 kr'" rows={2} className={inputCls + ' resize-none text-sm'} /></div>
           </div>
-          <div className="card space-y-4" style={{ borderRadius: '28px' }}>
+          <div className="card space-y-4 rounded-3xl">
             <div><label className="block text-sm font-medium text-primary mb-1.5">Boendeform</label>
               <div className="grid grid-cols-2 gap-2">
                 {([['hyresratt','Hyresrätt'],['bostadsratt','Bostadsrätt'],['villa','Villa/hus'],['annat','Annat']] as const).map(([val,label]) => (
@@ -195,7 +195,7 @@ function DodsboanmalanContent() {
       {step === 4 && (
         <div className="animate-fadeIn">
           <MikeRossTip text="Granska och ladda ner. Lämna dokumentet till socialnämnden i kommunen. Bifoga dödsbevis och kontoutdrag." />
-          <div className="card mb-4" style={{ borderRadius: '28px' }}>
+          <div className="card mb-4 rounded-3xl">
             <p className="text-xs font-display text-muted mb-3">Sammanfattning</p>
             <div className="space-y-2 text-sm">
               <p><strong className="text-primary">Den avlidne:</strong> <span className="text-muted">{data.deceasedNamn || '(ej ifyllt)'}</span></p>
@@ -204,7 +204,7 @@ function DodsboanmalanContent() {
               <p><strong className="text-primary">Begravningskostnad:</strong> <span className="text-muted">{data.begravningskostnad ? `${data.begravningskostnad} kr` : '(ej ifyllt)'}</span></p>
             </div>
           </div>
-          <div className="flex items-start gap-3 p-4 rounded-2xl mb-4" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}>
+          <div className="flex items-start gap-3 p-4 rounded-2xl mb-4" style={{ background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}>
             <Info className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" />
             <p className="text-xs text-primary/80 leading-relaxed"><strong>Bifoga:</strong> dödsbevis, kontoutdrag, begravningsfaktura.</p>
           </div>

@@ -163,7 +163,7 @@ function TillgangarContent() {
 
       {/* Crypto guide link if crypto assets present */}
       {state.tillgangar.some((t) => t.type === 'kryptovalutor') && (
-        <div className="card mb-6" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}>
+        <div className="card mb-6 rounded-2xl" style={{ background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}>
           <div className="flex gap-3">
             <Bitcoin className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
             <div className="flex-1">
@@ -204,7 +204,7 @@ function TillgangarContent() {
 
       {/* Reassurance banner when netto < 0 */}
       {netto < 0 && (
-        <div className="mb-6" style={{ borderRadius: '24px', padding: '20px', background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}>
+        <div className="mb-6 rounded-2xl" style={{ padding: '20px', background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}>
           <div className="flex gap-3">
             <CheckCircle2 className="w-6 h-6 text-success flex-shrink-0 mt-0.5" />
             <div className="flex-1">
@@ -338,7 +338,7 @@ function TillgangarContent() {
 
       {/* Add forms */}
       {showForm && tab === 'tillgangar' && (
-        <div className="card" style={{ borderRadius: '20px', border: '2px solid var(--accent)' }}>
+        <div className="card rounded-2xl" style={{ border: '2px solid var(--accent)' }}>
           <h3 className="text-base font-display text-primary mb-3">{t('Ny tillgång', 'New asset')}</h3>
 
           <div className="mb-4">
@@ -412,7 +412,7 @@ function TillgangarContent() {
       )}
 
       {showForm && tab === 'skulder' && (
-        <div className="card" style={{ borderRadius: '20px', border: '2px solid var(--accent)' }}>
+        <div className="card rounded-2xl" style={{ border: '2px solid var(--accent)' }}>
           <h3 className="text-base font-display text-primary mb-3">{t('Ny skuld', 'New debt')}</h3>
 
           <div className="mb-4">

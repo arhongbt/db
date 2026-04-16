@@ -364,7 +364,7 @@ function VarderingContent() {
           </button>
         </div>
 
-        <div className="card border-2 border-accent mb-6" style={{ borderRadius: '28px' }}>
+        <div className="card border-2 border-accent mb-6 rounded-3xl">
           <label className="block mb-4">
             <span className="text-sm font-medium text-primary mb-1 block">
               Beskrivning *
@@ -561,7 +561,7 @@ function VarderingContent() {
           </div>
 
           {grandTotal > 50000 && (
-            <div className="card mb-6" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(196,149,106,0.06), rgba(196,149,106,0.02))', border: '1px solid rgba(196,149,106,0.15)' }}>
+            <div className="card mb-6 rounded-2xl" style={{ background: 'linear-gradient(135deg, rgba(196,149,106,0.06), rgba(196,149,106,0.02))', border: '1px solid rgba(196,149,106,0.15)' }}>
               <div className="flex gap-3">
                 <AlertCircle className="w-5 h-5 text-warn flex-shrink-0 mt-0.5" />
                 <div className="flex-1">

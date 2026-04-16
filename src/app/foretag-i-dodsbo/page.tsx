@@ -689,7 +689,7 @@ function ForetagContent() {
               </div>
 
               {/* Brådskande åtgärder */}
-              <div className="card mb-6" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(196,149,106,0.06), rgba(196,149,106,0.02))', border: '1px solid rgba(196,149,106,0.15)' }}>
+              <div className="card mb-6 rounded-2xl" style={{ background: 'linear-gradient(135deg, rgba(196,149,106,0.06), rgba(196,149,106,0.02))', border: '1px solid rgba(196,149,106,0.15)' }}>
                 <h3 className="font-display text-primary text-sm mb-3 flex items-center gap-2">
                   <AlertTriangle className="w-5 h-5 text-warn" />
                   Brådskande åtgärder (gör först)

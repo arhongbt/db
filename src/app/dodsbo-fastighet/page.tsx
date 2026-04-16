@@ -19,7 +19,7 @@ export default function DodsboFastighetPage() {
       <p className="text-muted mb-8">Så hanterar du bostad, hus och fastigheter i dödsboet.</p>
 
       {/* Intro */}
-      <div className="card mb-6" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}>
+      <div className="card mb-6 rounded-2xl" style={{ background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}>
         <p className="text-sm text-primary/80 leading-relaxed">
           En fastighet är ofta dödsboets största tillgång. Att hantera den rätt
           är avgörande för att undvika onödiga kostnader och konflikter mellan delägare.
@@ -205,7 +205,7 @@ export default function DodsboFastighetPage() {
         </div>
       </div>
 
-      <Link href="/juridisk-hjalp" className="card bg-info-light flex items-center justify-between" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(139,164,184,0.06), rgba(139,164,184,0.02))', border: '1px solid rgba(139,164,184,0.15)' }}>
+      <Link href="/juridisk-hjalp" className="card bg-info-light flex items-center justify-between rounded-2xl" style={{ background: 'linear-gradient(135deg, rgba(139,164,184,0.06), rgba(139,164,184,0.02))', border: '1px solid rgba(139,164,184,0.15)' }}>
         <div>
           <p className="font-semibold text-accent text-sm">Har du fler frågor?</p>
           <p className="text-xs text-muted">Fråga vår juridiska AI-assistent</p>

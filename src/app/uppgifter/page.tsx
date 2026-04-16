@@ -161,9 +161,8 @@ function UppgifterContent() {
       {/* Auto-advance celebration */}
       {advancedTo && (
         <div
-          className="card mb-4 animate-slideUp"
+          className="card mb-4 animate-slideUp rounded-2xl"
           style={{
-            borderRadius: '24px',
             background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))',
             border: '1px solid rgba(107,127,94,0.15)'
           }}
@@ -269,9 +268,8 @@ function UppgifterContent() {
       {Object.entries(grouped).map(([step, stepTasks]) => (
         <div key={step} className="mb-6">
           <div
-            className="px-4 py-2.5 mb-3"
+            className="px-4 py-2.5 mb-3 rounded-2xl"
             style={{
-              borderRadius: '20px',
               background: STEP_COLORS[step as ProcessStep].bg,
               border: `1px solid ${STEP_COLORS[step as ProcessStep].border}`
             }}
@@ -293,7 +291,7 @@ function UppgifterContent() {
               return (
                 <div
                   key={task.id}
-                  className={`card flex items-start gap-3 w-full transition-all duration-300 relative ${
+                  className={`card flex items-start gap-3 w-full transition-all duration-300 relative rounded-2xl ${
                     task.status === 'klar' && recentlyDone.has(task.id)
                       ? 'opacity-60 scale-[0.98]'
                       : task.status === 'klar'
@@ -301,8 +299,7 @@ function UppgifterContent() {
                       : ''
                   }`}
                   style={{
-                    borderLeft: isOverdue ? '3px solid var(--warn)' : 'none',
-                    borderRadius: '24px'
+                    borderLeft: isOverdue ? '3px solid var(--warn)' : 'none'
                   }}
                   role="listitem"
                   aria-label={`${task.title}, ${task.status === 'klar' ? 'slutförd' : 'väntande'}`}

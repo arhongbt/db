@@ -184,7 +184,7 @@ function DelagareContent() {
       </button>
 
       {showArvsinfo && (
-        <div className="card mb-4" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}>
+        <div className="card mb-4 rounded-2xl" style={{ background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}>
           <p className="font-medium text-primary mb-3">{arvsinfo.summary}</p>
 
           <div className="space-y-2 mb-4">
@@ -320,7 +320,7 @@ function DelagareContent() {
 
       {/* Add form */}
       {showForm && (
-        <div className="card border-2 border-accent mb-4" style={{ borderRadius: '28px' }}>
+        <div className="card border-2 border-accent mb-4 rounded-3xl">
           <h3 className="text-lg font-display text-primary mb-4">
             Lägg till dödsbodelägare
           </h3>

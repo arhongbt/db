@@ -237,7 +237,7 @@ function DokumentContent() {
 
       {/* Upload form (shown after file selected) */}
       {showUpload && (
-        <div className="card border-2 border-accent mb-6" style={{ borderRadius: '28px' }}>
+        <div className="card border-2 border-accent mb-6 rounded-3xl">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-lg font-display text-primary">
               {t('Ladda upp dokument', 'Upload document')}

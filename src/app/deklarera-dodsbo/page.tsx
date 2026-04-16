@@ -30,7 +30,7 @@ export default function DeklararaDodsboPage() {
         </div>
 
         {/* Warning box */}
-        <div className="mb-8 p-4 flex gap-3" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(196,149,106,0.06), rgba(196,149,106,0.02))', border: '1px solid rgba(196,149,106,0.15)' }}>
+        <div className="mb-8 p-4 flex gap-3 rounded-2xl" style={{ background: 'linear-gradient(135deg, rgba(196,149,106,0.06), rgba(196,149,106,0.02))', border: '1px solid rgba(196,149,106,0.15)' }}>
           <AlertTriangle className="w-6 h-6 text-warn flex-shrink-0 mt-0.5" />
           <div>
             <h3 className="font-display text-primary mb-1">Viktigt: Deklarationsfristen</h3>

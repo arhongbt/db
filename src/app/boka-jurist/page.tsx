@@ -53,7 +53,7 @@ export default function BokaJuristPage() {
       <div className="px-6 mb-6">
         <div
           className="rounded-2xl border p-4"
-          style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}
+          style={{ background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}
         >
           <h3 className="font-display text-primary text-sm mb-3">
             {t('Vad ingår i mötet?', 'What\u2019s included?')}
@@ -82,8 +82,8 @@ export default function BokaJuristPage() {
         </h2>
 
         <div
-          className="rounded-2xl border overflow-hidden p-2"
-          style={{ borderRadius: '28px', background: 'var(--bg-card)', borderColor: 'var(--border)' }}
+          className="rounded-3xl border overflow-hidden p-2"
+          style={{ background: 'var(--bg-card)', borderColor: 'var(--border)' }}
         >
           <Script
             src="https://static.elfsight.com/platform/platform.js"

@@ -111,7 +111,7 @@ function ForsakringarContent() {
       </div>
 
       {/* Important tip about employer */}
-      <div className="info-box mb-6" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}>
+      <div className="info-box mb-6 rounded-2xl" style={{ background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}>
         <div className="flex gap-2">
           <Shield className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
           <div>
@@ -129,7 +129,7 @@ function ForsakringarContent() {
           {t('Vilka försäkringar ingår i dödsboet?', 'Which insurances are part of the estate?')}
         </h2>
         <div className="space-y-3">
-          <div className="card bg-success/5" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(34,197,94,0.06), rgba(34,197,94,0.02))', border: '1px solid rgba(34,197,94,0.15)' }}>
+          <div className="card bg-success/5 rounded-2xl" style={{ background: 'linear-gradient(135deg, rgba(34,197,94,0.06), rgba(34,197,94,0.02))', border: '1px solid rgba(34,197,94,0.15)' }}>
             <p className="text-sm font-display text-primary mb-2">✓ {t('Försäkringar som ingår i dödsboet', 'Insurances that are part of the estate')}</p>
             <ul className="text-sm text-primary/80 space-y-1">
               <li>• <strong>Hemförsäkring</strong> — täcker sakskador på huset/lägenheten</li>
@@ -137,7 +137,7 @@ function ForsakringarContent() {
               <li>• <strong>Kapitalförsäkring utan förmånstagare</strong> — blir en del av dödsboet</li>
             </ul>
           </div>
-          <div className="card bg-warn/5" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(196,149,106,0.06), rgba(196,149,106,0.02))', border: '1px solid rgba(196,149,106,0.15)' }}>
+          <div className="card bg-warn/5 rounded-2xl" style={{ background: 'linear-gradient(135deg, rgba(196,149,106,0.06), rgba(196,149,106,0.02))', border: '1px solid rgba(196,149,106,0.15)' }}>
             <p className="text-sm font-display text-primary mb-2">✗ {t('Försäkringar som INTE ingår i dödsboet', 'Insurances that do NOT belong to the estate')}</p>
             <ul className="text-sm text-primary/80 space-y-1">
               <li>• <strong>Livförsäkring med förmånstagare</strong> — går direkt till förmånstagaren</li>
@@ -255,7 +255,7 @@ function ForsakringarContent() {
 
       {/* Add form */}
       {showForm && (
-        <div className="card" style={{ borderRadius: '28px' }}>
+        <div className="card rounded-3xl">
           <h3 className="text-lg font-display text-primary mb-4">{t('Ny försäkring', 'New insurance')}</h3>
 
           <div className="mb-4">

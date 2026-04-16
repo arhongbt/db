@@ -310,7 +310,7 @@ function LosoreContent() {
 
       {/* Add form */}
       {showForm && (
-        <div className="card mb-6" style={{ borderRadius: '28px' }}>
+        <div className="card mb-6 rounded-3xl">
           <h3 className="text-lg font-display text-primary mb-4">{t('Lägg till föremål', 'Add item')}</h3>
 
           {/* Photo upload section */}

@@ -31,7 +31,7 @@ export default function KryptoGuidePage() {
       </div>
 
       {/* Warning Box */}
-      <div className="card mb-6 bg-warn/5" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(196,149,106,0.06), rgba(196,149,106,0.02))', border: '1px solid rgba(196,149,106,0.15)' }}>
+      <div className="card mb-6 bg-warn/5 rounded-2xl" style={{ background: 'linear-gradient(135deg, rgba(196,149,106,0.06), rgba(196,149,106,0.02))', border: '1px solid rgba(196,149,106,0.15)' }}>
         <div className="flex gap-3">
           <AlertTriangle className="w-5 h-5 text-warn flex-shrink-0 mt-0.5" />
           <div>
@@ -249,7 +249,7 @@ export default function KryptoGuidePage() {
       </div>
 
       {/* Section 7: Safety */}
-      <div className="card mb-6" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}>
+      <div className="card mb-6 rounded-2xl" style={{ background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}>
         <div className="flex gap-3">
           <Shield className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
           <div>

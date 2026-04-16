@@ -276,7 +276,7 @@ export default function BankGuidePage() {
         </div>
 
         {/* General tips */}
-        <div className="card mt-6" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}>
+        <div className="card mt-6 rounded-2xl" style={{ background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}>
           <p className="font-display text-primary text-sm mb-2">{t('Generella tips', 'General tips')}</p>
           <div className="space-y-2 text-xs text-muted">
             <p>• {t('Säg alltid: &ldquo;Jag ringer angående ett dödsfall&rdquo; — du kopplas direkt till rätt avdelning.', 'Always say: "I\'m calling about a death" — you\'ll be transferred directly to the right department.')}</p>

@@ -473,7 +473,7 @@ Skapat med Sista Resan — ${today}`;
               />
             </div>
 
-            <div className="flex gap-3 p-3 rounded-2xl" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}>
+            <div className="flex gap-3 p-3 rounded-2xl" style={{ background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}>
               <Info className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" />
               <p className="text-xs text-muted leading-relaxed">
                 Vanliga önskemål: enskild egendom (arvet skyddas vid skilsmässa),
@@ -547,7 +547,7 @@ Skapat med Sista Resan — ${today}`;
           </div>
 
           {/* Important note */}
-          <div className="mb-4" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(196,149,106,0.06), rgba(196,149,106,0.02))', border: '1px solid rgba(196,149,106,0.15)' }}>
+          <div className="mb-4 rounded-2xl" style={{ background: 'linear-gradient(135deg, rgba(196,149,106,0.06), rgba(196,149,106,0.02))', border: '1px solid rgba(196,149,106,0.15)' }}>
             <div className="flex items-start gap-2 p-3">
               <Info className="w-4 h-4 text-warn flex-shrink-0 mt-0.5" />
               <p className="text-xs text-primary/80 leading-relaxed">

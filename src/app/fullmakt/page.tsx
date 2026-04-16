@@ -402,7 +402,7 @@ function FullmaktContent() {
       </p>
 
       {bankLetters.length > 0 && (
-        <div className="card mb-6" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}>
+        <div className="card mb-6 rounded-2xl" style={{ background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}>
           <div className="flex items-start gap-2">
             <CheckCircle2 className="w-5 h-5 text-success flex-shrink-0 mt-0.5" />
             <p className="text-sm text-primary/80">

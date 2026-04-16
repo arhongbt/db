@@ -200,7 +200,7 @@ function KonfliktContent() {
                     )}
 
                     {level.costs && (
-                      <div className="px-3 py-2" style={{ borderRadius: '20px', background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}>
+                      <div className="px-3 py-2 rounded-2xl" style={{ background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}>
                         <p className="text-xs text-primary/80">
                           <strong>Kostnad:</strong> {level.costs}
                         </p>
@@ -315,7 +315,7 @@ function KonfliktContent() {
               </span>
             </li>
           </ul>
-          <div className="px-3 py-2 mt-4" style={{ borderRadius: '20px', background: 'linear-gradient(135deg, rgba(139,164,184,0.06), rgba(139,164,184,0.02))', border: '1px solid rgba(139,164,184,0.15)' }}>
+          <div className="px-3 py-2 mt-4 rounded-2xl" style={{ background: 'linear-gradient(135deg, rgba(139,164,184,0.06), rgba(139,164,184,0.02))', border: '1px solid rgba(139,164,184,0.15)' }}>
             <p className="text-xs text-primary/80">
               <strong>Tidsgränser:</strong> Det finns ingen tidsgräns för IVO-anmälan, men Löf-anmälan bör göras inom 3 år.
             </p>
@@ -408,7 +408,7 @@ function KonfliktContent() {
       </div>
 
       {/* Legal disclaimer */}
-      <div className="bg-white px-4 py-3 mb-6" style={{ borderRadius: '28px' }}>
+      <div className="bg-white px-4 py-3 mb-6 rounded-3xl">
         <p className="text-xs text-muted leading-relaxed">
           <strong>Juridisk varning:</strong> Denna sida ger endast allmän
           information om möjligheter vid konflikter i dödsbo. Det är inte

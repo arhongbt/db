@@ -22,13 +22,12 @@ export function OptionCard({
     <button
       type="button"
       onClick={onClick}
-      className={`w-full min-h-touch text-left px-5 py-4 transition-all duration-300 active:scale-[0.98] ${
+      className={`w-full min-h-touch text-left px-5 py-4 rounded-2xl transition-all duration-300 active:scale-[0.98] ${
         selected
           ? 'shadow-sm'
           : 'hover:shadow-sm'
       }`}
       style={{
-        borderRadius: '24px',
         border: selected ? '2px solid var(--accent)' : '2px solid var(--border)',
         background: selected
           ? 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))'

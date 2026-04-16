@@ -8,9 +8,8 @@ import Link from 'next/link';
 
 function MikeRossTip({ text }: { text: string }) {
   return (
-    <div className="flex gap-3 p-4 mb-4" style={{
+    <div className="flex gap-3 p-4 mb-4 rounded-2xl" style={{
       background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))',
-      borderRadius: '20px',
       border: '1.5px solid rgba(107,127,94,0.10)',
     }}>
       <div className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
@@ -37,9 +36,8 @@ function ChecklistItem({
   return (
     <button
       onClick={onChange}
-      className="w-full flex items-center gap-3 p-3 transition-all duration-300 active:scale-[0.98] text-left"
+      className="w-full flex items-center gap-3 p-3 transition-all duration-300 active:scale-[0.98] text-left rounded-2xl"
       style={{
-        borderRadius: '16px',
         border: checked ? '1.5px solid var(--accent)' : '1.5px solid var(--border)',
         background: checked ? 'linear-gradient(135deg, rgba(107,127,94,0.04), transparent)' : 'var(--bg-card)',
       }}
@@ -112,7 +110,7 @@ function Step0Overview() {
       </p>
 
       {/* Timeline — Tiimo-style visual blocks */}
-      <div className="mb-5 p-4" style={{ background: 'var(--bg-card)', borderRadius: '20px', border: '1px solid var(--border)' }}>
+      <div className="mb-5 p-4 rounded-2xl" style={{ background: 'var(--bg-card)', border: '1px solid var(--border)' }}>
         <h3 className="font-display text-base mb-3" style={{ color: 'var(--text)' }}>
           {t('Tidsplan för processen', 'Timeline for the process')}
         </h3>
@@ -142,7 +140,7 @@ function Step0Overview() {
               bg: 'rgba(196,149,106,0.10)',
             },
           ].map((item, idx) => (
-            <div key={idx} className="flex items-start gap-3 p-3" style={{ borderRadius: '16px', background: item.bg }}>
+            <div key={idx} className="flex items-start gap-3 p-3 rounded-2xl" style={{ background: item.bg }}>
               <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 text-white text-xs font-bold"
                 style={{ background: item.color }}>
                 {item.num}
@@ -163,9 +161,8 @@ function Step0Overview() {
 
       {/* Deadline warnings */}
       {daysRemaining !== null && isPassed && (
-        <div className="mb-4 p-4 flex gap-3" style={{
+        <div className="mb-4 p-4 flex gap-3 rounded-2xl" style={{
           background: 'linear-gradient(135deg, rgba(220,80,80,0.06), rgba(220,80,80,0.02))',
-          borderRadius: '24px',
           border: '1.5px solid rgba(220,80,80,0.12)',
         }}>
           <div className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: 'rgba(220,80,80,0.10)' }}>
@@ -179,9 +176,8 @@ function Step0Overview() {
       )}
 
       {daysRemaining !== null && isApproaching && (
-        <div className="mb-4 p-4 flex gap-3" style={{
+        <div className="mb-4 p-4 flex gap-3 rounded-2xl" style={{
           background: 'linear-gradient(135deg, rgba(196,149,106,0.06), rgba(196,149,106,0.02))',
-          borderRadius: '24px',
           border: '1.5px solid rgba(196,149,106,0.12)',
         }}>
           <div className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: 'rgba(196,149,106,0.10)' }}>
@@ -261,9 +257,8 @@ function Step2Execute() {
         Vid förrättningen granskas alla tillgångar och skulder. Använd checklistan för att se till att allt är på plats.
       </p>
 
-      <div className="mb-5 p-4 flex gap-3" style={{
+      <div className="mb-5 p-4 flex gap-3 rounded-2xl" style={{
         background: 'linear-gradient(135deg, rgba(139,164,184,0.06), rgba(139,164,184,0.02))',
-        borderRadius: '20px',
         border: '1.5px solid rgba(139,164,184,0.10)',
       }}>
         <div className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: 'rgba(139,164,184,0.10)' }}>
@@ -309,7 +304,7 @@ function Step3Submit() {
         Bouppteckningen kan skickas in antingen digitalt eller per post. Kontrollera att alla dokument är med innan du skickar.
       </p>
 
-      <div className="mb-5 p-4" style={{ background: 'var(--bg-card)', borderRadius: '20px', border: '1px solid var(--border)' }}>
+      <div className="mb-5 p-4 rounded-2xl" style={{ background: 'var(--bg-card)', border: '1px solid var(--border)' }}>
         <h3 className="font-display text-sm mb-2" style={{ color: 'var(--text)' }}>Postadress</h3>
         <div className="text-sm space-y-0.5" style={{ color: 'var(--text-secondary)' }}>
           <p>Skatteverket</p>
@@ -369,11 +364,10 @@ Telefon: [TELEFONNUMMER]`;
         <textarea
           readOnly
           value={templateText}
-          className="w-full p-3 font-mono text-xs resize-none"
+          className="w-full p-3 font-mono text-xs resize-none rounded-2xl"
           style={{
             background: 'var(--bg-card)',
             color: 'var(--text-secondary)',
-            borderRadius: '20px',
             border: '1px solid var(--border)',
           }}
           rows={18}
@@ -382,10 +376,9 @@ Telefon: [TELEFONNUMMER]`;
 
       <button
         onClick={handleCopy}
-        className="w-full flex items-center justify-center gap-2 px-4 py-2.5 text-sm text-white font-semibold transition-all duration-300 active:scale-[0.97]"
+        className="w-full flex items-center justify-center gap-2 px-4 py-2.5 text-sm text-white font-semibold transition-all duration-300 active:scale-[0.97] rounded-full"
         style={{
           background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)',
-          borderRadius: '9999px',
         }}
       >
         <Copy className="w-4 h-4" />
@@ -470,9 +463,8 @@ function Content() {
             <button
               key={idx}
               onClick={() => setCurrentStep(idx)}
-              className="px-3 py-2 font-semibold text-xs whitespace-nowrap transition-all duration-300 flex-shrink-0 active:scale-[0.97]"
+              className="px-3 py-2 font-semibold text-xs whitespace-nowrap transition-all duration-300 flex-shrink-0 active:scale-[0.97] rounded-full"
               style={{
-                borderRadius: '9999px',
                 background: currentStep === idx ? 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' : 'var(--bg-card)',
                 color: currentStep === idx ? '#FFFFFF' : 'var(--text-secondary)',
                 border: currentStep === idx ? 'none' : '1px solid var(--border)',
@@ -484,9 +476,8 @@ function Content() {
         </div>
 
         {/* Content card */}
-        <div className="p-4 mb-5" style={{
+        <div className="p-4 mb-5 rounded-2xl" style={{
           background: 'var(--bg-card)',
-          borderRadius: '20px',
           border: '1px solid var(--border)',
         }}>
           {steps[currentStep].component}
@@ -497,9 +488,8 @@ function Content() {
           <button
             onClick={() => setCurrentStep(Math.max(0, currentStep - 1))}
             disabled={currentStep === 0}
-            className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-semibold transition-all duration-300 active:scale-[0.97] disabled:opacity-40 disabled:cursor-not-allowed"
+            className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-semibold transition-all duration-300 active:scale-[0.97] disabled:opacity-40 disabled:cursor-not-allowed rounded-full"
             style={{
-              borderRadius: '9999px',
               background: 'var(--bg-card)',
               color: 'var(--text)',
               border: '1.5px solid var(--border)',
@@ -511,9 +501,8 @@ function Content() {
           <button
             onClick={() => setCurrentStep(Math.min(steps.length - 1, currentStep + 1))}
             disabled={currentStep === steps.length - 1}
-            className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 text-sm text-white font-semibold transition-all duration-300 active:scale-[0.97] disabled:opacity-40 disabled:cursor-not-allowed"
+            className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 text-sm text-white font-semibold transition-all duration-300 active:scale-[0.97] disabled:opacity-40 disabled:cursor-not-allowed rounded-full"
             style={{
-              borderRadius: '9999px',
               background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)',
             }}
           >

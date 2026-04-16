@@ -216,7 +216,7 @@ function Content() {
               />
             </div>
 
-            <div className="p-3 rounded-lg" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}>
+            <div className="p-3 rounded-2xl" style={{ background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}>
               <p className="text-sm text-primary">
                 <strong>Viktigt:</strong> Utan lösenord eller seed phrase kan krypto vara oåtkomligt. Kontakta börsen med dödsbevis — vissa kan hjälpa.
               </p>
@@ -305,7 +305,7 @@ function Content() {
               />
             </div>
 
-            <div className="p-3 rounded-lg" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}>
+            <div className="p-3 rounded-2xl" style={{ background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}>
               <p className="text-sm text-primary">
                 <strong>Tips:</strong> Skärmdumpa viktiga meddelanden och foton innan du stänger konton — de kan vara värdefulla minnen.
               </p>
@@ -359,7 +359,7 @@ function Content() {
               />
             </div>
 
-            <div className="p-3 rounded-lg" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}>
+            <div className="p-3 rounded-2xl" style={{ background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}>
               <p className="text-sm text-primary">
                 <strong>Så gör du:</strong> Kontrollera bankutdrag för månatliga dragningar. Avsluta varje tjänst via deras support med dödsbevis.
               </p>
@@ -432,7 +432,7 @@ function Content() {
               />
             </div>
 
-            <div className="p-3 rounded-lg" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}>
+            <div className="p-3 rounded-2xl" style={{ background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}>
               <p className="text-sm text-primary">
                 <strong>Viktigt:</strong> Kontrollera domänregistratören för förnyelsedatum. Utan förnyelse kan domänen försvinna eller tas över av andra.
               </p>

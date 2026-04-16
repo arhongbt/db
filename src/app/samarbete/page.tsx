@@ -183,7 +183,7 @@ function TabBeslut() {
 
       <div className="space-y-4 mb-6">
         {decisions.map((decision) => (
-          <div key={decision.id} className="bg-white border rounded-2xl p-4" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}>
+          <div key={decision.id} className="bg-white border rounded-2xl p-4" style={{ background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}>
             <div className="flex items-start justify-between mb-3">
               <div className="flex-1">
                 <h3 className="font-display text-primary mb-2">{decision.title}</h3>
@@ -239,7 +239,7 @@ function TabBeslut() {
           {t('Lägg till beslut', 'Add decision')}
         </button>
       ) : (
-        <div className="bg-white border rounded-2xl p-4 mb-6" style={{ borderRadius: '28px' }}>
+        <div className="bg-white border rounded-3xl p-4 mb-6">
           <h3 className="font-display text-primary mb-3">{t('Lägg till nytt beslut', 'Add new decision')}</h3>
 
           <div className="mb-3">
@@ -351,7 +351,7 @@ function TabAnteckningar() {
     <div>
       <MikeRossTip text={t('Skriv anteckningar som alla delägare kan se. Perfekt för att dokumentera telefonsamtal, överenskommelser eller viktiga detaljer.', 'Write notes that all co-owners can see. Perfect for documenting phone calls, agreements or important details.')} />
 
-      <div className="bg-white border rounded-2xl p-4 mb-6" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}>
+      <div className="bg-white border rounded-2xl p-4 mb-6" style={{ background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}>
         <h3 className="font-display text-primary mb-3">{t('Ny anteckning', 'New note')}</h3>
 
         <div className="mb-3">
@@ -392,7 +392,7 @@ function TabAnteckningar() {
 
       <div className="space-y-3">
         {notes.map((note) => (
-          <div key={note.id} className="bg-white border rounded-2xl p-4" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}>
+          <div key={note.id} className="bg-white border rounded-2xl p-4" style={{ background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}>
             <div className="flex items-start justify-between mb-2">
               <div>
                 <p className="font-semibold text-primary text-sm">{note.author}</p>
