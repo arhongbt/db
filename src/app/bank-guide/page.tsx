@@ -171,14 +171,14 @@ export default function BankGuidePage() {
 
   return (
     <div className="min-h-[calc(100dvh-5rem)] bg-background">
-      <div className="px-6 py-8">
+      <div className="px-4 py-5">
         <Link href="/dashboard" className="inline-flex items-center gap-2 text-sm text-muted hover:text-primary mb-6 rounded-full p-2 -ml-2">
           <ArrowLeft className="w-4 h-4" /> Dashboard
         </Link>
 
         <div className="flex items-center gap-3 mb-2">
           <Building2 className="w-6 h-6 text-accent" />
-          <h1 className="text-2xl font-display text-primary">{t('Bank-guide', 'Bank Guide')}</h1>
+          <h1 className="text-xl font-display text-primary">{t('Bank-guide', 'Bank Guide')}</h1>
         </div>
         <p className="text-muted text-sm mb-6">
           {t('Steg-för-steg instruktioner för varje storbank. Vad du ska säga, vilka dokument du behöver, och tips.', 'Step-by-step instructions for each major bank. What to say, what documents you need, and tips.')}

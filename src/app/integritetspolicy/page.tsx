@@ -19,7 +19,7 @@ export default function IntegritetspolicyPage() {
 
         <div className="flex items-center gap-3 mb-6">
           <Shield className="w-8 h-8 text-accent" />
-          <h1 className="text-2xl font-display text-primary">
+          <h1 className="text-xl font-display text-primary">
             {t('Integritetspolicy', 'Privacy Policy')}
           </h1>
         </div>

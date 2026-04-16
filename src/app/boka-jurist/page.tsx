@@ -28,7 +28,7 @@ export default function BokaJuristPage() {
           >
             <Scale className="w-10 h-10 text-white" strokeWidth={1.8} />
           </div>
-          <h1 className="text-2xl font-display text-primary leading-tight">
+          <h1 className="text-xl font-display text-primary leading-tight">
             {t('Boka juristkonsultation', 'Book a lawyer consultation')}
           </h1>
           <p className="text-sm text-muted mt-2 leading-relaxed max-w-md">

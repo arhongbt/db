@@ -160,12 +160,12 @@ function DokumentContent() {
   }, {});
 
   return (
-    <div className="flex flex-col min-h-[calc(100dvh-5rem)] px-6 py-8 pb-28">
+    <div className="flex flex-col min-h-[calc(100dvh-5rem)] px-4 py-5 pb-24">
 
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
         <div>
-          <h1 className="text-2xl font-display text-primary">{t('Dokument', 'Documents')}</h1>
+          <h1 className="text-xl font-display text-primary">{t('Dokument', 'Documents')}</h1>
           <p className="text-muted text-sm mt-1">
             {dokuments.length > 0
               ? t(`${dokuments.length} fil(er) uppladdade`, `${dokuments.length} file(s) uploaded`)

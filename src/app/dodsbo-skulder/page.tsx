@@ -69,7 +69,7 @@ function DodsboSkulderContent() {
   ];
 
   return (
-    <div className="flex flex-col min-h-[calc(100dvh-5rem)] px-6 py-8 pb-28">
+    <div className="flex flex-col min-h-[calc(100dvh-5rem)] px-4 py-5 pb-24">
       <Link
         href="/dashboard"
         className="inline-flex items-center gap-2 text-sm text-muted hover:text-primary mb-4 rounded-full"
@@ -79,7 +79,7 @@ function DodsboSkulderContent() {
 
       <div className="flex items-center gap-3 mb-2">
         <Wallet className="w-7 h-7 text-accent" />
-        <h1 className="text-2xl font-display text-primary">Dödsbo och skulder</h1>
+        <h1 className="text-xl font-display text-primary">Dödsbo och skulder</h1>
       </div>
       <p className="text-muted mb-6">
         Allt om hur skulder hanteras när någon dör. I Sverige ärver du aldrig personligt ansvar för skulder.

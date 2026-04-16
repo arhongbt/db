@@ -6,7 +6,7 @@ import { ArrowLeft, Home, FileText, AlertTriangle, CheckCircle2, ChevronRight } 
 
 export default function DodsboFastighetPage() {
   return (
-    <div className="flex flex-col min-h-[calc(100dvh-5rem)] px-6 py-8 pb-28">
+    <div className="flex flex-col min-h-[calc(100dvh-5rem)] px-4 py-5 pb-24">
       <Link href="/dashboard" className="inline-flex items-center gap-2 text-sm text-muted hover:text-primary mb-6 rounded-full">
         <ArrowLeft className="w-4 h-4" />
         Tillbaka
@@ -14,7 +14,7 @@ export default function DodsboFastighetPage() {
 
       <div className="flex items-center gap-3 mb-2">
         <Home className="w-6 h-6 text-accent" />
-        <h1 className="text-2xl font-display text-primary">Dödsbo och fastighet</h1>
+        <h1 className="text-xl font-display text-primary">Dödsbo och fastighet</h1>
       </div>
       <p className="text-muted mb-8">Så hanterar du bostad, hus och fastigheter i dödsboet.</p>
 

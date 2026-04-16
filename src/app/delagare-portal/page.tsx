@@ -63,7 +63,7 @@ function DelagarePortalContent() {
 
   return (
     <div className="min-h-dvh bg-background">
-      <div className="px-6 py-8">
+      <div className="px-4 py-5">
         <Link href="/dashboard" className="inline-flex items-center gap-2 text-sm text-muted hover:text-primary mb-6 rounded-full">
           <ArrowLeft className="w-4 h-4" /> {t('Dashboard', 'Dashboard')}
         </Link>
@@ -71,7 +71,7 @@ function DelagarePortalContent() {
         <div className="flex items-center justify-between mb-2">
           <div className="flex items-center gap-3">
             <Users className="w-6 h-6 text-accent" />
-            <h1 className="text-2xl font-display text-primary">{t('Delägare & Status', 'Co-owners & Status')}</h1>
+            <h1 className="text-xl font-display text-primary">{t('Delägare & Status', 'Co-owners & Status')}</h1>
           </div>
           <button
             onClick={shareLink}

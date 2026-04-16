@@ -6,9 +6,11 @@ import { Database } from "@/lib/supabase/types";
 // Define public routes that don't require authentication
 const PUBLIC_ROUTES = [
   "/", "/auth", "/auth/callback", "/faq", "/onboarding", "/invite",
-  "/integritetspolicy", "/anvandarvillkor", "/om",
+  "/integritetspolicy", "/anvandarvillkor", "/om", "/priser",
   "/ordlista", "/bank-guide", "/konflikt", "/internationellt",
   "/foretag-i-dodsbo", "/arvskalkylator", "/juridisk-hjalp",
+  "/sarkullbarn", "/sambo-arv", "/dodsbo-skulder", "/dodsbo-fastighet",
+  "/krypto-guide", "/faraid", "/boka-jurist",
 ];
 
 // Define protected routes that require authentication
@@ -22,6 +24,7 @@ const PROTECTED_ROUTES = [
   "/forsakringar",
   "/bouppteckning",
   "/arvskifte",
+  "/arvskifteshandling",
   "/fullmakt",
   "/kallelse",
   "/avsluta-konton",
@@ -35,6 +38,19 @@ const PROTECTED_ROUTES = [
   "/skanner",
   "/exportera",
   "/paminelser",
+  "/begravningsplanering",
+  "/checklistor",
+  "/testamente",
+  "/bankbrev",
+  "/dodsannons",
+  "/deklarera-dodsbo",
+  "/digitala-tillgangar",
+  "/vardering",
+  "/sammanfattning",
+  "/minnesida",
+  "/skatteverket-guide",
+  "/kalender",
+  "/samarbete",
 ];
 
 export async function middleware(request: NextRequest) {

@@ -139,10 +139,10 @@ function UppgifterContent() {
   const totalDone = tasks.filter((t) => t.status === 'klar').length;
 
   return (
-    <div className="flex flex-col min-h-[calc(100dvh-5rem)] px-6 py-8 pb-28">
+    <div className="flex flex-col min-h-[calc(100dvh-5rem)] px-4 py-5 pb-24">
 
       <div className="mb-4">
-        <h1 className="text-2xl font-display text-primary">{t('Att göra', 'To do')}</h1>
+        <h1 className="text-xl font-display text-primary">{t('Att göra', 'To do')}</h1>
         <p className="text-muted text-sm mt-1">
           {totalDone}/{tasks.length} {t('uppgifter klara', 'tasks completed')}
         </p>

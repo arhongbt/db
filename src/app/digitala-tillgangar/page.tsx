@@ -178,7 +178,7 @@ function Content() {
           </Link>
           <div className="flex items-center gap-2">
             <Smartphone className="w-6 h-6 text-accent" />
-            <h1 className="text-2xl font-display text-primary">Digitala tillgångar & konton</h1>
+            <h1 className="text-xl font-display text-primary">Digitala tillgångar & konton</h1>
           </div>
         </div>
 

@@ -148,7 +148,7 @@ export default function ChecklistorPage() {
 
   return (
     <div className="min-h-dvh bg-background pb-28">
-      <div className="flex flex-col min-h-[calc(100dvh-5rem)] px-6 py-8">
+      <div className="flex flex-col min-h-[calc(100dvh-5rem)] px-4 py-5">
         {/* Header */}
         <div className="flex items-center gap-3 mb-6">
           {selected ? (
@@ -167,7 +167,7 @@ export default function ChecklistorPage() {
             </Link>
           )}
           <div className="flex-1">
-            <h1 className="text-2xl font-display text-primary">
+            <h1 className="text-xl font-display text-primary">
               {selected ? selectedList?.title : t('Checklistor', 'Checklists')}
             </h1>
           </div>
@@ -232,7 +232,7 @@ export default function ChecklistorPage() {
           <div className="print-checklist">
             {/* Print header (hidden on screen) */}
             <div className="hidden print:block mb-6">
-              <h1 className="text-2xl font-display">{selectedList.title}</h1>
+              <h1 className="text-xl font-display">{selectedList.title}</h1>
               <p className="text-gray-600">{selectedList.description}</p>
               <p className="text-sm text-gray-500 mt-1">{t('Sista Resan — utskrift', 'Sista Resan — print')} {new Date().toLocaleDateString('sv-SE')}</p>
               <hr className="mt-4" />

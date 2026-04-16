@@ -203,7 +203,7 @@ Skapat med Sista Resan — ${today}`;
   };
 
   return (
-    <div className="flex flex-col min-h-dvh px-6 py-8 pb-28">
+    <div className="flex flex-col min-h-dvh px-4 py-5 pb-24">
       <Link href="/dashboard" className="inline-flex items-center gap-2 text-sm text-muted hover:text-primary mb-4 rounded-full hover:bg-gray-50 px-3 py-2">
         <ArrowLeft className="w-4 h-4" /> Dashboard
       </Link>

@@ -143,7 +143,7 @@ function InstallningarContent() {
   };
 
   return (
-    <div className="flex flex-col min-h-[calc(100dvh-5rem)] px-6 py-8 pb-28">
+    <div className="flex flex-col min-h-[calc(100dvh-5rem)] px-4 py-5 pb-24">
       <div className="flex items-center gap-3 mb-6">
         <Link
           href="/dashboard"
@@ -152,7 +152,7 @@ function InstallningarContent() {
         >
           <ArrowLeft className="w-5 h-5 text-primary" />
         </Link>
-        <h1 className="text-2xl font-display text-primary">{t('Inställningar', 'Settings')}</h1>
+        <h1 className="text-xl font-display text-primary">{t('Inställningar', 'Settings')}</h1>
       </div>
 
       {/* Edit onboarding section */}

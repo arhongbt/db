@@ -725,7 +725,7 @@ function InternationelltContent() {
     state.deceasedMedborgarskap !== 'Sverige';
 
   return (
-    <div className="flex flex-col px-6 py-8 pb-28">
+    <div className="flex flex-col px-4 py-5 pb-24">
       {/* Header */}
       <div className="flex items-center gap-3 mb-4">
         <Link
@@ -736,7 +736,7 @@ function InternationelltContent() {
           <ArrowLeft className="w-5 h-5 text-primary" />
         </Link>
         <div>
-          <h1 className="text-2xl font-display text-primary">Internationella arv</h1>
+          <h1 className="text-xl font-display text-primary">Internationella arv</h1>
           <p className="text-muted text-sm">Utländsk hemvist, tillgångar &amp; medborgarskap</p>
         </div>
       </div>

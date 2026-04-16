@@ -275,7 +275,7 @@ function BodelningContent() {
 
   if (isMarried) {
     return (
-      <div className="flex flex-col px-6 py-8 pb-28" style={{ backgroundColor: '#F7F5F0' }}>
+      <div className="flex flex-col px-4 py-5 pb-24" style={{ backgroundColor: '#F7F5F0' }}>
         {/* Header */}
         <div className="flex items-center gap-3 mb-6">
           <Link
@@ -286,7 +286,7 @@ function BodelningContent() {
             <ArrowLeft className="w-5 h-5" style={{ color: '#6B7F5E' }} />
           </Link>
           <div>
-            <h1 className="text-2xl font-display" style={{ color: '#2C3E3A' }}>
+            <h1 className="text-xl font-display" style={{ color: '#2C3E3A' }}>
               {t('Bodelning', 'Marital Property Division')}
             </h1>
             <p className="text-sm" style={{ color: '#8B8680' }}>
@@ -1404,7 +1404,7 @@ function BodelningContent() {
     const dodsboAndel = totalSamboEgendom - samboAndel;
 
     return (
-      <div className="flex flex-col px-6 py-8 pb-28" style={{ backgroundColor: '#F7F5F0' }}>
+      <div className="flex flex-col px-4 py-5 pb-24" style={{ backgroundColor: '#F7F5F0' }}>
         {/* Header */}
         <div className="flex items-center gap-3 mb-6">
           <Link
@@ -1415,7 +1415,7 @@ function BodelningContent() {
             <ArrowLeft className="w-5 h-5" style={{ color: '#6B7F5E' }} />
           </Link>
           <div>
-            <h1 className="text-2xl font-display" style={{ color: '#2C3E3A' }}>
+            <h1 className="text-xl font-display" style={{ color: '#2C3E3A' }}>
               Bodelning
             </h1>
             <p className="text-sm" style={{ color: '#8B8680' }}>
@@ -1822,7 +1822,7 @@ function BodelningContent() {
           <ArrowLeft className="w-5 h-5" style={{ color: '#6B7F5E' }} />
         </Link>
         <div>
-          <h1 className="text-2xl font-display" style={{ color: '#2C3E3A' }}>
+          <h1 className="text-xl font-display" style={{ color: '#2C3E3A' }}>
             Bodelning
           </h1>
           <p className="text-sm" style={{ color: '#8B8680' }}>

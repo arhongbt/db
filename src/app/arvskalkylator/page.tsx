@@ -314,7 +314,7 @@ function ArvskalkylatorContent() {
 
         <div className="flex items-center gap-3 mb-2">
           <Calculator className="w-6 h-6 text-accent" />
-          <h1 className="text-2xl font-display text-primary">{t('Arvskalkylator', 'Inheritance calculator')}</h1>
+          <h1 className="text-xl font-display text-primary">{t('Arvskalkylator', 'Inheritance calculator')}</h1>
         </div>
         <p className="text-muted text-sm mb-6">
           {t('Beräkna hur arvet fördelas baserat på familjesituation och tillgångar.', 'Calculate how the inheritance is distributed based on family situation and assets.')}

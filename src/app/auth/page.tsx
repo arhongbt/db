@@ -104,7 +104,7 @@ export default function AuthPage() {
           <div className="flex justify-center mb-4">
             <DoveLogo size={48} />
           </div>
-          <h1 className="text-2xl font-display text-primary mb-2">Sista Resan</h1>
+          <h1 className="text-xl font-display text-primary mb-2">Sista Resan</h1>
           <p className="text-muted text-sm">{t('Vi finns här för dig', 'We are here for you')}</p>
         </div>
 

@@ -176,7 +176,7 @@ function BouppteckningContent() {
     }).format(amount);
 
   return (
-    <div className="flex flex-col px-6 py-8 pb-28">
+    <div className="flex flex-col px-4 py-5 pb-24">
       {/* Header */}
       <div className="flex items-center gap-3 mb-6">
         <Link
@@ -187,8 +187,8 @@ function BouppteckningContent() {
           <ArrowLeft className="w-5 h-5 text-primary" />
         </Link>
         <div>
-          <h1 className="text-2xl font-display text-primary">{t('Bouppteckning', 'Estate Inventory')}</h1>
-          <p className="text-muted text-sm">
+          <h1 className="text-xl font-display text-primary">{t('Bouppteckning', 'Estate Inventory')}</h1>
+          <p className="text-muted text-xs">
             {t('Samla underlag steg för steg', 'Gather documentation step by step')}
           </p>
         </div>
@@ -302,7 +302,7 @@ function BouppteckningContent() {
               onBlur={handlePersonnummerBlur}
               placeholder={t('ÅÅÅÅMMDD-XXXX', 'YYYYMMDD-XXXX')}
               autoComplete="off"
-              className={`w-full px-4 py-3 text-base border-2 rounded-[20px] focus:outline-none ${
+              className={`w-full px-3 py-2 text-sm border-2 rounded-xl focus:outline-none ${
                 pnrError
                   ? 'border-warn focus:border-warn'
                   : personnummer.trim() && !pnrError
@@ -323,7 +323,7 @@ function BouppteckningContent() {
               onChange={(e) => setAddress(e.target.value)}
               onBlur={saveBouppteckningInfo}
               placeholder={t('Gatuadress, postnummer ort', 'Street address, postal code city')}
-              className="w-full px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-[20px] focus:border-accent focus:outline-none"
+              className="w-full px-3 py-2 text-sm border-2 border-[#E8E4DE] rounded-xl focus:border-accent focus:outline-none"
             />
           </label>
 
@@ -335,7 +335,7 @@ function BouppteckningContent() {
               onChange={(e) => setFolkbokforingsort(e.target.value)}
               onBlur={saveBouppteckningInfo}
               placeholder={t('T.ex. Stockholms kommun', 'E.g. Stockholm Municipality')}
-              className="w-full px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-[20px] focus:border-accent focus:outline-none"
+              className="w-full px-3 py-2 text-sm border-2 border-[#E8E4DE] rounded-xl focus:border-accent focus:outline-none"
             />
           </label>
 
@@ -374,7 +374,7 @@ function BouppteckningContent() {
               value={forrattningsdatum}
               onChange={(e) => setForrattningsdatum(e.target.value)}
               onBlur={saveBouppteckningInfo}
-              className="w-full px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-[20px] focus:border-accent focus:outline-none"
+              className="w-full px-3 py-2 text-sm border-2 border-[#E8E4DE] rounded-xl focus:border-accent focus:outline-none"
             />
           </label>
 
@@ -386,7 +386,7 @@ function BouppteckningContent() {
               onChange={(e) => setBouppgivareName(e.target.value)}
               onBlur={saveBouppteckningInfo}
               placeholder={t('Den som lämnar uppgifterna', 'Person providing information')}
-              className="w-full px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-[20px] focus:border-accent focus:outline-none"
+              className="w-full px-3 py-2 text-sm border-2 border-[#E8E4DE] rounded-xl focus:border-accent focus:outline-none"
             />
             <span className="text-xs text-muted mt-1 block">{t('Oftast en nära anhörig som känner till dödsboet', 'Usually a close relative familiar with the estate')}</span>
           </label>
@@ -399,7 +399,7 @@ function BouppteckningContent() {
               onChange={(e) => setFm1Name(e.target.value)}
               onBlur={saveBouppteckningInfo}
               placeholder={t('Namn', 'Name')}
-              className="w-full px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-[20px] focus:border-accent focus:outline-none"
+              className="w-full px-3 py-2 text-sm border-2 border-[#E8E4DE] rounded-xl focus:border-accent focus:outline-none"
             />
           </label>
 
@@ -411,7 +411,7 @@ function BouppteckningContent() {
               onChange={(e) => setFm2Name(e.target.value)}
               onBlur={saveBouppteckningInfo}
               placeholder={t('Namn', 'Name')}
-              className="w-full px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-[20px] focus:border-accent focus:outline-none"
+              className="w-full px-3 py-2 text-sm border-2 border-[#E8E4DE] rounded-xl focus:border-accent focus:outline-none"
             />
             <span className="text-xs text-muted mt-1 block">{t('Två oberoende personer som intygar att uppgifterna stämmer', 'Two independent people confirming the accuracy of the information')}</span>
           </label>
@@ -623,10 +623,10 @@ function BouppteckningContent() {
               <p className="text-xs text-muted text-center mb-3">
                 {t('OBS: Detta är ett utkast. En bouppteckning måste granskas av förrättningsmän och skickas till Skatteverket för registrering.', 'NOTE: This is a draft. An estate inventory must be reviewed by witnesses and submitted to the Swedish Tax Agency for registration.')}
               </p>
-              <div className="flex gap-3">
+              <div className="flex gap-2">
                 <button
                   onClick={() => setShowPreview(false)}
-                  className="flex-1 py-3 px-4 rounded-xl border text-primary font-medium hover:opacity-70 transition-opacity"
+                  className="flex-1 py-2 px-3 rounded-xl border text-primary text-sm font-medium hover:opacity-70 transition-opacity"
                   style={{ borderColor: 'var(--border)', background: 'var(--bg-card)' }}
                 >
                   {t('Stäng', 'Close')}
@@ -638,10 +638,11 @@ function BouppteckningContent() {
                       downloadBouppteckningPDF(previewDoc);
                     }
                   }}
-                  className="flex-1 btn-primary flex items-center justify-center gap-2"
+                  className="flex-1 py-2 px-3 rounded-xl text-white text-sm font-medium flex items-center justify-center gap-1.5"
+                  style={{ background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' }}
                 >
-                  <Download className="w-4 h-4" />
-                  {t('PDF', 'PDF')}
+                  <Download className="w-3.5 h-3.5" />
+                  PDF
                 </button>
                 <button
                   onClick={async () => {
@@ -650,10 +651,10 @@ function BouppteckningContent() {
                       downloadBouppteckningDocx(previewDoc);
                     }
                   }}
-                  className="flex-1 py-3 px-4 rounded-xl bg-accent/10 text-accent font-medium hover:bg-accent/20 transition-colors flex items-center justify-center gap-2"
+                  className="flex-1 py-2 px-3 rounded-xl bg-accent/10 text-accent text-sm font-medium hover:bg-accent/20 transition-colors flex items-center justify-center gap-1.5"
                 >
-                  <FileText className="w-4 h-4" />
-                  {t('Word', 'Word')}
+                  <FileText className="w-3.5 h-3.5" />
+                  Word
                 </button>
               </div>
             </div>

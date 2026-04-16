@@ -157,7 +157,7 @@ export default function FaraidPage() {
               <Scale className="w-6 h-6 text-accent" />
             </div>
             <div>
-              <h1 className="text-2xl font-display text-primary">
+              <h1 className="text-xl font-display text-primary">
                 {t('Islamisk Arvsrätt', 'Islamic Inheritance')}
               </h1>
               <p className="text-xs text-muted mt-0.5">

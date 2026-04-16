@@ -455,7 +455,7 @@ export default function LandingPage() {
 
       {/* FAQ — SEO rich */}
       <section className="px-5 pb-6">
-        <h2 className="text-2xl font-display text-primary mb-4">
+        <h2 className="text-xl font-display text-primary mb-4">
           {t('Vanliga frågor', 'Frequently asked questions')}
         </h2>
         <div className="flex flex-col gap-3">
@@ -510,7 +510,7 @@ export default function LandingPage() {
       {/* Final CTA — soft */}
       <section className="px-5 pb-6">
         <div className="text-center mb-6">
-          <h2 className="text-2xl font-display text-primary mb-2">
+          <h2 className="text-xl font-display text-primary mb-2">
             {t('Börja idag — det är gratis', 'Start today — it\'s free')}
           </h2>
           <p className="text-muted text-sm">

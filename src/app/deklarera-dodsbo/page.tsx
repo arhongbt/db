@@ -22,7 +22,7 @@ export default function DeklararaDodsboPage() {
       </div>
 
       {/* Main content */}
-      <main className="max-w-2xl mx-auto px-6 py-8 pb-28">
+      <main className="max-w-2xl mx-auto px-4 py-5 pb-24">
         {/* Title */}
         <div className="mb-8">
           <h1 className="text-4xl font-display text-primary mb-2">{t('Deklarera dödsbo', 'File estate tax return')}</h1>
@@ -77,7 +77,7 @@ export default function DeklararaDodsboPage() {
 
         {/* Step-by-step section */}
         <section className="mb-8">
-          <h2 className="text-2xl font-display text-primary mb-4">Steg för steg</h2>
+          <h2 className="text-xl font-display text-primary mb-4">Steg för steg</h2>
           <div className="space-y-4">
             {/* Step 1 */}
             <div className="p-5 bg-white rounded-lg border border-[#E8E4DE] hover:shadow-md transition-shadow">
@@ -173,7 +173,7 @@ export default function DeklararaDodsboPage() {
 
         {/* FAQ section */}
         <section className="mb-8">
-          <h2 className="text-2xl font-display text-primary mb-4">Vanliga frågor</h2>
+          <h2 className="text-xl font-display text-primary mb-4">Vanliga frågor</h2>
           <div className="space-y-4">
             {/* FAQ 1 */}
             <details className="p-5 bg-white rounded-lg border border-[#E8E4DE] group cursor-pointer hover:bg-white transition-colors">

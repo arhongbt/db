@@ -137,14 +137,14 @@ export default function SkannerPage() {
   return (
     <PaywallGate feature="scanner">
     <div className="min-h-dvh bg-background pb-28">
-      <div className="flex flex-col min-h-[calc(100dvh-5rem)] px-6 py-8">
+      <div className="flex flex-col min-h-[calc(100dvh-5rem)] px-4 py-5">
         <Link href="/dashboard" className="inline-flex items-center gap-2 text-sm text-muted hover:text-primary mb-6">
           <ArrowLeft className="w-4 h-4" /> {t('Dashboard', 'Dashboard')}
         </Link>
 
         <div className="flex items-center gap-3 mb-2">
           <Camera className="w-6 h-6 text-accent" />
-          <h1 className="text-2xl font-display text-primary">{t('Dokumentskanner', 'Document scanner')}</h1>
+          <h1 className="text-xl font-display text-primary">{t('Dokumentskanner', 'Document scanner')}</h1>
         </div>
         <p className="text-muted text-sm mb-6">
           {t('Fota kvitton, brev och dokument direkt med kameran, eller ladda upp från telefonen.', 'Take photos of receipts, letters and documents directly with the camera, or upload from your phone.')}

@@ -352,9 +352,9 @@ function VarderingContent() {
 
   if (showForm) {
     return (
-      <div className="flex flex-col min-h-[calc(100dvh-5rem)] px-6 py-8 pb-28">
+      <div className="flex flex-col min-h-[calc(100dvh-5rem)] px-4 py-5 pb-24">
         <div className="flex items-center justify-between mb-6">
-          <h1 className="text-2xl font-display text-primary">Ny värdering</h1>
+          <h1 className="text-xl font-display text-primary">Ny värdering</h1>
           <button
             onClick={() => setShowForm(false)}
             className="p-2 text-muted hover:text-primary transition-colors"
@@ -518,10 +518,10 @@ function VarderingContent() {
   }
 
   return (
-    <div className="flex flex-col min-h-[calc(100dvh-5rem)] px-6 py-8 pb-28">
+    <div className="flex flex-col min-h-[calc(100dvh-5rem)] px-4 py-5 pb-24">
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
-        <h1 className="text-2xl font-display text-primary">Värdering av lösöre</h1>
+        <h1 className="text-xl font-display text-primary">Värdering av lösöre</h1>
         <button
           onClick={() => setShowForm(true)}
           className="w-12 h-12 text-white rounded-full flex items-center justify-center shadow-md hover:opacity-90 transition-opacity"

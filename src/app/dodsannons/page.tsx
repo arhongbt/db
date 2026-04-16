@@ -139,7 +139,7 @@ function Content() {
               <ArrowLeft className="w-5 h-5 text-primary" />
             </Link>
             <Newspaper className="w-6 h-6 text-accent" />
-            <h1 className="text-2xl font-display text-primary">{t('Dödsannons', 'Obituary')}</h1>
+            <h1 className="text-xl font-display text-primary">{t('Dödsannons', 'Obituary')}</h1>
           </div>
           {/* Progress indicator */}
           <div className="flex gap-2">

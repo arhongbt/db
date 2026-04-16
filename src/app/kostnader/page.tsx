@@ -134,14 +134,14 @@ function KostnaderContent() {
   }, {});
 
   return (
-    <div className="flex flex-col min-h-dvh px-6 py-8 pb-28">
+    <div className="flex flex-col min-h-dvh px-4 py-5 pb-24">
       <Link href="/dashboard" className="inline-flex items-center gap-2 text-sm text-muted hover:text-primary mb-4">
         <ArrowLeft className="w-4 h-4" /> {t('Dashboard', 'Dashboard')}
       </Link>
 
       <div className="flex items-center gap-3 mb-2">
         <Receipt className="w-7 h-7 text-accent" />
-        <h1 className="text-2xl font-display text-primary">{t('Dödsbokostnader', 'Estate costs')}</h1>
+        <h1 className="text-xl font-display text-primary">{t('Dödsbokostnader', 'Estate costs')}</h1>
       </div>
       <p className="text-muted mb-6">
         {t('Håll koll på alla utgifter som dödsboet har. Dessa dras av före arvskiftet.', 'Keep track of all estate expenses. These are deducted before the distribution of the estate.')}

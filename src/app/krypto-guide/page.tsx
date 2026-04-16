@@ -18,12 +18,12 @@ export default function KryptoGuidePage() {
   const { t } = useLanguage();
 
   return (
-    <div className="flex flex-col min-h-[calc(100dvh-5rem)] px-6 py-8 pb-28">
+    <div className="flex flex-col min-h-[calc(100dvh-5rem)] px-4 py-5 pb-24">
       {/* Header */}
       <div className="mb-6">
         <div className="flex items-center gap-3 mb-4">
           <Bitcoin className="w-8 h-8 text-accent" />
-          <h1 className="text-2xl font-display text-primary">{t('Kryptoguide', 'Cryptocurrency Guide')}</h1>
+          <h1 className="text-xl font-display text-primary">{t('Kryptoguide', 'Cryptocurrency Guide')}</h1>
         </div>
         <p className="text-sm text-primary/70">
           {t('Steg-för-steg hjälp för att hantera kryptovalutor i dödsboet.', 'Step-by-step help to manage cryptocurrency in the estate.')}

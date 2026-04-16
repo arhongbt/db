@@ -77,10 +77,10 @@ function ForsakringarContent() {
   };
 
   return (
-    <div className="flex flex-col px-6 py-8 pb-28">
+    <div className="flex flex-col px-4 py-5 pb-24">
       <div className="flex items-center justify-between mb-4">
         <div>
-          <h1 className="text-2xl font-display text-primary">{t('Försäkringar', 'Insurances')}</h1>
+          <h1 className="text-xl font-display text-primary">{t('Försäkringar', 'Insurances')}</h1>
           <p className="text-muted text-sm mt-1">
             {state.forsakringar.length > 0
               ? t(`${contacted}/${state.forsakringar.length} kontaktade`, `${contacted}/${state.forsakringar.length} contacted`)

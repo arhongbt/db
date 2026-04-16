@@ -544,7 +544,7 @@ function Content() {
               <ArrowLeft className="w-5 h-5" />
             </Link>
             <Handshake className="w-6 h-6 text-accent" />
-            <h1 className="text-2xl font-display text-primary">{t('Samarbete', 'Collaboration')}</h1>
+            <h1 className="text-xl font-display text-primary">{t('Samarbete', 'Collaboration')}</h1>
           </div>
 
           {/* Tabs */}
@@ -581,7 +581,7 @@ function Content() {
       </div>
 
       {/* Content */}
-      <div className="max-w-2xl mx-auto flex flex-col min-h-[calc(100dvh-5rem)] px-6 py-8 pb-28">
+      <div className="max-w-2xl mx-auto flex flex-col min-h-[calc(100dvh-5rem)] px-4 py-5 pb-24">
         {tab === 'beslut' && <TabBeslut />}
         {tab === 'anteckningar' && <TabAnteckningar />}
         {tab === 'tidslinje' && <TabTidslinje />}

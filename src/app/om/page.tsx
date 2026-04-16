@@ -25,7 +25,7 @@ export default function OmPage() {
           {t('Tillbaka', 'Back')}
         </Link>
 
-        <h1 className="text-2xl font-display text-primary mb-2">
+        <h1 className="text-xl font-display text-primary mb-2">
           {t('Om Sista Resan', 'About Sista Resan')}
         </h1>
         <p className="text-muted mb-8">

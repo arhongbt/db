@@ -215,7 +215,7 @@ function LosoreContent() {
   });
 
   return (
-    <div className="flex flex-col px-6 py-8 pb-28">
+    <div className="flex flex-col px-4 py-5 pb-24">
       {/* Back button */}
       <Link
         href="/dashboard"
@@ -227,7 +227,7 @@ function LosoreContent() {
 
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
-        <h1 className="text-2xl font-display text-primary">{t('Lösöre', 'Personal property')}</h1>
+        <h1 className="text-xl font-display text-primary">{t('Lösöre', 'Personal property')}</h1>
         <button
           onClick={() => setShowForm(true)}
           className="w-12 h-12 text-white rounded-full flex items-center justify-center shadow-md hover:bg-primary-light transition-colors"

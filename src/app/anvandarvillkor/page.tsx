@@ -19,7 +19,7 @@ export default function AnvandarvillkorPage() {
 
         <div className="flex items-center gap-3 mb-6">
           <FileText className="w-8 h-8 text-accent" />
-          <h1 className="text-2xl font-display text-primary">
+          <h1 className="text-xl font-display text-primary">
             {t('Användarvillkor', 'Terms of Use')}
           </h1>
         </div>

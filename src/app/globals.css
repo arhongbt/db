@@ -36,27 +36,29 @@
 }
 
 @layer components {
-  /* Primary CTA button — Tiimo-inspired pill shape */
+  /* Primary CTA button — compact mobile-first pill */
   .btn-primary {
-    @apply w-full min-h-touch px-8 py-4 text-white font-semibold
-           text-lg transition-all duration-300
+    @apply w-full px-5 py-2.5 text-white font-semibold
+           text-sm transition-all duration-300
            active:scale-[0.97]
            focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent
            disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100;
+    min-height: 44px;
     background: linear-gradient(135deg, #6B7F5E, #5A6E4E);
     border-radius: 9999px;
-    box-shadow: 0 2px 12px rgba(107,127,94,0.2);
+    box-shadow: 0 2px 8px rgba(107,127,94,0.15);
   }
   .btn-primary:hover {
     transform: translateY(-1px);
-    box-shadow: 0 6px 20px rgba(107,127,94,0.3);
+    box-shadow: 0 4px 16px rgba(107,127,94,0.25);
   }
 
   .btn-secondary {
-    @apply w-full min-h-touch px-8 py-4 text-primary font-semibold
-           text-lg transition-all duration-300
+    @apply w-full px-5 py-2.5 text-primary font-semibold
+           text-sm transition-all duration-300
            active:scale-[0.97]
            focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent;
+    min-height: 44px;
     background: var(--bg-card);
     border: 1.5px solid var(--border);
     border-radius: 9999px;
@@ -68,15 +70,15 @@
 
   /* Card component — Tiimo-inspired soft, bubbly feel */
   .card {
-    @apply p-6 transition-all duration-300;
+    @apply p-4 transition-all duration-300;
     background: var(--bg-card);
-    border-radius: 28px;
+    border-radius: 20px;
     box-shadow: 0 2px 8px rgba(26,26,46,0.03), 0 1px 2px rgba(26,26,46,0.02);
     border: none;
   }
   .card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 16px rgba(26,26,46,0.06), 0 2px 4px rgba(26,26,46,0.03);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(26,26,46,0.05), 0 2px 4px rgba(26,26,46,0.03);
   }
 
   /* Color-tinted cards — Tiimo-style full background tint */
@@ -122,20 +124,20 @@
     @apply bg-success;
   }
 
-  /* Info box — sage accent, bubbly */
+  /* Info box — sage accent, compact */
   .info-box {
-    @apply p-6 text-base;
+    @apply p-4 text-sm;
     background: linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02));
     border: 1.5px solid rgba(107,127,94,0.10);
-    border-radius: 24px;
+    border-radius: 16px;
   }
 
-  /* Warning box — terracotta accent, bubbly */
+  /* Warning box — terracotta accent, compact */
   .warning-box {
-    @apply p-6 text-base;
+    @apply p-4 text-sm;
     background: linear-gradient(135deg, rgba(196,112,75,0.06), rgba(196,112,75,0.02));
     border: 1.5px solid rgba(196,112,75,0.10);
-    border-radius: 24px;
+    border-radius: 16px;
   }
 
   /* Dark mode info/warning boxes */

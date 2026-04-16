@@ -211,7 +211,7 @@ function CalendarContent() {
     : [];
 
   return (
-    <div className="flex flex-col min-h-[calc(100dvh-5rem)] px-6 py-8 pb-28 animate-fadeIn">
+    <div className="flex flex-col min-h-[calc(100dvh-5rem)] px-4 py-5 pb-24 animate-fadeIn">
       {/* Header */}
       <div className="flex items-center gap-3 mb-6">
         <Link
@@ -222,7 +222,7 @@ function CalendarContent() {
           <ArrowLeft className="w-5 h-5 text-primary" />
         </Link>
         <div>
-          <h1 className="text-2xl font-display text-primary flex items-center gap-2">
+          <h1 className="text-xl font-display text-primary flex items-center gap-2">
             <Calendar className="w-6 h-6 text-[#6B7F5E]" />
             {t('Kalender', 'Calendar')}
           </h1>

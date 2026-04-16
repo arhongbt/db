@@ -152,7 +152,7 @@ function DashboardContent() {
   // If no onboarding done
   if (!state.deceasedName && mounted) {
     return (
-      <div className="flex flex-col min-h-[calc(100dvh-5rem)] px-6 py-8 pb-28">
+      <div className="flex flex-col min-h-[calc(100dvh-5rem)] px-4 py-5 pb-24">
         <div className="flex-1 flex flex-col items-center justify-center min-h-[60dvh] text-center">
           <DoveLogo size={56} className="mb-8 opacity-40" />
           <h1 className="font-display text-3xl mb-3" style={{ color: 'var(--text)', letterSpacing: '-0.01em' }}>Välkommen</h1>
@@ -175,7 +175,7 @@ function DashboardContent() {
   const progressPct = stepProgress[effectiveStep];
 
   return (
-    <div className="flex flex-col min-h-[calc(100dvh-5rem)] px-6 py-8 pb-28">
+    <div className="flex flex-col min-h-[calc(100dvh-5rem)] px-4 py-5 pb-24">
 
       {/* ── Trial Banner ── */}
       <TrialBanner />

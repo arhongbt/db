@@ -10,7 +10,7 @@ export default function SamboArvPage() {
     <div className="min-h-[calc(100dvh-5rem)] bg-background pb-28">
       {/* Header */}
       <div className="sticky top-0 z-40 bg-background border-b border-border">
-        <div className="max-w-2xl mx-auto px-6 py-8 flex items-center gap-3">
+        <div className="max-w-2xl mx-auto px-4 py-5 flex items-center gap-3">
           <Link href="/dashboard" className="p-2 hover:bg-secondary rounded-full transition-colors">
             <ArrowLeft className="w-5 h-5 text-primary" />
           </Link>
@@ -19,7 +19,7 @@ export default function SamboArvPage() {
       </div>
 
       {/* Content */}
-      <div className="max-w-2xl mx-auto px-6 py-8 space-y-6">
+      <div className="max-w-2xl mx-auto px-4 py-5 space-y-6">
         {/* Warning Box */}
         <div className="border rounded-lg p-4 flex gap-3" style={{ background: 'var(--accent-soft)', borderColor: 'var(--border)' }}>
           <AlertTriangle className="w-5 h-5 text-warn flex-shrink-0 mt-0.5" />

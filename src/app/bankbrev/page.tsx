@@ -192,12 +192,12 @@ Adress: ${data.adress}`;
       </div>
 
       {/* Content */}
-      <div className="max-w-2xl mx-auto px-6 py-8 pb-28">
+      <div className="max-w-2xl mx-auto px-4 py-5 pb-24">
         {/* Step 0: Uppgifter om den avlidne */}
         {currentStep === 0 && (
           <div>
             <div className="mb-6">
-              <h2 className="text-2xl font-display text-primary mb-2">{t('Uppgifter om den avlidne', 'Information about the deceased')}</h2>
+              <h2 className="text-xl font-display text-primary mb-2">{t('Uppgifter om den avlidne', 'Information about the deceased')}</h2>
               <p className="text-sm text-muted">{t('Steg 1 av 4', 'Step 1 of 4')}</p>
             </div>
 
@@ -245,7 +245,7 @@ Adress: ${data.adress}`;
         {currentStep === 1 && (
           <div>
             <div className="mb-6">
-              <h2 className="text-2xl font-display text-primary mb-2">Dina uppgifter (anmälare)</h2>
+              <h2 className="text-xl font-display text-primary mb-2">Dina uppgifter (anmälare)</h2>
               <p className="text-sm text-muted">Steg 2 av 4</p>
             </div>
 
@@ -320,7 +320,7 @@ Adress: ${data.adress}`;
         {currentStep === 2 && (
           <div>
             <div className="mb-6">
-              <h2 className="text-2xl font-display text-primary mb-2">Välj banker</h2>
+              <h2 className="text-xl font-display text-primary mb-2">Välj banker</h2>
               <p className="text-sm text-muted">Steg 3 av 4</p>
             </div>
 
@@ -394,7 +394,7 @@ Adress: ${data.adress}`;
         {currentStep === 3 && (
           <div>
             <div className="mb-6">
-              <h2 className="text-2xl font-display text-primary mb-2">Granska & ladda ner</h2>
+              <h2 className="text-xl font-display text-primary mb-2">Granska & ladda ner</h2>
               <p className="text-sm text-muted">Steg 4 av 4</p>
             </div>
 

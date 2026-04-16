@@ -136,11 +136,11 @@ function TillgangarContent() {
     new Intl.NumberFormat('sv-SE', { style: 'currency', currency: 'SEK', maximumFractionDigits: 0 }).format(amount);
 
   return (
-    <div className="flex flex-col min-h-[calc(100dvh-5rem)] px-6 py-8 pb-28">
+    <div className="flex flex-col min-h-[calc(100dvh-5rem)] px-4 py-5 pb-24">
 
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
-        <h1 className="text-2xl font-display text-primary">{t('Ekonomi', 'Finances')}</h1>
+        <h1 className="text-xl font-display text-primary">{t('Ekonomi', 'Finances')}</h1>
         <button
           onClick={() => { setShowForm(true); }}
           className="w-12 h-12 text-white rounded-full flex items-center justify-center shadow-md transition-colors"
@@ -185,18 +185,18 @@ function TillgangarContent() {
       )}
 
       {/* Summary cards */}
-      <div className="grid grid-cols-3 gap-3 mb-6" role="group" aria-label={t('Ekonomisk sammanfattning', 'Financial summary')}>
-        <div className="card text-center py-3" aria-label={t(`Totala tillgångar: ${formatSEK(totalTillgangar)}`, `Total assets: ${formatSEK(totalTillgangar)}`)}>
-          <p className="text-xs text-muted uppercase">{t('Tillgångar', 'Assets')}</p>
-          <p className="text-lg font-display text-success">{formatSEK(totalTillgangar)}</p>
+      <div className="grid grid-cols-3 gap-2 mb-4" role="group" aria-label={t('Ekonomisk sammanfattning', 'Financial summary')}>
+        <div className="card text-center py-2 px-2" aria-label={t(`Totala tillgångar: ${formatSEK(totalTillgangar)}`, `Total assets: ${formatSEK(totalTillgangar)}`)}>
+          <p className="text-[10px] text-muted uppercase">{t('Tillgångar', 'Assets')}</p>
+          <p className="text-sm font-display text-success truncate">{formatSEK(totalTillgangar)}</p>
         </div>
-        <div className="card text-center py-3" aria-label={t(`Totala skulder: ${formatSEK(totalSkulder)}`, `Total debts: ${formatSEK(totalSkulder)}`)}>
-          <p className="text-xs text-muted uppercase">{t('Skulder', 'Debts')}</p>
-          <p className="text-lg font-display text-warn">{formatSEK(totalSkulder)}</p>
+        <div className="card text-center py-2 px-2" aria-label={t(`Totala skulder: ${formatSEK(totalSkulder)}`, `Total debts: ${formatSEK(totalSkulder)}`)}>
+          <p className="text-[10px] text-muted uppercase">{t('Skulder', 'Debts')}</p>
+          <p className="text-sm font-display text-warn truncate">{formatSEK(totalSkulder)}</p>
         </div>
-        <div className="card text-center py-3" aria-label={t(`Nettovärde: ${formatSEK(netto)}`, `Net value: ${formatSEK(netto)}`)}>
-          <p className="text-xs text-muted uppercase">{t('Netto', 'Net')}</p>
-          <p className={`text-lg font-display ${netto >= 0 ? 'text-success' : 'text-warn'}`}>
+        <div className="card text-center py-2 px-2" aria-label={t(`Nettovärde: ${formatSEK(netto)}`, `Net value: ${formatSEK(netto)}`)}>
+          <p className="text-[10px] text-muted uppercase">{t('Netto', 'Net')}</p>
+          <p className={`text-sm font-display truncate ${netto >= 0 ? 'text-success' : 'text-warn'}`}>
             {formatSEK(netto)}
           </p>
         </div>
@@ -338,8 +338,8 @@ function TillgangarContent() {
 
       {/* Add forms */}
       {showForm && tab === 'tillgangar' && (
-        <div className="card" style={{ borderRadius: '28px', border: '2px solid var(--accent)' }}>
-          <h3 className="text-lg font-display text-primary mb-4">{t('Ny tillgång', 'New asset')}</h3>
+        <div className="card" style={{ borderRadius: '20px', border: '2px solid var(--accent)' }}>
+          <h3 className="text-base font-display text-primary mb-3">{t('Ny tillgång', 'New asset')}</h3>
 
           <div className="mb-4">
             <span className="text-sm font-medium text-primary mb-2 block">{t('Typ', 'Type')}</span>
@@ -373,7 +373,7 @@ function TillgangarContent() {
               value={tDesc}
               onChange={(e) => { setTDesc(e.target.value); setFormErrors((p) => ({ ...p, tDesc: '' })); }}
               placeholder={t('T.ex. Sparkonto Swedbank', 'E.g. Savings account Swedbank')}
-              className={`w-full min-h-touch px-4 py-3 text-base border-2 rounded-[20px] focus:outline-none bg-white ${formErrors.tDesc ? 'border-warn' : 'border-[#E8E4DE] focus:border-accent'}`}
+              className={`w-full px-3 py-2 text-sm border-2 rounded-xl focus:outline-none bg-white ${formErrors.tDesc ? 'border-warn' : 'border-[#E8E4DE] focus:border-accent'}`}
             />
             {formErrors.tDesc && <span className="text-xs text-warn mt-1 block">{formErrors.tDesc}</span>}
           </label>
@@ -385,7 +385,7 @@ function TillgangarContent() {
               value={tValue}
               onChange={(e) => { setTValue(e.target.value); setFormErrors((p) => ({ ...p, tValue: '' })); }}
               placeholder="0"
-              className={`w-full min-h-touch px-4 py-3 text-base border-2 rounded-[20px] focus:outline-none bg-white ${formErrors.tValue ? 'border-warn' : 'border-[#E8E4DE] focus:border-accent'}`}
+              className={`w-full px-3 py-2 text-sm border-2 rounded-xl focus:outline-none bg-white ${formErrors.tValue ? 'border-warn' : 'border-[#E8E4DE] focus:border-accent'}`}
             />
             {formErrors.tValue && <span className="text-xs text-warn mt-1 block">{formErrors.tValue}</span>}
           </label>
@@ -398,7 +398,7 @@ function TillgangarContent() {
                 value={tTaxeringsvarde}
                 onChange={(e) => { setTTaxeringsvarde(e.target.value); }}
                 placeholder="0"
-                className="w-full min-h-touch px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-[20px] focus:outline-none focus:border-accent"
+                className="w-full px-3 py-2 text-sm border-2 border-[#E8E4DE] rounded-xl focus:outline-none focus:border-accent"
               />
               <p className="text-xs text-muted mt-1">{t('Taxeringsvärdet finns på Skatteverket.se eller senaste fastighetstaxeringen.', 'The assessed value is found on Skatteverket.se or the latest property valuation.')}</p>
             </label>
@@ -412,8 +412,8 @@ function TillgangarContent() {
       )}
 
       {showForm && tab === 'skulder' && (
-        <div className="card" style={{ borderRadius: '28px', border: '2px solid var(--accent)' }}>
-          <h3 className="text-lg font-display text-primary mb-4">{t('Ny skuld', 'New debt')}</h3>
+        <div className="card" style={{ borderRadius: '20px', border: '2px solid var(--accent)' }}>
+          <h3 className="text-base font-display text-primary mb-3">{t('Ny skuld', 'New debt')}</h3>
 
           <div className="mb-4">
             <span className="text-sm font-medium text-primary mb-2 block">{t('Typ', 'Type')}</span>
@@ -442,7 +442,7 @@ function TillgangarContent() {
               value={sCreditor}
               onChange={(e) => { setSCreditor(e.target.value); setFormErrors((p) => ({ ...p, sCreditor: '' })); }}
               placeholder={t('T.ex. Nordea (bolån)', 'E.g. Nordea (mortgage)')}
-              className={`w-full min-h-touch px-4 py-3 text-base border-2 rounded-[20px] focus:outline-none bg-white ${formErrors.sCreditor ? 'border-warn' : 'border-[#E8E4DE] focus:border-accent'}`}
+              className={`w-full px-3 py-2 text-sm border-2 rounded-xl focus:outline-none bg-white ${formErrors.sCreditor ? 'border-warn' : 'border-[#E8E4DE] focus:border-accent'}`}
             />
             {formErrors.sCreditor && <span className="text-xs text-warn mt-1 block">{formErrors.sCreditor}</span>}
           </label>
@@ -454,7 +454,7 @@ function TillgangarContent() {
               value={sAmount}
               onChange={(e) => { setSAmount(e.target.value); setFormErrors((p) => ({ ...p, sAmount: '' })); }}
               placeholder="0"
-              className={`w-full min-h-touch px-4 py-3 text-base border-2 rounded-[20px] focus:outline-none bg-white ${formErrors.sAmount ? 'border-warn' : 'border-[#E8E4DE] focus:border-accent'}`}
+              className={`w-full px-3 py-2 text-sm border-2 rounded-xl focus:outline-none bg-white ${formErrors.sAmount ? 'border-warn' : 'border-[#E8E4DE] focus:border-accent'}`}
             />
             {formErrors.sAmount && <span className="text-xs text-warn mt-1 block">{formErrors.sAmount}</span>}
           </label>

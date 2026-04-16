@@ -119,7 +119,7 @@ function KonfliktContent() {
   };
 
   return (
-    <div className="flex flex-col min-h-[calc(100dvh-5rem)] px-6 py-8 pb-28">
+    <div className="flex flex-col min-h-[calc(100dvh-5rem)] px-4 py-5 pb-24">
       {/* Header */}
       <div className="flex items-center gap-3 mb-4">
         <Link
@@ -130,7 +130,7 @@ function KonfliktContent() {
           <ArrowLeft className="w-5 h-5 text-primary" />
         </Link>
         <div>
-          <h1 className="text-2xl font-display text-primary">
+          <h1 className="text-xl font-display text-primary">
             {t('Oenighet i dödsboet', 'Disputes in the estate')}
           </h1>
           <p className="text-muted text-sm">{t('Vad du kan göra', 'What you can do')}</p>
