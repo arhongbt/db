@@ -83,7 +83,6 @@ export function generateTasks(onboarding: OnboardingData): DodsboTask[] {
     status: 'ej_paborjad',
     priority: 'viktig',
     deadlineDays: 14,
-    externalUrl: 'https://www.postnord.se/ta-emot/eftersandning',
   });
 
   tasks.push({

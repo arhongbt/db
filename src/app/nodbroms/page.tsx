@@ -138,7 +138,6 @@ const NODBROMS_STEPS: NodbromsStep[] = [
       'Kan göras online på postnord.se eller via telefon.',
     ],
     tips: 'Gör detta tidigt — brev med frister kan annars missas.',
-    url: 'https://www.postnord.se/ta-emot/eftersandning',
   },
 ];
 

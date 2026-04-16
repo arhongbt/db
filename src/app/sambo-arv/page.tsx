@@ -19,9 +19,9 @@ export default function SamboArvPage() {
       </div>
 
       {/* Content */}
-      <div className="max-w-2xl mx-auto px-4 py-5 space-y-6">
+      <div className="max-w-2xl mx-auto px-4 py-5 space-y-5">
         {/* Warning Box */}
-        <div className="border rounded-lg p-4 flex gap-3" style={{ background: 'var(--accent-soft)', borderColor: 'var(--border)' }}>
+        <div className="border rounded-lg p-4 flex gap-3 mb-1" style={{ background: 'var(--accent-soft)', borderColor: 'var(--border)' }}>
           <AlertTriangle className="w-5 h-5 text-warn flex-shrink-0 mt-0.5" />
           <div>
             <p className="font-semibold text-primary mb-1">{t('Viktigt att veta', 'Important to Know')}</p>

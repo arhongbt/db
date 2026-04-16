@@ -30,7 +30,6 @@ interface BegravningsplanerData {
   begravningsDatum: string;
   plats: string;
   officiant: string;
-  musik: string;
   blommor: string;
 
   // Step 3: Death notice & memorial
@@ -60,7 +59,6 @@ const INITIAL: BegravningsplanerData = {
   begravningsDatum: '',
   plats: '',
   officiant: '',
-  musik: '',
   blommor: '',
   dodsannonsText: '',
   tidningar: '',
@@ -288,16 +286,7 @@ function BegravningsplaneringContent() {
                 className="w-full px-4 py-3 border border-[#E8E4DE] rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
               />
             </div>
-            <div>
-              <label className="block text-sm font-medium text-primary mb-1.5">{t('Musik & psalmer', 'Music & hymns')}</label>
-              <textarea
-                value={data.musik}
-                onChange={(e) => setData({ ...data, musik: e.target.value })}
-                placeholder={t('T.ex. \'Psalm 23, musikstycke från Grieg\'', 'E.g. \'Psalm 23, piece by Grieg\'')}
-                rows={3}
-                className="w-full px-4 py-3 border border-[#E8E4DE] rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background resize-none text-sm"
-              />
-            </div>
+
             <div>
               <label className="block text-sm font-medium text-primary mb-1.5">{t('Blommor & dekoration', 'Flowers & decoration')}</label>
               <textarea
