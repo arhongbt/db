@@ -238,12 +238,12 @@ function Content() {
                 <p className="text-sm font-medium text-primary mb-2">Facebook</p>
                 <p className="text-xs text-gray-600 mb-2">Minnessida eller radera</p>
                 <a
-                  href="https://facebook.com/help/contact/305593649477238"
+                  href="https://www.facebook.com/help/1506822589577997"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-xs text-accent hover:underline"
                 >
-                  facebook.com/help/contact/305593649477238
+                  facebook.com/help — minnesplats
                 </a>
                 <div className="mt-2">
                   <ChecklistItem

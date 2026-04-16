@@ -316,7 +316,7 @@ function Step3Submit() {
           <p>Bouppteckningssektionen</p>
           <p>831 81 Östersund</p>
         </div>
-        <p className="text-xs mt-4" style={{ color: 'var(--text-secondary)' }}>Du kan också skicka in digitalt via skatteverket.se</p>
+        <p className="text-xs mt-4" style={{ color: 'var(--text-secondary)' }}>Du kan också skicka in digitalt via <a href="https://www.skatteverket.se/privat/folkbokforing/narenanhorigdor/bouppteckning" target="_blank" rel="noopener noreferrer" className="text-accent underline underline-offset-2">skatteverket.se</a></p>
       </div>
 
       <div className="space-y-2 mb-5">

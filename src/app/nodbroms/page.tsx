@@ -299,10 +299,15 @@ function NodbromsContent() {
 
                   {step.url && (
                     <div className="mt-3">
-                      <span className="inline-flex items-center gap-1 text-sm text-accent font-medium">
+                      <a
+                        href={step.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 text-sm text-accent font-medium underline underline-offset-2 hover:text-accent-dark"
+                      >
                         <ExternalLink className="w-4 h-4" />
                         {step.url.replace('https://', '').replace('www.', '')}
-                      </span>
+                      </a>
                     </div>
                   )}
                 </div>
