@@ -244,7 +244,8 @@ ${form.citat}
               onChange={(e) => handleInputChange('minnesord', e.target.value)}
               placeholder={t('Skriv några ord om den du saknar...', 'Write a few words about the person you miss...')}
               rows={4}
-              className="w-full px-4 py-3 border border-[#E8E4DE] rounded-2xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white resize-none"
+              className="w-full px-4 py-3 border rounded-2xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent resize-none"
+              style={{ borderColor: 'var(--border)', background: 'var(--bg-card)' }}
             />
           </div>
 
@@ -258,7 +259,8 @@ ${form.citat}
               onChange={(e) => handleInputChange('favoritminne', e.target.value)}
               placeholder={t('Dela ett kärt minne...', 'Share a cherished memory...')}
               rows={3}
-              className="w-full px-4 py-3 border border-[#E8E4DE] rounded-2xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white resize-none"
+              className="w-full px-4 py-3 border rounded-2xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent resize-none"
+              style={{ borderColor: 'var(--border)', background: 'var(--bg-card)' }}
             />
           </div>
 
