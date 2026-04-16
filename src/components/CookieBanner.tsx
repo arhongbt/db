@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 
 export function CookieBanner() {
   const [visible, setVisible] = useState(false);
@@ -31,9 +32,9 @@ export function CookieBanner() {
         <p className="text-sm text-primary mb-3">
           Vi använder nödvändiga cookies för inloggning samt Vercel Analytics för att förbättra
           tjänsten. Inga spårningscookies för reklam.{' '}
-          <a href="/integritetspolicy" className="text-accent underline">
+          <Link href="/integritetspolicy" className="text-accent underline">
             Läs mer
-          </a>
+          </Link>
         </p>
         <div className="flex gap-3">
           <button

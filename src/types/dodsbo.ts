@@ -302,6 +302,7 @@ export type TillgangType =
   | 'villa'
   | 'jordbruksfastighet'
   | 'fritidshus'
+  | 'sommarstuga'
   | 'bil'
   | 'aktier_fonder'
   | 'kryptovalutor'

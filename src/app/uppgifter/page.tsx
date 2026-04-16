@@ -310,48 +310,47 @@ function UppgifterContent() {
                 >
                   <button
                     onClick={() => toggleStatus(task)}
-                    className="flex items-start gap-3 w-full text-left"
+                    className="flex-shrink-0 mt-0.5"
                     aria-label={`Markera ${task.title} som ${task.status === 'klar' ? 'oavslutad' : 'slutförd'}`}
                   >
                     {statusIcon(task.status)}
-                    <div className="flex-1 min-w-0">
+                  </button>
+                  <div className="flex-1 min-w-0">
+                    <p
+                      className={`font-display text-[15px] ${
+                        task.status === 'klar'
+                          ? 'line-through text-muted'
+                          : 'text-primary'
+                      }`}
+                    >
+                      {task.title}
+                    </p>
+                    <p className="text-sm text-muted mt-0.5 line-clamp-2">
+                      {task.description}
+                    </p>
+                    {task.deadlineDays != null && task.status !== 'klar' && (
                       <p
-                        className={`font-display text-[15px] ${
-                          task.status === 'klar'
-                            ? 'line-through text-muted'
-                            : 'text-primary'
+                        className={`text-xs font-medium mt-1 ${
+                          isOverdue ? 'text-warn' : 'text-accent'
                         }`}
                       >
-                        {task.title}
+                        {isOverdue
+                          ? t(`${daysSinceDeath - task.deadlineDays} dagar försenad`, `${daysSinceDeath - task.deadlineDays} days overdue`)
+                          : t(`${task.deadlineDays - daysSinceDeath} dagar kvar`, `${task.deadlineDays - daysSinceDeath} days left`)}
                       </p>
-                      <p className="text-sm text-muted mt-0.5 line-clamp-2">
-                        {task.description}
-                      </p>
-                      {task.deadlineDays != null && task.status !== 'klar' && (
-                        <p
-                          className={`text-xs font-medium mt-1 ${
-                            isOverdue ? 'text-warn' : 'text-accent'
-                          }`}
-                        >
-                          {isOverdue
-                            ? t(`${daysSinceDeath - task.deadlineDays} dagar försenad`, `${daysSinceDeath - task.deadlineDays} days overdue`)
-                            : t(`${task.deadlineDays - daysSinceDeath} dagar kvar`, `${task.deadlineDays - daysSinceDeath} days left`)}
-                        </p>
-                      )}
-                      {task.externalUrl && task.status !== 'klar' && (
-                        <a
-                          href={task.externalUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          onClick={(e) => e.stopPropagation()}
-                          className="inline-flex items-center gap-1 text-xs text-accent mt-1 underline underline-offset-2 hover:text-accent-dark"
-                        >
-                          <ExternalLink className="w-3 h-3" />
-                          {t('Öppna länk', 'Open link')}
-                        </a>
-                      )}
-                    </div>
-                  </button>
+                    )}
+                    {task.externalUrl && task.status !== 'klar' && (
+                      <a
+                        href={task.externalUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 text-xs text-accent mt-1 underline underline-offset-2 hover:text-accent-dark"
+                      >
+                        <ExternalLink className="w-3 h-3" />
+                        {t('Öppna länk', 'Open link')}
+                      </a>
+                    )}
+                  </div>
 
                   {/* Assignee indicator */}
                   <div className="relative">

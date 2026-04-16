@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useLanguage } from '@/lib/i18n';
 import {
   AlertTriangle,
@@ -288,12 +289,12 @@ export default function KryptoGuidePage() {
         <p className="text-sm text-primary/80 mb-4">
           {t('Kryptohantering kan vara komplicerad. Kontakta en jurist eller teknisk expert om du är osäker.', 'Cryptocurrency management can be complicated. Contact a lawyer or technical expert if you are unsure.')}
         </p>
-        <a
+        <Link
           href="/juridisk-hjalp"
           className="inline-flex items-center gap-2 px-4 py-2.5 rounded-[24px] bg-accent text-white font-medium text-sm hover:opacity-90 transition-opacity"
         >
           {t('Juridisk hjälp', 'Legal Help')} <ArrowRight className="w-4 h-4" />
-        </a>
+        </Link>
       </div>
 
     </div>

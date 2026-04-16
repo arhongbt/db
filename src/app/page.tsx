@@ -186,40 +186,46 @@ export default function LandingPage() {
               icon: FileText,
               title: t('Bouppteckning', 'Estate inventory'),
               desc: t('Samla underlag och skapa kompletta dokument — steg för steg', 'Gather documents and create complete inventories — step by step'),
+              href: '/bouppteckning',
             },
             {
               icon: Calculator,
               title: t('Arvskalkylator', 'Inheritance calculator'),
               desc: t('Beräkna arvslotter och dela dödsboet rättvist', 'Calculate inheritance shares and divide the estate fairly'),
+              href: '/arvskalkylator',
             },
             {
               icon: Users,
               title: t('Bodelning', 'Estate division'),
               desc: t('Hantera bodelning mellan arvingar med juridisk vägledning', 'Manage estate distribution with legal guidance'),
+              href: '/bodelning',
             },
             {
               icon: MessageSquare,
               title: t('AI-jurist Mike Ross', 'AI lawyer Mike Ross'),
               desc: t('Fråga juridiska frågor och få svar på enkel svenska', 'Ask legal questions and get answers in plain Swedish'),
+              href: '/juridisk-hjalp',
             },
             {
               icon: Zap,
               title: t('Dokumentskanner', 'Document scanner'),
               desc: t('Läs in kvitton och handlingar direkt från din telefon', 'Scan receipts and documents directly from your phone'),
+              href: '/skanner',
             },
             {
               icon: Users,
               title: t('Samarbete', 'Collaboration'),
               desc: t('Dela information säkert med andra arvingar', 'Share information securely with other heirs'),
+              href: '/samarbete',
             },
           ].map((feature) => (
-            <div key={feature.title} className="rounded-2xl border p-4 hover:shadow-md transition-shadow" style={{ background: 'var(--bg-card)', borderColor: 'var(--border)' }}>
+            <Link key={feature.title} href={feature.href} className="rounded-2xl border p-4 hover:shadow-md transition-shadow block" style={{ background: 'var(--bg-card)', borderColor: 'var(--border)' }}>
               <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-2" style={{ background: 'var(--accent-soft)' }}>
                 <feature.icon className="w-5 h-5 text-[#6B7F5E]" />
               </div>
-              <h3 className="font-display text-primary text-sm mb-1">{feature.title}</h3>
+              <h3 className="font-semibold text-primary text-sm mb-1">{feature.title}</h3>
               <p className="text-xs text-muted leading-relaxed">{feature.desc}</p>
-            </div>
+            </Link>
           ))}
         </div>
       </section>

@@ -20,6 +20,7 @@ import {
   CheckCircle2,
   Bitcoin,
 } from 'lucide-react';
+import Link from 'next/link';
 import type { Tillgang, TillgangType, Skuld, SkuldType } from '@/types';
 
 const TILLGANG_TYPES: { value: TillgangType; label: string; icon: typeof Wallet }[] = [
@@ -27,7 +28,8 @@ const TILLGANG_TYPES: { value: TillgangType; label: string; icon: typeof Wallet 
   { value: 'bostadsratt', label: 'Bostadsrätt', icon: Building2 },
   { value: 'villa', label: 'Villa/Småhus', icon: Home },
   { value: 'jordbruksfastighet', label: 'Jordbruk/Skog', icon: Home },
-  { value: 'fritidshus', label: 'Fritidshus/Sommarstuga', icon: Home },
+  { value: 'fritidshus', label: 'Fritidshus', icon: Home },
+  { value: 'sommarstuga', label: 'Sommarstuga', icon: Home },
   { value: 'bil', label: 'Bil/fordon', icon: Car },
   { value: 'aktier_fonder', label: 'Aktier & fonder', icon: TrendingUp },
   { value: 'kryptovalutor', label: 'Kryptovalutor', icon: Bitcoin },
@@ -171,12 +173,12 @@ function TillgangarContent() {
               <p className="text-xs text-primary/70 mb-3">
                 Kryptohantering kräver teknisk kunskap. Läs vår guide för att hitta privata nycklar, säker överflytt och skatteregler.
               </p>
-              <a
+              <Link
                 href="/krypto-guide"
                 className="text-accent font-medium text-sm hover:underline inline-block"
               >
                 Läs vår kryptoguide →
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -213,12 +215,12 @@ function TillgangarContent() {
               <p className="text-sm text-primary/80 mb-4">
                 {t('Om dödsboet saknar tillgångar kan du göra en dödsboanmälan istället för bouppteckning.', 'If the estate lacks assets, you can file an estate notification instead of an inventory.')}
               </p>
-              <a
+              <Link
                 href="/dodsboanmalan"
                 className="text-accent font-medium text-sm hover:underline inline-block mb-4"
               >
                 {t('Gå till dödsboanmälan →', 'Go to estate notification →')}
-              </a>
+              </Link>
               <div className="pt-3 border-t border-[#E8E4DE]">
                 <p className="text-xs text-muted">
                   <span className="font-medium">Vid frågor om skulder:</span> Kronofogden <br />
@@ -388,7 +390,7 @@ function TillgangarContent() {
             {formErrors.tValue && <span className="text-xs text-warn mt-1 block">{formErrors.tValue}</span>}
           </label>
 
-          {['bostadsratt', 'villa', 'jordbruksfastighet', 'fritidshus'].includes(tType) && (
+          {['bostadsratt', 'villa', 'jordbruksfastighet', 'fritidshus', 'sommarstuga'].includes(tType) && (
             <label className="block mb-4">
               <span className="text-sm font-medium text-primary mb-1 block">{t('Taxeringsvärde (kr)', 'Assessed value (SEK)')}</span>
               <input
