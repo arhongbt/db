@@ -8,9 +8,9 @@ import Link from 'next/link';
 
 function MikeRossTip({ text }: { text: string }) {
   return (
-    <div className="flex gap-4 p-5 mb-6" style={{
+    <div className="flex gap-3 p-4 mb-4" style={{
       background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))',
-      borderRadius: '24px',
+      borderRadius: '20px',
       border: '1.5px solid rgba(107,127,94,0.10)',
     }}>
       <div className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
@@ -37,9 +37,9 @@ function ChecklistItem({
   return (
     <button
       onClick={onChange}
-      className="w-full flex items-center gap-4 p-4 transition-all duration-300 active:scale-[0.98] text-left"
+      className="w-full flex items-center gap-3 p-3 transition-all duration-300 active:scale-[0.98] text-left"
       style={{
-        borderRadius: '20px',
+        borderRadius: '16px',
         border: checked ? '1.5px solid var(--accent)' : '1.5px solid var(--border)',
         background: checked ? 'linear-gradient(135deg, rgba(107,127,94,0.04), transparent)' : 'var(--bg-card)',
       }}
@@ -103,17 +103,17 @@ function Step0Overview() {
     <div>
       <ProgressCounter completed={0} total={6} />
 
-      <h2 className="font-display text-2xl mb-4" style={{ color: 'var(--text)' }}>
+      <h2 className="font-display text-lg mb-3" style={{ color: 'var(--text)' }}>
         {t('Vad är bouppteckning?', 'What is an estate inventory?')}
       </h2>
 
-      <p className="text-base leading-relaxed mb-8" style={{ color: 'var(--text-secondary)' }}>
+      <p className="text-sm leading-relaxed mb-5" style={{ color: 'var(--text-secondary)' }}>
         {t('Bouppteckningen är en officiell förteckning över den avlidnes alla tillgångar och skulder. Den upprättas av två oberoende förrättningsmän och måste skickas till Skatteverket för registrering.', 'The estate inventory is an official record of the deceased\'s all assets and liabilities. It is prepared by two independent estate administrators and must be submitted to the Swedish Tax Agency for registration.')}
       </p>
 
       {/* Timeline — Tiimo-style visual blocks */}
-      <div className="mb-8 p-6" style={{ background: 'var(--bg-card)', borderRadius: '28px', border: '1px solid var(--border)' }}>
-        <h3 className="font-display text-lg mb-5" style={{ color: 'var(--text)' }}>
+      <div className="mb-5 p-4" style={{ background: 'var(--bg-card)', borderRadius: '20px', border: '1px solid var(--border)' }}>
+        <h3 className="font-display text-base mb-3" style={{ color: 'var(--text)' }}>
           {t('Tidsplan för processen', 'Timeline for the process')}
         </h3>
         <div className="flex flex-col gap-3">
@@ -142,7 +142,7 @@ function Step0Overview() {
               bg: 'rgba(196,149,106,0.10)',
             },
           ].map((item, idx) => (
-            <div key={idx} className="flex items-start gap-4 p-4" style={{ borderRadius: '20px', background: item.bg }}>
+            <div key={idx} className="flex items-start gap-3 p-3" style={{ borderRadius: '16px', background: item.bg }}>
               <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 text-white text-xs font-bold"
                 style={{ background: item.color }}>
                 {item.num}
@@ -163,7 +163,7 @@ function Step0Overview() {
 
       {/* Deadline warnings */}
       {daysRemaining !== null && isPassed && (
-        <div className="mb-6 p-5 flex gap-4" style={{
+        <div className="mb-4 p-4 flex gap-3" style={{
           background: 'linear-gradient(135deg, rgba(220,80,80,0.06), rgba(220,80,80,0.02))',
           borderRadius: '24px',
           border: '1.5px solid rgba(220,80,80,0.12)',
@@ -179,7 +179,7 @@ function Step0Overview() {
       )}
 
       {daysRemaining !== null && isApproaching && (
-        <div className="mb-6 p-5 flex gap-4" style={{
+        <div className="mb-4 p-4 flex gap-3" style={{
           background: 'linear-gradient(135deg, rgba(196,149,106,0.06), rgba(196,149,106,0.02))',
           borderRadius: '24px',
           border: '1.5px solid rgba(196,149,106,0.12)',
@@ -218,15 +218,15 @@ function Step1Preparation() {
     <div>
       <ProgressCounter completed={completedCount} total={6} />
 
-      <h2 className="font-display text-2xl mb-4" style={{ color: 'var(--text)' }}>
+      <h2 className="font-display text-lg mb-3" style={{ color: 'var(--text)' }}>
         {t('Förbered förrättningen', 'Prepare for probate')}
       </h2>
 
-      <p className="text-base leading-relaxed mb-8" style={{ color: 'var(--text-secondary)' }}>
+      <p className="text-sm leading-relaxed mb-5" style={{ color: 'var(--text-secondary)' }}>
         {t('Innan förrättningen kan genomföras behöver du samla in dokument och utse förrättningsmän. Använd checklistan nedan för att hålla ordning.', 'Before the probate can take place, you need to gather documents and appoint estate administrators. Use the checklist below to keep track.')}
       </p>
 
-      <div className="space-y-3 mb-8">
+      <div className="space-y-2 mb-5">
         {items.map((item, idx) => (
           <ChecklistItem key={idx} label={item} checked={checked[idx]}
             onChange={() => { const n = [...checked]; n[idx] = !n[idx]; setChecked(n); }} />
@@ -255,15 +255,15 @@ function Step2Execute() {
     <div>
       <ProgressCounter completed={completedCount} total={5} />
 
-      <h2 className="font-display text-2xl mb-4" style={{ color: 'var(--text)' }}>Genomför förrättningen</h2>
+      <h2 className="font-display text-lg mb-3" style={{ color: 'var(--text)' }}>Genomför förrättningen</h2>
 
-      <p className="text-base leading-relaxed mb-8" style={{ color: 'var(--text-secondary)' }}>
+      <p className="text-sm leading-relaxed mb-5" style={{ color: 'var(--text-secondary)' }}>
         Vid förrättningen granskas alla tillgångar och skulder. Använd checklistan för att se till att allt är på plats.
       </p>
 
-      <div className="mb-8 p-5 flex gap-4" style={{
+      <div className="mb-5 p-4 flex gap-3" style={{
         background: 'linear-gradient(135deg, rgba(139,164,184,0.06), rgba(139,164,184,0.02))',
-        borderRadius: '24px',
+        borderRadius: '20px',
         border: '1.5px solid rgba(139,164,184,0.10)',
       }}>
         <div className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: 'rgba(139,164,184,0.10)' }}>
@@ -274,7 +274,7 @@ function Step2Execute() {
         </p>
       </div>
 
-      <div className="space-y-3 mb-8">
+      <div className="space-y-2 mb-5">
         {items.map((item, idx) => (
           <ChecklistItem key={idx} label={item} checked={checked[idx]}
             onChange={() => { const n = [...checked]; n[idx] = !n[idx]; setChecked(n); }} />
@@ -303,14 +303,14 @@ function Step3Submit() {
     <div>
       <ProgressCounter completed={completedCount} total={5} />
 
-      <h2 className="font-display text-2xl mb-4" style={{ color: 'var(--text)' }}>Skicka in till Skatteverket</h2>
+      <h2 className="font-display text-lg mb-3" style={{ color: 'var(--text)' }}>Skicka in till Skatteverket</h2>
 
-      <p className="text-base leading-relaxed mb-8" style={{ color: 'var(--text-secondary)' }}>
+      <p className="text-sm leading-relaxed mb-5" style={{ color: 'var(--text-secondary)' }}>
         Bouppteckningen kan skickas in antingen digitalt eller per post. Kontrollera att alla dokument är med innan du skickar.
       </p>
 
-      <div className="mb-8 p-6" style={{ background: 'var(--bg-card)', borderRadius: '28px', border: '1px solid var(--border)' }}>
-        <h3 className="font-display text-base mb-3" style={{ color: 'var(--text)' }}>Postadress</h3>
+      <div className="mb-5 p-4" style={{ background: 'var(--bg-card)', borderRadius: '20px', border: '1px solid var(--border)' }}>
+        <h3 className="font-display text-sm mb-2" style={{ color: 'var(--text)' }}>Postadress</h3>
         <div className="text-sm space-y-0.5" style={{ color: 'var(--text-secondary)' }}>
           <p>Skatteverket</p>
           <p>Bouppteckningssektionen</p>
@@ -319,7 +319,7 @@ function Step3Submit() {
         <p className="text-xs mt-4" style={{ color: 'var(--text-secondary)' }}>Du kan också skicka in digitalt via skatteverket.se</p>
       </div>
 
-      <div className="space-y-3 mb-8">
+      <div className="space-y-2 mb-5">
         {items.map((item, idx) => (
           <ChecklistItem key={idx} label={item} checked={checked[idx]}
             onChange={() => { const n = [...checked]; n[idx] = !n[idx]; setChecked(n); }} />
@@ -362,14 +362,14 @@ Telefon: [TELEFONNUMMER]`;
   };
 
   return (
-    <div className="mb-8">
-      <h3 className="font-display text-base mb-4" style={{ color: 'var(--text)' }}>Ansök om förlängning</h3>
+    <div className="mb-5">
+      <h3 className="font-display text-sm mb-3" style={{ color: 'var(--text)' }}>Ansök om förlängning</h3>
 
       <div className="mb-4">
         <textarea
           readOnly
           value={templateText}
-          className="w-full p-5 font-mono text-xs resize-none"
+          className="w-full p-3 font-mono text-xs resize-none"
           style={{
             background: 'var(--bg-card)',
             color: 'var(--text-secondary)',
@@ -382,7 +382,7 @@ Telefon: [TELEFONNUMMER]`;
 
       <button
         onClick={handleCopy}
-        className="w-full flex items-center justify-center gap-2 px-6 py-3.5 text-white font-semibold transition-all duration-300 active:scale-[0.97]"
+        className="w-full flex items-center justify-center gap-2 px-4 py-2.5 text-sm text-white font-semibold transition-all duration-300 active:scale-[0.97]"
         style={{
           background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)',
           borderRadius: '9999px',
@@ -411,18 +411,18 @@ function Step4After() {
     <div>
       <ProgressCounter completed={completedCount} total={4} />
 
-      <h2 className="font-display text-2xl mb-4" style={{ color: 'var(--text)' }}>Efter registrering</h2>
+      <h2 className="font-display text-lg mb-3" style={{ color: 'var(--text)' }}>Efter registrering</h2>
 
-      <p className="text-base leading-relaxed mb-8" style={{ color: 'var(--text-secondary)' }}>
+      <p className="text-sm leading-relaxed mb-5" style={{ color: 'var(--text-secondary)' }}>
         När Skatteverket har registrerat bouppteckningen kan ni påbörja arvskiftet och andra administrativa åtgärder.
       </p>
 
-      <div className="mb-8">
-        <p className="text-sm font-semibold mb-4" style={{ color: 'var(--text-secondary)' }}>Kan du inte hinna med deadline?</p>
+      <div className="mb-5">
+        <p className="text-sm font-semibold mb-3" style={{ color: 'var(--text-secondary)' }}>Kan du inte hinna med deadline?</p>
         <ExtensionRequest />
       </div>
 
-      <div className="space-y-3 mb-8">
+      <div className="space-y-2 mb-5">
         {items.map((item, idx) => (
           <ChecklistItem key={idx} label={item} checked={checked[idx]}
             onChange={() => { const n = [...checked]; n[idx] = !n[idx]; setChecked(n); }} />
@@ -447,30 +447,30 @@ function Content() {
 
   return (
     <div className="min-h-screen" style={{ background: 'var(--bg)' }}>
-      <div className="max-w-2xl mx-auto px-6 pt-8 pb-32">
+      <div className="max-w-2xl mx-auto px-4 py-5 pb-24">
         {/* Back link */}
-        <Link href="/dashboard" className="inline-flex items-center gap-2 mb-8 text-sm font-medium transition-colors"
+        <Link href="/dashboard" className="inline-flex items-center gap-2 mb-5 text-sm font-medium transition-colors"
           style={{ color: 'var(--accent)' }}>
           <ArrowLeft className="w-4 h-4" />
           <span>Tillbaka</span>
         </Link>
 
         {/* Header — Tiimo display font */}
-        <div className="flex items-center gap-4 mb-8">
-          <div className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0"
+        <div className="flex items-center gap-3 mb-5">
+          <div className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
             style={{ background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' }}>
-            <FileCheck className="w-5 h-5 text-white" />
+            <FileCheck className="w-4 h-4 text-white" />
           </div>
-          <h1 className="font-display text-3xl" style={{ color: 'var(--text)' }}>Bouppteckningsguide</h1>
+          <h1 className="font-display text-xl" style={{ color: 'var(--text)' }}>Bouppteckningsguide</h1>
         </div>
 
         {/* Step tabs — pill style */}
-        <div className="flex gap-2 mb-8 overflow-x-auto pb-2 -mx-1 px-1">
+        <div className="flex gap-1.5 mb-5 overflow-x-auto pb-2 -mx-1 px-1">
           {steps.map((step, idx) => (
             <button
               key={idx}
               onClick={() => setCurrentStep(idx)}
-              className="px-5 py-2.5 font-semibold text-sm whitespace-nowrap transition-all duration-300 flex-shrink-0 active:scale-[0.97]"
+              className="px-3 py-2 font-semibold text-xs whitespace-nowrap transition-all duration-300 flex-shrink-0 active:scale-[0.97]"
               style={{
                 borderRadius: '9999px',
                 background: currentStep === idx ? 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' : 'var(--bg-card)',
@@ -484,20 +484,20 @@ function Content() {
         </div>
 
         {/* Content card */}
-        <div className="p-7 mb-8" style={{
+        <div className="p-4 mb-5" style={{
           background: 'var(--bg-card)',
-          borderRadius: '28px',
+          borderRadius: '20px',
           border: '1px solid var(--border)',
         }}>
           {steps[currentStep].component}
         </div>
 
         {/* Navigation — pill buttons */}
-        <div className="flex gap-3">
+        <div className="flex gap-2">
           <button
             onClick={() => setCurrentStep(Math.max(0, currentStep - 1))}
             disabled={currentStep === 0}
-            className="flex-1 flex items-center justify-center gap-2 px-6 py-3.5 font-semibold transition-all duration-300 active:scale-[0.97] disabled:opacity-40 disabled:cursor-not-allowed"
+            className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-semibold transition-all duration-300 active:scale-[0.97] disabled:opacity-40 disabled:cursor-not-allowed"
             style={{
               borderRadius: '9999px',
               background: 'var(--bg-card)',
@@ -511,7 +511,7 @@ function Content() {
           <button
             onClick={() => setCurrentStep(Math.min(steps.length - 1, currentStep + 1))}
             disabled={currentStep === steps.length - 1}
-            className="flex-1 flex items-center justify-center gap-2 px-6 py-3.5 text-white font-semibold transition-all duration-300 active:scale-[0.97] disabled:opacity-40 disabled:cursor-not-allowed"
+            className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 text-sm text-white font-semibold transition-all duration-300 active:scale-[0.97] disabled:opacity-40 disabled:cursor-not-allowed"
             style={{
               borderRadius: '9999px',
               background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)',
