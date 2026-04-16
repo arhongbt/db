@@ -233,7 +233,7 @@ function TabBeslut() {
       {!showAddForm ? (
         <button
           onClick={() => setShowAddForm(true)}
-          className="w-full py-3 border-2 border-dashed border-accent text-accent font-semibold rounded-[20px] hover:bg-accent/5 transition flex items-center justify-center gap-2"
+          className="w-full py-3 border-2 border-dashed border-accent text-accent font-semibold rounded-2xl hover:bg-accent/5 transition flex items-center justify-center gap-2"
         >
           <Plus className="w-4 h-4" />
           {t('Lägg till beslut', 'Add decision')}
@@ -247,7 +247,7 @@ function TabBeslut() {
             <select
               value={selectedPredefined}
               onChange={(e) => setSelectedPredefined(e.target.value)}
-              className="w-full px-4 py-3 border border-[#E8E4DE] rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white"
+              className="w-full px-4 py-3 border border-[#E8E4DE] rounded-2xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white"
             >
               <option value="">-- {t('Välj', 'Choose')} --</option>
               {PREDEFINED_DECISIONS.map((item) => (
@@ -265,14 +265,14 @@ function TabBeslut() {
               value={newDecisionTitle}
               onChange={(e) => setNewDecisionTitle(e.target.value)}
               placeholder={t('Skriva här...', 'Write here...')}
-              className="w-full px-4 py-3 border border-[#E8E4DE] rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white"
+              className="w-full px-4 py-3 border border-[#E8E4DE] rounded-2xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white"
             />
           </div>
 
           <div className="flex gap-2">
             <button
               onClick={addDecision}
-              className="flex-1 py-2.5 bg-accent text-white font-semibold rounded-[20px] hover:opacity-90 transition"
+              className="flex-1 py-2.5 bg-accent text-white font-semibold rounded-2xl hover:opacity-90 transition"
               style={{ background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' }}
             >
               {t('Lägg till', 'Add')}
@@ -283,7 +283,7 @@ function TabBeslut() {
                 setNewDecisionTitle('');
                 setSelectedPredefined('');
               }}
-              className="flex-1 py-2.5 border border-[#E8E4DE] text-primary font-semibold rounded-[20px] hover:bg-background transition"
+              className="flex-1 py-2.5 border border-[#E8E4DE] text-primary font-semibold rounded-2xl hover:bg-background transition"
             >
               {t('Avbryt', 'Cancel')}
             </button>
@@ -359,7 +359,7 @@ function TabAnteckningar() {
           <select
             value={author}
             onChange={(e) => setAuthor(e.target.value)}
-            className="w-full px-4 py-3 border border-[#E8E4DE] rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white"
+            className="w-full px-4 py-3 border border-[#E8E4DE] rounded-2xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white"
           >
             <option value="">-- {t('Välj namn', 'Choose name')} --</option>
             {state.delagare.map((del) => (
@@ -376,14 +376,14 @@ function TabAnteckningar() {
             value={content}
             onChange={(e) => setContent(e.target.value)}
             placeholder={t('Skriv här...', 'Write here...')}
-            className="w-full px-4 py-3 border border-[#E8E4DE] rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white resize-none"
+            className="w-full px-4 py-3 border border-[#E8E4DE] rounded-2xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white resize-none"
             rows={4}
           />
         </div>
 
         <button
           onClick={addNote}
-          className="w-full py-2.5 bg-accent text-white font-semibold rounded-[20px] hover:opacity-90 transition"
+          className="w-full py-2.5 bg-accent text-white font-semibold rounded-2xl hover:opacity-90 transition"
           style={{ background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' }}
         >
           {t('Lägg till anteckning', 'Add note')}

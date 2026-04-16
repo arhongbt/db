@@ -239,7 +239,7 @@ function DelagarePortalContent() {
                   value={inviteEmail}
                   onChange={e => setInviteEmail(e.target.value)}
                   placeholder={t('namn@exempel.se', 'name@example.com')}
-                  className="w-full px-3 py-2 border-2 border-[#E8E4DE] rounded-[20px] text-sm
+                  className="w-full px-3 py-2 border-2 border-[#E8E4DE] rounded-2xl text-sm
                              focus:border-accent focus:outline-none transition-colors"
                 />
               </div>
@@ -281,13 +281,13 @@ function DelagarePortalContent() {
               )}
 
               {inviteLink && (
-                <div className="bg-accent/5 border border-accent/20 rounded-[20px] p-3">
+                <div className="bg-accent/5 border border-accent/20 rounded-2xl p-3">
                   <p className="text-xs text-muted mb-2">{t('Länk skapad! Dela med delägaren:', 'Link created! Share with the co-owner:')}</p>
                   <div className="flex items-center gap-2">
                     <input
                       readOnly
                       value={inviteLink}
-                      className="flex-1 text-xs bg-white border border-[#E8E4DE] rounded-[20px] px-2 py-1.5 text-primary"
+                      className="flex-1 text-xs bg-white border border-[#E8E4DE] rounded-2xl px-2 py-1.5 text-primary"
                     />
                     <button
                       onClick={() => {
@@ -295,7 +295,7 @@ function DelagarePortalContent() {
                         setLinkCopied(true);
                         setTimeout(() => setLinkCopied(false), 2000);
                       }}
-                      className="p-2 bg-accent text-white rounded-[20px] shrink-0"
+                      className="p-2 bg-accent text-white rounded-2xl shrink-0"
                     >
                       {linkCopied ? <Check className="w-4 h-4" /> : <Link2 className="w-4 h-4" />}
                     </button>

@@ -243,7 +243,7 @@ export default function ChecklistorPage() {
                 <button
                   key={i}
                   onClick={() => toggleItem(selectedList.id, i)}
-                  className={`w-full flex items-center gap-3 p-3 rounded-[20px] border transition-all text-left ${
+                  className={`w-full flex items-center gap-3 p-3 rounded-2xl border transition-all text-left ${
                     item.done
                       ? 'bg-accent/10 border-accent/30'
                       : 'bg-white border-[#E8E4DE] hover:border-accent/40'

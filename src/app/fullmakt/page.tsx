@@ -457,7 +457,7 @@ function FullmaktContent() {
 
                     {isExpanded && (
                       <div className="mt-4">
-                        <pre className="bg-white rounded-[20px] p-4 text-xs text-primary/80 whitespace-pre-wrap font-mono leading-relaxed overflow-x-auto max-h-96 overflow-y-auto">
+                        <pre className="bg-white rounded-2xl p-4 text-xs text-primary/80 whitespace-pre-wrap font-mono leading-relaxed overflow-x-auto max-h-96 overflow-y-auto">
                           {generatedText}
                         </pre>
                         <div className="flex gap-2 mt-3">
@@ -506,7 +506,7 @@ function FullmaktContent() {
         );
       })}
 
-      <div className="bg-primary-lighter/30 rounded-[24px] p-4">
+      <div className="bg-primary-lighter/30 rounded-2xl p-4">
         <p className="text-xs text-muted leading-relaxed">
           Mallarna ger en utgångspunkt och kan behöva anpassas efter din specifika situation.
           Banker kan ha egna blanketter — kontakta dem i förväg. Fullmakter ska undertecknas

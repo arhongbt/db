@@ -12,7 +12,6 @@ import {
   AlertTriangle,
   Filter,
   ChevronDown,
-  ExternalLink,
 } from 'lucide-react';
 import type { DodsboTask, ProcessStep, TaskStatus } from '@/types';
 
@@ -338,17 +337,6 @@ function UppgifterContent() {
                           ? t(`${daysSinceDeath - task.deadlineDays} dagar försenad`, `${daysSinceDeath - task.deadlineDays} days overdue`)
                           : t(`${task.deadlineDays - daysSinceDeath} dagar kvar`, `${task.deadlineDays - daysSinceDeath} days left`)}
                       </p>
-                    )}
-                    {task.externalUrl && task.status !== 'klar' && (
-                      <a
-                        href={task.externalUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-xs text-accent mt-1 underline underline-offset-2 hover:text-accent-dark"
-                      >
-                        <ExternalLink className="w-3 h-3" />
-                        {t('Öppna länk', 'Open link')}
-                      </a>
                     )}
                   </div>
 

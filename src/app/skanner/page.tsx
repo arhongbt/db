@@ -206,7 +206,7 @@ export default function SkannerPage() {
                   value={extractedText}
                   onChange={e => setExtractedText(e.target.value)}
                   rows={6}
-                  className="w-full px-3 py-2 border border-border rounded-[20px] text-xs font-mono"
+                  className="w-full px-3 py-2 border border-border rounded-2xl text-xs font-mono"
                 />
               </div>
             )}

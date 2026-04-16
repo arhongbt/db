@@ -297,7 +297,7 @@ function OrdlistaContent() {
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           placeholder={t('Sök i ordlistan...', 'Search the glossary...')}
-          className="w-full min-h-touch pl-10 pr-4 py-3 text-base border-2 border-[#E8E4DE] rounded-[20px] focus:border-accent focus:outline-none bg-white"
+          className="w-full min-h-touch pl-10 pr-4 py-3 text-base border-2 border-[#E8E4DE] rounded-2xl focus:border-accent focus:outline-none bg-white"
         />
       </div>
 

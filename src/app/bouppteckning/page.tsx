@@ -195,7 +195,7 @@ function BouppteckningContent() {
       </div>
 
       {/* Info box */}
-      <div className="mb-6 p-4 flex gap-2" style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}>
+      <div className="mb-6 p-4 flex gap-2 rounded-3xl" style={{ background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}>
         <Info className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
         <div>
           <p className="text-sm font-medium text-primary">{t('Vad är en bouppteckning?', 'What is an estate inventory?')}</p>
@@ -289,7 +289,7 @@ function BouppteckningContent() {
       </button>
 
       {showExtraFields && (
-        <div className="card mb-6 space-y-4" style={{ borderRadius: '28px' }}>
+        <div className="card mb-6 space-y-4 rounded-3xl">
           <h3 className="text-base font-display text-primary">{t('Den avlidnes uppgifter', 'Deceased Information')}</h3>
 
           <label className="block">
@@ -563,7 +563,7 @@ function BouppteckningContent() {
               <div className="space-y-6">
                 {previewDoc.sections.map((section, i) => (
                   <div key={i}>
-                    <h3 className="text-xs font-display text-accent uppercase tracking-wider bg-primary-lighter/20 px-3 py-1.5 rounded-[20px] mb-3">
+                    <h3 className="text-xs font-display text-accent uppercase tracking-wider bg-primary-lighter/20 px-3 py-1.5 rounded-2xl mb-3">
                       {section.heading}
                     </h3>
 

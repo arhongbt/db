@@ -175,7 +175,7 @@ export function BottomNav() {
       {/* Bottom nav bar — Tiimo-inspired floating pill */}
       <nav className="fixed bottom-0 left-0 right-0 z-50 px-4 pb-2" style={{ background: 'transparent' }} aria-label={t('Huvudnavigation', 'Main navigation')}>
         <div
-          className="mx-auto max-w-[420px] flex items-center justify-around px-4 py-2.5"
+          className="mx-auto max-w-[420px] flex items-center justify-around px-2 py-1.5"
           style={{
             background: 'rgba(255,255,255,0.92)',
             backdropFilter: 'blur(20px)',
@@ -192,21 +192,20 @@ export function BottomNav() {
                 key={href}
                 href={href}
                 aria-label={label}
-                className="relative flex items-center justify-center transition-all duration-300"
-                style={{
-                  minWidth: isActive ? '100px' : '48px',
-                  height: '42px',
-                  borderRadius: '9999px',
-                  background: isActive ? 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' : 'transparent',
-                  color: isActive ? '#FFFFFF' : 'var(--text-secondary)',
-                  gap: '6px',
-                  padding: isActive ? '0 16px' : '0 8px',
-                }}
+                className={`relative flex flex-col items-center justify-center gap-0.5 py-1 px-2 transition-all duration-200 ${
+                  isActive ? 'text-accent' : 'text-[var(--text-secondary)]'
+                }`}
+                style={{ minWidth: '52px' }}
               >
-                <Icon className="w-5 h-5 flex-shrink-0" strokeWidth={isActive ? 2 : 1.5} />
-                {isActive && (
-                  <span className="text-xs font-display whitespace-nowrap">{label}</span>
-                )}
+                <div
+                  className="w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200"
+                  style={{
+                    background: isActive ? 'rgba(107,127,94,0.12)' : 'transparent',
+                  }}
+                >
+                  <Icon className="w-[18px] h-[18px]" strokeWidth={isActive ? 2.2 : 1.5} />
+                </div>
+                <span className={`text-[10px] leading-tight ${isActive ? 'font-semibold' : 'font-medium opacity-70'}`}>{label}</span>
               </Link>
             );
           })}
@@ -216,21 +215,20 @@ export function BottomNav() {
             onClick={() => setMoreOpen(!moreOpen)}
             aria-label={t('nav.more')}
             aria-expanded={moreOpen}
-            className="relative flex items-center justify-center transition-all duration-300"
-            style={{
-              minWidth: (moreOpen || isMoreActive) ? '90px' : '48px',
-              height: '42px',
-              borderRadius: '9999px',
-              background: (moreOpen || isMoreActive) ? 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' : 'transparent',
-              color: (moreOpen || isMoreActive) ? '#FFFFFF' : 'var(--text-secondary)',
-              gap: '6px',
-              padding: (moreOpen || isMoreActive) ? '0 16px' : '0 8px',
-            }}
+            className={`relative flex flex-col items-center justify-center gap-0.5 py-1 px-2 transition-all duration-200 ${
+              (moreOpen || isMoreActive) ? 'text-accent' : 'text-[var(--text-secondary)]'
+            }`}
+            style={{ minWidth: '52px' }}
           >
-            <MoreHorizontal className="w-5 h-5 flex-shrink-0" strokeWidth={(moreOpen || isMoreActive) ? 2 : 1.5} />
-            {(moreOpen || isMoreActive) && (
-              <span className="text-xs font-display whitespace-nowrap">{t('nav.more')}</span>
-            )}
+            <div
+              className="w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200"
+              style={{
+                background: (moreOpen || isMoreActive) ? 'rgba(107,127,94,0.12)' : 'transparent',
+              }}
+            >
+              <MoreHorizontal className="w-[18px] h-[18px]" strokeWidth={(moreOpen || isMoreActive) ? 2.2 : 1.5} />
+            </div>
+            <span className={`text-[10px] leading-tight ${(moreOpen || isMoreActive) ? 'font-semibold' : 'font-medium opacity-70'}`}>{t('nav.more')}</span>
           </button>
         </div>
         {/* Safe area for iOS */}

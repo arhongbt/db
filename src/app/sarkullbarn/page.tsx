@@ -79,7 +79,7 @@ export default function SarkullbarnPage() {
       <MikeRossTip text={t('Särkullbarn är juridiskt skyddade — de kan kräva sin laglott (halva arvslotten) direkt vid dödsfallet, utan att vänta på att styvföräldern också dör. Det kan skapa ekonomisk press om bostad eller kapital är bundet. Planera detta tidigt.', 'Non-mutual children are legally protected—they can claim their legal portion (half the inheritance share) immediately upon death, without waiting for the step-parent to pass. This can create financial pressure if housing or capital is tied up. Plan ahead.')} />
 
       {/* Intro info box */}
-      <div className="info-box mb-6 mt-2">
+      <div className="info-box mb-6">
         <div className="flex gap-2">
           <Info className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
           <div>
@@ -275,7 +275,7 @@ export default function SarkullbarnPage() {
       </Link>
 
       {/* Legal disclaimer */}
-      <div className="bg-primary-lighter/30 rounded-[20px] p-4 mb-4">
+      <div className="bg-primary-lighter/30 rounded-2xl p-4 mb-4">
         <p className="text-xs text-muted leading-relaxed">
           Denna information är allmän vägledning baserad på ärvdabalken. Särkullbarns rättigheter kan vara komplexa
           och varierar beroende på testamente, familjesituation och andra faktorer. För bindande juridisk rådgivning

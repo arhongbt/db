@@ -135,7 +135,7 @@ export default function FaqPage() {
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           placeholder={t('Sök frågor...', 'Search questions...')}
-          className="w-full min-h-touch pl-10 pr-4 py-3 text-base border-2 rounded-[20px] focus:border-accent focus:outline-none"
+          className="w-full min-h-touch pl-10 pr-4 py-3 text-base border-2 rounded-2xl focus:border-accent focus:outline-none"
           style={{ borderColor: 'var(--border)', background: 'var(--bg-card)' }}
         />
       </div>

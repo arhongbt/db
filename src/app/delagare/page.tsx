@@ -194,7 +194,7 @@ function DelagareContent() {
           </div>
 
           {/* Heirs table */}
-          <div className="bg-primary-lighter/30 rounded-[20px] p-3 mb-3">
+          <div className="bg-primary-lighter/30 rounded-2xl p-3 mb-3">
             <p className="text-sm font-display text-muted mb-2">
               Vem ärver?
             </p>
@@ -332,7 +332,7 @@ function DelagareContent() {
               value={name}
               onChange={(e) => { setName(e.target.value); setErrors((p) => ({ ...p, name: '' })); }}
               placeholder="Förnamn Efternamn"
-              className={`w-full min-h-touch px-4 py-3 text-base border-2 rounded-[20px] focus:outline-none ${errors.name ? 'border-warn' : 'border-[#E8E4DE] focus:border-accent'}`}
+              className={`w-full min-h-touch px-4 py-3 text-base border-2 rounded-2xl focus:outline-none ${errors.name ? 'border-warn' : 'border-[#E8E4DE] focus:border-accent'}`}
               autoFocus
             />
             {errors.name && <span className="text-xs text-warn mt-1 block">{errors.name}</span>}
@@ -370,7 +370,7 @@ function DelagareContent() {
               value={phone}
               onChange={(e) => { setPhone(e.target.value); setErrors((p) => ({ ...p, phone: '' })); }}
               placeholder="070-123 45 67"
-              className={`w-full min-h-touch px-4 py-3 text-base border-2 rounded-[20px] focus:outline-none ${errors.phone ? 'border-warn' : 'border-[#E8E4DE] focus:border-accent'}`}
+              className={`w-full min-h-touch px-4 py-3 text-base border-2 rounded-2xl focus:outline-none ${errors.phone ? 'border-warn' : 'border-[#E8E4DE] focus:border-accent'}`}
             />
             {errors.phone && <span className="text-xs text-warn mt-1 block">{errors.phone}</span>}
           </label>
@@ -382,7 +382,7 @@ function DelagareContent() {
               value={email}
               onChange={(e) => { setEmail(e.target.value); setErrors((p) => ({ ...p, email: '' })); }}
               placeholder="namn@exempel.se"
-              className={`w-full min-h-touch px-4 py-3 text-base border-2 rounded-[20px] focus:outline-none ${errors.email ? 'border-warn' : 'border-[#E8E4DE] focus:border-accent'}`}
+              className={`w-full min-h-touch px-4 py-3 text-base border-2 rounded-2xl focus:outline-none ${errors.email ? 'border-warn' : 'border-[#E8E4DE] focus:border-accent'}`}
             />
             {errors.email && <span className="text-xs text-warn mt-1 block">{errors.email}</span>}
           </label>

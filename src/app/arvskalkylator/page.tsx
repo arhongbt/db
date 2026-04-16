@@ -355,7 +355,7 @@ function ArvskalkylatorContent() {
                   type="number"
                   value={manualTillgangar || ''}
                   onChange={e => setManualTillgangar(Number(e.target.value) || 0)}
-                  className="w-full mt-1 px-3 py-2 border border-border rounded-[20px] text-sm"
+                  className="w-full mt-1 px-3 py-2 border border-border rounded-2xl text-sm"
                   placeholder="0"
                 />
               </div>
@@ -365,7 +365,7 @@ function ArvskalkylatorContent() {
                   type="number"
                   value={manualSkulder || ''}
                   onChange={e => setManualSkulder(Number(e.target.value) || 0)}
-                  className="w-full mt-1 px-3 py-2 border border-border rounded-[20px] text-sm"
+                  className="w-full mt-1 px-3 py-2 border border-border rounded-2xl text-sm"
                   placeholder="0"
                 />
               </div>
@@ -375,7 +375,7 @@ function ArvskalkylatorContent() {
                   type="number"
                   value={manualKostnader || ''}
                   onChange={e => setManualKostnader(Number(e.target.value) || 0)}
-                  className="w-full mt-1 px-3 py-2 border border-border rounded-[20px] text-sm"
+                  className="w-full mt-1 px-3 py-2 border border-border rounded-2xl text-sm"
                   placeholder="0"
                 />
               </div>

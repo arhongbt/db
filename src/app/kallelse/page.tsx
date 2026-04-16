@@ -191,7 +191,7 @@ som inte förväntas ärva.`;
             type="date"
             value={forrattningsDatum}
             onChange={(e) => setForrattningsDatum(e.target.value)}
-            className="w-full px-3 py-2 border border-[#E8E4DE] rounded-[20px] text-sm focus:outline-none focus:ring-2 focus:ring-accent"
+            className="w-full px-3 py-2 border border-[#E8E4DE] rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-accent"
           />
         </div>
 
@@ -203,7 +203,7 @@ som inte förväntas ärva.`;
             type="time"
             value={forrattningsTid}
             onChange={(e) => setForrattningsTid(e.target.value)}
-            className="w-full px-3 py-2 border border-[#E8E4DE] rounded-[20px] text-sm focus:outline-none focus:ring-2 focus:ring-accent"
+            className="w-full px-3 py-2 border border-[#E8E4DE] rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-accent"
           />
         </div>
 
@@ -216,14 +216,14 @@ som inte förväntas ärva.`;
             value={forrattningsPlats}
             onChange={(e) => setForrattningsPlats(e.target.value)}
             placeholder={t('T.ex. hemma hos efterlevande, juristbyrån...', 'E.g. at the surviving spouse\'s home, law firm...')}
-            className="w-full px-3 py-2 border border-[#E8E4DE] rounded-[20px] text-sm placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-accent"
+            className="w-full px-3 py-2 border border-[#E8E4DE] rounded-2xl text-sm placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-accent"
           />
         </div>
       </div>
 
       {/* Preview */}
       <h2 className="font-display text-primary mb-2">{t('Förhandsvisning', 'Preview')}</h2>
-      <pre className="bg-white rounded-[20px] p-4 text-xs text-primary/80 whitespace-pre-wrap font-mono leading-relaxed overflow-x-auto max-h-80 overflow-y-auto mb-4">
+      <pre className="bg-white rounded-2xl p-4 text-xs text-primary/80 whitespace-pre-wrap font-mono leading-relaxed overflow-x-auto max-h-80 overflow-y-auto mb-4">
         {kallelseText}
       </pre>
 

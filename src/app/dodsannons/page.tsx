@@ -178,7 +178,7 @@ function Content() {
                 value={data.namn}
                 onChange={e => handleInputChange('namn', e.target.value)}
                 placeholder={t('Förnamn och efternamn', 'First and last name')}
-                className="w-full px-4 py-3 border border-gray-200 rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
+                className="w-full px-4 py-3 border border-gray-200 rounded-2xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
               />
             </div>
 
@@ -189,7 +189,7 @@ function Content() {
                 value={data.fdd}
                 onChange={e => handleInputChange('fdd', e.target.value)}
                 placeholder={t('t.ex. 15 januari 1940', 'e.g. January 15, 1940')}
-                className="w-full px-4 py-3 border border-gray-200 rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
+                className="w-full px-4 py-3 border border-gray-200 rounded-2xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
               />
             </div>
 
@@ -200,7 +200,7 @@ function Content() {
                 value={data.avliden}
                 onChange={e => handleInputChange('avliden', e.target.value)}
                 placeholder={t('t.ex. 8 april 2024', 'e.g. April 8, 2024')}
-                className="w-full px-4 py-3 border border-gray-200 rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
+                className="w-full px-4 py-3 border border-gray-200 rounded-2xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
               />
             </div>
 
@@ -211,7 +211,7 @@ function Content() {
                 value={data.ort}
                 onChange={e => handleInputChange('ort', e.target.value)}
                 placeholder={t('Där de bodde', 'Where they lived')}
-                className="w-full px-4 py-3 border border-gray-200 rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
+                className="w-full px-4 py-3 border border-gray-200 rounded-2xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
               />
             </div>
           </div>
@@ -278,7 +278,7 @@ function Content() {
                 onChange={e => handleInputChange('sorjande', e.target.value)}
                 placeholder={t('Make/Maka, barn, barnbarn&#10;t.ex. Anna&#10;Erik och Eva med familjer&#10;Barnbarnen', 'Spouse, children, grandchildren&#10;e.g. Anna&#10;Erik and Eva with families&#10;The grandchildren')}
                 rows={4}
-                className="w-full px-4 py-3 border border-gray-200 rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
+                className="w-full px-4 py-3 border border-gray-200 rounded-2xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
               />
             </div>
 
@@ -289,7 +289,7 @@ function Content() {
                 value={data.begravning}
                 onChange={e => handleInputChange('begravning', e.target.value)}
                 placeholder={t('t.ex. Begravningen äger rum den 15 maj i Hedvig Eleonora kyrka', 'e.g. The funeral takes place on May 15 at Hedvig Eleonora Church')}
-                className="w-full px-4 py-3 border border-gray-200 rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
+                className="w-full px-4 py-3 border border-gray-200 rounded-2xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
               />
             </div>
 
@@ -309,7 +309,7 @@ function Content() {
                   value={data.valgörenhet}
                   onChange={e => handleInputChange('valgörenhet', e.target.value)}
                   placeholder={t('t.ex. Röda Korset eller Cancerfonden', 'e.g. Red Cross or Cancer Foundation')}
-                  className="w-full px-4 py-3 border border-gray-200 rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
+                  className="w-full px-4 py-3 border border-gray-200 rounded-2xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
                 />
               )}
             </div>

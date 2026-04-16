@@ -192,7 +192,7 @@ function InstallningarContent() {
                 onChange={(e) =>
                   setFormData({ ...formData, deceasedName: e.target.value })
                 }
-                className="w-full px-4 py-3 border-2 border-[#E8E4DE] rounded-[20px] focus:border-accent focus:outline-none transition-colors"
+                className="w-full px-4 py-3 border-2 border-[#E8E4DE] rounded-2xl focus:border-accent focus:outline-none transition-colors"
               />
             </div>
             <div>
@@ -205,7 +205,7 @@ function InstallningarContent() {
                 onChange={(e) =>
                   setFormData({ ...formData, deathDate: e.target.value })
                 }
-                className="w-full px-4 py-3 border-2 border-[#E8E4DE] rounded-[20px] focus:border-accent focus:outline-none transition-colors"
+                className="w-full px-4 py-3 border-2 border-[#E8E4DE] rounded-2xl focus:border-accent focus:outline-none transition-colors"
               />
             </div>
             <div>
@@ -217,7 +217,7 @@ function InstallningarContent() {
                 onChange={(e) =>
                   setFormData({ ...formData, familySituation: e.target.value as any })
                 }
-                className="w-full px-4 py-3 border-2 border-[#E8E4DE] rounded-[20px] focus:border-accent focus:outline-none transition-colors"
+                className="w-full px-4 py-3 border-2 border-[#E8E4DE] rounded-2xl focus:border-accent focus:outline-none transition-colors"
               >
                 <option value="gift_med_gemensamma_barn">{t('Gift med gemensamma barn', 'Married with shared children')}</option>
                 <option value="gift_med_sarkullebarn">{t('Gift med särskilda barn', 'Married with separate children')}</option>
@@ -237,7 +237,7 @@ function InstallningarContent() {
                 onChange={(e) =>
                   setFormData({ ...formData, housingType: e.target.value as any })
                 }
-                className="w-full px-4 py-3 border-2 border-[#E8E4DE] rounded-[20px] focus:border-accent focus:outline-none transition-colors"
+                className="w-full px-4 py-3 border-2 border-[#E8E4DE] rounded-2xl focus:border-accent focus:outline-none transition-colors"
               >
                 <option value="hyresratt">{t('Hyresrätt', 'Rental apartment')}</option>
                 <option value="bostadsratt">{t('Bostadsrätt', 'Tenant-owned apartment')}</option>
@@ -246,7 +246,7 @@ function InstallningarContent() {
                 <option value="ingen_bostad">{t('Ingen bostad', 'No property')}</option>
               </select>
             </div>
-            <div className="flex items-center justify-between p-3 border border-[#E8E4DE] rounded-[20px]">
+            <div className="flex items-center justify-between p-3 border border-[#E8E4DE] rounded-2xl">
               <label className="text-sm font-medium text-primary">
                 {t('Finns testamente?', 'Is there a will?')}
               </label>
@@ -337,7 +337,7 @@ function InstallningarContent() {
               ))}
             </div>
           </div>
-          <div className="flex items-center justify-between p-3 border border-[#E8E4DE] rounded-[20px]">
+          <div className="flex items-center justify-between p-3 border border-[#E8E4DE] rounded-2xl">
             <label className="text-sm font-medium text-primary flex items-center gap-2">
               <Contrast className="w-4 h-4" />
               {t('Högt kontrast', 'High contrast')}
@@ -394,7 +394,7 @@ function InstallningarContent() {
         <h2 className="text-sm font-display text-muted uppercase tracking-wide mb-4">
           {t('Påminnelser', 'Reminders')}
         </h2>
-        <div className="flex items-center justify-between p-3 border border-[#E8E4DE] rounded-[20px]">
+        <div className="flex items-center justify-between p-3 border border-[#E8E4DE] rounded-2xl">
           <label className="text-sm font-medium text-primary flex items-center gap-2">
             <Bell className="w-4 h-4" />
             {t('Push-notiser för tidsfrister', 'Push notifications for deadlines')}
@@ -446,14 +446,14 @@ function InstallningarContent() {
         <div className="flex gap-3">
           <button
             onClick={() => exportAsCSV(state)}
-            className="flex-1 flex items-center justify-center gap-2 py-3 px-4 border-2 border-[#E8E4DE] rounded-[20px] text-sm font-medium text-primary hover:bg-white transition-colors"
+            className="flex-1 flex items-center justify-center gap-2 py-3 px-4 border-2 border-[#E8E4DE] rounded-2xl text-sm font-medium text-primary hover:bg-white transition-colors"
           >
             <Download className="w-4 h-4" />
             {t('CSV (Excel)', 'CSV (Excel)')}
           </button>
           <button
             onClick={() => exportAsJSON(state)}
-            className="flex-1 flex items-center justify-center gap-2 py-3 px-4 border-2 border-[#E8E4DE] rounded-[20px] text-sm font-medium text-primary hover:bg-white transition-colors"
+            className="flex-1 flex items-center justify-center gap-2 py-3 px-4 border-2 border-[#E8E4DE] rounded-2xl text-sm font-medium text-primary hover:bg-white transition-colors"
           >
             <FileText className="w-4 h-4" />
             {t('JSON (backup)', 'JSON (backup)')}
@@ -541,7 +541,7 @@ function InstallningarContent() {
         {!showConfirmReset ? (
           <button
             onClick={() => setShowConfirmReset(true)}
-            className="w-full py-3 text-warn text-sm font-medium hover:bg-red-50 rounded-[24px] transition-colors"
+            className="w-full py-3 text-warn text-sm font-medium hover:bg-red-50 rounded-2xl transition-colors"
           >
             <span className="flex items-center justify-center gap-2">
               <Trash2 className="w-4 h-4" />
@@ -563,7 +563,7 @@ function InstallningarContent() {
               </button>
               <button
                 onClick={handleReset}
-                className="flex-1 min-h-touch px-6 py-3 bg-warn text-white font-semibold rounded-[24px]"
+                className="flex-1 min-h-touch px-6 py-3 bg-warn text-white font-semibold rounded-2xl"
               >
                 {t('Radera allt', 'Delete all')}
               </button>

@@ -208,7 +208,7 @@ function DokumentContent() {
           onDragLeave={handleDragLeave}
           onDrop={handleDrop}
           onClick={() => fileInputRef.current?.click()}
-          className={`border-2 border-dashed rounded-[24px] p-8 mb-6 flex flex-col items-center justify-center cursor-pointer transition-colors ${
+          className={`border-2 border-dashed rounded-2xl p-8 mb-6 flex flex-col items-center justify-center cursor-pointer transition-colors ${
             dragOver
               ? 'border-accent bg-accent/5'
               : 'border-[#E8E4DE] hover:border-accent/50'
@@ -275,7 +275,7 @@ function DokumentContent() {
               />
             </button>
           ) : (
-            <div className="flex items-center gap-3 bg-primary-lighter/20 rounded-[20px] px-4 py-3 mb-4">
+            <div className="flex items-center gap-3 bg-primary-lighter/20 rounded-2xl px-4 py-3 mb-4">
               <File className="w-5 h-5 text-accent flex-shrink-0" />
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-medium text-primary truncate">
@@ -326,7 +326,7 @@ function DokumentContent() {
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
               placeholder={t('T.ex. Från Swedbank, saldo per 2024-01-15', 'E.g. From Swedbank, balance as of 2024-01-15')}
-              className="w-full px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-[20px] focus:border-accent focus:outline-none bg-white"
+              className="w-full px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-2xl focus:border-accent focus:outline-none bg-white"
             />
           </label>
 

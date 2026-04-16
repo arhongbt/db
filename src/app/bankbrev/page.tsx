@@ -211,7 +211,7 @@ Adress: ${data.adress}`;
                   value={data.avlidenNamn}
                   onChange={(e) => setData({ ...data, avlidenNamn: e.target.value })}
                   placeholder={t('Förnamn Efternamn', 'First name Last name')}
-                  className="w-full px-4 py-3 border rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white" style={{ borderColor: '#E8E4DE' }}
+                  className="w-full px-4 py-3 border rounded-2xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white" style={{ borderColor: '#E8E4DE' }}
                 />
               </div>
 
@@ -224,7 +224,7 @@ Adress: ${data.adress}`;
                   value={data.avlidenPersonnummer}
                   onChange={(e) => setData({ ...data, avlidenPersonnummer: e.target.value })}
                   placeholder="YYMMDDNNNN"
-                  className="w-full px-4 py-3 border rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white" style={{ borderColor: '#E8E4DE' }}
+                  className="w-full px-4 py-3 border rounded-2xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white" style={{ borderColor: '#E8E4DE' }}
                 />
               </div>
 
@@ -234,7 +234,7 @@ Adress: ${data.adress}`;
                   type="date"
                   value={data.dödsdatum}
                   onChange={(e) => setData({ ...data, dödsdatum: e.target.value })}
-                  className="w-full px-4 py-3 border rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white" style={{ borderColor: '#E8E4DE' }}
+                  className="w-full px-4 py-3 border rounded-2xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white" style={{ borderColor: '#E8E4DE' }}
                 />
               </div>
             </div>
@@ -259,7 +259,7 @@ Adress: ${data.adress}`;
                   value={data.anmälarNamn}
                   onChange={(e) => setData({ ...data, anmälarNamn: e.target.value })}
                   placeholder="Förnamn Efternamn"
-                  className="w-full px-4 py-3 border rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white" style={{ borderColor: '#E8E4DE' }}
+                  className="w-full px-4 py-3 border rounded-2xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white" style={{ borderColor: '#E8E4DE' }}
                 />
               </div>
 
@@ -272,7 +272,7 @@ Adress: ${data.adress}`;
                   value={data.anmälarPersonnummer}
                   onChange={(e) => setData({ ...data, anmälarPersonnummer: e.target.value })}
                   placeholder="YYMMDDNNNN"
-                  className="w-full px-4 py-3 border rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white" style={{ borderColor: '#E8E4DE' }}
+                  className="w-full px-4 py-3 border rounded-2xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white" style={{ borderColor: '#E8E4DE' }}
                 />
               </div>
 
@@ -285,7 +285,7 @@ Adress: ${data.adress}`;
                   value={data.relation}
                   onChange={(e) => setData({ ...data, relation: e.target.value })}
                   placeholder="t.ex. Son/dotter, Make/Maka"
-                  className="w-full px-4 py-3 border rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white" style={{ borderColor: '#E8E4DE' }}
+                  className="w-full px-4 py-3 border rounded-2xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white" style={{ borderColor: '#E8E4DE' }}
                 />
               </div>
 
@@ -298,7 +298,7 @@ Adress: ${data.adress}`;
                   value={data.telefon}
                   onChange={(e) => setData({ ...data, telefon: e.target.value })}
                   placeholder="070-1234567"
-                  className="w-full px-4 py-3 border rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white" style={{ borderColor: '#E8E4DE' }}
+                  className="w-full px-4 py-3 border rounded-2xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white" style={{ borderColor: '#E8E4DE' }}
                 />
               </div>
 
@@ -309,7 +309,7 @@ Adress: ${data.adress}`;
                   value={data.adress}
                   onChange={(e) => setData({ ...data, adress: e.target.value })}
                   placeholder="Gatunamn och husnummer, Postnummer, Stad"
-                  className="w-full px-4 py-3 border rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white" style={{ borderColor: '#E8E4DE' }}
+                  className="w-full px-4 py-3 border rounded-2xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white" style={{ borderColor: '#E8E4DE' }}
                 />
               </div>
             </div>

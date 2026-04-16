@@ -299,7 +299,7 @@ function DodsboSkulderContent() {
       </div>
 
       {/* Legal disclaimer */}
-      <div className="rounded-[20px] p-4 mb-6" style={{ background: 'var(--bg)' }}>
+      <div className="rounded-2xl p-4 mb-6" style={{ background: 'var(--bg)' }}>
         <p className="text-xs text-muted leading-relaxed">
           Denna information är baserad på svensk lag (Ärvdabalken). Det är inte juridisk
           rådgivning. Vid komplicerade situationer eller osäkerhet rekommenderas juridisk

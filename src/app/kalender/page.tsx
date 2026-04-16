@@ -469,7 +469,7 @@ function CalendarContent() {
               value={formTitle}
               onChange={(e) => setFormTitle(e.target.value)}
               placeholder={t('T.ex. Möte med advokat', 'E.g. Meeting with lawyer')}
-              className="w-full px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-[20px] focus:border-[#6B7F5E] focus:outline-none"
+              className="w-full px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-2xl focus:border-[#6B7F5E] focus:outline-none"
             />
           </label>
 
@@ -479,7 +479,7 @@ function CalendarContent() {
               type="date"
               value={formDate}
               onChange={(e) => setFormDate(e.target.value)}
-              className="w-full px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-[20px] focus:border-[#6B7F5E] focus:outline-none"
+              className="w-full px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-2xl focus:border-[#6B7F5E] focus:outline-none"
             />
           </label>
 
@@ -489,7 +489,7 @@ function CalendarContent() {
               type="time"
               value={formTime}
               onChange={(e) => setFormTime(e.target.value)}
-              className="w-full px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-[20px] focus:border-[#6B7F5E] focus:outline-none"
+              className="w-full px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-2xl focus:border-[#6B7F5E] focus:outline-none"
             />
           </label>
 

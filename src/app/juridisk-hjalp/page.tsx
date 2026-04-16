@@ -446,7 +446,7 @@ function JuridiskHjalpContent() {
               ))}
             </div>
 
-            <div className="mt-6 p-3 rounded-[20px] max-w-sm border" style={{ background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', borderColor: 'rgba(107,127,94,0.15)' }}>
+            <div className="mt-6 p-3 rounded-2xl max-w-sm border" style={{ background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', borderColor: 'rgba(107,127,94,0.15)' }}>
               <div className="flex gap-2">
                 <AlertTriangle className="w-4 h-4 text-warn flex-shrink-0 mt-0.5" />
                 <p className="text-xs text-primary">
@@ -459,7 +459,7 @@ function JuridiskHjalpContent() {
             <div className="mt-4 w-full max-w-sm">
               <Link
                 href="/boka-jurist"
-                className="w-full p-3 rounded-[20px] border flex items-center gap-3 text-left hover:shadow-sm transition-all"
+                className="w-full p-3 rounded-2xl border flex items-center gap-3 text-left hover:shadow-sm transition-all"
                 style={{ borderColor: 'var(--border)', background: 'var(--bg-card)' }}
               >
                 <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' }}>
@@ -533,7 +533,7 @@ function JuridiskHjalpContent() {
         {/* Error */}
         {error && (
           <div className="flex justify-center mb-4">
-            <div className="border px-4 py-3 rounded-[20px] max-w-sm" style={{ background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', borderColor: 'rgba(107,127,94,0.15)' }}>
+            <div className="border px-4 py-3 rounded-2xl max-w-sm" style={{ background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', borderColor: 'rgba(107,127,94,0.15)' }}>
               <div className="flex gap-2">
                 <AlertTriangle className="w-4 h-4 text-warn flex-shrink-0 mt-0.5" />
                 <p className="text-sm text-warn">{error}</p>
@@ -558,7 +558,7 @@ function JuridiskHjalpContent() {
 
         {/* Limit reached — prominent jurist CTA */}
         {isLimitReached && (
-          <div className="mb-4 rounded-[28px] overflow-hidden border" style={{ borderColor: 'var(--border)' }}>
+          <div className="mb-4 rounded-3xl overflow-hidden border" style={{ borderColor: 'var(--border)' }}>
             <div className="p-4" style={{ background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))' }}>
               <div className="flex items-center gap-2 mb-2">
                 <Scale className="w-4 h-4 text-accent" />
@@ -585,7 +585,7 @@ function JuridiskHjalpContent() {
               </div>
               <Link
                 href="/boka-jurist"
-                className="w-full py-3 text-sm font-semibold text-white rounded-[20px] flex items-center justify-center gap-2 transition-opacity hover:opacity-90"
+                className="w-full py-3 text-sm font-semibold text-white rounded-2xl flex items-center justify-center gap-2 transition-opacity hover:opacity-90"
                 style={{ background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' }}
               >
                 {t('Boka gratis konsultation', 'Book free consultation')}
@@ -629,7 +629,7 @@ function JuridiskHjalpContent() {
               onKeyDown={handleKeyDown}
               placeholder={t('Ställ en fråga om arvsrätt...', 'Ask a question about inheritance rights...')}
               rows={1}
-              className="flex-1 px-4 py-3 rounded-[20px] resize-none
+              className="flex-1 px-4 py-3 rounded-2xl resize-none
                          focus:outline-none focus:ring-2 focus:ring-accent/30 transition-all
                          text-sm text-primary placeholder:text-gray-400 border-2"
               style={{ borderColor: 'var(--border)', background: 'var(--bg-card)' }}
@@ -638,7 +638,7 @@ function JuridiskHjalpContent() {
             <button
               onClick={() => sendMessage()}
               disabled={!input.trim() || isLoading}
-              className="p-3 bg-accent text-white rounded-[20px] hover:bg-accent/90
+              className="p-3 bg-accent text-white rounded-2xl hover:bg-accent/90
                          transition-all shadow-sm disabled:opacity-40 disabled:cursor-not-allowed
                          flex-shrink-0"
               style={{ background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' }}

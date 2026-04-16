@@ -291,7 +291,7 @@ export default function KryptoGuidePage() {
         </p>
         <Link
           href="/juridisk-hjalp"
-          className="inline-flex items-center gap-2 px-4 py-2.5 rounded-[24px] bg-accent text-white font-medium text-sm hover:opacity-90 transition-opacity"
+          className="inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-accent text-white font-medium text-sm hover:opacity-90 transition-opacity"
         >
           {t('Juridisk hjälp', 'Legal Help')} <ArrowRight className="w-4 h-4" />
         </Link>

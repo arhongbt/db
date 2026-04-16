@@ -253,7 +253,7 @@ function KostnaderContent() {
             <select
               value={formCategory}
               onChange={(e) => setFormCategory(e.target.value as KostnadCategory)}
-              className="w-full px-3 py-2 border border-[#E8E4DE] rounded-[20px] text-sm mt-1 focus:outline-none focus:ring-2 focus:ring-accent"
+              className="w-full px-3 py-2 border border-[#E8E4DE] rounded-2xl text-sm mt-1 focus:outline-none focus:ring-2 focus:ring-accent"
             >
               {CATEGORY_ORDER.map((cat) => (
                 <option key={cat} value={cat}>{CATEGORY_LABELS[cat]}</option>
@@ -268,7 +268,7 @@ function KostnaderContent() {
               value={formDescription}
               onChange={(e) => setFormDescription(e.target.value)}
               placeholder={t('T.ex. Begravningsbyrå Fonus', 'E.g. Funeral home Fonus')}
-              className="w-full px-3 py-2 border border-[#E8E4DE] rounded-[20px] text-sm mt-1 placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-accent"
+              className="w-full px-3 py-2 border border-[#E8E4DE] rounded-2xl text-sm mt-1 placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-accent"
             />
           </div>
 
@@ -280,7 +280,7 @@ function KostnaderContent() {
                 value={formAmount}
                 onChange={(e) => setFormAmount(e.target.value)}
                 placeholder="0"
-                className="w-full px-3 py-2 border border-[#E8E4DE] rounded-[20px] text-sm mt-1 placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-accent"
+                className="w-full px-3 py-2 border border-[#E8E4DE] rounded-2xl text-sm mt-1 placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-accent"
               />
             </div>
             <div>
@@ -289,7 +289,7 @@ function KostnaderContent() {
                 type="date"
                 value={formDate}
                 onChange={(e) => setFormDate(e.target.value)}
-                className="w-full px-3 py-2 border border-[#E8E4DE] rounded-[20px] text-sm mt-1 focus:outline-none focus:ring-2 focus:ring-accent"
+                className="w-full px-3 py-2 border border-[#E8E4DE] rounded-2xl text-sm mt-1 focus:outline-none focus:ring-2 focus:ring-accent"
               />
             </div>
           </div>
@@ -301,7 +301,7 @@ function KostnaderContent() {
               value={formPaidBy}
               onChange={(e) => setFormPaidBy(e.target.value)}
               placeholder={t('T.ex. Anna Svensson', 'E.g. Anna Svensson')}
-              className="w-full px-3 py-2 border border-[#E8E4DE] rounded-[20px] text-sm mt-1 placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-accent"
+              className="w-full px-3 py-2 border border-[#E8E4DE] rounded-2xl text-sm mt-1 placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-accent"
             />
             <p className="text-xs text-muted mt-1">{t('Om en delägare har lagt ut — ska ersättas av dödsboet', 'If a co-owner has advanced money — it should be reimbursed by the estate')}</p>
           </div>
@@ -325,7 +325,7 @@ function KostnaderContent() {
         </button>
       )}
 
-      <div className="bg-primary-lighter/30 rounded-[20px] p-4">
+      <div className="bg-primary-lighter/30 rounded-2xl p-4">
         <p className="text-xs text-muted leading-relaxed">
           {t('Dödsbokostnader dras av från behållningen innan arvet fördelas (ÄB 18 kap.). Begravningskostnader har företräde framför andra skulder. Spara alla kvitton för redovisning i bouppteckningen och arvskiftet.', 'Estate costs are deducted from the assets before the inheritance is distributed (AB Chapter 18). Funeral expenses take precedence over other debts. Keep all receipts for reporting in the estate inventory and distribution.')}
         </p>

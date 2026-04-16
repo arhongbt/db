@@ -205,10 +205,9 @@ function DashboardContent() {
       {/* ── Phase card — Tiimo-style rounded, immersive ── */}
       <Link
         href="/tidslinje"
-        className="relative overflow-hidden mb-7 p-6 transition-all duration-300 active:scale-[0.98]"
+        className="relative overflow-hidden mb-7 p-6 rounded-3xl transition-all duration-300 active:scale-[0.98]"
         style={{
           background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))',
-          borderRadius: '28px',
           border: '1.5px solid rgba(107,127,94,0.10)',
         }}
         aria-label={`Fas: ${stepLabels[effectiveStep]} — ${progressPct}%`}
@@ -244,10 +243,9 @@ function DashboardContent() {
       {daysSinceDeath <= 7 && (
         <Link
           href="/nodbroms"
-          className="mb-6 p-5 flex items-center gap-4 active:scale-[0.98] transition-all"
+          className="mb-6 p-5 rounded-2xl flex items-center gap-4 active:scale-[0.98] transition-all"
           style={{
             background: 'linear-gradient(135deg, rgba(196,149,106,0.08), rgba(196,149,106,0.02))',
-            borderRadius: '24px',
             border: '1.5px solid rgba(196,149,106,0.12)',
           }}
         >
@@ -271,8 +269,8 @@ function DashboardContent() {
         ].map((stat) => (
           <div
             key={stat.label}
-            className="flex flex-col items-center py-5 transition-all"
-            style={{ background: 'var(--bg-card)', borderRadius: '24px', border: '1px solid var(--border)' }}
+            className="flex flex-col items-center py-5 rounded-2xl transition-all"
+            style={{ background: 'var(--bg-card)', border: '1px solid var(--border)' }}
           >
             <div className="w-9 h-9 rounded-full flex items-center justify-center mb-2.5" style={{ background: stat.bg }}>
               <stat.icon className="w-4 h-4" style={{ color: stat.color }} strokeWidth={1.5} />
@@ -285,9 +283,8 @@ function DashboardContent() {
 
       {/* ── Skulder warning ── */}
       {skulderTotal > tillgangarTotal && skulderTotal > 0 && (
-        <div className="mb-6 p-5 flex items-start gap-4" style={{
+        <div className="mb-6 p-5 rounded-2xl flex items-start gap-4" style={{
           background: 'linear-gradient(135deg, rgba(212,160,167,0.08), rgba(212,160,167,0.02))',
-          borderRadius: '24px',
           border: '1.5px solid rgba(212,160,167,0.12)',
         }}>
           <div className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: 'rgba(212,160,167,0.12)' }}>
@@ -337,10 +334,9 @@ function DashboardContent() {
                 <Link
                   key={a.href}
                   href={a.href}
-                  className="p-5 flex items-center gap-4 active:scale-[0.98] transition-all duration-300"
+                  className="p-4 rounded-2xl flex items-center gap-4 active:scale-[0.98] transition-all duration-300"
                   style={{
                     background: 'var(--bg-card)',
-                    borderRadius: '24px',
                     border: '1px solid var(--border)',
                   }}
                 >
@@ -370,10 +366,9 @@ function DashboardContent() {
               return (
                 <div
                   key={deadline.id}
-                  className="p-5 flex items-start gap-4"
+                  className="p-4 rounded-2xl flex items-start gap-4"
                   style={{
                     background: 'var(--bg-card)',
-                    borderRadius: '24px',
                     border: '1px solid var(--border)',
                   }}
                 >
@@ -405,9 +400,8 @@ function DashboardContent() {
 
       {/* ── Passed deadlines ── */}
       {passedDeadlines.length > 0 && (
-        <div className="mb-6 p-5 flex items-start gap-4" style={{
+        <div className="mb-6 p-5 rounded-2xl flex items-start gap-4" style={{
           background: 'linear-gradient(135deg, rgba(212,160,167,0.08), rgba(212,160,167,0.02))',
-          borderRadius: '24px',
           border: '1.5px solid rgba(212,160,167,0.12)',
         }}>
           <div className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: 'rgba(212,160,167,0.12)' }}>
@@ -427,10 +421,9 @@ function DashboardContent() {
       {/* ── Mike Ross — Tiimo-style featured card ── */}
       <Link
         href="/juridisk-hjalp"
-        className="mb-7 p-5 flex items-center gap-4 active:scale-[0.98] transition-all duration-300"
+        className="mb-7 p-5 rounded-3xl flex items-center gap-4 active:scale-[0.98] transition-all duration-300"
         style={{
           background: 'var(--bg-card)',
-          borderRadius: '28px',
           border: '1px solid var(--border)',
         }}
         aria-label={t('dashboard.ask_mike_ross')}
@@ -459,10 +452,9 @@ function DashboardContent() {
               setNotifStatus('denied');
             }
           }}
-          className="mb-6 p-5 flex items-center justify-between w-full text-left transition-all active:scale-[0.98]"
+          className="mb-6 p-5 rounded-2xl flex items-center justify-between w-full text-left transition-all active:scale-[0.98]"
           style={{
             background: 'linear-gradient(135deg, rgba(139,164,184,0.06), rgba(139,164,184,0.02))',
-            borderRadius: '24px',
             border: '1.5px solid rgba(139,164,184,0.10)',
           }}
         >
@@ -496,8 +488,8 @@ function DashboardContent() {
             <Link
               key={item.href}
               href={item.href}
-              className="py-5 px-3 flex flex-col items-center gap-2.5 active:scale-[0.97] transition-all duration-300"
-              style={{ background: 'var(--bg-card)', borderRadius: '22px', border: '1px solid var(--border)' }}
+              className="py-5 px-3 rounded-2xl flex flex-col items-center gap-2.5 active:scale-[0.97] transition-all duration-300"
+              style={{ background: 'var(--bg-card)', border: '1px solid var(--border)' }}
             >
               <div className="w-11 h-11 rounded-full flex items-center justify-center"
                 style={{ background: `color-mix(in srgb, ${item.color} 10%, transparent)` }}>
@@ -526,8 +518,8 @@ function DashboardContent() {
             <Link
               key={item.href}
               href={item.href}
-              className="py-5 px-3 flex flex-col items-center gap-2.5 active:scale-[0.97] transition-all duration-300"
-              style={{ background: 'var(--bg-card)', borderRadius: '22px', border: '1px solid var(--border)' }}
+              className="py-5 px-3 rounded-2xl flex flex-col items-center gap-2.5 active:scale-[0.97] transition-all duration-300"
+              style={{ background: 'var(--bg-card)', border: '1px solid var(--border)' }}
             >
               <div className="w-11 h-11 rounded-full flex items-center justify-center"
                 style={{ background: `color-mix(in srgb, ${item.color} 10%, transparent)` }}>

@@ -199,7 +199,7 @@ ${form.citat}
               value={form.namn}
               onChange={(e) => handleInputChange('namn', e.target.value)}
               placeholder={t('Namn på den du saknar', 'Name of the person you miss')}
-              className="w-full px-4 py-3 border rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
+              className="w-full px-4 py-3 border rounded-2xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
               style={{ borderColor: 'var(--border)', background: 'var(--bg-card)' }}
             />
           </div>
@@ -214,7 +214,7 @@ ${form.citat}
               value={form.född}
               onChange={(e) => handleInputChange('född', e.target.value)}
               placeholder={t('t.ex. 12 mars 1945', 'e.g. March 12, 1945')}
-              className="w-full px-4 py-3 border rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
+              className="w-full px-4 py-3 border rounded-2xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
               style={{ borderColor: 'var(--border)', background: 'var(--bg-card)' }}
             />
           </div>
@@ -229,7 +229,7 @@ ${form.citat}
               value={form.avliden}
               onChange={(e) => handleInputChange('avliden', e.target.value)}
               placeholder={t('Datum för bortgången', 'Date of passing')}
-              className="w-full px-4 py-3 border rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
+              className="w-full px-4 py-3 border rounded-2xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
               style={{ borderColor: 'var(--border)', background: 'var(--bg-card)' }}
             />
           </div>
@@ -244,7 +244,7 @@ ${form.citat}
               onChange={(e) => handleInputChange('minnesord', e.target.value)}
               placeholder={t('Skriv några ord om den du saknar...', 'Write a few words about the person you miss...')}
               rows={4}
-              className="w-full px-4 py-3 border border-[#E8E4DE] rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white resize-none"
+              className="w-full px-4 py-3 border border-[#E8E4DE] rounded-2xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white resize-none"
             />
           </div>
 
@@ -258,7 +258,7 @@ ${form.citat}
               onChange={(e) => handleInputChange('favoritminne', e.target.value)}
               placeholder={t('Dela ett kärt minne...', 'Share a cherished memory...')}
               rows={3}
-              className="w-full px-4 py-3 border border-[#E8E4DE] rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white resize-none"
+              className="w-full px-4 py-3 border border-[#E8E4DE] rounded-2xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white resize-none"
             />
           </div>
 
@@ -272,7 +272,7 @@ ${form.citat}
               value={form.citat}
               onChange={(e) => handleInputChange('citat', e.target.value)}
               placeholder={t('Ett citat som speglar personen...', 'A quote that reflects the person...')}
-              className="w-full px-4 py-3 border rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
+              className="w-full px-4 py-3 border rounded-2xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
               style={{ borderColor: 'var(--border)', background: 'var(--bg-card)' }}
             />
           </div>

@@ -306,7 +306,7 @@ function PaminelserContent() {
                 onChange={(e) => setEmailAddress(e.target.value)}
                 onBlur={saveEmailAddress}
                 placeholder="din@email.com"
-                className="w-full text-sm px-3 py-2 border rounded-[20px] focus:outline-none focus:ring-2 focus:ring-accent"
+                className="w-full text-sm px-3 py-2 border rounded-2xl focus:outline-none focus:ring-2 focus:ring-accent"
                 style={{ borderColor: '#E8E4DE' }}
               />
               <p className="text-xs text-muted mt-2">{t('Vi skickar påminnelser till denna adress.', 'We send reminders to this address.')}</p>
@@ -399,14 +399,14 @@ function PaminelserContent() {
                 value={newReminderTitle}
                 onChange={(e) => setNewReminderTitle(e.target.value)}
                 placeholder={t('T.ex. Kontakta banken', 'E.g. Contact the bank')}
-                className="w-full text-sm px-3 py-2 border rounded-[20px] mb-3 focus:outline-none focus:ring-2 focus:ring-accent"
+                className="w-full text-sm px-3 py-2 border rounded-2xl mb-3 focus:outline-none focus:ring-2 focus:ring-accent"
                 style={{ borderColor: '#E8E4DE' }}
               />
               <input
                 type="date"
                 value={newReminderDate}
                 onChange={(e) => setNewReminderDate(e.target.value)}
-                className="w-full text-sm px-3 py-2 border rounded-[20px] mb-3 focus:outline-none focus:ring-2 focus:ring-accent"
+                className="w-full text-sm px-3 py-2 border rounded-2xl mb-3 focus:outline-none focus:ring-2 focus:ring-accent"
                 style={{ borderColor: '#E8E4DE' }}
               />
               <button

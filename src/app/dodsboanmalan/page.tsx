@@ -48,7 +48,7 @@ function MikeRossTip({ text }: { text: string }) {
   );
 }
 
-const inputCls = "w-full px-4 py-3 border border-[#E8E4DE] rounded-[20px] text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white";
+const inputCls = "w-full px-4 py-3 border border-[#E8E4DE] rounded-2xl text-primary placeholder:text-muted-light focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white";
 
 function DodsboanmalanContent() {
   const { state } = useDodsbo();
@@ -212,7 +212,7 @@ function DodsboanmalanContent() {
             <button onClick={handleDownloadPDF} className="btn-primary flex items-center justify-center gap-2">
               <Download className="w-4 h-4" /> Ladda ner som PDF
             </button>
-            <button onClick={handleDownloadDocx} className="w-full py-3 rounded-[20px] text-sm font-semibold border-2 border-accent text-accent hover:bg-accent/5 transition-colors flex items-center justify-center gap-2">
+            <button onClick={handleDownloadDocx} className="w-full py-3 rounded-2xl text-sm font-semibold border-2 border-accent text-accent hover:bg-accent/5 transition-colors flex items-center justify-center gap-2">
               <Download className="w-4 h-4" /> Ladda ner som Word
             </button>
           </div>

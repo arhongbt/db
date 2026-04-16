@@ -290,7 +290,7 @@ export default function PriserPage() {
           return (
             <div
               key={key}
-              className="relative rounded-3xl overflow-hidden transition-all"
+              className="relative rounded-2xl overflow-hidden transition-all"
               style={{
                 background: 'var(--bg-card)',
                 border: isPopular

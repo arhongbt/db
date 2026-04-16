@@ -386,7 +386,7 @@ function BodelningContent() {
 
               {/* Tooltip about äktenskapsförord */}
               <div
-                className="rounded-[20px] p-3 mb-5"
+                className="rounded-2xl p-3 mb-5"
                 style={{ backgroundColor: '#F7F5F0' }}
               >
                 <p className="text-xs font-semibold mb-2" style={{ color: '#8B8680' }}>
@@ -411,7 +411,7 @@ function BodelningContent() {
                   onClick={() => {
                     setAktenskapsForord({ exists: false, summary: '' });
                   }}
-                  className={`flex-1 py-3 px-4 rounded-[20px] font-medium text-base transition-all ${
+                  className={`flex-1 py-3 px-4 rounded-2xl font-medium text-base transition-all ${
                     aktenskapsForord.exists === false
                       ? 'text-white'
                       : 'border-2'
@@ -428,7 +428,7 @@ function BodelningContent() {
                   onClick={() => {
                     setAktenskapsForord({ ...aktenskapsForord, exists: true });
                   }}
-                  className={`flex-1 py-3 px-4 rounded-[20px] font-medium text-base transition-all ${
+                  className={`flex-1 py-3 px-4 rounded-2xl font-medium text-base transition-all ${
                     aktenskapsForord.exists === true
                       ? 'text-white'
                       : 'border-2'
@@ -459,7 +459,7 @@ function BodelningContent() {
                         setAktenskapsForord({ ...aktenskapsForord, summary: e.target.value })
                       }
                       placeholder="T.ex. 'Sparande på 500 000 kr är enskild egendom' eller 'Fritidshus ärvt från släkt'"
-                      className="w-full px-3 py-2 text-sm border-2 rounded-[20px] mt-2 resize-none focus:outline-none"
+                      className="w-full px-3 py-2 text-sm border-2 rounded-2xl mt-2 resize-none focus:outline-none"
                       style={{
                         borderColor: '#E8E4DE',
                         backgroundColor: 'white',
@@ -489,7 +489,7 @@ function BodelningContent() {
                   }
                 }}
                 disabled={!canProceedStep1()}
-                className={`flex-1 py-3 rounded-[20px] text-white font-medium flex items-center justify-center gap-2 transition-all ${
+                className={`flex-1 py-3 rounded-2xl text-white font-medium flex items-center justify-center gap-2 transition-all ${
                   !canProceedStep1() ? 'opacity-50 cursor-not-allowed' : 'hover:shadow-lg'
                 }`}
                 style={{ background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' }}
@@ -504,7 +504,7 @@ function BodelningContent() {
         {currentStep === 2 && (
           <div className="space-y-6 mb-6">
             <div
-              className="rounded-[24px] p-5"
+              className="rounded-2xl p-5"
               style={{ backgroundColor: 'white', borderColor: '#E8E4DE', borderWidth: '1px' }}
             >
               <div className="flex items-start gap-3 mb-4">
@@ -521,7 +521,7 @@ function BodelningContent() {
 
               {/* Info tooltip */}
               <div
-                className="rounded-[20px] p-3 mb-5"
+                className="rounded-2xl p-3 mb-5"
                 style={{ backgroundColor: '#F7F5F0' }}
               >
                 <p className="text-xs font-display mb-2" style={{ color: '#8B8680' }}>
@@ -550,7 +550,7 @@ function BodelningContent() {
                     {giftorattsgodsList.map((item) => (
                       <div
                         key={item.id}
-                        className="flex items-center justify-between p-3 rounded-[20px]"
+                        className="flex items-center justify-between p-3 rounded-2xl"
                         style={{ backgroundColor: '#F7F5F0' }}
                       >
                         <div className="flex-1">
@@ -563,7 +563,7 @@ function BodelningContent() {
                         </div>
                         <button
                           onClick={() => removeGiftorattsgods(item.id)}
-                          className="p-1.5 rounded-[20px] transition-colors"
+                          className="p-1.5 rounded-2xl transition-colors"
                           style={{ color: '#8B8680' }}
                           onMouseEnter={(e) => {
                             (e.currentTarget as HTMLElement).style.backgroundColor = '#FFE8E8';
@@ -586,7 +586,7 @@ function BodelningContent() {
               {!showAddGiftorattsgods ? (
                 <button
                   onClick={() => setShowAddGiftorattsgods(true)}
-                  className="w-full py-3 px-4 rounded-[20px] font-medium text-base flex items-center justify-center gap-2 border-2 transition-all"
+                  className="w-full py-3 px-4 rounded-2xl font-medium text-base flex items-center justify-center gap-2 border-2 transition-all"
                   style={{
                     borderColor: '#E8E4DE',
                     color: '#6B7F5E',
@@ -603,7 +603,7 @@ function BodelningContent() {
                 </button>
               ) : (
                 <div
-                  className="p-4 rounded-[20px] space-y-3 mb-4"
+                  className="p-4 rounded-2xl space-y-3 mb-4"
                   style={{ backgroundColor: '#F7F5F0' }}
                 >
                   <label className="block">
@@ -617,7 +617,7 @@ function BodelningContent() {
                         setNewGiftorattsgods({ ...newGiftorattsgods, description: e.target.value })
                       }
                       placeholder="T.ex. Lägenhet på Storgatan, Sparkonto, Bolån"
-                      className="w-full px-3 py-2 text-sm border rounded-[20px] mt-1 focus:outline-none"
+                      className="w-full px-3 py-2 text-sm border rounded-2xl mt-1 focus:outline-none"
                       style={{
                         borderColor: '#E8E4DE',
                         backgroundColor: 'white',
@@ -639,7 +639,7 @@ function BodelningContent() {
                             type: e.target.value as 'asset' | 'debt',
                           })
                         }
-                        className="w-full px-3 py-2 text-sm border rounded-[20px] mt-1 focus:outline-none"
+                        className="w-full px-3 py-2 text-sm border rounded-2xl mt-1 focus:outline-none"
                         style={{
                           borderColor: '#E8E4DE',
                           backgroundColor: 'white',
@@ -667,7 +667,7 @@ function BodelningContent() {
                           })
                         }
                         placeholder="0"
-                        className="w-full px-3 py-2 text-sm border rounded-[20px] mt-1 focus:outline-none"
+                        className="w-full px-3 py-2 text-sm border rounded-2xl mt-1 focus:outline-none"
                         style={{
                           borderColor: '#E8E4DE',
                           backgroundColor: 'white',
@@ -689,7 +689,7 @@ function BodelningContent() {
                           })
                         }
                         placeholder="0"
-                        className="w-full px-3 py-2 text-sm border rounded-[20px] mt-1 focus:outline-none"
+                        className="w-full px-3 py-2 text-sm border rounded-2xl mt-1 focus:outline-none"
                         style={{
                           borderColor: '#E8E4DE',
                           backgroundColor: 'white',
@@ -710,7 +710,7 @@ function BodelningContent() {
                           type: 'asset',
                         });
                       }}
-                      className="flex-1 py-2 px-3 text-sm rounded-[20px] border transition-all"
+                      className="flex-1 py-2 px-3 text-sm rounded-2xl border transition-all"
                       style={{
                         borderColor: '#E8E4DE',
                         color: '#2C3E3A',
@@ -721,7 +721,7 @@ function BodelningContent() {
                     <button
                       onClick={addGiftorattsgods}
                       disabled={!newGiftorattsgods.description}
-                      className={`flex-1 py-2 px-3 text-sm rounded-[20px] text-white font-medium transition-all ${
+                      className={`flex-1 py-2 px-3 text-sm rounded-2xl text-white font-medium transition-all ${
                         !newGiftorattsgods.description ? 'opacity-50 cursor-not-allowed' : ''
                       }`}
                       style={{ background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' }}
@@ -739,7 +739,7 @@ function BodelningContent() {
                 onClick={() => {
                   setCurrentStep(1);
                 }}
-                className="flex-1 py-3 rounded-[20px] border-2 text-base font-medium transition-all"
+                className="flex-1 py-3 rounded-2xl border-2 text-base font-medium transition-all"
                 style={{
                   borderColor: '#E8E4DE',
                   color: '#2C3E3A',
@@ -761,7 +761,7 @@ function BodelningContent() {
                   }
                 }}
                 disabled={!canProceedStep2()}
-                className={`flex-1 py-3 rounded-[20px] text-white font-medium flex items-center justify-center gap-2 transition-all ${
+                className={`flex-1 py-3 rounded-2xl text-white font-medium flex items-center justify-center gap-2 transition-all ${
                   !canProceedStep2() ? 'opacity-50 cursor-not-allowed' : 'hover:shadow-lg'
                 }`}
                 style={{ background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' }}
@@ -776,7 +776,7 @@ function BodelningContent() {
         {currentStep === 3 && (
           <div className="space-y-6 mb-6">
             <div
-              className="rounded-[24px] p-5"
+              className="rounded-2xl p-5"
               style={{ backgroundColor: 'white', borderColor: '#E8E4DE', borderWidth: '1px' }}
             >
               <div className="flex items-start gap-3 mb-4">
@@ -793,7 +793,7 @@ function BodelningContent() {
 
               {/* Info tooltip */}
               <div
-                className="rounded-[20px] p-3 mb-5"
+                className="rounded-2xl p-3 mb-5"
                 style={{ backgroundColor: '#F7F5F0' }}
               >
                 <p className="text-xs font-display mb-2" style={{ color: '#8B8680' }}>
@@ -815,7 +815,7 @@ function BodelningContent() {
               {/* Show if no äktenskapsförord */}
               {aktenskapsForord.exists === false && (
                 <div
-                  className="rounded-[20px] p-3 mb-5"
+                  className="rounded-2xl p-3 mb-5"
                   style={{ backgroundColor: '#E8F5E9' }}
                 >
                   <p className="text-sm" style={{ color: '#2E7D32' }}>
@@ -834,7 +834,7 @@ function BodelningContent() {
                     {enskildeEgendomList.map((item) => (
                       <div
                         key={item.id}
-                        className="flex items-center justify-between p-3 rounded-[20px]"
+                        className="flex items-center justify-between p-3 rounded-2xl"
                         style={{ backgroundColor: '#F7F5F0' }}
                       >
                         <div className="flex-1">
@@ -847,7 +847,7 @@ function BodelningContent() {
                         </div>
                         <button
                           onClick={() => removeEnskildEgendom(item.id)}
-                          className="p-1.5 rounded-[20px] transition-colors"
+                          className="p-1.5 rounded-2xl transition-colors"
                           style={{ color: '#8B8680' }}
                           onMouseEnter={(e) => {
                             (e.currentTarget as HTMLElement).style.backgroundColor = '#FFE8E8';
@@ -872,7 +872,7 @@ function BodelningContent() {
                   {!showAddEnskildEgendom ? (
                     <button
                       onClick={() => setShowAddEnskildEgendom(true)}
-                      className="w-full py-3 px-4 rounded-[20px] font-medium text-base flex items-center justify-center gap-2 border-2 transition-all"
+                      className="w-full py-3 px-4 rounded-2xl font-medium text-base flex items-center justify-center gap-2 border-2 transition-all"
                       style={{
                         borderColor: '#E8E4DE',
                         color: '#6B7F5E',
@@ -889,7 +889,7 @@ function BodelningContent() {
                     </button>
                   ) : (
                     <div
-                      className="p-4 rounded-[20px] space-y-3 mb-4"
+                      className="p-4 rounded-2xl space-y-3 mb-4"
                       style={{ backgroundColor: '#F7F5F0' }}
                     >
                       <label className="block">
@@ -903,7 +903,7 @@ function BodelningContent() {
                             setNewEnskildEgendom({ ...newEnskildEgendom, description: e.target.value })
                           }
                           placeholder="T.ex. Fritidshus på Öland, Arv från mormor"
-                          className="w-full px-3 py-2 text-sm border rounded-[20px] mt-1 focus:outline-none"
+                          className="w-full px-3 py-2 text-sm border rounded-2xl mt-1 focus:outline-none"
                           style={{
                             borderColor: '#E8E4DE',
                             backgroundColor: 'white',
@@ -924,7 +924,7 @@ function BodelningContent() {
                               owner: e.target.value as 'spouse1' | 'spouse2',
                             })
                           }
-                          className="w-full px-3 py-2 text-sm border rounded-[20px] mt-1 focus:outline-none"
+                          className="w-full px-3 py-2 text-sm border rounded-2xl mt-1 focus:outline-none"
                           style={{
                             borderColor: '#E8E4DE',
                             backgroundColor: 'white',
@@ -947,7 +947,7 @@ function BodelningContent() {
                             setNewEnskildEgendom({ ...newEnskildEgendom, value: e.target.value })
                           }
                           placeholder="0"
-                          className="w-full px-3 py-2 text-sm border rounded-[20px] mt-1 focus:outline-none"
+                          className="w-full px-3 py-2 text-sm border rounded-2xl mt-1 focus:outline-none"
                           style={{
                             borderColor: '#E8E4DE',
                             backgroundColor: 'white',
@@ -966,7 +966,7 @@ function BodelningContent() {
                               value: '',
                             });
                           }}
-                          className="flex-1 py-2 px-3 text-sm rounded-[20px] border transition-all"
+                          className="flex-1 py-2 px-3 text-sm rounded-2xl border transition-all"
                           style={{
                             borderColor: '#E8E4DE',
                             color: '#2C3E3A',
@@ -977,7 +977,7 @@ function BodelningContent() {
                         <button
                           onClick={addEnskildEgendom}
                           disabled={!newEnskildEgendom.description || !newEnskildEgendom.value}
-                          className={`flex-1 py-2 px-3 text-sm rounded-[20px] text-white font-medium transition-all ${
+                          className={`flex-1 py-2 px-3 text-sm rounded-2xl text-white font-medium transition-all ${
                             !newEnskildEgendom.description || !newEnskildEgendom.value
                               ? 'opacity-50 cursor-not-allowed'
                               : ''
@@ -999,7 +999,7 @@ function BodelningContent() {
                 onClick={() => {
                   setCurrentStep(2);
                 }}
-                className="flex-1 py-3 rounded-[20px] border-2 text-base font-medium transition-all"
+                className="flex-1 py-3 rounded-2xl border-2 text-base font-medium transition-all"
                 style={{
                   borderColor: '#E8E4DE',
                   color: '#2C3E3A',
@@ -1021,7 +1021,7 @@ function BodelningContent() {
                   }
                 }}
                 disabled={!canProceedStep3()}
-                className={`flex-1 py-3 rounded-[20px] text-white font-medium flex items-center justify-center gap-2 transition-all ${
+                className={`flex-1 py-3 rounded-2xl text-white font-medium flex items-center justify-center gap-2 transition-all ${
                   !canProceedStep3() ? 'opacity-50 cursor-not-allowed' : 'hover:shadow-lg'
                 }`}
                 style={{ background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)' }}
@@ -1036,7 +1036,7 @@ function BodelningContent() {
         {currentStep === 4 && (
           <div className="space-y-6 mb-6">
             <div
-              className="rounded-[24px] p-5"
+              className="rounded-2xl p-5"
               style={{ backgroundColor: 'white', borderColor: '#E8E4DE', borderWidth: '1px' }}
             >
               <div className="flex items-start gap-3 mb-4">

@@ -149,10 +149,10 @@ function TidslinjeContent() {
 
               {/* Phase card */}
               <div
-                className={`card ${
+                className={`card rounded-2xl ${
                   isActive ? 'ring-2 ring-accent/20' : ''
                 } ${isFuture ? 'opacity-60' : ''}`}
-                style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}
+                style={{ background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))', border: '1px solid rgba(107,127,94,0.15)' }}
               >
                 <div className="flex items-center justify-between mb-2">
                   <div>

@@ -29,12 +29,11 @@ export function generateTasks(onboarding: OnboardingData): DodsboTask[] {
     step: 'akut',
     category: 'akut_praktiskt',
     title: 'Skaffa dödsbevis',
-    description: 'Begär dödsbevis från vårdgivaren eller Skatteverket.',
+    description: 'Begär dödsbevis från vårdgivaren eller Skatteverket. Besök skatteverket.se för mer info.',
     status: statusFor('dodsbevis'),
     priority: 'akut',
     deadlineDays: 3,
     helpText: 'Dödsbeviset behövs för allt — bank, försäkring, begravning.',
-    externalUrl: 'https://www.skatteverket.se/privat/folkbokforing/narenanhorigdor',
   });
 
   tasks.push({
@@ -79,7 +78,7 @@ export function generateTasks(onboarding: OnboardingData): DodsboTask[] {
     step: 'kartlaggning',
     category: 'myndigheter',
     title: 'Eftersänd post',
-    description: 'Anmäl eftersändning av den avlidnes post till din adress.',
+    description: 'Anmäl eftersändning av den avlidnes post till din adress. Gör det på postnord.se.',
     status: 'ej_paborjad',
     priority: 'viktig',
     deadlineDays: 14,
@@ -155,11 +154,10 @@ export function generateTasks(onboarding: OnboardingData): DodsboTask[] {
     step: 'bouppteckning',
     category: 'bouppteckning',
     title: 'Lämna in bouppteckning till Skatteverket',
-    description: 'Ska lämnas in senast 1 månad efter förrättningen.',
+    description: 'Ska lämnas in senast 1 månad efter förrättningen. Mer info på skatteverket.se.',
     status: 'ej_paborjad',
     priority: 'viktig',
     deadlineDays: 120,
-    externalUrl: 'https://www.skatteverket.se/privat/folkbokforing/narenanhorigdor/bouppteckning',
   });
 
   // ── ARVSKIFTE (Månad 3-6) ───────────────────────────────
@@ -191,11 +189,10 @@ export function generateTasks(onboarding: OnboardingData): DodsboTask[] {
     step: 'arvskifte',
     category: 'myndigheter',
     title: 'Avregistrera hos Skatteverket',
-    description: 'Dödsboets slutliga deklaration ska lämnas in.',
+    description: 'Dödsboets slutliga deklaration ska lämnas in. Mer info på skatteverket.se.',
     status: 'ej_paborjad',
     priority: 'normal',
     deadlineDays: 365,
-    externalUrl: 'https://www.skatteverket.se/privat/folkbokforing/narenanhorigdor',
   });
 
   return tasks;

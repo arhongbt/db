@@ -284,7 +284,7 @@ function ForsakringarContent() {
               value={company}
               onChange={(e) => { setCompany(e.target.value); setFormErrors((p) => ({ ...p, company: '' })); }}
               placeholder={t('T.ex. Folksam, If, Trygg-Hansa', 'E.g. Folksam, If, Trygg-Hansa')}
-              className={`w-full min-h-touch px-4 py-3 text-base border-2 rounded-[20px] focus:outline-none bg-white ${formErrors.company ? 'border-warn' : 'border-[#E8E4DE] focus:border-accent'}`}
+              className={`w-full min-h-touch px-4 py-3 text-base border-2 rounded-2xl focus:outline-none bg-white ${formErrors.company ? 'border-warn' : 'border-[#E8E4DE] focus:border-accent'}`}
               autoFocus
             />
             {formErrors.company && <span className="text-xs text-warn mt-1 block">{formErrors.company}</span>}
@@ -297,7 +297,7 @@ function ForsakringarContent() {
               value={policyNr}
               onChange={(e) => setPolicyNr(e.target.value)}
               placeholder="Valfritt"
-              className="w-full min-h-touch px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-[20px] focus:border-accent focus:outline-none"
+              className="w-full min-h-touch px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-2xl focus:border-accent focus:outline-none"
             />
           </label>
 
@@ -308,7 +308,7 @@ function ForsakringarContent() {
               value={beneficiary}
               onChange={(e) => setBeneficiary(e.target.value)}
               placeholder={t('Dödsboet, make/maka, barn...', 'The estate, spouse, children...')}
-              className="w-full min-h-touch px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-[20px] focus:border-accent focus:outline-none"
+              className="w-full min-h-touch px-4 py-3 text-base border-2 border-[#E8E4DE] rounded-2xl focus:border-accent focus:outline-none"
             />
           </label>
 
@@ -319,7 +319,7 @@ function ForsakringarContent() {
               value={value}
               onChange={(e) => { setValue(e.target.value); setFormErrors((p) => ({ ...p, value: '' })); }}
               placeholder="0"
-              className={`w-full min-h-touch px-4 py-3 text-base border-2 rounded-[20px] focus:outline-none bg-white ${formErrors.value ? 'border-warn' : 'border-[#E8E4DE] focus:border-accent'}`}
+              className={`w-full min-h-touch px-4 py-3 text-base border-2 rounded-2xl focus:outline-none bg-white ${formErrors.value ? 'border-warn' : 'border-[#E8E4DE] focus:border-accent'}`}
             />
             {formErrors.value && <span className="text-xs text-warn mt-1 block">{formErrors.value}</span>}
           </label>

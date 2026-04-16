@@ -254,12 +254,12 @@ export default function DeklararaDodsboPage() {
 
         {/* Key info boxes */}
         <section className="mb-8">
-          <div className="grid grid-cols-1 gap-3">
-            <div className="p-4 bg-info-light rounded-2xl border border-info-light">
-              <div className="flex gap-2 flex-col">
+          <div className="grid grid-cols-2 gap-3">
+            <div className="p-5 bg-info-light rounded-lg border border-info-light h-full">
+              <div className="flex gap-3 h-full flex-col">
                 <div className="flex gap-3">
                   <Calendar className="w-6 h-6 text-accent flex-shrink-0" />
-                  <h3 className="font-display text-sm text-primary">Viktiga datum</h3>
+                  <h3 className="font-display text-primary">Viktiga datum</h3>
                 </div>
                 <ul className="text-sm text-primary space-y-1">
                   <li><span className="font-semibold">2 maj:</span> Deklarationsfrist</li>
@@ -268,11 +268,11 @@ export default function DeklararaDodsboPage() {
               </div>
             </div>
 
-            <div className="p-4 bg-accent/5 rounded-2xl border border-accent/20">
-              <div className="flex gap-2 flex-col">
+            <div className="p-5 bg-accent/5 rounded-lg border border-accent/20 h-full">
+              <div className="flex gap-3 h-full flex-col">
                 <div className="flex gap-3">
                   <FileText className="w-6 h-6 text-accent flex-shrink-0" />
-                  <h3 className="font-display text-sm text-primary">Dokument du behöver</h3>
+                  <h3 className="font-display text-primary">Dokument du behöver</h3>
                 </div>
                 <ul className="text-sm text-primary space-y-1">
                   <li>Dödsattest</li>
@@ -282,11 +282,11 @@ export default function DeklararaDodsboPage() {
               </div>
             </div>
 
-            <div className="p-4 bg-blue-50 rounded-2xl border border-blue-200">
-              <div className="flex gap-2 flex-col">
+            <div className="p-5 bg-blue-50 rounded-lg border border-blue-200 h-full">
+              <div className="flex gap-3 h-full flex-col">
                 <div className="flex gap-3">
                   <FileText className="w-6 h-6 text-blue-600 flex-shrink-0" />
-                  <h3 className="font-display text-sm text-primary">Praktisk info från Skatteverket</h3>
+                  <h3 className="font-display text-primary">Praktisk info från Skatteverket</h3>
                 </div>
                 <div className="space-y-2">
                   <p className="text-sm text-primary">
@@ -301,11 +301,11 @@ export default function DeklararaDodsboPage() {
               </div>
             </div>
 
-            <div className="p-4 bg-green-50 rounded-2xl border border-green-200">
-              <div className="flex gap-2 flex-col">
+            <div className="p-5 bg-green-50 rounded-lg border border-green-200 h-full">
+              <div className="flex gap-3 h-full flex-col">
                 <div className="flex gap-3">
                   <FileText className="w-6 h-6 text-green-600 flex-shrink-0" />
-                  <h3 className="font-display text-sm text-primary">Efterlevandepension</h3>
+                  <h3 className="font-display text-primary">Efterlevandepension</h3>
                 </div>
                 <div className="space-y-2">
                   <p className="text-sm text-primary">
