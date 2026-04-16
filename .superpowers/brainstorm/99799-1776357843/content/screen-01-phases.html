@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Phase Checkpoint — Sista Resan</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Libre Baskerville', Georgia, serif;
+    background: #FAFBF9;
+    color: #1A1A2E;
+    min-height: 100vh;
+    padding: 20px 16px 40px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Header ── */
+  .header {
+    max-width: 672px;
+    margin: 0 auto 28px;
+    padding-top: 8px;
+  }
+  .header-eyebrow {
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #7B7B8E;
+    margin-bottom: 6px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+  .header h1 {
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.35;
+    color: #1A1A2E;
+    margin-bottom: 6px;
+  }
+  .header p {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #7B7B8E;
+  }
+  .header p strong { color: #C4956A; font-weight: 700; }
+
+  /* ── Phase Timeline ── */
+  .timeline {
+    max-width: 672px;
+    margin: 0 auto 28px;
+  }
+
+  .phase-row {
+    display: flex;
+    gap: 16px;
+    position: relative;
+  }
+  .phase-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+  }
+  .phase-dot {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    border: 2.5px solid #EDECEA;
+    background: #FAFBF9;
+    color: #7B7B8E;
+    flex-shrink: 0;
+    z-index: 1;
+  }
+  .phase-dot.active {
+    background: #C4956A;
+    border-color: #C4956A;
+    color: white;
+    box-shadow: 0 0 0 4px rgba(196,149,106,0.15);
+  }
+  .phase-dot.done {
+    background: #6B7F5E;
+    border-color: #6B7F5E;
+    color: white;
+  }
+  .phase-line {
+    width: 2px;
+    flex: 1;
+    min-height: 20px;
+    background: #EDECEA;
+    margin: 4px 0;
+  }
+  .phase-line.done { background: #6B7F5E; }
+
+  .phase-body {
+    flex: 1;
+    padding-bottom: 24px;
+  }
+  .phase-label {
+    font-size: 17px;
+    font-weight: 700;
+    color: #1A1A2E;
+    margin-bottom: 2px;
+    line-height: 1.4;
+  }
+  .phase-label.future { color: #7B7B8E; }
+  .phase-period {
+    font-size: 12px;
+    color: #7B7B8E;
+    margin-bottom: 10px;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  .phase-badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  .phase-badge.active { background: rgba(196,149,106,0.12); color: #C4956A; }
+  .phase-badge.done { background: rgba(107,127,94,0.12); color: #6B7F5E; }
+  .phase-badge.future { background: #EDECEA; color: #7B7B8E; }
+
+  .phase-detail {
+    background: white;
+    border: 1px solid #EDECEA;
+    border-radius: 16px;
+    padding: 14px 16px;
+    font-size: 14px;
+    line-height: 1.65;
+    color: #1A1A2E;
+  }
+  .phase-detail.future-card {
+    background: #F5F5F3;
+    color: #7B7B8E;
+    font-style: italic;
+  }
+  .phase-detail ul { margin: 6px 0 0 0; padding-left: 0; list-style: none; }
+  .phase-detail li { padding: 2px 0; }
+  .phase-detail li::before { content: '✓ '; color: #6B7F5E; font-weight: 700; }
+  .phase-detail li.urgent::before { content: '→ '; color: #C4956A; font-weight: 700; }
+
+  /* ── CTA ── */
+  .cta {
+    max-width: 672px;
+    margin: 0 auto;
+  }
+  .choice-btn {
+    display: block;
+    width: 100%;
+    padding: 16px 20px;
+    border-radius: 16px;
+    border: 1.5px solid #EDECEA;
+    background: white;
+    font-family: 'Libre Baskerville', Georgia, serif;
+    font-size: 14px;
+    color: #1A1A2E;
+    cursor: pointer;
+    text-align: left;
+    margin-bottom: 10px;
+    transition: all 0.15s;
+  }
+  .choice-btn:hover {
+    border-color: #6B7F5E;
+    box-shadow: 0 2px 12px rgba(107,127,94,0.12);
+  }
+  .choice-btn.primary {
+    background: #6B7F5E;
+    border-color: #6B7F5E;
+    color: white;
+  }
+  .choice-btn.primary:hover { background: #5A6E4E; }
+  .choice-btn-title {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 2px;
+    font-size: 15px;
+  }
+  .choice-btn.sub {
+    display: block;
+    font-size: 11px;
+    font-weight: 400;
+    opacity: 0.7;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  .selection-indicator {
+    text-align: center;
+    font-size: 11px;
+    color: #7B7B8E;
+    margin-top: 14px;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-eyebrow">Vart är du i processen?</div>
+  <h1>Du är i Kartläggning</h1>
+  <p>Vi visar dig vad som är gjort och vad som <strong>väntar</strong>.</p>
+</div>
+
+<div class="timeline">
+
+  <!-- Phase 1: Nödbroms (done) -->
+  <div class="phase-row">
+    <div class="phase-col">
+      <div class="phase-dot done">✓</div>
+      <div class="phase-line done"></div>
+    </div>
+    <div class="phase-body">
+      <div class="phase-label">Nödbroms</div>
+      <div class="phase-period">Dag 1–7</div>
+      <div class="phase-badge done">Avklarad</div>
+      <div class="phase-detail">
+        <ul>
+          <li>Dödsfall anmält</li>
+          <li>Begravningsbyrå kontaktad</li>
+          <li>Närmaste anhöriga informerade</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Phase 2: Kartläggning (active) -->
+  <div class="phase-row">
+    <div class="phase-col">
+      <div class="phase-dot active">2</div>
+      <div class="phase-line"></div>
+    </div>
+    <div class="phase-body">
+      <div class="phase-label">Kartläggning</div>
+      <div class="phase-period">Vecka 1–4 · Deadline: 15 maj</div>
+      <div class="phase-badge active">Nuvarande</div>
+      <div class="phase-detail">
+        <ul>
+          <li class="urgent">Samla värdehandlingar — 3 dagar kvar</li>
+          <li class="urgent">Kontakta banker — 5 dagar kvar</li>
+          <li class="urgent">Inventera lägenheten — 7 dagar kvar</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Phase 3: Bouppteckning (future) -->
+  <div class="phase-row">
+    <div class="phase-col">
+      <div class="phase-dot">3</div>
+      <div class="phase-line"></div>
+    </div>
+    <div class="phase-body">
+      <div class="phase-label future">Bouppteckning</div>
+      <div class="phase-period">Månad 1–3</div>
+      <div class="phase-badge future">Kommer</div>
+      <div class="phase-detail future-card">
+        Inget att göra än — du börjar här efter Kartläggning
+      </div>
+    </div>
+  </div>
+
+  <!-- Phase 4: Arvskifte (future) -->
+  <div class="phase-row">
+    <div class="phase-col">
+      <div class="phase-dot">4</div>
+    </div>
+    <div class="phase-body">
+      <div class="phase-label future">Arvskifte</div>
+      <div class="phase-period">Månad 3–6</div>
+      <div class="phase-badge future">Kommer</div>
+      <div class="phase-detail future-card">
+        Inget att göra än — sista steget i processen
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="cta">
+  <button class="choice-btn primary" onclick="select(this, 'quick')">
+    <span class="choice-btn-title">⚡ Snabb överblick</span>
+    <span class="choice-btn-sub">30 sekunder · Ta mig till mina uppgifter</span>
+  </button>
+  <button class="choice-btn" onclick="select(this, 'full')">
+    <span class="choice-btn-title">🗺️ Fullständig genomgång</span>
+    <span class="choice-btn-sub">2–3 minuter · Förklara varje fas i detalj</span>
+  </button>
+  <div class="selection-indicator" id="indicator">Välj ett alternativ</div>
+</div>
+
+<script>
+  function select(btn, value) {
+    document.querySelectorAll('.choice-btn').forEach(b => b.style.outline = 'none');
+    btn.style.outline = '2.5px solid #C4956A';
+    document.getElementById('indicator').textContent = 'Vald: ' + (value === 'quick' ? '⚡ Snabb överblick' : '🗺️ Fullständig genomgång');
+    fetch('/events', {method:'POST', body: JSON.stringify({type:'select', value}), headers:{'Content-Type':'application/json'}}).catch(()=>{});
+  }
+</script>
+
+</body>
+</html>

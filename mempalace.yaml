@@ -1,5 +1,15 @@
 wing: dodsbo
 rooms:
+- name: admin_dashboard
+  description: Files from admin-dashboard/
+  keywords:
+  - admin_dashboard
+  - admin-dashboard
+- name: documentation
+  description: Files from docs/
+  keywords:
+  - documentation
+  - docs
 - name: supabase
   description: Files from supabase/
   keywords:

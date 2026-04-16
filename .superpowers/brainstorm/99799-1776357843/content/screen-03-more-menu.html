@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Phase-Grouped Menu — Sista Resan</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Libre Baskerville', Georgia, serif;
+    background: #FAFBF9;
+    color: #1A1A2E;
+    min-height: 100vh;
+    padding: 20px 16px 100px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Phase strip */
+  .phase-strip {
+    max-width: 672px;
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    padding: 10px 14px;
+    background: linear-gradient(135deg, rgba(196,149,106,0.06), rgba(196,149,106,0.02));
+    border: 1px solid rgba(196,149,106,0.15);
+    border-radius: 12px;
+  }
+  .strip-item {
+    flex: 1;
+    text-align: center;
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #7B7B8E;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  .strip-item.current { color: #C4956A; }
+  .strip-arrow { font-size: 9px; color: #EDECEA; flex-shrink: 0; }
+
+  /* Section */
+  .section { max-width: 672px; margin: 0 auto 20px; }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+    padding: 0 4px;
+  }
+  .section-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .section-dot.done { background: #6B7F5E; }
+  .section-dot.active { background: #C4956A; }
+  .section-dot.future { background: #EDECEA; }
+  .section-title {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #7B7B8E;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  .section-badge {
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 2px 8px;
+    border-radius: 20px;
+    margin-left: auto;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  .section-badge.done { background: rgba(107,127,94,0.12); color: #6B7F5E; }
+  .section-badge.active { background: rgba(196,149,106,0.12); color: #C4956A; }
+  .section-badge.future { background: #EDECEA; color: #7B7B8E; }
+
+  /* Menu card */
+  .menu-card {
+    background: white;
+    border: 1px solid #EDECEA;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  .menu-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 13px 16px;
+    border-bottom: 1px solid #F5F5F3;
+    cursor: pointer;
+    transition: background 0.1s;
+  }
+  .menu-item:last-child { border-bottom: none; }
+  .menu-item:hover { background: #FAFAF8; }
+  .menu-item.current { background: rgba(196,149,106,0.04); }
+  .menu-item.disabled { opacity: 0.45; pointer-events: none; cursor: default; }
+
+  .menu-icon {
+    width: 36px; height: 36px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    font-size: 16px;
+  }
+  .icon-akut { background: rgba(196,149,106,0.1); }
+  .icon-kart { background: rgba(107,127,94,0.1); }
+  .icon-boupp { background: rgba(139,164,184,0.12); }
+  .icon-arv { background: rgba(107,127,94,0.08); }
+  .icon-ovrig { background: #F0EDE8; }
+
+  .menu-text { flex: 1; }
+  .menu-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: #1A1A2E;
+    line-height: 1.4;
+  }
+  .menu-meta {
+    font-size: 11px;
+    color: #7B7B8E;
+    margin-top: 1px;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  .menu-item.current .menu-name { color: #C4956A; font-weight: 700; }
+  .menu-arrow { color: #EDECEA; font-size: 16px; flex-shrink: 0; }
+  .menu-item.current .menu-arrow { color: #C4956A; }
+
+  /* Bottom nav hint */
+  .bottom-hint {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: white;
+    border-top: 1px solid #EDECEA;
+    padding: 10px 20px calc(10px + env(safe-area-inset-bottom));
+    display: flex;
+    justify-content: space-around;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 9px;
+    color: #7B7B8E;
+  }
+  .bottom-hint-item { text-align: center; }
+  .bottom-hint-item.active { color: #6B7F5E; }
+  .bottom-hint-icon { font-size: 18px; margin-bottom: 2px; display: block; }
+</style>
+</head>
+<body>
+
+<div class="phase-strip">
+  <div class="strip-item">Nödbroms ✓</div>
+  <div class="strip-arrow">→</div>
+  <div class="strip-item current">📍 Kartläggning</div>
+  <div class="strip-arrow">→</div>
+  <div class="strip-item">Bouppteckning</div>
+  <div class="strip-arrow">→</div>
+  <div class="strip-item">Arvskifte</div>
+</div>
+
+<!-- Nödbroms (done) -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-dot done"></div>
+    <div class="section-title">Nödbroms</div>
+    <div class="section-badge done">Klart</div>
+  </div>
+  <div class="menu-card">
+    <div class="menu-item disabled">
+      <div class="menu-icon icon-akut">📱</div>
+      <div class="menu-text">
+        <div class="menu-name">Anmäl dödsfall</div>
+        <div class="menu-meta">Klart 12 april</div>
+      </div>
+      <div class="menu-arrow">✓</div>
+    </div>
+    <div class="menu-item disabled">
+      <div class="menu-icon icon-akut">🏦</div>
+      <div class="menu-text">
+        <div class="menu-name">Kontakta banker</div>
+        <div class="menu-meta">Klart 13 april</div>
+      </div>
+      <div class="menu-arrow">✓</div>
+    </div>
+  </div>
+</div>
+
+<!-- Kartläggning (active) -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-dot active"></div>
+    <div class="section-title">Kartläggning</div>
+    <div class="section-badge active">Nuvarande</div>
+  </div>
+  <div class="menu-card">
+    <div class="menu-item current">
+      <div class="menu-icon icon-kart">📋</div>
+      <div class="menu-text">
+        <div class="menu-name">Uppgifter</div>
+        <div class="menu-meta">3 att göra · deadline 5 maj</div>
+      </div>
+      <div class="menu-arrow">→</div>
+    </div>
+    <div class="menu-item">
+      <div class="menu-icon icon-kart">🏠</div>
+      <div class="menu-text">
+        <div class="menu-name">Dödsbo-fastighet</div>
+        <div class="menu-meta">Lägenhet på Södermalm</div>
+      </div>
+      <div class="menu-arrow">→</div>
+    </div>
+    <div class="menu-item">
+      <div class="menu-icon icon-kart">💳</div>
+      <div class="menu-text">
+        <div class="menu-name">Dödsbo-skulder</div>
+        <div class="menu-meta">Inga kända</div>
+      </div>
+      <div class="menu-arrow">→</div>
+    </div>
+    <div class="menu-item">
+      <div class="menu-icon icon-kart">💰</div>
+      <div class="menu-text">
+        <div class="menu-name">Tillgångar</div>
+        <div class="menu-meta">2 bankkonton, 1 värdepapper</div>
+      </div>
+      <div class="menu-arrow">→</div>
+    </div>
+    <div class="menu-item">
+      <div class="menu-icon icon-kart">📦</div>
+      <div class="menu-text">
+        <div class="menu-name">Lösöre</div>
+        <div class="menu-meta">Ingen inventering</div>
+      </div>
+      <div class="menu-arrow">→</div>
+    </div>
+    <div class="menu-item">
+      <div class="menu-icon icon-kart">🛡️</div>
+      <div class="menu-text">
+        <div class="menu-name">Försäkringar</div>
+        <div class="menu-meta">2 aktiva</div>
+      </div>
+      <div class="menu-arrow">→</div>
+    </div>
+  </div>
+</div>
+
+<!-- Bouppteckning (future) -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-dot future"></div>
+    <div class="section-title">Bouppteckning</div>
+    <div class="section-badge future">Kommer</div>
+  </div>
+  <div class="menu-card">
+    <div class="menu-item disabled">
+      <div class="menu-icon icon-boupp">📝</div>
+      <div class="menu-text">
+        <div class="menu-name">Bouppteckning</div>
+        <div class="menu-meta">Börjar efter kartläggning</div>
+      </div>
+      <div class="menu-arrow">○</div>
+    </div>
+    <div class="menu-item disabled">
+      <div class="menu-icon icon-boupp">👥</div>
+      <div class="menu-text">
+        <div class="menu-name">Delägare</div>
+        <div class="menu-meta">3 personer</div>
+      </div>
+      <div class="menu-arrow">○</div>
+    </div>
+    <div class="menu-item disabled">
+      <div class="menu-icon icon-boupp">📞</div>
+      <div class="menu-text">
+        <div class="menu-name">Kallelse</div>
+        <div class="menu-meta">Genereras automatiskt</div>
+      </div>
+      <div class="menu-arrow">○</div>
+    </div>
+  </div>
+</div>
+
+<!-- Arvskifte (future) -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-dot future"></div>
+    <div class="section-title">Arvskifte</div>
+    <div class="section-badge future">Kommer</div>
+  </div>
+  <div class="menu-card">
+    <div class="menu-item disabled">
+      <div class="menu-icon icon-arv">⚖️</div>
+      <div class="menu-text">
+        <div class="menu-name">Arvskifte</div>
+        <div class="menu-meta">Månad 3–6</div>
+      </div>
+      <div class="menu-arrow">○</div>
+    </div>
+    <div class="menu-item disabled">
+      <div class="menu-icon icon-arv">📃</div>
+      <div class="menu-text">
+        <div class="menu-name">Testamente</div>
+        <div class="menu-meta">Inget finns</div>
+      </div>
+      <div class="menu-arrow">○</div>
+    </div>
+  </div>
+</div>
+
+<!-- Övrigt -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-dot" style="background:#EDECEA"></div>
+    <div class="section-title">Övrigt</div>
+  </div>
+  <div class="menu-card">
+    <div class="menu-item">
+      <div class="menu-icon icon-ovrig">⚙️</div>
+      <div class="menu-text">
+        <div class="menu-name">Inställningar</div>
+      </div>
+      <div class="menu-arrow">→</div>
+    </div>
+    <div class="menu-item">
+      <div class="menu-icon icon-ovrig">🤖</div>
+      <div class="menu-text">
+        <div class="menu-name">Mike Ross (AI-jurist)</div>
+        <div class="menu-meta">Fråga om allt</div>
+      </div>
+      <div class="menu-arrow">→</div>
+    </div>
+  </div>
+</div>
+
+<!-- Bottom nav hint -->
+<div class="bottom-hint">
+  <div class="bottom-hint-item active">
+    <span class="bottom-hint-icon">🏠</span>
+    Hem
+  </div>
+  <div class="bottom-hint-item">
+    <span class="bottom-hint-icon">📋</span>
+    Uppgifter
+  </div>
+  <div class="bottom-hint-item">
+    <span class="bottom-hint-icon">💰</span>
+    Ekonomi
+  </div>
+  <div class="bottom-hint-item">
+    <span class="bottom-hint-icon">📁</span>
+    Mer
+  </div>
+</div>
+
+</body>
+</html>

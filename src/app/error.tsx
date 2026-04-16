@@ -10,32 +10,33 @@ export default function Error({
   reset: () => void;
 }) {
   useEffect(() => {
-    console.error('App error:', error);
+    console.error('Page error:', error);
   }, [error]);
 
   return (
-    <div className="min-h-dvh bg-background flex items-center justify-center px-6">
-      <div className="text-center max-w-md">
-        <p className="text-6xl font-display text-accent mb-4">Fel</p>
-        <h1 className="text-2xl font-display text-primary mb-2">
+    <div className="min-h-screen flex items-center justify-center px-6"
+         style={{ background: 'var(--bg)' }}>
+      <div className="text-center max-w-md" style={{ color: 'var(--text)' }}>
+        <div className="text-6xl mb-6">🕊️</div>
+        <h2 className="font-serif text-2xl mb-4"
+            style={{ fontFamily: "'Libre Baskerville', serif" }}>
           Något gick fel
-        </h1>
-        <p className="text-muted mb-8">
-          Ett oväntat fel uppstod. Försök igen eller gå tillbaka till
-          startsidan.
+        </h2>
+        <p className="mb-6 leading-relaxed"
+           style={{ color: 'var(--text-secondary)' }}>
+          Vi beklagar besväret. Din data är sparad och säker.
+          Försök igen, eller gå tillbaka till startsidan.
         </p>
-        <div className="flex flex-col gap-3">
-          <button
-            onClick={reset}
-            className="btn-primary inline-flex items-center justify-center"
-          >
+        <div className="flex gap-4 justify-center">
+          <button onClick={reset}
+                  className="px-6 py-3 rounded-full font-medium"
+                  style={{ background: 'var(--accent)', color: 'white' }}>
             Försök igen
           </button>
-          <a
-            href="/dashboard"
-            className="text-sm text-accent hover:text-accent-dark transition-colors"
-          >
-            Gå till dashboard
+          <a href="/dashboard"
+             className="px-6 py-3 rounded-full font-medium"
+             style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', color: 'var(--text)' }}>
+            Till startsidan
           </a>
         </div>
       </div>

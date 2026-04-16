@@ -573,6 +573,24 @@
   --text-scale: 1.35;
 }
 
+/* Theme utility classes */
+.bg-theme { background: var(--bg); }
+.bg-card-theme { background: var(--bg-card); }
+.text-theme { color: var(--text); }
+.text-secondary-theme { color: var(--text-secondary); }
+.border-theme { border-color: var(--border); }
+.border-light-theme { border-color: var(--border-light); }
+
+/* Sage gradient card */
+.card-sage-gradient {
+  background: linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02));
+  border: 1px solid rgba(107,127,94,0.15);
+}
+[data-theme="dark"] .card-sage-gradient {
+  background: linear-gradient(135deg, rgba(107,127,94,0.12), rgba(107,127,94,0.04));
+  border: 1px solid rgba(107,127,94,0.25);
+}
+
 /* Print stylesheet */
 @media print {
   /* Hide navigation and interactive elements */

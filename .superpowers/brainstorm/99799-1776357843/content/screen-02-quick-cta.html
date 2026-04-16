@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Snabb överblick — Sista Resan</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Libre Baskerville', Georgia, serif;
+    background: #FAFBF9;
+    color: #1A1A2E;
+    min-height: 100vh;
+    padding: 24px 16px 40px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page-header { max-width: 672px; margin: 0 auto 20px; }
+  .page-eyebrow {
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #7B7B8E;
+    margin-bottom: 6px;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  .page-title {
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.35;
+    margin-bottom: 4px;
+  }
+  .page-subtitle { font-size: 14px; color: #7B7B8E; line-height: 1.6; }
+
+  /* Phase strip */
+  .phase-strip {
+    max-width: 672px;
+    margin: 0 auto 24px;
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    background: linear-gradient(135deg, rgba(196,149,106,0.06), rgba(196,149,106,0.02));
+    border: 1px solid rgba(196,149,106,0.15);
+    border-radius: 14px;
+  }
+  .strip-item {
+    flex: 1;
+    text-align: center;
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #7B7B8E;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  .strip-item.current { color: #C4956A; }
+  .strip-arrow { font-size: 9px; color: #EDECEA; flex-shrink: 0; }
+
+  /* Card */
+  .card {
+    max-width: 672px;
+    margin: 0 auto 14px;
+    background: white;
+    border: 1px solid #EDECEA;
+    border-radius: 16px;
+    padding: 18px 20px;
+  }
+  .card-eyebrow {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #C4956A;
+    margin-bottom: 6px;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  .card-title {
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .card-sub { font-size: 12px; color: #7B7B8E; margin-bottom: 14px; line-height: 1.5; }
+
+  /* Task list */
+  .task-list { list-style: none; }
+  .task-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 0;
+    border-top: 1px solid #F5F5F3;
+  }
+  .task-item:first-child { border-top: none; }
+  .task-icon {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    font-size: 14px;
+  }
+  .task-icon.urgent { background: rgba(196,149,106,0.12); }
+  .task-icon.done { background: rgba(107,127,94,0.12); }
+  .task-text { flex: 1; }
+  .task-name { font-size: 14px; font-weight: 500; color: #1A1A2E; }
+  .task-meta { font-size: 11px; color: #7B7B8E; margin-top: 1px; font-family: -apple-system, BlinkMacSystemFont, sans-serif; }
+  .task-tag {
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 3px 8px;
+    border-radius: 20px;
+    background: rgba(196,149,106,0.1);
+    color: #C4956A;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    flex-shrink: 0;
+  }
+
+  /* Done card */
+  .done-card {
+    max-width: 672px;
+    margin: 0 auto 20px;
+    background: linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02));
+    border: 1px solid rgba(107,127,94,0.15);
+    border-radius: 16px;
+    padding: 18px 20px;
+  }
+  .done-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #6B7F5E;
+    margin-bottom: 8px;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  .done-list { list-style: none; font-size: 13px; color: #7B7B8E; }
+  .done-list li { padding: 3px 0; }
+  .done-list li::before { content: '✓ '; color: #6B7F5E; font-weight: 700; margin-right: 4px; }
+
+  /* Mike Ross tip */
+  .tip-card {
+    max-width: 672px;
+    margin: 0 auto 24px;
+    display: flex;
+    gap: 12px;
+    padding: 14px 16px;
+    background: linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02));
+    border: 1px solid rgba(107,127,94,0.15);
+    border-radius: 16px;
+  }
+  .tip-avatar {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #6B7F5E, #5A6E4E);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    font-size: 14px;
+  }
+  .tip-body {}
+  .tip-name { font-size: 10px; font-weight: 700; color: #6B7F5E; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 2px; font-family: -apple-system, BlinkMacSystemFont, sans-serif; }
+  .tip-text { font-size: 13px; line-height: 1.6; color: #1A1A2E; }
+
+  /* CTA */
+  .cta {
+    max-width: 672px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .btn-primary {
+    display: block;
+    width: 100%;
+    padding: 16px 24px;
+    background: #6B7F5E;
+    border: none;
+    border-radius: 14px;
+    color: white;
+    font-family: 'Libre Baskerville', Georgia, serif;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .btn-primary:hover { background: #5A6E4E; }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div class="page-eyebrow">⚡ Snabb överblick</div>
+  <h1 class="page-title">Kartläggning — 3 uppgifter just nu</h1>
+  <p class="page-subtitle">De här behöver din uppmärksamhet denna vecka</p>
+</div>
+
+<div class="phase-strip">
+  <div class="strip-item">Nödbroms ✓</div>
+  <div class="strip-arrow">→</div>
+  <div class="strip-item current">📍 Kartläggning</div>
+  <div class="strip-arrow">→</div>
+  <div class="strip-item">Bouppteckning</div>
+  <div class="strip-arrow">→</div>
+  <div class="strip-item">Arvskifte</div>
+</div>
+
+<div class="card">
+  <div class="card-eyebrow">Akut — gör nu</div>
+  <div class="card-title">Uppgifter denna vecka</div>
+  <div class="card-sub">3 uppgifter behöver din uppmärksamhet</div>
+  <ul class="task-list">
+    <li class="task-item">
+      <div class="task-icon urgent">→</div>
+      <div class="task-text">
+        <div class="task-name">Samla värdehandlingar</div>
+        <div class="task-meta">Deadline: 3 dagar kvar</div>
+      </div>
+      <span class="task-tag">Akut</span>
+    </li>
+    <li class="task-item">
+      <div class="task-icon urgent">→</div>
+      <div class="task-text">
+        <div class="task-name">Kontakta banker</div>
+        <div class="task-meta">Deadline: 5 dagar kvar</div>
+      </div>
+      <span class="task-tag">Akut</span>
+    </li>
+    <li class="task-item">
+      <div class="task-icon urgent">→</div>
+      <div class="task-text">
+        <div class="task-name">Inventera lägenheten</div>
+        <div class="task-meta">Deadline: 7 dagar kvar</div>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<div class="done-card">
+  <div class="done-title">✓ Klart från Nödbroms</div>
+  <ul class="done-list">
+    <li>Dödsfall anmält</li>
+    <li>Begravningsbyrå kontaktad</li>
+    <li>Närmaste anhöriga informerade</li>
+  </ul>
+</div>
+
+<div class="tip-card">
+  <div class="tip-avatar">🤖</div>
+  <div class="tip-body">
+    <div class="tip-name">Mike Ross tipsar</div>
+    <div class="tip-text">"Bankerna har skyldighet att spärra kort och konton så snart de får dödsfallsintyget. Ha det redo när du ringer."</div>
+  </div>
+</div>
+
+<div class="cta">
+  <button class="btn-primary" onclick="select('go')">Gå till mina uppgifter →</button>
+</div>
+
+<script>
+  function select(v) {
+    document.getElementById('indicator').textContent = 'Vidarebefordrad till /uppgifter →';
+    fetch('/events', {method:'POST', body: JSON.stringify({type:'select', value: v}), headers:{'Content-Type':'application/json'}}).catch(()=>{});
+  }
+</script>
+<div id="indicator" style="text-align:center;font-size:11px;color:#7B7B8E;margin-top:12px;font-family:-apple-system,sans-serif;"></div>
+
+</body>
+</html>

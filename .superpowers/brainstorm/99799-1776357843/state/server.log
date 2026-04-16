@@ -1,0 +1,8 @@
+{"type":"server-started","port":53161,"host":"127.0.0.1","url_host":"localhost","url":"http://localhost:53161","screen_dir":"/Users/benzinho/Desktop/dodsbo/.superpowers/brainstorm/99799-1776357843/content","state_dir":"/Users/benzinho/Desktop/dodsbo/.superpowers/brainstorm/99799-1776357843/state"}
+{"type":"screen-added","file":"/Users/benzinho/Desktop/dodsbo/.superpowers/brainstorm/99799-1776357843/content/screen-01-phases.html"}
+{"type":"screen-added","file":"/Users/benzinho/Desktop/dodsbo/.superpowers/brainstorm/99799-1776357843/content/screen-02-quick-cta.html"}
+{"type":"screen-added","file":"/Users/benzinho/Desktop/dodsbo/.superpowers/brainstorm/99799-1776357843/content/screen-03-more-menu.html"}
+{"type":"screen-updated","file":"/Users/benzinho/Desktop/dodsbo/.superpowers/brainstorm/99799-1776357843/content/screen-01-phases.html"}
+{"type":"screen-updated","file":"/Users/benzinho/Desktop/dodsbo/.superpowers/brainstorm/99799-1776357843/content/screen-02-quick-cta.html"}
+{"type":"screen-updated","file":"/Users/benzinho/Desktop/dodsbo/.superpowers/brainstorm/99799-1776357843/content/screen-03-more-menu.html"}
+{"type":"server-stopped","reason":"idle timeout"}
