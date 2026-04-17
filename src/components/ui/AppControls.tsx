@@ -178,8 +178,6 @@ export function AppControlBar() {
       <div className="fixed top-0 left-0 right-0 z-50 px-4 pt-3 pb-3 pointer-events-none"
         style={{ background: "var(--bg)" }}
       >
-        {/* Large fade below solid header so scrolled cards disappear smoothly */}
-        <div className="absolute left-0 right-0 pointer-events-none" style={{ top: "100%", height: "40px", background: "linear-gradient(to bottom, var(--bg), transparent)" }} />
         <div className="flex items-center gap-2 max-w-lg mx-auto pointer-events-auto">
           {/* Search button */}
           <button
