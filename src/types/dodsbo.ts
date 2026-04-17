@@ -3,8 +3,8 @@
 // Based on Ärvdabalken (1958:637) and Swedish estate law
 // ============================================================
 
-// ── Subscription & Premium ────────────────────────────────
-export type SubscriptionTier = 'trial' | 'standard' | 'pro' | 'expired';
+// ── Subscription & Premium (Freemium: free / premium 799 kr) ──
+export type SubscriptionTier = 'free' | 'premium';
 
 export type PremiumFeature =
   | 'mikeRoss'
@@ -18,44 +18,12 @@ export type PremiumFeature =
 
 export interface SubscriptionState {
   tier: SubscriptionTier;
-  trialStartedAt: string | null;   // ISO date
-  trialExpiresAt: string | null;   // ISO date
   paidAt: string | null;           // ISO date when payment was made
 }
 
 /** Feature access per tier */
 export const TIER_ACCESS: Record<SubscriptionTier, Record<PremiumFeature, boolean>> = {
-  trial: {
-    mikeRoss: true,
-    bodelning: true,
-    documentGeneration: true,
-    scanner: true,
-    bouppteckningPDF: true,
-    arvskifteshandling: true,
-    exportera: true,
-    advancedGuides: true,
-  },
-  standard: {
-    mikeRoss: true,
-    bodelning: false,
-    documentGeneration: false,
-    scanner: false,
-    bouppteckningPDF: false,
-    arvskifteshandling: false,
-    exportera: false,
-    advancedGuides: false,
-  },
-  pro: {
-    mikeRoss: true,
-    bodelning: true,
-    documentGeneration: true,
-    scanner: true,
-    bouppteckningPDF: true,
-    arvskifteshandling: true,
-    exportera: true,
-    advancedGuides: true,
-  },
-  expired: {
+  free: {
     mikeRoss: false,
     bodelning: false,
     documentGeneration: false,
@@ -65,9 +33,17 @@ export const TIER_ACCESS: Record<SubscriptionTier, Record<PremiumFeature, boolea
     exportera: false,
     advancedGuides: false,
   },
+  premium: {
+    mikeRoss: true,
+    bodelning: true,
+    documentGeneration: true,
+    scanner: true,
+    bouppteckningPDF: true,
+    arvskifteshandling: true,
+    exportera: true,
+    advancedGuides: true,
+  },
 };
-
-export const TRIAL_DURATION_DAYS = 7;
 
 /** Relation till den avlidne */
 export type Relation =

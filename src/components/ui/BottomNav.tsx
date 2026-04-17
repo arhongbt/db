@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState, useEffect, useRef, useMemo } from 'react';
 import { useLanguage } from '@/lib/i18n';
+import { useSeniorMode } from '@/lib/senior-mode';
 import {
   Home, Users, Wallet, FileText, FolderOpen, MoreHorizontal, X, Search,
   Calculator, Building2, Camera, Download, Bell, Scale, BookOpen,
@@ -77,9 +78,17 @@ const ALL_MORE_ITEMS = MORE_CATEGORIES.flatMap((c) => c.items);
 
 const HIDDEN_PATHS = ['/', '/auth', '/onboarding'];
 
+// Senior mode: only 3 nav items, no More menu
+const SENIOR_NAV_ITEMS_KEYS = [
+  { href: '/dashboard', labelKey: 'nav.home', icon: Home },
+  { href: '/uppgifter', labelKey: 'nav.tasks', icon: FileText },
+  { href: '/faq', labelKey: '_senior_help', icon: HelpCircle },
+];
+
 export function BottomNav() {
   const pathname = usePathname();
   const { t } = useLanguage();
+  const { seniorMode } = useSeniorMode();
   const [moreOpen, setMoreOpen] = useState(false);
   const [menuFilter, setMenuFilter] = useState('');
   const [recentlyUsed, setRecentlyUsed] = useState<string[]>([]);
@@ -146,9 +155,61 @@ export function BottomNav() {
     label: t(item.labelKey),
   }));
 
+  const SENIOR_NAV_ITEMS = SENIOR_NAV_ITEMS_KEYS.map(item => ({
+    ...item,
+    label: item.labelKey === '_senior_help' ? t('Hjälp', 'Help') : t(item.labelKey),
+  }));
+
+  const activeNavItems = seniorMode ? SENIOR_NAV_ITEMS : NAV_ITEMS;
+
   const isMoreActive = ALL_MORE_ITEMS.some((item) => pathname === item.href);
 
   if (HIDDEN_PATHS.includes(pathname)) return null;
+
+  // Senior mode: simplified nav only
+  if (seniorMode) {
+    return (
+      <nav className="fixed bottom-0 left-0 right-0 z-50 px-4 pb-2" style={{ background: 'transparent' }} aria-label={t('Huvudnavigation', 'Main navigation')}>
+        <div
+          className="mx-auto max-w-[420px] flex items-center justify-around px-4 py-2"
+          style={{
+            background: 'var(--bottom-nav-bg, rgba(255,255,255,0.92))',
+            backdropFilter: 'blur(20px)',
+            WebkitBackdropFilter: 'blur(20px)',
+            borderRadius: '9999px',
+            boxShadow: '0 4px 20px var(--shadow-color, rgba(26,26,46,0.08)), 0 1px 3px var(--shadow-color, rgba(26,26,46,0.04))',
+            border: '1px solid var(--border)',
+          }}
+        >
+          {SENIOR_NAV_ITEMS.map(({ href, label, icon: Icon }) => {
+            const isActive = pathname === href;
+            return (
+              <Link
+                key={href}
+                href={href}
+                aria-label={label}
+                className={`relative flex flex-col items-center justify-center gap-1 py-2 px-4 transition-all duration-200 ${
+                  isActive ? 'text-accent' : 'text-[var(--text-secondary)]'
+                }`}
+                style={{ minWidth: '72px' }}
+              >
+                <div
+                  className="w-11 h-11 rounded-full flex items-center justify-center transition-all duration-200"
+                  style={{
+                    background: isActive ? 'rgba(107,127,94,0.12)' : 'transparent',
+                  }}
+                >
+                  <Icon className="w-6 h-6" strokeWidth={isActive ? 2.2 : 1.5} />
+                </div>
+                <span className={`text-sm leading-tight ${isActive ? 'font-semibold' : 'font-medium opacity-70'}`}>{label}</span>
+              </Link>
+            );
+          })}
+        </div>
+        <div className="h-[env(safe-area-inset-bottom)]" style={{ background: 'transparent' }} />
+      </nav>
+    );
+  }
 
   return (
     <>

@@ -9,6 +9,7 @@ import { FloatingChatButton } from '@/components/ui/FloatingChatButton';
 import { BottomNav } from '@/components/ui/BottomNav';
 import { TextScaleLoader } from '@/components/TextScaleLoader';
 import { AppSettingsProvider, AppControlBar } from '@/components/ui/AppControls';
+import { SeniorModeProvider } from '@/lib/senior-mode';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 
@@ -200,6 +201,7 @@ export default function RootLayout({
           <SubscriptionProvider>
           <LanguageProvider>
             <AppSettingsProvider>
+              <SeniorModeProvider>
               <ServiceWorkerRegistration />
               <AppControlBar />
               <main className="min-h-dvh relative pt-[72px] pb-24" id="main-content">
@@ -209,6 +211,7 @@ export default function RootLayout({
                 <FloatingChatButton />
               </main>
               <BottomNav />
+              </SeniorModeProvider>
             </AppSettingsProvider>
           </LanguageProvider>
           </SubscriptionProvider>

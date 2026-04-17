@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Lock, Sparkles, Clock, ArrowRight } from 'lucide-react';
+import { Lock, Sparkles, ArrowRight } from 'lucide-react';
 import { useSubscription } from '@/lib/subscription/context';
 import { useLanguage } from '@/lib/i18n';
 import type { PremiumFeature } from '@/types/dodsbo';
@@ -25,7 +25,7 @@ interface PaywallGateProps {
 }
 
 export function PaywallGate({ feature, children, inline = false }: PaywallGateProps) {
-  const { canAccess, tier, trialDaysLeft, isTrialExpired } = useSubscription();
+  const { canAccess } = useSubscription();
   const { t } = useLanguage();
 
   if (canAccess(feature)) {
@@ -46,16 +46,19 @@ export function PaywallGate({ feature, children, inline = false }: PaywallGatePr
       >
         <Lock className="w-5 h-5 text-accent mx-auto mb-2" />
         <p className="font-display text-sm text-primary mb-1">
-          {t('Pro-funktion', 'Pro Feature')}
+          {t('Premiumfunktion', 'Premium Feature')}
         </p>
         <p className="text-xs text-muted mb-3">
-          {t(`Uppgradera till Pro för att använda ${featureName}.`, `Upgrade to Pro to use ${featureName}.`)}
+          {t(
+            `Uppgradera till Premium för att använda ${featureName}.`,
+            `Upgrade to Premium to use ${featureName}.`
+          )}
         </p>
         <Link
           href="/priser"
           className="inline-flex items-center gap-1.5 text-xs font-display text-accent hover:text-accent-dark transition-colors"
         >
-          {t('Se planer', 'See plans')}
+          {t('Läs mer', 'Learn more')}
           <ArrowRight className="w-3 h-3" />
         </Link>
       </div>
@@ -66,9 +69,7 @@ export function PaywallGate({ feature, children, inline = false }: PaywallGatePr
   return (
     <div className="min-h-dvh bg-background pb-28">
       <div className="flex flex-col items-center justify-center min-h-[calc(100dvh-12rem)] px-6">
-        <div
-          className="w-full max-w-sm text-center"
-        >
+        <div className="w-full max-w-sm text-center">
           {/* Icon */}
           <div
             className="w-20 h-20 rounded-3xl flex items-center justify-center mx-auto mb-6"
@@ -76,41 +77,28 @@ export function PaywallGate({ feature, children, inline = false }: PaywallGatePr
               background: 'linear-gradient(135deg, rgba(107,127,94,0.08), rgba(107,127,94,0.15))',
             }}
           >
-            {isTrialExpired ? (
-              <Clock className="w-9 h-9 text-accent" />
-            ) : (
-              <Lock className="w-9 h-9 text-accent" />
-            )}
+            <Lock className="w-9 h-9 text-accent" />
           </div>
 
           {/* Title */}
           <h1 className="text-2xl font-display text-primary mb-3">
-            {isTrialExpired
-              ? t('Din provperiod har gått ut', 'Your trial has expired')
-              : t('Pro-funktion', 'Pro Feature')}
+            {t('Premiumfunktion', 'Premium Feature')}
           </h1>
 
           {/* Description */}
           <p className="text-muted text-sm mb-2 leading-relaxed">
-            {isTrialExpired
-              ? t(
-                  `${featureName} ingår i Pro-planen. Din 7-dagars provperiod har avslutats.`,
-                  `${featureName} is included in the Pro plan. Your 7-day trial has ended.`
-                )
-              : t(
-                  `${featureName} är en Pro-funktion. Uppgradera för att låsa upp.`,
-                  `${featureName} is a Pro feature. Upgrade to unlock.`
-                )}
+            {t(
+              `${featureName} ingår i Premium. När du är redo att låsa upp allt kan du uppgradera.`,
+              `${featureName} is included in Premium. When you're ready to unlock everything, you can upgrade.`
+            )}
           </p>
 
-          {tier === 'standard' && (
-            <p className="text-xs text-muted mb-6">
-              {t(
-                'Du har Standard-planen. Uppgradera till Pro för full tillgång.',
-                'You have the Standard plan. Upgrade to Pro for full access.'
-              )}
-            </p>
-          )}
+          <p className="text-xs text-muted mb-6">
+            {t(
+              'En engångsbetalning på 799 kr — inga prenumerationer.',
+              'A one-time payment of 799 kr — no subscriptions.'
+            )}
+          </p>
 
           {/* CTA */}
           <div className="flex flex-col gap-3 mt-6">
@@ -118,12 +106,12 @@ export function PaywallGate({ feature, children, inline = false }: PaywallGatePr
               href="/priser"
               className="flex items-center justify-center gap-2 w-full py-3.5 rounded-full text-white font-display text-sm transition-all active:scale-[0.97]"
               style={{
-                background: 'linear-gradient(135deg, #6B7F5E, #5A6E4E)',
+                background: 'linear-gradient(135deg, var(--accent), #5A6E4E)',
                 boxShadow: '0 4px 16px rgba(107,127,94,0.3)',
               }}
             >
               <Sparkles className="w-4 h-4" />
-              {t('Uppgradera till Pro', 'Upgrade to Pro')}
+              {t('Uppgradera till Premium — 799 kr', 'Upgrade to Premium — 799 kr')}
             </Link>
 
             <Link
@@ -143,16 +131,17 @@ export function PaywallGate({ feature, children, inline = false }: PaywallGatePr
             }}
           >
             <p className="font-display text-xs text-accent mb-3 uppercase tracking-wide">
-              {t('Pro inkluderar', 'Pro includes')}
+              {t('Premium inkluderar', 'Premium includes')}
             </p>
             <ul className="space-y-2">
               {[
-                t('1 timme kostnadsfri juristkonsultation', '1 hour free lawyer consultation'),
+                t('AI-jurist Mike Ross', 'AI lawyer Mike Ross'),
+                t('Dokumentgenerering (bouppteckning, arvskifte m.m.)', 'Document generation (estate inventory, inheritance settlement etc.)'),
                 t('Bodelningsguiden', 'Property Division Wizard'),
-                t('Generera bouppteckning som PDF', 'Generate estate inventory as PDF'),
+                t('PDF-export av alla dokument', 'PDF export of all documents'),
                 t('Dokumentskanner med OCR', 'Document scanner with OCR'),
-                t('Exportera alla dokument', 'Export all documents'),
-                t('Arvskifteshandling', 'Inheritance settlement document'),
+                t('Skatteverket digital inlämning', 'Tax authority digital submission'),
+                t('Avancerade guider (internationellt, krypto)', 'Advanced guides (international, crypto)'),
               ].map((item) => (
                 <li key={item} className="flex items-center gap-2 text-xs text-primary">
                   <Sparkles className="w-3 h-3 text-accent flex-shrink-0" />

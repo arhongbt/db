@@ -8,9 +8,7 @@ import Link from 'next/link';
 import {
   ArrowLeft,
   Check,
-  X,
   Crown,
-  Zap,
   Shield,
   Users,
   Star,
@@ -18,10 +16,10 @@ import {
   ArrowRight,
   HelpCircle,
   Scale,
-  Clock,
+  Heart,
 } from 'lucide-react';
 
-type PlanKey = 'trial' | 'standard' | 'pro';
+type PlanKey = 'free' | 'premium';
 
 interface PlanFeature {
   text: string;
@@ -31,8 +29,7 @@ interface PlanFeature {
 
 export default function PriserPage() {
   const { t } = useLanguage();
-  const { tier, trialDaysLeft, isTrialActive, isTrialExpired, isPaid, upgradeTo } = useSubscription();
-  const [selectedPlan, setSelectedPlan] = useState<PlanKey | null>(null);
+  const { tier, isFree, isPremium, upgradeTo } = useSubscription();
   const [showPayment, setShowPayment] = useState(false);
   const [showFAQ, setShowFAQ] = useState<number | null>(null);
 
@@ -42,121 +39,83 @@ export default function PriserPage() {
     period: string;
     tagline: string;
     description: string;
-    icon: typeof Zap;
+    icon: typeof Heart;
     accent: string;
     popular?: boolean;
-    users: string;
     features: PlanFeature[];
     cta: string;
   }> = {
-    trial: {
-      name: t('Provperiod', 'Trial'),
+    free: {
+      name: t('Gratis', 'Free'),
       price: 0,
-      period: t('7 dagar', '7 days'),
-      tagline: t('Testa allt utan kostnad', 'Try everything for free'),
+      period: t('för alltid', 'forever'),
+      tagline: t('Kom igång utan kostnad', 'Get started for free'),
       description: t(
-        'Full tillgång till alla funktioner i 7 dagar. Inget betalkort krävs.',
-        'Full access to all features for 7 days. No credit card required.'
+        'Grundläggande verktyg för att organisera dödsboet — checklistor, påminnelser, guider och samarbete med familjen.',
+        'Essential tools to organize the estate — checklists, reminders, guides and family collaboration.'
       ),
-      icon: Clock,
+      icon: Heart,
       accent: '#6B7F5E',
-      users: t('1 användare', '1 user'),
       features: [
-        { text: t('Alla funktioner i 7 dagar', 'All features for 7 days'), included: true, highlight: true },
-        { text: t('AI-jurist Mike Ross', 'AI lawyer Mike Ross'), included: true },
-        { text: t('Bouppteckning & bodelning', 'Estate inventory & property division'), included: true },
-        { text: t('Dokumentgenerering & export', 'Document generation & export'), included: true },
-        { text: t('Dokumentskanner med OCR', 'Document scanner with OCR'), included: true },
-        { text: t('Checklistor & tidsfrister', 'Checklists & deadlines'), included: true },
-      ],
-      cta: isTrialActive
-        ? t(`${trialDaysLeft} dagar kvar`, `${trialDaysLeft} days left`)
-        : isTrialExpired
-          ? t('Provperioden har gått ut', 'Trial has expired')
-          : t('Starta gratis provperiod', 'Start free trial'),
-    },
-    standard: {
-      name: 'Standard',
-      price: 699,
-      period: t('engångsbelopp', 'one-time'),
-      tagline: t('Allt du behöver — inklusive AI-jurist', 'Everything you need — including AI lawyer'),
-      description: t(
-        'Checklistor, tidslinjer, AI-jurist Mike Ross och grundläggande guider — för hela familjen.',
-        'Checklists, timelines, AI lawyer Mike Ross and basic guides — for the whole family.'
-      ),
-      icon: Shield,
-      accent: '#6B7F5E',
-      users: t('Upp till 3 användare', 'Up to 3 users'),
-      features: [
-        { text: t('AI-jurist Mike Ross', 'AI lawyer Mike Ross'), included: true, highlight: true },
         { text: t('Checklista för dödsbo', 'Estate checklist'), included: true },
-        { text: t('Tidslinje & uppgiftshantering', 'Timeline & task management'), included: true },
+        { text: t('Påminnelser & tidsfrister', 'Reminders & deadlines'), included: true },
+        { text: t('Guider & steg-för-steg', 'Guides & step-by-step'), included: true },
         { text: t('Ordlista & FAQ', 'Glossary & FAQ'), included: true },
-        { text: t('Grundläggande guider', 'Basic guides'), included: true },
-        { text: t('Tidsfrister & påminnelser', 'Deadlines & reminders'), included: true },
-        { text: t('Kostnadskalkylator', 'Cost calculator'), included: true },
-        { text: t('Samarbete med familjen (3 pers)', 'Family collaboration (3 people)'), included: true },
-        { text: t('Bodelningswizard', 'Property division wizard'), included: false },
-        { text: t('Dokumentgenerering', 'Document generation'), included: false },
+        { text: t('Nödbroms — vad gör jag först?', 'Emergency — what do I do first?'), included: true },
+        { text: t('Kalender', 'Calendar'), included: true },
+        { text: t('Samarbete med delägare', 'Collaboration with co-owners'), included: true },
+        { text: t('Tidslinje', 'Timeline'), included: true },
       ],
-      cta: tier === 'standard' ? t('Din nuvarande plan', 'Your current plan') : t('Välj Standard — 699 kr', 'Choose Standard — 699 kr'),
+      cta: isFree ? t('Din nuvarande plan', 'Your current plan') : t('Gratis', 'Free'),
     },
-    pro: {
-      name: 'Pro',
-      price: 1199,
+    premium: {
+      name: 'Premium',
+      price: 799,
       period: t('engångsbelopp', 'one-time'),
-      tagline: t('Allt + 1 timme kostnadsfri jurist', 'Everything + 1 hour free lawyer consultation'),
+      tagline: t('Allt du behöver — från start till slut', 'Everything you need — from start to finish'),
       description: t(
-        'Alla funktioner, obegränsat antal användare och 1 timme kostnadsfri konsultation med en riktig jurist.',
-        'All features, unlimited users and 1 hour free consultation with a real lawyer.'
+        'Alla gratisfunktioner plus AI-jurist, dokumentgenerering, PDF-export och mycket mer. En engångsbetalning — inga prenumerationer.',
+        'All free features plus AI lawyer, document generation, PDF export and much more. A one-time payment — no subscriptions.'
       ),
       icon: Crown,
       accent: '#6B7F5E',
       popular: true,
-      users: t('Obegränsat antal användare', 'Unlimited users'),
       features: [
-        { text: t('Allt i Standard', 'Everything in Standard'), included: true, highlight: true },
-        { text: t('1 timme kostnadsfri juristkonsultation', '1 hour free lawyer consultation'), included: true, highlight: true },
-        { text: t('Bodelningswizard', 'Property division wizard'), included: true },
-        { text: t('Generera bouppteckning (PDF)', 'Generate estate inventory (PDF)'), included: true },
-        { text: t('Arvskifteshandling', 'Inheritance settlement document'), included: true },
+        { text: t('Allt i Gratis', 'Everything in Free'), included: true, highlight: true },
+        { text: t('AI-jurist Mike Ross', 'AI lawyer Mike Ross'), included: true, highlight: true },
+        { text: t('Dokumentgenerering (bouppteckning, arvskifte, bodelning, bankbrev, dödsannons, fullmakt m.m.)', 'Document generation (estate inventory, inheritance settlement, property division, bank letter, death notice, power of attorney etc.)'), included: true },
+        { text: t('PDF-export av alla dokument', 'PDF export of all documents'), included: true },
+        { text: t('Skatteverket digital inlämning', 'Tax authority digital submission'), included: true },
+        { text: t('Företagsmodul', 'Business module'), included: true },
+        { text: t('Internationell modul', 'International module'), included: true },
+        { text: t('Kryptoguide', 'Crypto guide'), included: true },
         { text: t('Dokumentskanner med OCR', 'Document scanner with OCR'), included: true },
-        { text: t('Exportera alla dokument', 'Export all documents'), included: true },
-        { text: t('Obegränsat antal användare', 'Unlimited users'), included: true },
-        { text: t('Avancerade guider (internationellt, krypto)', 'Advanced guides (international, crypto)'), included: true },
-        { text: t('Prioriterad support', 'Priority support'), included: true },
+        { text: t('Exportera all data', 'Export all data'), included: true },
       ],
-      cta: tier === 'pro' ? t('Din nuvarande plan', 'Your current plan') : t('Välj Pro — 1 199 kr', 'Choose Pro — 1 199 kr'),
+      cta: isPremium ? t('Din nuvarande plan', 'Your current plan') : t('Uppgradera — 799 kr', 'Upgrade — 799 kr'),
     },
   };
 
   const faqs = [
     {
-      q: t('Hur fungerar provperioden?', 'How does the trial work?'),
+      q: t('Vad ingår i gratisversionen?', 'What\'s included in the free version?'),
       a: t(
-        'Du får 7 dagars full tillgång till alla funktioner direkt — inget betalkort krävs. När provperioden tar slut väljer du Standard eller Pro.',
-        'You get 7 days of full access to all features immediately — no credit card required. When the trial ends, you choose Standard or Pro.'
+        'Gratisversionen ger dig checklistor, påminnelser, tidslinjer, guider, ordlista, FAQ och samarbete med delägare. Allt du behöver för att komma igång med dödsboet.',
+        'The free version gives you checklists, reminders, timelines, guides, glossary, FAQ and co-owner collaboration. Everything you need to get started with the estate.'
       ),
     },
     {
-      q: t('Vad är skillnaden mellan Standard och Pro?', 'What\'s the difference between Standard and Pro?'),
+      q: t('Vad får jag med Premium?', 'What do I get with Premium?'),
       a: t(
-        'Standard inkluderar AI-juristen Mike Ross, checklistor, tidslinjer och guider. Pro lägger till 1 timme kostnadsfri juristkonsultation, dokumentgenerering (bouppteckning, arvskifte), bodelningswizard, skanner, obegränsat antal användare och avancerade guider.',
-        'Standard includes AI lawyer Mike Ross, checklists, timelines and guides. Pro adds 1 hour free lawyer consultation, document generation (estate inventory, inheritance settlement), property division wizard, scanner, unlimited users and advanced guides.'
-      ),
-    },
-    {
-      q: t('Kan jag uppgradera från Standard till Pro?', 'Can I upgrade from Standard to Pro?'),
-      a: t(
-        'Ja, du kan uppgradera när som helst. Du betalar bara mellanskillnaden mellan Standard och Pro.',
-        'Yes, you can upgrade at any time. You just pay the difference between Standard and Pro.'
+        'Premium lägger till AI-juristen Mike Ross, dokumentgenerering (bouppteckning, arvskifte, bodelning, bankbrev, dödsannons, fullmakt m.m.), PDF-export, Skatteverket-inlämning, företags- och internationell modul, kryptoguide, dokumentskanner och dataexport.',
+        'Premium adds AI lawyer Mike Ross, document generation (estate inventory, inheritance settlement, property division, bank letter, death notice, power of attorney etc.), PDF export, tax authority submission, business & international modules, crypto guide, document scanner and data export.'
       ),
     },
     {
       q: t('Är det en engångsbetalning?', 'Is it a one-time payment?'),
       a: t(
-        'Ja! Både Standard och Pro är engångsbelopp per dödsbo — du betalar en gång och har full tillgång tills dödsboet är avslutat. Ingen prenumeration, inga dolda avgifter.',
-        'Yes! Both Standard and Pro are one-time payments per estate — you pay once and have full access until the estate is settled. No subscription, no hidden fees.'
+        'Ja! Premium kostar 799 kr som engångsbelopp per dödsbo — du betalar en gång och har full tillgång tills dödsboet är avslutat. Ingen prenumeration, inga dolda avgifter.',
+        'Yes! Premium costs 799 kr as a one-time payment per estate — you pay once and have full access until the estate is settled. No subscription, no hidden fees.'
       ),
     },
     {
@@ -176,18 +135,14 @@ export default function PriserPage() {
   ];
 
   const handleChoosePlan = (plan: PlanKey) => {
-    if (plan === 'trial') return;
-    if ((plan === 'standard' && tier === 'standard') || (plan === 'pro' && tier === 'pro')) return;
-    setSelectedPlan(plan);
+    if (plan === 'free') return;
+    if (isPremium) return;
     setShowPayment(true);
   };
 
   const handlePaymentComplete = () => {
-    if (selectedPlan === 'standard' || selectedPlan === 'pro') {
-      upgradeTo(selectedPlan);
-    }
+    upgradeTo('premium');
     setShowPayment(false);
-    setSelectedPlan(null);
   };
 
   return (
@@ -199,40 +154,18 @@ export default function PriserPage() {
           {t('Tillbaka', 'Back')}
         </Link>
         <h1 className="text-3xl font-display text-primary leading-tight">
-          {t('Välj din plan.', 'Choose your plan.')}
+          {t('Gratis att börja.', 'Free to start.')}
         </h1>
         <h2 className="text-3xl font-display leading-tight" style={{ color: 'var(--muted)' }}>
-          {t('Börja med 7 dagars gratis.', 'Start with 7 days free.')}
+          {t('Premium när du är redo.', 'Premium when you\'re ready.')}
         </h2>
         <p className="text-muted mt-3 text-sm leading-relaxed">
           {t(
-            'Testa alla funktioner gratis i 7 dagar. Välj sedan den plan som passar dig bäst.',
-            'Try all features free for 7 days. Then choose the plan that suits you best.'
+            'Kom igång helt gratis med checklistor, påminnelser och guider. Uppgradera till Premium när du behöver mer.',
+            'Get started completely free with checklists, reminders and guides. Upgrade to Premium when you need more.'
           )}
         </p>
       </div>
-
-      {/* Trial status banner */}
-      {(isTrialActive || isTrialExpired) && !isPaid && (
-        <div className="px-6 mb-4">
-          <div
-            className="rounded-2xl p-4 flex items-center gap-3"
-            style={{
-              background: isTrialExpired
-                ? 'rgba(217,119,87,0.08)'
-                : 'rgba(107,127,94,0.08)',
-              border: `1px solid ${isTrialExpired ? 'rgba(217,119,87,0.2)' : 'rgba(107,127,94,0.15)'}`,
-            }}
-          >
-            <Clock className="w-5 h-5 flex-shrink-0" style={{ color: isTrialExpired ? '#D97757' : '#6B7F5E' }} />
-            <p className="text-sm text-primary">
-              {isTrialExpired
-                ? t('Din provperiod har gått ut. Välj en plan för att fortsätta.', 'Your trial has expired. Choose a plan to continue.')
-                : t(`${trialDaysLeft} dagar kvar av din provperiod.`, `${trialDaysLeft} days left of your trial.`)}
-            </p>
-          </div>
-        </div>
-      )}
 
       {/* Trust badges */}
       <div className="px-6 mb-4">
@@ -281,11 +214,11 @@ export default function PriserPage() {
 
       {/* Plan cards */}
       <div className="px-6 space-y-4">
-        {(['trial', 'standard', 'pro'] as PlanKey[]).map((key) => {
+        {(['free', 'premium'] as PlanKey[]).map((key) => {
           const plan = plans[key];
           const isPopular = plan.popular;
-          const isTrial = key === 'trial';
-          const isCurrentPlan = (key === 'standard' && tier === 'standard') || (key === 'pro' && tier === 'pro');
+          const isCurrentPlan = key === tier;
+          const isFreeCard = key === 'free';
 
           return (
             <div
@@ -299,7 +232,6 @@ export default function PriserPage() {
                     ? '2px solid #6B7F5E'
                     : '1px solid var(--border)',
                 boxShadow: isPopular ? '0 8px 24px rgba(107, 127, 94, 0.15)' : 'none',
-                opacity: (isTrial && isTrialExpired) ? 0.6 : 1,
               }}
             >
               {/* Popular badge */}
@@ -309,7 +241,7 @@ export default function PriserPage() {
                   style={{ background: '#6B7F5E' }}
                 >
                   <Sparkles className="w-3.5 h-3.5" />
-                  {t('Mest populär', 'Most popular')}
+                  {t('Rekommenderad', 'Recommended')}
                 </div>
               )}
               {isCurrentPlan && (
@@ -334,11 +266,10 @@ export default function PriserPage() {
                     </div>
                     <div>
                       <h3 className="font-display text-primary text-lg leading-tight">{plan.name}</h3>
-                      <p className="text-xs text-muted mt-0.5">{plan.users}</p>
                     </div>
                   </div>
                   <div className="text-right">
-                    {isTrial ? (
+                    {isFreeCard ? (
                       <div className="text-3xl font-display" style={{ color: plan.accent }}>
                         {t('Gratis', 'Free')}
                       </div>
@@ -346,6 +277,7 @@ export default function PriserPage() {
                       <>
                         <div className="text-3xl font-display text-primary leading-none">
                           {plan.price}
+                          <span className="text-base ml-1">kr</span>
                         </div>
                         <div className="text-xs text-muted mt-1">{plan.period}</div>
                       </>
@@ -361,16 +293,12 @@ export default function PriserPage() {
                 <div className="space-y-2.5 mb-6">
                   {plan.features.map((feature, i) => (
                     <div key={i} className="flex items-start gap-2.5">
-                      {feature.included ? (
-                        <Check
-                          className="w-4 h-4 mt-0.5 flex-shrink-0"
-                          style={{ color: plan.accent }}
-                        />
-                      ) : (
-                        <X className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: 'var(--border)' }} />
-                      )}
+                      <Check
+                        className="w-4 h-4 mt-0.5 flex-shrink-0"
+                        style={{ color: plan.accent }}
+                      />
                       <span
-                        className={`text-sm leading-snug ${feature.highlight ? 'font-display text-primary' : feature.included ? 'text-primary' : 'text-muted'}`}
+                        className={`text-sm leading-snug ${feature.highlight ? 'font-display text-primary' : 'text-primary'}`}
                       >
                         {feature.text}
                       </span>
@@ -381,20 +309,18 @@ export default function PriserPage() {
                 {/* CTA Button */}
                 <button
                   onClick={() => handleChoosePlan(key)}
-                  disabled={isTrial || isCurrentPlan}
+                  disabled={isFreeCard || isCurrentPlan}
                   className="w-full py-3.5 rounded-2xl font-display text-sm transition-all flex items-center justify-center gap-2 hover:opacity-90 active:scale-[0.98] disabled:opacity-50 disabled:cursor-default"
                   style={{
-                    background: isTrial || isCurrentPlan
+                    background: isFreeCard || isCurrentPlan
                       ? 'transparent'
-                      : isPopular
-                        ? 'linear-gradient(135deg, #6B7F5E, #5A6E4E)'
-                        : '#6B7F5E',
-                    color: isTrial || isCurrentPlan ? '#6B7F5E' : '#FFFFFF',
-                    border: isTrial || isCurrentPlan ? '2px solid var(--border)' : 'none',
+                      : 'linear-gradient(135deg, #6B7F5E, #5A6E4E)',
+                    color: isFreeCard || isCurrentPlan ? '#6B7F5E' : '#FFFFFF',
+                    border: isFreeCard || isCurrentPlan ? '2px solid var(--border)' : 'none',
                   }}
                 >
                   {plan.cta}
-                  {!isTrial && !isCurrentPlan && <ArrowRight className="w-4 h-4" />}
+                  {!isFreeCard && !isCurrentPlan && <ArrowRight className="w-4 h-4" />}
                 </button>
               </div>
             </div>
@@ -421,8 +347,8 @@ export default function PriserPage() {
               </h4>
               <p className="text-xs text-muted leading-relaxed">
                 {t(
-                  'En traditionell jurist kostar 2 000–5 000 kr/timme. Bouppteckning med jurist: 15 000–40 000 kr. Med Sista Resan Pro (1 199 kr engångsbelopp) sparar du tusenlappar.',
-                  'A traditional lawyer costs SEK 2,000–5,000/hour. Estate inventory with lawyer: SEK 15,000–40,000. With Sista Resan Pro (SEK 1,199 one-time) you save thousands.'
+                  'En traditionell jurist kostar 2 000–5 000 kr/timme. Bouppteckning med jurist: 15 000–40 000 kr. Med Sista Resan Premium (799 kr engångsbelopp) sparar du tusenlappar.',
+                  'A traditional lawyer costs SEK 2,000–5,000/hour. Estate inventory with lawyer: SEK 15,000–40,000. With Sista Resan Premium (SEK 799 one-time) you save thousands.'
                 )}
               </p>
             </div>
@@ -479,15 +405,12 @@ export default function PriserPage() {
       </div>
 
       {/* Payment Flow Modal */}
-      {showPayment && selectedPlan && selectedPlan !== 'trial' && (
+      {showPayment && (
         <PaymentFlow
-          amount={plans[selectedPlan].price}
-          description={`Sista Resan ${plans[selectedPlan].name}`}
+          amount={799}
+          description={`Sista Resan Premium`}
           onComplete={handlePaymentComplete}
-          onCancel={() => {
-            setShowPayment(false);
-            setSelectedPlan(null);
-          }}
+          onCancel={() => setShowPayment(false)}
         />
       )}
     </main>

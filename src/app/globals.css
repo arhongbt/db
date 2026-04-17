@@ -593,6 +593,20 @@
   border: 1px solid rgba(107,127,94,0.25);
 }
 
+/* Senior mode — simplified, spacious UI for elderly users */
+[data-senior="true"] {
+  --text-scale: 1.35;
+  font-size: calc(16px * 1.35);
+}
+[data-senior="true"] button,
+[data-senior="true"] a {
+  min-height: 56px;
+  min-width: 56px;
+}
+[data-senior="true"] .card {
+  padding: 1.5rem;
+}
+
 /* Print stylesheet */
 @media print {
   /* Hide navigation and interactive elements */

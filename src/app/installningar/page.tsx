@@ -26,6 +26,7 @@ import {
   FileText,
 } from 'lucide-react';
 import { exportAsCSV, exportAsJSON } from '@/lib/export-data';
+import { useSeniorMode } from '@/lib/senior-mode';
 import {
   requestNotificationPermission,
   getNotificationPrefs,
@@ -37,6 +38,7 @@ function InstallningarContent() {
   const { state, dispatch, loading } = useDodsbo();
   const { signOut } = useAuth();
   const { language, setLanguage, t } = useLanguage();
+  const { seniorMode, setSeniorMode } = useSeniorMode();
   const router = useRouter();
   const [showConfirmReset, setShowConfirmReset] = useState(false);
   const [signingOut, setSigningOut] = useState(false);
@@ -310,6 +312,43 @@ function InstallningarContent() {
           {t('Tillgänglighet', 'Accessibility')}
         </h2>
         <div className="space-y-4">
+          {/* Senior mode toggle — prominent */}
+          <div
+            className="p-5 rounded-2xl"
+            style={{
+              background: seniorMode
+                ? 'linear-gradient(135deg, rgba(107,127,94,0.10), rgba(107,127,94,0.04))'
+                : 'var(--bg-card)',
+              border: seniorMode
+                ? '2px solid var(--accent)'
+                : '2px solid var(--border)',
+            }}
+          >
+            <div className="flex items-center justify-between">
+              <div className="flex-1 mr-4">
+                <p className="text-base font-display" style={{ color: 'var(--text)' }}>
+                  {t('Förenklat läge', 'Simplified mode')}
+                </p>
+                <p className="text-sm mt-1" style={{ color: 'var(--text-secondary)' }}>
+                  {t('Större text, färre val, enklare navigation', 'Larger text, fewer choices, simpler navigation')}
+                </p>
+              </div>
+              <button
+                onClick={() => setSeniorMode(!seniorMode)}
+                className={`relative inline-flex h-8 w-14 items-center rounded-full transition-colors flex-shrink-0 ${
+                  seniorMode ? 'bg-accent' : 'bg-gray-300'
+                }`}
+                aria-label={t('Förenklat läge', 'Simplified mode')}
+              >
+                <span
+                  className={`inline-block h-6 w-6 transform rounded-full bg-white transition-transform shadow-sm ${
+                    seniorMode ? 'translate-x-7' : 'translate-x-1'
+                  }`}
+                />
+              </button>
+            </div>
+          </div>
+
           <div>
             <div className="flex items-center justify-between mb-3">
               <label className="text-sm font-medium text-primary flex items-center gap-2">

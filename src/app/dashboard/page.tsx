@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { DodsboProvider, useDodsbo } from '@/lib/context';
 import { useLanguage } from '@/lib/i18n';
 import { TrialBanner } from '@/components/ui/TrialBanner';
+import { useSeniorMode } from '@/lib/senior-mode';
 import {
   AlertTriangle,
   CheckCircle2,
@@ -68,6 +69,7 @@ function DashboardSkeleton() {
 function DashboardContent() {
   const { state, loading } = useDodsbo();
   const { t } = useLanguage();
+  const { seniorMode } = useSeniorMode();
   const [mounted, setMounted] = useState(false);
   const [notifStatus, setNotifStatus] = useState<'idle' | 'enabled' | 'denied' | 'unsupported'>('idle');
   const [isBankIDVerified, setIsBankIDVerified] = useState(false);
@@ -173,6 +175,127 @@ function DashboardContent() {
     akut: 10, kartlaggning: 30, bouppteckning: 55, arvskifte: 80, avslutat: 100,
   };
   const progressPct = stepProgress[effectiveStep];
+
+  // Senior mode: calm, spacious, minimal dashboard
+  if (seniorMode) {
+    const seniorActions = [
+      {
+        label: t('Mina uppgifter', 'My tasks'),
+        href: '/uppgifter',
+        icon: ClipboardList,
+        color: 'var(--accent)',
+        bg: 'rgba(107,127,94,0.08)',
+      },
+      {
+        label: t('Ring banken', 'Call the bank'),
+        href: '/avsluta-konton',
+        icon: Landmark,
+        color: 'var(--sora)',
+        bg: 'rgba(139,164,184,0.08)',
+      },
+      {
+        label: t('Fråga Mike Ross', 'Ask Mike Ross'),
+        href: '/juridisk-hjalp',
+        icon: Bot,
+        color: 'var(--accent)',
+        bg: 'rgba(107,127,94,0.08)',
+      },
+      {
+        label: t('Ring jurist', 'Call a lawyer'),
+        href: '/boka-jurist',
+        icon: Shield,
+        color: 'var(--kohaku)',
+        bg: 'rgba(196,149,106,0.08)',
+      },
+    ];
+
+    return (
+      <div className="flex flex-col min-h-[calc(100dvh-5rem)] px-4 py-6 pb-24">
+        {/* Greeting */}
+        <div className="mb-8">
+          <p className="text-sm font-medium uppercase tracking-widest mb-2" style={{ color: 'var(--text-secondary)', letterSpacing: '0.08em' }}>
+            {t('dashboard.welcome_back')}
+          </p>
+          <h1 className="font-display text-2xl" style={{ color: 'var(--text)', letterSpacing: '-0.01em' }}>
+            {state.deceasedName
+              ? `${state.deceasedName}s dödsbo`
+              : t('dashboard.greeting')}
+          </h1>
+        </div>
+
+        {/* Phase card with progress */}
+        <Link
+          href="/tidslinje"
+          className="relative overflow-hidden mb-10 p-7 rounded-3xl transition-all duration-300 active:scale-[0.98]"
+          style={{
+            background: 'linear-gradient(135deg, rgba(107,127,94,0.06), rgba(107,127,94,0.02))',
+            border: '1.5px solid rgba(107,127,94,0.10)',
+          }}
+          aria-label={`Fas: ${stepLabels[effectiveStep]} — ${progressPct}%`}
+        >
+          <div className="flex items-center justify-between mb-5">
+            <div>
+              <p className="text-sm font-medium uppercase tracking-widest mb-1.5" style={{ color: 'var(--accent)', letterSpacing: '0.06em' }}>
+                {stepSubtitles[effectiveStep]}
+              </p>
+              <h2 className="font-display text-xl" style={{ color: 'var(--text)' }}>
+                {stepLabels[effectiveStep]}
+              </h2>
+            </div>
+            <div className="text-right">
+              <span className="font-display text-3xl" style={{ color: 'var(--accent)' }}>{progressPct}%</span>
+            </div>
+          </div>
+          <div className="h-3 rounded-full overflow-hidden" style={{ background: 'rgba(107,127,94,0.10)' }}>
+            <div
+              className="h-full rounded-full transition-all duration-700 ease-out"
+              style={{ width: `${progressPct}%`, background: 'var(--accent)' }}
+            />
+          </div>
+          {daysSinceDeath > 0 && (
+            <p className="text-sm mt-4" style={{ color: 'var(--text-secondary)' }}>
+              {t(`Dag ${daysSinceDeath} — ta den tid du behöver`, `Day ${daysSinceDeath} — take the time you need`)}
+            </p>
+          )}
+        </Link>
+
+        {/* Big action buttons */}
+        <h2 className="font-display text-lg mb-5" style={{ color: 'var(--text)' }}>
+          {t('Vad vill du göra?', 'What would you like to do?')}
+        </h2>
+        <div className="flex flex-col gap-4">
+          {seniorActions.map((action) => (
+            <Link
+              key={action.href}
+              href={action.href}
+              className="flex items-center gap-5 p-5 rounded-2xl active:scale-[0.98] transition-all duration-300"
+              style={{
+                background: 'var(--bg-card)',
+                border: '1.5px solid var(--border)',
+                minHeight: '80px',
+              }}
+            >
+              <div
+                className="w-14 h-14 rounded-full flex items-center justify-center flex-shrink-0"
+                style={{ background: action.bg }}
+              >
+                <action.icon className="w-7 h-7" style={{ color: action.color }} strokeWidth={1.5} />
+              </div>
+              <span className="font-display text-base" style={{ color: 'var(--text)' }}>
+                {action.label}
+              </span>
+              <ChevronRight className="w-5 h-5 ml-auto flex-shrink-0" style={{ color: 'var(--text-secondary)' }} />
+            </Link>
+          ))}
+        </div>
+
+        {/* Gentle footer */}
+        <p className="text-sm text-center mt-10 mb-4 px-4 leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+          {t('Ta den tid du behöver. Vi finns här.', 'Take the time you need. We are here.')}
+        </p>
+      </div>
+    );
+  }
 
   return (
     <div className="flex flex-col min-h-[calc(100dvh-5rem)] px-4 py-5 pb-24">
