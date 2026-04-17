@@ -69,7 +69,7 @@ export default function SarkullbarnPage() {
       />
       <div className="px-4">
 
-      <MikeRossTip text={t('Särkullbarn är juridiskt skyddade — de kan kräva sin laglott (halva arvslotten) direkt vid dödsfallet, utan att vänta på att styvföräldern också dör. Det kan skapa ekonomisk press om bostad eller kapital är bundet. Planera detta tidigt.', 'Non-mutual children are legally protected—they can claim their legal portion (half the inheritance share) immediately upon death, without waiting for the step-parent to pass. This can create financial pressure if housing or capital is tied up. Plan ahead.')} />
+      <MikeRossTip className="mb-5" text={t('Särkullbarn är juridiskt skyddade — de kan kräva sin laglott (halva arvslotten) direkt vid dödsfallet, utan att vänta på att styvföräldern också dör. Det kan skapa ekonomisk press om bostad eller kapital är bundet. Planera detta tidigt.', 'Non-mutual children are legally protected—they can claim their legal portion (half the inheritance share) immediately upon death, without waiting for the step-parent to pass. This can create financial pressure if housing or capital is tied up. Plan ahead.')} />
 
       {/* Intro info box */}
       <div className="info-box mb-6">

@@ -283,12 +283,12 @@ export function BottomNav() {
         <div
           className="mx-auto max-w-[420px] flex items-center justify-around px-2 py-1.5"
           style={{
-            background: 'rgba(255,255,255,0.92)',
+            background: 'var(--bottom-nav-bg, rgba(255,255,255,0.92))',
             backdropFilter: 'blur(20px)',
             WebkitBackdropFilter: 'blur(20px)',
             borderRadius: '9999px',
-            boxShadow: '0 4px 20px rgba(26,26,46,0.08), 0 1px 3px rgba(26,26,46,0.04)',
-            border: '1px solid rgba(232,228,222,0.6)',
+            boxShadow: '0 4px 20px var(--shadow-color, rgba(26,26,46,0.08)), 0 1px 3px var(--shadow-color, rgba(26,26,46,0.04))',
+            border: '1px solid var(--border)',
           }}
         >
           {NAV_ITEMS.map(({ href, label, icon: Icon }) => {

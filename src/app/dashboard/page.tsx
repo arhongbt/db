@@ -452,17 +452,17 @@ function DashboardContent() {
               setNotifStatus('denied');
             }
           }}
-          className="mb-6 p-5 rounded-2xl flex items-center justify-between w-full text-left transition-all active:scale-[0.98]"
+          className="mb-6 p-5 rounded-2xl flex items-center gap-3 w-full text-left transition-all active:scale-[0.98] overflow-hidden"
           style={{
             background: 'linear-gradient(135deg, rgba(139,164,184,0.06), rgba(139,164,184,0.02))',
             border: '1.5px solid rgba(139,164,184,0.10)',
           }}
         >
-          <div>
-            <p className="font-display text-sm" style={{ color: 'var(--text)' }}>{t('dashboard.enable_notifications')}</p>
-            <p className="text-xs mt-0.5" style={{ color: 'var(--text-secondary)' }}>{t('dashboard.enable_notifications_desc')}</p>
+          <div className="flex-1 min-w-0">
+            <p className="font-display text-sm truncate" style={{ color: 'var(--text)' }}>{t('dashboard.enable_notifications')}</p>
+            <p className="text-xs mt-0.5 truncate" style={{ color: 'var(--text-secondary)' }}>{t('dashboard.enable_notifications_desc')}</p>
           </div>
-          <span className="text-xs font-semibold px-4 py-2 rounded-full" style={{ background: 'var(--sora)', color: '#FFFFFF' }}>
+          <span className="text-xs font-semibold px-4 py-2 rounded-full shrink-0 whitespace-nowrap" style={{ background: 'var(--sora)', color: '#FFFFFF' }}>
             {t('dashboard.turn_on')}
           </span>
         </button>
