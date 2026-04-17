@@ -19,6 +19,11 @@ import {
   Gift,
   ChevronRight,
   CheckCircle2,
+  Plus,
+  History,
+  Trash2,
+  X,
+  MessageSquare,
 } from 'lucide-react';
 import { PremiumModal } from '@/components/ui/PremiumModal';
 import { Breadcrumb } from '@/components/ui/Breadcrumb';
@@ -121,6 +126,52 @@ const SUGGESTED_QUESTIONS = [
   { sv: 'Kan särkullbarn kräva sin del direkt?', en: 'Can children from other relationships demand their share immediately?' },
 ];
 
+// ── Conversation persistence ──
+interface SavedConversation {
+  id: string;
+  title: string;          // First user message, truncated
+  messages: Message[];
+  createdAt: string;
+  updatedAt: string;
+}
+
+const CONVERSATIONS_KEY = 'sr_mike_conversations';
+const ACTIVE_CONVO_KEY = 'sr_mike_active_convo';
+
+function loadConversations(): SavedConversation[] {
+  if (typeof window === 'undefined') return [];
+  try {
+    const stored = localStorage.getItem(CONVERSATIONS_KEY);
+    return stored ? JSON.parse(stored) : [];
+  } catch { return []; }
+}
+
+function saveConversations(convos: SavedConversation[]) {
+  localStorage.setItem(CONVERSATIONS_KEY, JSON.stringify(convos));
+}
+
+function getActiveConvoId(): string | null {
+  if (typeof window === 'undefined') return null;
+  return localStorage.getItem(ACTIVE_CONVO_KEY);
+}
+
+function setActiveConvoId(id: string | null) {
+  if (id) localStorage.setItem(ACTIVE_CONVO_KEY, id);
+  else localStorage.removeItem(ACTIVE_CONVO_KEY);
+}
+
+function generateConvoId(): string {
+  return `convo_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
+}
+
+function getConvoTitle(messages: Message[]): string {
+  const firstUser = messages.find(m => m.role === 'user');
+  if (!firstUser) return 'Ny konversation';
+  return firstUser.content.length > 50
+    ? firstUser.content.slice(0, 50) + '...'
+    : firstUser.content;
+}
+
 const FREE_MESSAGE_LIMIT = 25;
 
 function getUsedMessages(): number {
@@ -149,6 +200,9 @@ function JuridiskHjalpContent() {
   const [showPremiumModal, setShowPremiumModal] = useState(false);
   const [isBankIDVerified, setIsBankIDVerified] = useState(false);
   const [showBankIDModal, setShowBankIDModal] = useState(false);
+  const [conversations, setConversations] = useState<SavedConversation[]>([]);
+  const [activeConvoId, setActiveConvoIdState] = useState<string | null>(null);
+  const [showHistory, setShowHistory] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
@@ -161,6 +215,20 @@ function JuridiskHjalpContent() {
   useEffect(() => {
     setMounted(true);
     setUsedMessages(getUsedMessages());
+
+    // Load saved conversations
+    const saved = loadConversations();
+    setConversations(saved);
+
+    // Restore active conversation
+    const activeId = getActiveConvoId();
+    if (activeId) {
+      const active = saved.find(c => c.id === activeId);
+      if (active) {
+        setMessages(active.messages);
+        setActiveConvoIdState(activeId);
+      }
+    }
 
     // Check BankID verification status
     try {
@@ -243,6 +311,75 @@ function JuridiskHjalpContent() {
       return () => clearInterval(interval);
     }
   }, [animatingIdx, scrollToBottom]);
+
+  // Save current conversation to localStorage whenever messages change
+  const saveCurrentConvo = useCallback((msgs: Message[], convoId: string | null) => {
+    if (msgs.length === 0) return;
+    const now = new Date().toISOString();
+    const allConvos = loadConversations();
+    const existingIdx = convoId ? allConvos.findIndex(c => c.id === convoId) : -1;
+
+    if (existingIdx >= 0) {
+      // Update existing
+      allConvos[existingIdx].messages = msgs;
+      allConvos[existingIdx].updatedAt = now;
+      allConvos[existingIdx].title = getConvoTitle(msgs);
+    } else {
+      // Create new
+      const newId = convoId || generateConvoId();
+      allConvos.unshift({
+        id: newId,
+        title: getConvoTitle(msgs),
+        messages: msgs,
+        createdAt: now,
+        updatedAt: now,
+      });
+      setActiveConvoIdState(newId);
+      setActiveConvoId(newId);
+    }
+
+    saveConversations(allConvos);
+    setConversations(allConvos);
+  }, []);
+
+  const startNewConversation = useCallback(() => {
+    // Save current first if it has messages
+    if (messages.length > 0 && activeConvoId) {
+      saveCurrentConvo(messages, activeConvoId);
+    }
+    setMessages([]);
+    setAnimatingIdx(null);
+    setError(null);
+    const newId = generateConvoId();
+    setActiveConvoIdState(newId);
+    setActiveConvoId(newId);
+    setShowHistory(false);
+  }, [messages, activeConvoId, saveCurrentConvo]);
+
+  const loadConversation = useCallback((convo: SavedConversation) => {
+    // Save current first
+    if (messages.length > 0 && activeConvoId) {
+      saveCurrentConvo(messages, activeConvoId);
+    }
+    setMessages(convo.messages);
+    setActiveConvoIdState(convo.id);
+    setActiveConvoId(convo.id);
+    setAnimatingIdx(null);
+    setError(null);
+    setShowHistory(false);
+  }, [messages, activeConvoId, saveCurrentConvo]);
+
+  const deleteConversation = useCallback((convoId: string) => {
+    const updated = loadConversations().filter(c => c.id !== convoId);
+    saveConversations(updated);
+    setConversations(updated);
+    if (convoId === activeConvoId) {
+      setMessages([]);
+      const newId = generateConvoId();
+      setActiveConvoIdState(newId);
+      setActiveConvoId(newId);
+    }
+  }, [activeConvoId]);
 
   const buildDodsboContext = useCallback((): string => {
     const parts: string[] = [];
@@ -352,8 +489,12 @@ function JuridiskHjalpContent() {
       setUsedMessages(newCount);
 
       const assistantMsg: Message = { role: 'assistant', content: data.reply };
-      setMessages(prev => [...prev, assistantMsg]);
+      const updatedMessages = [...newMessages, assistantMsg];
+      setMessages(updatedMessages);
       setAnimatingIdx(newMessages.length);
+
+      // Save conversation to localStorage
+      saveCurrentConvo(updatedMessages, activeConvoId);
     } catch {
       setError(t('Kunde inte ansluta. Kontrollera din internetanslutning.', 'Could not connect. Check your internet connection.'));
     } finally {
@@ -392,7 +533,82 @@ function JuridiskHjalpContent() {
             </div>
           </div>
         </div>
+        {/* History + New conversation buttons */}
+        <div className="flex items-center gap-1.5">
+          {conversations.length > 0 && (
+            <button
+              onClick={() => setShowHistory(!showHistory)}
+              className="w-9 h-9 rounded-full flex items-center justify-center transition-all"
+              style={{ background: showHistory ? 'rgba(107,127,94,0.12)' : 'var(--border-light)' }}
+              aria-label={t('Konversationshistorik', 'Conversation history')}
+            >
+              <History className="w-4 h-4" style={{ color: showHistory ? 'var(--accent)' : 'var(--text-secondary)' }} strokeWidth={1.5} />
+            </button>
+          )}
+          <button
+            onClick={startNewConversation}
+            className="w-9 h-9 rounded-full flex items-center justify-center transition-all"
+            style={{ background: 'var(--border-light)' }}
+            aria-label={t('Ny konversation', 'New conversation')}
+          >
+            <Plus className="w-4 h-4" style={{ color: 'var(--text-secondary)' }} strokeWidth={1.5} />
+          </button>
+        </div>
       </div>
+
+      {/* Conversation history panel */}
+      {showHistory && (
+        <div className="border-b px-4 py-3 max-h-[40vh] overflow-y-auto" style={{ borderColor: 'var(--border)', background: 'var(--bg)' }}>
+          <div className="flex items-center justify-between mb-3">
+            <p className="text-xs font-display uppercase tracking-wider" style={{ color: 'var(--text-secondary)' }}>
+              {t('Tidigare konversationer', 'Previous conversations')}
+            </p>
+            <button onClick={() => setShowHistory(false)} className="p-1">
+              <X className="w-3.5 h-3.5" style={{ color: 'var(--text-secondary)' }} />
+            </button>
+          </div>
+          <div className="flex flex-col gap-2">
+            {conversations.map((convo) => {
+              const isActive = convo.id === activeConvoId;
+              const dateStr = new Date(convo.updatedAt).toLocaleDateString('sv-SE', { day: 'numeric', month: 'short' });
+              const msgCount = convo.messages.length;
+              return (
+                <div
+                  key={convo.id}
+                  className="flex items-center gap-3 p-3 rounded-xl transition-all"
+                  style={{
+                    background: isActive ? 'rgba(107,127,94,0.08)' : 'var(--bg-card)',
+                    border: `1px solid ${isActive ? 'rgba(107,127,94,0.20)' : 'var(--border)'}`,
+                  }}
+                >
+                  <button
+                    onClick={() => loadConversation(convo)}
+                    className="flex items-center gap-3 flex-1 min-w-0 text-left"
+                  >
+                    <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: 'rgba(107,127,94,0.08)' }}>
+                      <MessageSquare className="w-3.5 h-3.5" style={{ color: 'var(--accent)' }} strokeWidth={1.5} />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-medium truncate" style={{ color: 'var(--text)' }}>{convo.title}</p>
+                      <p className="text-[11px]" style={{ color: 'var(--text-secondary)' }}>
+                        {dateStr} · {msgCount} {t('meddelanden', 'messages')}
+                      </p>
+                    </div>
+                  </button>
+                  <button
+                    onClick={() => deleteConversation(convo.id)}
+                    className="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 transition-all"
+                    style={{ background: 'rgba(212,160,167,0.08)' }}
+                    aria-label={t('Ta bort', 'Delete')}
+                  >
+                    <Trash2 className="w-3 h-3" style={{ color: 'var(--sakura)' }} />
+                  </button>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
 
       {/* BankID verification prompt */}
       {!isBankIDVerified && (

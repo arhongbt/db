@@ -93,6 +93,7 @@ export function BottomNav() {
   const [menuFilter, setMenuFilter] = useState('');
   const [recentlyUsed, setRecentlyUsed] = useState<string[]>([]);
   const menuRef = useRef<HTMLDivElement>(null);
+  const menuScrollRef = useRef<number>(0);
   const filterInputRef = useRef<HTMLInputElement>(null);
 
   // Track recently used items from More menu
@@ -107,19 +108,20 @@ export function BottomNav() {
   }, [pathname]);
 
   useEffect(() => {
-    setMoreOpen(false);
+    closeMoreMenu();
     setMenuFilter('');
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 
   useEffect(() => {
     if (!moreOpen) return;
     const handleClick = (e: MouseEvent) => {
       if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
-        setMoreOpen(false);
+        closeMoreMenu();
       }
     };
     const handleKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setMoreOpen(false);
+      if (e.key === 'Escape') closeMoreMenu();
     };
     document.addEventListener('mousedown', handleClick);
     document.addEventListener('keydown', handleKey);
@@ -127,7 +129,28 @@ export function BottomNav() {
       document.removeEventListener('mousedown', handleClick);
       document.removeEventListener('keydown', handleKey);
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [moreOpen]);
+
+  // Restore scroll position when menu opens
+  useEffect(() => {
+    if (moreOpen && menuRef.current && menuScrollRef.current > 0) {
+      // Small delay to let the menu render first
+      requestAnimationFrame(() => {
+        if (menuRef.current) {
+          menuRef.current.scrollTop = menuScrollRef.current;
+        }
+      });
+    }
+  }, [moreOpen]);
+
+  // Save scroll position when menu is about to close
+  const closeMoreMenu = () => {
+    if (menuRef.current) {
+      menuScrollRef.current = menuRef.current.scrollTop;
+    }
+    setMoreOpen(false);
+  };
 
   // No auto-focus on filter input — prevents mobile keyboard from popping up
 
@@ -215,7 +238,7 @@ export function BottomNav() {
     <>
       {/* Overlay */}
       {moreOpen && (
-        <div className="fixed inset-0 bg-black/30 z-40 transition-opacity" onClick={() => setMoreOpen(false)} />
+        <div className="fixed inset-0 bg-black/30 z-40 transition-opacity" onClick={() => closeMoreMenu()} />
       )}
 
       {/* Slide-up menu — Tiimo-inspired rounded panel */}
@@ -233,7 +256,7 @@ export function BottomNav() {
           <div className="px-5 pt-5 pb-2 flex items-center justify-between sticky top-0 z-10" style={{ background: 'var(--bg-card)', borderRadius: '28px 28px 0 0' }}>
             <h3 className="font-display text-primary text-sm">{t('nav.all_tools')}</h3>
             <button
-              onClick={() => setMoreOpen(false)}
+              onClick={() => closeMoreMenu()}
               className="w-8 h-8 rounded-full flex items-center justify-center transition-colors"
               style={{ background: 'var(--border-light)' }}
               aria-label="Stäng menyn"
