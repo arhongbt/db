@@ -120,12 +120,7 @@ export function BottomNav() {
     };
   }, [moreOpen]);
 
-  // Focus filter input when menu opens
-  useEffect(() => {
-    if (moreOpen) {
-      setTimeout(() => filterInputRef.current?.focus(), 200);
-    }
-  }, [moreOpen]);
+  // No auto-focus on filter input — prevents mobile keyboard from popping up
 
   // Filter categories based on search
   const filteredCategories = useMemo(() => {
