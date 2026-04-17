@@ -32,10 +32,44 @@ import {
   Heart,
   Handshake,
   Shield,
+  X,
 } from 'lucide-react';
 import { BankIDVerification } from '@/components/BankIDVerification';
-import type { DodsboTask, ProcessStep, TaskStatus } from '@/types';
+import type { DodsboTask, ProcessStep, TaskStatus, Relation, TillgangType } from '@/types';
 import { DEFAULT_TIDSFRISTER } from '@/types';
+
+// ── Relation labels for stat detail panels ──
+const RELATION_LABELS: Record<Relation, string> = {
+  make_maka: 'Make/maka',
+  sambo: 'Sambo',
+  barn: 'Barn',
+  barnbarn: 'Barnbarn',
+  foralder: 'Förälder',
+  syskon: 'Syskon',
+  annan_slakting: 'Annan släkting',
+  testamentstagare: 'Testamentstagare',
+  god_man: 'God man',
+  ombud: 'Ombud',
+  vardnadshavare: 'Vårdnadshavare',
+  foralder_avliden: 'Förälder (avliden)',
+  van_annan: 'Vän/annan',
+};
+
+const TILLGANG_TYPE_LABELS: Record<TillgangType, string> = {
+  bankkonto: 'Bankkonto',
+  bostadsratt: 'Bostadsrätt',
+  villa: 'Villa/Småhus',
+  jordbruksfastighet: 'Jordbruk/Skog',
+  fritidshus: 'Fritidshus',
+  sommarstuga: 'Sommarstuga',
+  bil: 'Bil/Fordon',
+  aktier_fonder: 'Aktier/Fonder',
+  kryptovalutor: 'Kryptovalutor',
+  pension: 'Pension',
+  forsakring: 'Försäkring',
+  losore: 'Lösöre',
+  ovrigt: 'Övrigt',
+};
 import Link from 'next/link';
 import { DoveLogo } from '@/components/ui/DoveLogo';
 import {
@@ -74,6 +108,7 @@ function DashboardContent() {
   const [notifStatus, setNotifStatus] = useState<'idle' | 'enabled' | 'denied' | 'unsupported'>('idle');
   const [isBankIDVerified, setIsBankIDVerified] = useState(false);
   const [showBankIDModal, setShowBankIDModal] = useState(false);
+  const [expandedStat, setExpandedStat] = useState<'delagare' | 'deadlines' | 'tillgangar' | null>(null);
 
   useEffect(() => setMounted(true), []);
 
@@ -383,26 +418,175 @@ function DashboardContent() {
         </Link>
       )}
 
-      {/* ── Quick stats — 3 columns, Tiimo bubbly ── */}
-      <div className="grid grid-cols-3 gap-3 mb-7">
-        {[
-          { value: state.delagare.length, label: 'Delägare', icon: User, color: 'var(--accent)', bg: 'rgba(107,127,94,0.08)' },
-          { value: upcomingDeadlines.length, label: 'Deadlines', icon: Calendar, color: 'var(--sora)', bg: 'rgba(139,164,184,0.08)' },
-          { value: state.tillgangar.length, label: 'Tillgångar', icon: Coins, color: 'var(--kohaku)', bg: 'rgba(196,149,106,0.08)' },
-        ].map((stat) => (
-          <div
+      {/* ── Quick stats — 3 columns, clickable with expandable detail ── */}
+      <div className="grid grid-cols-3 gap-3 mb-3">
+        {([
+          { key: 'delagare' as const, value: state.delagare.length, label: 'Delägare', icon: User, color: 'var(--accent)', bg: 'rgba(107,127,94,0.08)' },
+          { key: 'deadlines' as const, value: upcomingDeadlines.length, label: 'Deadlines', icon: Calendar, color: 'var(--sora)', bg: 'rgba(139,164,184,0.08)' },
+          { key: 'tillgangar' as const, value: state.tillgangar.length, label: 'Tillgångar', icon: Coins, color: 'var(--kohaku)', bg: 'rgba(196,149,106,0.08)' },
+        ]).map((stat) => (
+          <button
             key={stat.label}
-            className="flex flex-col items-center py-5 rounded-2xl transition-all"
-            style={{ background: 'var(--bg-card)', border: '1px solid var(--border)' }}
+            onClick={() => setExpandedStat(expandedStat === stat.key ? null : stat.key)}
+            className="flex flex-col items-center py-5 rounded-2xl transition-all active:scale-[0.97]"
+            style={{
+              background: expandedStat === stat.key ? stat.bg : 'var(--bg-card)',
+              border: `1.5px solid ${expandedStat === stat.key ? stat.color : 'var(--border)'}`,
+            }}
           >
             <div className="w-9 h-9 rounded-full flex items-center justify-center mb-2.5" style={{ background: stat.bg }}>
               <stat.icon className="w-4 h-4" style={{ color: stat.color }} strokeWidth={1.5} />
             </div>
             <span className="font-display text-2xl" style={{ color: 'var(--text)' }}>{stat.value}</span>
             <span className="text-[11px] mt-1 font-medium" style={{ color: 'var(--text-secondary)' }}>{stat.label}</span>
-          </div>
+          </button>
         ))}
       </div>
+
+      {/* ── Expanded stat detail panel ── */}
+      {expandedStat && (
+        <div
+          className="mb-7 rounded-2xl overflow-hidden animate-fadeIn"
+          style={{ background: 'var(--bg-card)', border: '1px solid var(--border)' }}
+        >
+          {/* Header */}
+          <div className="flex items-center justify-between px-4 py-3" style={{ borderBottom: '1px solid var(--border-light)' }}>
+            <span className="font-display text-sm" style={{ color: 'var(--text)' }}>
+              {expandedStat === 'delagare' && `Delägare (${state.delagare.length})`}
+              {expandedStat === 'deadlines' && `Kommande deadlines (${upcomingDeadlines.length})`}
+              {expandedStat === 'tillgangar' && `Tillgångar (${state.tillgangar.length})`}
+            </span>
+            <button onClick={() => setExpandedStat(null)} className="w-7 h-7 rounded-full flex items-center justify-center" style={{ background: 'var(--border-light)' }}>
+              <X className="w-3.5 h-3.5" style={{ color: 'var(--text-secondary)' }} />
+            </button>
+          </div>
+
+          {/* Content */}
+          <div className="px-4 py-3">
+            {expandedStat === 'delagare' && (
+              state.delagare.length === 0 ? (
+                <div className="text-center py-4">
+                  <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>Inga delägare tillagda ännu</p>
+                  <Link href="/delagare" className="inline-flex items-center gap-1.5 text-xs font-display mt-2" style={{ color: 'var(--accent)' }}>
+                    Lägg till delägare <ChevronRight className="w-3 h-3" />
+                  </Link>
+                </div>
+              ) : (
+                <div className="flex flex-col gap-2.5">
+                  {state.delagare.map((d) => (
+                    <div key={d.id} className="flex items-center gap-3">
+                      <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: 'rgba(107,127,94,0.08)' }}>
+                        <User className="w-3.5 h-3.5" style={{ color: 'var(--accent)' }} strokeWidth={1.5} />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm font-medium truncate" style={{ color: 'var(--text)' }}>{d.name}</p>
+                        <p className="text-xs" style={{ color: 'var(--text-secondary)' }}>{RELATION_LABELS[d.relation] || d.relation}</p>
+                      </div>
+                      {d.share !== undefined && d.share > 0 && (
+                        <span className="text-xs font-semibold px-2 py-1 rounded-full" style={{ background: 'rgba(107,127,94,0.08)', color: 'var(--accent)' }}>
+                          {d.share}%
+                        </span>
+                      )}
+                    </div>
+                  ))}
+                  <Link href="/delagare" className="flex items-center justify-center gap-1.5 text-xs font-display mt-1 py-2 rounded-xl" style={{ color: 'var(--accent)', background: 'rgba(107,127,94,0.05)' }}>
+                    Hantera delägare <ChevronRight className="w-3 h-3" />
+                  </Link>
+                </div>
+              )
+            )}
+
+            {expandedStat === 'deadlines' && (
+              upcomingDeadlines.length === 0 ? (
+                <div className="text-center py-4">
+                  <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>Inga kommande deadlines</p>
+                </div>
+              ) : (
+                <div className="flex flex-col gap-2.5">
+                  {upcomingDeadlines.map((deadline) => {
+                    const daysLeft = deadline.offsetDays - daysSinceDeath;
+                    const isUrgent = daysLeft <= 7;
+                    const deadlineDate = deathDate ? new Date(deathDate.getTime() + deadline.offsetDays * 86400000) : null;
+                    return (
+                      <div key={deadline.id} className="flex items-start gap-3">
+                        <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5" style={{
+                          background: isUrgent ? 'rgba(196,149,106,0.10)' : 'rgba(139,164,184,0.08)',
+                        }}>
+                          {isUrgent ? (
+                            <AlertTriangle className="w-3.5 h-3.5" style={{ color: 'var(--kohaku)' }} strokeWidth={1.5} />
+                          ) : (
+                            <Clock className="w-3.5 h-3.5" style={{ color: 'var(--sora)' }} strokeWidth={1.5} />
+                          )}
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <p className="text-sm font-medium" style={{ color: 'var(--text)' }}>{deadline.title}</p>
+                          {deadlineDate && (
+                            <p className="text-xs mt-0.5" style={{ color: isUrgent ? 'var(--kohaku)' : 'var(--text-secondary)' }}>
+                              {deadlineDate.toLocaleDateString('sv-SE', { day: 'numeric', month: 'short', year: 'numeric' })}
+                            </p>
+                          )}
+                        </div>
+                        <span className="text-xs font-semibold px-2 py-1 rounded-full flex-shrink-0" style={{
+                          background: isUrgent ? 'rgba(196,149,106,0.1)' : 'rgba(139,164,184,0.08)',
+                          color: isUrgent ? 'var(--kohaku)' : 'var(--sora)',
+                        }}>
+                          {daysLeft}d kvar
+                        </span>
+                      </div>
+                    );
+                  })}
+                </div>
+              )
+            )}
+
+            {expandedStat === 'tillgangar' && (
+              state.tillgangar.length === 0 ? (
+                <div className="text-center py-4">
+                  <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>Inga tillgångar registrerade ännu</p>
+                  <Link href="/tillgangar" className="inline-flex items-center gap-1.5 text-xs font-display mt-2" style={{ color: 'var(--kohaku)' }}>
+                    Inventera tillgångar <ChevronRight className="w-3 h-3" />
+                  </Link>
+                </div>
+              ) : (
+                <div className="flex flex-col gap-2.5">
+                  {state.tillgangar.map((t) => {
+                    const value = t.confirmedValue !== undefined ? t.confirmedValue : (t.estimatedValue || 0);
+                    return (
+                      <div key={t.id} className="flex items-center gap-3">
+                        <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: 'rgba(196,149,106,0.08)' }}>
+                          <Coins className="w-3.5 h-3.5" style={{ color: 'var(--kohaku)' }} strokeWidth={1.5} />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <p className="text-sm font-medium truncate" style={{ color: 'var(--text)' }}>{t.description || TILLGANG_TYPE_LABELS[t.type]}</p>
+                          <p className="text-xs" style={{ color: 'var(--text-secondary)' }}>{TILLGANG_TYPE_LABELS[t.type]}{t.bank ? ` · ${t.bank}` : ''}</p>
+                        </div>
+                        {value > 0 && (
+                          <span className="text-xs font-semibold flex-shrink-0" style={{ color: 'var(--kohaku)' }}>
+                            {value.toLocaleString('sv-SE')} kr
+                          </span>
+                        )}
+                      </div>
+                    );
+                  })}
+                  {tillgangarTotal > 0 && (
+                    <div className="flex items-center justify-between pt-2 mt-1" style={{ borderTop: '1px solid var(--border-light)' }}>
+                      <span className="text-xs font-medium" style={{ color: 'var(--text-secondary)' }}>Totalt uppskattat värde</span>
+                      <span className="text-sm font-display font-semibold" style={{ color: 'var(--kohaku)' }}>
+                        {tillgangarTotal.toLocaleString('sv-SE')} kr
+                      </span>
+                    </div>
+                  )}
+                  <Link href="/tillgangar" className="flex items-center justify-center gap-1.5 text-xs font-display mt-1 py-2 rounded-xl" style={{ color: 'var(--kohaku)', background: 'rgba(196,149,106,0.05)' }}>
+                    Hantera tillgångar <ChevronRight className="w-3 h-3" />
+                  </Link>
+                </div>
+              )
+            )}
+          </div>
+        </div>
+      )}
+
+      {expandedStat === null && <div className="mb-4" />}
 
       {/* ── Skulder warning ── */}
       {skulderTotal > tillgangarTotal && skulderTotal > 0 && (
@@ -476,70 +660,144 @@ function DashboardContent() {
         );
       })()}
 
-      {/* ── Deadlines ── */}
-      {upcomingDeadlines.length > 0 && (
-        <section className="mb-7">
-          <h2 className="font-display text-lg mb-4" style={{ color: 'var(--text)' }}>
-            Kommande deadlines
-          </h2>
-          <div className="flex flex-col gap-3">
+      {/* ── Tidsfrister — full timeline with dates ── */}
+      <section className="mb-7">
+        <h2 className="font-display text-lg mb-4" style={{ color: 'var(--text)' }}>
+          Tidsfrister
+        </h2>
+
+        {/* Upcoming deadlines with real dates */}
+        {upcomingDeadlines.length > 0 && (
+          <div className="flex flex-col gap-3 mb-4">
             {upcomingDeadlines.map((deadline) => {
               const daysLeft = deadline.offsetDays - daysSinceDeath;
               const isUrgent = daysLeft <= 7;
+              const isSoon = daysLeft <= 30;
+              const deadlineDate = deathDate ? new Date(deathDate.getTime() + deadline.offsetDays * 86400000) : null;
               return (
                 <div
                   key={deadline.id}
-                  className="p-4 rounded-2xl flex items-start gap-4"
+                  className="p-4 rounded-2xl"
                   style={{
                     background: 'var(--bg-card)',
-                    border: '1px solid var(--border)',
+                    border: `1.5px solid ${isUrgent ? 'rgba(196,149,106,0.25)' : 'var(--border)'}`,
                   }}
                 >
-                  <div className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0" style={{
-                    background: isUrgent ? 'rgba(196,149,106,0.10)' : 'rgba(139,164,184,0.08)',
-                  }}>
-                    {isUrgent ? (
-                      <AlertTriangle className="w-4 h-4" style={{ color: 'var(--kohaku)' }} strokeWidth={1.5} />
-                    ) : (
-                      <Clock className="w-4 h-4" style={{ color: 'var(--sora)' }} strokeWidth={1.5} />
-                    )}
+                  <div className="flex items-start gap-3.5">
+                    <div className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0" style={{
+                      background: isUrgent ? 'rgba(196,149,106,0.10)' : 'rgba(139,164,184,0.08)',
+                    }}>
+                      {isUrgent ? (
+                        <AlertTriangle className="w-4 h-4" style={{ color: 'var(--kohaku)' }} strokeWidth={1.5} />
+                      ) : (
+                        <Clock className="w-4 h-4" style={{ color: 'var(--sora)' }} strokeWidth={1.5} />
+                      )}
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center justify-between gap-2 mb-1">
+                        <p className="font-display text-sm" style={{ color: 'var(--text)' }}>{deadline.title}</p>
+                        <span className="text-xs font-semibold px-2.5 py-1 rounded-full flex-shrink-0" style={{
+                          background: isUrgent ? 'rgba(196,149,106,0.12)' : isSoon ? 'rgba(139,164,184,0.10)' : 'rgba(107,127,94,0.08)',
+                          color: isUrgent ? 'var(--kohaku)' : isSoon ? 'var(--sora)' : 'var(--accent)',
+                        }}>
+                          {daysLeft} {daysLeft === 1 ? 'dag' : 'dagar'} kvar
+                        </span>
+                      </div>
+                      <p className="text-xs leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{deadline.description}</p>
+                      <div className="flex items-center gap-3 mt-2.5">
+                        {deadlineDate && (
+                          <span className="text-xs font-medium flex items-center gap-1" style={{ color: isUrgent ? 'var(--kohaku)' : 'var(--sora)' }}>
+                            <Calendar className="w-3 h-3" />
+                            {deadlineDate.toLocaleDateString('sv-SE', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' })}
+                          </span>
+                        )}
+                        {deadline.isLegal && (
+                          <span className="text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full" style={{ background: 'rgba(196,149,106,0.08)', color: 'var(--kohaku)' }}>
+                            Lagkrav
+                          </span>
+                        )}
+                      </div>
+                      {deadline.authority && (
+                        <p className="text-[11px] mt-1.5" style={{ color: 'var(--text-secondary)' }}>
+                          Ansvarig: {deadline.authority}
+                        </p>
+                      )}
+                    </div>
                   </div>
-                  <div className="flex-1">
-                    <p className="font-display text-sm" style={{ color: 'var(--text)' }}>{deadline.title}</p>
-                    <p className="text-xs mt-0.5" style={{ color: 'var(--text-secondary)' }}>{deadline.description}</p>
-                  </div>
-                  <span className="text-xs font-semibold px-3 py-1.5 rounded-full flex-shrink-0" style={{
-                    background: isUrgent ? 'rgba(196,149,106,0.1)' : 'rgba(139,164,184,0.08)',
-                    color: isUrgent ? 'var(--kohaku)' : 'var(--sora)',
-                  }}>
-                    {daysLeft}d
-                  </span>
                 </div>
               );
             })}
           </div>
-        </section>
-      )}
+        )}
 
-      {/* ── Passed deadlines ── */}
-      {passedDeadlines.length > 0 && (
-        <div className="mb-6 p-5 rounded-2xl flex items-start gap-4" style={{
-          background: 'linear-gradient(135deg, rgba(212,160,167,0.08), rgba(212,160,167,0.02))',
-          border: '1.5px solid rgba(212,160,167,0.12)',
-        }}>
-          <div className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: 'rgba(212,160,167,0.12)' }}>
-            <AlertTriangle className="w-4 h-4" style={{ color: 'var(--sakura)' }} strokeWidth={1.5} />
+        {/* Show all remaining deadlines count */}
+        {DEFAULT_TIDSFRISTER.filter(t => t.offsetDays > daysSinceDeath).length > 3 && (
+          <Link
+            href="/tidslinje"
+            className="flex items-center justify-center gap-1.5 text-xs font-display mb-4 py-2.5 rounded-xl"
+            style={{ color: 'var(--sora)', background: 'rgba(139,164,184,0.06)', border: '1px solid rgba(139,164,184,0.10)' }}
+          >
+            Visa alla {DEFAULT_TIDSFRISTER.filter(t => t.offsetDays > daysSinceDeath).length} kommande tidsfrister
+            <ChevronRight className="w-3 h-3" />
+          </Link>
+        )}
+
+        {/* Passed deadlines — expanded with detail */}
+        {passedDeadlines.length > 0 && (
+          <div
+            className="rounded-2xl overflow-hidden"
+            style={{
+              background: 'linear-gradient(135deg, rgba(212,160,167,0.06), rgba(212,160,167,0.02))',
+              border: '1.5px solid rgba(212,160,167,0.15)',
+            }}
+          >
+            <div className="px-4 py-3 flex items-center gap-3" style={{ borderBottom: '1px solid rgba(212,160,167,0.10)' }}>
+              <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: 'rgba(212,160,167,0.12)' }}>
+                <AlertTriangle className="w-3.5 h-3.5" style={{ color: 'var(--sakura)' }} strokeWidth={1.5} />
+              </div>
+              <div>
+                <p className="font-display text-sm" style={{ color: 'var(--sakura)' }}>
+                  {passedDeadlines.length} passerade tidsfrister
+                </p>
+                <p className="text-[11px]" style={{ color: 'var(--text-secondary)' }}>
+                  Kontrollera om dessa har hanterats
+                </p>
+              </div>
+            </div>
+            <div className="px-4 py-3 flex flex-col gap-2.5">
+              {passedDeadlines.map((deadline) => {
+                const deadlineDate = deathDate ? new Date(deathDate.getTime() + deadline.offsetDays * 86400000) : null;
+                const daysOverdue = daysSinceDeath - deadline.offsetDays;
+                return (
+                  <div key={deadline.id} className="flex items-start gap-3">
+                    <div className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5" style={{ background: 'rgba(212,160,167,0.12)' }}>
+                      <Clock className="w-3 h-3" style={{ color: 'var(--sakura)' }} strokeWidth={1.5} />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-medium" style={{ color: 'var(--text)' }}>{deadline.title}</p>
+                      <div className="flex items-center gap-2 mt-0.5">
+                        {deadlineDate && (
+                          <span className="text-xs" style={{ color: 'var(--text-secondary)' }}>
+                            {deadlineDate.toLocaleDateString('sv-SE', { day: 'numeric', month: 'short' })}
+                          </span>
+                        )}
+                        <span className="text-[10px] font-semibold px-1.5 py-0.5 rounded" style={{ background: 'rgba(212,160,167,0.10)', color: 'var(--sakura)' }}>
+                          {daysOverdue} {daysOverdue === 1 ? 'dag' : 'dagar'} sedan
+                        </span>
+                      </div>
+                      {deadline.consequence && (
+                        <p className="text-[11px] mt-1 leading-relaxed" style={{ color: 'var(--sakura)', opacity: 0.8 }}>
+                          {deadline.consequence}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
           </div>
-          <div>
-            <p className="font-display text-sm" style={{ color: 'var(--sakura)' }}>
-              {passedDeadlines.length} {t('dashboard.missed_deadlines')}
-            </p>
-            <p className="text-xs mt-1" style={{ color: 'var(--text-secondary)' }}>
-              {t('dashboard.missed_deadlines_desc')}
-            </p>
-          </div>
-        </div>
-      )}
+        )}
+      </section>
 
       {/* ── Mike Ross — Tiimo-style featured card ── */}
       <Link
