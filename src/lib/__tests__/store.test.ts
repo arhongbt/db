@@ -29,6 +29,7 @@ describe('dodsboReducer', () => {
         relation: 'barn' as const,
         email: 'erik@test.se',
         phone: '070-1234567',
+        isDelagare: true,
       };
       const next = dodsboReducer(state, { type: 'ADD_DELAGARE', payload: delagare });
       expect(next.delagare).toHaveLength(1);
@@ -40,8 +41,8 @@ describe('dodsboReducer', () => {
     it('tar bort rätt delägare', () => {
       const state = makeState({
         delagare: [
-          { id: '1', name: 'A', relation: 'barn', email: '', phone: '' },
-          { id: '2', name: 'B', relation: 'barn', email: '', phone: '' },
+          { id: '1', name: 'A', relation: 'barn', email: '', phone: '', isDelagare: true },
+          { id: '2', name: 'B', relation: 'barn', email: '', phone: '', isDelagare: true },
         ],
       });
       const next = dodsboReducer(state, { type: 'REMOVE_DELAGARE', payload: '1' });
@@ -67,10 +68,10 @@ describe('dodsboReducer', () => {
       const state = makeState();
       const next = dodsboReducer(state, {
         type: 'ADD_SKULD',
-        payload: { id: 's1', typ: 'bolan', beskrivning: 'Bolån Nordea', belopp: 2000000 },
+        payload: { id: 's1', type: 'bolan', creditor: 'Nordea', amount: 2000000 },
       });
       expect(next.skulder).toHaveLength(1);
-      expect(next.skulder[0].belopp).toBe(2000000);
+      expect(next.skulder[0].amount).toBe(2000000);
     });
   });
 
@@ -78,7 +79,15 @@ describe('dodsboReducer', () => {
     it('uppdaterar status och sätter completedAt', () => {
       const state = makeState({
         tasks: [
-          { id: 'task1', title: 'Kontakta bank', description: '', status: 'ej_paborjad', phase: 'akut' },
+          {
+            id: 'task1',
+            title: 'Kontakta bank',
+            description: '',
+            status: 'ej_paborjad',
+            step: 'akut',
+            category: 'bank_ekonomi',
+            priority: 'viktig',
+          },
         ],
       });
       const next = dodsboReducer(state, {
@@ -95,10 +104,10 @@ describe('dodsboReducer', () => {
       const state = makeState();
       const next = dodsboReducer(state, {
         type: 'ADD_KOSTNAD',
-        payload: { id: 'k1', beskrivning: 'Begravning', belopp: 35000, kategori: 'begravning', datum: '2025-01-20' },
+        payload: { id: 'k1', description: 'Begravning', amount: 35000, category: 'begravning', date: '2025-01-20' },
       });
       expect(next.kostnader).toHaveLength(1);
-      expect(next.kostnader[0].belopp).toBe(35000);
+      expect(next.kostnader[0].amount).toBe(35000);
     });
   });
 
@@ -128,8 +137,8 @@ describe('dodsboReducer', () => {
     it('sätter lösörelista', () => {
       const state = makeState();
       const items = [
-        { id: 'l1', namn: 'Soffa', kategori: 'möbler' as const, varde: 5000 },
-        { id: 'l2', namn: 'TV', kategori: 'elektronik' as const, varde: 8000 },
+        { id: 'l1', name: 'Soffa', category: 'mobler' as const, estimatedValue: 5000 },
+        { id: 'l2', name: 'TV', category: 'elektronik' as const, estimatedValue: 8000 },
       ];
       const next = dodsboReducer(state, { type: 'SET_LOSORE', payload: items });
       expect(next.losore).toHaveLength(2);
